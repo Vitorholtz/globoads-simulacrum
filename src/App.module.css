@@ -1,0 +1,12 @@
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+}
+
+.content {
+  background: var(--color-bg-app);
+  overflow-y: auto;
+  padding: 56px 80px 96px;
+  min-height: 100vh;
+}

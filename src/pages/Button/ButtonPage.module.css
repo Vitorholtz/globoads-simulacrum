@@ -1,0 +1,374 @@
+/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+
+/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Variant cards ── */
+
+.variantsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.variantCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.variantPreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.variantBody {
+  padding: 28px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.variantTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.variantName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+}
+
+.variantTagline {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: 2px 9px;
+  border-radius: 100px;
+}
+
+.variantDesc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.variantWhen {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border-ui);
+  flex: 1;
+}
+
+.variantWhen li {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  padding-left: 16px;
+  position: relative;
+}
+
+.variantWhen li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-tertiary);
+  font-weight: 300;
+}
+
+/* ── Size scale ── */
+
+.sizeScaleContainer {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.sizeRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.sizeRow:last-child {
+  border-bottom: none;
+}
+
+.sizePreview {
+  width: 240px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  padding: 28px 32px;
+  align-self: stretch;
+}
+
+.sizeMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 32px;
+}
+
+.sizeValueRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sizeLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.sizeRecommended {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: 2px 9px;
+  border-radius: 100px;
+}
+
+.sizeDescription {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.sizeSpecs {
+  font-size: 12px;
+  font-family: var(--font-family-code);
+  color: var(--color-text-tertiary);
+  margin-left: auto;
+  padding-right: 32px;
+  text-align: right;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* ── State matrix ── */
+
+.stateMatrixContainer {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  margin-bottom: 16px;
+}
+
+.stateMatrixContainer:last-child {
+  margin-bottom: 0;
+}
+
+.matrixVariantHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixVariantName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.matrixVariantTagline {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.matrixRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.matrixRow:last-child {
+  border-bottom: none;
+}
+
+.matrixStateLabel {
+  width: 96px;
+  flex-shrink: 0;
+  padding: 0 24px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixStateName {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.matrixCells {
+  display: flex;
+  flex: 1;
+}
+
+.matrixCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCell:last-child {
+  border-right: none;
+}
+
+.matrixCellLabel {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-align: center;
+  padding: 14px 8px;
+  border-right: 1px solid var(--color-border-ui);
+  flex: 1;
+}
+
+.matrixCellLabel:last-child {
+  border-right: none;
+}
+
+.matrixHeaderRow {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-primary);
+}
+
+.matrixHeaderSpacer {
+  width: 96px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+/* ── Content variants ── */
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.contentCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+}
+
+.contentPreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentBody {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contentName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.contentDesc {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guidelineTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.guidelineRule {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+  line-height: 1.5;
+}

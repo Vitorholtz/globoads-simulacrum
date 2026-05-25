@@ -1,0 +1,248 @@
+/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+
+/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Exemplos de Valor ── */
+
+.examplesContainer {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.exampleRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.exampleRow:last-child {
+  border-bottom: none;
+}
+
+.examplePreview {
+  width: 120px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 32px;
+  align-self: stretch;
+}
+
+.exampleMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 32px;
+}
+
+.exampleValueRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.exampleLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.exampleValue {
+  font-size: 12px;
+  font-family: var(--font-family-code);
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.exampleDesc {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Anatomia ── */
+
+.anatomyCard {
+  display: flex;
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+}
+
+.anatomyPreview {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--color-surface-secondary);
+  border-right: 1px solid var(--color-border-ui);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 32px;
+}
+
+.anatomyDiagram {
+  transform: scale(2.5);
+  transform-origin: center;
+}
+
+.anatomySpecs {
+  flex: 1;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.specRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.specRow:last-child {
+  border-bottom: none;
+}
+
+.specKey {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.specVal {
+  font-size: 13px;
+  font-family: var(--font-family-code);
+  color: var(--color-text-secondary);
+}
+
+/* ── Contextos de Uso ── */
+
+.contextsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contextCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+}
+
+.contextPreview {
+  background: var(--color-surface-secondary);
+  padding: 40px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+}
+
+.contextMeta {
+  padding: 16px 20px;
+  border-top: 1px solid var(--color-border-ui);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contextLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.contextDesc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Icon context example */
+
+.contextIconExample {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.contextIconWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.contextIcon {
+  font-size: 32px;
+  color: var(--color-fill-secondary);
+  display: block;
+}
+
+.contextIconBadge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guidelineTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.guidelineRule {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+  line-height: 1.5;
+}

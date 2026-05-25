@@ -1,0 +1,151 @@
+/* ── Base ── */
+
+.pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Gap por variante */
+.pages,
+.items {
+  gap: 8px;
+}
+
+.buttons {
+  gap: 4px;
+}
+
+/* ── Setas (chevrons) ── */
+
+.chevronBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: background 120ms ease, box-shadow 120ms ease;
+}
+
+.chevronIcon {
+  font-size: 20px;
+  line-height: 20px;
+  display: block;
+  background: var(--color-fill-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chevronBtn:hover {
+  background: var(--color-surface-secondary);
+}
+
+.chevronBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.chevronBtn.disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+
+.chevronBtn.disabled:hover {
+  background: transparent;
+}
+
+/* ── Infos (pages + items) ── */
+
+.infos {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.infoText {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+  line-height: 20px;
+}
+
+/* ── Input (variante pages) ── */
+
+.pageInput {
+  width: 48px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: 6px 8px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-fill-primary);
+  text-align: center;
+  outline: none;
+  line-height: 20px;
+  transition: box-shadow 120ms ease;
+}
+
+.pageInput:focus {
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Botões numerados (variante buttons) ── */
+
+.pageButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  padding: 8px 4px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-fill-secondary);
+  cursor: pointer;
+  line-height: 16px;
+  transition: background 120ms ease, box-shadow 120ms ease;
+}
+
+.pageBtn:hover {
+  background: var(--color-surface-secondary);
+}
+
+.pageBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.pageBtnActive {
+  border-color: var(--color-border-primary);
+}
+
+.pageBtnActive:hover {
+  background: var(--color-surface-secondary);
+}
+
+.pageBtnLabel {
+  background: var(--color-fill-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

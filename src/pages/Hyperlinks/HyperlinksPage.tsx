@@ -1,0 +1,145 @@
+import Hyperlink from '../../components/Hyperlink/Hyperlink'
+import {
+  HYPERLINK_SIZES,
+  HYPERLINK_STATES,
+  HYPERLINK_GUIDELINES,
+} from '../../tokens/hyperlinks'
+import type { HyperlinkSize } from '../../tokens/hyperlinks'
+import PageHeader from '../../components/PageHeader/PageHeader'
+import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import styles from './HyperlinksPage.module.css'
+
+type ForceState = 'hover' | 'focus' | 'active' | undefined
+
+function toForceState(id: string): ForceState {
+  if (id === 'hover' || id === 'focus' || id === 'active') return id
+  return undefined
+}
+
+export default function HyperlinksPage() {
+  return (
+    <div>
+      <PageHeader
+        breadcrumb="Navigations"
+        title="Hyperlinks"
+        subtitle="Hyperlinks levam os usuários de um lugar para outro, dentro ou fora da aplicação. Existem em quatro tamanhos e quatro estados interativos, com suporte a link externo sinalizado por ícone."
+        stats={[
+          { value: 4, label: 'Tamanhos' },
+          { value: 4, label: 'Estados' },
+          { value: 2, label: 'Variantes' },
+        ]}
+      />
+
+      {/* ── Escala de Tamanhos ── */}
+      <section className={styles.section}>
+        <SectionHeader icon="straighten" title="Escala de Tamanhos" count={`${HYPERLINK_SIZES.length} tamanhos`} />
+        <div className={styles.sizeScaleContainer}>
+          {HYPERLINK_SIZES.map((s) => (
+            <div key={s.id} className={styles.sizeRow}>
+              <div className={styles.sizePreview}>
+                <Hyperlink size={s.id as HyperlinkSize}>Hyperlink</Hyperlink>
+              </div>
+              <div className={styles.sizeMeta}>
+                <div className={styles.sizeValueRow}>
+                  <span className={styles.sizeLabel}>{s.label}</span>
+                  {s.recommended && <span className={styles.sizeBadge}>Recomendado</span>}
+                  {s.warning && <span className={styles.sizeBadgeWarning}>⚠ Restrito</span>}
+                </div>
+                <span className={styles.sizeDescription}>{s.description}</span>
+              </div>
+              <div className={styles.sizeSpecs}>
+                <span>font {s.fontSize}px · lh {s.lineHeight}px</span><br />
+                <span>icon {s.iconSize}px · gap {s.gap}px</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Estados ── */}
+      <section className={styles.section}>
+        <SectionHeader icon="toggle_on" title="Estados" count={`${HYPERLINK_STATES.length} estados`} />
+        <div className={styles.stateMatrix}>
+          <div className={styles.matrixHeaderRow}>
+            <div className={styles.matrixHeaderSpacer} />
+            {HYPERLINK_SIZES.map((s) => (
+              <div key={s.id} className={styles.matrixSizeLabel}>{s.label}</div>
+            ))}
+          </div>
+          {HYPERLINK_STATES.map((state) => (
+            <div key={state.id} className={styles.matrixRow}>
+              <div className={styles.matrixStateLabel}>
+                <span className={styles.matrixStateName}>{state.label}</span>
+              </div>
+              {HYPERLINK_SIZES.map((s) => (
+                <div key={s.id} className={styles.matrixCell}>
+                  <Hyperlink
+                    size={s.id as HyperlinkSize}
+                    forceState={toForceState(state.id)}
+                  >
+                    Hyperlink
+                  </Hyperlink>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.statesLegend}>
+          {HYPERLINK_STATES.map((s) => (
+            <div key={s.id} className={styles.legendItem}>
+              <span className={styles.legendLabel}>{s.label}</span>
+              <span className={styles.legendDesc}>{s.description}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Link Externo ── */}
+      <section className={styles.section}>
+        <SectionHeader icon="open_in_new" title="Link Externo" />
+        <div className={styles.externalGrid}>
+          {HYPERLINK_SIZES.map((s) => (
+            <div key={s.id} className={styles.externalCard}>
+              <div className={styles.externalPreview}>
+                <Hyperlink size={s.id as HyperlinkSize} external href="#">
+                  Hyperlink
+                </Hyperlink>
+              </div>
+              <div className={styles.externalMeta}>
+                <span className={styles.externalSizeLabel}>{s.label}</span>
+                <span className={styles.externalIconSpec}>icon {s.iconSize}px</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className={styles.externalNote}>
+          <span
+            className={`material-symbols-rounded ${styles.externalNoteIcon}`}
+            style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}
+            aria-hidden="true"
+          >
+            info
+          </span>
+          <p>
+            Use o prop <code>external</code> em links que abrem fora da aplicação. O ícone <strong>open_in_new</strong> é adicionado automaticamente, e o atributo <code>target="_blank"</code> com <code>rel="noopener noreferrer"</code> é aplicado para segurança.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Diretrizes ── */}
+      <section className={styles.section}>
+        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
+        <div className={styles.guidelinesGrid}>
+          {HYPERLINK_GUIDELINES.map((g) => (
+            <div key={g.title} className={styles.guidelineCard}>
+              <h3 className={styles.guidelineTitle}>{g.title}</h3>
+              <p className={styles.guidelineBody}>{g.body}</p>
+              <div className={styles.guidelineRule}>{g.rule}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  )
+}

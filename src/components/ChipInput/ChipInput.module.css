@@ -1,0 +1,127 @@
+/* ── Base ── */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-surface-primary);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  white-space: nowrap;
+  color: var(--color-fill-secondary);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+/* ── Style-specific padding ── */
+
+/* Label left-padded, close-icon right-padded tighter */
+.default {
+  padding: 8px 8px 8px 12px;
+}
+
+/* Avatar is compact — less padding overall */
+.person {
+  padding: 4px 8px 4px 4px;
+}
+
+/* Icon on left, all sides equal */
+.icon {
+  padding: 8px;
+}
+
+/* ── States (neutral only) ── */
+
+.chip:hover,
+.chip[data-state='hover'] {
+  background: var(--color-surface-tertiary);
+  cursor: pointer;
+}
+
+.chip[data-state='focus'] {
+  background: var(--color-surface-tertiary);
+  box-shadow: var(--focus-ring);
+}
+
+.chip:active,
+.chip[data-state='active'] {
+  background: #e2e2e3;
+}
+
+.chip[data-state='dragged'] {
+  background: #e2e2e3;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+.chip[data-state='disabled'] {
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+/* ── Avatar (Person style) ── */
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-surface-tertiary);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatarIcon {
+  font-size: 14px;
+  line-height: 1;
+  display: block;
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Leading icon (Icon style) ── */
+
+.leadIcon {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  flex-shrink: 0;
+  color: var(--color-fill-secondary);
+}
+
+/* ── Label ── */
+
+.label {
+  display: block;
+}
+
+/* ── Close button ── */
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-fill-secondary);
+  flex-shrink: 0;
+  outline: none;
+  border-radius: 4px;
+}
+
+.closeBtn:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-fill-accent);
+}
+
+.closeIcon {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+}

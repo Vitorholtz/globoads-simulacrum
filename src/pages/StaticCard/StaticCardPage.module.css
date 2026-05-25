@@ -1,0 +1,233 @@
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Styles grid ── */
+
+.stylesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.styleCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stylePreview {
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 48px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demoCard {
+  width: 220px;
+}
+
+/* ── Campaign card demo ── */
+
+.campaignCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 2px 2px 0;
+}
+
+.campaignHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.campaignChannel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.campaignStatus {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-fill-success);
+  background: var(--color-surface-success);
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+.campaignMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.campaignValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.campaignLabel {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.campaignChart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 40px;
+}
+
+.campaignBar {
+  flex: 1;
+  background: var(--color-fill-accent);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.7;
+  min-height: 3px;
+}
+
+.campaignFooter {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border-ui);
+}
+
+.campaignStat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.campaignStatValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.campaignStatLabel {
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+}
+
+.campaignTrend {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.campaignTrendIcon {
+  font-size: 14px;
+  color: var(--color-fill-success);
+}
+
+.campaignTrendValue {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-fill-success);
+}
+
+.styleBody {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.styleName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.styleDesc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.styleWhen {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-ui);
+  flex: 1;
+}
+
+.styleWhen li {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  padding-left: 16px;
+  position: relative;
+}
+
+.styleWhen li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-tertiary);
+  font-weight: 300;
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.guidelineTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.guidelineRule {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+  line-height: 1.5;
+}

@@ -1,0 +1,305 @@
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Styles grid ── */
+
+.stylesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.styleCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stylePreview {
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 48px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demoCard {
+  width: 306px;
+}
+
+.styleBody {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.styleName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.styleDesc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.styleWhen {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-ui);
+  flex: 1;
+}
+
+.styleWhen li {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  padding-left: 16px;
+  position: relative;
+}
+
+.styleWhen li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-tertiary);
+  font-weight: 300;
+}
+
+/* ── Diaria card demo ── */
+
+.diariaCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.diariaHeader {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 22px;
+}
+
+.diariaChannelIcon {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+.diariaChannel {
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.diariaHeaderLogos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diariaHeaderLogo {
+  height: 13px;
+  width: auto;
+  display: block;
+}
+
+.diariaHeaderLogoG1 {
+  height: 15px;
+}
+
+.diariaHeaderLogoGe {
+  margin-top: 3px;
+}
+
+.diariaHeaderLogoGshow {
+  height: 14px;
+}
+
+.diariaMoreCount {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-border-ui);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  line-height: 1.6;
+}
+
+.diariaContent {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.diariaTitle {
+  font-family: var(--font-family-display);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0;
+  margin: 0 0 12px;
+  line-height: 1.05;
+}
+
+.diariaDesc {
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.diariaPhotoWrap {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 156px;
+  background: linear-gradient(160deg, #0d1b2e 0%, #1b3a5c 100%);
+}
+
+.diariaPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 18%;
+  display: block;
+}
+
+/* ── State matrix ── */
+
+.stateMatrixContainer {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  margin-bottom: 16px;
+}
+
+.stateMatrixContainer:last-child {
+  margin-bottom: 0;
+}
+
+.matrixStyleHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixStyleName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.matrixStyleTagline {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.matrixHeaderRow {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-primary);
+}
+
+.matrixCellLabel {
+  flex: 1;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-align: center;
+  padding: 14px 8px;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCellLabel:last-child {
+  border-right: none;
+}
+
+.matrixCellsRow {
+  display: flex;
+}
+
+.matrixCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCell:last-child {
+  border-right: none;
+}
+
+.matrixCard {
+  width: 160px;
+  min-height: 96px;
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.guidelineTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.guidelineRule {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+  line-height: 1.5;
+}

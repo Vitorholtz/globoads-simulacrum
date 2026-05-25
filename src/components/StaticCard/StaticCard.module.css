@@ -1,0 +1,10 @@
+.card {
+  background: var(--color-surface-secondary);
+  border-radius: 20px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.onSecondary {
+  background: var(--color-surface-primary);
+}

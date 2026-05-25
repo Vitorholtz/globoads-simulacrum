@@ -1,0 +1,68 @@
+/* ── Base ── */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  /* Icon on left (8px), label fills, right padding wider (12px) */
+  padding: 8px 12px 8px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-surface-primary);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+/* ── States (neutral only — no checked variant) ── */
+
+.chip:hover:not(:disabled):not([data-state='disabled']),
+.chip[data-state='hover'] {
+  background: var(--color-surface-tertiary);
+}
+
+.chip:focus-visible,
+.chip[data-state='focus'] {
+  background: var(--color-surface-tertiary);
+  box-shadow: var(--focus-ring);
+}
+
+.chip:active:not(:disabled):not([data-state='disabled']),
+.chip[data-state='active'] {
+  background: #e2e2e3;
+}
+
+.chip[data-state='dragged'] {
+  background: #e2e2e3;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+.chip:disabled,
+.chip[data-state='disabled'] {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Inner elements ── */
+
+/* Icon uses accent blue — distinguishing feature vs other chip types */
+.icon {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  flex-shrink: 0;
+  color: var(--color-fill-accent);
+}
+
+.label {
+  display: block;
+  color: var(--color-fill-secondary);
+}

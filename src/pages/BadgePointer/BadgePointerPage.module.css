@@ -1,0 +1,179 @@
+/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+
+/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Componente ── */
+
+.componentCard {
+  display: flex;
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+}
+
+.componentPreview {
+  flex: 1;
+  background: var(--color-surface-secondary);
+  border-right: 1px solid var(--color-border-ui);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+}
+
+.componentSpecs {
+  width: 440px;
+  flex-shrink: 0;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.specRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.specRow:last-child {
+  border-bottom: none;
+}
+
+.specKey {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.specVal {
+  font-size: 13px;
+  font-family: var(--font-family-code);
+  color: var(--color-text-secondary);
+}
+
+/* ── Uso em contexto ── */
+
+.contextGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contextCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.contextPreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 48px;
+}
+
+.contextIconWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.contextPointer {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+}
+
+.contextNavItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-md);
+}
+
+.contextNavLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.contextMeta {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contextLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.contextDesc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Diretrizes ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guidelineTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+  margin: 0;
+}
+
+.guidelineRule {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+  line-height: 1.5;
+}

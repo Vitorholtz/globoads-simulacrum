@@ -1,0 +1,201 @@
+/* ── Wrapper ── */
+
+.switch {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  min-height: 32px;
+  padding: 4px 0;
+  width: fit-content;
+  cursor: pointer;
+  user-select: none;
+
+  /* CSS variable drives track color AND check icon color simultaneously */
+  --sw-track: var(--color-fill-tertiary);
+}
+
+.switch.inverter {
+  flex-direction: row-reverse;
+}
+
+/* Any forced state disables pointer interaction */
+.switch[data-state] {
+  pointer-events: none;
+}
+
+.switch[data-state='disabled'] {
+  opacity: 0.48;
+}
+
+/* ── Native input (visually hidden, accessible) ── */
+
+.nativeInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ── Track ── */
+
+.track {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  border-radius: 9999px;
+  padding: 2px;
+  flex-shrink: 0;
+  background: var(--sw-track);
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Check icon (visible when checked, colored = track bg → only shows on white thumb) ── */
+
+.checkIcon {
+  position: absolute;
+  top: calc(50% + 1px);
+  left: 26px; /* center of thumb when checked: 18px + 8px */
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  line-height: 14px;
+  -webkit-text-stroke: 0.8px currentColor;
+  z-index: 2;
+  font-style: normal;
+  text-align: center;
+  pointer-events: none;
+  color: var(--sw-track);
+  opacity: 0;
+  transition: color 120ms ease;
+}
+
+.switch[data-behavior='checked'] .checkIcon {
+  opacity: 1;
+}
+
+/* ── Thumb ── */
+
+.thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-fill-inverse);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 1;
+  transition: left 150ms ease;
+}
+
+.switch[data-behavior='checked'] .thumb {
+  left: 18px;
+}
+
+/* ════════════════════════════════════
+   TRACK COLORS — --sw-track variable
+   ════════════════════════════════════ */
+
+/* Checked (all states inherit from behavior='checked') */
+.switch[data-behavior='checked'] {
+  --sw-track: var(--color-fill-accent);
+}
+
+/* ── REAL INTERACTION (no forced data-state) ── */
+
+/* Hover */
+.switch:not([data-state]):hover[data-behavior='unchecked'] {
+  --sw-track: var(--color-fill-secondary);
+}
+
+.switch:not([data-state]):hover[data-behavior='checked'] {
+  --sw-track: #0050D1;
+}
+
+/* Focus (keyboard — :focus-visible via :has) */
+.switch:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] {
+  --sw-track: var(--color-fill-secondary);
+}
+
+.switch:not([data-state]):has(input:focus-visible)[data-behavior='checked'] {
+  --sw-track: #0050D1;
+}
+
+.switch:not([data-state]):has(input:focus-visible) .track {
+  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+}
+
+/* Active */
+.switch:not([data-state]):active[data-behavior='unchecked'] {
+  --sw-track: var(--color-fill-primary);
+}
+
+.switch:not([data-state]):active[data-behavior='checked'] {
+  --sw-track: #0045B6;
+}
+
+/* ── FORCED STATES (docs / matrix) ── */
+
+/* Forced hover */
+.switch[data-state='hover'][data-behavior='unchecked'] {
+  --sw-track: var(--color-fill-secondary);
+}
+
+.switch[data-state='hover'][data-behavior='checked'] {
+  --sw-track: #0050D1;
+}
+
+/* Forced focus */
+.switch[data-state='focus'][data-behavior='unchecked'] {
+  --sw-track: var(--color-fill-secondary);
+}
+
+.switch[data-state='focus'][data-behavior='checked'] {
+  --sw-track: #0050D1;
+}
+
+.switch[data-state='focus'] .track {
+  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+}
+
+/* Forced active */
+.switch[data-state='active'][data-behavior='unchecked'] {
+  --sw-track: var(--color-fill-primary);
+}
+
+.switch[data-state='active'][data-behavior='checked'] {
+  --sw-track: #0045B6;
+}
+
+/* ── Text group ── */
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.label {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+  transition: color 120ms ease;
+}
+
+/* Active state darkens the label */
+.switch:not([data-state]):active .label,
+.switch[data-state='active'] .label {
+  color: var(--color-fill-primary);
+}
+
+.helpText {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-fill-tertiary);
+}

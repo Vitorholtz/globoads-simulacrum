@@ -1,0 +1,29 @@
+import { COLOR_GROUPS } from '../../tokens/colors'
+import ColorGroup from '../../components/ColorGroup/ColorGroup'
+import PageHeader from '../../components/PageHeader/PageHeader'
+
+const GROUP_ICONS: Record<string, string> = {
+  Fill: 'format_color_fill',
+  Surface: 'layers',
+  Border: 'border_outer',
+}
+
+export default function ColorsPage() {
+  return (
+    <div>
+      <PageHeader
+        breadcrumb="Foundation"
+        title="Colors"
+        subtitle="Tokens semânticos de cor do Globo Ads Design System. Utilize sempre os tokens — nunca valores hexadecimais diretamente — para garantir consistência visual, hierarquia e acessibilidade em toda a interface."
+        stats={COLOR_GROUPS.map((g) => ({ value: g.tokens.length, label: g.label }))}
+      />
+      {COLOR_GROUPS.map((group) => (
+        <ColorGroup
+          key={group.label}
+          group={group}
+          icon={GROUP_ICONS[group.label]}
+        />
+      ))}
+    </div>
+  )
+}

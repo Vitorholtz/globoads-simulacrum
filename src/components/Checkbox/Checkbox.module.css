@@ -1,0 +1,189 @@
+/* ── Wrapper ── */
+
+.checkbox {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  min-height: 32px;
+  padding: 4px 0;
+  width: fit-content;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox.inverter {
+  flex-direction: row-reverse;
+}
+
+/* Any forced state (matrix/docs) disables all pointer interaction */
+.checkbox[data-state] {
+  pointer-events: none;
+}
+
+.checkbox[data-state='disabled'] {
+  opacity: 0.48;
+}
+
+/* ── Native input (visually hidden, accessible) ── */
+
+.nativeInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ── Input container — CSS grid stacks icon + shape ── */
+
+.input {
+  display: grid;
+  place-items: center;
+  padding: 4px 0;
+  flex-shrink: 0;
+  width: 16px;
+}
+
+.nativeInput,
+.icon,
+.shape {
+  grid-area: 1 / 1;
+}
+
+/* ── Icon (check / remove) ── */
+
+.icon {
+  font-size: 12px;
+  line-height: 12px;
+  color: #ffffff;
+  z-index: 2;
+  font-style: normal;
+  text-align: center;
+  width: 16px;
+  pointer-events: none;
+  -webkit-text-stroke: 0.8px currentColor;
+}
+
+/* ── Shape (the 16×16 checkbox square) ── */
+
+.shape {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-sm);
+  z-index: 1;
+  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, border-width 80ms ease;
+}
+
+/* ════════════════════════════════════
+   VISUAL STATES — base (Normal)
+   ════════════════════════════════════ */
+
+.checkbox[data-behavior='unchecked'] .shape {
+  background: var(--color-surface-primary);
+  border: 1px solid #aeb0b2;
+}
+
+.checkbox[data-behavior='partial'] .shape,
+.checkbox[data-behavior='checked'] .shape {
+  background: var(--color-fill-accent);
+}
+
+/* ════════════════════════════════════
+   REAL INTERACTION STATES
+   Only fire when no forced data-state is present
+   ════════════════════════════════════ */
+
+/* Hover */
+.checkbox:not([data-state]):hover[data-behavior='unchecked'] .shape {
+  border-color: #646568;
+}
+
+.checkbox:not([data-state]):hover[data-behavior='partial'] .shape,
+.checkbox:not([data-state]):hover[data-behavior='checked'] .shape {
+  background: #0050d1;
+}
+
+/* Focus (keyboard only — :focus-visible prevents ring on mouse click) */
+.checkbox:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] .shape {
+  border-color: #646568;
+  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+}
+
+.checkbox:not([data-state]):has(input:focus-visible)[data-behavior='partial'] .shape,
+.checkbox:not([data-state]):has(input:focus-visible)[data-behavior='checked'] .shape {
+  background: #0050d1;
+  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+}
+
+/* Active (mouse down) */
+.checkbox:not([data-state]):active[data-behavior='unchecked'] .shape {
+  border: 2px solid var(--color-fill-accent);
+}
+
+.checkbox:not([data-state]):active[data-behavior='partial'] .shape,
+.checkbox:not([data-state]):active[data-behavior='checked'] .shape {
+  background: #0045b6;
+}
+
+/* ════════════════════════════════════
+   FORCED STATES (docs / matrix)
+   Applied statically via data-state attribute
+   ════════════════════════════════════ */
+
+/* Forced hover */
+.checkbox[data-state='hover'][data-behavior='unchecked'] .shape {
+  border-color: #646568;
+}
+
+.checkbox[data-state='hover'][data-behavior='partial'] .shape,
+.checkbox[data-state='hover'][data-behavior='checked'] .shape {
+  background: #0050d1;
+}
+
+/* Forced focus */
+.checkbox[data-state='focus'][data-behavior='unchecked'] .shape {
+  border-color: #646568;
+  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+}
+
+.checkbox[data-state='focus'][data-behavior='partial'] .shape,
+.checkbox[data-state='focus'][data-behavior='checked'] .shape {
+  background: #0050d1;
+  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+}
+
+/* Forced active */
+.checkbox[data-state='active'][data-behavior='unchecked'] .shape {
+  border: 2px solid var(--color-fill-accent);
+}
+
+.checkbox[data-state='active'][data-behavior='partial'] .shape,
+.checkbox[data-state='active'][data-behavior='checked'] .shape {
+  background: #0045b6;
+}
+
+/* ── Text group ── */
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+}
+
+.label {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+}
+
+.helpText {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-fill-tertiary);
+}

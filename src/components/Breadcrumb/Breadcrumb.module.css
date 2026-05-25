@@ -1,0 +1,69 @@
+/* ── Container ── */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Item ── */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Separator ── */
+
+.separator {
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--color-fill-secondary);
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── Link (itens anteriores) ── */
+
+.link {
+  transition: box-shadow 120ms ease;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--color-fill-accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Página atual ── */
+
+.current {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--color-fill-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

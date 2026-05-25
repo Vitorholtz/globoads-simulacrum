@@ -1,0 +1,87 @@
+@import '@fontsource-variable/inter';
+@import '@material-symbols/font-400/rounded.css';
+
+@font-face {
+  font-family: 'Globotipo Corporativa';
+  src: url('./assets/fonts/GlobotipoCorporativa-Regular.woff2') format('woff2'),
+       url('./assets/fonts/GlobotipoCorporativa-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --sidebar-width: 260px;
+
+  --font-family: 'Inter Variable', 'Inter', -apple-system, sans-serif;
+  --font-family-display: 'Globotipo Corporativa', sans-serif;
+  --font-family-body: 'Inter Variable', 'Inter', sans-serif;
+  --font-family-code: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  --font-size-base: 14px;
+
+  --color-text-primary: var(--color-fill-primary);
+  --color-text-secondary: var(--color-fill-secondary);
+  --color-text-tertiary: var(--color-fill-tertiary);
+
+  --color-bg-app: var(--color-surface-primary);
+  --color-bg-sidebar: var(--color-surface-primary);
+  --color-border-ui: var(--color-border-tertiary);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-card: none;
+  --shadow-card-hover: none;
+
+  /* Focus ring — token único compartilhado por todos os componentes interativos */
+  --focus-ring: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+
+  /* ── Color tokens (Fill) ── */
+  --color-fill-primary:          #252527;
+  --color-fill-secondary:        #4D4E51;
+  --color-fill-tertiary:         #939598;
+  --color-fill-inverse:          #FFFFFF;
+  --color-fill-accent:           #185CFB;
+  --color-fill-accent-gradient:  linear-gradient(135deg, #185CFB 0%, #8800F8 100%);
+  --color-fill-success:          #008321;
+  --color-fill-warning:          #88630B;
+  --color-fill-critical:         #B70634;
+
+  /* ── Color tokens (Surface) ── */
+  --color-surface-primary:       #FFFFFF;
+  --color-surface-secondary:     #F7F7F7;
+  --color-surface-tertiary:      #F2F2F2;
+  --color-surface-accent:        #E6F7FF;
+  --color-surface-success:       #EDFDE7;
+  --color-surface-warning:       #FEFBE1;
+  --color-surface-critical:      #FFEDE5;
+
+  /* ── Color tokens (Border) ── */
+  --color-border-primary:        #C7C8CA;
+  --color-border-secondary:      #939598;
+  --color-border-tertiary:       #EBEBEB;
+  --color-border-accent:         #65BDFE;
+  --color-border-accent-gradient: linear-gradient(to right, #185CFB 0%, #8800F8 100%);
+  --color-border-success:        #6CE95D;
+  --color-border-warning:        #FFE543;
+  --color-border-critical:       #FF7C6D;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-optical-sizing: auto;
+  background-color: var(--color-bg-app);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}

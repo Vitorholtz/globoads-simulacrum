@@ -1,0 +1,326 @@
+/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+
+/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Size scale ── */
+
+.sizeScaleContainer {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.sizeRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.sizeRow:last-child {
+  border-bottom: none;
+}
+
+.sizePreview {
+  width: 200px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  padding: 28px 32px;
+  align-self: stretch;
+}
+
+.sizeMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 32px;
+}
+
+.sizeValueRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sizeLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.sizeBadge {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: 2px 9px;
+  border-radius: 100px;
+}
+
+.sizeBadgeWarning {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-fill-warning);
+  background: var(--color-surface-warning);
+  padding: 2px 9px;
+  border-radius: 100px;
+}
+
+.sizeDescription {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.sizeSpecs {
+  font-size: 12px;
+  font-family: var(--font-family-code);
+  color: var(--color-text-tertiary);
+  margin-left: auto;
+  padding-right: 32px;
+  text-align: right;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* ── State matrix ── */
+
+.stateMatrix {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  margin-bottom: 16px;
+}
+
+.matrixHeaderRow {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixHeaderSpacer {
+  width: 104px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixSizeLabel {
+  flex: 1;
+  text-align: center;
+  padding: 14px 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixSizeLabel:last-child {
+  border-right: none;
+}
+
+.matrixRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.matrixRow:last-child {
+  border-bottom: none;
+}
+
+.matrixStateLabel {
+  width: 104px;
+  flex-shrink: 0;
+  padding: 0 24px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixStateName {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.matrixCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCell:last-child {
+  border-right: none;
+}
+
+/* ── States legend ── */
+
+.statesLegend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.legendItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-md);
+}
+
+.legendLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.legendDesc {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ── External section ── */
+
+.externalGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.externalCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+}
+
+.externalPreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 36px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.externalMeta {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.externalSizeLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.externalIconSpec {
+  font-size: 11px;
+  font-family: var(--font-family-code);
+  color: var(--color-text-tertiary);
+}
+
+.externalNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 20px;
+  background: var(--color-surface-accent);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.externalNoteIcon {
+  font-size: 18px;
+  color: var(--color-fill-accent);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.externalNote code {
+  font-family: var(--font-family-code);
+  font-size: 12.5px;
+  background: rgba(24, 92, 251, 0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.externalNote strong {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guidelineTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.guidelineRule {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+  line-height: 1.5;
+}

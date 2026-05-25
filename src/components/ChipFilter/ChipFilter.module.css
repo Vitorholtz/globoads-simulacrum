@@ -1,0 +1,111 @@
+/* ── Base ── */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+/* ── UNCHECKED ── */
+
+.unchecked {
+  padding: 8px 12px;
+  background: var(--color-surface-primary);
+  border-color: var(--color-border-primary);
+  color: var(--color-fill-secondary);
+}
+
+.unchecked:hover:not(:disabled):not([data-state='disabled']),
+.unchecked[data-state='hover'] {
+  background: var(--color-surface-tertiary);
+}
+
+.unchecked:focus-visible,
+.unchecked[data-state='focus'] {
+  background: var(--color-surface-tertiary);
+  box-shadow: var(--focus-ring);
+}
+
+.unchecked:active:not(:disabled):not([data-state='disabled']),
+.unchecked[data-state='active'] {
+  background: #e2e2e3;
+}
+
+.unchecked[data-state='dragged'] {
+  background: #e2e2e3;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* ── CHECKED ── */
+
+/* Left padding reduced to 8px to accommodate checkmark icon */
+.checked {
+  padding: 8px 12px 8px 8px;
+  background: #cbeefe;
+  border-color: var(--color-border-accent);
+  color: #0045b6;
+}
+
+.checked:hover:not(:disabled):not([data-state='disabled']),
+.checked[data-state='hover'] {
+  background: #98d8fe;
+}
+
+.checked:focus-visible,
+.checked[data-state='focus'] {
+  background: #98d8fe;
+  box-shadow: var(--focus-ring);
+}
+
+.checked:active:not(:disabled):not([data-state='disabled']),
+.checked[data-state='active'] {
+  background: var(--color-border-accent);
+}
+
+.checked[data-state='dragged'] {
+  background: var(--color-border-accent);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* ── DISABLED ── */
+
+.chip:disabled,
+.chip[data-state='disabled'] {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Inner elements ── */
+
+.label {
+  display: block;
+}
+
+.icon {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.dropdownIcon {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  flex-shrink: 0;
+  width: 12px;
+  overflow: hidden;
+}

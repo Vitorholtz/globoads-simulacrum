@@ -1,0 +1,280 @@
+/* ── Base ── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-style: normal;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  text-decoration: none;
+  outline: none;
+  transition: background 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  line-height: 1;
+}
+
+/* ── Sizes ── */
+
+.sm {
+  gap: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  --icon-size: 16px;
+  --icon-opsz: 20;
+}
+
+.md {
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 16px;
+  --icon-size: 20px;
+  --icon-opsz: 24;
+}
+
+.lg {
+  gap: 8px;
+  padding: 14px 20px;
+  font-size: 20px;
+  --icon-size: 20px;
+  --icon-opsz: 24;
+}
+
+/* Icon-only: square padding */
+.iconOnly.sm { padding: 8px; }
+.iconOnly.md { padding: 10px; }
+.iconOnly.lg { padding: 14px; }
+
+/* Icon-left asymmetric padding (icon side tighter) */
+.hasIconLeft.sm { padding-left: 8px;  padding-right: 12px; }
+.hasIconLeft.md { padding-left: 12px; padding-right: 16px; }
+.hasIconLeft.lg { padding-left: 16px; padding-right: 20px; }
+
+/* Icon-right asymmetric padding */
+.hasIconRight.sm { padding-left: 12px; padding-right: 8px;  }
+.hasIconRight.md { padding-left: 16px; padding-right: 12px; }
+.hasIconRight.lg { padding-left: 20px; padding-right: 16px; }
+
+/* ── Inner elements ── */
+
+.icon {
+  font-size: var(--icon-size);
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' var(--icon-opsz);
+  line-height: 1;
+  text-align: center;
+  flex-shrink: 0;
+  display: block;
+}
+
+.label {
+  display: block;
+}
+
+/* ── PRIMARY variant ── */
+
+.primary {
+  background: var(--color-fill-accent-gradient);
+}
+
+.primary:hover:not(:disabled):not([data-state='disabled']),
+.primary[data-state='hover'] {
+  filter: brightness(1.1);
+}
+
+.primary:active:not(:disabled):not([data-state='disabled']),
+.primary[data-state='active'] {
+  filter: brightness(0.9);
+}
+
+.primary:focus-visible,
+.primary[data-state='focus'] {
+  box-shadow: var(--focus-ring);
+}
+
+.primary .icon,
+.primary .label {
+  color: var(--color-fill-inverse);
+}
+
+/* ── SECONDARY variant ── */
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--color-border-primary);
+}
+
+.secondary:hover:not(:disabled):not([data-state='disabled']),
+.secondary[data-state='hover'] {
+  background: rgba(24, 92, 251, 0.12);
+}
+
+.secondary:active:not(:disabled):not([data-state='disabled']),
+.secondary[data-state='active'] {
+  background: rgba(24, 92, 251, 0.2);
+}
+
+.secondary:focus-visible,
+.secondary[data-state='focus'] {
+  box-shadow: var(--focus-ring);
+}
+
+/* ── TERTIARY variant ── */
+
+.tertiary {
+  background: transparent;
+}
+
+.tertiary:hover:not(:disabled):not([data-state='disabled']),
+.tertiary[data-state='hover'] {
+  background: rgba(24, 92, 251, 0.12);
+}
+
+.tertiary:active:not(:disabled):not([data-state='disabled']),
+.tertiary[data-state='active'] {
+  background: rgba(24, 92, 251, 0.2);
+}
+
+.tertiary:focus-visible,
+.tertiary[data-state='focus'] {
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Gradient text (secondary & tertiary) ── */
+
+.secondary .icon,
+.secondary .label,
+.tertiary .icon,
+.tertiary .label {
+  background: var(--color-fill-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── DISABLED state ── */
+
+.btn:disabled,
+.btn[data-state='disabled'] {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── LOADING state ── */
+
+.loading {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.spinner {
+  flex-shrink: 0;
+  display: block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: btn-spin 0.65s linear infinite;
+  opacity: 0.7;
+}
+
+/* Spinner color per variant */
+.primary .spinner {
+  border-color: rgba(255, 255, 255, 0.4);
+  border-top-color: var(--color-fill-inverse);
+  opacity: 1;
+}
+
+.secondary .spinner,
+.tertiary .spinner {
+  border-color: rgba(24, 92, 251, 0.25);
+  border-top-color: var(--color-fill-accent);
+  opacity: 1;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════
+   DANGER VARIANTS
+   Fill Critical #B70634 · Border Critical #FF7C6D
+══════════════════════════════════════ */
+
+/* ── Danger Primary: solid red fill, white text ── */
+
+.danger.primary {
+  background: var(--color-fill-critical);
+}
+
+/* Hover escurece (inverso do primary padrão que clareia) */
+.danger.primary:hover:not(:disabled):not([data-state='disabled']),
+.danger.primary[data-state='hover'] {
+  filter: brightness(0.9);
+}
+
+/* Active mais escuro que hover para hierarquia clara */
+.danger.primary:active:not(:disabled):not([data-state='disabled']),
+.danger.primary[data-state='active'] {
+  filter: brightness(0.8);
+}
+
+/* ── Danger Secondary: borda neutra (igual ao Secondary padrão), texto vermelho ── */
+
+.danger.secondary {
+  border-color: var(--color-border-primary);
+}
+
+.danger.secondary:hover:not(:disabled):not([data-state='disabled']),
+.danger.secondary[data-state='hover'] {
+  background: rgba(183, 6, 52, 0.12);
+}
+
+.danger.secondary:active:not(:disabled):not([data-state='disabled']),
+.danger.secondary[data-state='active'] {
+  background: rgba(183, 6, 52, 0.2);
+}
+
+/* ── Danger Tertiary: ghost, texto vermelho ── */
+
+.danger.tertiary:hover:not(:disabled):not([data-state='disabled']),
+.danger.tertiary[data-state='hover'] {
+  background: rgba(183, 6, 52, 0.12);
+}
+
+.danger.tertiary:active:not(:disabled):not([data-state='disabled']),
+.danger.tertiary[data-state='active'] {
+  background: rgba(183, 6, 52, 0.2);
+}
+
+/* Focus: herda --focus-ring (azul unificado) de .primary/.secondary/.tertiary */
+
+/* ── Override gradient text with solid red for secondary & tertiary ── */
+
+.danger.secondary .icon,
+.danger.secondary .label,
+.danger.tertiary .icon,
+.danger.tertiary .label {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: var(--color-fill-critical);
+}
+
+/* ── Danger spinners ── */
+
+.danger.secondary .spinner,
+.danger.tertiary .spinner {
+  border-color: rgba(183, 6, 52, 0.25);
+  border-top-color: var(--color-fill-critical);
+  opacity: 1;
+}

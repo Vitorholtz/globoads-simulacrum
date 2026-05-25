@@ -1,0 +1,137 @@
+/* ── Base ── */
+
+.tabs {
+  display: inline-flex;
+  position: relative;
+}
+
+/* ── Horizontal positions ── */
+
+.top,
+.bottom {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 0 8px;
+}
+
+.top {
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.bottom {
+  border-top: 1px solid var(--color-border-primary);
+}
+
+/* ── Vertical positions ── */
+
+.left,
+.right {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.left {
+  border-right: 1px solid var(--color-border-primary);
+}
+
+.right {
+  border-left: 1px solid var(--color-border-primary);
+}
+
+/* ── Tab item ── */
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-fill-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  padding: 10px 0;
+  position: relative;
+  border-radius: var(--radius-sm);
+  transition: color 0.1s ease, box-shadow 0.1s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.left .tab,
+.right .tab {
+  padding: 10px 12px;
+  justify-content: flex-start;
+}
+
+/* ── Hover ── */
+
+.tab:not(.tabActive):hover {
+  color: var(--color-fill-primary);
+}
+
+/* ── Active tab ── */
+
+.tabActive {
+  color: var(--color-fill-accent);
+}
+
+.top .tabActive::after,
+.bottom .tabActive::after,
+.left .tabActive::after,
+.right .tabActive::after {
+  content: '';
+  position: absolute;
+  background: var(--color-fill-accent);
+  border-radius: 0;
+}
+
+.top .tabActive::after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.bottom .tabActive::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.left .tabActive::after {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2px;
+}
+
+.right .tabActive::after {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+}
+
+/* ── Focus (overrides active indicator when focused) ── */
+
+.tab:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Tab icon ── */
+
+.tabIcon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  display: block;
+}
+

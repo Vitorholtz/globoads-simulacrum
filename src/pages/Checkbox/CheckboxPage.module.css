@@ -1,0 +1,289 @@
+/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+
+/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Behavior cards ── */
+
+.behaviorsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.behaviorCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.behaviorPreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 40px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.behaviorBody {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.behaviorName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.behaviorDesc {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ── State matrix ── */
+
+.matrixContainer {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  margin-bottom: 16px;
+}
+
+.matrixContainer:last-child {
+  margin-bottom: 0;
+}
+
+.matrixTypeHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixTypeName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.matrixTypeDesc {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.matrixHeaderRow {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-primary);
+}
+
+.matrixHeaderSpacer {
+  width: 96px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCellLabel {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-align: center;
+  padding: 14px 8px;
+  border-right: 1px solid var(--color-border-ui);
+  flex: 1;
+}
+
+.matrixCellLabel:last-child {
+  border-right: none;
+}
+
+.matrixRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.matrixRow:last-child {
+  border-bottom: none;
+}
+
+.matrixStateLabel {
+  width: 96px;
+  flex-shrink: 0;
+  padding: 0 24px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixStateName {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.matrixCells {
+  display: flex;
+  flex: 1;
+}
+
+.matrixCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCell:last-child {
+  border-right: none;
+}
+
+/* ── Types ── */
+
+.typesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.typeCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.typePreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.typeBody {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.typeName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.typeDesc {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Help text section ── */
+
+.helpTextContainer {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+}
+
+.helpTextPreview {
+  background: var(--color-surface-secondary);
+  border-right: 1px solid var(--color-border-ui);
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.helpTextBody {
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.helpTextDesc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guidelineTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.guidelineRule {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+  line-height: 1.5;
+}

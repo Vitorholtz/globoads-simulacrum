@@ -1,0 +1,87 @@
+/* ── Base ── */
+
+.hyperlink {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-style: normal;
+  color: var(--color-fill-accent);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  border-radius: 2px;
+  -webkit-font-smoothing: antialiased;
+  transition: color 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* ── Sizes ── */
+
+.xs {
+  font-size: 12px;
+  line-height: 16px;
+  gap: 2px;
+  --icon-size: 14px;
+}
+
+.sm {
+  font-size: 14px;
+  line-height: 20px;
+  gap: 4px;
+  --icon-size: 16px;
+}
+
+.md {
+  font-size: 16px;
+  line-height: 24px;
+  gap: 4px;
+  --icon-size: 20px;
+}
+
+.lg {
+  font-size: 20px;
+  line-height: 32px;
+  gap: 4px;
+  --icon-size: 24px;
+}
+
+/* ── External icon ── */
+
+.externalIcon {
+  font-size: var(--icon-size);
+  line-height: 1;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* ── Hover state ── */
+
+.hyperlink:hover,
+.hyperlink[data-state='hover'] {
+  color: #0050D1;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+/* ── Focus state ── */
+
+.hyperlink:focus-visible,
+.hyperlink[data-state='focus'] {
+  color: #0050D1;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+}
+
+/* ── Active state ── */
+
+.hyperlink:active,
+.hyperlink[data-state='active'] {
+  color: #0045B6;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
