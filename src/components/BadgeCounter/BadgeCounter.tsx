@@ -7,7 +7,7 @@ export interface BadgeCounterProps {
 
 export default function BadgeCounter({ value, className }: BadgeCounterProps) {
   return (
-    <span className={[styles.badge, className ?? ''].filter(Boolean).join(' ')}>
+    <span className={['type-caption-sm', styles.badge, className ?? ''].filter(Boolean).join(' ')}>
       {value}
     </span>
   )

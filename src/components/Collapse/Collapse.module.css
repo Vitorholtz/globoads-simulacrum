@@ -1,0 +1,126 @@
+﻿/* ── Root ── */
+
+.root {
+  display: block;
+}
+
+/* ── Content ── */
+
+.content {
+  /* full text visible */
+}
+
+.contentClamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Trigger ── */
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--color-fill-accent);
+  border-radius: 2px;
+  outline: none;
+  transition: color 0.18s ease;
+}
+
+.trigger:hover { color: #0050D1; }
+.trigger.hover { color: #0050D1; }
+
+.trigger:focus-visible {
+  color: #0050D1;
+  box-shadow: var(--focus-ring);
+}
+
+.trigger.focus {
+  color: #0050D1;
+  box-shadow: var(--focus-ring);
+}
+
+.trigger:active { color: #0045B6; }
+.trigger.active { color: #0045B6; }
+
+/* ── Trigger text — underline only here, never on the icon ── */
+
+.triggerText {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.18s ease;
+}
+
+.trigger:hover .triggerText,
+.trigger.hover .triggerText,
+.trigger:focus-visible .triggerText,
+.trigger.focus .triggerText,
+.trigger:active .triggerText,
+.trigger.active .triggerText {
+  text-decoration-color: currentColor;
+}
+
+/* ── Trigger icon ── */
+
+.triggerIcon {
+  flex-shrink: 0;
+  display: block;
+  transition: transform 0.22s ease;
+}
+
+.triggerIconOpen {
+  transform: rotate(180deg);
+}
+
+/* ══════════════════════════════════════
+   SIZES
+══════════════════════════════════════ */
+
+/* XS */
+
+.xs .trigger {
+  gap: 2px;
+}
+
+
+.xs .content + .trigger {
+  margin-top: 4px;
+}
+
+/* SM */
+
+.sm .trigger {
+  gap: 4px;
+}
+
+
+.sm .content + .trigger {
+  margin-top: 6px;
+}
+
+/* MD */
+
+.md .trigger {
+  gap: 4px;
+}
+
+
+.md .content + .trigger {
+  margin-top: 8px;
+}
+
+/* LG */
+
+.lg .trigger {
+  gap: 4px;
+}
+
+
+.lg .content + .trigger {
+  margin-top: 10px;
+}

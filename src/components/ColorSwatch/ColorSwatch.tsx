@@ -10,26 +10,25 @@ export default function ColorSwatch({ token }: ColorSwatchProps) {
   const isGradient = token.type === 'gradient'
   const isLight = !isGradient && isLightColor(token.value)
 
-  const previewStyle: React.CSSProperties = isGradient
-    ? { background: `linear-gradient(135deg, ${token.stops[0]}, ${token.stops[1]})` }
-    : {
-        background: token.value,
-        boxShadow: isLight ? 'inset 0 0 0 1px rgba(0,0,0,0.08)' : undefined,
-      }
-
   const valueDisplay = isGradient
     ? `${token.stops[0]} → ${token.stops[1]}`
     : token.value
 
   return (
     <div className={styles.card}>
-      <div className={styles.preview} style={previewStyle} />
+      <div
+        className={styles.preview}
+        style={{ background: `var(${token.variable})` }}
+        data-light={isLight && !isGradient ? '' : undefined}
+      >
+        <span className={`type-title-sm ${styles.previewName}`}>{token.name}</span>
+        <span className={`type-caption-sm ${styles.previewValue}`}>{valueDisplay}</span>
+      </div>
+
       <div className={styles.meta}>
-        <span className={styles.tokenName}>{token.name}</span>
-        <span className={styles.tokenValue}>{valueDisplay}</span>
-        <code className={styles.cssVar}>{token.variable}</code>
+        <code className={`type-caption-sm ${styles.cssVar}`}>{token.variable}</code>
         {token.description && (
-          <span className={styles.description}>{token.description}</span>
+          <p className={`type-body-sm ${styles.description}`}>{token.description}</p>
         )}
       </div>
     </div>

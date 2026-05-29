@@ -1,87 +1,504 @@
+/* ─────────────────────────────────────────────────────────────
+   FONTS
+   Inter Variable: carregado via npm (@fontsource-variable/inter).
+   Material Symbols Rounded: fonte de ícones SVG variável do Google.
+   Globotipo Corporativa: fonte proprietária Globo, carregada via
+   @font-face abaixo — não disponível em CDN.
+───────────────────────────────────────────────────────────── */
+
 @import '@fontsource-variable/inter';
 @import '@material-symbols/font-400/rounded.css';
 
 @font-face {
-  font-family: 'Globotipo Corporativa';
-  src: url('./assets/fonts/GlobotipoCorporativa-Regular.woff2') format('woff2'),
-       url('./assets/fonts/GlobotipoCorporativa-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+   font-family: 'Globotipo Corporativa';
+   src: url('./assets/fonts/GlobotipoCorporativa-Regular.woff2') format('woff2'),
+      url('./assets/fonts/GlobotipoCorporativa-Regular.woff') format('woff');
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+   /* exibe fallback imediatamente, troca quando a fonte carrega */
 }
 
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ─────────────────────────────────────────────────────────────
+   BOX MODEL RESET
+   Remove margens e paddings do UA stylesheet. box-sizing: border-box
+   faz padding e border entrarem no tamanho declarado do elemento,
+   evitando overflow inesperado.
+───────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
 }
+
+
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   Todas as variáveis CSS do sistema são declaradas aqui em :root
+   para ficarem disponíveis globalmente. Componentes referenciam
+   esses tokens — nunca valores literais — para garantir consistência
+   e facilitar mudanças centralizadas de tema.
+───────────────────────────────────────────────────────────── */
 
 :root {
-  --sidebar-width: 260px;
 
-  --font-family: 'Inter Variable', 'Inter', -apple-system, sans-serif;
-  --font-family-display: 'Globotipo Corporativa', sans-serif;
-  --font-family-body: 'Inter Variable', 'Inter', sans-serif;
-  --font-family-code: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-  --font-size-base: 14px;
+   /* ── Layout ── */
+   --sidebar-width: 260px;
 
-  --color-text-primary: var(--color-fill-primary);
-  --color-text-secondary: var(--color-fill-secondary);
-  --color-text-tertiary: var(--color-fill-tertiary);
 
-  --color-bg-app: var(--color-surface-primary);
-  --color-bg-sidebar: var(--color-surface-primary);
-  --color-border-ui: var(--color-border-tertiary);
+   /* ── Famílias tipográficas ──
+     display-01: Globotipo Corporativa — usada em títulos expressivos e
+                 elementos de marca (Display scale).
+     sans:       Inter Variable — interface geral (Title, Body, Caption).
+     code:       Fonte monoespaçada para snippets de código e valores técnicos. */
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+   --font-family-display-01:     'Globotipo Corporativa', sans-serif;
+   --font-family-sans:           'Inter Variable', 'Inter', -apple-system, sans-serif;
+   --font-family-code:           'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+   --font-family-icons-rounded:  'Material Symbols Rounded';
 
-  --shadow-card: none;
-  --shadow-card-hover: none;
+   /* ── Variação de ícones ──
+     Controlam o eixo FILL dos Material Symbols Rounded.
+     opsz é omitido — cada utility class usa font-optical-sizing: auto
+     para que o browser derive o opsz correto do font-size. */
+   --font-variation-unfilled: 'FILL' 0, 'wght' 400, 'GRAD' 0;
+   --font-variation-filled:   'FILL' 1, 'wght' 400, 'GRAD' 0;
 
-  /* Focus ring — token único compartilhado por todos os componentes interativos */
-  --focus-ring: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+   /* Tamanho base do body: 14px (0.875rem com root = 16px).
+     Interfaces densas de gerenciamento usam 13–14px como base —
+     o usuário é um operador com muita informação na tela, não um leitor
+     de texto corrido. Usando rem (não px) para respeitar o tamanho
+     configurado pelo usuário no browser. */
+   --font-size-base: 0.875rem;
 
-  /* ── Color tokens (Fill) ── */
-  --color-fill-primary:          #252527;
-  --color-fill-secondary:        #4D4E51;
-  --color-fill-tertiary:         #939598;
-  --color-fill-inverse:          #FFFFFF;
-  --color-fill-accent:           #185CFB;
-  --color-fill-accent-gradient:  linear-gradient(135deg, #185CFB 0%, #8800F8 100%);
-  --color-fill-success:          #008321;
-  --color-fill-warning:          #88630B;
-  --color-fill-critical:         #B70634;
 
-  /* ── Color tokens (Surface) ── */
-  --color-surface-primary:       #FFFFFF;
-  --color-surface-secondary:     #F7F7F7;
-  --color-surface-tertiary:      #F2F2F2;
-  --color-surface-accent:        #E6F7FF;
-  --color-surface-success:       #EDFDE7;
-  --color-surface-warning:       #FEFBE1;
-  --color-surface-critical:      #FFEDE5;
+   /* ── Escala de pesos ──
+     Nomes mapeiam diretamente os nomes dos eixos do Inter Variable.
+     Usar os tokens garante consistência semântica: "semibold" sempre
+     significa 600, independente da fonte. */
 
-  /* ── Color tokens (Border) ── */
-  --color-border-primary:        #C7C8CA;
-  --color-border-secondary:      #939598;
-  --color-border-tertiary:       #EBEBEB;
-  --color-border-accent:         #65BDFE;
-  --color-border-accent-gradient: linear-gradient(to right, #185CFB 0%, #8800F8 100%);
-  --color-border-success:        #6CE95D;
-  --color-border-warning:        #FFE543;
-  --color-border-critical:       #FF7C6D;
+   --font-weight-regular: 400;
+   --font-weight-medium: 500;
+   --font-weight-semibold: 600;
+   --font-weight-bold: 700;
+
+
+   /* ── Escala de tamanhos tipográficos ──
+     Nomenclatura: nome = valor rem × 100 (ex: 087 = 0.875rem = 14px).
+     Multiples de 4px sempre que possível; valores intermediários
+     (087 = 14px, 062 = 10px) usados onde a grade estrita prejudicaria
+     a legibilidade em tamanhos pequenos de interface. */
+
+   --font-size-062: 0.625rem;
+   /*  10px — overline, labels mínimos */
+   --font-size-075: 0.75rem;
+   /*  12px — caption, metadados */
+   --font-size-087: 0.875rem;
+   /*  14px — body default, a maioria dos textos de UI */
+   --font-size-100: 1rem;
+   /*  16px — body médio, title small */
+   --font-size-125: 1.25rem;
+   /*  20px — title médio */
+   --font-size-150: 1.5rem;
+   /*  24px — title grande */
+   --font-size-175: 1.75rem;
+   /*  28px — valores numéricos destacados */
+   --font-size-200: 2rem;
+   /*  32px — display pequeno */
+   --font-size-250: 2.5rem;
+   /*  40px — display médio */
+   --font-size-300: 3rem;
+   /*  48px — display grande */
+   --font-size-350: 3.5rem;
+   /*  56px — display xl */
+   --font-size-425: 4.25rem;
+   /*  68px — display 2xl */
+   --font-size-500: 5rem;
+   /*  80px — display 3xl */
+
+
+   /* ── Escala de entrelinhamento ──
+     Os valores em rem espelham a escala de font-size para facilitar
+     o pareamento: um texto em --font-size-087 normalmente usa
+     --line-height-125 (1 step acima), criando respiro proporcional.
+
+     Exceção: --line-height-icon = 1 (unitless).
+     Ícones de font (Material Symbols) precisam de line-height = 1 para
+     não acumular espaço extra de ascendentes/descendentes da fonte.
+     Usar 1rem seria errado: para um ícone de 1.25rem, line-height: 1rem
+     seria menor que o glifo e o cortaria. O valor unitless 1 significa
+     "exatamente a altura do glifo", independente do font-size. */
+
+   --line-height-icon: 1;
+   /* para ícones de fonte (Material Symbols) */
+   --line-height-075: 0.75rem;
+   --line-height-100: 1rem;
+   --line-height-125: 1.25rem;
+   --line-height-150: 1.5rem;
+   --line-height-175: 1.75rem;
+   --line-height-200: 2rem;
+   --line-height-250: 2.5rem;
+   --line-height-300: 3rem;
+   --line-height-350: 3.5rem;
+   --line-height-425: 4.25rem;
+   --line-height-500: 5rem;
+
+
+   /* ── Aliases semânticos de cor ──
+     Não são novas cores — são apelidos que traduzem os tokens Fill/Surface/Border
+     para intenções de uso (text, bg, border). Componentes devem usar esses aliases,
+     nunca os tokens Fill diretamente, para manter semântica legível no código. */
+
+   --color-text-primary: var(--color-fill-primary);
+   --color-text-secondary: var(--color-fill-secondary);
+   --color-text-tertiary: var(--color-fill-tertiary);
+
+   --color-bg-app: var(--color-surface-primary);
+   --color-bg-sidebar: var(--color-surface-primary);
+   --color-border-ui: var(--color-border-tertiary);
+   /* #ebebeb — separadores de chrome */
+
+
+   /* ── Raios de borda ── */
+
+   --radius-sm: 4px;
+   --radius-md: 8px;
+   --radius-lg: 12px;
+
+
+   /* ── Sombras ──
+     Intencionalmente zeradas: o sistema usa bordas e fundos para criar
+     hierarquia visual, não sombras. Mantidos como tokens para que uma
+     futura versão possa ativar depth sem alterar os componentes. */
+
+   --shadow-card: none;
+   --shadow-card-hover: none;
+
+
+   /* ── Focus ring ──
+     Token único compartilhado por todos os componentes interativos
+     (Button, TextField, Select, etc.). O double-ring (branco + azul)
+     garante visibilidade tanto em fundo claro quanto escuro. */
+
+   --focus-ring: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+
+
+   /* ── Tokens de cor: Fill ──
+     Cores sólidas para texto, ícones, e preenchimentos de componentes.
+     primary → secondary → tertiary: escala decrescente de ênfase. */
+
+   --color-fill-primary: #252527;
+   /* texto principal */
+   --color-fill-secondary: #4D4E51;
+   /* texto secundário */
+   --color-fill-tertiary: #939598;
+   /* texto de suporte, labels desabilitados */
+   --color-fill-inverse: #FFFFFF;
+   /* texto sobre fundos escuros */
+   --color-fill-accent: #185CFB;
+   /* azul interativo */
+   --color-fill-accent-gradient: linear-gradient(135deg, #185CFB 0%, #8800F8 100%);
+   --color-fill-success: #008321;
+   --color-fill-warning: #88630B;
+   --color-fill-critical: #B70634;
+
+
+   /* ── Tokens de cor: Surface ──
+     Fundos de containers, cards e camadas de UI.
+     primary → secondary → tertiary: escala crescente de recesso visual. */
+
+   --color-surface-primary: #FFFFFF;
+   /* fundo de cards e painéis */
+   --color-surface-secondary: #F7F7F7;
+   /* áreas recuadas, headers de tabela */
+   --color-surface-tertiary: #F2F2F2;
+   /* badges, chips, inputs desabilitados */
+   --color-surface-accent: #E6F7FF;
+   --color-surface-success: #EDFDE7;
+   --color-surface-warning: #FEFBE1;
+   --color-surface-critical: #FFEDE5;
+
+
+   /* ── Tokens de cor: Border ──
+     Bordas de separação, outline de inputs e estados de foco colorido.
+     primary → secondary → tertiary: escala decrescente de contraste. */
+
+   --color-border-primary: #C7C8CA;
+   --color-border-secondary: #939598;
+   --color-border-tertiary: #EBEBEB;
+   /* mais suave — separadores de chrome */
+   --color-border-accent: #65BDFE;
+   --color-border-accent-gradient: linear-gradient(to right, #185CFB 0%, #8800F8 100%);
+   --color-border-success: #6CE95D;
+   --color-border-warning: #FFE543;
+   --color-border-critical: #FF7C6D;
 }
 
+
+/* ─────────────────────────────────────────────────────────────
+   BODY
+   Define os defaults do documento. font-size referencia o token base
+   (14px). line-height: 1.5 é unitless intencionalmente — é o default
+   de cascade para o documento inteiro, não um valor tipográfico de
+   componente. Elementos filhos devem declarar seu próprio line-height
+   via token (--line-height-*) ou classe utilitária (.type-*).
+───────────────────────────────────────────────────────────── */
+
 body {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  font-optical-sizing: auto;
-  background-color: var(--color-bg-app);
-  color: var(--color-text-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
+   font-family: var(--font-family-sans);
+   font-size: var(--font-size-base);
+   font-optical-sizing: auto;
+   background-color: var(--color-bg-app);
+   color: var(--color-text-primary);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   line-height: 1.5;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   TYPOGRAPHY UTILITY CLASSES
+   Encapsulam os tokens fixos de cada estilo tipográfico:
+   font-family, font-size, line-height — e font-weight quando
+   o peso é invariável no estilo (Title sempre 600, Caption sempre 500).
+
+   Propriedades contextuais (font-weight em Body, color, text-decoration)
+   continuam sendo definidas nos CSS Modules de cada componente.
+
+   Uso no JSX:
+     elemento sem nada contextual  → className="type-body-sm"
+     elemento com propriedade extra → className={`type-body-sm ${styles.label}`}
+
+   Por que classes globais e não tokens CSS compostos?
+   CSS custom properties não suportam múltiplas declarações num único
+   token. Classes globais são a solução idiomática — o mesmo padrão já
+   usado pelo .material-symbols-rounded da biblioteca de ícones.
+───────────────────────────────────────────────────────────── */
+
+/* Display — Globotipo Corporativa · Regular (peso sempre 400 nesta escala) */
+.type-display-xs {
+   font-family: var(--font-family-display-01);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-150);
+   line-height: var(--line-height-150);
+}
+
+.type-display-sm {
+   font-family: var(--font-family-display-01);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-200);
+   line-height: var(--line-height-200);
+}
+
+.type-display-md {
+   font-family: var(--font-family-display-01);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-250);
+   line-height: var(--line-height-250);
+}
+
+.type-display-lg {
+   font-family: var(--font-family-display-01);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-300);
+   line-height: var(--line-height-300);
+}
+
+.type-display-xl {
+   font-family: var(--font-family-display-01);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-350);
+   line-height: var(--line-height-350);
+}
+
+.type-display-2xl {
+   font-family: var(--font-family-display-01);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-425);
+   line-height: var(--line-height-425);
+}
+
+.type-display-3xl {
+   font-family: var(--font-family-display-01);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-500);
+   line-height: var(--line-height-500);
+}
+
+/* Title — Inter Variable · Semibold (peso sempre 600 nesta escala) */
+.type-title-sm {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-semibold);
+   font-size: var(--font-size-100);
+   line-height: var(--line-height-125);
+}
+
+.type-title-md {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-semibold);
+   font-size: var(--font-size-125);
+   line-height: var(--line-height-150);
+}
+
+.type-title-lg {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-semibold);
+   font-size: var(--font-size-150);
+   line-height: var(--line-height-175);
+}
+
+/* Body — Inter Variable · peso definido pelo componente (não incluso na classe) */
+.type-body-xs {
+   font-family: var(--font-family-sans);
+   font-size: var(--font-size-075);
+   line-height: var(--line-height-100);
+}
+
+.type-body-sm {
+   font-family: var(--font-family-sans);
+   font-size: var(--font-size-087);
+   line-height: var(--line-height-125);
+}
+
+.type-body-md {
+   font-family: var(--font-family-sans);
+   font-size: var(--font-size-100);
+   line-height: var(--line-height-150);
+}
+
+.type-body-lg {
+   font-family: var(--font-family-sans);
+   font-size: var(--font-size-125);
+   line-height: var(--line-height-200);
+}
+
+/* Caption — Inter Variable · Medium (peso sempre 500 nesta escala) */
+.type-caption-xs {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-062);
+   line-height: var(--line-height-075);
+}
+
+.type-caption-sm {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-075);
+   line-height: var(--line-height-100);
+}
+
+.type-caption-md {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-087);
+   line-height: var(--line-height-100);
+}
+
+.type-caption-lg {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-100);
+   line-height: var(--line-height-125);
+}
+
+/* Hyperlink — Inter Variable · Medium · text-decoration: none por padrão.
+   Modifier .hyperlink-underline adiciona sublinhado (variante underline do Figma). */
+.hyperlink-xs {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-075);
+   line-height: var(--line-height-100);
+   text-decoration: none;
+}
+
+.hyperlink-sm {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-087);
+   line-height: var(--line-height-125);
+   text-decoration: none;
+}
+
+.hyperlink-md {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-100);
+   line-height: var(--line-height-150);
+   text-decoration: none;
+}
+
+.hyperlink-lg {
+   font-family: var(--font-family-sans);
+   font-weight: var(--font-weight-medium);
+   font-size: var(--font-size-125);
+   line-height: var(--line-height-200);
+   text-decoration: none;
+}
+
+.hyperlink-underline {
+   text-decoration: underline;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   ICON UTILITY CLASSES
+   Aplique ao lado de material-symbols-rounded:
+     className="material-symbols-rounded icon-md"
+   Para a variante filled, adicione .icon-filled após o tamanho:
+     className="material-symbols-rounded icon-md icon-filled"
+   Nunca use fontVariationSettings inline — use estas classes.
+───────────────────────────────────────────────────────────── */
+
+.icon-xs {
+   font-family: var(--font-family-icons-rounded);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-087);
+   line-height: var(--line-height-icon);
+   font-optical-sizing: auto;
+   font-variation-settings: var(--font-variation-unfilled);
+}
+
+.icon-sm {
+   font-family: var(--font-family-icons-rounded);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-100);
+   line-height: var(--line-height-icon);
+   font-optical-sizing: auto;
+   font-variation-settings: var(--font-variation-unfilled);
+}
+
+.icon-md {
+   font-family: var(--font-family-icons-rounded);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-125);
+   line-height: var(--line-height-icon);
+   font-optical-sizing: auto;
+   font-variation-settings: var(--font-variation-unfilled);
+}
+
+.icon-lg {
+   font-family: var(--font-family-icons-rounded);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-150);
+   line-height: var(--line-height-icon);
+   font-optical-sizing: auto;
+   font-variation-settings: var(--font-variation-unfilled);
+}
+
+.icon-xl {
+   font-family: var(--font-family-icons-rounded);
+   font-weight: var(--font-weight-regular);
+   font-size: var(--font-size-200);
+   line-height: var(--line-height-icon);
+   font-optical-sizing: auto;
+   font-variation-settings: var(--font-variation-unfilled);
+}
+
+/* Modifier — deve vir após as classes de tamanho para a cascade funcionar. */
+.icon-filled {
+   font-variation-settings: var(--font-variation-filled);
 }

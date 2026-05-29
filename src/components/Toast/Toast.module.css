@@ -1,0 +1,76 @@
+﻿.root {
+  position: relative;
+  display: flex;
+  gap: 2px;
+  align-items: flex-start;
+  padding: 6px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 360px;
+}
+
+
+/* ── Type variants ── */
+
+.neutral  { background: var(--color-fill-secondary); }
+.success  { background: var(--color-fill-success); }
+.warning  { background: var(--color-fill-warning); }
+.critical { background: var(--color-fill-critical); }
+
+/* ── Icon ── */
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.icon {
+  color: #ffffff;
+}
+
+/* ── Content ── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 6px 0;
+  color: #ffffff;
+}
+
+
+
+/* ── Close button ── */
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  color: #ffffff;
+  transition: background 0.12s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 1px;
+}
+
+.closeIcon {
+  display: block;
+}

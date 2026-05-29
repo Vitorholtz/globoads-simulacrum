@@ -9,7 +9,7 @@ interface BadgeProps {
 
 export default function Badge({ variant = 'neutral', label, className }: BadgeProps) {
   return (
-    <span className={[styles.badge, styles[variant], className].filter(Boolean).join(' ')}>
+    <span className={['type-caption-sm', styles.badge, styles[variant], className].filter(Boolean).join(' ')}>
       {label}
     </span>
   )

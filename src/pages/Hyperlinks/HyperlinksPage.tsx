@@ -41,13 +41,13 @@ export default function HyperlinksPage() {
               </div>
               <div className={styles.sizeMeta}>
                 <div className={styles.sizeValueRow}>
-                  <span className={styles.sizeLabel}>{s.label}</span>
-                  {s.recommended && <span className={styles.sizeBadge}>Recomendado</span>}
-                  {s.warning && <span className={styles.sizeBadgeWarning}>⚠ Restrito</span>}
+                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
+                  {s.recommended && <span className={`type-caption-sm ${styles.sizeBadge}`}>Recomendado</span>}
+                  {s.warning && <span className={`type-caption-sm ${styles.sizeBadgeWarning}`}>⚠ Restrito</span>}
                 </div>
-                <span className={styles.sizeDescription}>{s.description}</span>
+                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
               </div>
-              <div className={styles.sizeSpecs}>
+              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
                 <span>font {s.fontSize}px · lh {s.lineHeight}px</span><br />
                 <span>icon {s.iconSize}px · gap {s.gap}px</span>
               </div>
@@ -63,13 +63,13 @@ export default function HyperlinksPage() {
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
             {HYPERLINK_SIZES.map((s) => (
-              <div key={s.id} className={styles.matrixSizeLabel}>{s.label}</div>
+              <div key={s.id} className={`type-caption-xs ${styles.matrixSizeLabel}`}>{s.label}</div>
             ))}
           </div>
           {HYPERLINK_STATES.map((state) => (
             <div key={state.id} className={styles.matrixRow}>
               <div className={styles.matrixStateLabel}>
-                <span className={styles.matrixStateName}>{state.label}</span>
+                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
               </div>
               {HYPERLINK_SIZES.map((s) => (
                 <div key={s.id} className={styles.matrixCell}>
@@ -88,8 +88,8 @@ export default function HyperlinksPage() {
         <div className={styles.statesLegend}>
           {HYPERLINK_STATES.map((s) => (
             <div key={s.id} className={styles.legendItem}>
-              <span className={styles.legendLabel}>{s.label}</span>
-              <span className={styles.legendDesc}>{s.description}</span>
+              <span className={`type-caption-sm ${styles.legendLabel}`}>{s.label}</span>
+              <span className={`type-caption-sm ${styles.legendDesc}`}>{s.description}</span>
             </div>
           ))}
         </div>
@@ -107,21 +107,20 @@ export default function HyperlinksPage() {
                 </Hyperlink>
               </div>
               <div className={styles.externalMeta}>
-                <span className={styles.externalSizeLabel}>{s.label}</span>
-                <span className={styles.externalIconSpec}>icon {s.iconSize}px</span>
+                <span className={`type-body-sm ${styles.externalSizeLabel}`}>{s.label}</span>
+                <span className={`type-caption-sm ${styles.externalIconSpec}`}>icon {s.iconSize}px</span>
               </div>
             </div>
           ))}
         </div>
         <div className={styles.externalNote}>
           <span
-            className={`material-symbols-rounded ${styles.externalNoteIcon}`}
-            style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}
+            className={`material-symbols-rounded icon-md ${styles.externalNoteIcon}`}
             aria-hidden="true"
           >
             info
           </span>
-          <p>
+          <p className="type-body-sm">
             Use o prop <code>external</code> em links que abrem fora da aplicação. O ícone <strong>open_in_new</strong> é adicionado automaticamente, e o atributo <code>target="_blank"</code> com <code>rel="noopener noreferrer"</code> é aplicado para segurança.
           </p>
         </div>
@@ -133,9 +132,9 @@ export default function HyperlinksPage() {
         <div className={styles.guidelinesGrid}>
           {HYPERLINK_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

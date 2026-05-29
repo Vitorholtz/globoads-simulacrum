@@ -1,5 +1,4 @@
 import styles from './Breadcrumb.module.css'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
 
 export interface BreadcrumbItem {
   label: string
@@ -21,19 +20,18 @@ export default function Breadcrumb({ items, className }: BreadcrumbProps) {
             <li key={index} className={styles.item}>
               {index > 0 && (
                 <span
-                  className={`material-symbols-rounded ${styles.separator}`}
-                  style={{ fontVariationSettings: FVAR_OUTLINED_SM }}
+                  className={`material-symbols-rounded icon-sm ${styles.separator}`}
                   aria-hidden="true"
                 >
                   chevron_right
                 </span>
               )}
               {isLast ? (
-                <span className={styles.current} aria-current="page">
+                <span className={`type-title-sm ${styles.current}`} aria-current="page">
                   {item.label}
                 </span>
               ) : (
-                <button className={styles.link} onClick={item.onClick}>
+                <button className={`type-body-sm ${styles.link}`} onClick={item.onClick}>
                   {item.label}
                 </button>
               )}

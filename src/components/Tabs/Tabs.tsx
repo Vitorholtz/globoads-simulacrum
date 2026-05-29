@@ -1,5 +1,4 @@
 import styles from './Tabs.module.css'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
 import BadgeCounter from '../BadgeCounter/BadgeCounter'
 import type { TabPosition } from '../../tokens/tabs'
 
@@ -31,13 +30,12 @@ export default function Tabs({ items, activeId, onChange, position = 'top', clas
             key={item.id}
             role="tab"
             aria-selected={isActive}
-            className={[styles.tab, isActive ? styles.tabActive : ''].filter(Boolean).join(' ')}
+            className={['type-caption-lg', styles.tab, isActive ? styles.tabActive : ''].filter(Boolean).join(' ')}
             onClick={() => onChange?.(item.id)}
           >
             {item.icon && (
               <span
-                className={`material-symbols-rounded ${styles.tabIcon}`}
-                style={{ fontVariationSettings: FVAR_OUTLINED_SM }}
+                className={`material-symbols-rounded icon-md ${styles.tabIcon}`}
                 aria-hidden="true"
               >
                 {item.icon}

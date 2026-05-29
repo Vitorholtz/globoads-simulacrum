@@ -1,0 +1,210 @@
+﻿/* ── Root ── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+/* ── Label row ── */
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.label {
+  color: var(--color-fill-secondary);
+  cursor: pointer;
+}
+
+.optionalTag {
+  color: var(--color-fill-tertiary);
+  white-space: nowrap;
+}
+
+/* ── Input wrapper ── */
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+/* Hover — real */
+.inputWrapper:hover:not([data-state]):not(.hasError):not(.isActive) {
+  border-color: var(--color-border-secondary);
+}
+
+/* Hover — forced */
+.inputWrapper[data-state='hover'] {
+  border-color: var(--color-border-secondary);
+}
+
+/* Focus / Active — real */
+.inputWrapper.isActive {
+  border-color: var(--color-fill-accent);
+  box-shadow: 0 0 0 1px var(--color-fill-accent);
+}
+
+/* Focus / Active — forced */
+.inputWrapper[data-state='focus'],
+.inputWrapper[data-state='active'] {
+  border-color: var(--color-fill-accent);
+  box-shadow: 0 0 0 1px var(--color-fill-accent);
+}
+
+/* Error */
+.inputWrapper.hasError,
+.inputWrapper[data-state='error'] {
+  border-color: var(--color-border-critical);
+  background: var(--color-surface-critical);
+}
+
+/* Disabled forced */
+.inputWrapper[data-state='disabled'] {
+  background: var(--color-surface-tertiary);
+  cursor: not-allowed;
+}
+
+/* Keyboard focus ring */
+.inputWrapper:focus-visible:not([data-state]):not(.isActive):not(.hasError) {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Disabled root ── */
+
+.disabled {
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.disabled .inputWrapper {
+  background: var(--color-surface-tertiary);
+  cursor: not-allowed;
+}
+
+/* ── Input text display ── */
+
+.inputText {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-family-sans);
+  font-weight: 400;
+  color: var(--color-fill-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.inputText.filled {
+  color: var(--color-fill-primary);
+}
+
+/* ── Icons ── */
+
+.calendarIcon {
+  flex-shrink: 0;
+  color: var(--color-fill-secondary);
+  display: block;
+  pointer-events: none;
+}
+
+.errorCalendarIcon {
+  color: var(--color-fill-critical);
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  color: var(--color-fill-critical);
+  display: block;
+  pointer-events: none;
+}
+
+/* ── Calendar popup ── */
+
+@keyframes calendarIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.calendarPopup {
+  z-index: 1000;
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  animation: calendarIn 0.14s ease-out;
+  transform: translateX(-50%);
+}
+
+/* ── Help / Error text ── */
+
+.helpText {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fill-secondary);
+}
+
+.errorText {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fill-critical);
+}
+
+/* ══════════════════════════════════════
+   SIZES
+══════════════════════════════════════ */
+
+/* SM */
+
+.sm .inputWrapper {
+  padding: 6px 8px;
+}
+
+.sm .inputText {
+  font-size: var(--font-size-087);
+  line-height: var(--line-height-125);
+}
+
+/* MD */
+
+.md .inputWrapper {
+  padding: 8px 12px;
+}
+
+.md .inputText {
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-150);
+}
+
+/* LG */
+
+.lg .inputWrapper {
+  padding: 12px;
+}
+
+.lg .inputText {
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-150);
+}
+

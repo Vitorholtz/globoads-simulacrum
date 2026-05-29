@@ -1,4 +1,4 @@
-/* ── Base ── */
+﻿/* ── Base ── */
 
 .tabs {
   display: inline-flex;
@@ -47,10 +47,6 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: var(--font-family);
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
   color: var(--color-fill-secondary);
   background: none;
   border: none;
@@ -129,8 +125,6 @@
 /* ── Tab icon ── */
 
 .tabIcon {
-  font-size: 20px;
-  line-height: 1;
   flex-shrink: 0;
   display: block;
 }

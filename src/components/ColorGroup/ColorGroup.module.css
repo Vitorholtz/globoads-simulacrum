@@ -1,4 +1,4 @@
-.group {
+﻿.group {
   margin-bottom: 64px;
 }
 
@@ -10,32 +10,27 @@
 }
 
 .headerIcon {
-  font-size: 20px;
+  font-size: var(--font-size-125);
   color: var(--color-text-tertiary);
   flex-shrink: 0;
-  line-height: 1;
+  line-height: var(--line-height-icon);
   user-select: none;
 }
 
 .title {
-  font-size: 18px;
-  font-weight: 700;
   color: var(--color-text-primary);
-  letter-spacing: -0.02em;
 }
 
 .count {
-  font-size: 11.5px;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 9px;
   border-radius: 100px;
-  font-weight: 500;
   margin-left: auto;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
   gap: 14px;
 }

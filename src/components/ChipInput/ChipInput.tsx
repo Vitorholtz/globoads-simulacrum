@@ -1,5 +1,4 @@
 import styles from './ChipInput.module.css'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
 import type { ChipInputStyle } from '../../tokens/chipInput'
 
 export type { ChipInputStyle }
@@ -14,8 +13,6 @@ export interface ChipInputProps {
   forceState?: 'hover' | 'focus' | 'active' | 'dragged' | 'disabled'
   className?: string
 }
-
-const ICON_STYLE = { fontVariationSettings: FVAR_OUTLINED_SM }
 
 export default function ChipInput({
   label = 'Chip',
@@ -38,10 +35,7 @@ export default function ChipInput({
     >
       {style === 'person' && (
         <div className={styles.avatar} aria-hidden="true">
-          <span
-            className={`material-symbols-rounded ${styles.avatarIcon}`}
-            style={ICON_STYLE}
-          >
+          <span className={`material-symbols-rounded icon-xs ${styles.avatarIcon}`}>
             person
           </span>
         </div>
@@ -49,15 +43,14 @@ export default function ChipInput({
 
       {style === 'icon' && (
         <span
-          className={`material-symbols-rounded ${styles.leadIcon}`}
-          style={ICON_STYLE}
+          className={`material-symbols-rounded icon-sm ${styles.leadIcon}`}
           aria-hidden="true"
         >
           {icon}
         </span>
       )}
 
-      <span className={styles.label}>{label}</span>
+      <span className={`type-caption-md ${styles.label}`}>{label}</span>
 
       <button
         className={styles.closeBtn}
@@ -66,8 +59,7 @@ export default function ChipInput({
         tabIndex={forceState === 'disabled' ? -1 : 0}
       >
         <span
-          className={`material-symbols-rounded ${styles.closeIcon}`}
-          style={ICON_STYLE}
+          className={`material-symbols-rounded icon-sm ${styles.closeIcon}`}
           aria-hidden="true"
         >
           close

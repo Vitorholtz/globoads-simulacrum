@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import styles from './Pagination.module.css'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
 import type { PaginationVariant } from '../../tokens/pagination'
 
 export interface PaginationProps {
@@ -64,7 +63,7 @@ export default function Pagination({
         disabled={isFirst}
         aria-label="Página anterior"
       >
-        <span className={`material-symbols-rounded ${styles.chevronIcon}`} style={{ fontVariationSettings: FVAR_OUTLINED_SM }}>
+        <span className={`material-symbols-rounded icon-md ${styles.chevronIcon}`}>
           chevron_left
         </span>
       </button>
@@ -73,14 +72,14 @@ export default function Pagination({
       {variant === 'pages' && (
         <div className={styles.infos}>
           <input
-            className={styles.pageInput}
+            className={`type-body-sm ${styles.pageInput}`}
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             onBlur={commitInput}
             onKeyDown={e => e.key === 'Enter' && commitInput()}
             aria-label="Página atual"
           />
-          <span className={styles.infoText}>
+          <span className={`type-body-sm ${styles.infoText}`}>
             de {totalPages} {totalPages === 1 ? 'página' : 'páginas'}
           </span>
         </div>
@@ -89,9 +88,9 @@ export default function Pagination({
       {/* Variante: items */}
       {variant === 'items' && (
         <div className={styles.infos}>
-          <span className={styles.infoText}>{itemStart}–{itemEnd}</span>
-          <span className={styles.infoText}>de</span>
-          <span className={styles.infoText}>
+          <span className={`type-body-sm ${styles.infoText}`}>{itemStart}–{itemEnd}</span>
+          <span className={`type-body-sm ${styles.infoText}`}>de</span>
+          <span className={`type-body-sm ${styles.infoText}`}>
             {totalItems != null ? formatBR(totalItems) : '?'} {(totalItems ?? 0) === 1 ? 'item' : 'itens'}
           </span>
         </div>
@@ -103,7 +102,7 @@ export default function Pagination({
           {getPageWindow(page, totalPages).map(p => (
             <button
               key={p}
-              className={[styles.pageBtn, p === page ? styles.pageBtnActive : ''].filter(Boolean).join(' ')}
+              className={['type-caption-md', styles.pageBtn, p === page ? styles.pageBtnActive : ''].filter(Boolean).join(' ')}
               onClick={() => onChange(p)}
               aria-current={p === page ? 'page' : undefined}
             >
@@ -122,7 +121,7 @@ export default function Pagination({
         disabled={isLast}
         aria-label="Próxima página"
       >
-        <span className={`material-symbols-rounded ${styles.chevronIcon}`} style={{ fontVariationSettings: FVAR_OUTLINED_SM }}>
+        <span className={`material-symbols-rounded icon-md ${styles.chevronIcon}`}>
           chevron_right
         </span>
       </button>

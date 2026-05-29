@@ -60,8 +60,8 @@ export default function RadioPage() {
                 <BehaviorDemo initial={b.id} />
               </div>
               <div className={styles.behaviorBody}>
-                <span className={styles.behaviorName}>{b.label}</span>
-                <p className={styles.behaviorDesc}>{b.description}</p>
+                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
+                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
               </div>
             </div>
           ))}
@@ -74,10 +74,10 @@ export default function RadioPage() {
         {ALL_TYPES.map((type) => (
           <div key={type} className={styles.matrixContainer}>
             <div className={styles.matrixTypeHeader}>
-              <span className={styles.matrixTypeName}>
+              <span className={`type-body-sm ${styles.matrixTypeName}`}>
                 {RADIO_TYPES.find((t) => t.id === type)?.label}
               </span>
-              <span className={styles.matrixTypeDesc}>
+              <span className={`type-body-sm ${styles.matrixTypeDesc}`}>
                 — {RADIO_TYPES.find((t) => t.id === type)?.description}
               </span>
             </div>
@@ -85,7 +85,7 @@ export default function RadioPage() {
             <div className={styles.matrixHeaderRow}>
               <div className={styles.matrixHeaderSpacer} />
               {ALL_BEHAVIORS.map((b) => (
-                <div key={b} className={styles.matrixCellLabel}>
+                <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
                   {RADIO_BEHAVIORS.find((bh) => bh.id === b)?.label}
                 </div>
               ))}
@@ -94,7 +94,7 @@ export default function RadioPage() {
             {MATRIX_STATES.map((state) => (
               <div key={state.id} className={styles.matrixRow}>
                 <div className={styles.matrixStateLabel}>
-                  <span className={styles.matrixStateName}>{state.label}</span>
+                  <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
                 </div>
                 <div className={styles.matrixCells}>
                   {ALL_BEHAVIORS.map((b) => (
@@ -134,8 +134,8 @@ export default function RadioPage() {
                 ))}
               </div>
               <div className={styles.typeBody}>
-                <span className={styles.typeName}>{t.label}</span>
-                <p className={styles.typeDesc}>{t.description}</p>
+                <span className={`type-body-sm ${styles.typeName}`}>{t.label}</span>
+                <p className={`type-body-sm ${styles.typeDesc}`}>{t.description}</p>
               </div>
             </div>
           ))}
@@ -176,7 +176,7 @@ export default function RadioPage() {
             />
           </div>
           <div className={styles.helpTextBody}>
-            <p className={styles.helpTextDesc}>
+            <p className={`type-body-sm ${styles.helpTextDesc}`}>
               O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre cada opção. Use-o para explicar consequências, custos ou restrições da seleção. Mantenha-o conciso — no máximo duas linhas.
             </p>
           </div>
@@ -189,9 +189,9 @@ export default function RadioPage() {
         <div className={styles.guidelinesGrid}>
           {RADIO_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

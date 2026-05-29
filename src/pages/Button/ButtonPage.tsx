@@ -98,13 +98,13 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
               </div>
               <div className={styles.variantBody}>
                 <div className={styles.variantTitleRow}>
-                  <h3 className={styles.variantName}>{v.name}</h3>
-                  <span className={styles.variantTagline}>{v.tagline}</span>
+                  <h3 className={`type-title-sm ${styles.variantName}`}>{v.name}</h3>
+                  <span className={`type-caption-sm ${styles.variantTagline}`}>{v.tagline}</span>
                 </div>
-                <p className={styles.variantDesc}>{v.description}</p>
+                <p className={`type-body-md ${styles.variantDesc}`}>{v.description}</p>
                 <ul className={styles.variantWhen}>
                   {v.when.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="type-body-md">{item}</li>
                   ))}
                 </ul>
               </div>
@@ -124,14 +124,14 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
               </div>
               <div className={styles.sizeMeta}>
                 <div className={styles.sizeValueRow}>
-                  <span className={styles.sizeLabel}>{s.label}</span>
+                  <span className={`type-caption-md ${styles.sizeLabel}`}>{s.label}</span>
                   {s.recommended && (
-                    <span className={styles.sizeRecommended}>Recomendado</span>
+                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
                   )}
                 </div>
-                <span className={styles.sizeDescription}>{s.description}</span>
+                <span className={`type-body-md ${styles.sizeDescription}`}>{s.description}</span>
               </div>
-              <div className={styles.sizeSpecs}>
+              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
                 <span>font {s.fontSize}px · icon {s.iconSize}px</span><br />
                 <span>py {s.paddingY}px · px {s.paddingX}px · gap {s.gap}px</span>
               </div>
@@ -146,19 +146,19 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
         {VARIANTS.map((v) => (
           <div key={v.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixVariantHeader}>
-              <span className={styles.matrixVariantName}>{v.name}</span>
-              <span className={styles.matrixVariantTagline}>— {v.tagline}</span>
+              <span className={`type-caption-md ${styles.matrixVariantName}`}>{v.name}</span>
+              <span className={`type-caption-sm ${styles.matrixVariantTagline}`}>— {v.tagline}</span>
             </div>
             <div className={styles.matrixHeaderRow}>
               <div className={styles.matrixHeaderSpacer} />
               {matrixContent.map((c) => (
-                <div key={c.label} className={styles.matrixCellLabel}>{c.label}</div>
+                <div key={c.label} className={`type-caption-xs ${styles.matrixCellLabel}`}>{c.label}</div>
               ))}
             </div>
             {MATRIX_STATES.map((state) => (
               <div key={state.id} className={styles.matrixRow}>
                 <div className={styles.matrixStateLabel}>
-                  <span className={styles.matrixStateName}>{state.label}</span>
+                  <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
                 </div>
                 <div className={styles.matrixCells}>
                   {matrixContent.map((c) => (
@@ -200,8 +200,8 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
                 </Button>
               </div>
               <div className={styles.contentBody}>
-                <span className={styles.contentName}>{c.label}</span>
-                <span className={styles.contentDesc}>{c.desc}</span>
+                <span className={`type-caption-md ${styles.contentName}`}>{c.label}</span>
+                <span className={`type-caption-sm ${styles.contentDesc}`}>{c.desc}</span>
               </div>
             </div>
           ))}
@@ -214,9 +214,9 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
         <div className={styles.guidelinesGrid}>
           {GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

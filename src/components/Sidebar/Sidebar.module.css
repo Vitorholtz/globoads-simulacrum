@@ -1,11 +1,10 @@
-.sidebar {
+﻿.sidebar {
   width: var(--sidebar-width);
   background: var(--color-bg-sidebar);
   border-right: 1px solid var(--color-border-ui);
   position: sticky;
   top: 0;
   height: 100vh;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -14,17 +13,9 @@
 .logoArea {
   padding: 20px 20px 18px;
   position: relative;
+  border-bottom: 1px solid var(--color-border-ui);
 }
 
-.logoArea::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-border-accent-gradient);
-}
 
 .logo {
   display: block;
@@ -34,6 +25,26 @@
 
 .nav {
   flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-ui) transparent;
+}
+
+.nav::-webkit-scrollbar {
+  width: 2px;
+}
+
+.nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background: var(--color-border-ui);
+  border-radius: 100px;
+}
+
+.nav::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fill-tertiary, #c0c0c8);
 }
 
 .section {
@@ -41,15 +52,11 @@
 }
 
 .sectionDivider {
-  border-bottom: 1px solid var(--color-border-ui);
   padding-bottom: 12px;
 }
 
 .sectionLabel {
   display: block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--color-text-tertiary);
   padding: 0 20px 6px;
@@ -64,11 +71,10 @@
   border: none;
   background: none;
   text-align: left;
+  text-decoration: none;
   padding: 7px 10px;
-  font-size: 13.5px;
-  font-family: var(--font-family);
   font-weight: 400;
-  color: var(--color-text-secondary);
+  color: var(--color-fill-primary);
   cursor: pointer;
   border-radius: 8px;
   transition: background 0.12s ease, color 0.12s ease;
@@ -81,21 +87,19 @@
 }
 
 .navIcon {
-  font-size: 18px;
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-secondary);
   transition: color 0.12s ease;
   flex-shrink: 0;
-  line-height: 1;
   user-select: none;
 }
 
 .navItem:not(.navItemDisabled):hover {
   background: var(--color-surface-tertiary);
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .navItem:not(.navItemDisabled):hover .navIcon {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-primary);
 }
 
 .navItemActive {
@@ -114,17 +118,15 @@
 }
 
 .badge {
-  font-size: 10px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 7px;
   border-radius: 100px;
-  letter-spacing: 0;
   flex-shrink: 0;
 }
 
 .sidebarFooter {
+  position: relative;
   padding: 16px 20px;
   border-top: 1px solid var(--color-border-ui);
   margin-top: auto;
@@ -133,15 +135,20 @@
   gap: 3px;
 }
 
+.sidebarFooter::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-border-accent-gradient);
+}
+
 .footerTitle {
-  font-size: 12px;
-  font-weight: 600;
   color: var(--color-text-secondary);
-  letter-spacing: -0.01em;
 }
 
 .footerSub {
-  font-size: 11px;
-  font-weight: 400;
   color: var(--color-text-tertiary);
 }

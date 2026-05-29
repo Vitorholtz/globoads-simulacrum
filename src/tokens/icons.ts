@@ -1,5 +1,20 @@
 export type IconVariant = 'outlined' | 'filled'
 
+export type IconClassToken = {
+  className: string
+  size: number
+  cssVar: string
+  description: string
+  usedIn: string
+}
+
+export type IconModifierToken = {
+  className: string
+  cssValue: string
+  description: string
+  usedIn: string
+}
+
 export type IconSizeToken = {
   value: number
   label: string
@@ -31,6 +46,51 @@ export type IconCategory = {
   name: string
   description: string
   icons: IconEntry[]
+}
+
+export const ICON_CLASS_TOKENS: IconClassToken[] = [
+  {
+    className: 'icon-xs',
+    size: 14,
+    cssVar: '--font-size-087',
+    description: 'Ícones em componentes compactos onde o espaço é restrito',
+    usedIn: 'Checkbox · Switch · ChipInput',
+  },
+  {
+    className: 'icon-sm',
+    size: 16,
+    cssVar: '--font-size-100',
+    description: 'Ícones em linha com texto de interface — chips e separadores',
+    usedIn: 'ChipAssist · ChipFilter · Breadcrumb',
+  },
+  {
+    className: 'icon-md',
+    size: 20,
+    cssVar: '--font-size-125',
+    description: 'Padrão de produto — botões, campos de texto e abas',
+    usedIn: 'Button · Tabs · Accordion · Sidebar',
+  },
+  {
+    className: 'icon-lg',
+    size: 24,
+    cssVar: '--font-size-150',
+    description: 'Ações de destaque — campos lg, calendário e paginação',
+    usedIn: 'DatePicker · Pagination',
+  },
+  {
+    className: 'icon-xl',
+    size: 32,
+    cssVar: '--font-size-200',
+    description: 'Empty states, ilustrações de suporte e destaques visuais',
+    usedIn: 'Prévia de biblioteca · Showcases',
+  },
+]
+
+export const ICON_FILLED_MODIFIER: IconModifierToken = {
+  className: 'icon-filled',
+  cssValue: 'FILL 1',
+  description: 'Ativa o eixo FILL da variable font. Deve vir sempre após a classe de tamanho e comunica estado ativo, selecionado ou de alta ênfase — nunca decorativo.',
+  usedIn: 'Nav ativo · Favorito · Toggle marcado',
 }
 
 export const ICON_SIZES: IconSizeToken[] = [

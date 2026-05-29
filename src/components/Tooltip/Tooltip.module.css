@@ -1,0 +1,122 @@
+﻿/* ── Wrapper ── */
+
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Tooltip box ── */
+
+.tooltip {
+  position: absolute;
+  background: #252527;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-regular);
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  z-index: 100;
+}
+
+.wrapper:hover .tooltip,
+.wrapper:focus-within .tooltip,
+.tooltip.visible {
+  opacity: 1;
+}
+
+/* ── Arrow base ── */
+
+.arrow {
+  position: absolute;
+  background: #252527;
+}
+
+/* ── Position: Up (tooltip above, arrow at bottom pointing down) ── */
+
+.up {
+  bottom: calc(100% + 6px);
+}
+
+.up .arrow {
+  bottom: -6px;
+  width: 12px;
+  height: 6px;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+.up.start  { left: 0; }
+.up.middle { left: 50%; transform: translateX(-50%); }
+.up.end    { right: 0; }
+
+.up.start  .arrow { left: 8px; }
+.up.middle .arrow { left: 50%; transform: translateX(-50%); }
+.up.end    .arrow { right: 8px; }
+
+/* ── Position: Bottom (tooltip below, arrow at top pointing up) ── */
+
+.bottom {
+  top: calc(100% + 6px);
+}
+
+.bottom .arrow {
+  top: -6px;
+  width: 12px;
+  height: 6px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.bottom.start  { left: 0; }
+.bottom.middle { left: 50%; transform: translateX(-50%); }
+.bottom.end    { right: 0; }
+
+.bottom.start  .arrow { left: 8px; }
+.bottom.middle .arrow { left: 50%; transform: translateX(-50%); }
+.bottom.end    .arrow { right: 8px; }
+
+/* ── Position: Right (tooltip to the right, arrow at left pointing left) ── */
+
+.right {
+  left: calc(100% + 6px);
+}
+
+.right .arrow {
+  left: -6px;
+  width: 6px;
+  height: 12px;
+  clip-path: polygon(100% 0%, 100% 100%, 0% 50%);
+}
+
+.right.start  { top: 0; }
+.right.middle { top: 50%; transform: translateY(-50%); }
+.right.end    { bottom: 0; }
+
+.right.start  .arrow { top: 8px; }
+.right.middle .arrow { top: 50%; transform: translateY(-50%); }
+.right.end    .arrow { bottom: 8px; }
+
+/* ── Position: Left (tooltip to the left, arrow at right pointing right) ── */
+
+.left {
+  right: calc(100% + 6px);
+}
+
+.left .arrow {
+  right: -6px;
+  width: 6px;
+  height: 12px;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+}
+
+.left.start  { top: 0; }
+.left.middle { top: 50%; transform: translateY(-50%); }
+.left.end    { bottom: 0; }
+
+.left.start  .arrow { top: 8px; }
+.left.middle .arrow { top: 50%; transform: translateY(-50%); }
+.left.end    .arrow { bottom: 8px; }

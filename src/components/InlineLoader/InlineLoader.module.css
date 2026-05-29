@@ -97,9 +97,9 @@
 .ellipsis {
   display: inline-flex;
   align-items: baseline;
-  font-family: var(--font-family);
+  font-family: var(--font-family-sans);
   font-weight: 500;
-  line-height: 1;
+  line-height: var(--line-height-icon);
   color: currentColor;
   white-space: nowrap;
 }

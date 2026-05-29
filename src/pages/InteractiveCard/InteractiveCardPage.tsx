@@ -3,7 +3,6 @@ import { CARD_STYLES, INTERACTIVE_CARD_STATES, INTERACTIVE_CARD_GUIDELINES } fro
 import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
 import g1Logo from '../../assets/logos/g1.svg'
 import geLogo from '../../assets/logos/ge.svg'
 import gshowLogo from '../../assets/logos/gshow.svg'
@@ -21,20 +20,19 @@ function DiariaCard() {
     <div className={styles.diariaCard}>
       <div className={styles.diariaHeader}>
         <span
-          className={`material-symbols-rounded ${styles.diariaChannelIcon}`}
-          style={{ fontVariationSettings: FVAR_OUTLINED_SM }}
+          className={`material-symbols-rounded icon-md ${styles.diariaChannelIcon}`}
         >devices</span>
-        <span className={styles.diariaChannel}>Digital</span>
+        <span className={`type-body-md ${styles.diariaChannel}`}>Digital</span>
         <div className={styles.diariaHeaderLogos}>
           <img src={g1Logo} alt="G1" className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoG1}`} />
           <img src={geLogo} alt="GE" className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoGe}`} />
           <img src={gshowLogo} alt="GShow" className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoGshow}`} />
-          <span className={styles.diariaMoreCount}>+4</span>
+          <span className={`type-caption-sm ${styles.diariaMoreCount}`}>+4</span>
         </div>
       </div>
       <div className={styles.diariaContent}>
-        <h4 className={styles.diariaTitle}>Diárias<br />na Globo</h4>
-        <p className={styles.diariaDesc}>Anuncie por 24 horas em uma ou mais plataformas da Globo e alcance seu público onde ele está.</p>
+        <h4 className={`type-display-sm ${styles.diariaTitle}`}>Diárias<br />na Globo</h4>
+        <p className={`type-body-md ${styles.diariaDesc}`}>Anuncie por 24 horas em uma ou mais plataformas da Globo e alcance seu público onde ele está.</p>
       </div>
       <div className={styles.diariaPhotoWrap}>
         <img src={TALENT_PHOTO} alt="" className={styles.diariaPhoto} />
@@ -72,11 +70,11 @@ export default function InteractiveCardPage() {
                 </InteractiveCard>
               </div>
               <div className={styles.styleBody}>
-                <h3 className={styles.styleName}>{s.name}</h3>
-                <p className={styles.styleDesc}>{s.description}</p>
+                <h3 className={`type-title-sm ${styles.styleName}`}>{s.name}</h3>
+                <p className={`type-body-md ${styles.styleDesc}`}>{s.description}</p>
                 <ul className={styles.styleWhen}>
                   {s.when.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="type-body-md">{item}</li>
                   ))}
                 </ul>
               </div>
@@ -91,12 +89,12 @@ export default function InteractiveCardPage() {
         {CARD_STYLES.map((s) => (
           <div key={s.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixStyleHeader}>
-              <span className={styles.matrixStyleName}>{s.name}</span>
-              <span className={styles.matrixStyleTagline}>— {s.tagline}</span>
+              <span className={`type-caption-md ${styles.matrixStyleName}`}>{s.name}</span>
+              <span className={`type-caption-sm ${styles.matrixStyleTagline}`}>— {s.tagline}</span>
             </div>
             <div className={styles.matrixHeaderRow}>
               {INTERACTIVE_CARD_STATES.map((state) => (
-                <div key={state.id} className={styles.matrixCellLabel}>{state.label}</div>
+                <div key={state.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>{state.label}</div>
               ))}
             </div>
             <div
@@ -123,9 +121,9 @@ export default function InteractiveCardPage() {
         <div className={styles.guidelinesGrid}>
           {INTERACTIVE_CARD_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

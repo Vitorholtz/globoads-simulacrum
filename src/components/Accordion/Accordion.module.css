@@ -1,0 +1,99 @@
+﻿.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Section ── */
+
+.section {
+  background: var(--color-surface-tertiary);
+  border-radius: var(--radius-lg);
+}
+
+/* ── Header ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 12px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  z-index: 1;
+  transition: background 0.12s ease, box-shadow 0.12s ease;
+}
+
+.header:hover {
+  background: rgba(24, 92, 251, 0.08);
+}
+
+.header:active {
+  background: rgba(24, 92, 251, 0.14);
+}
+
+.header:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Leading icon ── */
+
+.leadingIcon {
+  flex-shrink: 0;
+  color: var(--color-fill-primary);
+}
+
+/* ── Label ── */
+
+.label {
+  flex: 1;
+  text-align: left;
+  color: var(--color-fill-primary);
+}
+
+/* ── Detail ── */
+
+.detail {
+  flex-shrink: 0;
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+}
+
+/* ── Chevron icon ── */
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--color-fill-primary);
+  transition: transform 0.22s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Content — animated via grid-template-rows ── */
+
+.contentWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.22s ease;
+  overflow: hidden;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.contentWrapper[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+.contentOverflow {
+  overflow: hidden;
+}
+
+.contentPadded {
+  padding: 0 8px 8px;
+}

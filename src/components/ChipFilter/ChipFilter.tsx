@@ -1,5 +1,4 @@
 import styles from './ChipFilter.module.css'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
 import type { ChipFilterBehavior } from '../../tokens/chipFilter'
 
 export type { ChipFilterBehavior }
@@ -11,8 +10,6 @@ export interface ChipFilterProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active' | 'dragged' | 'disabled'
 }
-
-const ICON_STYLE = { fontVariationSettings: FVAR_OUTLINED_SM }
 
 export default function ChipFilter({
   label = 'Chip',
@@ -41,18 +38,16 @@ export default function ChipFilter({
     >
       {isChecked && (
         <span
-          className={`material-symbols-rounded ${styles.icon}`}
-          style={ICON_STYLE}
+          className={`material-symbols-rounded icon-sm ${styles.icon}`}
           aria-hidden="true"
         >
           check
         </span>
       )}
-      <span className={styles.label}>{label}</span>
+      <span className={`type-caption-md ${styles.label}`}>{label}</span>
       {dropdown && (
         <span
-          className={`material-symbols-rounded ${styles.dropdownIcon}`}
-          style={ICON_STYLE}
+          className={`material-symbols-rounded icon-sm ${styles.dropdownIcon}`}
           aria-hidden="true"
         >
           arrow_drop_down

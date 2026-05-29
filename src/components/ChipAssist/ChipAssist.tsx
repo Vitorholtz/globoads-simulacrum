@@ -1,5 +1,4 @@
 import styles from './ChipAssist.module.css'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
 
 export interface ChipAssistProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string
@@ -8,8 +7,6 @@ export interface ChipAssistProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active' | 'dragged' | 'disabled'
 }
-
-const ICON_STYLE = { fontVariationSettings: FVAR_OUTLINED_SM }
 
 export default function ChipAssist({
   label = 'Chip',
@@ -31,13 +28,12 @@ export default function ChipAssist({
       {...rest}
     >
       <span
-        className={`material-symbols-rounded ${styles.icon}`}
-        style={ICON_STYLE}
+        className={`material-symbols-rounded icon-sm ${styles.icon}`}
         aria-hidden="true"
       >
         {icon}
       </span>
-      <span className={styles.label}>{label}</span>
+      <span className={`type-caption-md ${styles.label}`}>{label}</span>
     </button>
   )
 }

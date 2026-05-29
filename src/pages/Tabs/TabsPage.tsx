@@ -40,8 +40,8 @@ function PositionDemo({ position, description }: { position: TabPosition; descri
         />
       </div>
       <div className={styles.positionMeta}>
-        <span className={styles.positionLabel}>{position.charAt(0).toUpperCase() + position.slice(1)}</span>
-        <p className={styles.positionDesc}>{description}</p>
+        <span className={`type-body-sm ${styles.positionLabel}`}>{position.charAt(0).toUpperCase() + position.slice(1)}</span>
+        <p className={`type-body-sm ${styles.positionDesc}`}>{description}</p>
       </div>
     </div>
   )
@@ -90,8 +90,8 @@ export default function TabsPage() {
               />
             </div>
             <div className={styles.variantMeta}>
-              <span className={styles.variantLabel}>{TAB_CONTENT_VARIANTS[0].label}</span>
-              <p className={styles.variantDesc}>{TAB_CONTENT_VARIANTS[0].description}</p>
+              <span className={`type-body-sm ${styles.variantLabel}`}>{TAB_CONTENT_VARIANTS[0].label}</span>
+              <p className={`type-body-sm ${styles.variantDesc}`}>{TAB_CONTENT_VARIANTS[0].description}</p>
             </div>
           </div>
 
@@ -106,8 +106,8 @@ export default function TabsPage() {
               />
             </div>
             <div className={styles.variantMeta}>
-              <span className={styles.variantLabel}>{TAB_CONTENT_VARIANTS[1].label}</span>
-              <p className={styles.variantDesc}>{TAB_CONTENT_VARIANTS[1].description}</p>
+              <span className={`type-body-sm ${styles.variantLabel}`}>{TAB_CONTENT_VARIANTS[1].label}</span>
+              <p className={`type-body-sm ${styles.variantDesc}`}>{TAB_CONTENT_VARIANTS[1].description}</p>
             </div>
           </div>
 
@@ -122,8 +122,8 @@ export default function TabsPage() {
               />
             </div>
             <div className={styles.variantMeta}>
-              <span className={styles.variantLabel}>{TAB_CONTENT_VARIANTS[2].label}</span>
-              <p className={styles.variantDesc}>{TAB_CONTENT_VARIANTS[2].description}</p>
+              <span className={`type-body-sm ${styles.variantLabel}`}>{TAB_CONTENT_VARIANTS[2].label}</span>
+              <p className={`type-body-sm ${styles.variantDesc}`}>{TAB_CONTENT_VARIANTS[2].description}</p>
             </div>
           </div>
         </div>
@@ -135,9 +135,9 @@ export default function TabsPage() {
         <div className={styles.guidelinesGrid}>
           {TABS_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

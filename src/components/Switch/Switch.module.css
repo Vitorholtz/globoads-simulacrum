@@ -1,9 +1,9 @@
-/* ── Wrapper ── */
+﻿/* ── Wrapper ── */
 
 .switch {
   display: flex;
   gap: 8px;
-  align-items: flex-start;
+  align-items: center;
   min-height: 32px;
   padding: 4px 0;
   width: fit-content;
@@ -63,8 +63,6 @@
   top: calc(50% + 1px);
   left: 26px; /* center of thumb when checked: 18px + 8px */
   transform: translate(-50%, -50%);
-  font-size: 14px;
-  line-height: 14px;
   -webkit-text-stroke: 0.8px currentColor;
   z-index: 2;
   font-style: normal;
@@ -181,8 +179,6 @@
 }
 
 .label {
-  font-size: 16px;
-  line-height: 24px;
   color: var(--color-fill-secondary);
   white-space: nowrap;
   transition: color 120ms ease;
@@ -195,7 +191,5 @@
 }
 
 .helpText {
-  font-size: 12px;
-  line-height: 16px;
   color: var(--color-fill-tertiary);
 }

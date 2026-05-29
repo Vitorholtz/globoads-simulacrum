@@ -1,12 +1,12 @@
-/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+﻿/* Header styles â†’ PageHeader.module.css  |  Section header styles â†’ SectionHeader.module.css */
 
-/* ── Sections ── */
+/* â”€â”€ Sections â”€â”€ */
 
 .section {
   margin-bottom: 72px;
 }
 
-/* ── Library card ── */
+/* â”€â”€ Library card â”€â”€ */
 
 .libraryCard {
   display: flex;
@@ -31,15 +31,11 @@
 }
 
 .libraryName {
-  font-size: 20px;
   font-weight: 700;
   color: var(--color-text-primary);
-  letter-spacing: -0.03em;
 }
 
 .libraryBadge {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 3px 10px;
@@ -47,9 +43,7 @@
 }
 
 .libraryDescription {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
   max-width: 520px;
 }
 
@@ -73,10 +67,7 @@
 }
 
 .attrLabel {
-  font-size: 11px;
-  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
   color: var(--color-text-tertiary);
   min-width: 60px;
   padding-top: 2px;
@@ -84,13 +75,10 @@
 }
 
 .attrValue {
-  font-size: 13.5px;
   color: var(--color-text-secondary);
-  line-height: 1.5;
 }
 
 .attrCode {
-  font-size: 11.5px;
   color: var(--color-text-secondary);
   font-family: var(--font-family-code);
   background: var(--color-surface-tertiary);
@@ -99,13 +87,11 @@
 }
 
 .attrCodeBlock {
-  font-size: 12px;
   color: var(--color-text-secondary);
   font-family: var(--font-family-code);
   background: var(--color-surface-tertiary);
   padding: 5px 11px;
   border-radius: var(--radius-sm);
-  line-height: 1.6;
 }
 
 .libraryPreview {
@@ -121,7 +107,7 @@
   color: var(--color-text-secondary);
 }
 
-/* ── Variants ── */
+/* â”€â”€ Variants â”€â”€ */
 
 .variantsGrid {
   display: grid;
@@ -160,15 +146,10 @@
 }
 
 .variantName {
-  font-size: 16px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
 }
 
 .variantTagline {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 9px;
@@ -183,15 +164,13 @@
 }
 
 .variantWhen li {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.55;
   padding-left: 16px;
   position: relative;
 }
 
 .variantWhen li::before {
-  content: '–';
+  content: 'â€“';
   position: absolute;
   left: 0;
   color: var(--color-text-tertiary);
@@ -199,16 +178,150 @@
 }
 
 .variantExamples {
-  font-size: 11px;
-  font-weight: 600;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
   padding-top: 16px;
   border-top: 1px solid var(--color-border-ui);
 }
 
-/* ── Size scale ── */
+/* â”€â”€ Token Usage Card â”€â”€ */
+
+.tokenUsage {
+  display: flex;
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.tokenUsageInfo {
+  flex: 0 0 320px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.tokenUsageLabel {
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.tokenUsageText {
+  color: var(--color-text-secondary);
+}
+
+.inlineCode {
+  font-family: var(--font-family-code);
+  background: var(--color-surface-tertiary);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+}
+
+.tokenUsageSnippets {
+  flex: 1;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  background: var(--color-surface-secondary);
+}
+
+.tokenSnippet {
+  display: block;
+  font-family: var(--font-family-code);
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-md);
+  padding: 9px 14px;
+  color: var(--color-text-secondary);
+  white-space: pre;
+}
+
+/* â”€â”€ Token Table â”€â”€ */
+
+.tokenTable {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tokenTableHead,
+.tokenRow {
+  display: grid;
+  grid-template-columns: 64px 152px 96px 188px 1fr 180px;
+  align-items: center;
+  gap: 0 16px;
+  padding: 0 24px;
+}
+
+.tokenTableHead {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  min-height: 44px;
+}
+
+.tokenHeadCell {
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.tokenRow {
+  background: var(--color-surface-primary);
+  border-bottom: 1px solid var(--color-border-ui);
+  min-height: 60px;
+}
+
+.tokenRow:last-child {
+  border-bottom: none;
+}
+
+.tokenModifierRow {
+  background: var(--color-surface-secondary);
+}
+
+.tokenPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tokenClass {
+  font-family: var(--font-family-code);
+  color: var(--color-fill-accent);
+}
+
+.tokenSize {
+  font-family: var(--font-family-code);
+  color: var(--color-text-primary);
+}
+
+.tokenVar {
+  font-family: var(--font-family-code);
+  color: var(--color-text-tertiary);
+}
+
+.tokenDesc {
+  color: var(--color-text-secondary);
+}
+
+.tokenUsedIn {
+  color: var(--color-text-tertiary);
+}
+
+.tokenModifierBadge {
+  display: inline-block;
+  background: var(--color-surface-tertiary);
+  color: var(--color-text-tertiary);
+  padding: 2px 9px;
+  border-radius: 100px;
+}
+
+/* â”€â”€ Size scale â”€â”€ */
 
 .sizeScaleContainer {
   background: var(--color-surface-primary);
@@ -255,15 +368,10 @@
 }
 
 .sizeLabel {
-  font-size: 14px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .sizeRecommended {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 9px;
@@ -271,21 +379,17 @@
 }
 
 .sizeDescription {
-  font-size: 13.5px;
   color: var(--color-text-secondary);
-  line-height: 1.5;
 }
 
 .sizePx {
-  font-size: 12px;
   font-family: var(--font-family-code);
   color: var(--color-text-tertiary);
   margin-left: auto;
   padding-right: 32px;
-  letter-spacing: -0.01em;
 }
 
-/* ── Guidelines ── */
+/* â”€â”€ Guidelines â”€â”€ */
 
 .guidelinesGrid {
   display: grid;
@@ -310,35 +414,26 @@
 }
 
 .guidelineTitle {
-  font-size: 16px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
   margin-bottom: 10px;
 }
 
 .guidelineBody {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
   flex: 1;
 }
 
 .guidelineRule {
-  font-size: 12px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   font-style: italic;
   padding-top: 20px;
   margin-top: 20px;
   border-top: 1px solid var(--color-border-ui);
-  line-height: 1.5;
 }
 
-/* ── Catalog ── */
+/* â”€â”€ Catalog â”€â”€ */
 
 .catalogNote {
-  font-size: 13px;
   color: var(--color-text-tertiary);
   margin-bottom: 28px;
   margin-top: -8px;
@@ -360,20 +455,14 @@
 }
 
 .categoryName {
-  font-size: 13px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .categoryDesc {
-  font-size: 12px;
   color: var(--color-text-tertiary);
 }
 
 .categoryCount {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 8px;
@@ -413,7 +502,6 @@
 }
 
 .iconName {
-  font-size: 10.5px;
   color: var(--color-text-tertiary);
   font-family: var(--font-family-code);
   text-align: center;

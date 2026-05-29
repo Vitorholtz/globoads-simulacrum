@@ -33,7 +33,7 @@ export default function ChipSuggestion({
       data-state={forceState}
       {...rest}
     >
-      <span className={styles.label}>{label}</span>
+      <span className={`type-caption-md ${styles.label}`}>{label}</span>
     </button>
   )
 }

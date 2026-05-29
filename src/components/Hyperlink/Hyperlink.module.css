@@ -1,10 +1,8 @@
-/* ── Base ── */
+﻿/* ── Base ── */
 
 .hyperlink {
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-family);
-  font-weight: 500;
   font-style: normal;
   color: var(--color-fill-accent);
   text-decoration: none;
@@ -19,38 +17,24 @@
 /* ── Sizes ── */
 
 .xs {
-  font-size: 12px;
-  line-height: 16px;
   gap: 2px;
-  --icon-size: 14px;
 }
 
 .sm {
-  font-size: 14px;
-  line-height: 20px;
   gap: 4px;
-  --icon-size: 16px;
 }
 
 .md {
-  font-size: 16px;
-  line-height: 24px;
   gap: 4px;
-  --icon-size: 20px;
 }
 
 .lg {
-  font-size: 20px;
-  line-height: 32px;
   gap: 4px;
-  --icon-size: 24px;
 }
 
 /* ── External icon ── */
 
 .externalIcon {
-  font-size: var(--icon-size);
-  line-height: 1;
   flex-shrink: 0;
   display: block;
 }

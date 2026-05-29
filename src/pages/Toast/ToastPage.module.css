@@ -1,0 +1,198 @@
+﻿/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Static demo area ── */
+
+.demoArea {
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 360px);
+  gap: 12px;
+  justify-content: center;
+}
+
+.demoGrid > * {
+  width: 100%;
+}
+
+/* ── Interactive demo ── */
+
+.interactiveCard {
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.interactiveHint {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  text-align: center;
+}
+
+.triggerRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.triggerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px 8px 12px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.12s ease, transform 0.1s ease;
+}
+
+.triggerBtn:hover  { opacity: 0.88; }
+.triggerBtn:active { transform: scale(0.97); }
+
+.triggerBtn:focus-visible {
+  outline: 2px solid var(--color-fill-accent);
+  outline-offset: 2px;
+}
+
+.trigger_neutral  { background: var(--color-fill-secondary); }
+.trigger_success  { background: var(--color-fill-success); }
+.trigger_warning  { background: var(--color-fill-warning); }
+.trigger_critical { background: var(--color-fill-critical); }
+
+.triggerIcon {
+  font-size: var(--font-size-125);
+  line-height: var(--line-height-icon);
+}
+
+/* ── Variants grid ── */
+
+.variantsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Content combinations grid ── */
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Shared card ── */
+
+.variantCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.variantPreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.variantPreview > * {
+  width: 100%;
+  max-width: 360px;
+}
+
+.cardBody {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.cardLabel {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.cardDesc {
+  color: var(--color-text-secondary);
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.guidelineTitle {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+.guidelineRule {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+}
+
+/* ── Toast portal (fixed overlay) ── */
+
+.toastPortal {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9000;
+  animation: toastIn 0.25s ease-out forwards;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

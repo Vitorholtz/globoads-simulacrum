@@ -1,12 +1,8 @@
-.badge {
+﻿.badge {
   display: inline-flex;
   align-items: center;
   padding: 2px 4px;
   border-radius: var(--radius-md);
-  font-family: var(--font-family);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
   white-space: nowrap;
 }
 

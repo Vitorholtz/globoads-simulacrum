@@ -1,4 +1,4 @@
-/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
 /* ── Sections ── */
 
@@ -51,15 +51,11 @@
 }
 
 .sizeLabel {
-  font-size: 14px;
   font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .sizeBadge {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 9px;
@@ -67,8 +63,6 @@
 }
 
 .sizeBadgeWarning {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-fill-warning);
   background: var(--color-surface-warning);
   padding: 2px 9px;
@@ -76,19 +70,16 @@
 }
 
 .sizeDescription {
-  font-size: 13.5px;
   color: var(--color-text-secondary);
-  line-height: 1.5;
 }
 
 .sizeSpecs {
-  font-size: 12px;
   font-family: var(--font-family-code);
   color: var(--color-text-tertiary);
   margin-left: auto;
   padding-right: 32px;
   text-align: right;
-  line-height: 1.6;
+  line-height: var(--line-height-150);
   white-space: nowrap;
 }
 
@@ -118,11 +109,8 @@
   flex: 1;
   text-align: center;
   padding: 14px 8px;
-  font-size: 10px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
   border-right: 1px solid var(--color-border-ui);
 }
 
@@ -152,11 +140,8 @@
 }
 
 .matrixStateName {
-  font-size: 11px;
-  font-weight: 600;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
 }
 
 .matrixCell {
@@ -191,16 +176,11 @@
 }
 
 .legendLabel {
-  font-size: 12px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .legendDesc {
-  font-size: 12px;
   color: var(--color-text-secondary);
-  line-height: 1.5;
 }
 
 /* ── External section ── */
@@ -236,14 +216,11 @@
 }
 
 .externalSizeLabel {
-  font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .externalIconSpec {
-  font-size: 11px;
   font-family: var(--font-family-code);
   color: var(--color-text-tertiary);
 }
@@ -257,12 +234,10 @@
   border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-md);
   color: var(--color-text-secondary);
-  font-size: 13.5px;
-  line-height: 1.6;
 }
 
 .externalNoteIcon {
-  font-size: 18px;
+  font-size: var(--font-size-125);
   color: var(--color-fill-accent);
   flex-shrink: 0;
   margin-top: 1px;
@@ -270,7 +245,7 @@
 
 .externalNote code {
   font-family: var(--font-family-code);
-  font-size: 12.5px;
+  font-size: var(--font-size-075);
   background: rgba(24, 92, 251, 0.08);
   padding: 1px 5px;
   border-radius: 3px;
@@ -300,27 +275,20 @@
 }
 
 .guidelineTitle {
-  font-size: 15px;
   font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
   margin-bottom: 10px;
 }
 
 .guidelineBody {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
   flex: 1;
 }
 
 .guidelineRule {
-  font-size: 12px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   font-style: italic;
   padding-top: 16px;
   margin-top: 16px;
   border-top: 1px solid var(--color-border-ui);
-  line-height: 1.5;
 }

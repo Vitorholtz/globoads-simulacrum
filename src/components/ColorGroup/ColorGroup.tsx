@@ -7,22 +7,17 @@ interface ColorGroupProps {
   icon?: string
 }
 
-const FVAR = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20"
-
 export default function ColorGroup({ group, icon }: ColorGroupProps) {
   return (
     <section className={styles.group}>
       <div className={styles.header}>
         {icon && (
-          <span
-            className={`material-symbols-rounded ${styles.headerIcon}`}
-            style={{ fontVariationSettings: FVAR }}
-          >
+          <span className={`material-symbols-rounded icon-md icon-filled ${styles.headerIcon}`}>
             {icon}
           </span>
         )}
-        <h2 className={styles.title}>{group.label}</h2>
-        <span className={styles.count}>{group.tokens.length} tokens</span>
+        <h2 className={`type-title-md ${styles.title}`}>{group.label}</h2>
+        <span className={`type-caption-sm ${styles.count}`}>{group.tokens.length} tokens</span>
       </div>
       <div className={styles.grid}>
         {group.tokens.map((token) => (

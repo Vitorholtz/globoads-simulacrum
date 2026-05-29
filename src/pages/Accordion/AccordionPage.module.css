@@ -1,0 +1,164 @@
+﻿/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Component demo ── */
+
+.componentDemo {
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.componentDemo > * {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ── Content inside accordion items ── */
+
+.contentBox {
+  background: var(--color-surface-primary);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.contentText {
+  color: var(--color-text-secondary);
+}
+
+/* ── Variants grid ── */
+
+.variantsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.variantCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.variantPreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.variantPreviewInner {
+  width: 100%;
+}
+
+.variantBody {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.variantName {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.variantDesc {
+  color: var(--color-text-secondary);
+}
+
+/* ── States grid ── */
+
+.statesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stateCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.statePreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statePreviewInner {
+  width: 100%;
+  max-width: 340px;
+}
+
+.stateBody {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.stateName {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.stateDesc {
+  color: var(--color-text-secondary);
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.guidelineTitle {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+.guidelineRule {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+}

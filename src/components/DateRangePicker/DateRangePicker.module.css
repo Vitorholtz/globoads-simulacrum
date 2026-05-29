@@ -1,0 +1,179 @@
+﻿/* ── Root ── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+/* ── Label row ── */
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.label {
+  color: var(--color-fill-secondary);
+  cursor: pointer;
+}
+
+.optionalTag {
+  color: var(--color-fill-tertiary);
+  white-space: nowrap;
+}
+
+/* ── Input wrapper ── */
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.inputWrapper:hover:not([data-state]):not(.isActive) {
+  border-color: var(--color-border-secondary);
+}
+
+.inputWrapper[data-state='hover'] {
+  border-color: var(--color-border-secondary);
+}
+
+.inputWrapper.isActive,
+.inputWrapper[data-state='focus'],
+.inputWrapper[data-state='active'] {
+  border-color: var(--color-fill-accent);
+  box-shadow: 0 0 0 1px var(--color-fill-accent);
+}
+
+.inputWrapper:focus-visible:not([data-state]):not(.isActive) {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Disabled ── */
+
+.disabled {
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.disabled .inputWrapper {
+  background: var(--color-surface-tertiary);
+  cursor: not-allowed;
+}
+
+/* ── Date text areas ── */
+
+.dateText {
+  font-family: var(--font-family-sans);
+  font-weight: 400;
+  color: var(--color-fill-tertiary);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.dateText.filled {
+  color: var(--color-fill-primary);
+}
+
+/* ── Separator arrow ── */
+
+.arrowIcon {
+  flex-shrink: 0;
+  color: var(--color-fill-tertiary);
+  pointer-events: none;
+}
+
+/* ── Calendar icon ── */
+
+.calendarIcon {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--color-fill-secondary);
+  display: block;
+  pointer-events: none;
+}
+
+/* ── Calendar popup ── */
+
+@keyframes calendarIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.calendarPopup {
+  z-index: 1000;
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  animation: calendarIn 0.14s ease-out;
+  transform: translateX(-50%);
+}
+
+/* Hint shown when selecting end date */
+.selectingHint {
+  padding: 10px 16px 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-075);
+  font-weight: 500;
+  color: var(--color-fill-accent);
+  text-align: center;
+}
+
+/* ══════════════════════════════════════
+   SIZES
+══════════════════════════════════════ */
+
+/* SM */
+
+.sm .inputWrapper {
+  padding: 6px 8px;
+}
+
+.sm .dateText {
+  font-size: var(--font-size-087);
+  line-height: var(--line-height-125);
+}
+
+/* MD */
+
+.md .inputWrapper {
+  padding: 8px 12px;
+}
+
+.md .dateText {
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-150);
+}
+
+/* LG */
+
+.lg .inputWrapper {
+  padding: 12px;
+}
+
+.lg .dateText {
+  font-size: var(--font-size-100);
+  line-height: var(--line-height-150);
+}
+

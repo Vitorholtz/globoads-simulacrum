@@ -35,8 +35,8 @@ export default function BadgePage() {
                 <Badge variant={v.id} label={EXAMPLE_LABELS[v.id]} />
               </div>
               <div className={styles.variantMeta}>
-                <span className={styles.variantLabel}>{v.label}</span>
-                <p className={styles.variantDesc}>{v.description}</p>
+                <span className={`type-body-sm ${styles.variantLabel}`}>{v.label}</span>
+                <p className={`type-body-sm ${styles.variantDesc}`}>{v.description}</p>
               </div>
             </div>
           ))}
@@ -52,28 +52,28 @@ export default function BadgePage() {
           </div>
           <div className={styles.anatomySpecs}>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Tipografia</span>
-              <span className={styles.specVal}>12px · weight 500 · font-family base</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Tipografia</span>
+              <span className={`type-body-sm ${styles.specVal}`}>12px · weight 500 · font-family base</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Padding</span>
-              <span className={styles.specVal}>2px vertical · 4px horizontal</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Padding</span>
+              <span className={`type-body-sm ${styles.specVal}`}>2px vertical · 4px horizontal</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Border-radius</span>
-              <span className={styles.specVal}>8px (--radius-md)</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Border-radius</span>
+              <span className={`type-body-sm ${styles.specVal}`}>8px (--radius-md)</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Cor do texto</span>
-              <span className={styles.specVal}>Fill da variante semântica</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Cor do texto</span>
+              <span className={`type-body-sm ${styles.specVal}`}>Fill da variante semântica</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Fundo</span>
-              <span className={styles.specVal}>Surface da variante correspondente</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Fundo</span>
+              <span className={`type-body-sm ${styles.specVal}`}>Surface da variante correspondente</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Interação</span>
-              <span className={styles.specVal}>Nenhuma — somente leitura</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Interação</span>
+              <span className={`type-body-sm ${styles.specVal}`}>Nenhuma — somente leitura</span>
             </div>
           </div>
         </div>
@@ -85,9 +85,9 @@ export default function BadgePage() {
         <div className={styles.guidelinesGrid}>
           {BADGE_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

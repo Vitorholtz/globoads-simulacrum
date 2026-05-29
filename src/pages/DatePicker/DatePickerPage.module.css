@@ -1,0 +1,391 @@
+﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+
+/* ── Sections ── */
+
+.section {
+  margin-bottom: 72px;
+}
+
+/* ── Styles grid ── */
+
+.stylesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.styleCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stylePreview {
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-ui);
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stylePreview > * {
+  max-width: 260px;
+  width: 100%;
+}
+
+.styleBody {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.styleName {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.styleDesc {
+  color: var(--color-text-secondary);
+}
+
+/* ── Size scale ── */
+
+.sizeScaleContainer {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.sizeRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.sizeRow:last-child {
+  border-bottom: none;
+}
+
+.sizePreview {
+  width: 280px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  padding: 28px 32px;
+  align-self: stretch;
+}
+
+.sizePreview > * {
+  width: 100%;
+}
+
+.sizeMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 32px;
+}
+
+.sizeValueRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sizeLabel {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sizeRecommended {
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: 2px 9px;
+  border-radius: 100px;
+}
+
+.sizeDescription {
+  color: var(--color-text-secondary);
+}
+
+.sizeSpecs {
+  font-family: var(--font-family-code);
+  color: var(--color-text-tertiary);
+  margin-left: auto;
+  padding-right: 32px;
+  text-align: right;
+  line-height: var(--line-height-150);
+  white-space: nowrap;
+}
+
+/* ── State matrix ── */
+
+.stateMatrixContainer {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+}
+
+.matrixHeaderRow {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-primary);
+}
+
+.matrixHeaderSpacer {
+  width: 100px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCellLabel {
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 14px 8px;
+  border-right: 1px solid var(--color-border-ui);
+  flex: 1;
+}
+
+.matrixCellLabel:last-child {
+  border-right: none;
+}
+
+.matrixRow {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.matrixRow:last-child {
+  border-bottom: none;
+}
+
+.matrixStateLabel {
+  width: 100px;
+  flex-shrink: 0;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+}
+
+.matrixStateName {
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+}
+
+.matrixCells {
+  display: flex;
+  flex: 1;
+}
+
+.matrixCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.matrixCell:last-child {
+  border-right: none;
+}
+
+.matrixField {
+  max-width: 220px;
+}
+
+/* ── Interactive demo ── */
+
+.interactiveContainer {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+}
+
+.interactiveDemo {
+  flex: 1;
+  background: var(--color-surface-secondary);
+  padding: 48px 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-right: 1px solid var(--color-border-ui);
+}
+
+.interactiveDemoCenter {
+  align-items: center;
+}
+
+.demoFields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 280px;
+}
+
+.interactiveInfo {
+  width: 280px;
+  flex-shrink: 0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.infoBox {
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoLabel {
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+}
+
+.infoValue {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.infoHint {
+  color: var(--color-text-secondary);
+}
+
+/* ── Calendar size scale ── */
+
+.calendarSizeContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+}
+
+.calendarSizeRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.calendarSizeRow:last-child {
+  border-bottom: none;
+}
+
+.calendarSizePreview {
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-secondary);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-width: 500px;
+}
+
+.calendarSizeMeta {
+  flex: 1;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Calendar interactive ── */
+
+.calendarInteractiveGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.calendarInteractiveCard {
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+}
+
+.calendarInteractiveLabel {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border-ui);
+  background: var(--color-surface-primary);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+}
+
+.calendarInteractivePreview {
+  background: var(--color-surface-secondary);
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--color-border-ui);
+}
+
+.calendarInteractiveResult {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Guidelines ── */
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guidelineCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-ui);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.guidelineTitle {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.guidelineBody {
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+.guidelineRule {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border-ui);
+}

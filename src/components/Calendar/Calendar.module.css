@@ -1,0 +1,236 @@
+﻿/* ── Root ── */
+
+.root {
+  background: var(--color-surface-primary);
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  user-select: none;
+}
+
+/* ── Sizes ── */
+
+.sm { width: 270px; }
+.md { width: 400px; }
+
+/* ── Header ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  gap: 4px;
+}
+
+.monthLabel {
+  flex: 1;
+  color: var(--color-fill-primary);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.12s ease;
+}
+
+.navBtn:hover {
+  background: rgba(24, 92, 251, 0.08);
+}
+
+.navBtn:active {
+  background: rgba(24, 92, 251, 0.14);
+}
+
+.navIcon {
+  display: block;
+  background: linear-gradient(90deg, #185cfb 50%, #8800f8 150%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Weekdays row ── */
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 12px 0;
+}
+
+.weekday {
+  color: var(--color-fill-secondary);
+  text-align: center;
+}
+
+/* ── Days grid ── */
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.dayCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  position: relative;
+}
+
+/* ── Range strip — ::before pseudo on .dayCell ── */
+
+.inRange::before,
+.hoverInRange::before,
+.rangeStart::before,
+.rangeEnd::before,
+.rangeHoverEnd::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 32px;
+  pointer-events: none;
+}
+
+/* Full strip for in-range cells */
+.inRange::before {
+  left: 0;
+  right: 0;
+  background: rgba(24, 92, 251, 0.08);
+  border-radius: 0;
+}
+
+.hoverInRange::before {
+  left: 0;
+  right: 0;
+  background: rgba(24, 92, 251, 0.05);
+  border-radius: 0;
+}
+
+/* Range start: strip from center → right, rounded left cap */
+.rangeStart::before {
+  left: 50%;
+  right: 0;
+  background: rgba(24, 92, 251, 0.08);
+  border-radius: 16px 0 0 16px;
+}
+
+/* Range end: strip from left → center, rounded right cap */
+.rangeEnd::before {
+  left: 0;
+  right: 50%;
+  background: rgba(24, 92, 251, 0.08);
+  border-radius: 0 16px 16px 0;
+}
+
+/* Hover preview end */
+.rangeHoverEnd::before {
+  left: 0;
+  right: 50%;
+  background: rgba(24, 92, 251, 0.05);
+  border-radius: 0 16px 16px 0;
+}
+
+/* ── Day button ── */
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  color: var(--color-fill-accent);
+  position: relative;
+  z-index: 1;
+  transition: background 0.1s ease;
+  flex-shrink: 0;
+}
+
+.day:hover {
+  background: rgba(24, 92, 251, 0.08);
+}
+
+.day:active {
+  background: rgba(24, 92, 251, 0.14);
+}
+
+/* In-range cells: hover darkens the strip */
+.inRange .day:hover,
+.hoverInRange .day:hover {
+  background: rgba(24, 92, 251, 0.1);
+}
+
+/* Today indicator — dot below number */
+.dayToday {
+  font-weight: 700;
+}
+
+.dayToday::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-fill-accent);
+}
+
+/* Selected (single mode or range endpoints) */
+.daySelected {
+  background: var(--color-fill-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.daySelected:hover {
+  background: var(--color-fill-accent);
+  filter: brightness(1.1);
+}
+
+.daySelected.dayToday::after {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Hover end preview (tentative range end) */
+.dayHoverEnd {
+  background: rgba(24, 92, 251, 0.2);
+  color: var(--color-fill-accent);
+  font-weight: 600;
+}
+
+.dayHoverEnd:hover {
+  background: rgba(24, 92, 251, 0.24);
+}
+
+/* ── Footer (Cancelar / Confirmar) ── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px 8px;
+}
+
+.footerBtn {
+  flex: 1;
+}
+
+/* ── Size-specific ── */

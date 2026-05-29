@@ -1,4 +1,4 @@
-/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
 /* ── Sections ── */
 
@@ -45,16 +45,12 @@
 }
 
 .variantLabel {
-  font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .variantDesc {
-  font-size: 13px;
   color: var(--color-text-secondary);
-  line-height: 1.6;
   margin: 0;
 }
 
@@ -100,7 +96,6 @@
 }
 
 .specKey {
-  font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
   width: 160px;
@@ -108,7 +103,6 @@
 }
 
 .specVal {
-  font-size: 13px;
   font-family: var(--font-family-code);
   color: var(--color-text-secondary);
 }
@@ -132,28 +126,21 @@
 }
 
 .guidelineTitle {
-  font-size: 15px;
   font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
   margin-bottom: 10px;
 }
 
 .guidelineBody {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
   flex: 1;
   margin: 0;
 }
 
 .guidelineRule {
-  font-size: 12px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   font-style: italic;
   padding-top: 16px;
   margin-top: 16px;
   border-top: 1px solid var(--color-border-ui);
-  line-height: 1.5;
 }

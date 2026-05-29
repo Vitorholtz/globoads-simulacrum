@@ -14,10 +14,16 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   forceState?: 'hover' | 'focus' | 'active' | 'disabled' | 'loading'
 }
 
-const FVAR: Record<ButtonSize, string> = {
-  sm: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
-  md: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
-  lg: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
+const ICON_SIZE: Record<ButtonSize, string> = {
+  sm: 'icon-sm',
+  md: 'icon-md',
+  lg: 'icon-md',
+}
+
+const LABEL_TYPE: Record<ButtonSize, string> = {
+  sm: 'type-caption-md',
+  md: 'type-caption-lg',
+  lg: 'type-caption-lg',
 }
 
 export default function Button({
@@ -54,8 +60,7 @@ export default function Button({
   function renderIcon(name: string) {
     return (
       <span
-        className={`material-symbols-rounded ${styles.icon}`}
-        style={{ fontVariationSettings: FVAR[size] }}
+        className={`material-symbols-rounded ${ICON_SIZE[size]} ${styles.icon}`}
         aria-hidden="true"
       >
         {name}
@@ -79,7 +84,7 @@ export default function Button({
       {!isIconOnly && (
         <>
           {isLoading ? spinner : (iconLeft && renderIcon(iconLeft))}
-          {children && <span className={styles.label}>{children}</span>}
+          {children && <span className={`${LABEL_TYPE[size]} ${styles.label}`}>{children}</span>}
           {!isLoading && iconRight && renderIcon(iconRight)}
         </>
       )}

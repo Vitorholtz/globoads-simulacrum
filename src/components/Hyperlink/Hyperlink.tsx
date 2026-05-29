@@ -6,20 +6,29 @@ export type { HyperlinkSize }
 export interface HyperlinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   size?: HyperlinkSize
   external?: boolean
+  underline?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active'
 }
 
-const ICON_FVAR: Record<HyperlinkSize, string> = {
-  xs: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 14",
-  sm: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
-  md: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
-  lg: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
+const ICON_CLS: Record<HyperlinkSize, string> = {
+  xs: 'icon-xs',
+  sm: 'icon-sm',
+  md: 'icon-md',
+  lg: 'icon-lg',
+}
+
+const SIZE_CLASS: Record<HyperlinkSize, string> = {
+  xs: 'hyperlink-xs',
+  sm: 'hyperlink-sm',
+  md: 'hyperlink-md',
+  lg: 'hyperlink-lg',
 }
 
 export default function Hyperlink({
   size = 'md',
   external = false,
+  underline = false,
   forceState,
   href,
   children,
@@ -27,6 +36,8 @@ export default function Hyperlink({
   ...rest
 }: HyperlinkProps) {
   const cls = [
+    SIZE_CLASS[size],
+    underline ? 'hyperlink-underline' : '',
     styles.hyperlink,
     styles[size],
     className ?? '',
@@ -44,8 +55,7 @@ export default function Hyperlink({
       {children}
       {external && (
         <span
-          className={`material-symbols-rounded ${styles.externalIcon}`}
-          style={{ fontVariationSettings: ICON_FVAR[size] }}
+          className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.externalIcon}`}
           aria-hidden="true"
         >
           open_in_new

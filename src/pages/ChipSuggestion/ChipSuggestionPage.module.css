@@ -1,4 +1,4 @@
-/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
 /* ── Sections ── */
 
@@ -41,16 +41,12 @@
 }
 
 .behaviorName {
-  font-size: 14px;
   font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .behaviorDesc {
-  font-size: 13.5px;
   color: var(--color-text-secondary);
-  line-height: 1.6;
 }
 
 /* ── State matrix ── */
@@ -75,11 +71,8 @@
 }
 
 .matrixCellLabel {
-  font-size: 10px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
   text-align: center;
   padding: 14px 8px;
   border-right: 1px solid var(--color-border-ui);
@@ -112,11 +105,8 @@
 }
 
 .matrixStateName {
-  font-size: 11px;
-  font-weight: 600;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
 }
 
 .matrixCells {
@@ -156,27 +146,20 @@
 }
 
 .guidelineTitle {
-  font-size: 15px;
   font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
   margin-bottom: 10px;
 }
 
 .guidelineBody {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
   flex: 1;
 }
 
 .guidelineRule {
-  font-size: 12px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   font-style: italic;
   padding-top: 16px;
   margin-top: 16px;
   border-top: 1px solid var(--color-border-ui);
-  line-height: 1.5;
 }

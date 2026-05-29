@@ -42,12 +42,12 @@ export default function ChipsPage() {
           ═══════════════════════════════════════ */}
       <section className={styles.chipSection}>
         <SectionHeader icon="sell" title="Chip · Suggestion" />
-        <p className={styles.chipDesc}>
+        <p className={`type-body-sm ${styles.chipDesc}`}>
           Os chips de sugestão ajudam a restringir a intenção do usuário ao apresentar sugestões geradas
           dinamicamente, como possíveis respostas ou filtros de pesquisa.
         </p>
 
-        <h4 className={styles.subsectionTitle}>Comportamentos</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
         <div className={styles.behaviorsGrid2}>
           {CHIP_BEHAVIORS.map((b) => (
             <div key={b.id} className={styles.behaviorCard}>
@@ -55,19 +55,19 @@ export default function ChipsPage() {
                 <ChipSuggestion behavior={b.id} label="Sugestão" />
               </div>
               <div className={styles.behaviorBody}>
-                <span className={styles.behaviorName}>{b.label}</span>
-                <p className={styles.behaviorDesc}>{b.description}</p>
+                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
+                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <h4 className={styles.subsectionTitle}>Estados</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
         <div className={styles.matrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
             {SUGGESTION_BEHAVIORS.map((b) => (
-              <div key={b} className={styles.matrixCellLabel}>
+              <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
                 {CHIP_BEHAVIORS.find((bh) => bh.id === b)?.label}
               </div>
             ))}
@@ -75,7 +75,7 @@ export default function ChipsPage() {
           {CHIP_STATES_FOR_MATRIX.map((state) => (
             <div key={state.id} className={styles.matrixRow}>
               <div className={styles.matrixStateLabel}>
-                <span className={styles.matrixStateName}>{state.label}</span>
+                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
               </div>
               <div className={styles.matrixCells}>
                 {SUGGESTION_BEHAVIORS.map((b) => (
@@ -88,13 +88,13 @@ export default function ChipsPage() {
           ))}
         </div>
 
-        <h4 className={styles.subsectionTitle}>Diretrizes</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <div className={styles.guidelinesGrid}>
           {CHIP_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>
@@ -105,12 +105,12 @@ export default function ChipsPage() {
           ═══════════════════════════════════════ */}
       <section className={styles.chipSection}>
         <SectionHeader icon="filter_alt" title="Chip · Filter" />
-        <p className={styles.chipDesc}>
+        <p className={`type-body-sm ${styles.chipDesc}`}>
           Os chips de filtro são usados para filtrar um conteúdo ou definir escolhas. São uma boa alternativa
           aos botões para segmentação ou checkbox ao visualizar uma lista ou resultados de pesquisa.
         </p>
 
-        <h4 className={styles.subsectionTitle}>Comportamentos</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
         <div className={styles.behaviorsGrid2}>
           {CHIP_FILTER_BEHAVIORS.map((b) => (
             <div key={b.id} className={styles.behaviorCard}>
@@ -118,19 +118,19 @@ export default function ChipsPage() {
                 <ChipFilter behavior={b.id} label="Filtro" dropdown />
               </div>
               <div className={styles.behaviorBody}>
-                <span className={styles.behaviorName}>{b.label}</span>
-                <p className={styles.behaviorDesc}>{b.description}</p>
+                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
+                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <h4 className={styles.subsectionTitle}>Estados</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
         <div className={styles.matrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
             {FILTER_BEHAVIORS.map((b) => (
-              <div key={b} className={styles.matrixCellLabel}>
+              <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
                 {CHIP_FILTER_BEHAVIORS.find((bh) => bh.id === b)?.label}
               </div>
             ))}
@@ -138,7 +138,7 @@ export default function ChipsPage() {
           {CHIP_STATES_FOR_MATRIX.map((state) => (
             <div key={state.id} className={styles.matrixRow}>
               <div className={styles.matrixStateLabel}>
-                <span className={styles.matrixStateName}>{state.label}</span>
+                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
               </div>
               <div className={styles.matrixCells}>
                 {FILTER_BEHAVIORS.map((b) => (
@@ -151,13 +151,13 @@ export default function ChipsPage() {
           ))}
         </div>
 
-        <h4 className={styles.subsectionTitle}>Diretrizes</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <div className={styles.guidelinesGrid}>
           {CHIP_FILTER_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>
@@ -168,12 +168,12 @@ export default function ChipsPage() {
           ═══════════════════════════════════════ */}
       <section className={styles.chipSection}>
         <SectionHeader icon="input" title="Chip · Input" />
-        <p className={styles.chipDesc}>
+        <p className={`type-body-sm ${styles.chipDesc}`}>
           Os chips de entrada representam informações discretas inseridas por um usuário, como contatos
           ou opções de filtro em um campo de pesquisa.
         </p>
 
-        <h4 className={styles.subsectionTitle}>Estilos</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estilos</h4>
         <div className={styles.behaviorsGrid3}>
           {CHIP_INPUT_STYLES.map((s) => (
             <div key={s.id} className={styles.behaviorCard}>
@@ -181,19 +181,19 @@ export default function ChipsPage() {
                 <ChipInput style={s.id} label="Entrada" icon="label" />
               </div>
               <div className={styles.behaviorBody}>
-                <span className={styles.behaviorName}>{s.label}</span>
-                <p className={styles.behaviorDesc}>{s.description}</p>
+                <span className={`type-body-sm ${styles.behaviorName}`}>{s.label}</span>
+                <p className={`type-body-sm ${styles.behaviorDesc}`}>{s.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <h4 className={styles.subsectionTitle}>Estados</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
         <div className={styles.matrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
             {INPUT_STYLES.map((s) => (
-              <div key={s} className={styles.matrixCellLabel}>
+              <div key={s} className={`type-caption-xs ${styles.matrixCellLabel}`}>
                 {CHIP_INPUT_STYLES.find((st) => st.id === s)?.label}
               </div>
             ))}
@@ -201,7 +201,7 @@ export default function ChipsPage() {
           {CHIP_STATES_FOR_MATRIX.map((state) => (
             <div key={state.id} className={styles.matrixRow}>
               <div className={styles.matrixStateLabel}>
-                <span className={styles.matrixStateName}>{state.label}</span>
+                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
               </div>
               <div className={styles.matrixCells}>
                 {INPUT_STYLES.map((s) => (
@@ -214,13 +214,13 @@ export default function ChipsPage() {
           ))}
         </div>
 
-        <h4 className={styles.subsectionTitle}>Diretrizes</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <div className={styles.guidelinesGrid}>
           {CHIP_INPUT_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>
@@ -231,22 +231,22 @@ export default function ChipsPage() {
           ═══════════════════════════════════════ */}
       <section className={styles.chipSection}>
         <SectionHeader icon="auto_awesome" title="Chip · Assist" />
-        <p className={styles.chipDesc}>
+        <p className={`type-body-sm ${styles.chipDesc}`}>
           Os chips de assistência representam ações inteligentes ou automatizadas. Eles servem como se o
           usuário pedisse a um assistente para concluir a ação, aparecendo de forma dinâmica e contextual
           em uma interface.
         </p>
 
-        <h4 className={styles.subsectionTitle}>Estados</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
         <div className={styles.matrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
-            <div className={styles.matrixCellLabel}>Unchecked</div>
+            <div className={`type-caption-xs ${styles.matrixCellLabel}`}>Unchecked</div>
           </div>
           {CHIP_STATES_FOR_MATRIX.map((state) => (
             <div key={state.id} className={styles.matrixRow}>
               <div className={styles.matrixStateLabel}>
-                <span className={styles.matrixStateName}>{state.label}</span>
+                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
               </div>
               <div className={styles.matrixCells}>
                 <div className={styles.matrixCell}>
@@ -257,13 +257,13 @@ export default function ChipsPage() {
           ))}
         </div>
 
-        <h4 className={styles.subsectionTitle}>Diretrizes</h4>
+        <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <div className={styles.guidelinesGrid}>
           {CHIP_ASSIST_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

@@ -1,0 +1,74 @@
+export type TextFieldSize = 'sm' | 'md' | 'lg'
+
+export type TextFieldSizeDef = {
+  id: TextFieldSize
+  label: string
+  paddingY: number
+  paddingX: number
+  fontSize: number
+  iconSize: number
+  description: string
+  recommended?: boolean
+}
+
+export const TEXT_FIELD_SIZES: TextFieldSizeDef[] = [
+  {
+    id: 'sm',
+    label: 'Small',
+    paddingY: 6,
+    paddingX: 8,
+    fontSize: 14,
+    iconSize: 16,
+    description: 'Tabelas densas, filtros compactos, formulários com muitos campos.',
+  },
+  {
+    id: 'md',
+    label: 'Medium',
+    paddingY: 8,
+    paddingX: 12,
+    fontSize: 16,
+    iconSize: 20,
+    description: 'Tamanho padrão para a maioria dos formulários e campos de busca.',
+    recommended: true,
+  },
+  {
+    id: 'lg',
+    label: 'Large',
+    paddingY: 12,
+    paddingX: 12,
+    fontSize: 16,
+    iconSize: 24,
+    description: 'Destaque visual em formulários de cadastro, landing pages e onboarding.',
+  },
+]
+
+export const TEXT_FIELD_STATES = [
+  { id: 'normal',   label: 'Normal',   description: 'Estado padrão em repouso.' },
+  { id: 'hover',    label: 'Hover',    description: 'Cursor sobre o campo — borda escurece.' },
+  { id: 'focus',    label: 'Focus',    description: 'Campo ativo com foco — borda azul 2px.' },
+  { id: 'error',    label: 'Error',    description: 'Validação falhou — borda e fundo crítico.' },
+  { id: 'disabled', label: 'Disabled', description: 'Campo indisponível — opacidade 48%.' },
+] as const
+
+export const TEXT_FIELD_GUIDELINES = [
+  {
+    title: 'Label sempre visível',
+    body: 'Nunca substitua a label por placeholder. O placeholder some quando o usuário começa a digitar, deixando o campo sem contexto. A label deve estar sempre posicionada acima do campo.',
+    rule: 'Label acima, placeholder dentro — nunca um pelo outro.',
+  },
+  {
+    title: 'Mensagens de erro claras',
+    body: 'O texto de erro deve explicar o que está errado e como corrigir. Evite mensagens genéricas como "Campo inválido". Seja específico: "Email deve ter o formato nome@domínio.com".',
+    rule: 'Diga o que está errado e como corrigir.',
+  },
+  {
+    title: 'Ícone como apoio contextual',
+    body: 'Use o ícone à esquerda para reforçar o tipo de dado esperado (search, mail, phone). O ícone nunca deve substituir a label. Reserve o ícone de erro (à direita) exclusivamente para validação.',
+    rule: 'Ícone reforça contexto — nunca substitui label.',
+  },
+  {
+    title: 'Campo opcional explícito',
+    body: 'Marque campos opcionais com a tag "Opcional" em vez de marcar os obrigatórios com asterisco. A exceção são formulários onde todos os campos são opcionais — aí omita a marcação.',
+    rule: 'Marque o opcional, não o obrigatório.',
+  },
+]

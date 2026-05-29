@@ -15,21 +15,38 @@ Package manager is **pnpm** (lockfile present). Do not use npm or yarn.
 
 ## Architecture
 
-**Globo Ads Simulacrum** is a design-system documentation app (Storybook-like). Stack: React 19 + Vite 8 + TypeScript 6 + CSS Modules. No UI libraries — custom CSS only.
+**Globo Ads Simulacrum** is a design-system documentation app (Storybook-like). Stack: React 19 + Vite 8 + TypeScript 6 + CSS Modules + React Router v7. No UI libraries — custom CSS only.
 
 ### Navigation
 
-There is no router. `App.tsx` holds `useState<string>('colors')` for the active page and renders the matching page component conditionally. Sidebar calls `onNavigate(page)`. Adding a new page = token file + page component + one `<NavItem>` in `Sidebar.tsx` + conditional render in `App.tsx`.
+The app uses **React Router v7** (`react-router-dom`). `main.tsx` wraps the app in `<BrowserRouter>`. `App.tsx` uses `<Routes>/<Route>` to map paths to page components. `Sidebar.tsx` uses `<NavLink>` for active-state highlighting. Adding a new page = token file + page component + `<Route>` in `App.tsx` + `<NavItem to="/path">` in `Sidebar.tsx`.
 
 ### Token layer (`src/tokens/`)
 
-Single source of truth for all content. Pages import these and map over them — no hardcoded data in page components.
+Single source of truth for all content. Pages import these and map over them — no hardcoded data in page components. Every component/page has a corresponding token file.
 
+**Foundation**
 - `colors.ts` — `COLOR_GROUPS: ColorGroup[]`. Each token is a discriminated union: `SolidToken { type: 'solid'; value: string }` or `GradientToken { type: 'gradient'; stops: [string, string] }`.
 - `typography.ts` — `FONT_FAMILIES: FontFamilyDef[]` and `TYPOGRAPHY_GROUPS: TypographyGroup[]` (Display → Title → Body → Caption).
 - `icons.ts` — `ICON_CATEGORIES`, `ICON_SIZES`, `ICON_VARIANT_RULES`, `ICON_GUIDELINES`, `VARIANT_DEMO_ICONS`.
+
+**Actions**
 - `buttons.ts` — `BUTTON_VARIANTS`, `BUTTON_SIZES`, `BUTTON_STATES`, `BUTTON_CONTENT_VARIANTS`, `BUTTON_GUIDELINES`, `DANGER_BUTTON_VARIANTS`, `DANGER_BUTTON_GUIDELINES`. Danger variants reuse `ButtonVariantDef` intentionally — the `id` ('primary'|'secondary'|'tertiary') maps to CSS via `danger={true}` prop on Button.
+
+**Structures**
 - `cards.ts` — `CARD_STYLES: CardStyleDef[]`, `STATIC_CARD_GUIDELINES`, `INTERACTIVE_CARD_STATES: CardStateDef[]`, `INTERACTIVE_CARD_GUIDELINES`. Shared between StaticCard and InteractiveCard — same two style variants (`on-primary` | `on-secondary`) apply to both.
+
+**Navigations**
+- `hyperlinks.ts`, `tabs.ts`, `pagination.ts`, `breadcrumb.ts` — variants, sizes, states, guidelines for each component.
+
+**Indicators**
+- `badge.ts`, `badgePointer.ts`, `badgeCounter.ts`, `inlineLoader.ts`, `skeleton.ts`
+
+**Inputs**
+- `checkbox.ts`, `radio.ts`, `switch.ts`, `chipSuggestion.ts`, `chipFilter.ts`, `chipInput.ts`, `chipAssist.ts`, `textField.ts`, `textarea.ts`, `select.ts`, `combobox.ts`, `datePicker.ts`
+
+**Utilities / Alerts / Overlays**
+- `collapse.ts`, `accordion.ts`, `infoPanel.ts`, `toast.ts`, `tooltip.ts`
 
 ### Component structure
 
@@ -39,11 +56,19 @@ Single source of truth for all content. Pages import these and map over them —
   - **Button** — interactive component with `variant`, `size`, `danger`, `forceState` props.
   - **StaticCard** — structural container card. Props: `style` ('on-primary' | 'on-secondary'), `children`, `className`. No interaction — renders a `<div>`.
   - **InteractiveCard** — clickable container card. Extends `ButtonHTMLAttributes`. Props: `style`, `forceState` ('hover' | 'focus' | 'active'). Renders a `<button>`. States driven by CSS via `data-state` attribute (same pattern as Button).
-  - ColorSwatch, ColorGroup, FontFamilyCard, TypeSpecimen, Sidebar — domain-specific display components.
+  - **Hyperlink**, **Tabs**, **Pagination**, **Breadcrumb** — navigation display components.
+  - **Badge**, **BadgePointer**, **BadgeCounter**, **InlineLoader**, **Skeleton** — indicator display components.
+  - **Checkbox**, **Radio**, **Switch** — selection input display components.
+  - **ChipAssist**, **ChipFilter**, **ChipInput**, **ChipSuggestion** — chip variants display components.
+  - **TextField**, **Textarea**, **Select**, **Combobox** — text input display components.
+  - **DatePicker**, **DateRangePicker**, **Calendar** — date input display components.
+  - **Collapse**, **Accordion** — utility display components.
+  - **InfoPanel**, **Toast** — alert display components.
+  - **Tooltip** — overlay display component.
+  - **ColorSwatch**, **ColorGroup**, **FontFamilyCard**, **TypeSpecimen**, **Sidebar** — domain-specific display components.
 - `src/pages/` — one directory per page, each with `*Page.tsx` + `*Page.module.css`. Page CSS contains only the layout specific to that page — shared header/section styles live in their respective component modules.
 - `src/utils/` — helpers shared across pages:
   - `color.ts` — `hexLuminance`, `isLightColor`
-  - `iconVariation.ts` — `fvar(fill, opsz)` helper and named constants (`FVAR_OUTLINED_SM`, `FVAR_FILLED_SM`, `FVAR_OUTLINED_MD`, `FVAR_FILLED_MD`). Import from here — never define fontVariationSettings strings locally.
 
 ### Design tokens (CSS variables)
 
@@ -69,7 +94,7 @@ Defined in `:root` in `src/global.css`. Key variables:
 
 - **Inter Variable** — loaded via `@fontsource-variable/inter` npm package, imported in `global.css`.
 - **Globotipo Corporativa** — proprietary font loaded via `@font-face` from `src/assets/fonts/*.woff2`.
-- **Material Symbols Rounded** — loaded via `@material-symbols/font-400` package (`rounded.css`). Used with class `material-symbols-rounded`. Icon fill/weight controlled by inline `fontVariationSettings` using helpers from `src/utils/iconVariation.ts`.
+- **Material Symbols Rounded** — loaded via `@material-symbols/font-400` package (`rounded.css`). Used with class `material-symbols-rounded`. Icon size and fill are controlled by utility classes: `icon-xs` / `icon-sm` / `icon-md` / `icon-lg` / `icon-xl` for size, plus `icon-filled` modifier for the filled variant. Never define `fontVariationSettings` inline.
 
 ### CSS conventions
 
@@ -81,16 +106,39 @@ Defined in `:root` in `src/global.css`. Key variables:
 
 ### Active pages
 
-| Page | Key | Status |
-|------|-----|--------|
-| Colors | `colors` | Live — Fill (9), Surface (7), Border (8) tokens |
-| Typography | `typography` | Live — 2 font families, 4 token groups (Display, Title, Body, Caption) |
-| Iconography | `icons` | Live — library card, variants, size scale, guidelines, catalog |
-| Button | `button` | Live — 3 variants, 3 sizes, 6 states, 4 content configs |
-| Button · Danger | `danger-button` | Live — wrapper for `ButtonPage` with `isDanger={true}` |
-| Static Cards | `static-card` | Live — 2 styles, guidelines |
-| Interactive Cards | `interactive-card` | Live — 2 styles, 4 states, guidelines |
-| Navigations (Hyperlinks, Tabs, Pagination, Breadcrumb, Summary Stepper) | — | Disabled in sidebar ("Em breve") |
+| Category | Page | Route | Status |
+|----------|------|-------|--------|
+| Foundation | Colors | `/colors` | Live — Fill (9), Surface (7), Border (8) tokens |
+| Foundation | Typography | `/typography` | Live — 2 font families, 4 token groups |
+| Foundation | Iconography | `/icons` | Live — library card, variants, sizes, guidelines, catalog |
+| Actions | Button | `/button` | Live — 3 variants, 3 sizes, 6 states, 4 content configs |
+| Actions | Button · Danger | `/danger-button` | Live — wrapper for `ButtonPage` with `isDanger={true}` |
+| Structures | Static Cards | `/static-card` | Live — 2 styles, guidelines |
+| Structures | Interactive Cards | `/interactive-card` | Live — 2 styles, 4 states, guidelines |
+| Navigations | Hyperlinks | `/hyperlinks` | Live |
+| Navigations | Tabs | `/tabs` | Live |
+| Navigations | Pagination | `/pagination` | Live |
+| Navigations | Breadcrumb | `/breadcrumb` | Live |
+| Navigations | Summary Stepper | — | Disabled in sidebar ("Em breve") |
+| Indicators | Badge Status | `/badge` | Live |
+| Indicators | Badge Pointer | `/badge-pointer` | Live |
+| Indicators | Badge Counter | `/badge-counter` | Live |
+| Indicators | Inline Loader | `/inline-loader` | Live |
+| Indicators | Skeleton | `/skeleton` | Live |
+| Inputs | Text Field | `/text-field` | Live |
+| Inputs | Textarea | `/textarea` | Live |
+| Inputs | Select | `/select` | Live |
+| Inputs | Combobox | `/combobox` | Live |
+| Inputs | Checkbox | `/checkbox` | Live |
+| Inputs | Radio Button | `/radio` | Live |
+| Inputs | Switch | `/switch` | Live |
+| Inputs | Chips | `/chips` | Live |
+| Inputs | Date Picker | `/date-picker` | Live |
+| Utilities | Collapse | `/collapse` | Live |
+| Utilities | Accordion | `/accordion` | Live |
+| Alerts | Info Panel | `/info-panel` | Live |
+| Alerts | Toast | `/toast` | Live |
+| Overlays | Tooltip | `/tooltip` | Live |
 
 ## Adding a new component
 
@@ -99,8 +147,8 @@ Follow this checklist — every step is required:
 1. **Token file** → `src/tokens/<name>.ts` — types + constants (variants, sizes, states, guidelines).
 2. **Component** → `src/components/<Name>/` — `<Name>.tsx` + `<Name>.module.css`.
 3. **Page** → `src/pages/<Name>/<Name>Page.tsx` + `<Name>Page.module.css` — import `PageHeader` and `SectionHeader` for consistent layout.
-4. **Sidebar** → add `<NavItem>` in `Sidebar.tsx` under the appropriate category (Actions, Structures, Navigations, etc.).
-5. **App** → add conditional render `{activePage === '<key>' && <NamePage />}` in `App.tsx`.
+4. **Sidebar** → add `<NavItem icon="..." label="..." to="/<path>" />` in `Sidebar.tsx` under the appropriate category.
+5. **App** → add `<Route path="/<path>" element={<NamePage />} />` inside `<Routes>` in `App.tsx`.
 
 ## Token naming conventions
 
@@ -115,8 +163,8 @@ Follow this checklist — every step is required:
 ## Design decisions
 
 - **CSS Modules over Tailwind**: full control over specificity, easier DevTools inspection, no utility class generation overhead.
-- **No router**: 5 documentation pages don't need deep-linking or browser history. Add React Router only when the number of pages or linking requirements make it necessary.
+- **React Router v7**: adopted when the page count grew beyond what simple conditional rendering could handle ergonomically. Enables deep-linking and browser history.
 - **Light mode only (v1)**: dark mode is intentionally out of scope. All color values are hardcoded for light theme. Adding dark mode requires a `@media (prefers-color-scheme: dark)` override in `global.css` and potentially a separate token layer.
-- **No state management library**: the only global state is `activePage` in `App.tsx`. If shared state grows (e.g., theme switching, search), add `useContext` before reaching for Zustand/Redux.
+- **No state management library**: no global shared state beyond routing. If shared state grows (e.g., theme switching, search), add `useContext` before reaching for Zustand/Redux.
 - **Danger variants on same Button component**: `danger={true}` prop toggles the CSS class `.danger` which overrides fill/border/text colors. This avoids duplicating the component while keeping variants well-defined in tokens.
 - **`BUTTON_STATES` does not include CSS property definitions**: state visual behavior (backgrounds, brightness) lives in `Button.module.css`. The token list is for documentation only — it drives the state matrix in `ButtonPage`.

@@ -46,8 +46,8 @@ export default function InlineLoaderPage() {
                 />
               </div>
               <div className={styles.typeMeta}>
-                <span className={styles.typeLabel}>{t.label}</span>
-                <p className={styles.typeDesc}>{t.description}</p>
+                <span className={`type-body-sm ${styles.typeLabel}`}>{t.label}</span>
+                <p className={`type-body-sm ${styles.typeDesc}`}>{t.description}</p>
               </div>
             </div>
           ))}
@@ -63,8 +63,8 @@ export default function InlineLoaderPage() {
             <div className={styles.sizesTypeCol} />
             {INLINE_LOADER_SIZES.map((s) => (
               <div key={s.id} className={styles.sizeHeadCell}>
-                <span className={styles.sizeHeadLabel}>{s.label}</span>
-                <span className={styles.sizeHeadPx}>{s.px}px</span>
+                <span className={`type-body-sm ${styles.sizeHeadLabel}`}>{s.label}</span>
+                <span className={`type-caption-sm ${styles.sizeHeadPx}`}>{s.px}px</span>
               </div>
             ))}
           </div>
@@ -72,7 +72,7 @@ export default function InlineLoaderPage() {
           {INLINE_LOADER_TYPES.map((t) => (
             <div key={t.id} className={styles.sizesRow}>
               <div className={styles.sizesTypeCol}>
-                <span className={styles.sizesTypeName}>{t.label}</span>
+                <span className={`type-body-sm ${styles.sizesTypeName}`}>{t.label}</span>
               </div>
               {INLINE_LOADER_SIZES.map((s) => (
                 <div key={s.id} className={styles.sizeCell}>
@@ -98,7 +98,7 @@ export default function InlineLoaderPage() {
               <div className={styles.colorPreview}>
                 <InlineLoader type="spinner" size="md" color={c.id} />
               </div>
-              <span className={styles.colorLabel}>{c.label}</span>
+              <span className={`type-caption-sm ${styles.colorLabel}`}>{c.label}</span>
             </div>
           ))}
         </div>
@@ -110,9 +110,9 @@ export default function InlineLoaderPage() {
         <div className={styles.guidelinesGrid}>
           {INLINE_LOADER_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

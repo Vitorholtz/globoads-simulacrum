@@ -12,13 +12,13 @@ export default function FontFamilyCard({ family }: FontFamilyCardProps) {
     <div className={styles.card}>
       <div className={styles.showcase}>
         <div
-          className={styles.showcaseHeadline}
+          className={`type-display-md ${styles.showcaseHeadline}`}
           style={{ fontFamily: family.cssFamily, fontWeight: maxWeight }}
         >
           {family.specimenText}
         </div>
         <div
-          className={styles.showcaseAlphabet}
+          className={`type-body-sm ${styles.showcaseAlphabet}`}
           style={{ fontFamily: family.cssFamily, fontWeight: family.weights[0].value }}
         >
           Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll
@@ -29,21 +29,21 @@ export default function FontFamilyCard({ family }: FontFamilyCardProps) {
 
       <div className={styles.info}>
         <div className={styles.nameRow}>
-          <h3 className={styles.familyName}>{family.name}</h3>
-          <span className={styles.purposeBadge}>{family.purpose}</span>
+          <h3 className={`type-title-sm ${styles.familyName}`}>{family.name}</h3>
+          <span className={`type-caption-sm ${styles.purposeBadge}`}>{family.purpose}</span>
         </div>
-        <p className={styles.description}>{family.description}</p>
+        <p className={`type-body-md ${styles.description}`}>{family.description}</p>
         <div className={styles.weightsPills}>
           {family.weights.map((w) => (
-            <span key={w.value} className={styles.weightPill}>
-              <span className={styles.weightPillNum}>{w.value}</span>
+            <span key={w.value} className={`type-caption-sm ${styles.weightPill}`}>
+              <span className={`type-caption-sm ${styles.weightPillNum}`}>{w.value}</span>
               {w.label}
             </span>
           ))}
         </div>
         <div className={styles.cssRow}>
-          <span className={styles.cssLabel}>CSS</span>
-          <code className={styles.cssVar}>{family.cssVariable}</code>
+          <span className={`type-caption-sm ${styles.cssLabel}`}>CSS</span>
+          <code className={`type-caption-sm ${styles.cssVar}`}>{family.cssVariable}</code>
         </div>
       </div>
     </div>

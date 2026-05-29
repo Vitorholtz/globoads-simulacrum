@@ -39,10 +39,10 @@ export default function BadgeCounterPage() {
               </div>
               <div className={styles.exampleMeta}>
                 <div className={styles.exampleValueRow}>
-                  <span className={styles.exampleLabel}>{ex.label}</span>
-                  <span className={styles.exampleValue}>"{ex.value}"</span>
+                  <span className={`type-body-sm ${styles.exampleLabel}`}>{ex.label}</span>
+                  <span className={`type-caption-sm ${styles.exampleValue}`}>"{ex.value}"</span>
                 </div>
-                <span className={styles.exampleDesc}>{ex.description}</span>
+                <span className={`type-body-sm ${styles.exampleDesc}`}>{ex.description}</span>
               </div>
             </div>
           ))}
@@ -60,32 +60,32 @@ export default function BadgeCounterPage() {
           </div>
           <div className={styles.anatomySpecs}>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Altura</span>
-              <span className={styles.specVal}>16px (fixo)</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Altura</span>
+              <span className={`type-body-sm ${styles.specVal}`}>16px (fixo)</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Largura mínima</span>
-              <span className={styles.specVal}>16px</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Largura mínima</span>
+              <span className={`type-body-sm ${styles.specVal}`}>16px</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Padding horizontal</span>
-              <span className={styles.specVal}>4px</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Padding horizontal</span>
+              <span className={`type-body-sm ${styles.specVal}`}>4px</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Border-radius</span>
-              <span className={styles.specVal}>9999px (pílula)</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Border-radius</span>
+              <span className={`type-body-sm ${styles.specVal}`}>9999px (pílula)</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Tipografia</span>
-              <span className={styles.specVal}>12px · weight 500 · lh 16px</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Tipografia</span>
+              <span className={`type-body-sm ${styles.specVal}`}>12px · weight 500 · lh 16px</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Background</span>
-              <span className={styles.specVal}>--color-fill-critical · #B70634</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Background</span>
+              <span className={`type-body-sm ${styles.specVal}`}>--color-fill-critical · #B70634</span>
             </div>
             <div className={styles.specRow}>
-              <span className={styles.specKey}>Cor do texto</span>
-              <span className={styles.specVal}>--color-fill-inverse · #FFFFFF</span>
+              <span className={`type-body-sm ${styles.specKey}`}>Cor do texto</span>
+              <span className={`type-body-sm ${styles.specVal}`}>--color-fill-inverse · #FFFFFF</span>
             </div>
           </div>
         </div>
@@ -104,8 +104,8 @@ export default function BadgeCounterPage() {
               />
             </div>
             <div className={styles.contextMeta}>
-              <span className={styles.contextLabel}>Em tabs e navegação</span>
-              <p className={styles.contextDesc}>Badge posicionado imediatamente após o rótulo, alinhado ao centro vertical.</p>
+              <span className={`type-body-sm ${styles.contextLabel}`}>Em tabs e navegação</span>
+              <p className={`type-body-sm ${styles.contextDesc}`}>Badge posicionado imediatamente após o rótulo, alinhado ao centro vertical.</p>
             </div>
           </div>
 
@@ -114,8 +114,7 @@ export default function BadgeCounterPage() {
               <div className={styles.contextIconExample}>
                 <div className={styles.contextIconWrapper}>
                   <span
-                    className={`material-symbols-rounded ${styles.contextIcon}`}
-                    style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24" }}
+                    className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}
                   >
                     notifications
                   </span>
@@ -123,8 +122,7 @@ export default function BadgeCounterPage() {
                 </div>
                 <div className={styles.contextIconWrapper}>
                   <span
-                    className={`material-symbols-rounded ${styles.contextIcon}`}
-                    style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24" }}
+                    className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}
                   >
                     chat
                   </span>
@@ -132,8 +130,7 @@ export default function BadgeCounterPage() {
                 </div>
                 <div className={styles.contextIconWrapper}>
                   <span
-                    className={`material-symbols-rounded ${styles.contextIcon}`}
-                    style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24" }}
+                    className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}
                   >
                     mail
                   </span>
@@ -142,8 +139,8 @@ export default function BadgeCounterPage() {
               </div>
             </div>
             <div className={styles.contextMeta}>
-              <span className={styles.contextLabel}>Sobre ícones</span>
-              <p className={styles.contextDesc}>Badge ancorado no canto superior direito do ícone, indicando itens pendentes.</p>
+              <span className={`type-body-sm ${styles.contextLabel}`}>Sobre ícones</span>
+              <p className={`type-body-sm ${styles.contextDesc}`}>Badge ancorado no canto superior direito do ícone, indicando itens pendentes.</p>
             </div>
           </div>
         </div>
@@ -155,9 +152,9 @@ export default function BadgeCounterPage() {
         <div className={styles.guidelinesGrid}>
           {BADGE_COUNTER_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

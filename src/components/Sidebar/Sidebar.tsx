@@ -1,52 +1,54 @@
+import { NavLink } from 'react-router-dom'
 import globoAdsLogo from '../../assets/globo-ads-logo.svg'
 import styles from './Sidebar.module.css'
 
-const FVAR_OUTLINED = "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20"
-const FVAR_FILLED = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20"
 
 interface NavItemProps {
   label: string
-  page: string
-  activePage: string
-  onNavigate: (page: string) => void
+  to: string
   disabled?: boolean
   badge?: string
   icon: string
 }
 
-function NavItem({ label, page, activePage, onNavigate, disabled, badge, icon }: NavItemProps) {
-  const isActive = activePage === page
+function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
+  if (disabled) {
+    return (
+      <span className={[`type-body-sm`, styles.navItem, styles.navItemDisabled].join(' ')}>
+        <span className={styles.navItemInner}>
+          <span className={`material-symbols-rounded icon-md ${styles.navIcon}`}>
+            {icon}
+          </span>
+          {label}
+        </span>
+        {badge && <span className={`type-caption-xs ${styles.badge}`}>{badge}</span>}
+      </span>
+    )
+  }
 
   return (
-    <button
-      className={[
-        styles.navItem,
-        isActive ? styles.navItemActive : '',
-        disabled ? styles.navItemDisabled : '',
-      ].join(' ')}
-      onClick={() => !disabled && onNavigate(page)}
-      disabled={disabled}
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        ['type-body-sm', styles.navItem, isActive ? styles.navItemActive : ''].join(' ')
+      }
     >
-      <span className={styles.navItemInner}>
-        <span
-          className={`material-symbols-rounded ${styles.navIcon}`}
-          style={{ fontVariationSettings: isActive ? FVAR_FILLED : FVAR_OUTLINED }}
-        >
-          {icon}
-        </span>
-        {label}
-      </span>
-      {badge && <span className={styles.badge}>{badge}</span>}
-    </button>
+      {({ isActive }) => (
+        <>
+          <span className={styles.navItemInner}>
+            <span className={`material-symbols-rounded icon-md ${isActive ? 'icon-filled' : ''} ${styles.navIcon}`}>
+              {icon}
+            </span>
+            {label}
+          </span>
+          {badge && <span className={`type-caption-xs ${styles.badge}`}>{badge}</span>}
+        </>
+      )}
+    </NavLink>
   )
 }
 
-interface SidebarProps {
-  activePage: string
-  onNavigate: (page: string) => void
-}
-
-export default function Sidebar({ activePage, onNavigate }: SidebarProps) {
+export default function Sidebar() {
   return (
     <nav className={styles.sidebar}>
       <div className={styles.logoArea}>
@@ -55,54 +57,76 @@ export default function Sidebar({ activePage, onNavigate }: SidebarProps) {
 
       <div className={styles.nav}>
         <div className={`${styles.section} ${styles.sectionDivider}`}>
-          <span className={styles.sectionLabel}>Foundation</span>
-          <NavItem icon="palette" label="Colors" page="colors" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="format_size" label="Typography" page="typography" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="grid_view" label="Iconography" page="icons" activePage={activePage} onNavigate={onNavigate} />
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Foundation</span>
+          <NavItem icon="palette" label="Colors" to="/colors" />
+          <NavItem icon="format_size" label="Typography" to="/typography" />
+          <NavItem icon="grid_view" label="Iconography" to="/icons" />
         </div>
 
         <div className={styles.section}>
-          <span className={styles.sectionLabel}>Actions</span>
-          <NavItem icon="smart_button" label="Button" page="button" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="warning" label="Button · Danger" page="danger-button" activePage={activePage} onNavigate={onNavigate} />
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Actions</span>
+          <NavItem icon="smart_button" label="Button" to="/button" />
+          <NavItem icon="warning" label="Button · Danger" to="/danger-button" />
         </div>
 
         <div className={styles.section}>
-          <span className={styles.sectionLabel}>Structures</span>
-          <NavItem icon="crop_square" label="Static Cards" page="static-card" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="touch_app" label="Interactive Cards" page="interactive-card" activePage={activePage} onNavigate={onNavigate} />
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Structures</span>
+          <NavItem icon="crop_square" label="Static Cards" to="/static-card" />
+          <NavItem icon="touch_app" label="Interactive Cards" to="/interactive-card" />
         </div>
 
         <div className={styles.section}>
-          <span className={styles.sectionLabel}>Navigations</span>
-          <NavItem icon="link" label="Hyperlinks" page="hyperlinks" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="tab" label="Tabs" page="tabs" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="more_horiz" label="Pagination" page="pagination" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="route" label="Breadcrumb" page="breadcrumb" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="checklist" label="Summary Stepper" page="summary-stepper" activePage={activePage} onNavigate={onNavigate} disabled badge="Em breve" />
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Navigations</span>
+          <NavItem icon="link" label="Hyperlinks" to="/hyperlinks" />
+          <NavItem icon="tab" label="Tabs" to="/tabs" />
+          <NavItem icon="more_horiz" label="Pagination" to="/pagination" />
+          <NavItem icon="route" label="Breadcrumb" to="/breadcrumb" />
+          <NavItem icon="checklist" label="Summary Stepper" to="/summary-stepper" disabled badge="Em breve" />
         </div>
 
         <div className={styles.section}>
-          <span className={styles.sectionLabel}>Indicators</span>
-          <NavItem icon="label" label="Badge Status" page="badge" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="fiber_manual_record" label="Badge Pointer" page="badge-pointer" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="badge" label="Badge Counter" page="badge-counter" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="motion_blur" label="Inline Loader" page="inline-loader" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="hide_image" label="Skeleton" page="skeleton" activePage={activePage} onNavigate={onNavigate} />
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Indicators</span>
+          <NavItem icon="label" label="Badge Status" to="/badge" />
+          <NavItem icon="fiber_manual_record" label="Badge Pointer" to="/badge-pointer" />
+          <NavItem icon="badge" label="Badge Counter" to="/badge-counter" />
+          <NavItem icon="motion_blur" label="Inline Loader" to="/inline-loader" />
+          <NavItem icon="hide_image" label="Skeleton" to="/skeleton" />
         </div>
 
         <div className={styles.section}>
-          <span className={styles.sectionLabel}>Inputs</span>
-          <NavItem icon="check_box" label="Checkbox" page="checkbox" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="radio_button_checked" label="Radio Button" page="radio" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="toggle_on" label="Switch" page="switch" activePage={activePage} onNavigate={onNavigate} />
-          <NavItem icon="sell" label="Chips" page="chips" activePage={activePage} onNavigate={onNavigate} />
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Inputs</span>
+          <NavItem icon="text_fields" label="Text Field" to="/text-field" />
+          <NavItem icon="subject" label="Textarea" to="/textarea" />
+          <NavItem icon="arrow_drop_down_circle" label="Select" to="/select" />
+          <NavItem icon="search_check" label="Combobox" to="/combobox" />
+          <NavItem icon="check_box" label="Checkbox" to="/checkbox" />
+          <NavItem icon="radio_button_checked" label="Radio Button" to="/radio" />
+          <NavItem icon="toggle_on" label="Switch" to="/switch" />
+          <NavItem icon="sell" label="Chips" to="/chips" />
+          <NavItem icon="edit_calendar" label="Date Picker" to="/date-picker" />
+        </div>
+
+        <div className={styles.section}>
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Utilities</span>
+          <NavItem icon="unfold_more" label="Collapse" to="/collapse" />
+          <NavItem icon="expand_all" label="Accordion" to="/accordion" />
+        </div>
+
+        <div className={styles.section}>
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Alerts</span>
+          <NavItem icon="info" label="Info Panel" to="/info-panel" />
+          <NavItem icon="notification_important" label="Toast" to="/toast" />
+        </div>
+
+        <div className={styles.section}>
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Overlays</span>
+          <NavItem icon="tooltip" label="Tooltip" to="/tooltip" />
         </div>
       </div>
 
       <div className={styles.sidebarFooter}>
-        <span className={styles.footerTitle}>Globo Ads Simulacrum</span>
-        <span className={styles.footerSub}>Biblioteca de componentes</span>
+        <span className={`type-caption-md ${styles.footerTitle}`}>Globo Ads Simulacrum</span>
+        <span className={`type-caption-sm ${styles.footerSub}`}>Biblioteca de componentes</span>
       </div>
     </nav>
   )

@@ -1,0 +1,320 @@
+﻿/* ── Root ── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ── Label row ── */
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.labelGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label {
+  color: var(--color-fill-secondary);
+  cursor: pointer;
+}
+
+.optionalTag {
+  color: var(--color-fill-tertiary);
+  white-space: nowrap;
+}
+
+/* ── Description tooltip ── */
+
+.descriptionBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.descriptionIcon {
+  display: block;
+  color: var(--color-fill-tertiary);
+  transition: color 0.12s ease;
+}
+
+.descriptionBtn:hover .descriptionIcon,
+.descriptionBtn:focus-visible .descriptionIcon {
+  color: var(--color-fill-secondary);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: -6px;
+  width: 200px;
+  background: var(--color-fill-primary);
+  color: var(--color-fill-inverse);
+  font-weight: var(--font-weight-regular);
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  white-space: normal;
+  word-break: break-word;
+  z-index: 100;
+
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.descriptionBtn:hover .tooltip,
+.descriptionBtn:focus-visible .tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltipArrow {
+  position: absolute;
+  bottom: -5px;
+  left: 8px;
+  width: 12px;
+  height: 6px;
+  background: var(--color-fill-primary);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* ── Input wrapper ── */
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  cursor: text;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+/* Hover — real */
+.inputWrapper:hover:not([data-state]):not(.hasError) {
+  border-color: var(--color-border-secondary);
+}
+
+/* Hover — forced */
+.inputWrapper[data-state='hover'] {
+  border-color: var(--color-border-secondary);
+}
+
+/* Focus — real */
+.inputWrapper:focus-within:not([data-state]) {
+  border-color: var(--color-fill-accent);
+  box-shadow: 0 0 0 1px var(--color-fill-accent);
+}
+
+/* Focus — forced */
+.inputWrapper[data-state='focus'] {
+  border-color: var(--color-fill-accent);
+  box-shadow: 0 0 0 1px var(--color-fill-accent);
+}
+
+/* Error — real or forced */
+.inputWrapper.hasError,
+.inputWrapper[data-state='error'] {
+  border-color: var(--color-border-critical);
+  background: var(--color-surface-critical);
+}
+
+/* Disabled — forced */
+.inputWrapper[data-state='disabled'] {
+  background: var(--color-surface-tertiary);
+  cursor: not-allowed;
+}
+
+/* ── Disabled root ── */
+
+.disabled {
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.disabled .inputWrapper {
+  background: var(--color-surface-tertiary);
+  cursor: not-allowed;
+}
+
+.disabled .textarea {
+  cursor: not-allowed;
+}
+
+/* ── Textarea element ── */
+
+.textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-weight: 400;
+  color: var(--color-fill-primary);
+  resize: vertical;
+  -webkit-font-smoothing: antialiased;
+}
+
+.textarea::placeholder {
+  color: var(--color-fill-tertiary);
+}
+
+.hasError .textarea::placeholder,
+[data-state='error'] .textarea::placeholder {
+  color: var(--color-fill-tertiary);
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+/* Error state: right padding to avoid text going under the icon */
+.hasError .textarea {
+  padding-right: 28px;
+}
+
+/* ── Counter ── */
+
+.counter {
+  color: var(--color-fill-tertiary);
+  flex-shrink: 0;
+}
+
+/* ── Error icon ── */
+
+.errorIcon {
+  position: absolute;
+  color: var(--color-fill-critical);
+  display: block;
+  pointer-events: none;
+}
+
+/* ── Clear button ── */
+
+.clearBtn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  color: var(--color-fill-secondary);
+  line-height: var(--line-height-icon);
+  background: transparent;
+  padding: 4px;
+
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    background 0.12s ease;
+}
+
+.clearBtn[data-visible='true'] {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.clearBtn:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.clearBtn:active {
+  transform: scale(0.9);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.clearIcon {
+  display: block;
+}
+
+/* ── Help text ── */
+
+.helpText {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fill-secondary);
+}
+
+/* ── Error text ── */
+
+.errorText {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fill-critical);
+}
+
+/* ══════════════════════════════════════
+   SIZES
+══════════════════════════════════════ */
+
+/* SM */
+
+.sm .inputWrapper {
+  padding: 6px 8px;
+}
+
+.sm .textarea {
+  min-height: 72px;
+}
+
+.sm .errorIcon {
+  top: 7px;
+  right: 8px;
+}
+
+.sm .hasError .textarea {
+  padding-right: 24px;
+}
+
+
+/* MD */
+
+.md .inputWrapper {
+  padding: 8px 12px;
+}
+
+.md .textarea {
+  min-height: 96px;
+}
+
+.md .errorIcon {
+  top: 9px;
+  right: 11px;
+}
+
+
+/* LG */
+
+.lg .inputWrapper {
+  padding: 12px;
+}
+
+.lg .textarea {
+  min-height: 96px;
+}
+
+.lg .errorIcon {
+  top: 13px;
+  right: 11px;
+}

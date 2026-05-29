@@ -1,4 +1,4 @@
-/* ── Base ── */
+﻿/* ── Base ── */
 
 .chip {
   display: inline-flex;
@@ -7,14 +7,10 @@
   border-radius: 12px;
   border: 1px solid var(--color-border-primary);
   background: var(--color-surface-primary);
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
   white-space: nowrap;
   color: var(--color-fill-secondary);
   -webkit-font-smoothing: antialiased;
-  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  transition: background 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease, opacity 0.12s ease;
 }
 
 /* ── Style-specific padding ── */
@@ -42,6 +38,7 @@
   cursor: pointer;
 }
 
+.chip:focus-within,
 .chip[data-state='focus'] {
   background: var(--color-surface-tertiary);
   box-shadow: var(--focus-ring);
@@ -54,7 +51,8 @@
 
 .chip[data-state='dragged'] {
   background: #e2e2e3;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12));
+  cursor: grab;
 }
 
 .chip[data-state='disabled'] {
@@ -78,8 +76,6 @@
 }
 
 .avatarIcon {
-  font-size: 14px;
-  line-height: 1;
   display: block;
   color: var(--color-fill-tertiary);
 }
@@ -87,8 +83,6 @@
 /* ── Leading icon (Icon style) ── */
 
 .leadIcon {
-  font-size: 16px;
-  line-height: 16px;
   display: block;
   flex-shrink: 0;
   color: var(--color-fill-secondary);
@@ -117,11 +111,9 @@
 }
 
 .closeBtn:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-fill-accent);
+  outline: none;
 }
 
 .closeIcon {
-  font-size: 16px;
-  line-height: 16px;
   display: block;
 }

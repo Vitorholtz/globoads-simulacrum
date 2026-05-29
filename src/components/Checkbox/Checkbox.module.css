@@ -1,4 +1,4 @@
-/* ── Wrapper ── */
+﻿/* ── Wrapper ── */
 
 .checkbox {
   display: flex;
@@ -57,8 +57,6 @@
 /* ── Icon (check / remove) ── */
 
 .icon {
-  font-size: 12px;
-  line-height: 12px;
   color: #ffffff;
   z-index: 2;
   font-style: normal;
@@ -176,14 +174,10 @@
 }
 
 .label {
-  font-size: 16px;
-  line-height: 24px;
   color: var(--color-fill-secondary);
   white-space: nowrap;
 }
 
 .helpText {
-  font-size: 12px;
-  line-height: 16px;
   color: var(--color-fill-tertiary);
 }

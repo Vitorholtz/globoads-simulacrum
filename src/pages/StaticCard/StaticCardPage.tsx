@@ -3,7 +3,7 @@ import { CARD_STYLES, STATIC_CARD_GUIDELINES } from '../../tokens/cards'
 import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
-import { FVAR_OUTLINED_SM } from '../../utils/iconVariation'
+import Badge from '../../components/Badge/Badge'
 import styles from './StaticCardPage.module.css'
 
 const STYLE_PREVIEW_BG: Record<CardStyle, string> = {
@@ -17,12 +17,12 @@ function CampaignCard() {
   return (
     <div className={styles.campaignCard}>
       <div className={styles.campaignHeader}>
-        <span className={styles.campaignChannel}>Digital</span>
-        <span className={styles.campaignStatus}>Ativo</span>
+        <span className={`type-caption-xs ${styles.campaignChannel}`}>Digital</span>
+        <Badge variant="success" label="Ativo" />
       </div>
       <div className={styles.campaignMetric}>
-        <span className={styles.campaignValue}>1,24M</span>
-        <span className={styles.campaignLabel}>Impressões</span>
+        <span className={`type-title-lg ${styles.campaignValue}`}>1,24M</span>
+        <span className={`type-caption-sm ${styles.campaignLabel}`}>Impressões</span>
       </div>
       <div className={styles.campaignChart}>
         {CHART_BARS.map((h, i) => (
@@ -31,19 +31,18 @@ function CampaignCard() {
       </div>
       <div className={styles.campaignFooter}>
         <div className={styles.campaignStat}>
-          <span className={styles.campaignStatValue}>384K</span>
-          <span className={styles.campaignStatLabel}>Alcance</span>
+          <span className={`type-caption-md ${styles.campaignStatValue}`}>384K</span>
+          <span className={`type-caption-xs ${styles.campaignStatLabel}`}>Alcance</span>
         </div>
         <div className={styles.campaignStat}>
-          <span className={styles.campaignStatValue}>2,8%</span>
-          <span className={styles.campaignStatLabel}>CTR</span>
+          <span className={`type-caption-md ${styles.campaignStatValue}`}>2,8%</span>
+          <span className={`type-caption-xs ${styles.campaignStatLabel}`}>CTR</span>
         </div>
         <div className={styles.campaignTrend}>
           <span
-            className={`material-symbols-rounded ${styles.campaignTrendIcon}`}
-            style={{ fontVariationSettings: FVAR_OUTLINED_SM }}
+            className={`material-symbols-rounded icon-md ${styles.campaignTrendIcon}`}
           >trending_up</span>
-          <span className={styles.campaignTrendValue}>+12%</span>
+          <span className={`type-caption-sm ${styles.campaignTrendValue}`}>+12%</span>
         </div>
       </div>
     </div>
@@ -77,11 +76,11 @@ export default function StaticCardPage() {
                 </StaticCard>
               </div>
               <div className={styles.styleBody}>
-                <h3 className={styles.styleName}>{s.name}</h3>
-                <p className={styles.styleDesc}>{s.description}</p>
+                <h3 className={`type-title-sm ${styles.styleName}`}>{s.name}</h3>
+                <p className={`type-body-md ${styles.styleDesc}`}>{s.description}</p>
                 <ul className={styles.styleWhen}>
                   {s.when.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="type-body-md">{item}</li>
                   ))}
                 </ul>
               </div>
@@ -96,9 +95,9 @@ export default function StaticCardPage() {
         <div className={styles.guidelinesGrid}>
           {STATIC_CARD_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

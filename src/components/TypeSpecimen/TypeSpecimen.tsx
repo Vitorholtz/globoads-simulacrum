@@ -13,55 +13,51 @@ const WEIGHT_LABELS: Record<number, string> = {
 }
 
 export default function TypeSpecimen({ token }: TypeSpecimenProps) {
-  const textStyle: React.CSSProperties = {
-    fontFamily: token.fontFamily,
-    fontSize: `${token.fontSize}px`,
-    fontWeight: token.fontWeight,
-    lineHeight: token.lineHeight,
-    letterSpacing: token.letterSpacing,
-    textTransform: token.textTransform,
-  }
-
   const weightLabel = WEIGHT_LABELS[token.fontWeight] ?? String(token.fontWeight)
 
   return (
     <div className={styles.specimen}>
-      <div className={styles.meta}>
-        <span className={styles.nameTag}>{token.name}</span>
-        <span className={styles.specs}>
-          {token.fontFamilyLabel}
+      <div className={styles.header}>
+        <div className={styles.nameRow}>
+          <span className={`type-caption-sm ${styles.nameTag}`}>{token.name}</span>
+          <code className={`type-caption-sm ${styles.classTag}`}>{token.className}</code>
+        </div>
+        <div className={`type-caption-sm ${styles.specs}`}>
+          <span>{token.fontFamilyLabel}</span>
           <span className={styles.sep}>·</span>
-          {token.fontSize}px
+          <span>{token.fontSize}px</span>
           <span className={styles.sep}>·</span>
-          {weightLabel}
+          <span>{weightLabel}</span>
           <span className={styles.sep}>·</span>
-          lh {token.lineHeight}
-          {token.letterSpacing !== '0' && (
-            <>
-              <span className={styles.sep}>·</span>
-              {token.letterSpacing}
-            </>
-          )}
-          {token.textTransform && (
-            <>
-              <span className={styles.sep}>·</span>
-              {token.textTransform}
-            </>
-          )}
-        </span>
-        <code className={styles.varCode}>{token.variable}</code>
+          <span>lh {token.lineHeight}px</span>
+        </div>
       </div>
 
-      <div className={styles.sample} style={textStyle}>
-        {token.sampleText.split('\n').map((line, i) => (
-          <span key={i} className={styles.sampleLine}>{line}</span>
-        ))}
+      <div className={`${token.className} ${styles.sample}`}>
+        {token.sampleText}
       </div>
 
-      <p className={styles.usage}>
-        <span className={styles.usageLabel}>Uso</span>
-        {token.usage}
-      </p>
+      <div className={styles.footer}>
+        <div className={styles.tokenSection}>
+          {token.fixedTokens.length > 0 && (
+            <div className={styles.tokenGroup}>
+              <span className={`type-caption-xs ${styles.tokenGroupLabel}`}>Fixos</span>
+              {token.fixedTokens.map((v) => (
+                <code key={v} className={`type-caption-xs ${styles.tokenVar}`}>{v}</code>
+              ))}
+            </div>
+          )}
+          {token.contextualTokens.length > 0 && (
+            <div className={styles.tokenGroup}>
+              <span className={`type-caption-xs ${styles.tokenGroupLabel}`}>Contextuais</span>
+              {token.contextualTokens.map((v) => (
+                <code key={v} className={`type-caption-xs ${styles.tokenVarContextual}`}>{v}</code>
+              ))}
+            </div>
+          )}
+        </div>
+        <p className={`type-caption-sm ${styles.usage}`}>{token.usage}</p>
+      </div>
     </div>
   )
 }

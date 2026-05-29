@@ -25,8 +25,8 @@ function VariantDemo({ def }: { def: PaginationVariantDef }) {
         />
       </div>
       <div className={styles.variantMeta}>
-        <span className={styles.variantLabel}>{def.label}</span>
-        <p className={styles.variantDesc}>{def.description}</p>
+        <span className={`type-body-sm ${styles.variantLabel}`}>{def.label}</span>
+        <p className={`type-body-sm ${styles.variantDesc}`}>{def.description}</p>
       </div>
     </div>
   )
@@ -69,8 +69,8 @@ export default function PaginationPage() {
               />
             </div>
             <div className={styles.stateMeta}>
-              <span className={styles.stateLabel}>Primeira página</span>
-              <p className={styles.stateDesc}>Seta "anterior" desabilitada com opacidade reduzida. Indica ao usuário que não há páginas anteriores disponíveis.</p>
+              <span className={`type-body-sm ${styles.stateLabel}`}>Primeira página</span>
+              <p className={`type-body-sm ${styles.stateDesc}`}>Seta "anterior" desabilitada com opacidade reduzida. Indica ao usuário que não há páginas anteriores disponíveis.</p>
             </div>
           </div>
           <div className={styles.stateCard}>
@@ -83,8 +83,8 @@ export default function PaginationPage() {
               />
             </div>
             <div className={styles.stateMeta}>
-              <span className={styles.stateLabel}>Última página</span>
-              <p className={styles.stateDesc}>Seta "próxima" desabilitada com opacidade reduzida. Indica ao usuário que não há mais páginas à frente.</p>
+              <span className={`type-body-sm ${styles.stateLabel}`}>Última página</span>
+              <p className={`type-body-sm ${styles.stateDesc}`}>Seta "próxima" desabilitada com opacidade reduzida. Indica ao usuário que não há mais páginas à frente.</p>
             </div>
           </div>
         </div>
@@ -96,9 +96,9 @@ export default function PaginationPage() {
         <div className={styles.guidelinesGrid}>
           {PAGINATION_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

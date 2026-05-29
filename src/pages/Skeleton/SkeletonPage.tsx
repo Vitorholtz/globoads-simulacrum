@@ -46,8 +46,8 @@ export default function SkeletonPage() {
                 )}
               </div>
               <div className={styles.typeMeta}>
-                <span className={styles.typeLabel}>{t.label}</span>
-                <p className={styles.typeDesc}>{t.description}</p>
+                <span className={`type-body-sm ${styles.typeLabel}`}>{t.label}</span>
+                <p className={`type-caption-sm ${styles.typeDesc}`}>{t.description}</p>
               </div>
             </div>
           ))}
@@ -65,14 +65,14 @@ export default function SkeletonPage() {
             <div className={styles.sizePreview}>
               {SKELETON_BUTTON_SIZES.map((s) => (
                 <div key={s.id} className={styles.sizeRow}>
-                  <span className={styles.sizeRowLabel}>{s.label}</span>
+                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                   <div className={styles.sizeRowBone}>
                     <Skeleton type="button" size={s.id as SkeletonSize} />
                   </div>
                 </div>
               ))}
             </div>
-            <span className={styles.sizeCardLabel}>Button · SM / MD / LG</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Button · SM / MD / LG</span>
           </div>
 
           {/* Input */}
@@ -80,14 +80,14 @@ export default function SkeletonPage() {
             <div className={styles.sizePreview}>
               {SKELETON_INPUT_SIZES.map((s) => (
                 <div key={s.id} className={styles.sizeRow}>
-                  <span className={styles.sizeRowLabel}>{s.label}</span>
+                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                   <div className={styles.sizeRowBone}>
                     <Skeleton type="input" size={s.id as SkeletonSize} />
                   </div>
                 </div>
               ))}
             </div>
-            <span className={styles.sizeCardLabel}>Input · SM / MD / LG</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Input · SM / MD / LG</span>
           </div>
 
           {/* Avatar */}
@@ -96,11 +96,11 @@ export default function SkeletonPage() {
               {SKELETON_AVATAR_SIZES.map((s) => (
                 <div key={s.id} className={styles.avatarSizeItem}>
                   <Skeleton type="avatar" size={s.id as SkeletonSize} />
-                  <span className={styles.sizeRowLabel}>{s.label}</span>
+                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                 </div>
               ))}
             </div>
-            <span className={styles.sizeCardLabel}>Avatar · XS / SM / MD / LG / XL</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Avatar · XS / SM / MD / LG / XL</span>
           </div>
 
           {/* Body */}
@@ -108,14 +108,14 @@ export default function SkeletonPage() {
             <div className={styles.sizePreview}>
               {SKELETON_BODY_SIZES.map((s) => (
                 <div key={s.id} className={styles.sizeRow}>
-                  <span className={styles.sizeRowLabel}>{s.label}</span>
+                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                   <div className={styles.sizeRowBone}>
                     <Skeleton type="body" size={s.id as SkeletonSize} />
                   </div>
                 </div>
               ))}
             </div>
-            <span className={styles.sizeCardLabel}>Body · XS / SM / MD / LG</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Body · XS / SM / MD / LG</span>
           </div>
         </div>
 
@@ -126,14 +126,14 @@ export default function SkeletonPage() {
             <div className={styles.sizePreview}>
               {SKELETON_TITLE_SIZES.map((s) => (
                 <div key={s.id} className={styles.sizeRow}>
-                  <span className={styles.sizeRowLabel}>{s.label}</span>
+                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                   <div className={styles.sizeRowBone}>
                     <Skeleton type="title" size={s.id as SkeletonSize} />
                   </div>
                 </div>
               ))}
             </div>
-            <span className={styles.sizeCardLabel}>Title · SM / MD / LG</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Title · SM / MD / LG</span>
           </div>
 
           {/* Caption */}
@@ -141,14 +141,14 @@ export default function SkeletonPage() {
             <div className={styles.sizePreview}>
               {SKELETON_CAPTION_SIZES.map((s) => (
                 <div key={s.id} className={styles.sizeRow}>
-                  <span className={styles.sizeRowLabel}>{s.label}</span>
+                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                   <div className={styles.sizeRowBone}>
                     <Skeleton type="caption" size={s.id as SkeletonSize} />
                   </div>
                 </div>
               ))}
             </div>
-            <span className={styles.sizeCardLabel}>Caption · SM / MD / LG</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Caption · SM / MD / LG</span>
           </div>
 
           {/* Display */}
@@ -156,14 +156,14 @@ export default function SkeletonPage() {
             <div className={styles.sizePreview}>
               {SKELETON_DISPLAY_SIZES.map((s) => (
                 <div key={s.id} className={styles.sizeRow}>
-                  <span className={styles.sizeRowLabel}>{s.label}</span>
+                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                   <div className={styles.sizeRowBone}>
                     <Skeleton type="display" size={s.id as SkeletonSize} />
                   </div>
                 </div>
               ))}
             </div>
-            <span className={styles.sizeCardLabel}>Display · SM / MD / LG / XL / 2XL / 3XL</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Display · SM / MD / LG / XL / 2XL / 3XL</span>
           </div>
 
           {/* Card */}
@@ -173,7 +173,7 @@ export default function SkeletonPage() {
               <Skeleton type="card" height={120} />
               <Skeleton type="card" height={160} />
             </div>
-            <span className={styles.sizeCardLabel}>Card · altura livre via prop</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Card · altura livre via prop</span>
           </div>
         </div>
       </section>
@@ -184,9 +184,9 @@ export default function SkeletonPage() {
         <div className={styles.guidelinesGrid}>
           {SKELETON_GUIDELINES.map((g) => (
             <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>

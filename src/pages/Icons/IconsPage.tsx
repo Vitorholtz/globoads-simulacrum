@@ -1,16 +1,19 @@
 import {
   ICON_CATEGORIES,
+  ICON_CLASS_TOKENS,
+  ICON_FILLED_MODIFIER,
   ICON_GUIDELINES,
   ICON_SIZES,
   ICON_VARIANT_RULES,
   VARIANT_DEMO_ICONS,
 } from '../../tokens/icons'
-import { fvar, FVAR_OUTLINED_MD, FVAR_FILLED_MD } from '../../utils/iconVariation'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import styles from './IconsPage.module.css'
 
 const totalCatalogIcons = ICON_CATEGORIES.reduce((acc, c) => acc + c.icons.length, 0)
+
+const SIZE_CLS: Record<number, string> = { 20: 'icon-md', 24: 'icon-lg', 32: 'icon-xl' }
 
 const GUIDELINE_ICONS: Record<string, string> = {
   'Consistência de variante': 'tune',
@@ -40,10 +43,10 @@ export default function IconsPage() {
         <div className={styles.libraryCard}>
           <div className={styles.libraryInfo}>
             <div className={styles.libraryTitleRow}>
-              <h3 className={styles.libraryName}>Material Symbols</h3>
-              <span className={styles.libraryBadge}>Rounded · Regular</span>
+              <h3 className={`type-title-md ${styles.libraryName}`}>Material Symbols</h3>
+              <span className={`type-caption-sm ${styles.libraryBadge}`}>Rounded · Regular</span>
             </div>
-            <p className={styles.libraryDescription}>
+            <p className={`type-body-md ${styles.libraryDescription}`}>
               Material Symbols é a mais recente geração da biblioteca de ícones do Google,
               construída sobre uma fonte de eixo variável que expõe os eixos FILL, GRAD, opsz
               e wght. O estilo Rounded utiliza pontas e junções arredondadas, conferindo ao
@@ -51,23 +54,23 @@ export default function IconsPage() {
             </p>
             <div className={styles.libraryAttr}>
               <div className={styles.attrRow}>
-                <span className={styles.attrLabel}>Fonte</span>
-                <span className={styles.attrValue}>Google Fonts — Material Symbols Rounded</span>
+                <span className={`type-caption-sm ${styles.attrLabel}`}>Fonte</span>
+                <span className={`type-body-md ${styles.attrValue}`}>Google Fonts — Material Symbols Rounded</span>
               </div>
               <div className={styles.attrRow}>
-                <span className={styles.attrLabel}>Eixo FILL</span>
-                <span className={styles.attrValue}>
-                  <code className={styles.attrCode}>FILL 0</code> Outlined &nbsp;·&nbsp;
-                  <code className={styles.attrCode}>FILL 1</code> Filled
+                <span className={`type-caption-sm ${styles.attrLabel}`}>Eixo FILL</span>
+                <span className={`type-body-md ${styles.attrValue}`}>
+                  <code className={`type-caption-sm ${styles.attrCode}`}>FILL 0</code> Outlined &nbsp;·&nbsp;
+                  <code className={`type-caption-sm ${styles.attrCode}`}>FILL 1</code> Filled
                 </span>
               </div>
               <div className={styles.attrRow}>
-                <span className={styles.attrLabel}>Peso</span>
-                <span className={styles.attrValue}>400 — Regular</span>
+                <span className={`type-caption-sm ${styles.attrLabel}`}>Peso</span>
+                <span className={`type-body-md ${styles.attrValue}`}>400 — Regular</span>
               </div>
               <div className={styles.attrRow}>
-                <span className={styles.attrLabel}>Uso</span>
-                <code className={styles.attrCodeBlock}>
+                <span className={`type-caption-sm ${styles.attrLabel}`}>Uso</span>
+                <code className={`type-caption-sm ${styles.attrCodeBlock}`}>
                   {'<span class="material-symbols-rounded">icon_name</span>'}
                 </code>
               </div>
@@ -77,8 +80,7 @@ export default function IconsPage() {
             {['home', 'search', 'notifications', 'bookmark', 'settings', 'edit', 'share', 'star'].map((icon) => (
               <span
                 key={icon}
-                className="material-symbols-rounded"
-                style={{ fontSize: '36px', fontVariationSettings: FVAR_OUTLINED_MD }}
+                className="material-symbols-rounded icon-xl"
               >
                 {icon}
               </span>
@@ -97,12 +99,8 @@ export default function IconsPage() {
                 {VARIANT_DEMO_ICONS.map((icon) => (
                   <span
                     key={icon}
-                    className="material-symbols-rounded"
-                    style={{
-                      fontSize: '32px',
-                      fontVariationSettings: fvar(rule.variant === 'filled' ? 1 : 0, 24),
-                      color: 'var(--color-text-primary)',
-                    }}
+                    className={`material-symbols-rounded icon-xl${rule.variant === 'filled' ? ' icon-filled' : ''}`}
+                    style={{ color: 'var(--color-text-primary)' }}
                   >
                     {icon}
                   </span>
@@ -110,18 +108,87 @@ export default function IconsPage() {
               </div>
               <div className={styles.variantBody}>
                 <div className={styles.variantTitleRow}>
-                  <h3 className={styles.variantName}>{rule.title}</h3>
-                  <span className={styles.variantTagline}>{rule.tagline}</span>
+                  <h3 className={`type-title-sm ${styles.variantName}`}>{rule.title}</h3>
+                  <span className={`type-caption-sm ${styles.variantTagline}`}>{rule.tagline}</span>
                 </div>
                 <ul className={styles.variantWhen}>
                   {rule.when.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="type-body-md">{item}</li>
                   ))}
                 </ul>
-                <div className={styles.variantExamples}>{rule.examples}</div>
+                <div className={`type-caption-sm ${styles.variantExamples}`}>{rule.examples}</div>
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── Tokens de Ícone ── */}
+      <section className={styles.section}>
+        <SectionHeader icon="token" title="Tokens de Ícone" count={`${ICON_CLASS_TOKENS.length + 1} classes`} />
+
+        <div className={styles.tokenUsage}>
+          <div className={styles.tokenUsageInfo}>
+            <span className={`type-caption-sm ${styles.tokenUsageLabel}`}>Como usar</span>
+            <p className={`type-body-md ${styles.tokenUsageText}`}>
+              Combine uma classe de tamanho com{' '}
+              <code className={`type-caption-sm ${styles.inlineCode}`}>material-symbols-rounded</code>.{' '}
+              Para o estado preenchido, adicione{' '}
+              <code className={`type-caption-sm ${styles.inlineCode}`}>icon-filled</code>{' '}
+              após a classe de tamanho.
+            </p>
+          </div>
+          <div className={styles.tokenUsageSnippets}>
+            <code className={`type-caption-sm ${styles.tokenSnippet}`}>
+              {'<span class="material-symbols-rounded icon-md">home</span>'}
+            </code>
+            <code className={`type-caption-sm ${styles.tokenSnippet}`}>
+              {'<span class="material-symbols-rounded icon-md icon-filled">home</span>'}
+            </code>
+          </div>
+        </div>
+
+        <div className={styles.tokenTable}>
+          <div className={styles.tokenTableHead}>
+            <span />
+            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Classe</span>
+            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Tamanho</span>
+            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Variável CSS</span>
+            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Descrição</span>
+            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Componentes</span>
+          </div>
+          {ICON_CLASS_TOKENS.map((token) => (
+            <div key={token.className} className={styles.tokenRow}>
+              <div className={styles.tokenPreview}>
+                <span
+                  className={`material-symbols-rounded ${token.className}`}
+                  style={{ color: 'var(--color-fill-primary)' }}
+                >
+                  home
+                </span>
+              </div>
+              <code className={`type-caption-md ${styles.tokenClass}`}>.{token.className}</code>
+              <span className={`type-caption-md ${styles.tokenSize}`}>{token.size}px</span>
+              <code className={`type-caption-sm ${styles.tokenVar}`}>{token.cssVar}</code>
+              <span className={`type-body-md ${styles.tokenDesc}`}>{token.description}</span>
+              <span className={`type-caption-sm ${styles.tokenUsedIn}`}>{token.usedIn}</span>
+            </div>
+          ))}
+          <div className={`${styles.tokenRow} ${styles.tokenModifierRow}`}>
+            <div className={styles.tokenPreview}>
+              <span
+                className="material-symbols-rounded icon-md icon-filled"
+                style={{ color: 'var(--color-fill-accent)' }}
+              >
+                home
+              </span>
+            </div>
+            <code className={`type-caption-md ${styles.tokenClass}`}>.{ICON_FILLED_MODIFIER.className}</code>
+            <span className={`type-caption-sm ${styles.tokenModifierBadge}`}>modificador</span>
+            <code className={`type-caption-sm ${styles.tokenVar}`}>{ICON_FILLED_MODIFIER.cssValue}</code>
+            <span className={`type-body-md ${styles.tokenDesc}`}>{ICON_FILLED_MODIFIER.description}</span>
+            <span className={`type-caption-sm ${styles.tokenUsedIn}`}>{ICON_FILLED_MODIFIER.usedIn}</span>
+          </div>
         </div>
       </section>
 
@@ -133,26 +200,22 @@ export default function IconsPage() {
             <div key={size.value} className={styles.sizeRow}>
               <div className={styles.sizeIconWrap}>
                 <span
-                  className="material-symbols-rounded"
-                  style={{
-                    fontSize: `${size.value}px`,
-                    fontVariationSettings: fvar(0, size.value),
-                    color: 'var(--color-text-primary)',
-                  }}
+                  className={`material-symbols-rounded ${SIZE_CLS[size.value] ?? ''}`}
+                  style={SIZE_CLS[size.value] ? { color: 'var(--color-text-primary)' } : { fontSize: `${size.value}px`, color: 'var(--color-text-primary)' }}
                 >
                   home
                 </span>
               </div>
               <div className={styles.sizeMeta}>
                 <div className={styles.sizeValueRow}>
-                  <span className={styles.sizeLabel}>{size.label}</span>
+                  <span className={`type-caption-md ${styles.sizeLabel}`}>{size.label}</span>
                   {size.recommended && (
-                    <span className={styles.sizeRecommended}>Recomendado</span>
+                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
                   )}
                 </div>
-                <span className={styles.sizeDescription}>{size.description}</span>
+                <span className={`type-body-md ${styles.sizeDescription}`}>{size.description}</span>
               </div>
-              <span className={styles.sizePx}>{size.value}px</span>
+              <span className={`type-caption-sm ${styles.sizePx}`}>{size.value}px</span>
             </div>
           ))}
         </div>
@@ -166,15 +229,15 @@ export default function IconsPage() {
             <div key={g.title} className={styles.guidelineCard}>
               <div className={styles.guidelineIconWrap}>
                 <span
-                  className="material-symbols-rounded"
-                  style={{ fontSize: '20px', fontVariationSettings: FVAR_OUTLINED_MD, color: 'var(--color-text-tertiary)' }}
+                  className="material-symbols-rounded icon-md"
+                  style={{ color: 'var(--color-text-tertiary)' }}
                 >
                   {GUIDELINE_ICONS[g.title] ?? 'info'}
                 </span>
               </div>
-              <h3 className={styles.guidelineTitle}>{g.title}</h3>
-              <p className={styles.guidelineBody}>{g.body}</p>
-              <div className={styles.guidelineRule}>{g.rule}</div>
+              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
+              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
+              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
             </div>
           ))}
         </div>
@@ -183,34 +246,34 @@ export default function IconsPage() {
       {/* ── Catálogo ── */}
       <section className={styles.section}>
         <SectionHeader icon="apps" title="Catálogo de Referência" count={`${totalCatalogIcons} ícones`} />
-        <p className={styles.catalogNote}>
+        <p className={`type-body-md ${styles.catalogNote}`}>
           Cada célula exibe o ícone nas duas variantes: Outlined à esquerda e Filled à direita.
         </p>
         {ICON_CATEGORIES.map((category) => (
           <div key={category.id} className={styles.categorySection}>
             <div className={styles.categoryHeader}>
-              <h3 className={styles.categoryName}>{category.name}</h3>
-              <span className={styles.categoryDesc}>{category.description}</span>
-              <span className={styles.categoryCount}>{category.icons.length}</span>
+              <h3 className={`type-caption-md ${styles.categoryName}`}>{category.name}</h3>
+              <span className={`type-caption-sm ${styles.categoryDesc}`}>{category.description}</span>
+              <span className={`type-caption-sm ${styles.categoryCount}`}>{category.icons.length}</span>
             </div>
             <div className={styles.iconGrid}>
               {category.icons.map((icon) => (
                 <div key={icon.name} className={styles.iconCell}>
                   <div className={styles.iconPair}>
                     <span
-                      className="material-symbols-rounded"
-                      style={{ fontSize: '22px', fontVariationSettings: FVAR_OUTLINED_MD, color: 'var(--color-text-secondary)' }}
+                      className="material-symbols-rounded icon-lg"
+                      style={{ color: 'var(--color-text-secondary)' }}
                     >
                       {icon.name}
                     </span>
                     <span
-                      className="material-symbols-rounded"
-                      style={{ fontSize: '22px', fontVariationSettings: FVAR_FILLED_MD, color: 'var(--color-text-primary)' }}
+                      className="material-symbols-rounded icon-lg icon-filled"
+                      style={{ color: 'var(--color-text-primary)' }}
                     >
                       {icon.name}
                     </span>
                   </div>
-                  <span className={styles.iconName}>{icon.label}</span>
+                  <span className={`type-caption-xs ${styles.iconName}`}>{icon.label}</span>
                 </div>
               ))}
             </div>

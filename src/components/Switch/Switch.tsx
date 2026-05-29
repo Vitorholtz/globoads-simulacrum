@@ -3,7 +3,6 @@ import type { SwitchBehavior, SwitchType } from '../../tokens/switch'
 
 export type { SwitchBehavior, SwitchType }
 
-const FVAR_CHECK = "'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 20"
 
 export interface SwitchProps {
   checked?: boolean
@@ -57,8 +56,7 @@ export default function Switch({
           disabled={isDisabled}
         />
         <span
-          className={`material-symbols-rounded ${styles.checkIcon}`}
-          style={{ fontVariationSettings: FVAR_CHECK }}
+          className={`material-symbols-rounded icon-xs icon-filled ${styles.checkIcon}`}
           aria-hidden="true"
         >
           check
@@ -67,9 +65,9 @@ export default function Switch({
       </div>
 
       <div className={styles.textGroup}>
-        <span className={styles.label}>{label}</span>
+        <span className={`type-body-md ${styles.label}`}>{label}</span>
         {showHelpText && helpText && (
-          <span className={styles.helpText}>{helpText}</span>
+          <span className={`type-body-xs ${styles.helpText}`}>{helpText}</span>
         )}
       </div>
     </label>

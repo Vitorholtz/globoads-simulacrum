@@ -68,9 +68,9 @@ export default function Radio({
       </div>
 
       <div className={styles.textGroup}>
-        <span className={styles.label}>{label}</span>
+        <span className={`type-body-md ${styles.label}`}>{label}</span>
         {showHelpText && helpText && (
-          <span className={styles.helpText}>{helpText}</span>
+          <span className={`type-body-xs ${styles.helpText}`}>{helpText}</span>
         )}
       </div>
     </label>

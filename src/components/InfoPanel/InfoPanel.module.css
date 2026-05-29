@@ -1,0 +1,51 @@
+﻿.root {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 20px;
+}
+
+/* ── Type variants ── */
+
+.neutral {
+  background: var(--color-surface-secondary);
+  color: var(--color-fill-secondary);
+}
+
+.success {
+  background: var(--color-surface-success);
+  color: var(--color-fill-success);
+}
+
+.warning {
+  background: var(--color-surface-warning);
+  color: var(--color-fill-warning);
+}
+
+.critical {
+  background: var(--color-surface-critical);
+  color: var(--color-fill-critical);
+}
+
+/* ── Icon ── */
+
+.icon {
+  font-size: var(--font-size-150);
+  line-height: var(--line-height-icon);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Content ── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+}

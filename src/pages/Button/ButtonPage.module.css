@@ -1,12 +1,12 @@
-/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+﻿/* Header styles â†’ PageHeader.module.css  |  Section header styles â†’ SectionHeader.module.css */
 
-/* ── Sections ── */
+/* â”€â”€ Sections â”€â”€ */
 
 .section {
   margin-bottom: 72px;
 }
 
-/* ── Variant cards ── */
+/* â”€â”€ Variant cards â”€â”€ */
 
 .variantsGrid {
   display: grid;
@@ -50,15 +50,10 @@
 }
 
 .variantName {
-  font-size: 16px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
 }
 
 .variantTagline {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 9px;
@@ -66,9 +61,7 @@
 }
 
 .variantDesc {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
   margin-bottom: 20px;
 }
 
@@ -83,22 +76,20 @@
 }
 
 .variantWhen li {
-  font-size: 13.5px;
   color: var(--color-text-secondary);
-  line-height: 1.55;
   padding-left: 16px;
   position: relative;
 }
 
 .variantWhen li::before {
-  content: '–';
+  content: 'â€“';
   position: absolute;
   left: 0;
   color: var(--color-text-tertiary);
   font-weight: 300;
 }
 
-/* ── Size scale ── */
+/* â”€â”€ Size scale â”€â”€ */
 
 .sizeScaleContainer {
   background: var(--color-surface-primary);
@@ -143,15 +134,10 @@
 }
 
 .sizeLabel {
-  font-size: 14px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .sizeRecommended {
-  font-size: 11px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   background: var(--color-surface-tertiary);
   padding: 2px 9px;
@@ -159,23 +145,20 @@
 }
 
 .sizeDescription {
-  font-size: 13.5px;
   color: var(--color-text-secondary);
-  line-height: 1.5;
 }
 
 .sizeSpecs {
-  font-size: 12px;
   font-family: var(--font-family-code);
   color: var(--color-text-tertiary);
   margin-left: auto;
   padding-right: 32px;
   text-align: right;
-  line-height: 1.6;
+  line-height: var(--line-height-150);
   white-space: nowrap;
 }
 
-/* ── State matrix ── */
+/* â”€â”€ State matrix â”€â”€ */
 
 .stateMatrixContainer {
   border: 1px solid var(--color-border-ui);
@@ -199,14 +182,10 @@
 }
 
 .matrixVariantName {
-  font-size: 13px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .matrixVariantTagline {
-  font-size: 11px;
   color: var(--color-text-tertiary);
 }
 
@@ -232,11 +211,8 @@
 }
 
 .matrixStateName {
-  font-size: 11px;
-  font-weight: 600;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
 }
 
 .matrixCells {
@@ -258,11 +234,8 @@
 }
 
 .matrixCellLabel {
-  font-size: 10px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
   text-align: center;
   padding: 14px 8px;
   border-right: 1px solid var(--color-border-ui);
@@ -285,7 +258,7 @@
   border-right: 1px solid var(--color-border-ui);
 }
 
-/* ── Content variants ── */
+/* â”€â”€ Content variants â”€â”€ */
 
 .contentGrid {
   display: grid;
@@ -317,19 +290,14 @@
 }
 
 .contentName {
-  font-size: 13px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
 }
 
 .contentDesc {
-  font-size: 12.5px;
   color: var(--color-text-secondary);
-  line-height: 1.6;
 }
 
-/* ── Guidelines ── */
+/* â”€â”€ Guidelines â”€â”€ */
 
 .guidelinesGrid {
   display: grid;
@@ -348,27 +316,19 @@
 }
 
 .guidelineTitle {
-  font-size: 15px;
-  font-weight: 600;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
   margin-bottom: 10px;
 }
 
 .guidelineBody {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
   flex: 1;
 }
 
 .guidelineRule {
-  font-size: 12px;
-  font-weight: 500;
   color: var(--color-text-tertiary);
   font-style: italic;
   padding-top: 16px;
   margin-top: 16px;
   border-top: 1px solid var(--color-border-ui);
-  line-height: 1.5;
 }

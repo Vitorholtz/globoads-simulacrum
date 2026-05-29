@@ -44,7 +44,7 @@ export default function TypographyPage() {
             title={group.title}
             count={`${group.tokens.length} estilos`}
           />
-          <p className={styles.groupDescription}>{group.description}</p>
+          <p className={`type-body-md ${styles.groupDescription}`}>{group.description}</p>
           <div className={styles.specimensContainer}>
             {group.tokens.map((token) => (
               <TypeSpecimen key={token.name} token={token} />

@@ -4,7 +4,6 @@ import type { CheckboxBehavior, CheckboxType } from '../../tokens/checkbox'
 
 export type { CheckboxBehavior, CheckboxType }
 
-const FVAR_ICON = "'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 20"
 
 export interface CheckboxProps {
   /** Controlled checked state */
@@ -82,8 +81,7 @@ export default function Checkbox({
         />
         {icon && (
           <span
-            className={`material-symbols-rounded ${styles.icon}`}
-            style={{ fontVariationSettings: FVAR_ICON }}
+            className={`material-symbols-rounded icon-xs icon-filled ${styles.icon}`}
             aria-hidden="true"
           >
             {icon}
@@ -93,9 +91,9 @@ export default function Checkbox({
       </div>
 
       <div className={styles.textGroup}>
-        <span className={styles.label}>{label}</span>
+        <span className={`type-body-md ${styles.label}`}>{label}</span>
         {showHelpText && helpText && (
-          <span className={styles.helpText}>{helpText}</span>
+          <span className={`type-body-xs ${styles.helpText}`}>{helpText}</span>
         )}
       </div>
     </label>
