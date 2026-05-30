@@ -7,7 +7,6 @@ import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import styles from './AvatarPage.module.css'
 
 const DEMO_NAME = 'Ana Maria Braga'
-const DEMO_SRC_IMAGE = '/avatar-image.png'
 const DEMO_SRC_PHOTO = '/avatar-photo.png'
 
 const GROUP_INITIALS_ITEMS = [

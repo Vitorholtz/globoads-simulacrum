@@ -19,7 +19,7 @@ Package manager is **pnpm** (lockfile present). Do not use npm or yarn.
 
 ### Navigation
 
-The app uses **React Router v7** (`react-router-dom`). `main.tsx` wraps the app in `<BrowserRouter>`. `App.tsx` uses `<Routes>/<Route>` to map paths to page components. `Sidebar.tsx` uses `<NavLink>` for active-state highlighting. Adding a new page = token file + page component + `<Route>` in `App.tsx` + `<NavItem to="/path">` in `Sidebar.tsx`.
+The app uses **React Router v7** (`react-router-dom`). `main.tsx` wraps the app in `<BrowserRouter>`. The page registry is the **single source of truth**: `src/pages/registry.tsx` exports `PAGES: PageDef[]` (path, label, icon, category, component, optional `disabled`/`badge`) plus `CATEGORIES` and `DEFAULT_PATH`. `App.tsx` maps `PAGES` to `<Route>`s; `Sidebar.tsx` groups `PAGES` by `category` into `<NavLink>`s (active-state highlighting). Adding a new page = token file + page component + **one entry in `registry.tsx`** — no edits to `App.tsx` or `Sidebar.tsx`.
 
 ### Token layer (`src/tokens/`)
 
@@ -31,6 +31,12 @@ Single source of truth for all content. Pages import these and map over them —
 - `icons.ts` — `ICON_CATEGORIES`, `ICON_SIZES`, `ICON_VARIANT_RULES`, `ICON_GUIDELINES`, `VARIANT_DEMO_ICONS`.
 - `borderWidth.ts` — `BORDER_WIDTH_TOKENS: BorderWidthToken[]`. Six tokens: None → SM → MD → LG → XL → 2XL (0 / 1 / 2 / 4 / 6 / 8px in rem).
 - `borderRadius.ts` — `BORDER_RADIUS_TOKENS: BorderRadiusToken[]`. Ten tokens: None → XS → SM → MD → LG → XL → 2XL → 3XL → 4XL → Full (0 / 2 / 4 / 8 / 12 / 16 / 20 / 24 / 32 / 999px in rem).
+- `spacing.ts` — spacing scale tokens (drives the `/dimensions` page, shared with `SpacingRow`).
+- `shadow.ts` — shadow/elevation tokens (drives the `/effects` page, shared with `ShadowRow`).
+- `focus.ts` — focus-ring tokens (drives the `/effects` page, shared with `FocusCard`).
+
+**Visual resources**
+- `avatar.ts` — avatar variants, sizes, group/initials definitions and guidelines (drives the `/avatar` page; `Avatar` + `AvatarGroup` components).
 
 **Actions**
 - `buttons.ts` — `BUTTON_VARIANTS`, `BUTTON_SIZES`, `BUTTON_STATES`, `BUTTON_CONTENT_VARIANTS`, `BUTTON_GUIDELINES`, `DANGER_BUTTON_VARIANTS`, `DANGER_BUTTON_GUIDELINES`. Danger variants reuse `ButtonVariantDef` intentionally — the `id` ('primary'|'secondary'|'tertiary') maps to CSS via `danger={true}` prop on Button.
@@ -137,7 +143,8 @@ There are **no semantic color aliases** (`--color-text-*`, `--color-bg-*`, `--co
 | Foundation | Colors | `/colors` | Live — Fill (9), Surface (7), Border (8) tokens |
 | Foundation | Typography | `/typography` | Live — 2 font families, 4 token groups |
 | Foundation | Iconography | `/icons` | Live — library card, variants, sizes, guidelines, catalog |
-| Foundation | Dimensões e Efeitos | `/dimensions-effects` | Live — 26 spacing tokens + 6 border-width tokens + 10 border-radius tokens |
+| Foundation | Dimensões | `/dimensions` | Live — spacing tokens + 6 border-width tokens + 10 border-radius tokens (`DimensionsEffectsPage`) |
+| Foundation | Efeitos | `/effects` | Live — shadow/elevation + focus-ring tokens (`EffectsPage`) |
 | Actions | Button | `/button` | Live — 3 variants, 3 sizes, 6 states, 4 content configs |
 | Actions | Button · Danger | `/danger-button` | Live — wrapper for `ButtonPage` with `isDanger={true}` |
 | Structures | Static Cards | `/static-card` | Live — 2 styles, guidelines |
@@ -166,6 +173,7 @@ There are **no semantic color aliases** (`--color-text-*`, `--color-bg-*`, `--co
 | Alerts | Info Panel | `/info-panel` | Live |
 | Alerts | Toast | `/toast` | Live |
 | Overlays | Tooltip | `/tooltip` | Live |
+| Visual resources | Avatar | `/avatar` | Live — `Avatar` + `AvatarGroup`, variants, sizes, guidelines |
 
 ## Adding a new component
 
@@ -174,8 +182,7 @@ Follow this checklist — every step is required:
 1. **Token file** → `src/tokens/<name>.ts` — types + constants (variants, sizes, states, guidelines).
 2. **Component** → `src/components/<Name>/` — `<Name>.tsx` + `<Name>.module.css`.
 3. **Page** → `src/pages/<Name>/<Name>Page.tsx` + `<Name>Page.module.css` — import `PageHeader` and `SectionHeader` for consistent layout.
-4. **Sidebar** → add `<NavItem icon="..." label="..." to="/<path>" />` in `Sidebar.tsx` under the appropriate category.
-5. **App** → add `<Route path="/<path>" element={<NamePage />} />` inside `<Routes>` in `App.tsx`.
+4. **Registry** → add one `PageDef` entry to `PAGES` in `src/pages/registry.tsx` (`path`, `label`, `icon`, `category`, `component`). This single entry wires up both the route (`App.tsx`) and the sidebar nav item (`Sidebar.tsx`) — do not edit those files directly. Use `disabled: true` + `badge` for an item that should appear in the sidebar without a route yet.
 
 ## Token naming conventions
 

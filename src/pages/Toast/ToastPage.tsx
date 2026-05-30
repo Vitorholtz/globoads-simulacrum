@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Toast from '../../components/Toast/Toast'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
@@ -29,6 +29,7 @@ const DISMISS_MS = 4000
 
 export default function ToastPage() {
   const [active, setActive] = useState<ActiveToast | null>(null)
+  const uidRef = useRef(0)
 
   const dismiss = useCallback(() => setActive(null), [])
 
@@ -39,7 +40,8 @@ export default function ToastPage() {
   }, [active, dismiss])
 
   function trigger(type: ToastType) {
-    setActive({ type, uid: Date.now() })
+    uidRef.current += 1
+    setActive({ type, uid: uidRef.current })
   }
 
   const activeVariant = active ? TOAST_VARIANTS.find(v => v.id === active.type) : null

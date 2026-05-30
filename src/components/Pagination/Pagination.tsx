@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styles from './Pagination.module.css'
 import type { PaginationVariant } from '../../tokens/pagination'
 
@@ -34,10 +34,13 @@ export default function Pagination({
   className,
 }: PaginationProps) {
   const [inputValue, setInputValue] = useState(String(page))
-
-  useEffect(() => {
+  // Sync the editable input with the `page` prop when it changes externally,
+  // adjusting state during render instead of in an effect.
+  const [prevPage, setPrevPage] = useState(page)
+  if (page !== prevPage) {
+    setPrevPage(page)
     setInputValue(String(page))
-  }, [page])
+  }
 
   const isFirst = page <= 1
   const isLast = page >= totalPages

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import globoAdsLogo from '../../assets/globo-ads-logo.svg'
+import { CATEGORIES, PAGES } from '../../pages/registry'
 import styles from './Sidebar.module.css'
 
 
@@ -56,79 +57,29 @@ export default function Sidebar() {
       </div>
 
       <div className={styles.nav}>
-        <div className={`${styles.section} ${styles.sectionDivider}`}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Foundation</span>
-          <NavItem icon="palette" label="Colors" to="/colors" />
-          <NavItem icon="format_size" label="Typography" to="/typography" />
-          <NavItem icon="grid_view" label="Iconography" to="/icons" />
-          <NavItem icon="straighten" label="Dimensões" to="/dimensions" />
-          <NavItem icon="auto_awesome" label="Efeitos" to="/effects" />
-        </div>
+        {CATEGORIES.map((category, index) => {
+          const items = PAGES.filter((page) => page.category === category)
+          if (items.length === 0) return null
 
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Actions</span>
-          <NavItem icon="smart_button" label="Button" to="/button" />
-          <NavItem icon="warning" label="Button · Danger" to="/danger-button" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Structures</span>
-          <NavItem icon="crop_square" label="Static Cards" to="/static-card" />
-          <NavItem icon="touch_app" label="Interactive Cards" to="/interactive-card" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Navigations</span>
-          <NavItem icon="link" label="Hyperlinks" to="/hyperlinks" />
-          <NavItem icon="tab" label="Tabs" to="/tabs" />
-          <NavItem icon="more_horiz" label="Pagination" to="/pagination" />
-          <NavItem icon="route" label="Breadcrumb" to="/breadcrumb" />
-          <NavItem icon="checklist" label="Summary Stepper" to="/summary-stepper" disabled badge="Em breve" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Indicators</span>
-          <NavItem icon="label" label="Badge Status" to="/badge" />
-          <NavItem icon="fiber_manual_record" label="Badge Pointer" to="/badge-pointer" />
-          <NavItem icon="badge" label="Badge Counter" to="/badge-counter" />
-          <NavItem icon="motion_blur" label="Inline Loader" to="/inline-loader" />
-          <NavItem icon="hide_image" label="Skeleton" to="/skeleton" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Inputs</span>
-          <NavItem icon="text_fields" label="Text Field" to="/text-field" />
-          <NavItem icon="subject" label="Textarea" to="/textarea" />
-          <NavItem icon="arrow_drop_down_circle" label="Select" to="/select" />
-          <NavItem icon="search_check" label="Combobox" to="/combobox" />
-          <NavItem icon="check_box" label="Checkbox" to="/checkbox" />
-          <NavItem icon="radio_button_checked" label="Radio Button" to="/radio" />
-          <NavItem icon="toggle_on" label="Switch" to="/switch" />
-          <NavItem icon="sell" label="Chips" to="/chips" />
-          <NavItem icon="edit_calendar" label="Date Picker" to="/date-picker" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Utilities</span>
-          <NavItem icon="unfold_more" label="Collapse" to="/collapse" />
-          <NavItem icon="expand_all" label="Accordion" to="/accordion" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Alerts</span>
-          <NavItem icon="info" label="Info Panel" to="/info-panel" />
-          <NavItem icon="notification_important" label="Toast" to="/toast" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Overlays</span>
-          <NavItem icon="tooltip" label="Tooltip" to="/tooltip" />
-        </div>
-
-        <div className={styles.section}>
-          <span className={`type-caption-sm ${styles.sectionLabel}`}>Visual resources</span>
-          <NavItem icon="account_circle" label="Avatar" to="/avatar" />
-        </div>
+          return (
+            <div
+              key={category}
+              className={index === 0 ? `${styles.section} ${styles.sectionDivider}` : styles.section}
+            >
+              <span className={`type-caption-sm ${styles.sectionLabel}`}>{category}</span>
+              {items.map((page) => (
+                <NavItem
+                  key={page.path}
+                  icon={page.icon}
+                  label={page.label}
+                  to={page.path}
+                  disabled={page.disabled}
+                  badge={page.badge}
+                />
+              ))}
+            </div>
+          )
+        })}
       </div>
 
       <div className={styles.sidebarFooter}>

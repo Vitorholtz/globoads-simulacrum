@@ -1,7 +1,7 @@
 import styles from './InteractiveCard.module.css'
 import type { CardStyle } from '../../tokens/cards'
 
-export interface InteractiveCardProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface InteractiveCardProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'style'> {
   style?: CardStyle
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active'

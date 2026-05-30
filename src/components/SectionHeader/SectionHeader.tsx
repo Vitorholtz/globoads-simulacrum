@@ -3,7 +3,7 @@ import styles from './SectionHeader.module.css'
 interface SectionHeaderProps {
   icon: string
   title: string
-  count?: string
+  count?: string | number
 }
 
 export default function SectionHeader({ icon, title, count }: SectionHeaderProps) {
