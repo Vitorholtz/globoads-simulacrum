@@ -46,6 +46,31 @@ export const TAB_CONTENT_VARIANTS: VariantDef<string>[] = [
   },
 ]
 
+export interface TabItem {
+  id: string
+  label: string
+  icon?: string
+  badge?: string | number
+}
+
+export const DEMO_TEXT_TABS: TabItem[] = [
+  { id: 'tab1', label: 'Tab 1' },
+  { id: 'tab2', label: 'Tab 2' },
+  { id: 'tab3', label: 'Tab 3' },
+]
+
+export const DEMO_ICON_TABS: TabItem[] = [
+  { id: 'tab1', label: 'Início', icon: 'home' },
+  { id: 'tab2', label: 'Relatórios', icon: 'analytics' },
+  { id: 'tab3', label: 'Campanhas', icon: 'campaign' },
+]
+
+export const DEMO_BADGE_TABS: TabItem[] = [
+  { id: 'tab1', label: 'Tudo', badge: '12' },
+  { id: 'tab2', label: 'Novos', badge: '3' },
+  { id: 'tab3', label: 'Lidos' },
+]
+
 export const TABS_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use tabs para visualizações paralelas',

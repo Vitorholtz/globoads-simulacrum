@@ -76,6 +76,46 @@ export const COLLAPSE_STATES: StateDef<string>[] = [
   },
 ]
 
+export const COLLAPSE_PREVIEW_TEXT =
+  'A segmentação desta campanha está configurada para atingir usuários entre 25 e 45 anos, residentes nas regiões Sudeste e Sul do Brasil. O público-alvo inclui pessoas com interesse em esportes, entretenimento digital e consumo de mídia online. A frequência máxima de exibição está limitada a 3 impressões por usuário por dia, garantindo relevância sem saturação. O período de exclusão cobre os últimos 30 dias de conversão para evitar reimpacto de usuários que já converteram. Estimativa de alcance semanal: 2,4 milhões de usuários únicos.'
+
+export const COLLAPSE_MATRIX_STATES: {
+  id: string
+  label: string
+  force: 'hover' | 'focus' | 'active' | undefined
+}[] = [
+  { id: 'normal', label: 'Normal', force: undefined },
+  { id: 'hover', label: 'Hover', force: 'hover' },
+  { id: 'focus', label: 'Focus', force: 'focus' },
+  { id: 'active', label: 'Active', force: 'active' },
+]
+
+export const COLLAPSE_DEMO_ITEMS: {
+  key: string
+  size: CollapseSize
+  label: string
+  text: string
+}[] = [
+  {
+    key: 'segmentacao',
+    size: 'lg',
+    label: 'Sobre a segmentação',
+    text: 'A segmentação desta campanha está configurada para atingir usuários entre 25 e 45 anos, residentes nas regiões Sudeste e Sul do Brasil. O público-alvo inclui pessoas com interesse em esportes, entretenimento digital e consumo de mídia online. A frequência máxima de exibição está limitada a 3 impressões por usuário por dia, garantindo relevância sem saturação. O período de exclusão cobre os últimos 30 dias de conversão para evitar reimpacto de usuários que já converteram. Estimativa de alcance semanal: 2,4 milhões de usuários únicos, com CPM médio projetado de R$ 18,50.',
+  },
+  {
+    key: 'specs',
+    size: 'md',
+    label: 'Especificações técnicas',
+    text: 'O formato Video Bumper exige arquivos MP4 ou WebM com resolução mínima de 1280×720px e duração fixa de 6 segundos. O peso máximo aceito é 50 MB, com taxa de bits de vídeo de até 8 Mbps e codec H.264 ou VP9. O áudio deve estar codificado em AAC-LC com amostragem de 44.1 kHz. Legendas no formato SRT são opcionais mas recomendadas para garantir acessibilidade e desempenho em reproduções sem som. Arquivos fora das especificações serão rejeitados automaticamente durante o processo de upload.',
+  },
+  {
+    key: 'termos',
+    size: 'sm',
+    label: 'Termos de veiculação',
+    text: 'A veiculação deste anúncio está sujeita às políticas de conteúdo da Globo Ads e às diretrizes de publicidade responsável do CONAR. O anunciante é o único responsável pela veracidade das informações divulgadas e pela conformidade com a LGPD no tratamento de dados coletados via píxel de conversão. Campanhas com conteúdo sensível — incluindo produtos financeiros, saúde e bebidas alcoólicas — requerem aprovação prévia da equipe de moderação com antecedência mínima de 48 horas úteis antes da data de início da veiculação.',
+  },
+]
+
 export const COLLAPSE_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para conteúdo complementar',

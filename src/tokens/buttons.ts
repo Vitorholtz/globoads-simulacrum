@@ -107,18 +107,18 @@ export const BUTTON_SIZES: ButtonSizeDef[] = [
 ]
 
 export const BUTTON_STATES = [
-  { id: 'normal',   label: 'Normal',   description: 'Estado padrão em repouso.' },
-  { id: 'hover',    label: 'Hover',    description: 'Cursor sobre o elemento.' },
-  { id: 'focus',    label: 'Focus',    description: 'Foco via teclado — anel de acessibilidade.' },
-  { id: 'active',   label: 'Active',   description: 'Botão pressionado.' },
+  { id: 'normal', label: 'Normal', description: 'Estado padrão em repouso.' },
+  { id: 'hover', label: 'Hover', description: 'Cursor sobre o elemento.' },
+  { id: 'focus', label: 'Focus', description: 'Foco via teclado — anel de acessibilidade.' },
+  { id: 'active', label: 'Active', description: 'Botão pressionado.' },
   { id: 'disabled', label: 'Disabled', description: 'Indisponível — opacidade 48%.' },
 ] as const
 
 export const BUTTON_CONTENT_VARIANTS = [
-  { id: 'text',      label: 'Text only',  icon: undefined, iconRight: undefined },
-  { id: 'iconLeft',  label: 'Icon left',  icon: 'add',     iconRight: undefined },
+  { id: 'text', label: 'Text only', icon: undefined, iconRight: undefined },
+  { id: 'iconLeft', label: 'Icon left', icon: 'add', iconRight: undefined },
   { id: 'iconRight', label: 'Icon right', icon: undefined, iconRight: 'arrow_forward' },
-  { id: 'iconOnly',  label: 'Icon only',  icon: 'add',     iconRight: undefined, noLabel: true },
+  { id: 'iconOnly', label: 'Icon only', icon: 'add', iconRight: undefined, noLabel: true },
 ] as const
 
 export const BUTTON_GUIDELINES = [
@@ -178,6 +178,18 @@ export const DANGER_BUTTON_VARIANTS: ButtonVariantDef[] = [
       'Opções destrutivas de baixa prioridade em menus',
     ],
   },
+]
+
+export const BUTTON_MATRIX_STATES: {
+  id: string
+  label: string
+  force: 'hover' | 'focus' | 'active' | 'disabled' | undefined
+}[] = [
+  { id: 'normal', label: 'Normal', force: undefined },
+  { id: 'hover', label: 'Hover', force: 'hover' },
+  { id: 'focus', label: 'Focus', force: 'focus' },
+  { id: 'active', label: 'Active', force: 'active' },
+  { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]
 
 export const DANGER_BUTTON_GUIDELINES = [

@@ -1,38 +1,30 @@
 import { useState } from 'react'
 import Tabs from '../../components/Tabs/Tabs'
-import type { TabItem } from '../../components/Tabs/Tabs'
-import { TAB_POSITIONS, TAB_CONTENT_VARIANTS, TABS_GUIDELINES } from '../../tokens/tabs'
+import {
+  TAB_POSITIONS,
+  TAB_CONTENT_VARIANTS,
+  TABS_GUIDELINES,
+  DEMO_TEXT_TABS,
+  DEMO_ICON_TABS,
+  DEMO_BADGE_TABS,
+} from '../../tokens/tabs'
 import type { TabPosition } from '../../tokens/tabs'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import styles from './TabsPage.module.css'
-
-const TEXT_TABS: TabItem[] = [
-  { id: 'tab1', label: 'Tab 1' },
-  { id: 'tab2', label: 'Tab 2' },
-  { id: 'tab3', label: 'Tab 3' },
-]
-
-const ICON_TABS: TabItem[] = [
-  { id: 'tab1', label: 'Início', icon: 'home' },
-  { id: 'tab2', label: 'Relatórios', icon: 'analytics' },
-  { id: 'tab3', label: 'Campanhas', icon: 'campaign' },
-]
-
-const BADGE_TABS: TabItem[] = [
-  { id: 'tab1', label: 'Tudo', badge: '12' },
-  { id: 'tab2', label: 'Novos', badge: '3' },
-  { id: 'tab3', label: 'Lidos' },
-]
 
 function PositionDemo({ position, description }: { position: TabPosition; description: string }) {
   const [active, setActive] = useState('tab1')
   const isVertical = position === 'left' || position === 'right'
   return (
     <div className={styles.positionCard}>
-      <div className={[styles.positionPreview, isVertical ? styles.positionPreviewVertical : ''].join(' ')}>
+      <div
+        className={[styles.positionPreview, isVertical ? styles.positionPreviewVertical : ''].join(
+          ' '
+        )}
+      >
         <Tabs
-          items={TEXT_TABS}
+          items={DEMO_TEXT_TABS}
           activeId={active}
           onChange={setActive}
           position={position}
@@ -40,7 +32,9 @@ function PositionDemo({ position, description }: { position: TabPosition; descri
         />
       </div>
       <div className={styles.positionMeta}>
-        <span className={`type-body-sm ${styles.positionLabel}`}>{position.charAt(0).toUpperCase() + position.slice(1)}</span>
+        <span className={`type-body-sm ${styles.positionLabel}`}>
+          {position.charAt(0).toUpperCase() + position.slice(1)}
+        </span>
         <p className={`type-body-sm ${styles.positionDesc}`}>{description}</p>
       </div>
     </div>
@@ -77,12 +71,16 @@ export default function TabsPage() {
 
       {/* ── Variantes de Conteúdo ── */}
       <section className={styles.section}>
-        <SectionHeader icon="tune" title="Variantes de Conteúdo" count={`${TAB_CONTENT_VARIANTS.length} variantes`} />
+        <SectionHeader
+          icon="tune"
+          title="Variantes de Conteúdo"
+          count={`${TAB_CONTENT_VARIANTS.length} variantes`}
+        />
         <div className={styles.variantGrid}>
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
               <Tabs
-                items={TEXT_TABS}
+                items={DEMO_TEXT_TABS}
                 activeId={variantActive}
                 onChange={setVariantActive}
                 position="top"
@@ -90,15 +88,19 @@ export default function TabsPage() {
               />
             </div>
             <div className={styles.variantMeta}>
-              <span className={`type-body-sm ${styles.variantLabel}`}>{TAB_CONTENT_VARIANTS[0].label}</span>
-              <p className={`type-body-sm ${styles.variantDesc}`}>{TAB_CONTENT_VARIANTS[0].description}</p>
+              <span className={`type-body-sm ${styles.variantLabel}`}>
+                {TAB_CONTENT_VARIANTS[0].label}
+              </span>
+              <p className={`type-body-sm ${styles.variantDesc}`}>
+                {TAB_CONTENT_VARIANTS[0].description}
+              </p>
             </div>
           </div>
 
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
               <Tabs
-                items={ICON_TABS}
+                items={DEMO_ICON_TABS}
                 activeId={iconActive}
                 onChange={setIconActive}
                 position="top"
@@ -106,15 +108,19 @@ export default function TabsPage() {
               />
             </div>
             <div className={styles.variantMeta}>
-              <span className={`type-body-sm ${styles.variantLabel}`}>{TAB_CONTENT_VARIANTS[1].label}</span>
-              <p className={`type-body-sm ${styles.variantDesc}`}>{TAB_CONTENT_VARIANTS[1].description}</p>
+              <span className={`type-body-sm ${styles.variantLabel}`}>
+                {TAB_CONTENT_VARIANTS[1].label}
+              </span>
+              <p className={`type-body-sm ${styles.variantDesc}`}>
+                {TAB_CONTENT_VARIANTS[1].description}
+              </p>
             </div>
           </div>
 
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
               <Tabs
-                items={BADGE_TABS}
+                items={DEMO_BADGE_TABS}
                 activeId={badgeActive}
                 onChange={setBadgeActive}
                 position="top"
@@ -122,8 +128,12 @@ export default function TabsPage() {
               />
             </div>
             <div className={styles.variantMeta}>
-              <span className={`type-body-sm ${styles.variantLabel}`}>{TAB_CONTENT_VARIANTS[2].label}</span>
-              <p className={`type-body-sm ${styles.variantDesc}`}>{TAB_CONTENT_VARIANTS[2].description}</p>
+              <span className={`type-body-sm ${styles.variantLabel}`}>
+                {TAB_CONTENT_VARIANTS[2].label}
+              </span>
+              <p className={`type-body-sm ${styles.variantDesc}`}>
+                {TAB_CONTENT_VARIANTS[2].description}
+              </p>
             </div>
           </div>
         </div>

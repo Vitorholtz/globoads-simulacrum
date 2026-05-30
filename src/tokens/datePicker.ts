@@ -52,11 +52,11 @@ export const DATE_PICKER_SIZES: DatePickerSizeDef[] = [
 ]
 
 export const DATE_PICKER_STATES = [
-  { id: 'normal',   label: 'Normal',   description: 'Estado padrão em repouso.' },
-  { id: 'hover',    label: 'Hover',    description: 'Cursor sobre o campo — borda escurece.' },
-  { id: 'focus',    label: 'Focus',    description: 'Campo ativo com foco — borda azul 2px.' },
-  { id: 'active',   label: 'Active',   description: 'Calendário aberto com seleção visível.' },
-  { id: 'error',    label: 'Error',    description: 'Data inválida — borda e fundo crítico.' },
+  { id: 'normal', label: 'Normal', description: 'Estado padrão em repouso.' },
+  { id: 'hover', label: 'Hover', description: 'Cursor sobre o campo — borda escurece.' },
+  { id: 'focus', label: 'Focus', description: 'Campo ativo com foco — borda azul 2px.' },
+  { id: 'active', label: 'Active', description: 'Calendário aberto com seleção visível.' },
+  { id: 'error', label: 'Error', description: 'Data inválida — borda e fundo crítico.' },
   { id: 'disabled', label: 'Disabled', description: 'Campo indisponível — opacidade 48%.' },
 ] as const
 
@@ -97,4 +97,17 @@ export const DATE_PICKER_GUIDELINES = [
     body: 'Marque campos de data opcionais com a tag "Opcional". Em formulários onde todos os campos são opcionais, omita a marcação para reduzir ruído visual.',
     rule: 'Marque o opcional, não o obrigatório.',
   },
+]
+
+export const DATE_PICKER_MATRIX_STATES: {
+  id: string
+  label: string
+  force: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | undefined
+}[] = [
+  { id: 'normal', label: 'Normal', force: undefined },
+  { id: 'hover', label: 'Hover', force: 'hover' },
+  { id: 'focus', label: 'Focus', force: 'focus' },
+  { id: 'active', label: 'Active', force: 'active' },
+  { id: 'error', label: 'Error', force: 'error' },
+  { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]

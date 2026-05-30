@@ -1,14 +1,17 @@
 import Button from '../../components/Button/Button'
 import {
-  BUTTON_VARIANTS, BUTTON_SIZES, BUTTON_STATES, BUTTON_GUIDELINES,
-  DANGER_BUTTON_VARIANTS, DANGER_BUTTON_GUIDELINES,
+  BUTTON_VARIANTS,
+  BUTTON_SIZES,
+  BUTTON_STATES,
+  BUTTON_GUIDELINES,
+  BUTTON_MATRIX_STATES,
+  DANGER_BUTTON_VARIANTS,
+  DANGER_BUTTON_GUIDELINES,
 } from '../../tokens/buttons'
 import type { ButtonVariant, ButtonSize } from '../../tokens/buttons'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import styles from './ButtonPage.module.css'
-
-type ForceState = 'hover' | 'focus' | 'active' | 'disabled' | undefined
 
 type MatrixCell = {
   label: string
@@ -25,26 +28,66 @@ type ContentDemo = {
   desc: string
 }
 
-const MATRIX_STATES: { id: string; label: string; force: ForceState }[] = [
-  { id: 'normal',   label: 'Normal',   force: undefined },
-  { id: 'hover',    label: 'Hover',    force: 'hover' },
-  { id: 'focus',    label: 'Focus',    force: 'focus' },
-  { id: 'active',   label: 'Active',   force: 'active' },
-  { id: 'disabled', label: 'Disabled', force: 'disabled' },
-]
-
 const CONTENT_DEMOS: Record<'default' | 'danger', ContentDemo[]> = {
   default: [
-    { label: 'Text only',  iconLeft: undefined,  iconRight: undefined,        children: 'Button',   desc: 'Label sem ícone. Use quando a label é suficientemente descritiva.' },
-    { label: 'Icon left',  iconLeft: 'add',      iconRight: undefined,        children: 'Button',   desc: 'Ícone reforça a natureza da ação. Posição recomendada por padrão.' },
-    { label: 'Icon right', iconLeft: undefined,  iconRight: 'arrow_forward',  children: 'Button',   desc: 'Ícone indica destino ou consequência (navegação, link externo).' },
-    { label: 'Icon only',  iconLeft: 'add',      iconRight: undefined,        children: undefined,  desc: 'Apenas ícone. Exige tooltip para garantir acessibilidade.' },
+    {
+      label: 'Text only',
+      iconLeft: undefined,
+      iconRight: undefined,
+      children: 'Button',
+      desc: 'Label sem ícone. Use quando a label é suficientemente descritiva.',
+    },
+    {
+      label: 'Icon left',
+      iconLeft: 'add',
+      iconRight: undefined,
+      children: 'Button',
+      desc: 'Ícone reforça a natureza da ação. Posição recomendada por padrão.',
+    },
+    {
+      label: 'Icon right',
+      iconLeft: undefined,
+      iconRight: 'arrow_forward',
+      children: 'Button',
+      desc: 'Ícone indica destino ou consequência (navegação, link externo).',
+    },
+    {
+      label: 'Icon only',
+      iconLeft: 'add',
+      iconRight: undefined,
+      children: undefined,
+      desc: 'Apenas ícone. Exige tooltip para garantir acessibilidade.',
+    },
   ],
   danger: [
-    { label: 'Text only',  iconLeft: undefined,  iconRight: undefined,        children: 'Button',   desc: 'Label sem ícone. Use quando a label é suficientemente descritiva do risco.' },
-    { label: 'Icon left',  iconLeft: 'delete',   iconRight: undefined,        children: 'Button',   desc: 'Ícone reforça a natureza destrutiva da ação. Posição recomendada por padrão.' },
-    { label: 'Icon right', iconLeft: undefined,  iconRight: 'arrow_forward',  children: 'Button',   desc: 'Ícone indica consequência ou próxima etapa de uma ação destrutiva.' },
-    { label: 'Icon only',  iconLeft: 'delete',   iconRight: undefined,        children: undefined,  desc: 'Apenas ícone. Exige tooltip — especialmente crítico em ações destrutivas.' },
+    {
+      label: 'Text only',
+      iconLeft: undefined,
+      iconRight: undefined,
+      children: 'Button',
+      desc: 'Label sem ícone. Use quando a label é suficientemente descritiva do risco.',
+    },
+    {
+      label: 'Icon left',
+      iconLeft: 'delete',
+      iconRight: undefined,
+      children: 'Button',
+      desc: 'Ícone reforça a natureza destrutiva da ação. Posição recomendada por padrão.',
+    },
+    {
+      label: 'Icon right',
+      iconLeft: undefined,
+      iconRight: 'arrow_forward',
+      children: 'Button',
+      desc: 'Ícone indica consequência ou próxima etapa de uma ação destrutiva.',
+    },
+    {
+      label: 'Icon only',
+      iconLeft: 'delete',
+      iconRight: undefined,
+      children: undefined,
+      desc: 'Apenas ícone. Exige tooltip — especialmente crítico em ações destrutivas.',
+    },
   ],
 }
 
@@ -59,10 +102,10 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
   const matrixIcon = isDanger ? 'delete' : 'add'
 
   const matrixContent: MatrixCell[] = [
-    { label: 'Text only',  iconLeft: undefined,    iconRight: undefined,       children: 'Button' },
-    { label: 'Icon left',  iconLeft: matrixIcon,   iconRight: undefined,       children: 'Button' },
-    { label: 'Icon right', iconLeft: undefined,    iconRight: 'arrow_forward', children: 'Button' },
-    { label: 'Icon only',  iconLeft: matrixIcon,   iconRight: undefined,       children: undefined },
+    { label: 'Text only', iconLeft: undefined, iconRight: undefined, children: 'Button' },
+    { label: 'Icon left', iconLeft: matrixIcon, iconRight: undefined, children: 'Button' },
+    { label: 'Icon right', iconLeft: undefined, iconRight: 'arrow_forward', children: 'Button' },
+    { label: 'Icon only', iconLeft: matrixIcon, iconRight: undefined, children: undefined },
   ]
 
   return (
@@ -90,9 +133,15 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
           {VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
               <div className={styles.variantPreview}>
-                <Button variant={v.id} size="md" danger={isDanger}>Button</Button>
-                <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger}>Button</Button>
-                <Button variant={v.id} size="md" iconRight="arrow_forward" danger={isDanger}>Button</Button>
+                <Button variant={v.id} size="md" danger={isDanger}>
+                  Button
+                </Button>
+                <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger}>
+                  Button
+                </Button>
+                <Button variant={v.id} size="md" iconRight="arrow_forward" danger={isDanger}>
+                  Button
+                </Button>
                 <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger} />
               </div>
               <div className={styles.variantBody}>
@@ -103,7 +152,9 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
                 <p className={`type-body-md ${styles.variantDesc}`}>{v.description}</p>
                 <ul className={styles.variantWhen}>
                   {v.when.map((item) => (
-                    <li key={item} className="type-body-md">{item}</li>
+                    <li key={item} className="type-body-md">
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -114,12 +165,23 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
 
       {/* ── Escala de Tamanhos ── */}
       <section className={styles.section}>
-        <SectionHeader icon="straighten" title="Escala de Tamanhos" count={`${BUTTON_SIZES.length} tamanhos`} />
+        <SectionHeader
+          icon="straighten"
+          title="Escala de Tamanhos"
+          count={`${BUTTON_SIZES.length} tamanhos`}
+        />
         <div className={styles.sizeScaleContainer}>
           {BUTTON_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
               <div className={styles.sizePreview}>
-                <Button variant="primary" size={s.id as ButtonSize} iconLeft={matrixIcon} danger={isDanger}>Button</Button>
+                <Button
+                  variant="primary"
+                  size={s.id as ButtonSize}
+                  iconLeft={matrixIcon}
+                  danger={isDanger}
+                >
+                  Button
+                </Button>
               </div>
               <div className={styles.sizeMeta}>
                 <div className={styles.sizeValueRow}>
@@ -131,8 +193,13 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
                 <span className={`type-body-md ${styles.sizeDescription}`}>{s.description}</span>
               </div>
               <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>font {s.fontSize}px · icon {s.iconSize}px</span><br />
-                <span>py {s.paddingY}px · px {s.paddingX}px · gap {s.gap}px</span>
+                <span>
+                  font {s.fontSize}px · icon {s.iconSize}px
+                </span>
+                <br />
+                <span>
+                  py {s.paddingY}px · px {s.paddingX}px · gap {s.gap}px
+                </span>
               </div>
             </div>
           ))}
@@ -146,15 +213,19 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
           <div key={v.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixVariantHeader}>
               <span className={`type-caption-md ${styles.matrixVariantName}`}>{v.name}</span>
-              <span className={`type-caption-sm ${styles.matrixVariantTagline}`}>— {v.tagline}</span>
+              <span className={`type-caption-sm ${styles.matrixVariantTagline}`}>
+                — {v.tagline}
+              </span>
             </div>
             <div className={styles.matrixHeaderRow}>
               <div className={styles.matrixHeaderSpacer} />
               {matrixContent.map((c) => (
-                <div key={c.label} className={`type-caption-xs ${styles.matrixCellLabel}`}>{c.label}</div>
+                <div key={c.label} className={`type-caption-xs ${styles.matrixCellLabel}`}>
+                  {c.label}
+                </div>
               ))}
             </div>
-            {MATRIX_STATES.map((state) => (
+            {BUTTON_MATRIX_STATES.map((state) => (
               <div key={state.id} className={styles.matrixRow}>
                 <div className={styles.matrixStateLabel}>
                   <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
@@ -183,7 +254,11 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
 
       {/* ── Conteúdo e Ícones ── */}
       <section className={styles.section}>
-        <SectionHeader icon="format_shapes" title="Configurações de Conteúdo" count="4 configurações" />
+        <SectionHeader
+          icon="format_shapes"
+          title="Configurações de Conteúdo"
+          count="4 configurações"
+        />
         <div className={styles.contentGrid}>
           {contentDemo.map((c) => (
             <div key={c.label} className={styles.contentCard}>

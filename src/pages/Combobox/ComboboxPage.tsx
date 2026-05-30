@@ -1,29 +1,22 @@
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import Combobox from '../../components/Combobox/Combobox'
-import { COMBOBOX_SIZES, COMBOBOX_GUIDELINES } from '../../tokens/combobox'
+import {
+  COMBOBOX_SIZES,
+  COMBOBOX_GUIDELINES,
+  COMBOBOX_MATRIX_STATES,
+  COMBOBOX_MATRIX_COLS,
+} from '../../tokens/combobox'
 import type { ComboboxSizeDef } from '../../tokens/combobox'
 import styles from './ComboboxPage.module.css'
 
 const FILLED_CHIPS = ['Chip 1', 'Chip 2', 'Chip 3']
 
-const MATRIX_STATES = [
-  { id: null,        label: 'Normal'   },
-  { id: 'hover',     label: 'Hover'    },
-  { id: 'focus',     label: 'Focus'    },
-  { id: 'error',     label: 'Error'    },
-  { id: 'disabled',  label: 'Disabled' },
-] as const
-
-const MATRIX_COLS = [
-  { id: 'placeholder', label: 'Placeholder', filled: false },
-  { id: 'filled',      label: 'Filled',      filled: true  },
-]
-
 function sizeSpecs(size: ComboboxSizeDef) {
   return (
     <>
-      Font: {size.fontSize}px / {size.lineHeight}px<br />
+      Font: {size.fontSize}px / {size.lineHeight}px
+      <br />
       Padding: {size.paddingY}px {size.paddingX}px
     </>
   )
@@ -54,8 +47,8 @@ export default function ComboboxPage() {
             <div className={styles.styleBody}>
               <span className={`type-body-sm ${styles.styleName}`}>Placeholder</span>
               <span className={`type-body-sm ${styles.styleDesc}`}>
-                Estado inicial do campo quando nenhum item foi adicionado. O placeholder
-                orienta o usuário a digitar e pressionar Enter para adicionar um chip.
+                Estado inicial do campo quando nenhum item foi adicionado. O placeholder orienta o
+                usuário a digitar e pressionar Enter para adicionar um chip.
               </span>
             </div>
           </div>
@@ -67,8 +60,8 @@ export default function ComboboxPage() {
             <div className={styles.styleBody}>
               <span className={`type-body-sm ${styles.styleName}`}>Filled</span>
               <span className={`type-body-sm ${styles.styleDesc}`}>
-                Estado após a adição de um ou mais itens. Cada valor confirmado aparece
-                como chip abaixo do campo, com botão de remoção individual.
+                Estado após a adição de um ou mais itens. Cada valor confirmado aparece como chip
+                abaixo do campo, com botão de remoção individual.
               </span>
             </div>
           </div>
@@ -105,25 +98,25 @@ export default function ComboboxPage() {
         <div className={styles.stateMatrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
-            {MATRIX_COLS.map((col) => (
+            {COMBOBOX_MATRIX_COLS.map((col) => (
               <div key={col.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>
                 {col.label}
               </div>
             ))}
           </div>
 
-          {MATRIX_STATES.map((state) => (
+          {COMBOBOX_MATRIX_STATES.map((state) => (
             <div key={state.label} className={styles.matrixRow}>
               <div className={styles.matrixStateLabel}>
                 <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
               </div>
               <div className={styles.matrixCells}>
-                {MATRIX_COLS.map((col) => (
+                {COMBOBOX_MATRIX_COLS.map((col) => (
                   <div key={col.id} className={styles.matrixCell}>
                     <div className={styles.matrixField}>
                       <Combobox
                         size="md"
-                        forceState={state.id ?? undefined}
+                        forceState={state.force}
                         defaultValue={col.filled ? FILLED_CHIPS : undefined}
                         errorMessage={state.id === 'error' ? 'Campo obrigatório' : undefined}
                       />
@@ -140,7 +133,6 @@ export default function ComboboxPage() {
       <div className={styles.section}>
         <SectionHeader icon="tune" title="Configurações" count={6} />
         <div className={styles.configGrid}>
-
           <div className={styles.configCard}>
             <div className={styles.configPreview}>
               <Combobox />
@@ -148,8 +140,8 @@ export default function ComboboxPage() {
             <div className={styles.configBody}>
               <span className={`type-body-sm ${styles.configName}`}>Padrão</span>
               <span className={`type-caption-sm ${styles.configDesc}`}>
-                Combobox básico com label e placeholder. Ponto de partida para formulários
-                com entrada de múltiplos valores.
+                Combobox básico com label e placeholder. Ponto de partida para formulários com
+                entrada de múltiplos valores.
               </span>
             </div>
           </div>
@@ -180,30 +172,26 @@ export default function ComboboxPage() {
 
           <div className={styles.configCard}>
             <div className={styles.configPreview}>
-              <Combobox
-                descriptionText="Adicione todas as tags relevantes para o seu conteúdo."
-              />
+              <Combobox descriptionText="Adicione todas as tags relevantes para o seu conteúdo." />
             </div>
             <div className={styles.configBody}>
               <span className={`type-body-sm ${styles.configName}`}>Com descrição</span>
               <span className={`type-caption-sm ${styles.configDesc}`}>
-                Ícone de informação ao lado da label exibe um tooltip de contexto ao
-                passar o cursor.
+                Ícone de informação ao lado da label exibe um tooltip de contexto ao passar o
+                cursor.
               </span>
             </div>
           </div>
 
           <div className={styles.configCard}>
             <div className={styles.configPreview}>
-              <Combobox
-                helpText="Digite um valor e pressione Enter para adicionar."
-              />
+              <Combobox helpText="Digite um valor e pressione Enter para adicionar." />
             </div>
             <div className={styles.configBody}>
               <span className={`type-body-sm ${styles.configName}`}>Com texto de ajuda</span>
               <span className={`type-caption-sm ${styles.configDesc}`}>
-                Texto de apoio abaixo do campo orienta o usuário sobre como interagir
-                com o Combobox.
+                Texto de apoio abaixo do campo orienta o usuário sobre como interagir com o
+                Combobox.
               </span>
             </div>
           </div>
@@ -215,12 +203,11 @@ export default function ComboboxPage() {
             <div className={styles.configBody}>
               <span className={`type-body-sm ${styles.configName}`}>Pré-preenchido</span>
               <span className={`type-caption-sm ${styles.configDesc}`}>
-                Campo inicializado com chips já adicionados. Útil quando valores
-                padrão ou sugeridos devem estar presentes desde o início.
+                Campo inicializado com chips já adicionados. Útil quando valores padrão ou sugeridos
+                devem estar presentes desde o início.
               </span>
             </div>
           </div>
-
         </div>
       </div>
 
