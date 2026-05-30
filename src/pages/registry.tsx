@@ -1,37 +1,39 @@
 import type { ComponentType } from 'react'
-import ColorsPage from './Colors/ColorsPage'
-import TypographyPage from './Typography/TypographyPage'
-import IconsPage from './Icons/IconsPage'
-import DimensionsEffectsPage from './DimensionsEffects/DimensionsEffectsPage'
-import EffectsPage from './Effects/EffectsPage'
-import ButtonPage from './Button/ButtonPage'
-import DangerButtonPage from './DangerButton/DangerButtonPage'
-import StaticCardPage from './StaticCard/StaticCardPage'
-import InteractiveCardPage from './InteractiveCard/InteractiveCardPage'
-import HyperlinksPage from './Hyperlinks/HyperlinksPage'
-import TabsPage from './Tabs/TabsPage'
-import PaginationPage from './Pagination/PaginationPage'
-import BreadcrumbPage from './Breadcrumb/BreadcrumbPage'
-import BadgePage from './Badge/BadgePage'
-import BadgePointerPage from './BadgePointer/BadgePointerPage'
-import BadgeCounterPage from './BadgeCounter/BadgeCounterPage'
-import InlineLoaderPage from './InlineLoader/InlineLoaderPage'
-import SkeletonPage from './Skeleton/SkeletonPage'
-import TextFieldPage from './TextField/TextFieldPage'
-import TextareaPage from './Textarea/TextareaPage'
-import SelectPage from './Select/SelectPage'
-import ComboboxPage from './Combobox/ComboboxPage'
-import CheckboxPage from './Checkbox/CheckboxPage'
-import RadioPage from './Radio/RadioPage'
-import SwitchPage from './Switch/SwitchPage'
-import ChipsPage from './Chips/ChipsPage'
-import DatePickerPage from './DatePicker/DatePickerPage'
-import CollapsePage from './Collapse/CollapsePage'
-import AccordionPage from './Accordion/AccordionPage'
-import InfoPanelPage from './InfoPanel/InfoPanelPage'
-import ToastPage from './Toast/ToastPage'
-import TooltipPage from './Tooltip/TooltipPage'
-import AvatarPage from './Avatar/AvatarPage'
+import {
+  ColorsPage,
+  TypographyPage,
+  IconsPage,
+  DimensionsEffectsPage,
+  EffectsPage,
+  ButtonPage,
+  DangerButtonPage,
+  StaticCardPage,
+  InteractiveCardPage,
+  HyperlinksPage,
+  TabsPage,
+  PaginationPage,
+  BreadcrumbPage,
+  BadgePage,
+  BadgePointerPage,
+  BadgeCounterPage,
+  InlineLoaderPage,
+  SkeletonPage,
+  TextFieldPage,
+  TextareaPage,
+  SelectPage,
+  ComboboxPage,
+  CheckboxPage,
+  RadioPage,
+  SwitchPage,
+  ChipsPage,
+  DatePickerPage,
+  CollapsePage,
+  AccordionPage,
+  InfoPanelPage,
+  ToastPage,
+  TooltipPage,
+  AvatarPage,
+} from './lazy'
 
 /**
  * Single source of truth for the page registry.
@@ -39,6 +41,9 @@ import AvatarPage from './Avatar/AvatarPage'
  * Both the router ({@link ../App.tsx}) and the navigation
  * ({@link ../components/Sidebar/Sidebar.tsx}) derive from this list — adding a
  * page means adding one entry here, nothing else.
+ *
+ * Lazy components are declared in {@link ./lazy.ts} to satisfy the
+ * react-refresh/only-export-components lint rule.
  *
  * Order within the array is the order rendered in the sidebar.
  */
@@ -77,52 +82,52 @@ export interface PageDef {
 
 export const PAGES: PageDef[] = [
   // ── Foundation ──
-  { path: '/colors', label: 'Colors', icon: 'palette', category: 'Foundation', component: ColorsPage },
-  { path: '/typography', label: 'Typography', icon: 'format_size', category: 'Foundation', component: TypographyPage },
-  { path: '/icons', label: 'Iconography', icon: 'grid_view', category: 'Foundation', component: IconsPage },
-  { path: '/dimensions', label: 'Dimensões', icon: 'straighten', category: 'Foundation', component: DimensionsEffectsPage },
-  { path: '/effects', label: 'Efeitos', icon: 'auto_awesome', category: 'Foundation', component: EffectsPage },
+  { path: '/colors',      label: 'Colors',      icon: 'palette',      category: 'Foundation', component: ColorsPage },
+  { path: '/typography',  label: 'Typography',  icon: 'format_size',  category: 'Foundation', component: TypographyPage },
+  { path: '/icons',       label: 'Iconography', icon: 'grid_view',    category: 'Foundation', component: IconsPage },
+  { path: '/dimensions',  label: 'Dimensões',   icon: 'straighten',   category: 'Foundation', component: DimensionsEffectsPage },
+  { path: '/effects',     label: 'Efeitos',     icon: 'auto_awesome', category: 'Foundation', component: EffectsPage },
 
   // ── Actions ──
-  { path: '/button', label: 'Button', icon: 'smart_button', category: 'Actions', component: ButtonPage },
-  { path: '/danger-button', label: 'Button · Danger', icon: 'warning', category: 'Actions', component: DangerButtonPage },
+  { path: '/button',        label: 'Button',          icon: 'smart_button', category: 'Actions', component: ButtonPage },
+  { path: '/danger-button', label: 'Button · Danger', icon: 'warning',      category: 'Actions', component: DangerButtonPage },
 
   // ── Structures ──
-  { path: '/static-card', label: 'Static Cards', icon: 'crop_square', category: 'Structures', component: StaticCardPage },
-  { path: '/interactive-card', label: 'Interactive Cards', icon: 'touch_app', category: 'Structures', component: InteractiveCardPage },
+  { path: '/static-card',      label: 'Static Cards',      icon: 'crop_square', category: 'Structures', component: StaticCardPage },
+  { path: '/interactive-card', label: 'Interactive Cards', icon: 'touch_app',   category: 'Structures', component: InteractiveCardPage },
 
   // ── Navigations ──
-  { path: '/hyperlinks', label: 'Hyperlinks', icon: 'link', category: 'Navigations', component: HyperlinksPage },
-  { path: '/tabs', label: 'Tabs', icon: 'tab', category: 'Navigations', component: TabsPage },
-  { path: '/pagination', label: 'Pagination', icon: 'more_horiz', category: 'Navigations', component: PaginationPage },
-  { path: '/breadcrumb', label: 'Breadcrumb', icon: 'route', category: 'Navigations', component: BreadcrumbPage },
-  { path: '/summary-stepper', label: 'Summary Stepper', icon: 'checklist', category: 'Navigations', disabled: true, badge: 'Em breve' },
+  { path: '/hyperlinks',      label: 'Hyperlinks',      icon: 'link',       category: 'Navigations', component: HyperlinksPage },
+  { path: '/tabs',            label: 'Tabs',            icon: 'tab',        category: 'Navigations', component: TabsPage },
+  { path: '/pagination',      label: 'Pagination',      icon: 'more_horiz', category: 'Navigations', component: PaginationPage },
+  { path: '/breadcrumb',      label: 'Breadcrumb',      icon: 'route',      category: 'Navigations', component: BreadcrumbPage },
+  { path: '/summary-stepper', label: 'Summary Stepper', icon: 'checklist',  category: 'Navigations', disabled: true, badge: 'Em breve' },
 
   // ── Indicators ──
-  { path: '/badge', label: 'Badge Status', icon: 'label', category: 'Indicators', component: BadgePage },
+  { path: '/badge',         label: 'Badge Status',  icon: 'label',               category: 'Indicators', component: BadgePage },
   { path: '/badge-pointer', label: 'Badge Pointer', icon: 'fiber_manual_record', category: 'Indicators', component: BadgePointerPage },
-  { path: '/badge-counter', label: 'Badge Counter', icon: 'badge', category: 'Indicators', component: BadgeCounterPage },
-  { path: '/inline-loader', label: 'Inline Loader', icon: 'motion_blur', category: 'Indicators', component: InlineLoaderPage },
-  { path: '/skeleton', label: 'Skeleton', icon: 'hide_image', category: 'Indicators', component: SkeletonPage },
+  { path: '/badge-counter', label: 'Badge Counter', icon: 'badge',               category: 'Indicators', component: BadgeCounterPage },
+  { path: '/inline-loader', label: 'Inline Loader', icon: 'motion_blur',         category: 'Indicators', component: InlineLoaderPage },
+  { path: '/skeleton',      label: 'Skeleton',      icon: 'hide_image',          category: 'Indicators', component: SkeletonPage },
 
   // ── Inputs ──
-  { path: '/text-field', label: 'Text Field', icon: 'text_fields', category: 'Inputs', component: TextFieldPage },
-  { path: '/textarea', label: 'Textarea', icon: 'subject', category: 'Inputs', component: TextareaPage },
-  { path: '/select', label: 'Select', icon: 'arrow_drop_down_circle', category: 'Inputs', component: SelectPage },
-  { path: '/combobox', label: 'Combobox', icon: 'search_check', category: 'Inputs', component: ComboboxPage },
-  { path: '/checkbox', label: 'Checkbox', icon: 'check_box', category: 'Inputs', component: CheckboxPage },
-  { path: '/radio', label: 'Radio Button', icon: 'radio_button_checked', category: 'Inputs', component: RadioPage },
-  { path: '/switch', label: 'Switch', icon: 'toggle_on', category: 'Inputs', component: SwitchPage },
-  { path: '/chips', label: 'Chips', icon: 'sell', category: 'Inputs', component: ChipsPage },
-  { path: '/date-picker', label: 'Date Picker', icon: 'edit_calendar', category: 'Inputs', component: DatePickerPage },
+  { path: '/text-field',  label: 'Text Field',   icon: 'text_fields',            category: 'Inputs', component: TextFieldPage },
+  { path: '/textarea',    label: 'Textarea',     icon: 'subject',                category: 'Inputs', component: TextareaPage },
+  { path: '/select',      label: 'Select',       icon: 'arrow_drop_down_circle', category: 'Inputs', component: SelectPage },
+  { path: '/combobox',    label: 'Combobox',     icon: 'search_check',           category: 'Inputs', component: ComboboxPage },
+  { path: '/checkbox',    label: 'Checkbox',     icon: 'check_box',              category: 'Inputs', component: CheckboxPage },
+  { path: '/radio',       label: 'Radio Button', icon: 'radio_button_checked',   category: 'Inputs', component: RadioPage },
+  { path: '/switch',      label: 'Switch',       icon: 'toggle_on',              category: 'Inputs', component: SwitchPage },
+  { path: '/chips',       label: 'Chips',        icon: 'sell',                   category: 'Inputs', component: ChipsPage },
+  { path: '/date-picker', label: 'Date Picker',  icon: 'edit_calendar',          category: 'Inputs', component: DatePickerPage },
 
   // ── Utilities ──
-  { path: '/collapse', label: 'Collapse', icon: 'unfold_more', category: 'Utilities', component: CollapsePage },
-  { path: '/accordion', label: 'Accordion', icon: 'expand_all', category: 'Utilities', component: AccordionPage },
+  { path: '/collapse',  label: 'Collapse',  icon: 'unfold_more', category: 'Utilities', component: CollapsePage },
+  { path: '/accordion', label: 'Accordion', icon: 'expand_all',  category: 'Utilities', component: AccordionPage },
 
   // ── Alerts ──
-  { path: '/info-panel', label: 'Info Panel', icon: 'info', category: 'Alerts', component: InfoPanelPage },
-  { path: '/toast', label: 'Toast', icon: 'notification_important', category: 'Alerts', component: ToastPage },
+  { path: '/info-panel', label: 'Info Panel', icon: 'info',                   category: 'Alerts', component: InfoPanelPage },
+  { path: '/toast',      label: 'Toast',      icon: 'notification_important', category: 'Alerts', component: ToastPage },
 
   // ── Overlays ──
   { path: '/tooltip', label: 'Tooltip', icon: 'tooltip', category: 'Overlays', component: TooltipPage },

@@ -10,3 +10,7 @@
   padding: var(--spacing-700) var(--spacing-1000) var(--spacing-1200);
   min-height: 100vh;
 }
+
+.pageFallback {
+  min-height: 100vh;
+}
