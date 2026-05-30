@@ -1,36 +1,29 @@
+import { GuidelineDef, VariantDef } from './types'
+
 export type ChipInputStyle = 'default' | 'person' | 'icon'
 
-export type ChipInputStyleDef = {
-  id: ChipInputStyle
-  label: string
-  description: string
-}
-
-export type ChipInputGuidelineDef = {
-  title: string
-  body: string
-  rule: string
-}
-
-export const CHIP_INPUT_STYLES: ChipInputStyleDef[] = [
+export const CHIP_INPUT_STYLES: VariantDef<ChipInputStyle>[] = [
   {
     id: 'default',
     label: 'Default',
-    description: 'Representa um valor de texto inserido, como uma tag ou palavra-chave. Label à esquerda e ícone de remoção à direita.',
+    description:
+      'Representa um valor de texto inserido, como uma tag ou palavra-chave. Label à esquerda e ícone de remoção à direita.',
   },
   {
     id: 'person',
     label: 'Person',
-    description: 'Representa um contato ou pessoa selecionada. O avatar à esquerda permite identificação visual rápida do destinatário.',
+    description:
+      'Representa um contato ou pessoa selecionada. O avatar à esquerda permite identificação visual rápida do destinatário.',
   },
   {
     id: 'icon',
     label: 'Icon',
-    description: 'Representa uma entidade tipada como um arquivo, localização ou categoria. O ícone à esquerda comunica o tipo do dado inserido.',
+    description:
+      'Representa uma entidade tipada como um arquivo, localização ou categoria. O ícone à esquerda comunica o tipo do dado inserido.',
   },
 ]
 
-export const CHIP_INPUT_GUIDELINES: ChipInputGuidelineDef[] = [
+export const CHIP_INPUT_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Chips como tokens de entrada',
     body: 'Cada chip representa um valor discreto e já confirmado pelo usuário — como um e-mail, tag ou filtro digitado. Após a inserção, o foco retorna ao campo de entrada para permitir a adição de mais valores.',

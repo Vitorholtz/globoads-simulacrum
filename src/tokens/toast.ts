@@ -13,7 +13,8 @@ export const TOAST_VARIANTS: ToastVariantDef[] = [
   {
     id: 'neutral',
     label: 'Neutral',
-    description: 'Para mensagens informativas gerais sem urgência. Confirmações de ações rotineiras ou notificações contextuais que não exigem ação imediata.',
+    description:
+      'Para mensagens informativas gerais sem urgência. Confirmações de ações rotineiras ou notificações contextuais que não exigem ação imediata.',
     icon: 'info',
     exampleTitle: 'Campanha salva',
     exampleDescription: 'Todas as alterações foram salvas. O rascunho está disponível para edição.',
@@ -21,7 +22,8 @@ export const TOAST_VARIANTS: ToastVariantDef[] = [
   {
     id: 'success',
     label: 'Success',
-    description: 'Confirma que uma ação foi concluída com êxito. O usuário deve sentir que seu objetivo foi alcançado sem precisar verificar o resultado.',
+    description:
+      'Confirma que uma ação foi concluída com êxito. O usuário deve sentir que seu objetivo foi alcançado sem precisar verificar o resultado.',
     icon: 'check_circle',
     exampleTitle: 'Publicada com sucesso',
     exampleDescription: 'A campanha está ativa e já está sendo veiculada.',
@@ -29,7 +31,8 @@ export const TOAST_VARIANTS: ToastVariantDef[] = [
   {
     id: 'warning',
     label: 'Warning',
-    description: 'Indica uma situação que requer atenção mas não impede a continuação do fluxo. O usuário deve ser alertado sem alarmismo.',
+    description:
+      'Indica uma situação que requer atenção mas não impede a continuação do fluxo. O usuário deve ser alertado sem alarmismo.',
     icon: 'warning',
     exampleTitle: 'Orçamento quase esgotado',
     exampleDescription: 'Você atingiu 90% do limite diário desta campanha.',
@@ -37,20 +40,17 @@ export const TOAST_VARIANTS: ToastVariantDef[] = [
   {
     id: 'critical',
     label: 'Critical',
-    description: 'Sinaliza um erro ou falha na operação solicitada. Deve comunicar o problema de forma clara para que o usuário saiba o que aconteceu.',
+    description:
+      'Sinaliza um erro ou falha na operação solicitada. Deve comunicar o problema de forma clara para que o usuário saiba o que aconteceu.',
     icon: 'error',
     exampleTitle: 'Falha ao publicar',
     exampleDescription: 'Não foi possível publicar a campanha. Tente novamente.',
   },
 ]
 
-export interface ToastGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
+import { GuidelineDef } from './types'
 
-export const TOAST_GUIDELINES: ToastGuidelineDef[] = [
+export const TOAST_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Mensagens curtas e diretas',
     body: 'O Toast é visto por apenas alguns segundos. O título deve comunicar a essência em até cinco palavras e a descrição deve complementar sem ser redundante. O usuário não deve precisar ler duas vezes para entender.',

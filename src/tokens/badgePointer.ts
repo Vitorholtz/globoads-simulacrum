@@ -1,10 +1,6 @@
-export interface BadgePointerGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
+import { GuidelineDef } from './types'
 
-export const BADGE_POINTER_GUIDELINES: BadgePointerGuidelineDef[] = [
+export const BADGE_POINTER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Sinaliza mudança, não quantidade',
     body: 'O Badge Pointer indica apenas a presença de algo novo — uma atualização, notificação ou acréscimo. Ele não exibe contagem. Para exibir um número, use o Badge Counter.',

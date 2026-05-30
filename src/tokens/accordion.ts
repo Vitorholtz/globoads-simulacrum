@@ -1,58 +1,48 @@
-export interface AccordionVariantDef {
-  id: string
-  label: string
-  description: string
-}
+import { GuidelineDef, StateDef, VariantDef } from './types'
 
-export const ACCORDION_VARIANTS: AccordionVariantDef[] = [
+export const ACCORDION_VARIANTS: VariantDef<string>[] = [
   {
     id: 'with-icon',
     label: 'Com Ícone',
-    description: 'Ícone à esquerda do label reforça visualmente a categoria ou natureza da seção, facilitando o escaneamento quando há muitos itens.',
+    description:
+      'Ícone à esquerda do label reforça visualmente a categoria ou natureza da seção, facilitando o escaneamento quando há muitos itens.',
   },
   {
     id: 'with-detail',
     label: 'Com Detalhe',
-    description: 'Texto secundário à direita do label exibe informações contextuais compactas — como um valor, data ou status — sem expandir a seção.',
+    description:
+      'Texto secundário à direita do label exibe informações contextuais compactas — como um valor, data ou status — sem expandir a seção.',
   },
   {
     id: 'with-badge',
     label: 'Com Badge',
-    description: 'Badge sinaliza o estado ou categoria da seção com cor semântica (success, warning, critical), útil para dashboards e listas de revisão.',
+    description:
+      'Badge sinaliza o estado ou categoria da seção com cor semântica (success, warning, critical), útil para dashboards e listas de revisão.',
   },
   {
     id: 'with-all',
     label: 'Completo',
-    description: 'Combinação de ícone, detalhe e badge para seções que concentram múltiplas informações no cabeçalho, como linhas de campanha ou itens de configuração.',
+    description:
+      'Combinação de ícone, detalhe e badge para seções que concentram múltiplas informações no cabeçalho, como linhas de campanha ou itens de configuração.',
   },
 ]
 
-export interface AccordionStateDef {
-  id: string
-  label: string
-  description: string
-}
-
-export const ACCORDION_STATES: AccordionStateDef[] = [
+export const ACCORDION_STATES: StateDef<string>[] = [
   {
     id: 'collapsed',
     label: 'Recolhido',
-    description: 'O item exibe apenas o cabeçalho com ícone de seta para baixo. O conteúdo fica oculto.',
+    description:
+      'O item exibe apenas o cabeçalho com ícone de seta para baixo. O conteúdo fica oculto.',
   },
   {
     id: 'expanded',
     label: 'Expandido',
-    description: 'O item abre revelando o conteúdo. A seta rotaciona para cima indicando que a seção pode ser fechada.',
+    description:
+      'O item abre revelando o conteúdo. A seta rotaciona para cima indicando que a seção pode ser fechada.',
   },
 ]
 
-export interface AccordionGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const ACCORDION_GUIDELINES: AccordionGuidelineDef[] = [
+export const ACCORDION_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Uma seção aberta por vez',
     body: 'O comportamento padrão do Accordion é manter apenas uma seção expandida por vez. Ao abrir uma nova seção, a anterior é fechada automaticamente, reduzindo o scroll e mantendo o contexto da interface compacto.',

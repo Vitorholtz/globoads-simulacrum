@@ -1,11 +1,7 @@
+import { GuidelineDef, BehaviorDef } from './types'
+
 export type ChipBehavior = 'unchecked' | 'checked'
 export type ChipState = 'normal' | 'hover' | 'focus' | 'active' | 'dragged' | 'disabled'
-
-export type ChipBehaviorDef = {
-  id: ChipBehavior
-  label: string
-  description: string
-}
 
 export type ChipStateDef = {
   id: ChipState
@@ -14,13 +10,7 @@ export type ChipStateDef = {
   force?: 'hover' | 'focus' | 'active' | 'dragged' | 'disabled'
 }
 
-export type ChipGuidelineDef = {
-  title: string
-  body: string
-  rule: string
-}
-
-export const CHIP_BEHAVIORS: ChipBehaviorDef[] = [
+export const CHIP_BEHAVIORS: BehaviorDef<ChipBehavior>[] = [
   {
     id: 'unchecked',
     label: 'Unchecked',
@@ -29,20 +19,36 @@ export const CHIP_BEHAVIORS: ChipBehaviorDef[] = [
   {
     id: 'checked',
     label: 'Checked',
-    description: 'Sugestão selecionada — destaque em azul indica que o filtro ou resposta está ativo.',
+    description:
+      'Sugestão selecionada — destaque em azul indica que o filtro ou resposta está ativo.',
   },
 ]
 
 export const CHIP_STATES: ChipStateDef[] = [
-  { id: 'normal',   label: 'Normal',   description: 'Estado padrão em repouso.',                             force: undefined },
-  { id: 'hover',    label: 'Hover',    description: 'Cursor sobre o chip.',                                   force: 'hover' },
-  { id: 'focus',    label: 'Focus',    description: 'Foco via teclado — anel de acessibilidade.',             force: 'focus' },
-  { id: 'active',   label: 'Active',   description: 'Chip pressionado.',                                      force: 'active' },
-  { id: 'dragged',  label: 'Dragged',  description: 'Chip em arrastar-e-soltar — sombra indica elevação.',    force: 'dragged' },
-  { id: 'disabled', label: 'Disabled', description: 'Indisponível — opacidade 48%.',                          force: 'disabled' },
+  { id: 'normal', label: 'Normal', description: 'Estado padrão em repouso.', force: undefined },
+  { id: 'hover', label: 'Hover', description: 'Cursor sobre o chip.', force: 'hover' },
+  {
+    id: 'focus',
+    label: 'Focus',
+    description: 'Foco via teclado — anel de acessibilidade.',
+    force: 'focus',
+  },
+  { id: 'active', label: 'Active', description: 'Chip pressionado.', force: 'active' },
+  {
+    id: 'dragged',
+    label: 'Dragged',
+    description: 'Chip em arrastar-e-soltar — sombra indica elevação.',
+    force: 'dragged',
+  },
+  {
+    id: 'disabled',
+    label: 'Disabled',
+    description: 'Indisponível — opacidade 48%.',
+    force: 'disabled',
+  },
 ]
 
-export const CHIP_GUIDELINES: ChipGuidelineDef[] = [
+export const CHIP_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Sugestões dinâmicas',
     body: 'Os chips de sugestão devem ser gerados dinamicamente com base no contexto da entrada do usuário. Evite listas estáticas — o valor está na personalização em tempo real das opções apresentadas.',

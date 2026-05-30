@@ -11,25 +11,29 @@ export const INFO_PANEL_VARIANTS: InfoPanelVariantDef[] = [
   {
     id: 'neutral',
     label: 'Neutral',
-    description: 'Destaca informações gerais ou fornece contexto adicional sem urgência. Use para dicas úteis ou avisos informativos que não exigem ação imediata.',
+    description:
+      'Destaca informações gerais ou fornece contexto adicional sem urgência. Use para dicas úteis ou avisos informativos que não exigem ação imediata.',
     icon: 'info',
   },
   {
     id: 'success',
     label: 'Success',
-    description: 'Confirma que uma ação foi concluída com êxito ou que um estado positivo foi atingido. Reforça ao usuário que tudo está correto.',
+    description:
+      'Confirma que uma ação foi concluída com êxito ou que um estado positivo foi atingido. Reforça ao usuário que tudo está correto.',
     icon: 'check_circle',
   },
   {
     id: 'warning',
     label: 'Warning',
-    description: 'Alerta sobre uma situação que merece atenção mas não impede o fluxo. O usuário deve estar ciente antes de prosseguir.',
+    description:
+      'Alerta sobre uma situação que merece atenção mas não impede o fluxo. O usuário deve estar ciente antes de prosseguir.',
     icon: 'warning',
   },
   {
     id: 'critical',
     label: 'Critical',
-    description: 'Indica um erro grave ou uma condição bloqueante que exige ação imediata. O fluxo não deve continuar até que a situação seja resolvida.',
+    description:
+      'Indica um erro grave ou uma condição bloqueante que exige ação imediata. O fluxo não deve continuar até que a situação seja resolvida.',
     icon: 'error',
   },
 ]
@@ -46,35 +50,36 @@ export interface InfoPanelContentDef {
 export const INFO_PANEL_CONTENT_VARIANTS: InfoPanelContentDef[] = [
   {
     label: 'Título e descrição',
-    description: 'Configuração padrão e recomendada. O título comunica a essência em uma linha e a descrição fornece o contexto necessário.',
+    description:
+      'Configuração padrão e recomendada. O título comunica a essência em uma linha e a descrição fornece o contexto necessário.',
     showTitle: true,
     showDescription: true,
     exampleTitle: 'Verifique suas configurações',
-    exampleDescription: 'Algumas configurações da campanha precisam ser revisadas antes da publicação.',
+    exampleDescription:
+      'Algumas configurações da campanha precisam ser revisadas antes da publicação.',
   },
   {
     label: 'Apenas título',
-    description: 'Use quando a mensagem é simples o suficiente para ser comunicada em uma única linha. O título deve ser autoexplicativo.',
+    description:
+      'Use quando a mensagem é simples o suficiente para ser comunicada em uma única linha. O título deve ser autoexplicativo.',
     showTitle: true,
     showDescription: false,
     exampleTitle: 'Seus dados foram salvos automaticamente.',
   },
   {
     label: 'Apenas descrição',
-    description: 'Adequado para mensagens mais longas e contextuais que não precisam de um cabeçalho. Mais fluido, menos hierárquico.',
+    description:
+      'Adequado para mensagens mais longas e contextuais que não precisam de um cabeçalho. Mais fluido, menos hierárquico.',
     showTitle: false,
     showDescription: true,
-    exampleDescription: 'Esta campanha está ativa e pode ser editada a qualquer momento. As alterações entram em vigor imediatamente após salvar.',
+    exampleDescription:
+      'Esta campanha está ativa e pode ser editada a qualquer momento. As alterações entram em vigor imediatamente após salvar.',
   },
 ]
 
-export interface InfoPanelGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
+import { GuidelineDef } from './types'
 
-export const INFO_PANEL_GUIDELINES: InfoPanelGuidelineDef[] = [
+export const INFO_PANEL_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Permanência intencional',
     body: 'O Info Panel permanece visível na tela enquanto a condição que o originou persistir. Diferente de toasts ou snackbars, ele não desaparece automaticamente — está "impresso" na interface.',

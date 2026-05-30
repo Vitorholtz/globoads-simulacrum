@@ -1,8 +1,4 @@
-export interface BreadcrumbGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
+import { GuidelineDef } from './types'
 
 export interface BreadcrumbDepthDef {
   label: string
@@ -33,7 +29,7 @@ export const BREADCRUMB_DEPTHS: BreadcrumbDepthDef[] = [
   },
 ]
 
-export const BREADCRUMB_GUIDELINES: BreadcrumbGuidelineDef[] = [
+export const BREADCRUMB_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Reflete sempre a hierarquia real',
     body: 'Cada item do breadcrumb deve corresponder a um nível real na arquitetura do produto. Não pule níveis nem invente categorias inexistentes — o usuário deve poder reproduzir o caminho clicando nos itens.',

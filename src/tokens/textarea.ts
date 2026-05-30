@@ -1,3 +1,5 @@
+import { GuidelineDef, StateDef } from './types'
+
 export type TextareaSize = 'sm' | 'md' | 'lg'
 
 export interface TextareaSizeDef {
@@ -42,13 +44,7 @@ export const TEXTAREA_SIZES: TextareaSizeDef[] = [
   },
 ]
 
-export interface TextareaStateDef {
-  id: string
-  label: string
-  description: string
-}
-
-export const TEXTAREA_STATES: TextareaStateDef[] = [
+export const TEXTAREA_STATES: StateDef<string>[] = [
   {
     id: 'normal',
     label: 'Normal',
@@ -62,12 +58,14 @@ export const TEXTAREA_STATES: TextareaStateDef[] = [
   {
     id: 'focus',
     label: 'Focus',
-    description: 'Campo ativo e pronto para receber entrada. Borda azul de 2px e botão de limpar disponível.',
+    description:
+      'Campo ativo e pronto para receber entrada. Borda azul de 2px e botão de limpar disponível.',
   },
   {
     id: 'error',
     label: 'Error',
-    description: 'Valor inválido. Fundo e borda críticos com ícone de erro no canto superior direito.',
+    description:
+      'Valor inválido. Fundo e borda críticos com ícone de erro no canto superior direito.',
   },
   {
     id: 'disabled',
@@ -76,13 +74,7 @@ export const TEXTAREA_STATES: TextareaStateDef[] = [
   },
 ]
 
-export interface TextareaGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const TEXTAREA_GUIDELINES: TextareaGuidelineDef[] = [
+export const TEXTAREA_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para entradas longas',
     body: 'O Textarea é indicado quando o usuário precisa inserir textos extensos, como comentários, descrições ou observações. Para textos curtos de uma linha, prefira o TextField.',

@@ -12,60 +12,57 @@ export const TOOLTIP_POSITIONS: TooltipPositionDef[] = [
   {
     id: 'up',
     label: 'Up',
-    description: 'Tooltip aparece acima do elemento acionador. Use quando há espaço suficiente no topo e o conteúdo abaixo não deve ser ocultado.',
+    description:
+      'Tooltip aparece acima do elemento acionador. Use quando há espaço suficiente no topo e o conteúdo abaixo não deve ser ocultado.',
     icon: 'arrow_upward',
   },
   {
     id: 'right',
     label: 'Right',
-    description: 'Tooltip aparece à direita do elemento. Ideal para ícones em barras laterais ou listas verticais.',
+    description:
+      'Tooltip aparece à direita do elemento. Ideal para ícones em barras laterais ou listas verticais.',
     icon: 'arrow_forward',
   },
   {
     id: 'bottom',
     label: 'Bottom',
-    description: 'Tooltip aparece abaixo do elemento. Útil quando o espaço acima é limitado ou quando o elemento está próximo ao topo da tela.',
+    description:
+      'Tooltip aparece abaixo do elemento. Útil quando o espaço acima é limitado ou quando o elemento está próximo ao topo da tela.',
     icon: 'arrow_downward',
   },
   {
     id: 'left',
     label: 'Left',
-    description: 'Tooltip aparece à esquerda do elemento. Use quando a interface está posicionada à direita e há espaço à esquerda.',
+    description:
+      'Tooltip aparece à esquerda do elemento. Use quando a interface está posicionada à direita e há espaço à esquerda.',
     icon: 'arrow_back',
   },
 ]
 
-export interface TooltipAlignDef {
-  id: TooltipAlign
-  label: string
-  description: string
-}
+import { GuidelineDef, VariantDef } from './types'
 
-export const TOOLTIP_ALIGNMENTS: TooltipAlignDef[] = [
+export const TOOLTIP_ALIGNMENTS: VariantDef<TooltipAlign>[] = [
   {
     id: 'start',
     label: 'Start',
-    description: 'Seta posicionada no início do tooltip — esquerda (posições cima/baixo) ou topo (posições esquerda/direita).',
+    description:
+      'Seta posicionada no início do tooltip — esquerda (posições cima/baixo) ou topo (posições esquerda/direita).',
   },
   {
     id: 'middle',
     label: 'Middle',
-    description: 'Seta centralizada no tooltip. Usar quando o acionador está centralizado em relação ao conteúdo ao redor.',
+    description:
+      'Seta centralizada no tooltip. Usar quando o acionador está centralizado em relação ao conteúdo ao redor.',
   },
   {
     id: 'end',
     label: 'End',
-    description: 'Seta posicionada no final do tooltip — direita (posições cima/baixo) ou base (posições esquerda/direita).',
+    description:
+      'Seta posicionada no final do tooltip — direita (posições cima/baixo) ou base (posições esquerda/direita).',
   },
 ]
 
-export interface TooltipGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const TOOLTIP_GUIDELINES: TooltipGuidelineDef[] = [
+export const TOOLTIP_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Texto conciso',
     body: 'O conteúdo do Tooltip deve ser curto — no máximo uma frase com até 10 palavras. Tooltips não são o lugar adequado para instruções longas ou conteúdo formatado.',

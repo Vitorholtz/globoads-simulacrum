@@ -10,11 +10,7 @@ export type InlineLoaderColor =
   | 'critical'
   | 'inverse'
 
-export interface InlineLoaderTypeDef {
-  id: InlineLoaderType
-  label: string
-  description: string
-}
+import { GuidelineDef, VariantDef } from './types'
 
 export interface InlineLoaderSizeDef {
   id: InlineLoaderSize
@@ -28,32 +24,30 @@ export interface InlineLoaderColorDef {
   cssVar: string
 }
 
-export interface InlineLoaderGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const INLINE_LOADER_TYPES: InlineLoaderTypeDef[] = [
+export const INLINE_LOADER_TYPES: VariantDef<InlineLoaderType>[] = [
   {
     id: 'spinner',
     label: 'Spinner',
-    description: 'Arco circular em rotação contínua. Uso mais comum — comunica carregamento genérico sem duração estimada. Ideal para chamadas de API, submissões de formulário e transições de tela.',
+    description:
+      'Arco circular em rotação contínua. Uso mais comum — comunica carregamento genérico sem duração estimada. Ideal para chamadas de API, submissões de formulário e transições de tela.',
   },
   {
     id: 'rippler',
     label: 'Rippler',
-    description: 'Ponto central com ondas concêntricas se expandindo. Comunica conectividade, sincronização em tempo real ou aguardo de resposta — como na entrada de uma sessão ao vivo.',
+    description:
+      'Ponto central com ondas concêntricas se expandindo. Comunica conectividade, sincronização em tempo real ou aguardo de resposta — como na entrada de uma sessão ao vivo.',
   },
   {
     id: 'sparkle',
     label: 'Sparkle',
-    description: 'Estrela de quatro pontas em rotação suave. Associado a ações de inteligência artificial ou geração de conteúdo. Use para indicar processamento de IA ou sugestões automáticas.',
+    description:
+      'Estrela de quatro pontas em rotação suave. Associado a ações de inteligência artificial ou geração de conteúdo. Use para indicar processamento de IA ou sugestões automáticas.',
   },
   {
     id: 'ellipsis',
     label: 'Ellipsis',
-    description: 'Texto seguido de três pontos que aparecem sequencialmente. Ideal para indicadores textuais de estado — como "Digitando…", "Salvando…" ou "Enviando…" — em contextos com espaço para texto.',
+    description:
+      'Texto seguido de três pontos que aparecem sequencialmente. Ideal para indicadores textuais de estado — como "Digitando…", "Salvando…" ou "Enviando…" — em contextos com espaço para texto.',
   },
 ]
 
@@ -64,17 +58,17 @@ export const INLINE_LOADER_SIZES: InlineLoaderSizeDef[] = [
 ]
 
 export const INLINE_LOADER_COLORS: InlineLoaderColorDef[] = [
-  { id: 'primary',   label: 'Primary',   cssVar: 'var(--color-fill-primary)' },
+  { id: 'primary', label: 'Primary', cssVar: 'var(--color-fill-primary)' },
   { id: 'secondary', label: 'Secondary', cssVar: 'var(--color-fill-secondary)' },
-  { id: 'tertiary',  label: 'Tertiary',  cssVar: 'var(--color-fill-tertiary)' },
-  { id: 'accent',    label: 'Accent',    cssVar: 'var(--color-fill-accent)' },
-  { id: 'success',   label: 'Success',   cssVar: 'var(--color-fill-success)' },
-  { id: 'warning',   label: 'Warning',   cssVar: 'var(--color-fill-warning)' },
-  { id: 'critical',  label: 'Critical',  cssVar: 'var(--color-fill-critical)' },
-  { id: 'inverse',   label: 'Inverse',   cssVar: 'var(--color-fill-inverse)' },
+  { id: 'tertiary', label: 'Tertiary', cssVar: 'var(--color-fill-tertiary)' },
+  { id: 'accent', label: 'Accent', cssVar: 'var(--color-fill-accent)' },
+  { id: 'success', label: 'Success', cssVar: 'var(--color-fill-success)' },
+  { id: 'warning', label: 'Warning', cssVar: 'var(--color-fill-warning)' },
+  { id: 'critical', label: 'Critical', cssVar: 'var(--color-fill-critical)' },
+  { id: 'inverse', label: 'Inverse', cssVar: 'var(--color-fill-inverse)' },
 ]
 
-export const INLINE_LOADER_GUIDELINES: InlineLoaderGuidelineDef[] = [
+export const INLINE_LOADER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Não bloqueie a interface',
     body: 'O Inline Loader é para carregamentos pontuais dentro de componentes. Para carregamentos que impedem toda a interação da página, use um Page Loader com overlay.',

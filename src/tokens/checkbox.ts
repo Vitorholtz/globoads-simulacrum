@@ -1,33 +1,10 @@
+import { GuidelineDef, BehaviorDef, StateDef, VariantDef } from './types'
+
 export type CheckboxBehavior = 'unchecked' | 'partial' | 'checked'
 export type CheckboxType = 'default' | 'inverter'
 export type CheckboxState = 'normal' | 'hover' | 'focus' | 'active' | 'disabled'
 
-export type CheckboxBehaviorDef = {
-  id: CheckboxBehavior
-  label: string
-  icon?: string
-  description: string
-}
-
-export type CheckboxStateDef = {
-  id: Exclude<CheckboxState, 'normal'>
-  label: string
-  description: string
-}
-
-export type CheckboxTypeDef = {
-  id: CheckboxType
-  label: string
-  description: string
-}
-
-export type CheckboxGuidelineDef = {
-  title: string
-  body: string
-  rule: string
-}
-
-export const CHECKBOX_BEHAVIORS: CheckboxBehaviorDef[] = [
+export const CHECKBOX_BEHAVIORS: BehaviorDef<CheckboxBehavior>[] = [
   {
     id: 'unchecked',
     label: 'Unchecked',
@@ -37,7 +14,8 @@ export const CHECKBOX_BEHAVIORS: CheckboxBehaviorDef[] = [
     id: 'partial',
     label: 'Partial',
     icon: 'remove',
-    description: 'Seleção parcial de itens em uma lista — estado indeterminado. Indica que alguns, mas não todos, os filhos estão selecionados.',
+    description:
+      'Seleção parcial de itens em uma lista — estado indeterminado. Indica que alguns, mas não todos, os filhos estão selecionados.',
   },
   {
     id: 'checked',
@@ -47,14 +25,14 @@ export const CHECKBOX_BEHAVIORS: CheckboxBehaviorDef[] = [
   },
 ]
 
-export const CHECKBOX_STATES: CheckboxStateDef[] = [
-  { id: 'hover',    label: 'Hover',    description: 'Cursor sobre o elemento.' },
-  { id: 'focus',    label: 'Focus',    description: 'Foco via teclado — anel de acessibilidade duplo.' },
-  { id: 'active',   label: 'Active',   description: 'Checkbox pressionado.' },
+export const CHECKBOX_STATES: StateDef<Exclude<CheckboxState, 'normal'>>[] = [
+  { id: 'hover', label: 'Hover', description: 'Cursor sobre o elemento.' },
+  { id: 'focus', label: 'Focus', description: 'Foco via teclado — anel de acessibilidade duplo.' },
+  { id: 'active', label: 'Active', description: 'Checkbox pressionado.' },
   { id: 'disabled', label: 'Disabled', description: 'Indisponível — opacidade 48%.' },
 ]
 
-export const CHECKBOX_TYPES: CheckboxTypeDef[] = [
+export const CHECKBOX_TYPES: VariantDef<CheckboxType>[] = [
   {
     id: 'default',
     label: 'Default',
@@ -63,11 +41,12 @@ export const CHECKBOX_TYPES: CheckboxTypeDef[] = [
   {
     id: 'inverter',
     label: 'Inverter',
-    description: 'Checkbox posicionado à direita do rótulo. Adequado para listas com alinhamento invertido ou menus laterais.',
+    description:
+      'Checkbox posicionado à direita do rótulo. Adequado para listas com alinhamento invertido ou menus laterais.',
   },
 ]
 
-export const CHECKBOX_GUIDELINES: CheckboxGuidelineDef[] = [
+export const CHECKBOX_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Seleção múltipla vs. toggle',
     body: 'Use checkbox para selecionar um ou mais itens de uma lista. Para ativar ou desativar uma única configuração de forma binária, prefira o componente Toggle Switch — semanticamente mais preciso para esse contexto.',
@@ -90,10 +69,14 @@ export const CHECKBOX_GUIDELINES: CheckboxGuidelineDef[] = [
   },
 ]
 
-export const MATRIX_STATES: { id: string; label: string; force: 'hover' | 'focus' | 'active' | 'disabled' | undefined }[] = [
-  { id: 'normal',   label: 'Normal',   force: undefined },
-  { id: 'hover',    label: 'Hover',    force: 'hover' },
-  { id: 'focus',    label: 'Focus',    force: 'focus' },
-  { id: 'active',   label: 'Active',   force: 'active' },
+export const MATRIX_STATES: {
+  id: string
+  label: string
+  force: 'hover' | 'focus' | 'active' | 'disabled' | undefined
+}[] = [
+  { id: 'normal', label: 'Normal', force: undefined },
+  { id: 'hover', label: 'Hover', force: 'hover' },
+  { id: 'focus', label: 'Focus', force: 'focus' },
+  { id: 'active', label: 'Active', force: 'active' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]

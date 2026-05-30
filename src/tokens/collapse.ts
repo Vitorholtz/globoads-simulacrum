@@ -1,3 +1,5 @@
+import { GuidelineDef, StateDef } from './types'
+
 export type CollapseSize = 'xs' | 'sm' | 'md' | 'lg'
 
 export interface CollapseSizeDef {
@@ -51,13 +53,7 @@ export const COLLAPSE_SIZES: CollapseSizeDef[] = [
   },
 ]
 
-export interface CollapseStateDef {
-  id: string
-  label: string
-  description: string
-}
-
-export const COLLAPSE_STATES: CollapseStateDef[] = [
+export const COLLAPSE_STATES: StateDef<string>[] = [
   {
     id: 'normal',
     label: 'Normal',
@@ -80,13 +76,7 @@ export const COLLAPSE_STATES: CollapseStateDef[] = [
   },
 ]
 
-export interface CollapseGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const COLLAPSE_GUIDELINES: CollapseGuidelineDef[] = [
+export const COLLAPSE_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para conteúdo complementar',
     body: 'O Collapse é ideal para ocultar informações secundárias que não precisam estar visíveis o tempo todo — como detalhes adicionais, textos explicativos longos ou seções opcionais de configuração de campanha.',

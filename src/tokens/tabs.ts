@@ -1,33 +1,19 @@
+import { GuidelineDef, VariantDef } from './types'
+
 export type TabPosition = 'top' | 'bottom' | 'left' | 'right'
 
-export interface TabPositionDef {
-  id: TabPosition
-  label: string
-  description: string
-}
-
-export interface TabContentVariantDef {
-  id: string
-  label: string
-  description: string
-}
-
-export interface TabsGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const TAB_POSITIONS: TabPositionDef[] = [
+export const TAB_POSITIONS: VariantDef<TabPosition>[] = [
   {
     id: 'top',
     label: 'Top',
-    description: 'Posição padrão. Indicador de aba ativa na borda inferior do item; barra separadora abaixo do conjunto.',
+    description:
+      'Posição padrão. Indicador de aba ativa na borda inferior do item; barra separadora abaixo do conjunto.',
   },
   {
     id: 'bottom',
     label: 'Bottom',
-    description: 'Tabs abaixo do conteúdo. Indicador na borda superior do item ativo; barra separadora acima do conjunto.',
+    description:
+      'Tabs abaixo do conteúdo. Indicador na borda superior do item ativo; barra separadora acima do conjunto.',
   },
   {
     id: 'left',
@@ -41,11 +27,12 @@ export const TAB_POSITIONS: TabPositionDef[] = [
   },
 ]
 
-export const TAB_CONTENT_VARIANTS: TabContentVariantDef[] = [
+export const TAB_CONTENT_VARIANTS: VariantDef<string>[] = [
   {
     id: 'text',
     label: 'Somente texto',
-    description: 'Forma mais simples. Use quando os rótulos são suficientemente claros e o espaço é limitado.',
+    description:
+      'Forma mais simples. Use quando os rótulos são suficientemente claros e o espaço é limitado.',
   },
   {
     id: 'icon',
@@ -59,7 +46,7 @@ export const TAB_CONTENT_VARIANTS: TabContentVariantDef[] = [
   },
 ]
 
-export const TABS_GUIDELINES: TabsGuidelineDef[] = [
+export const TABS_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use tabs para visualizações paralelas',
     body: 'Tabs são adequadas para conteúdos distintos que compartilham o mesmo contexto. Não use para fluxos sequenciais — prefira steppers nesses casos.',

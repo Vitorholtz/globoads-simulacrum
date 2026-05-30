@@ -1,46 +1,41 @@
+import { GuidelineDef, VariantDef } from './types'
+
 export type BadgeVariant = 'neutral' | 'success' | 'warning' | 'critical' | 'accent'
 
-export interface BadgeVariantDef {
-  id: BadgeVariant
-  label: string
-  description: string
-}
-
-export interface BadgeGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const BADGE_VARIANTS: BadgeVariantDef[] = [
+export const BADGE_VARIANTS: VariantDef<BadgeVariant>[] = [
   {
     id: 'neutral',
     label: 'Neutral',
-    description: 'Estado padrão sem conotação semântica. Usado para categorias, rótulos genéricos ou informações sem urgência.',
+    description:
+      'Estado padrão sem conotação semântica. Usado para categorias, rótulos genéricos ou informações sem urgência.',
   },
   {
     id: 'success',
     label: 'Success',
-    description: 'Confirma a conclusão bem-sucedida de uma ação ou estado positivo: publicado, aprovado, ativo, concluído.',
+    description:
+      'Confirma a conclusão bem-sucedida de uma ação ou estado positivo: publicado, aprovado, ativo, concluído.',
   },
   {
     id: 'warning',
     label: 'Warning',
-    description: 'Sinaliza um estado que exige atenção sem ser crítico: pendente, em revisão, quase no limite.',
+    description:
+      'Sinaliza um estado que exige atenção sem ser crítico: pendente, em revisão, quase no limite.',
   },
   {
     id: 'critical',
     label: 'Critical',
-    description: 'Indica falha, erro ou estado urgente que requer ação imediata: recusado, bloqueado, expirado.',
+    description:
+      'Indica falha, erro ou estado urgente que requer ação imediata: recusado, bloqueado, expirado.',
   },
   {
     id: 'accent',
     label: 'Accent',
-    description: 'Destaque com a cor de marca. Usado para estados especiais, novidades ou itens em destaque na plataforma.',
+    description:
+      'Destaque com a cor de marca. Usado para estados especiais, novidades ou itens em destaque na plataforma.',
   },
 ]
 
-export const BADGE_GUIDELINES: BadgeGuidelineDef[] = [
+export const BADGE_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use texto conciso',
     body: 'O badge deve conter no máximo 2 palavras. Textos longos quebram o padrão visual e comprometem a legibilidade em listas e tabelas.',

@@ -1,3 +1,5 @@
+import { GuidelineDef, VariantDef } from './types'
+
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type AvatarVariant = 'initial' | 'photo' | 'placeholder'
 
@@ -7,18 +9,6 @@ export interface AvatarSizeDef {
   px: number
   description: string
   recommended?: boolean
-}
-
-export interface AvatarVariantDef {
-  id: AvatarVariant
-  label: string
-  description: string
-}
-
-export interface AvatarGuidelineDef {
-  title: string
-  body: string
-  rule: string
 }
 
 export const AVATAR_SIZES: AvatarSizeDef[] = [
@@ -51,11 +41,12 @@ export const AVATAR_SIZES: AvatarSizeDef[] = [
     id: 'xl',
     label: 'XL',
     px: 80,
-    description: 'Páginas de perfil, modais de apresentação e contextos com máximo destaque visual.',
+    description:
+      'Páginas de perfil, modais de apresentação e contextos com máximo destaque visual.',
   },
 ]
 
-export const AVATAR_VARIANTS: AvatarVariantDef[] = [
+export const AVATAR_VARIANTS: VariantDef<AvatarVariant>[] = [
   {
     id: 'initial',
     label: 'Initials',
@@ -76,13 +67,7 @@ export const AVATAR_VARIANTS: AvatarVariantDef[] = [
   },
 ]
 
-export interface AvatarGroupGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const AVATAR_GROUP_GUIDELINES: AvatarGroupGuidelineDef[] = [
+export const AVATAR_GROUP_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Limite de exibição',
     body: 'Exiba no máximo 3 a 5 avatares sobrepostos. Quando houver mais participantes, use um avatar de contagem (+N) ao final do grupo para não sobrecarregar a interface.',
@@ -100,7 +85,7 @@ export const AVATAR_GROUP_GUIDELINES: AvatarGroupGuidelineDef[] = [
   },
 ]
 
-export const AVATAR_GUIDELINES: AvatarGuidelineDef[] = [
+export const AVATAR_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Iniciais como fallback',
     body: 'A variação Initials é o fallback padrão quando o usuário não possui foto de perfil. As iniciais exibem sempre o primeiro caractere do primeiro e do último nome.',

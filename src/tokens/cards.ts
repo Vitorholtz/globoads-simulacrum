@@ -1,3 +1,5 @@
+import { GuidelineDef, StateDef } from './types'
+
 export type CardStyle = 'on-primary' | 'on-secondary'
 
 export type CardStyleDef = {
@@ -6,18 +8,6 @@ export type CardStyleDef = {
   tagline: string
   description: string
   when: string[]
-}
-
-export type CardStateDef = {
-  id: 'normal' | 'hover' | 'focus' | 'active'
-  label: string
-  description: string
-}
-
-export type CardGuidelineDef = {
-  title: string
-  body: string
-  rule: string
 }
 
 export const CARD_STYLES: CardStyleDef[] = [
@@ -47,7 +37,7 @@ export const CARD_STYLES: CardStyleDef[] = [
   },
 ]
 
-export const STATIC_CARD_GUIDELINES: CardGuidelineDef[] = [
+export const STATIC_CARD_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Função exclusivamente estrutural',
     body: 'Static Cards agrupam e organizam conteúdo visual e informativo. Não possuem comportamento de interação no container principal — cliques em ações devem ocorrer em botões ou links internos ao card.',
@@ -70,14 +60,18 @@ export const STATIC_CARD_GUIDELINES: CardGuidelineDef[] = [
   },
 ]
 
-export const INTERACTIVE_CARD_STATES: CardStateDef[] = [
+export const INTERACTIVE_CARD_STATES: StateDef<'normal' | 'hover' | 'focus' | 'active'>[] = [
   { id: 'normal', label: 'Normal', description: 'Estado padrão em repouso.' },
-  { id: 'hover',  label: 'Hover',  description: 'Cursor sobre o card — sombra de elevação.' },
-  { id: 'focus',  label: 'Focus',  description: 'Foco via teclado — anel de acessibilidade e sombra.' },
+  { id: 'hover', label: 'Hover', description: 'Cursor sobre o card — sombra de elevação.' },
+  {
+    id: 'focus',
+    label: 'Focus',
+    description: 'Foco via teclado — anel de acessibilidade e sombra.',
+  },
   { id: 'active', label: 'Active', description: 'Card pressionado — sombra de rebaixamento.' },
 ]
 
-export const INTERACTIVE_CARD_GUIDELINES: CardGuidelineDef[] = [
+export const INTERACTIVE_CARD_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Container como área de ação',
     body: 'Interactive Cards transformam todo o container em uma área clicável. Use quando a ação principal é navegar, selecionar ou abrir detalhes pelo próprio card — sem depender de um botão interno.',

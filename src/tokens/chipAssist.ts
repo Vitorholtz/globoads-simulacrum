@@ -1,10 +1,6 @@
-export type ChipAssistGuidelineDef = {
-  title: string
-  body: string
-  rule: string
-}
+import { GuidelineDef } from './types'
 
-export const CHIP_ASSIST_GUIDELINES: ChipAssistGuidelineDef[] = [
+export const CHIP_ASSIST_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Ações contextuais e dinâmicas',
     body: 'Chips de assistência devem emergir a partir do contexto detectado — uma data no texto gera "Criar evento", um endereço gera "Ver no mapa". Nunca exiba chips de assist como lista fixa ou menu de ações.',

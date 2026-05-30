@@ -1,25 +1,9 @@
+import { GuidelineDef, BehaviorDef, VariantDef } from './types'
+
 export type RadioBehavior = 'unchecked' | 'checked'
 export type RadioType = 'default' | 'inverter'
 
-export type RadioBehaviorDef = {
-  id: RadioBehavior
-  label: string
-  description: string
-}
-
-export type RadioTypeDef = {
-  id: RadioType
-  label: string
-  description: string
-}
-
-export type RadioGuidelineDef = {
-  title: string
-  body: string
-  rule: string
-}
-
-export const RADIO_BEHAVIORS: RadioBehaviorDef[] = [
+export const RADIO_BEHAVIORS: BehaviorDef<RadioBehavior>[] = [
   {
     id: 'unchecked',
     label: 'Unchecked',
@@ -28,11 +12,12 @@ export const RADIO_BEHAVIORS: RadioBehaviorDef[] = [
   {
     id: 'checked',
     label: 'Checked',
-    description: 'A opção foi selecionada. Apenas um radio button do grupo pode estar neste estado.',
+    description:
+      'A opção foi selecionada. Apenas um radio button do grupo pode estar neste estado.',
   },
 ]
 
-export const RADIO_TYPES: RadioTypeDef[] = [
+export const RADIO_TYPES: VariantDef<RadioType>[] = [
   {
     id: 'default',
     label: 'Default',
@@ -45,7 +30,7 @@ export const RADIO_TYPES: RadioTypeDef[] = [
   },
 ]
 
-export const RADIO_GUIDELINES: RadioGuidelineDef[] = [
+export const RADIO_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use em grupos',
     body: 'Radio buttons devem ser usados em grupos de dois ou mais opções mutuamente exclusivas. Nunca use um radio button isolado — para seleção única binária, prefira o Checkbox ou Toggle.',
@@ -68,10 +53,14 @@ export const RADIO_GUIDELINES: RadioGuidelineDef[] = [
   },
 ]
 
-export const MATRIX_STATES: { id: string; label: string; force: 'hover' | 'focus' | 'active' | 'disabled' | undefined }[] = [
-  { id: 'normal',   label: 'Normal',   force: undefined },
-  { id: 'hover',    label: 'Hover',    force: 'hover' },
-  { id: 'focus',    label: 'Focus',    force: 'focus' },
-  { id: 'active',   label: 'Active',   force: 'active' },
+export const MATRIX_STATES: {
+  id: string
+  label: string
+  force: 'hover' | 'focus' | 'active' | 'disabled' | undefined
+}[] = [
+  { id: 'normal', label: 'Normal', force: undefined },
+  { id: 'hover', label: 'Hover', force: 'hover' },
+  { id: 'focus', label: 'Focus', force: 'focus' },
+  { id: 'active', label: 'Active', force: 'active' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]

@@ -1,26 +1,10 @@
+import { GuidelineDef, BehaviorDef, VariantDef } from './types'
+
 export type SwitchBehavior = 'unchecked' | 'checked'
 export type SwitchType = 'default' | 'inverter'
 export type SwitchState = 'normal' | 'hover' | 'focus' | 'active' | 'disabled'
 
-export type SwitchBehaviorDef = {
-  id: SwitchBehavior
-  label: string
-  description: string
-}
-
-export type SwitchTypeDef = {
-  id: SwitchType
-  label: string
-  description: string
-}
-
-export type SwitchGuidelineDef = {
-  title: string
-  body: string
-  rule: string
-}
-
-export const SWITCH_BEHAVIORS: SwitchBehaviorDef[] = [
+export const SWITCH_BEHAVIORS: BehaviorDef<SwitchBehavior>[] = [
   {
     id: 'unchecked',
     label: 'Desligado',
@@ -29,24 +13,27 @@ export const SWITCH_BEHAVIORS: SwitchBehaviorDef[] = [
   {
     id: 'checked',
     label: 'Ligado',
-    description: 'A funcionalidade está ativada. O trilho muda para azul e o marcador desloca-se para a direita.',
+    description:
+      'A funcionalidade está ativada. O trilho muda para azul e o marcador desloca-se para a direita.',
   },
 ]
 
-export const SWITCH_TYPES: SwitchTypeDef[] = [
+export const SWITCH_TYPES: VariantDef<SwitchType>[] = [
   {
     id: 'default',
     label: 'Default',
-    description: 'Switch posicionado à esquerda do rótulo. Uso padrão em formulários e configurações.',
+    description:
+      'Switch posicionado à esquerda do rótulo. Uso padrão em formulários e configurações.',
   },
   {
     id: 'inverter',
     label: 'Inverter',
-    description: 'Switch posicionado à direita do rótulo. Adequado para listas de configuração e menus com alinhamento invertido.',
+    description:
+      'Switch posicionado à direita do rótulo. Adequado para listas de configuração e menus com alinhamento invertido.',
   },
 ]
 
-export const SWITCH_GUIDELINES: SwitchGuidelineDef[] = [
+export const SWITCH_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Toggle imediato, sem confirmação',
     body: 'O switch aplica a mudança de estado imediatamente, sem botão de confirmação. Reserve-o para configurações cujo efeito é reversível e previsível. Ações destrutivas ou com impacto financeiro requerem confirmação explícita antes de aplicar.',
@@ -69,10 +56,14 @@ export const SWITCH_GUIDELINES: SwitchGuidelineDef[] = [
   },
 ]
 
-export const MATRIX_STATES: { id: string; label: string; force: 'hover' | 'focus' | 'active' | 'disabled' | undefined }[] = [
-  { id: 'normal',   label: 'Normal',   force: undefined },
-  { id: 'hover',    label: 'Hover',    force: 'hover' },
-  { id: 'focus',    label: 'Focus',    force: 'focus' },
-  { id: 'active',   label: 'Active',   force: 'active' },
+export const MATRIX_STATES: {
+  id: string
+  label: string
+  force: 'hover' | 'focus' | 'active' | 'disabled' | undefined
+}[] = [
+  { id: 'normal', label: 'Normal', force: undefined },
+  { id: 'hover', label: 'Hover', force: 'hover' },
+  { id: 'focus', label: 'Focus', force: 'focus' },
+  { id: 'active', label: 'Active', force: 'active' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]

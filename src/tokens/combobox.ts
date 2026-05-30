@@ -1,3 +1,5 @@
+import { GuidelineDef, StateDef } from './types'
+
 export type ComboboxSize = 'sm' | 'md' | 'lg'
 
 export interface ComboboxSizeDef {
@@ -42,13 +44,7 @@ export const COMBOBOX_SIZES: ComboboxSizeDef[] = [
   },
 ]
 
-export interface ComboboxStateDef {
-  id: string
-  label: string
-  description: string
-}
-
-export const COMBOBOX_STATES: ComboboxStateDef[] = [
+export const COMBOBOX_STATES: StateDef<string>[] = [
   {
     id: 'normal',
     label: 'Normal',
@@ -62,7 +58,8 @@ export const COMBOBOX_STATES: ComboboxStateDef[] = [
   {
     id: 'focus',
     label: 'Focus',
-    description: 'Campo focado via teclado ou clique. Borda azul de 2px indica prontidão para digitação.',
+    description:
+      'Campo focado via teclado ou clique. Borda azul de 2px indica prontidão para digitação.',
   },
   {
     id: 'error',
@@ -76,13 +73,7 @@ export const COMBOBOX_STATES: ComboboxStateDef[] = [
   },
 ]
 
-export interface ComboboxGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const COMBOBOX_GUIDELINES: ComboboxGuidelineDef[] = [
+export const COMBOBOX_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para entradas múltiplas livres',
     body: 'O Combobox é ideal quando o usuário precisa inserir vários valores de texto livre, como tags, palavras-chave ou e-mails. Cada valor digitado vira um chip ao pressionar Enter.',

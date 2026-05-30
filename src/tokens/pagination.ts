@@ -1,41 +1,37 @@
+import { GuidelineDef, VariantDef } from './types'
+
 export type PaginationVariant = 'default' | 'pages' | 'items' | 'buttons'
 
-export interface PaginationVariantDef {
-  id: PaginationVariant
-  label: string
-  description: string
-}
-
-export interface PaginationGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
+export type PaginationVariantDef = VariantDef<PaginationVariant>
 
 export const PAGINATION_VARIANTS: PaginationVariantDef[] = [
   {
     id: 'default',
     label: 'Default',
-    description: 'Apenas setas de navegação. Ideal quando o contexto dispensa indicadores de progresso — listas curtas ou fluxos de navegação simples.',
+    description:
+      'Apenas setas de navegação. Ideal quando o contexto dispensa indicadores de progresso — listas curtas ou fluxos de navegação simples.',
   },
   {
     id: 'pages',
     label: 'Pages',
-    description: 'Setas + campo editável com a página atual + total de páginas. Permite navegação direta digitando qualquer número de página.',
+    description:
+      'Setas + campo editável com a página atual + total de páginas. Permite navegação direta digitando qualquer número de página.',
   },
   {
     id: 'items',
     label: 'Items',
-    description: 'Setas + intervalo de itens exibidos + total de registros. Útil quando o usuário precisa saber quantos itens está visualizando.',
+    description:
+      'Setas + intervalo de itens exibidos + total de registros. Útil quando o usuário precisa saber quantos itens está visualizando.',
   },
   {
     id: 'buttons',
     label: 'Buttons',
-    description: 'Setas + botões numerados para as páginas próximas à atual. Facilita saltos em coleções de tamanho médio.',
+    description:
+      'Setas + botões numerados para as páginas próximas à atual. Facilita saltos em coleções de tamanho médio.',
   },
 ]
 
-export const PAGINATION_GUIDELINES: PaginationGuidelineDef[] = [
+export const PAGINATION_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Escolha a variante pelo contexto',
     body: 'Default para listas simples sem necessidade de orientação numérica. Pages e Items quando o volume de dados é relevante. Buttons quando saltar para uma página específica é uma ação frequente do usuário.',

@@ -1,13 +1,9 @@
+import { GuidelineDef } from './types'
+
 export interface BadgeCounterExampleDef {
   value: string
   label: string
   description: string
-}
-
-export interface BadgeCounterGuidelineDef {
-  title: string
-  body: string
-  rule: string
 }
 
 export const BADGE_COUNTER_EXAMPLES: BadgeCounterExampleDef[] = [
@@ -34,11 +30,12 @@ export const BADGE_COUNTER_EXAMPLES: BadgeCounterExampleDef[] = [
   {
     value: '99+',
     label: 'Cap de overflow',
-    description: 'Valor padrão quando a contagem ultrapassa 99. Use sempre este texto — nunca exiba números acima de 99.',
+    description:
+      'Valor padrão quando a contagem ultrapassa 99. Use sempre este texto — nunca exiba números acima de 99.',
   },
 ]
 
-export const BADGE_COUNTER_GUIDELINES: BadgeCounterGuidelineDef[] = [
+export const BADGE_COUNTER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Limite a exibição em 99+',
     body: 'Contagens acima de 99 perdem precisão visual e cognitiva. Exiba sempre "99+" como cap — o usuário entende que há muitos itens sem precisar do número exato.',

@@ -1,3 +1,5 @@
+import { GuidelineDef, StateDef } from './types'
+
 export type SelectSize = 'sm' | 'md' | 'lg'
 
 export interface SelectOption {
@@ -47,13 +49,7 @@ export const SELECT_SIZES: SelectSizeDef[] = [
   },
 ]
 
-export interface SelectStateDef {
-  id: string
-  label: string
-  description: string
-}
-
-export const SELECT_STATES: SelectStateDef[] = [
+export const SELECT_STATES: StateDef<string>[] = [
   {
     id: 'normal',
     label: 'Normal',
@@ -86,13 +82,7 @@ export const SELECT_STATES: SelectStateDef[] = [
   },
 ]
 
-export interface SelectGuidelineDef {
-  title: string
-  body: string
-  rule: string
-}
-
-export const SELECT_GUIDELINES: SelectGuidelineDef[] = [
+export const SELECT_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para listas de opções fixas',
     body: 'O Select é indicado quando o usuário deve escolher entre um conjunto predefinido de opções. Evite usá-lo para listas muito longas — nesse caso, considere uma busca ou autocomplete.',

@@ -1,31 +1,23 @@
+import { GuidelineDef, BehaviorDef } from './types'
+
 export type ChipFilterBehavior = 'unchecked' | 'checked'
 
-export type ChipFilterBehaviorDef = {
-  id: ChipFilterBehavior
-  label: string
-  description: string
-}
-
-export type ChipFilterGuidelineDef = {
-  title: string
-  body: string
-  rule: string
-}
-
-export const CHIP_FILTER_BEHAVIORS: ChipFilterBehaviorDef[] = [
+export const CHIP_FILTER_BEHAVIORS: BehaviorDef<ChipFilterBehavior>[] = [
   {
     id: 'unchecked',
     label: 'Unchecked',
-    description: 'Filtro inativo — fundo branco com borda neutra. Dropdown indica que há opções adicionais de refinamento.',
+    description:
+      'Filtro inativo — fundo branco com borda neutra. Dropdown indica que há opções adicionais de refinamento.',
   },
   {
     id: 'checked',
     label: 'Checked',
-    description: 'Filtro ativo — checkmark + destaque em azul confirmam que o critério está sendo aplicado ao conteúdo.',
+    description:
+      'Filtro ativo — checkmark + destaque em azul confirmam que o critério está sendo aplicado ao conteúdo.',
   },
 ]
 
-export const CHIP_FILTER_GUIDELINES: ChipFilterGuidelineDef[] = [
+export const CHIP_FILTER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Filtragem de conteúdo existente',
     body: 'Chips de filtro restringem o conteúdo já exibido — não adicionam dados novos. Use-os para segmentação em listas, galerias e resultados de busca quando checkbox ou botões segmentados seriam pesados demais visualmente.',
