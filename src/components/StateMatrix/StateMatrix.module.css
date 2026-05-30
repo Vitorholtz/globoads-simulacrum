@@ -44,6 +44,7 @@
 
 .stateLabel {
   display: flex;
+  align-self: stretch;
   align-items: var(--sm-align, center);
   width: var(--sm-label-width, 100px);
   flex-shrink: 0;
@@ -81,4 +82,41 @@
 
 .row:last-child .cell:last-child {
   border-radius: 0 0 var(--border-radius-lg) 0;
+}
+
+/* ── Grouped mode (stacked per-type/variant sub-matrices) ── */
+
+.group {
+  margin-bottom: var(--spacing-200);
+}
+
+.group:last-child {
+  margin-bottom: 0;
+}
+
+.group .row {
+  align-items: center;
+}
+
+.group .stateLabel {
+  padding-right: var(--spacing-300);
+  padding-left: var(--spacing-300);
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-125);
+  padding: var(--spacing-200) var(--spacing-300);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  background: var(--color-surface-secondary);
+}
+
+.groupHeaderName {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-fill-primary);
+}
+
+.groupHeaderDesc {
+  color: var(--color-fill-tertiary);
 }

@@ -56,6 +56,33 @@ describe('StateMatrix', () => {
     expect(container.querySelectorAll('.flagged')).toHaveLength(COLUMNS.length)
   })
 
+  it('renders a group header with name and description', () => {
+    render(
+      <StateMatrix
+        columns={COLUMNS}
+        rows={ROWS}
+        renderCell={() => null}
+        group
+        header={{ name: 'Tipo Padrão', description: 'tipo padrão' }}
+      />
+    )
+    expect(screen.getByText('Tipo Padrão')).toBeInTheDocument()
+    expect(screen.getByText('— tipo padrão')).toBeInTheDocument()
+  })
+
+  it('omits the description span when none is given', () => {
+    render(
+      <StateMatrix
+        columns={COLUMNS}
+        rows={ROWS}
+        renderCell={() => null}
+        group
+        header={{ name: 'Inverter' }}
+      />
+    )
+    expect(screen.queryByText(/^—/)).not.toBeInTheDocument()
+  })
+
   it('drives layout knobs via CSS custom properties', () => {
     const { container } = render(
       <StateMatrix

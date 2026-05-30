@@ -5,10 +5,16 @@ import type { RadioBehavior, RadioType } from '../../tokens/radio'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import styles from './RadioPage.module.css'
 
 const ALL_BEHAVIORS: RadioBehavior[] = ['unchecked', 'checked']
 const ALL_TYPES: RadioType[] = ['default', 'inverter']
+
+const BEHAVIOR_COLUMNS = ALL_BEHAVIORS.map((id) => ({
+  id,
+  label: RADIO_BEHAVIORS.find((bh) => bh.id === id)?.label ?? id,
+}))
 
 const GROUP_OPTIONS = ['Opção 1', 'Opção 2', 'Opção 3'] as const
 
@@ -59,42 +65,23 @@ export default function RadioPage() {
 
       {/* ── Estados — Matriz ── */}
       <Section icon="toggle_on" title="Estados" count="5 estados">
-        {ALL_TYPES.map((type) => (
-          <div key={type} className={styles.matrixContainer}>
-            <div className={styles.matrixTypeHeader}>
-              <span className={`type-body-sm ${styles.matrixTypeName}`}>
-                {RADIO_TYPES.find((t) => t.id === type)?.label}
-              </span>
-              <span className={`type-body-sm ${styles.matrixTypeDesc}`}>
-                — {RADIO_TYPES.find((t) => t.id === type)?.description}
-              </span>
-            </div>
-
-            <div className={styles.matrixHeaderRow}>
-              <div className={styles.matrixHeaderSpacer} />
-              {ALL_BEHAVIORS.map((b) => (
-                <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                  {RADIO_BEHAVIORS.find((bh) => bh.id === b)?.label}
-                </div>
-              ))}
-            </div>
-
-            {MATRIX_STATES.map((state) => (
-              <div key={state.id} className={styles.matrixRow}>
-                <div className={styles.matrixStateLabel}>
-                  <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-                </div>
-                <div className={styles.matrixCells}>
-                  {ALL_BEHAVIORS.map((b) => (
-                    <div key={b} className={styles.matrixCell}>
-                      <Radio behavior={b} type={type} forceState={state.force} label="Radio" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
+        {ALL_TYPES.map((type) => {
+          const typeDef = RADIO_TYPES.find((t) => t.id === type)
+          return (
+            <StateMatrix
+              key={type}
+              group
+              header={{ name: typeDef?.label, description: typeDef?.description }}
+              columns={BEHAVIOR_COLUMNS}
+              rows={MATRIX_STATES}
+              labelWidth={96}
+              cellPad="sm"
+              renderCell={(state, col) => (
+                <Radio behavior={col.id} type={type} forceState={state.force} label="Radio" />
+              )}
+            />
+          )
+        })}
       </Section>
 
       {/* ── Tipos ── */}

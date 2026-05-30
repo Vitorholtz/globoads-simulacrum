@@ -29,6 +29,14 @@ interface StateMatrixProps<C extends ColumnLike, R extends RowLike> {
   cellPad?: 'md' | 'sm'
   /** Container overflow. 'visible' lets an open dropdown escape the container. */
   overflow?: 'hidden' | 'visible'
+  /**
+   * Grouped mode: stacks the matrix as one of several per-type/variant
+   * sub-matrices (adds bottom spacing, centers rows, widens the label gutter).
+   * Pair with `header` to label the group.
+   */
+  group?: boolean
+  /** Group caption bar rendered above the matrix (name + optional description). */
+  header?: { name: ReactNode; description?: ReactNode }
   className?: string
 }
 
@@ -51,6 +59,8 @@ export default function StateMatrix<C extends ColumnLike, R extends RowLike>({
   align = 'center',
   cellPad = 'md',
   overflow = 'hidden',
+  group = false,
+  header,
   className,
 }: StateMatrixProps<C, R>) {
   const style = {
@@ -61,10 +71,20 @@ export default function StateMatrix<C extends ColumnLike, R extends RowLike>({
     '--sm-overflow': overflow,
   } as CSSProperties
 
-  const cls = [styles.container, className ?? ''].filter(Boolean).join(' ')
+  const cls = [styles.container, group ? styles.group : '', className ?? '']
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className={cls} style={style}>
+      {header && (
+        <div className={styles.groupHeader}>
+          <span className={`type-body-sm ${styles.groupHeaderName}`}>{header.name}</span>
+          {header.description != null && (
+            <span className={`type-body-sm ${styles.groupHeaderDesc}`}>— {header.description}</span>
+          )}
+        </div>
+      )}
       <div className={styles.headerRow}>
         <div className={styles.headerSpacer} />
         {columns.map((col) => (

@@ -10,10 +10,16 @@ import type { SwitchBehavior, SwitchType } from '../../tokens/switch'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import styles from './SwitchPage.module.css'
 
 const ALL_BEHAVIORS: SwitchBehavior[] = ['unchecked', 'checked']
 const ALL_TYPES: SwitchType[] = ['default', 'inverter']
+
+const BEHAVIOR_COLUMNS = ALL_BEHAVIORS.map((id) => ({
+  id,
+  label: SWITCH_BEHAVIORS.find((bh) => bh.id === id)?.label ?? id,
+}))
 
 function BehaviorDemo({ initial }: { initial: SwitchBehavior }) {
   const [checked, setChecked] = useState(initial === 'checked')
@@ -71,42 +77,23 @@ export default function SwitchPage() {
 
       {/* ── Estados — Matriz ── */}
       <Section icon="radio_button_checked" title="Estados" count="5 estados">
-        {ALL_TYPES.map((type) => (
-          <div key={type} className={styles.matrixContainer}>
-            <div className={styles.matrixTypeHeader}>
-              <span className={`type-body-sm ${styles.matrixTypeName}`}>
-                {SWITCH_TYPES.find((t) => t.id === type)?.label}
-              </span>
-              <span className={`type-body-sm ${styles.matrixTypeDesc}`}>
-                — {SWITCH_TYPES.find((t) => t.id === type)?.description}
-              </span>
-            </div>
-
-            <div className={styles.matrixHeaderRow}>
-              <div className={styles.matrixHeaderSpacer} />
-              {ALL_BEHAVIORS.map((b) => (
-                <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                  {SWITCH_BEHAVIORS.find((bh) => bh.id === b)?.label}
-                </div>
-              ))}
-            </div>
-
-            {MATRIX_STATES.map((state) => (
-              <div key={state.id} className={styles.matrixRow}>
-                <div className={styles.matrixStateLabel}>
-                  <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-                </div>
-                <div className={styles.matrixCells}>
-                  {ALL_BEHAVIORS.map((b) => (
-                    <div key={b} className={styles.matrixCell}>
-                      <Switch behavior={b} type={type} forceState={state.force} label="Switch" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
+        {ALL_TYPES.map((type) => {
+          const typeDef = SWITCH_TYPES.find((t) => t.id === type)
+          return (
+            <StateMatrix
+              key={type}
+              group
+              header={{ name: typeDef?.label, description: typeDef?.description }}
+              columns={BEHAVIOR_COLUMNS}
+              rows={MATRIX_STATES}
+              labelWidth={96}
+              cellPad="sm"
+              renderCell={(state, col) => (
+                <Switch behavior={col.id} type={type} forceState={state.force} label="Switch" />
+              )}
+            />
+          )
+        })}
       </Section>
 
       {/* ── Tipos ── */}
