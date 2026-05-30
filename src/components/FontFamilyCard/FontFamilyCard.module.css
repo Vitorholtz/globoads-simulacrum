@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
 }
 
@@ -11,53 +11,53 @@
 
 .showcase {
   background: var(--color-surface-secondary);
-  padding: 40px 40px 36px;
+  padding: var(--spacing-500) var(--spacing-500) var(--spacing-450);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--spacing-300);
   flex: 1;
 }
 
 .showcaseHeadline {
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
   overflow-wrap: break-word;
 }
 
 .showcaseAlphabet {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
 }
 
 /* ── Info ── */
 
 .info {
-  padding: 28px 40px;
+  padding: var(--spacing-350) var(--spacing-500);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  border-top: 1px solid var(--color-border-ui);
+  gap: var(--spacing-150);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .nameRow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-125);
   flex-wrap: wrap;
 }
 
 .familyName {
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .purposeBadge {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   background: var(--color-surface-tertiary);
   padding: 3px 10px;
-  border-radius: 100px;
+  border-radius: var(--border-radius-full);
   white-space: nowrap;
 }
 
 .description {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── Weight pills ── */
@@ -65,23 +65,22 @@
 .weightsPills {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  padding-top: 2px;
+  gap: var(--spacing-075);
+  padding-top: var(--spacing-025);
 }
 
 .weightPill {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   background: var(--color-surface-tertiary);
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
+  padding: var(--spacing-050) var(--spacing-125);
+  border-radius: var(--border-radius-sm);
 }
 
 .weightPillNum {
-  font-family: var(--font-family-code);
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
 }
 
 /* ── CSS var ── */
@@ -89,21 +88,20 @@
 .cssRow {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-top: 12px;
-  border-top: 1px solid var(--color-border-ui);
-  margin-top: 2px;
+  gap: var(--spacing-125);
+  padding-top: var(--spacing-150);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+  margin-top: var(--spacing-025);
 }
 
 .cssLabel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
 }
 
 .cssVar {
   color: var(--color-fill-accent);
-  font-family: var(--font-family-code);
   background: var(--color-surface-accent);
   padding: 3px 9px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
 }

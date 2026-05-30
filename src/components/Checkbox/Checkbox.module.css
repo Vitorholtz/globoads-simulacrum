@@ -2,10 +2,10 @@
 
 .checkbox {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-100);
   align-items: flex-start;
   min-height: 32px;
-  padding: 4px 0;
+  padding: var(--spacing-050) 0;
   width: fit-content;
   cursor: pointer;
   user-select: none;
@@ -21,7 +21,7 @@
 }
 
 .checkbox[data-state='disabled'] {
-  opacity: 0.48;
+  opacity: var(--opacity-disabled);
 }
 
 /* ── Native input (visually hidden, accessible) ── */
@@ -43,7 +43,7 @@
 .input {
   display: grid;
   place-items: center;
-  padding: 4px 0;
+  padding: var(--spacing-050) 0;
   flex-shrink: 0;
   width: 16px;
 }
@@ -57,7 +57,7 @@
 /* ── Icon (check / remove) ── */
 
 .icon {
-  color: #ffffff;
+  color: var(--color-fill-inverse);
   z-index: 2;
   font-style: normal;
   text-align: center;
@@ -71,7 +71,7 @@
 .shape {
   width: 16px;
   height: 16px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
   z-index: 1;
   transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, border-width 80ms ease;
 }
@@ -82,7 +82,7 @@
 
 .checkbox[data-behavior='unchecked'] .shape {
   background: var(--color-surface-primary);
-  border: 1px solid #aeb0b2;
+  border: var(--border-width-sm) solid var(--color-border-primary);
 }
 
 .checkbox[data-behavior='partial'] .shape,
@@ -97,34 +97,34 @@
 
 /* Hover */
 .checkbox:not([data-state]):hover[data-behavior='unchecked'] .shape {
-  border-color: #646568;
+  border-color: var(--color-border-secondary);
 }
 
 .checkbox:not([data-state]):hover[data-behavior='partial'] .shape,
 .checkbox:not([data-state]):hover[data-behavior='checked'] .shape {
-  background: #0050d1;
+  background: var(--color-action-solid-fill-hover);
 }
 
 /* Focus (keyboard only — :focus-visible prevents ring on mouse click) */
 .checkbox:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] .shape {
-  border-color: #646568;
-  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+  border-color: var(--color-border-secondary);
+  box-shadow: var(--outline-focus);
 }
 
 .checkbox:not([data-state]):has(input:focus-visible)[data-behavior='partial'] .shape,
 .checkbox:not([data-state]):has(input:focus-visible)[data-behavior='checked'] .shape {
-  background: #0050d1;
-  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+  background: var(--color-action-solid-fill-hover);
+  box-shadow: var(--outline-focus);
 }
 
 /* Active (mouse down) */
 .checkbox:not([data-state]):active[data-behavior='unchecked'] .shape {
-  border: 2px solid var(--color-fill-accent);
+  border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
 .checkbox:not([data-state]):active[data-behavior='partial'] .shape,
 .checkbox:not([data-state]):active[data-behavior='checked'] .shape {
-  background: #0045b6;
+  background: var(--color-action-solid-fill-active);
 }
 
 /* ════════════════════════════════════
@@ -134,34 +134,34 @@
 
 /* Forced hover */
 .checkbox[data-state='hover'][data-behavior='unchecked'] .shape {
-  border-color: #646568;
+  border-color: var(--color-border-secondary);
 }
 
 .checkbox[data-state='hover'][data-behavior='partial'] .shape,
 .checkbox[data-state='hover'][data-behavior='checked'] .shape {
-  background: #0050d1;
+  background: var(--color-action-solid-fill-hover);
 }
 
 /* Forced focus */
 .checkbox[data-state='focus'][data-behavior='unchecked'] .shape {
-  border-color: #646568;
-  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+  border-color: var(--color-border-secondary);
+  box-shadow: var(--outline-focus);
 }
 
 .checkbox[data-state='focus'][data-behavior='partial'] .shape,
 .checkbox[data-state='focus'][data-behavior='checked'] .shape {
-  background: #0050d1;
-  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+  background: var(--color-action-solid-fill-hover);
+  box-shadow: var(--outline-focus);
 }
 
 /* Forced active */
 .checkbox[data-state='active'][data-behavior='unchecked'] .shape {
-  border: 2px solid var(--color-fill-accent);
+  border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
 .checkbox[data-state='active'][data-behavior='partial'] .shape,
 .checkbox[data-state='active'][data-behavior='checked'] .shape {
-  background: #0045b6;
+  background: var(--color-action-solid-fill-active);
 }
 
 /* ── Text group ── */

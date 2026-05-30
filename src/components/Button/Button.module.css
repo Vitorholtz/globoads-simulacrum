@@ -4,9 +4,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
-  background: transparent;
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid transparent;
+  background: var(--color-surface-ghost);
+  border-radius: var(--border-radius-lg);
   font-style: normal;
   cursor: pointer;
   white-space: nowrap;
@@ -16,47 +16,47 @@
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
   outline: none;
-  transition: background 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
   line-height: var(--line-height-icon);
 }
 
 /* ── Sizes ── */
 
 .sm {
-  gap: 4px;
-  padding: 8px 12px;
+  gap: var(--spacing-050);
+  padding: var(--spacing-100) var(--spacing-150);
   --icon-size: 16px;
   --icon-opsz: 20;
 }
 
 .md {
-  gap: 6px;
-  padding: 10px 16px;
+  gap: var(--spacing-075);
+  padding: var(--spacing-125) var(--spacing-200);
   --icon-size: 20px;
   --icon-opsz: 24;
 }
 
 .lg {
-  gap: 8px;
-  padding: 14px 20px;
+  gap: var(--spacing-100);
+  padding: var(--spacing-175) var(--spacing-250);
   --icon-size: 20px;
   --icon-opsz: 24;
 }
 
 /* Icon-only: square padding */
-.iconOnly.sm { padding: 8px; }
-.iconOnly.md { padding: 10px; }
-.iconOnly.lg { padding: 14px; }
+.iconOnly.sm { padding: var(--spacing-100); }
+.iconOnly.md { padding: var(--spacing-125); }
+.iconOnly.lg { padding: var(--spacing-175); }
 
 /* Icon-left asymmetric padding (icon side tighter) */
-.hasIconLeft.sm { padding-left: 8px;  padding-right: 12px; }
-.hasIconLeft.md { padding-left: 12px; padding-right: 16px; }
-.hasIconLeft.lg { padding-left: 16px; padding-right: 20px; }
+.hasIconLeft.sm { padding-left: var(--spacing-100);  padding-right: var(--spacing-150); }
+.hasIconLeft.md { padding-left: var(--spacing-150); padding-right: var(--spacing-200); }
+.hasIconLeft.lg { padding-left: var(--spacing-200); padding-right: var(--spacing-250); }
 
 /* Icon-right asymmetric padding */
-.hasIconRight.sm { padding-left: 12px; padding-right: 8px;  }
-.hasIconRight.md { padding-left: 16px; padding-right: 12px; }
-.hasIconRight.lg { padding-left: 20px; padding-right: 16px; }
+.hasIconRight.sm { padding-left: var(--spacing-150); padding-right: var(--spacing-100);  }
+.hasIconRight.md { padding-left: var(--spacing-200); padding-right: var(--spacing-150); }
+.hasIconRight.lg { padding-left: var(--spacing-250); padding-right: var(--spacing-200); }
 
 /* ── Inner elements ── */
 
@@ -74,70 +74,85 @@
 
 .primary {
   background: var(--color-fill-accent-gradient);
-  background-clip: padding-box;
+  border: none;
 }
 
-.primary:hover:not(:disabled):not([data-state='disabled']),
-.primary[data-state='hover'] {
-  filter: brightness(1.1);
+/* Gradient transitions via opacity cross-fade — CSS não interpola entre gradients */
+.primary::before,
+.primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
 }
 
-.primary:active:not(:disabled):not([data-state='disabled']),
-.primary[data-state='active'] {
-  filter: brightness(0.9);
+.primary::before { background: var(--color-action-grad-fill-hover); }
+.primary::after  { background: var(--color-action-grad-fill-active); }
+
+.primary:hover:not(:disabled):not([data-state='disabled'])::before,
+.primary[data-state='hover']::before {
+  opacity: 1;
+}
+
+.primary:active:not(:disabled):not([data-state='disabled'])::after,
+.primary[data-state='active']::after {
+  opacity: 1;
 }
 
 .primary:focus-visible,
 .primary[data-state='focus'] {
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--outline-focus);
 }
 
 .primary .icon,
 .primary .label {
   color: var(--color-fill-inverse);
+  position: relative;
+  z-index: 1;
 }
 
 /* ── SECONDARY variant ── */
 
 .secondary {
-  background: transparent;
   border-color: var(--color-border-primary);
 }
 
 .secondary:hover:not(:disabled):not([data-state='disabled']),
 .secondary[data-state='hover'] {
-  background: rgba(24, 92, 251, 0.12);
+  background: var(--color-action-solid-ghost-hover);
 }
 
 .secondary:active:not(:disabled):not([data-state='disabled']),
 .secondary[data-state='active'] {
-  background: rgba(24, 92, 251, 0.2);
+  background: var(--color-action-solid-ghost-active);
 }
 
 .secondary:focus-visible,
 .secondary[data-state='focus'] {
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--outline-focus);
 }
 
 /* ── TERTIARY variant ── */
 
 .tertiary {
-  background: transparent;
+  border: none;
 }
 
 .tertiary:hover:not(:disabled):not([data-state='disabled']),
 .tertiary[data-state='hover'] {
-  background: rgba(24, 92, 251, 0.12);
+  background: var(--color-action-solid-ghost-hover);
 }
 
 .tertiary:active:not(:disabled):not([data-state='disabled']),
 .tertiary[data-state='active'] {
-  background: rgba(24, 92, 251, 0.2);
+  background: var(--color-action-solid-ghost-active);
 }
 
 .tertiary:focus-visible,
 .tertiary[data-state='focus'] {
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--outline-focus);
 }
 
 /* ── Gradient text (secondary & tertiary) ── */
@@ -156,46 +171,9 @@
 
 .btn:disabled,
 .btn[data-state='disabled'] {
-  opacity: 0.48;
+  opacity: var(--opacity-disabled);
   cursor: not-allowed;
   pointer-events: none;
-}
-
-/* ── LOADING state ── */
-
-.loading {
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.spinner {
-  flex-shrink: 0;
-  display: block;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  border-radius: 50%;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  animation: btn-spin 0.65s linear infinite;
-  opacity: 0.7;
-}
-
-/* Spinner color per variant */
-.primary .spinner {
-  border-color: rgba(255, 255, 255, 0.4);
-  border-top-color: var(--color-fill-inverse);
-  opacity: 1;
-}
-
-.secondary .spinner,
-.tertiary .spinner {
-  border-color: rgba(24, 92, 251, 0.25);
-  border-top-color: var(--color-fill-accent);
-  opacity: 1;
-}
-
-@keyframes btn-spin {
-  to { transform: rotate(360deg); }
 }
 
 /* ══════════════════════════════════════
@@ -209,47 +187,46 @@
   background: var(--color-fill-critical);
 }
 
-/* Hover escurece (inverso do primary padrão que clareia) */
-.danger.primary:hover:not(:disabled):not([data-state='disabled']),
-.danger.primary[data-state='hover'] {
-  filter: brightness(0.9);
+.danger.primary::before,
+.danger.primary::after {
+  display: none;
 }
 
-/* Active mais escuro que hover para hierarquia clara */
+.danger.primary:hover:not(:disabled):not([data-state='disabled']),
+.danger.primary[data-state='hover'] {
+  background: var(--color-action-critical-fill-hover);
+}
+
 .danger.primary:active:not(:disabled):not([data-state='disabled']),
 .danger.primary[data-state='active'] {
-  filter: brightness(0.8);
+  background: var(--color-action-critical-fill-active);
 }
 
 /* ── Danger Secondary: borda neutra (igual ao Secondary padrão), texto vermelho ── */
 
-.danger.secondary {
-  border-color: var(--color-border-primary);
-}
-
 .danger.secondary:hover:not(:disabled):not([data-state='disabled']),
 .danger.secondary[data-state='hover'] {
-  background: rgba(183, 6, 52, 0.12);
+  background: var(--color-action-critical-ghost-hover);
 }
 
 .danger.secondary:active:not(:disabled):not([data-state='disabled']),
 .danger.secondary[data-state='active'] {
-  background: rgba(183, 6, 52, 0.2);
+  background: var(--color-action-critical-ghost-active);
 }
 
 /* ── Danger Tertiary: ghost, texto vermelho ── */
 
 .danger.tertiary:hover:not(:disabled):not([data-state='disabled']),
 .danger.tertiary[data-state='hover'] {
-  background: rgba(183, 6, 52, 0.12);
+  background: var(--color-action-critical-ghost-hover);
 }
 
 .danger.tertiary:active:not(:disabled):not([data-state='disabled']),
 .danger.tertiary[data-state='active'] {
-  background: rgba(183, 6, 52, 0.2);
+  background: var(--color-action-critical-ghost-active);
 }
 
-/* Focus: herda --focus-ring (azul unificado) de .primary/.secondary/.tertiary */
+/* Focus: herda --outline-focus de .primary/.secondary/.tertiary */
 
 /* ── Override gradient text with solid red for secondary & tertiary ── */
 
@@ -263,11 +240,3 @@
   color: var(--color-fill-critical);
 }
 
-/* ── Danger spinners ── */
-
-.danger.secondary .spinner,
-.danger.tertiary .spinner {
-  border-color: rgba(183, 6, 52, 0.25);
-  border-top-color: var(--color-fill-critical);
-  opacity: 1;
-}

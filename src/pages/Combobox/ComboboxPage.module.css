@@ -3,7 +3,7 @@
 /* ── Sections ── */
 
 .section {
-  margin-bottom: 72px;
+  margin-bottom: var(--spacing-900);
 }
 
 /* ── Styles grid (Placeholder / Filled) ── */
@@ -11,12 +11,12 @@
 .stylesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .styleCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   display: flex;
   flex-direction: column;
@@ -24,12 +24,12 @@
 
 .stylePreview {
   background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border-ui);
-  padding: 48px 40px;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  padding: var(--spacing-600) var(--spacing-500);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
 }
 
 .stylePreview > * {
@@ -37,42 +37,42 @@
 }
 
 .styleBody {
-  padding: 24px 28px 28px;
+  padding: var(--spacing-300) var(--spacing-350) var(--spacing-350);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-100);
   flex: 1;
 }
 
 .styleName {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .styleDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── Size scale ── */
 
 .sizeScaleContainer {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
 }
 
 .sizeRow:first-child .sizePreview {
-  border-top-left-radius: var(--radius-lg);
+  border-top-left-radius: var(--border-radius-lg);
 }
 
 .sizeRow:last-child .sizePreview {
-  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--border-radius-lg);
 }
 
 .sizeRow {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .sizeRow:last-child {
@@ -82,11 +82,11 @@
 .sizePreview {
   width: 280px;
   flex-shrink: 0;
-  border-right: 1px solid var(--color-border-ui);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-secondary);
   display: flex;
   align-items: center;
-  padding: 28px 32px;
+  padding: var(--spacing-350) var(--spacing-400);
   align-self: stretch;
 }
 
@@ -94,35 +94,35 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 24px 32px;
+  gap: var(--spacing-050);
+  padding: var(--spacing-300) var(--spacing-400);
 }
 
 .sizeValueRow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-125);
 }
 
 .sizeLabel {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .sizeRecommended {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   background: var(--color-surface-tertiary);
-  padding: 2px 9px;
-  border-radius: 100px;
+  padding: var(--spacing-025) 9px;
+  border-radius: var(--border-radius-full);
 }
 
 .sizeDescription {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 .sizeSpecs {
   font-family: var(--font-family-code);
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   margin-left: auto;
   padding-right: 32px;
   text-align: right;
@@ -133,42 +133,42 @@
 /* ── State matrix ── */
 
 .stateMatrixContainer {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
 }
 
 .matrixHeaderRow {
   display: flex;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-primary);
 }
 
 .matrixHeaderSpacer {
   width: 120px;
   flex-shrink: 0;
-  border-right: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg) 0 0 0;
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg) 0 0 0;
 }
 
 .matrixCellLabel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
   text-align: center;
-  padding: 14px 8px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-175) var(--spacing-100);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   flex: 1;
 }
 
 .matrixCellLabel:last-child {
   border-right: none;
-  border-radius: 0 var(--radius-lg) 0 0;
+  border-radius: 0 var(--border-radius-lg) 0 0;
 }
 
 .matrixRow {
   display: flex;
   align-items: stretch;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .matrixRow:last-child {
@@ -182,16 +182,16 @@
   display: flex;
   align-items: flex-start;
   padding-top: 20px;
-  border-right: 1px solid var(--color-border-ui);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-secondary);
 }
 
 .matrixRow:last-child .matrixStateLabel {
-  border-radius: 0 0 0 var(--radius-lg);
+  border-radius: 0 0 0 var(--border-radius-lg);
 }
 
 .matrixStateName {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
 }
 
@@ -205,8 +205,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 20px 16px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-250) var(--spacing-200);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .matrixCell:last-child {
@@ -214,7 +214,7 @@
 }
 
 .matrixRow:last-child .matrixCell:last-child {
-  border-radius: 0 0 var(--radius-lg) 0;
+  border-radius: 0 0 var(--border-radius-lg) 0;
 }
 
 .matrixField {
@@ -227,23 +227,23 @@
 .configGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .configCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
 }
 
 .configPreview {
   background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border-ui);
-  padding: 36px 24px;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  padding: var(--spacing-450) var(--spacing-300);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
   min-height: 120px;
 }
 
@@ -252,19 +252,19 @@
 }
 
 .configBody {
-  padding: 20px 24px 24px;
+  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--spacing-075);
 }
 
 .configName {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .configDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── Guidelines ── */
@@ -272,14 +272,14 @@
 .guidelinesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .guidelineCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 32px 36px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-400) var(--spacing-450);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -287,19 +287,19 @@
 
 .guidelineTitle {
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-125);
 }
 
 .guidelineBody {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   flex: 1;
 }
 
 .guidelineRule {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
-  padding-top: 16px;
-  margin-top: 16px;
-  border-top: 1px solid var(--color-border-ui);
+  padding-top: var(--spacing-200);
+  margin-top: var(--spacing-200);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }

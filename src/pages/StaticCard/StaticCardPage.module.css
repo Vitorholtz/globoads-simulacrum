@@ -1,5 +1,5 @@
 ﻿.section {
-  margin-bottom: 72px;
+  margin-bottom: var(--spacing-900);
 }
 
 /* â”€â”€ Styles grid â”€â”€ */
@@ -7,12 +7,12 @@
 .stylesGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .styleCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   overflow: hidden;
   display: flex;
@@ -20,8 +20,8 @@
 }
 
 .stylePreview {
-  border-bottom: 1px solid var(--color-border-ui);
-  padding: 48px 32px;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  padding: var(--spacing-600) var(--spacing-400);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@
 .campaignCard {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-150);
   padding: 2px 2px 0;
 }
 
@@ -47,22 +47,22 @@
 }
 
 .campaignChannel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
 }
 
 .campaignMetric {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-025);
 }
 
 .campaignValue {
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .campaignLabel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
 }
 
 .campaignChart {
@@ -75,7 +75,7 @@
 .campaignBar {
   flex: 1;
   background: var(--color-fill-accent);
-  border-radius: 2px 2px 0 0;
+  border-radius: var(--border-radius-xs) var(--border-radius-xs) var(--border-radius-none) var(--border-radius-none);
   opacity: 0.7;
   min-height: 3px;
 }
@@ -83,9 +83,9 @@
 .campaignFooter {
   display: flex;
   align-items: flex-end;
-  gap: 14px;
-  padding-top: 10px;
-  border-top: 1px solid var(--color-border-ui);
+  gap: var(--spacing-175);
+  padding-top: var(--spacing-125);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .campaignStat {
@@ -95,17 +95,17 @@
 }
 
 .campaignStatValue {
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .campaignStatLabel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
 }
 
 .campaignTrend {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: var(--spacing-025);
   margin-left: auto;
 }
 
@@ -119,19 +119,19 @@
 }
 
 .styleBody {
-  padding: 24px 28px 28px;
+  padding: var(--spacing-300) var(--spacing-350) var(--spacing-350);
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .styleName {
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-125);
 }
 
 .styleDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   margin-bottom: 18px;
 }
 
@@ -139,15 +139,15 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-100);
   padding-top: 18px;
-  border-top: 1px solid var(--color-border-ui);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
   flex: 1;
 }
 
 .styleWhen li {
-  color: var(--color-text-secondary);
-  padding-left: 16px;
+  color: var(--color-fill-secondary);
+  padding-left: var(--spacing-200);
   position: relative;
 }
 
@@ -155,7 +155,7 @@
   content: 'â€“';
   position: absolute;
   left: 0;
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-weight: 300;
 }
 
@@ -164,32 +164,32 @@
 .guidelinesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .guidelineCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 32px 36px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-400) var(--spacing-450);
   display: flex;
   flex-direction: column;
 }
 
 .guidelineTitle {
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-125);
 }
 
 .guidelineBody {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   flex: 1;
 }
 
 .guidelineRule {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
-  padding-top: 16px;
-  margin-top: 16px;
-  border-top: 1px solid var(--color-border-ui);
+  padding-top: var(--spacing-200);
+  margin-top: var(--spacing-200);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }

@@ -2,8 +2,8 @@
 
 .root {
   background: var(--color-surface-primary);
-  border-radius: var(--radius-lg);
-  padding: 8px;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-100);
   user-select: none;
 }
 
@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   height: 40px;
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .monthLabel {
@@ -30,43 +30,13 @@
   white-space: nowrap;
 }
 
-.navBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: transparent;
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.12s ease;
-}
-
-.navBtn:hover {
-  background: rgba(24, 92, 251, 0.08);
-}
-
-.navBtn:active {
-  background: rgba(24, 92, 251, 0.14);
-}
-
-.navIcon {
-  display: block;
-  background: linear-gradient(90deg, #185cfb 50%, #8800f8 150%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
 /* ── Weekdays row ── */
 
 .weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  padding: 12px 0;
+  padding: var(--spacing-150) 0;
 }
 
 .weekday {
@@ -109,14 +79,14 @@
   left: 0;
   right: 0;
   background: rgba(24, 92, 251, 0.08);
-  border-radius: 0;
+  border-radius: var(--border-radius-none);
 }
 
 .hoverInRange::before {
   left: 0;
   right: 0;
   background: rgba(24, 92, 251, 0.05);
-  border-radius: 0;
+  border-radius: var(--border-radius-none);
 }
 
 /* Range start: strip from center → right, rounded left cap */
@@ -124,7 +94,7 @@
   left: 50%;
   right: 0;
   background: rgba(24, 92, 251, 0.08);
-  border-radius: 16px 0 0 16px;
+  border-radius: var(--border-radius-xl) var(--border-radius-none) var(--border-radius-none) var(--border-radius-xl);
 }
 
 /* Range end: strip from left → center, rounded right cap */
@@ -132,7 +102,7 @@
   left: 0;
   right: 50%;
   background: rgba(24, 92, 251, 0.08);
-  border-radius: 0 16px 16px 0;
+  border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl) var(--border-radius-none);
 }
 
 /* Hover preview end */
@@ -140,7 +110,7 @@
   left: 0;
   right: 50%;
   background: rgba(24, 92, 251, 0.05);
-  border-radius: 0 16px 16px 0;
+  border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl) var(--border-radius-none);
 }
 
 /* ── Day button ── */
@@ -152,8 +122,8 @@
   width: 32px;
   height: 32px;
   border: none;
-  background: transparent;
-  border-radius: var(--radius-lg);
+  background: var(--color-surface-ghost);
+  border-radius: var(--border-radius-lg);
   cursor: pointer;
   color: var(--color-fill-accent);
   position: relative;
@@ -163,11 +133,11 @@
 }
 
 .day:hover {
-  background: rgba(24, 92, 251, 0.08);
+  background: var(--color-action-solid-ghost-hover);
 }
 
 .day:active {
-  background: rgba(24, 92, 251, 0.14);
+  background: var(--color-action-solid-ghost-active);
 }
 
 /* In-range cells: hover darkens the strip */
@@ -189,20 +159,19 @@
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
-  border-radius: 50%;
+  border-radius: var(--border-radius-full);
   background: var(--color-fill-accent);
 }
 
 /* Selected (single mode or range endpoints) */
 .daySelected {
   background: var(--color-fill-accent);
-  color: #ffffff;
+  color: var(--color-fill-inverse);
   font-weight: 600;
 }
 
 .daySelected:hover {
-  background: var(--color-fill-accent);
-  filter: brightness(1.1);
+  background: var(--color-action-solid-fill-hover);
 }
 
 .daySelected.dayToday::after {
@@ -225,8 +194,8 @@
 .footer {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 8px 8px;
+  gap: var(--spacing-100);
+  padding: var(--spacing-150) var(--spacing-100) var(--spacing-100);
 }
 
 .footerBtn {

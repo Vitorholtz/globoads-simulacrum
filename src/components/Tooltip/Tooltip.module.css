@@ -12,13 +12,13 @@
 .tooltip {
   position: absolute;
   background: #252527;
-  color: #ffffff;
-  padding: 4px 8px;
-  border-radius: var(--radius-md);
+  color: var(--color-fill-inverse);
+  padding: var(--spacing-050) var(--spacing-100);
+  border-radius: var(--border-radius-md);
   font-weight: var(--font-weight-regular);
   white-space: nowrap;
   pointer-events: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadows-low);
   opacity: 0;
   transition: opacity 0.12s ease;
   z-index: 100;
@@ -40,11 +40,11 @@
 /* ── Position: Up (tooltip above, arrow at bottom pointing down) ── */
 
 .up {
-  bottom: calc(100% + 6px);
+  bottom: calc(100% + var(--spacing-075));
 }
 
 .up .arrow {
-  bottom: -6px;
+  bottom: calc(var(--spacing-075) * -1);
   width: 12px;
   height: 6px;
   clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
@@ -54,18 +54,18 @@
 .up.middle { left: 50%; transform: translateX(-50%); }
 .up.end    { right: 0; }
 
-.up.start  .arrow { left: 8px; }
+.up.start  .arrow { left: var(--spacing-100); }
 .up.middle .arrow { left: 50%; transform: translateX(-50%); }
-.up.end    .arrow { right: 8px; }
+.up.end    .arrow { right: var(--spacing-100); }
 
 /* ── Position: Bottom (tooltip below, arrow at top pointing up) ── */
 
 .bottom {
-  top: calc(100% + 6px);
+  top: calc(100% + var(--spacing-075));
 }
 
 .bottom .arrow {
-  top: -6px;
+  top: calc(var(--spacing-075) * -1);
   width: 12px;
   height: 6px;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
@@ -75,18 +75,18 @@
 .bottom.middle { left: 50%; transform: translateX(-50%); }
 .bottom.end    { right: 0; }
 
-.bottom.start  .arrow { left: 8px; }
+.bottom.start  .arrow { left: var(--spacing-100); }
 .bottom.middle .arrow { left: 50%; transform: translateX(-50%); }
-.bottom.end    .arrow { right: 8px; }
+.bottom.end    .arrow { right: var(--spacing-100); }
 
 /* ── Position: Right (tooltip to the right, arrow at left pointing left) ── */
 
 .right {
-  left: calc(100% + 6px);
+  left: calc(100% + var(--spacing-075));
 }
 
 .right .arrow {
-  left: -6px;
+  left: calc(var(--spacing-075) * -1);
   width: 6px;
   height: 12px;
   clip-path: polygon(100% 0%, 100% 100%, 0% 50%);
@@ -96,18 +96,18 @@
 .right.middle { top: 50%; transform: translateY(-50%); }
 .right.end    { bottom: 0; }
 
-.right.start  .arrow { top: 8px; }
+.right.start  .arrow { top: var(--spacing-100); }
 .right.middle .arrow { top: 50%; transform: translateY(-50%); }
-.right.end    .arrow { bottom: 8px; }
+.right.end    .arrow { bottom: var(--spacing-100); }
 
 /* ── Position: Left (tooltip to the left, arrow at right pointing right) ── */
 
 .left {
-  right: calc(100% + 6px);
+  right: calc(100% + var(--spacing-075));
 }
 
 .left .arrow {
-  right: -6px;
+  right: calc(var(--spacing-075) * -1);
   width: 6px;
   height: 12px;
   clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
@@ -117,6 +117,6 @@
 .left.middle { top: 50%; transform: translateY(-50%); }
 .left.end    { bottom: 0; }
 
-.left.start  .arrow { top: 8px; }
+.left.start  .arrow { top: var(--spacing-100); }
 .left.middle .arrow { top: 50%; transform: translateY(-50%); }
-.left.end    .arrow { bottom: 8px; }
+.left.end    .arrow { bottom: var(--spacing-100); }

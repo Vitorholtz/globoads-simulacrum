@@ -3,22 +3,22 @@
 /* ── Chip type sections ── */
 
 .chipSection {
-  margin-bottom: 80px;
+  margin-bottom: var(--spacing-1000);
 }
 
 .chipDesc {
-  color: var(--color-text-secondary);
-  margin-bottom: 32px;
+  color: var(--color-fill-secondary);
+  margin-bottom: var(--spacing-400);
   max-width: 720px;
 }
 
 /* ── Subsection titles ── */
 
 .subsectionTitle {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
-  margin-bottom: 16px;
-  margin-top: 40px;
+  margin-bottom: var(--spacing-200);
+  margin-top: var(--spacing-500);
 }
 
 .subsectionTitle:first-of-type {
@@ -30,18 +30,18 @@
 .behaviorsGrid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .behaviorsGrid3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .behaviorCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   overflow: hidden;
   display: flex;
@@ -50,8 +50,8 @@
 
 .behaviorPreview {
   background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border-ui);
-  padding: 40px 32px;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  padding: var(--spacing-500) var(--spacing-400);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,49 +59,49 @@
 }
 
 .behaviorBody {
-  padding: 20px 24px 24px;
+  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--spacing-075);
   flex: 1;
 }
 
 .behaviorName {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .behaviorDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── State matrix ── */
 
 .matrixContainer {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
   background: var(--color-surface-primary);
 }
 
 .matrixHeaderRow {
   display: flex;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-primary);
 }
 
 .matrixHeaderSpacer {
   width: 112px;
   flex-shrink: 0;
-  border-right: 1px solid var(--color-border-ui);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .matrixCellLabel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
   text-align: center;
-  padding: 14px 8px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-175) var(--spacing-100);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   flex: 1;
 }
 
@@ -112,7 +112,7 @@
 .matrixRow {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .matrixRow:last-child {
@@ -126,12 +126,12 @@
   align-self: stretch;
   display: flex;
   align-items: center;
-  border-right: 1px solid var(--color-border-ui);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-secondary);
 }
 
 .matrixStateName {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
 }
 
@@ -145,8 +145,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 16px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-250) var(--spacing-200);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .matrixCell:last-child {
@@ -158,14 +158,14 @@
 .guidelinesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .guidelineCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 28px 32px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-350) var(--spacing-400);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -173,19 +173,19 @@
 
 .guidelineTitle {
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 8px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-100);
 }
 
 .guidelineBody {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   flex: 1;
 }
 
 .guidelineRule {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
-  padding-top: 14px;
-  margin-top: 14px;
-  border-top: 1px solid var(--color-border-ui);
+  padding-top: var(--spacing-175);
+  margin-top: var(--spacing-175);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }

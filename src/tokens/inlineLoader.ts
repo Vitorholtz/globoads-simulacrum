@@ -8,6 +8,7 @@ export type InlineLoaderColor =
   | 'success'
   | 'warning'
   | 'critical'
+  | 'inverse'
 
 export interface InlineLoaderTypeDef {
   id: InlineLoaderType
@@ -70,6 +71,7 @@ export const INLINE_LOADER_COLORS: InlineLoaderColorDef[] = [
   { id: 'success',   label: 'Success',   cssVar: 'var(--color-fill-success)' },
   { id: 'warning',   label: 'Warning',   cssVar: 'var(--color-fill-warning)' },
   { id: 'critical',  label: 'Critical',  cssVar: 'var(--color-fill-critical)' },
+  { id: 'inverse',   label: 'Inverse',   cssVar: 'var(--color-fill-inverse)' },
 ]
 
 export const INLINE_LOADER_GUIDELINES: InlineLoaderGuidelineDef[] = [

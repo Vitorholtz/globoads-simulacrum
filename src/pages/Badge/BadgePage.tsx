@@ -61,7 +61,7 @@ export default function BadgePage() {
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Border-radius</span>
-              <span className={`type-body-sm ${styles.specVal}`}>8px (--radius-md)</span>
+              <span className={`type-body-sm ${styles.specVal}`}>8px (--border-radius-md)</span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Cor do texto</span>

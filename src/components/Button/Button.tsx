@@ -8,10 +8,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   size?: ButtonSize
   iconLeft?: string
   iconRight?: string
-  loading?: boolean
   danger?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
-  forceState?: 'hover' | 'focus' | 'active' | 'disabled' | 'loading'
+  forceState?: 'hover' | 'focus' | 'active' | 'disabled'
 }
 
 const ICON_SIZE: Record<ButtonSize, string> = {
@@ -31,7 +30,6 @@ export default function Button({
   size = 'md',
   iconLeft,
   iconRight,
-  loading = false,
   danger = false,
   forceState,
   disabled,
@@ -42,8 +40,7 @@ export default function Button({
   const isIconOnly = !children && !!(iconLeft || iconRight)
   const hasIconLeft = !!iconLeft && !isIconOnly
   const hasIconRight = !!iconRight && !isIconOnly
-  const isDisabled = disabled || loading || forceState === 'disabled' || forceState === 'loading'
-  const isLoading = loading || forceState === 'loading'
+  const isDisabled = disabled || forceState === 'disabled'
 
   const cls = [
     styles.btn,
@@ -53,7 +50,6 @@ export default function Button({
     isIconOnly ? styles.iconOnly : '',
     hasIconLeft ? styles.hasIconLeft : '',
     hasIconRight ? styles.hasIconRight : '',
-    isLoading ? styles.loading : '',
     className ?? '',
   ].filter(Boolean).join(' ')
 
@@ -68,8 +64,6 @@ export default function Button({
     )
   }
 
-  const spinner = <span className={styles.spinner} aria-hidden="true" />
-
   return (
     <button
       className={cls}
@@ -78,14 +72,14 @@ export default function Button({
       {...rest}
     >
       {/* Icon-only layout */}
-      {isIconOnly && (isLoading ? spinner : renderIcon((iconLeft || iconRight)!))}
+      {isIconOnly && renderIcon((iconLeft || iconRight)!)}
 
       {/* With-label layout */}
       {!isIconOnly && (
         <>
-          {isLoading ? spinner : (iconLeft && renderIcon(iconLeft))}
+          {iconLeft && renderIcon(iconLeft)}
           {children && <span className={`${LABEL_TYPE[size]} ${styles.label}`}>{children}</span>}
-          {!isLoading && iconRight && renderIcon(iconRight)}
+          {iconRight && renderIcon(iconRight)}
         </>
       )}
     </button>

@@ -30,6 +30,9 @@ import AccordionPage from './pages/Accordion/AccordionPage'
 import TooltipPage from './pages/Tooltip/TooltipPage'
 import InfoPanelPage from './pages/InfoPanel/InfoPanelPage'
 import ToastPage from './pages/Toast/ToastPage'
+import DimensionsEffectsPage from './pages/DimensionsEffects/DimensionsEffectsPage'
+import EffectsPage from './pages/Effects/EffectsPage'
+import AvatarPage from './pages/Avatar/AvatarPage'
 import styles from './App.module.css'
 
 export default function App() {
@@ -69,6 +72,9 @@ export default function App() {
           <Route path="/tooltip" element={<TooltipPage />} />
           <Route path="/info-panel" element={<InfoPanelPage />} />
           <Route path="/toast" element={<ToastPage />} />
+          <Route path="/dimensions" element={<DimensionsEffectsPage />} />
+          <Route path="/effects" element={<EffectsPage />} />
+          <Route path="/avatar" element={<AvatarPage />} />
         </Routes>
       </main>
     </div>

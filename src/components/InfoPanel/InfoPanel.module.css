@@ -1,9 +1,9 @@
 ﻿.root {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-100);
   align-items: flex-start;
-  padding: 16px;
-  border-radius: 20px;
+  padding: var(--spacing-200);
+  border-radius: var(--border-radius-2xl);
 }
 
 /* ── Type variants ── */
@@ -34,7 +34,7 @@
   font-size: var(--font-size-150);
   line-height: var(--line-height-icon);
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: var(--spacing-012);
 }
 
 /* ── Content ── */

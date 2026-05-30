@@ -1,31 +1,31 @@
 ﻿/* ── Sections ── */
 
 .section {
-  margin-bottom: 72px;
+  margin-bottom: var(--spacing-900);
 }
 
 /* ── Component demo ── */
 
 .componentDemo {
   background: var(--color-surface-secondary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 72px 40px 32px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-900) var(--spacing-500) var(--spacing-400);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .componentDemoInner {
   display: flex;
-  gap: 48px;
+  gap: var(--spacing-600);
   align-items: center;
   justify-content: center;
 }
 
 .componentHint {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
 }
 
@@ -37,8 +37,8 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-ui);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-primary);
   cursor: pointer;
   transition: background 0.12s ease, box-shadow 0.12s ease;
@@ -50,7 +50,7 @@
 }
 
 .trigger:focus-visible {
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--outline-focus);
 }
 
 .triggerIcon {
@@ -64,12 +64,12 @@
 .positionsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .positionCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   display: flex;
   flex-direction: column;
@@ -77,30 +77,30 @@
 
 .positionPreview {
   background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 /* Padding per position to give the tooltip room to breathe */
-.padUp     { padding: 60px 40px 24px; }
-.padBottom { padding: 24px 40px 60px; }
-.padRight  { padding: 40px 120px 40px 40px; }
-.padLeft   { padding: 40px 40px 40px 120px; }
+.padUp     { padding: 60px var(--spacing-500) var(--spacing-300); }
+.padBottom { padding: var(--spacing-300) var(--spacing-500) 60px; }
+.padRight  { padding: var(--spacing-500) 120px var(--spacing-500) var(--spacing-500); }
+.padLeft   { padding: var(--spacing-500) var(--spacing-500) var(--spacing-500) 120px; }
 
 /* ── Alignments grid ── */
 
 .alignGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .alignCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   display: flex;
   flex-direction: column;
@@ -108,33 +108,33 @@
 
 .alignPreview {
   background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
   display: flex;
   justify-content: center;
 }
 
 /* Shift trigger for start/end so the arrow anchoring is visible */
-.alignCard:first-child .alignPreview { justify-content: flex-start; padding-left: 40px; }
-.alignCard:last-child  .alignPreview { justify-content: flex-end;   padding-right: 40px; }
+.alignCard:first-child .alignPreview { justify-content: flex-start; padding-left: var(--spacing-500); }
+.alignCard:last-child  .alignPreview { justify-content: flex-end;   padding-right: var(--spacing-500); }
 
 /* ── Card body (shared) ── */
 
 .cardBody {
-  padding: 20px 24px 24px;
+  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--spacing-075);
   flex: 1;
 }
 
 .cardLabel {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .cardDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── Guidelines ── */
@@ -142,33 +142,33 @@
 .guidelinesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .guidelineCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 32px 36px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-400) var(--spacing-450);
   display: flex;
   flex-direction: column;
 }
 
 .guidelineTitle {
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-125);
 }
 
 .guidelineBody {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   flex: 1;
 }
 
 .guidelineRule {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
-  padding-top: 16px;
-  margin-top: 16px;
-  border-top: 1px solid var(--color-border-ui);
+  padding-top: var(--spacing-200);
+  margin-top: var(--spacing-200);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }

@@ -1,7 +1,7 @@
 ﻿.sidebar {
   width: var(--sidebar-width);
-  background: var(--color-bg-sidebar);
-  border-right: 1px solid var(--color-border-ui);
+  background: var(--color-surface-primary);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   position: sticky;
   top: 0;
   height: 100vh;
@@ -11,9 +11,9 @@
 }
 
 .logoArea {
-  padding: 20px 20px 18px;
+  padding: var(--spacing-250) var(--spacing-250) 18px;
   position: relative;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 
@@ -27,7 +27,7 @@
   flex: 1;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border-ui) transparent;
+  scrollbar-color: var(--color-border-tertiary) transparent;
 }
 
 .nav::-webkit-scrollbar {
@@ -35,12 +35,12 @@
 }
 
 .nav::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--color-surface-ghost);
 }
 
 .nav::-webkit-scrollbar-thumb {
-  background: var(--color-border-ui);
-  border-radius: 100px;
+  background: var(--color-border-tertiary);
+  border-radius: var(--border-radius-full);
 }
 
 .nav::-webkit-scrollbar-thumb:hover {
@@ -48,35 +48,35 @@
 }
 
 .section {
-  padding: 16px 0 8px;
+  padding: var(--spacing-200) 0 var(--spacing-100);
 }
 
 .sectionDivider {
-  padding-bottom: 12px;
+  padding-bottom: var(--spacing-150);
 }
 
 .sectionLabel {
   display: block;
   text-transform: uppercase;
-  color: var(--color-text-tertiary);
-  padding: 0 20px 6px;
+  color: var(--color-fill-tertiary);
+  padding: 0 var(--spacing-250) var(--spacing-075);
 }
 
 .navItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: calc(100% - 16px);
-  margin: 1px 8px;
+  width: calc(100% - var(--spacing-200));
+  margin: var(--spacing-012) var(--spacing-100);
   border: none;
   background: none;
   text-align: left;
   text-decoration: none;
-  padding: 7px 10px;
+  padding: 7px var(--spacing-125);
   font-weight: 400;
   color: var(--color-fill-primary);
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   transition: background 0.12s ease, color 0.12s ease;
 }
 
@@ -118,17 +118,17 @@
 }
 
 .badge {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   background: var(--color-surface-tertiary);
-  padding: 2px 7px;
-  border-radius: 100px;
+  padding: var(--spacing-025) 7px;
+  border-radius: var(--border-radius-full);
   flex-shrink: 0;
 }
 
 .sidebarFooter {
   position: relative;
-  padding: 16px 20px;
-  border-top: 1px solid var(--color-border-ui);
+  padding: var(--spacing-200) var(--spacing-250);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
   margin-top: auto;
   display: flex;
   flex-direction: column;
@@ -141,14 +141,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: var(--spacing-025);
   background: var(--color-border-accent-gradient);
 }
 
 .footerTitle {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 .footerSub {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
 }

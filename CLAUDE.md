@@ -29,6 +29,8 @@ Single source of truth for all content. Pages import these and map over them —
 - `colors.ts` — `COLOR_GROUPS: ColorGroup[]`. Each token is a discriminated union: `SolidToken { type: 'solid'; value: string }` or `GradientToken { type: 'gradient'; stops: [string, string] }`.
 - `typography.ts` — `FONT_FAMILIES: FontFamilyDef[]` and `TYPOGRAPHY_GROUPS: TypographyGroup[]` (Display → Title → Body → Caption).
 - `icons.ts` — `ICON_CATEGORIES`, `ICON_SIZES`, `ICON_VARIANT_RULES`, `ICON_GUIDELINES`, `VARIANT_DEMO_ICONS`.
+- `borderWidth.ts` — `BORDER_WIDTH_TOKENS: BorderWidthToken[]`. Six tokens: None → SM → MD → LG → XL → 2XL (0 / 1 / 2 / 4 / 6 / 8px in rem).
+- `borderRadius.ts` — `BORDER_RADIUS_TOKENS: BorderRadiusToken[]`. Ten tokens: None → XS → SM → MD → LG → XL → 2XL → 3XL → 4XL → Full (0 / 2 / 4 / 8 / 12 / 16 / 20 / 24 / 32 / 999px in rem).
 
 **Actions**
 - `buttons.ts` — `BUTTON_VARIANTS`, `BUTTON_SIZES`, `BUTTON_STATES`, `BUTTON_CONTENT_VARIANTS`, `BUTTON_GUIDELINES`, `DANGER_BUTTON_VARIANTS`, `DANGER_BUTTON_GUIDELINES`. Danger variants reuse `ButtonVariantDef` intentionally — the `id` ('primary'|'secondary'|'tertiary') maps to CSS via `danger={true}` prop on Button.
@@ -65,6 +67,9 @@ Single source of truth for all content. Pages import these and map over them —
   - **Collapse**, **Accordion** — utility display components.
   - **InfoPanel**, **Toast** — alert display components.
   - **Tooltip** — overlay display component.
+  - **SpacingRow** — displays a single spacing token (name, rem/px, CSS variable, visual bar). Used by DimensionsEffectsPage.
+  - **BorderWidthRow** — displays a single border-width token (name, rem/px, CSS variable, bordered rectangle demo). Used by DimensionsEffectsPage.
+  - **BorderRadiusRow** — displays a single border-radius token (name, rem/px, CSS variable, rounded rectangle demo). Used by DimensionsEffectsPage.
   - **ColorSwatch**, **ColorGroup**, **FontFamilyCard**, **TypeSpecimen**, **Sidebar** — domain-specific display components.
 - `src/pages/` — one directory per page, each with `*Page.tsx` + `*Page.module.css`. Page CSS contains only the layout specific to that page — shared header/section styles live in their respective component modules.
 - `src/utils/` — helpers shared across pages:
@@ -75,20 +80,39 @@ Single source of truth for all content. Pages import these and map over them —
 Defined in `:root` in `src/global.css`. Key variables:
 
 ```
---color-text-primary / secondary / tertiary
---color-bg-app / bg-sidebar
---color-border-ui                          /* #e8e8ea — UI chrome separator */
 --font-family / font-family-display / font-family-body / font-family-code
---radius-sm / md / lg                      /* 4 / 8 / 12px */
 --shadow-card / shadow-card-hover          /* both: none */
---focus-ring                               /* unified focus indicator for all interactive components */
+--focus-ring                               /* unified focus indicator for all interactive components; uses --color-focus-default */
+
+/* Border width tokens */
+--border-width-none: 0rem
+--border-width-sm: 0.063rem   /* 1px — default component border */
+--border-width-md: 0.125rem   /* 2px — focus/active emphasis */
+--border-width-lg: 0.25rem    /* 4px — strong emphasis */
+--border-width-xl: 0.375rem   /* 6px */
+--border-width-2xl: 0.5rem    /* 8px */
+
+/* Border radius tokens */
+--border-radius-none: 0rem
+--border-radius-xs:   0.125rem   /* 2px */
+--border-radius-sm:   0.25rem    /* 4px — checkboxes, inputs */
+--border-radius-md:   0.5rem     /* 8px — cards, menus */
+--border-radius-lg:   0.75rem    /* 12px — containers, modals */
+--border-radius-xl:   1rem       /* 16px */
+--border-radius-2xl:  1.25rem    /* 20px */
+--border-radius-3xl:  1.5rem     /* 24px */
+--border-radius-4xl:  2rem       /* 32px */
+--border-radius-full: 62.4375rem /* 999px — pill / circle shapes */
 
 /* Color tokens (Fill, Surface, Border) */
 --color-fill-accent: #185CFB
 --color-fill-critical: #B70634
 --color-surface-primary: #FFFFFF
+--color-border-tertiary: #00000014  /* UI chrome separator (~8% black) */
 /* ... full list in global.css :root */
 ```
+
+There are **no semantic color aliases** (`--color-text-*`, `--color-bg-*`, `--color-border-ui`). Components reference the raw tokens directly — e.g. `color: var(--color-fill-primary)` for body text, `background: var(--color-surface-primary)` for card backgrounds, `border-color: var(--color-border-tertiary)` for UI separators.
 
 ### Fonts
 
@@ -100,6 +124,8 @@ Defined in `:root` in `src/global.css`. Key variables:
 
 - All styles are CSS Modules (`.module.css`), scoped per component/page.
 - Backgrounds are flat (`#f7f7f8` for recessed areas, `#ffffff` for cards). No shadows anywhere (`--shadow-card: none`).
+- **Border widths** always use `var(--border-width-*)` tokens — never hardcode `1px`, `2px`, `4px` etc. in `border`, `border-*`, or `outline` properties. `box-shadow` spread values are exempt (focus rings).
+- **Border radius** always use `var(--border-radius-*)` tokens — never hardcode px values in `border-radius` properties.
 - Icon grids use `repeat(auto-fit, minmax(Xpx, 1fr))` — must be `auto-fit`, not `auto-fill`, to avoid empty column tracks that expose the gray grid-gap background.
 - Full-height side panels in flex rows use `align-self: stretch` (not fixed height) so they grow with sibling content.
 - Page CSS files contain only layout styles specific to that page. Header and section-header styles live in `PageHeader.module.css` and `SectionHeader.module.css`.
@@ -111,6 +137,7 @@ Defined in `:root` in `src/global.css`. Key variables:
 | Foundation | Colors | `/colors` | Live — Fill (9), Surface (7), Border (8) tokens |
 | Foundation | Typography | `/typography` | Live — 2 font families, 4 token groups |
 | Foundation | Iconography | `/icons` | Live — library card, variants, sizes, guidelines, catalog |
+| Foundation | Dimensões e Efeitos | `/dimensions-effects` | Live — 26 spacing tokens + 6 border-width tokens + 10 border-radius tokens |
 | Actions | Button | `/button` | Live — 3 variants, 3 sizes, 6 states, 4 content configs |
 | Actions | Button · Danger | `/danger-button` | Live — wrapper for `ButtonPage` with `isDanger={true}` |
 | Structures | Static Cards | `/static-card` | Live — 2 styles, guidelines |
@@ -168,3 +195,4 @@ Follow this checklist — every step is required:
 - **No state management library**: no global shared state beyond routing. If shared state grows (e.g., theme switching, search), add `useContext` before reaching for Zustand/Redux.
 - **Danger variants on same Button component**: `danger={true}` prop toggles the CSS class `.danger` which overrides fill/border/text colors. This avoids duplicating the component while keeping variants well-defined in tokens.
 - **`BUTTON_STATES` does not include CSS property definitions**: state visual behavior (backgrounds, brightness) lives in `Button.module.css`. The token list is for documentation only — it drives the state matrix in `ButtonPage`.
+- **No semantic color aliases**: variables like `--color-text-primary` or `--color-border-ui` were removed. Components use raw tokens directly (`--color-fill-primary`, `--color-border-tertiary`, etc.). This keeps the token layer flat and avoids a redundant indirection layer.

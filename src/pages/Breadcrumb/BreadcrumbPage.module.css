@@ -3,22 +3,22 @@
 /* ── Sections ── */
 
 .section {
-  margin-bottom: 72px;
+  margin-bottom: var(--spacing-900);
 }
 
 /* ── Profundidades ── */
 
 .depthsContainer {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
 }
 
 .depthRow {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .depthRow:last-child {
@@ -27,8 +27,8 @@
 
 .depthPreview {
   flex: 1;
-  padding: 28px 40px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-350) var(--spacing-500);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .depthMeta {
@@ -36,25 +36,25 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 24px 32px;
+  gap: var(--spacing-025);
+  padding: var(--spacing-300) var(--spacing-400);
 }
 
 .depthLabel {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .depthCount {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
 }
 
 /* ── Anatomia ── */
 
 .anatomyCard {
   display: flex;
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
   background: var(--color-surface-primary);
 }
@@ -62,17 +62,17 @@
 .anatomyPreview {
   flex: 1;
   background: var(--color-surface-secondary);
-  border-right: 1px solid var(--color-border-ui);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 60px 48px;
+  padding: 60px var(--spacing-600);
 }
 
 .anatomySpecs {
   width: 440px;
   flex-shrink: 0;
-  padding: 28px 32px;
+  padding: var(--spacing-350) var(--spacing-400);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -81,9 +81,9 @@
 .specRow {
   display: flex;
   align-items: baseline;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--color-border-ui);
+  gap: var(--spacing-150);
+  padding: var(--spacing-150) 0;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .specRow:last-child {
@@ -92,14 +92,14 @@
 
 .specKey {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
   width: 160px;
   flex-shrink: 0;
 }
 
 .specVal {
   font-family: var(--font-family-code);
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── Guidelines ── */
@@ -107,14 +107,14 @@
 .guidelinesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .guidelineCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 32px 36px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-400) var(--spacing-450);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -122,19 +122,19 @@
 
 .guidelineTitle {
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-125);
 }
 
 .guidelineBody {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   flex: 1;
 }
 
 .guidelineRule {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
-  padding-top: 16px;
-  margin-top: 16px;
-  border-top: 1px solid var(--color-border-ui);
+  padding-top: var(--spacing-200);
+  margin-top: var(--spacing-200);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }

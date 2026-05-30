@@ -112,7 +112,6 @@ export const BUTTON_STATES = [
   { id: 'focus',    label: 'Focus',    description: 'Foco via teclado — anel de acessibilidade.' },
   { id: 'active',   label: 'Active',   description: 'Botão pressionado.' },
   { id: 'disabled', label: 'Disabled', description: 'Indisponível — opacidade 48%.' },
-  { id: 'loading',  label: 'Loading',  description: 'Aguardando resposta — spinner substitui ícone.' },
 ] as const
 
 export const BUTTON_CONTENT_VARIANTS = [
@@ -137,11 +136,6 @@ export const BUTTON_GUIDELINES = [
     title: 'Tamanho mínimo de toque',
     body: 'O tamanho mínimo de área de toque é 40×40px. O botão SM (32px de altura) deve ser complementado com padding extra ou área de toque expandida em contextos touch.',
     rule: 'Área de toque ≥ 40×40px.',
-  },
-  {
-    title: 'Estado loading',
-    body: 'Ao disparar uma ação assíncrona, aplique o estado loading imediatamente para prevenir cliques duplos. O botão permanece visível (não some) — o spinner substitui o ícone.',
-    rule: 'Feedback imediato ao clique.',
   },
 ]
 

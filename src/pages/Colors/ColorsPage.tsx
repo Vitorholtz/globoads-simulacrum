@@ -6,6 +6,8 @@ const GROUP_ICONS: Record<string, string> = {
   Fill: 'format_color_fill',
   Surface: 'layers',
   Border: 'border_outer',
+  'Cores de Ação': 'touch_app',
+  'Cores de Luminosidade': 'opacity',
 }
 
 export default function ColorsPage() {

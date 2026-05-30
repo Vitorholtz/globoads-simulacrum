@@ -100,7 +100,7 @@ export default function IconsPage() {
                   <span
                     key={icon}
                     className={`material-symbols-rounded icon-xl${rule.variant === 'filled' ? ' icon-filled' : ''}`}
-                    style={{ color: 'var(--color-text-primary)' }}
+                    style={{ color: 'var(--color-fill-primary)' }}
                   >
                     {icon}
                   </span>
@@ -201,7 +201,7 @@ export default function IconsPage() {
               <div className={styles.sizeIconWrap}>
                 <span
                   className={`material-symbols-rounded ${SIZE_CLS[size.value] ?? ''}`}
-                  style={SIZE_CLS[size.value] ? { color: 'var(--color-text-primary)' } : { fontSize: `${size.value}px`, color: 'var(--color-text-primary)' }}
+                  style={SIZE_CLS[size.value] ? { color: 'var(--color-fill-primary)' } : { fontSize: `${size.value}px`, color: 'var(--color-fill-primary)' }}
                 >
                   home
                 </span>
@@ -230,7 +230,7 @@ export default function IconsPage() {
               <div className={styles.guidelineIconWrap}>
                 <span
                   className="material-symbols-rounded icon-md"
-                  style={{ color: 'var(--color-text-tertiary)' }}
+                  style={{ color: 'var(--color-fill-tertiary)' }}
                 >
                   {GUIDELINE_ICONS[g.title] ?? 'info'}
                 </span>
@@ -262,13 +262,13 @@ export default function IconsPage() {
                   <div className={styles.iconPair}>
                     <span
                       className="material-symbols-rounded icon-lg"
-                      style={{ color: 'var(--color-text-secondary)' }}
+                      style={{ color: 'var(--color-fill-secondary)' }}
                     >
                       {icon.name}
                     </span>
                     <span
                       className="material-symbols-rounded icon-lg icon-filled"
-                      style={{ color: 'var(--color-text-primary)' }}
+                      style={{ color: 'var(--color-fill-primary)' }}
                     >
                       {icon.name}
                     </span>

@@ -2,10 +2,10 @@
 
 .switch {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-100);
   align-items: center;
   min-height: 32px;
-  padding: 4px 0;
+  padding: var(--spacing-050) 0;
   width: fit-content;
   cursor: pointer;
   user-select: none;
@@ -24,7 +24,7 @@
 }
 
 .switch[data-state='disabled'] {
-  opacity: 0.48;
+  opacity: var(--opacity-disabled);
 }
 
 /* ── Native input (visually hidden, accessible) ── */
@@ -47,8 +47,8 @@
   position: relative;
   width: 36px;
   height: 20px;
-  border-radius: 9999px;
-  padding: 2px;
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-025);
   flex-shrink: 0;
   background: var(--sw-track);
   transition: background-color 120ms ease, box-shadow 120ms ease;
@@ -82,11 +82,11 @@
 .thumb {
   width: 16px;
   height: 16px;
-  border-radius: 50%;
+  border-radius: var(--border-radius-full);
   background: var(--color-fill-inverse);
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: var(--spacing-025);
+  left: var(--spacing-025);
   z-index: 1;
   transition: left 150ms ease;
 }
@@ -112,7 +112,7 @@
 }
 
 .switch:not([data-state]):hover[data-behavior='checked'] {
-  --sw-track: #0050D1;
+  --sw-track: var(--color-action-solid-fill-hover);
 }
 
 /* Focus (keyboard — :focus-visible via :has) */
@@ -121,11 +121,11 @@
 }
 
 .switch:not([data-state]):has(input:focus-visible)[data-behavior='checked'] {
-  --sw-track: #0050D1;
+  --sw-track: var(--color-action-solid-fill-hover);
 }
 
 .switch:not([data-state]):has(input:focus-visible) .track {
-  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+  box-shadow: var(--outline-focus);
 }
 
 /* Active */
@@ -134,7 +134,7 @@
 }
 
 .switch:not([data-state]):active[data-behavior='checked'] {
-  --sw-track: #0045B6;
+  --sw-track: var(--color-action-solid-fill-active);
 }
 
 /* ── FORCED STATES (docs / matrix) ── */
@@ -145,7 +145,7 @@
 }
 
 .switch[data-state='hover'][data-behavior='checked'] {
-  --sw-track: #0050D1;
+  --sw-track: var(--color-action-solid-fill-hover);
 }
 
 /* Forced focus */
@@ -154,11 +154,11 @@
 }
 
 .switch[data-state='focus'][data-behavior='checked'] {
-  --sw-track: #0050D1;
+  --sw-track: var(--color-action-solid-fill-hover);
 }
 
 .switch[data-state='focus'] .track {
-  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+  box-shadow: var(--outline-focus);
 }
 
 /* Forced active */
@@ -167,7 +167,7 @@
 }
 
 .switch[data-state='active'][data-behavior='checked'] {
-  --sw-track: #0045B6;
+  --sw-track: var(--color-action-solid-fill-active);
 }
 
 /* ── Text group ── */

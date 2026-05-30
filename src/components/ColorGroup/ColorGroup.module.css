@@ -1,36 +1,36 @@
 ﻿.group {
-  margin-bottom: 64px;
+  margin-bottom: var(--spacing-800);
 }
 
 .header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: var(--spacing-125);
+  margin-bottom: var(--spacing-250);
 }
 
 .headerIcon {
   font-size: var(--font-size-125);
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   flex-shrink: 0;
   line-height: var(--line-height-icon);
   user-select: none;
 }
 
 .title {
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .count {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   background: var(--color-surface-tertiary);
-  padding: 2px 9px;
-  border-radius: 100px;
+  padding: var(--spacing-025) 9px;
+  border-radius: var(--border-radius-full);
   margin-left: auto;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
-  gap: 14px;
+  gap: var(--spacing-175);
 }

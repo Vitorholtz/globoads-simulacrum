@@ -27,19 +27,19 @@
 /* ── Shape variants ── */
 
 .pill {
-  border-radius: 9999px;
+  border-radius: var(--border-radius-full);
 }
 
 .rounded {
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius-md);
 }
 
 .circle {
-  border-radius: 50%;
+  border-radius: var(--border-radius-full);
 }
 
 .card {
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-lg);
 }
 
 /* ── Input compound ── */
@@ -47,7 +47,7 @@
 .inputWrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--spacing-075);
 }
 
 .inputLabel {

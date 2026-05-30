@@ -15,7 +15,7 @@
 .item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-100);
 }
 
 /* ── Separator ── */
@@ -46,8 +46,8 @@
 
 .link:focus-visible {
   outline: none;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--focus-ring);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--outline-focus);
 }
 
 /* ── Página atual ── */

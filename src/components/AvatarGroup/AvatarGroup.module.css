@@ -1,0 +1,20 @@
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+.avatars {
+  display: flex;
+  align-items: center;
+}
+
+.overlap {
+  margin-right: -0.5rem;
+  box-shadow: 0 0 0 var(--border-width-md) var(--color-surface-primary);
+}
+
+.label {
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+}

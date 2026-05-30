@@ -1,5 +1,6 @@
 import styles from './ChipInput.module.css'
 import type { ChipInputStyle } from '../../tokens/chipInput'
+import Avatar from '../Avatar/Avatar'
 
 export type { ChipInputStyle }
 
@@ -34,11 +35,7 @@ export default function ChipInput({
       data-state={forceState}
     >
       {style === 'person' && (
-        <div className={styles.avatar} aria-hidden="true">
-          <span className={`material-symbols-rounded icon-xs ${styles.avatarIcon}`}>
-            person
-          </span>
-        </div>
+        <Avatar size="xs" variant="placeholder" aria-hidden="true" />
       )}
 
       {style === 'icon' && (

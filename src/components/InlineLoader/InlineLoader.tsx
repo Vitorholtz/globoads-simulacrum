@@ -24,6 +24,7 @@ const COLOR_VAR: Record<InlineLoaderColor, string> = {
   success:   'var(--color-fill-success)',
   warning:   'var(--color-fill-warning)',
   critical:  'var(--color-fill-critical)',
+  inverse:   'var(--color-fill-inverse)',
 }
 
 export default function InlineLoader({

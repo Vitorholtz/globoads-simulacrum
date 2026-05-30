@@ -9,7 +9,7 @@
   white-space: nowrap;
   cursor: pointer;
   outline: none;
-  border-radius: 2px;
+  border-radius: var(--border-radius-xs);
   -webkit-font-smoothing: antialiased;
   transition: color 0.1s ease, box-shadow 0.1s ease;
 }
@@ -17,19 +17,19 @@
 /* ── Sizes ── */
 
 .xs {
-  gap: 2px;
+  gap: var(--spacing-025);
 }
 
 .sm {
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .md {
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .lg {
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 /* ── External icon ── */
@@ -43,7 +43,7 @@
 
 .hyperlink:hover,
 .hyperlink[data-state='hover'] {
-  color: #0050D1;
+  color: var(--color-action-solid-fill-hover);
   text-decoration: underline;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -53,18 +53,18 @@
 
 .hyperlink:focus-visible,
 .hyperlink[data-state='focus'] {
-  color: #0050D1;
+  color: var(--color-action-solid-fill-hover);
   text-decoration: underline;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  box-shadow: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+  box-shadow: var(--outline-focus);
 }
 
 /* ── Active state ── */
 
 .hyperlink:active,
 .hyperlink[data-state='active'] {
-  color: #0045B6;
+  color: var(--color-action-solid-fill-active);
   text-decoration: underline;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;

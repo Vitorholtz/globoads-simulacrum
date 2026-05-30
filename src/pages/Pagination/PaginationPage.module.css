@@ -3,7 +3,7 @@
 /* ── Sections ── */
 
 .section {
-  margin-bottom: 72px;
+  margin-bottom: var(--spacing-900);
 }
 
 /* ── Variantes ── */
@@ -11,19 +11,19 @@
 .variantGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .variantCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   overflow: hidden;
 }
 
 .variantPreview {
   background: var(--color-surface-secondary);
-  padding: 40px 32px;
+  padding: var(--spacing-500) var(--spacing-400);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,20 +31,20 @@
 }
 
 .variantMeta {
-  padding: 16px 20px;
-  border-top: 1px solid var(--color-border-ui);
+  padding: var(--spacing-200) var(--spacing-250);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .variantLabel {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .variantDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── Estados ── */
@@ -52,19 +52,19 @@
 .statesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .stateCard {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   overflow: hidden;
 }
 
 .statePreview {
   background: var(--color-surface-secondary);
-  padding: 40px 32px;
+  padding: var(--spacing-500) var(--spacing-400);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,20 +72,20 @@
 }
 
 .stateMeta {
-  padding: 16px 20px;
-  border-top: 1px solid var(--color-border-ui);
+  padding: var(--spacing-200) var(--spacing-250);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .stateLabel {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .stateDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
 }
 
 /* ── Guidelines ── */
@@ -93,14 +93,14 @@
 .guidelinesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .guidelineCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 32px 36px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-400) var(--spacing-450);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -108,19 +108,19 @@
 
 .guidelineTitle {
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-125);
 }
 
 .guidelineBody {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   flex: 1;
 }
 
 .guidelineRule {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
-  padding-top: 16px;
-  margin-top: 16px;
-  border-top: 1px solid var(--color-border-ui);
+  padding-top: var(--spacing-200);
+  margin-top: var(--spacing-200);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }

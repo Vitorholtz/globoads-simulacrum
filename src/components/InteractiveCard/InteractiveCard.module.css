@@ -3,8 +3,8 @@
 .card {
   display: block;
   background: var(--color-surface-secondary);
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: var(--border-radius-2xl);
+  padding: var(--spacing-250);
   overflow: hidden;
   border: none;
   cursor: pointer;
@@ -22,15 +22,15 @@
 
 .card:hover,
 .card[data-state='hover'] {
-  box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadows-low);
 }
 
 .card:focus-visible,
 .card[data-state='focus'] {
-  box-shadow: var(--focus-ring), 0px 4px 8px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--outline-focus-out), var(--shadows-low);
 }
 
 .card:active,
 .card[data-state='active'] {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadows-ground);
 }

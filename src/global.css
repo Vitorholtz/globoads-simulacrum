@@ -56,17 +56,17 @@
      sans:       Inter Variable — interface geral (Title, Body, Caption).
      code:       Fonte monoespaçada para snippets de código e valores técnicos. */
 
-   --font-family-display-01:     'Globotipo Corporativa', sans-serif;
-   --font-family-sans:           'Inter Variable', 'Inter', -apple-system, sans-serif;
-   --font-family-code:           'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-   --font-family-icons-rounded:  'Material Symbols Rounded';
+   --font-family-display-01: 'Globotipo Corporativa', sans-serif;
+   --font-family-sans: 'Inter Variable', 'Inter', -apple-system, sans-serif;
+   --font-family-code: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+   --font-family-icons-rounded: 'Material Symbols Rounded';
 
    /* ── Variação de ícones ──
      Controlam o eixo FILL dos Material Symbols Rounded.
      opsz é omitido — cada utility class usa font-optical-sizing: auto
      para que o browser derive o opsz correto do font-size. */
    --font-variation-unfilled: 'FILL' 0, 'wght' 400, 'GRAD' 0;
-   --font-variation-filled:   'FILL' 1, 'wght' 400, 'GRAD' 0;
+   --font-variation-filled: 'FILL' 1, 'wght' 400, 'GRAD' 0;
 
    /* Tamanho base do body: 14px (0.875rem com root = 16px).
      Interfaces densas de gerenciamento usam 13–14px como base —
@@ -148,43 +148,35 @@
    --line-height-500: 5rem;
 
 
-   /* ── Aliases semânticos de cor ──
-     Não são novas cores — são apelidos que traduzem os tokens Fill/Surface/Border
-     para intenções de uso (text, bg, border). Componentes devem usar esses aliases,
-     nunca os tokens Fill diretamente, para manter semântica legível no código. */
-
-   --color-text-primary: var(--color-fill-primary);
-   --color-text-secondary: var(--color-fill-secondary);
-   --color-text-tertiary: var(--color-fill-tertiary);
-
-   --color-bg-app: var(--color-surface-primary);
-   --color-bg-sidebar: var(--color-surface-primary);
-   --color-border-ui: var(--color-border-tertiary);
-   /* #ebebeb — separadores de chrome */
-
-
    /* ── Raios de borda ── */
 
-   --radius-sm: 4px;
-   --radius-md: 8px;
-   --radius-lg: 12px;
+   --border-radius-none: 0rem;
+   --border-radius-xs:   0.125rem;
+   --border-radius-sm:   0.25rem;
+   --border-radius-md:   0.5rem;
+   --border-radius-lg:   0.75rem;
+   --border-radius-xl:   1rem;
+   --border-radius-2xl:  1.25rem;
+   --border-radius-3xl:  1.5rem;
+   --border-radius-4xl:  2rem;
+   --border-radius-full: 62.4375rem;
 
 
-   /* ── Sombras ──
-     Intencionalmente zeradas: o sistema usa bordas e fundos para criar
-     hierarquia visual, não sombras. Mantidos como tokens para que uma
-     futura versão possa ativar depth sem alterar os componentes. */
+   /* ── Sombras ── */
 
-   --shadow-card: none;
-   --shadow-card-hover: none;
+   --shadows-ground:  0 0 0 1px #0000001F;
+   --shadows-low:     0 4px 8px 2px #0000001F;
+   --shadows-base:    0 4px 16px 0 #00000033;
+   --shadows-high:    0 8px 24px 0 #00000033;
+   --shadows-diffuse: 0 8px 40px 0 #00000033;
 
 
-   /* ── Focus ring ──
-     Token único compartilhado por todos os componentes interativos
-     (Button, TextField, Select, etc.). O double-ring (branco + azul)
-     garante visibilidade tanto em fundo claro quanto escuro. */
+   /* ── Contornos de foco ──
+     Outline/Focus     → componentes interativos genéricos (botão, chip, card…)
+     Outline/Focus/Out → inputs com borda visível (TextField, Select, DatePicker…) */
 
-   --focus-ring: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px rgba(24, 92, 251, 0.8);
+   --outline-focus:     0 0 0 2px var(--color-surface-primary), 0 0 0 4px var(--color-focus-default);
+   --outline-focus-out: 0 0 0 2px var(--color-focus-default);
 
 
    /* ── Tokens de cor: Fill ──
@@ -221,6 +213,38 @@
    --color-surface-success: #EDFDE7;
    --color-surface-warning: #FEFBE1;
    --color-surface-critical: #FFEDE5;
+   --color-surface-ghost: transparent;
+
+
+   /* ── Tokens de cor: Action ──
+     Cores de resposta a interações do usuário (hover, active).
+     Solid → estados sobre fundo sólido accent.
+     Ghost → estados semi-transparentes sobre fundo accent.
+     Grad  → estados sobre fundo gradiente accent.
+     Critical → estados sobre fundo crítico. */
+
+   --color-action-solid-fill-hover:       #0050D1;
+   --color-action-solid-fill-active:      #0045B6;
+   --color-action-solid-ghost-hover:      #005DD91F;
+   --color-action-solid-ghost-active:     #005DD933;
+   --color-action-grad-fill-hover:        linear-gradient(135deg, #0050D1 0%, #7000D4 100%);
+   --color-action-grad-fill-active:       linear-gradient(135deg, #0045B6 0%, #5D00B3 100%);
+   --color-action-critical-fill-hover:    #930336;
+   --color-action-critical-fill-active:   #7A0237;
+   --color-action-critical-ghost-hover:   #B706341F;
+   --color-action-critical-ghost-active:  #B7063433;
+
+   /* ── Tokens de cor: Luminosidade ──
+     Sobreposições neutras (preto ou branco com opacidade) para hover e
+     active de botões ícone e itens de lista que não usam cor de destaque.
+     Dark → sobre superfícies claras.  Light → sobre superfícies escuras. */
+
+   --color-luminosity-dark-ghost-subtle:  #0000000A;
+   --color-luminosity-dark-ghost-hover:   #00000012;
+   --color-luminosity-dark-ghost-active:  #0000001F;
+   --color-luminosity-light-ghost-hover:  #FFFFFF2E;
+   --color-luminosity-light-ghost-active: #FFFFFF4D;
+   --color-luminosity-light-ghost-focus:  #FFFFFF8C;
 
 
    /* ── Tokens de cor: Border ──
@@ -229,13 +253,58 @@
 
    --color-border-primary: #C7C8CA;
    --color-border-secondary: #939598;
-   --color-border-tertiary: #EBEBEB;
+   --color-border-tertiary: #00000014;
    /* mais suave — separadores de chrome */
    --color-border-accent: #65BDFE;
    --color-border-accent-gradient: linear-gradient(to right, #185CFB 0%, #8800F8 100%);
    --color-border-success: #6CE95D;
    --color-border-warning: #FFE543;
    --color-border-critical: #FF7C6D;
+   --color-focus-default: #185cfbcc;
+
+
+   /* ── Spacing tokens ──
+      Escala de espaçamentos base. Usada em padding, margin e gap de todos os componentes. */
+
+   --spacing-000: 0;
+   --spacing-012: 0.0625rem;
+   --spacing-025: 0.125rem;
+   --spacing-050: 0.25rem;
+   --spacing-075: 0.375rem;
+   --spacing-100: 0.5rem;
+   --spacing-125: 0.625rem;
+   --spacing-150: 0.75rem;
+   --spacing-175: 0.875rem;
+   --spacing-200: 1rem;
+   --spacing-250: 1.25rem;
+   --spacing-300: 1.5rem;
+   --spacing-350: 1.75rem;
+   --spacing-400: 2rem;
+   --spacing-450: 2.25rem;
+   --spacing-500: 2.5rem;
+   --spacing-550: 2.75rem;
+   --spacing-600: 3rem;
+   --spacing-700: 3.5rem;
+   --spacing-800: 4rem;
+   --spacing-900: 4.5rem;
+   --spacing-1000: 5rem;
+   --spacing-1200: 6rem;
+   --spacing-1600: 8rem;
+   --spacing-2000: 10rem;
+   --spacing-2400: 12rem;
+
+   /* ── Border Width tokens ──
+      Escala de espessuras de borda. Usada em bordas de componentes, inputs e separadores. */
+
+   --border-width-none: 0rem;
+   --border-width-sm: 0.063rem;
+   --border-width-md: 0.125rem;
+   --border-width-lg: 0.25rem;
+   --border-width-xl: 0.375rem;
+   --border-width-2xl: 0.5rem;
+
+   /* ── Opacity tokens ── */
+   --opacity-disabled: 0.48;
 }
 
 
@@ -252,8 +321,8 @@ body {
    font-family: var(--font-family-sans);
    font-size: var(--font-size-base);
    font-optical-sizing: auto;
-   background-color: var(--color-bg-app);
-   color: var(--color-text-primary);
+   background-color: var(--color-surface-primary);
+   color: var(--color-fill-primary);
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    line-height: 1.5;
@@ -403,6 +472,11 @@ body {
    font-weight: var(--font-weight-medium);
    font-size: var(--font-size-100);
    line-height: var(--line-height-125);
+}
+
+/* Code — monospace modifier, combinado com qualquer classe type-* */
+.font-code {
+   font-family: var(--font-family-code);
 }
 
 /* Hyperlink — Inter Variable · Medium · text-decoration: none por padrão.

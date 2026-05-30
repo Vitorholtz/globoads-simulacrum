@@ -3,7 +3,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-100);
   width: 100%;
 }
 
@@ -13,13 +13,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .labelGroup {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .label {
@@ -40,7 +40,7 @@
   align-items: center;
   justify-content: center;
   cursor: help;
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
   outline: none;
 }
 
@@ -57,22 +57,22 @@
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
-  left: -6px;
+  bottom: calc(100% + var(--spacing-125));
+  left: calc(var(--spacing-075) * -1);
   width: 200px;
   background: var(--color-fill-primary);
   color: var(--color-fill-inverse);
   font-weight: var(--font-weight-regular);
-  padding: 6px 10px;
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: var(--spacing-075) var(--spacing-125);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadows-base);
   pointer-events: none;
   white-space: normal;
   word-break: break-word;
   z-index: 100;
 
   opacity: 0;
-  transform: translateY(4px);
+  transform: translateY(var(--spacing-050));
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
@@ -85,7 +85,7 @@
 .tooltipArrow {
   position: absolute;
   bottom: -5px;
-  left: 8px;
+  left: var(--spacing-100);
   width: 12px;
   height: 6px;
   background: var(--color-fill-primary);
@@ -98,8 +98,8 @@
   position: relative;
   width: 100%;
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-primary);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-primary);
+  border-radius: var(--border-radius-lg);
   transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
 
@@ -116,13 +116,13 @@
 /* Focus — real */
 .inputWrapper:focus-within:not([data-state]) {
   border-color: var(--color-fill-accent);
-  box-shadow: 0 0 0 1px var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
 }
 
 /* Focus — forced */
 .inputWrapper[data-state='focus'] {
   border-color: var(--color-fill-accent);
-  box-shadow: 0 0 0 1px var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
 }
 
 /* Error — real or forced */
@@ -140,7 +140,7 @@
 /* ── Disabled root ── */
 
 .disabled {
-  opacity: 0.48;
+  opacity: var(--opacity-disabled);
   pointer-events: none;
 }
 
@@ -160,11 +160,11 @@
   width: 100%;
   border: none;
   outline: none;
-  background: transparent;
+  background: var(--color-surface-ghost);
   cursor: pointer;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-lg);
   -webkit-appearance: none;
   appearance: none;
   margin: 0;
@@ -201,7 +201,7 @@
 .trailingIcons {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-050);
   flex-shrink: 0;
 }
 
@@ -224,13 +224,13 @@
 
 .dropdown {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + var(--spacing-050));
   left: 0;
   right: 0;
   background: var(--color-surface-primary);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  padding: 4px;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadows-base);
+  padding: var(--spacing-050);
   z-index: 200;
 
   opacity: 0;
@@ -258,12 +258,12 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-025);
 }
 
 .option {
-  padding: 8px;
-  border-radius: var(--radius-md);
+  padding: var(--spacing-100);
+  border-radius: var(--border-radius-md);
   font-weight: 500;
   color: var(--color-fill-primary);
   cursor: pointer;
@@ -271,16 +271,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: background 0.1s ease;
-  border: 2px solid transparent;
+  border: var(--border-width-md) solid transparent;
   -webkit-font-smoothing: antialiased;
 }
 
 .option:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--color-luminosity-dark-ghost-subtle);
 }
 
 .optionSelected {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--color-luminosity-dark-ghost-subtle);
   border-color: rgba(24, 92, 251, 0.8);
 }
 
@@ -305,8 +305,8 @@
 /* SM */
 
 .sm .trigger {
-  gap: 4px;
-  padding: 6px 6px 6px 8px;
+  gap: var(--spacing-050);
+  padding: var(--spacing-075) var(--spacing-075) var(--spacing-075) var(--spacing-100);
 }
 
 .sm .option {
@@ -316,8 +316,8 @@
 /* MD */
 
 .md .trigger {
-  gap: 8px;
-  padding: 8px 10px 8px 12px;
+  gap: var(--spacing-100);
+  padding: var(--spacing-100) var(--spacing-125) var(--spacing-100) var(--spacing-150);
 }
 
 .md .option {
@@ -327,8 +327,8 @@
 /* LG */
 
 .lg .trigger {
-  gap: 8px;
-  padding: 12px;
+  gap: var(--spacing-100);
+  padding: var(--spacing-150);
 }
 
 .lg .option {

@@ -27,7 +27,7 @@ export default function InlineLoaderPage() {
         stats={[
           { value: 4, label: 'Tipos' },
           { value: 3, label: 'Tamanhos' },
-          { value: 8, label: 'Cores' },
+          { value: INLINE_LOADER_COLORS.length, label: 'Cores' },
         ]}
       />
 
@@ -95,7 +95,7 @@ export default function InlineLoaderPage() {
         <div className={styles.colorsGrid}>
           {INLINE_LOADER_COLORS.map((c) => (
             <div key={c.id} className={styles.colorCard}>
-              <div className={styles.colorPreview}>
+              <div className={[styles.colorPreview, c.id === 'inverse' ? styles.colorPreviewInverse : ''].filter(Boolean).join(' ')}>
                 <InlineLoader type="spinner" size="md" color={c.id} />
               </div>
               <span className={`type-caption-sm ${styles.colorLabel}`}>{c.label}</span>

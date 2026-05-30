@@ -5,8 +5,8 @@
 }
 
 .content {
-  background: var(--color-bg-app);
+  background: var(--color-surface-primary);
   overflow-y: auto;
-  padding: 56px 80px 96px;
+  padding: var(--spacing-700) var(--spacing-1000) var(--spacing-1200);
   min-height: 100vh;
 }

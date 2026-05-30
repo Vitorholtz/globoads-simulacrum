@@ -1,14 +1,14 @@
 ﻿.accordion {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-100);
 }
 
 /* ── Section ── */
 
 .section {
   background: var(--color-surface-tertiary);
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-lg);
 }
 
 /* ── Header ── */
@@ -16,12 +16,12 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-100);
   width: 100%;
-  padding: 14px 12px;
-  background: transparent;
+  padding: var(--spacing-175) var(--spacing-150);
+  background: var(--color-surface-ghost);
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-lg);
   cursor: pointer;
   outline: none;
   position: relative;
@@ -30,15 +30,15 @@
 }
 
 .header:hover {
-  background: rgba(24, 92, 251, 0.08);
+  background: var(--color-action-solid-ghost-hover);
 }
 
 .header:active {
-  background: rgba(24, 92, 251, 0.14);
+  background: var(--color-action-solid-ghost-active);
 }
 
 .header:focus-visible {
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--outline-focus);
 }
 
 /* ── Leading icon ── */
@@ -83,7 +83,7 @@
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.22s ease;
   overflow: hidden;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
 }
 
 .contentWrapper[data-open='true'] {
@@ -95,5 +95,5 @@
 }
 
 .contentPadded {
-  padding: 0 8px 8px;
+  padding: 0 var(--spacing-100) var(--spacing-100);
 }

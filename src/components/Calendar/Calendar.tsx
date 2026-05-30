@@ -101,19 +101,11 @@ export default function Calendar({
   return (
     <div className={[styles.root, styles[size], className ?? ''].filter(Boolean).join(' ')}>
       <div className={styles.header}>
-        <button type="button" className={styles.navBtn} onClick={prevMonth} aria-label="Mês anterior">
-          <span className={`material-symbols-rounded icon-md ${styles.navIcon}`}>
-            arrow_back
-          </span>
-        </button>
+        <Button type="button" variant="tertiary" size="md" iconLeft="arrow_back" onClick={prevMonth} aria-label="Mês anterior" />
         <span className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}>
           {MONTHS_PT[viewMonth]}/{String(viewYear).slice(2)}
         </span>
-        <button type="button" className={styles.navBtn} onClick={nextMonth} aria-label="Próximo mês">
-          <span className={`material-symbols-rounded icon-md ${styles.navIcon}`}>
-            arrow_forward
-          </span>
-        </button>
+        <Button type="button" variant="tertiary" size="md" iconLeft="arrow_forward" onClick={nextMonth} aria-label="Próximo mês" />
       </div>
 
       <div className={styles.weekdays}>

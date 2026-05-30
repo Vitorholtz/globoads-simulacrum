@@ -8,7 +8,7 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import styles from './ButtonPage.module.css'
 
-type ForceState = 'hover' | 'focus' | 'active' | 'disabled' | 'loading' | undefined
+type ForceState = 'hover' | 'focus' | 'active' | 'disabled' | undefined
 
 type MatrixCell = {
   label: string
@@ -31,7 +31,6 @@ const MATRIX_STATES: { id: string; label: string; force: ForceState }[] = [
   { id: 'focus',    label: 'Focus',    force: 'focus' },
   { id: 'active',   label: 'Active',   force: 'active' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
-  { id: 'loading',  label: 'Loading',  force: 'loading' },
 ]
 
 const CONTENT_DEMOS: Record<'default' | 'danger', ContentDemo[]> = {
@@ -79,7 +78,7 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
         stats={[
           { value: 3, label: 'Variantes' },
           { value: 3, label: 'Tamanhos' },
-          { value: 6, label: 'Estados' },
+          { value: BUTTON_STATES.length, label: 'Estados' },
           { value: 4, label: 'Conteúdos' },
         ]}
       />

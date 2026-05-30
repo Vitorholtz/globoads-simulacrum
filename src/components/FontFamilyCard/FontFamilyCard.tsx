@@ -12,7 +12,7 @@ export default function FontFamilyCard({ family }: FontFamilyCardProps) {
     <div className={styles.card}>
       <div className={styles.showcase}>
         <div
-          className={`type-display-md ${styles.showcaseHeadline}`}
+          className={`type-display-xl ${styles.showcaseHeadline}`}
           style={{ fontFamily: family.cssFamily, fontWeight: maxWeight }}
         >
           {family.specimenText}
@@ -36,14 +36,14 @@ export default function FontFamilyCard({ family }: FontFamilyCardProps) {
         <div className={styles.weightsPills}>
           {family.weights.map((w) => (
             <span key={w.value} className={`type-caption-sm ${styles.weightPill}`}>
-              <span className={`type-caption-sm ${styles.weightPillNum}`}>{w.value}</span>
+              <span className={`type-caption-sm font-code ${styles.weightPillNum}`}>{w.value}</span>
               {w.label}
             </span>
           ))}
         </div>
         <div className={styles.cssRow}>
           <span className={`type-caption-sm ${styles.cssLabel}`}>CSS</span>
-          <code className={`type-caption-sm ${styles.cssVar}`}>{family.cssVariable}</code>
+          <code className={`type-caption-sm font-code ${styles.cssVar}`}>{family.cssVariable}</code>
         </div>
       </div>
     </div>

@@ -3,22 +3,22 @@
 /* ── Sections ── */
 
 .section {
-  margin-bottom: 72px;
+  margin-bottom: var(--spacing-900);
 }
 
 /* ── Tipos ── */
 
 .typesContainer {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
 }
 
 .typeRow {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .typeRow:last-child {
@@ -31,8 +31,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 40px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-500);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-secondary);
 }
 
@@ -40,17 +40,17 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 20px 32px;
+  gap: var(--spacing-050);
+  padding: var(--spacing-250) var(--spacing-400);
 }
 
 .typeLabel {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .typeDesc {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   margin: 0;
 }
 
@@ -58,8 +58,8 @@
 
 .sizesTable {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
 }
 
@@ -67,19 +67,19 @@
   display: flex;
   align-items: center;
   background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .sizesTypeName {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .sizesTypeCol {
   width: 120px;
   flex-shrink: 0;
-  padding: 14px 24px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-175) var(--spacing-300);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .sizeHeadCell {
@@ -87,9 +87,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 12px 16px;
-  border-right: 1px solid var(--color-border-ui);
+  gap: var(--spacing-025);
+  padding: var(--spacing-150) var(--spacing-200);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .sizeHeadCell:last-child {
@@ -98,18 +98,18 @@
 
 .sizeHeadLabel {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .sizeHeadPx {
   font-family: var(--font-family-code);
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
 }
 
 .sizesRow {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-border-ui);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .sizesRow:last-child {
@@ -121,8 +121,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 28px 16px;
-  border-right: 1px solid var(--color-border-ui);
+  padding: var(--spacing-350) var(--spacing-200);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .sizeCell:last-child {
@@ -134,13 +134,13 @@
 .colorsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: var(--spacing-150);
 }
 
 .colorCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -150,14 +150,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 28px 16px;
+  padding: var(--spacing-350) var(--spacing-200);
   background: var(--color-surface-secondary);
 }
 
+.colorPreviewInverse {
+  background: var(--color-fill-accent-gradient);
+}
+
 .colorLabel {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   text-align: center;
-  padding: 8px 12px;
+  padding: var(--spacing-100) var(--spacing-150);
 }
 
 /* ── Diretrizes ── */
@@ -165,14 +169,14 @@
 .guidelinesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--spacing-200);
 }
 
 .guidelineCard {
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
-  padding: 32px 36px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-400) var(--spacing-450);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -180,20 +184,20 @@
 
 .guidelineTitle {
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-125);
 }
 
 .guidelineBody {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   flex: 1;
   margin: 0;
 }
 
 .guidelineRule {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-style: italic;
-  padding-top: 16px;
-  margin-top: 16px;
-  border-top: 1px solid var(--color-border-ui);
+  padding-top: var(--spacing-200);
+  margin-top: var(--spacing-200);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }

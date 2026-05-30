@@ -1,27 +1,27 @@
 ﻿.pageHeader {
-  margin-bottom: 56px;
+  margin-bottom: var(--spacing-700);
 }
 
 .breadcrumb {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-150);
 }
 
 .pageTitle {
-  color: var(--color-text-primary);
-  margin-bottom: 12px;
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-150);
 }
 
 .pageSubtitle {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   max-width: 560px;
 }
 
 .stats {
   display: flex;
-  gap: 8px;
-  margin-top: 24px;
+  gap: var(--spacing-100);
+  margin-top: var(--spacing-300);
   flex-wrap: wrap;
 }
 
@@ -30,15 +30,15 @@
   align-items: center;
   gap: 5px;
   background: var(--color-surface-tertiary);
-  border-radius: 100px;
-  padding: 4px 12px;
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-050) var(--spacing-150);
 }
 
 .statValue {
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .statLabel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-weight: 400;
 }

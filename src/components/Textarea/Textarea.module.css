@@ -3,7 +3,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-100);
   width: 100%;
 }
 
@@ -13,13 +13,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .labelGroup {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-050);
 }
 
 .label {
@@ -40,7 +40,7 @@
   align-items: center;
   justify-content: center;
   cursor: help;
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
   outline: none;
 }
 
@@ -57,22 +57,22 @@
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
-  left: -6px;
+  bottom: calc(100% + var(--spacing-125));
+  left: calc(var(--spacing-075) * -1);
   width: 200px;
   background: var(--color-fill-primary);
   color: var(--color-fill-inverse);
   font-weight: var(--font-weight-regular);
-  padding: 6px 10px;
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: var(--spacing-075) var(--spacing-125);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadows-base);
   pointer-events: none;
   white-space: normal;
   word-break: break-word;
   z-index: 100;
 
   opacity: 0;
-  transform: translateY(4px);
+  transform: translateY(var(--spacing-050));
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
@@ -85,7 +85,7 @@
 .tooltipArrow {
   position: absolute;
   bottom: -5px;
-  left: 8px;
+  left: var(--spacing-100);
   width: 12px;
   height: 6px;
   background: var(--color-fill-primary);
@@ -98,11 +98,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-050);
   width: 100%;
   background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-primary);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-primary);
+  border-radius: var(--border-radius-lg);
   cursor: text;
   transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
@@ -120,13 +120,13 @@
 /* Focus — real */
 .inputWrapper:focus-within:not([data-state]) {
   border-color: var(--color-fill-accent);
-  box-shadow: 0 0 0 1px var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
 }
 
 /* Focus — forced */
 .inputWrapper[data-state='focus'] {
   border-color: var(--color-fill-accent);
-  box-shadow: 0 0 0 1px var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
 }
 
 /* Error — real or forced */
@@ -164,7 +164,7 @@
   width: 100%;
   border: none;
   outline: none;
-  background: transparent;
+  background: var(--color-surface-ghost);
   font-weight: 400;
   color: var(--color-fill-primary);
   resize: vertical;
@@ -186,7 +186,7 @@
 
 /* Error state: right padding to avoid text going under the icon */
 .hasError .textarea {
-  padding-right: 28px;
+  padding-right: var(--spacing-350);
 }
 
 /* ── Counter ── */
@@ -209,18 +209,18 @@
 
 .clearBtn {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: var(--spacing-050);
+  right: var(--spacing-050);
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   cursor: pointer;
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
   color: var(--color-fill-secondary);
   line-height: var(--line-height-icon);
-  background: transparent;
-  padding: 4px;
+  background: var(--color-surface-ghost);
+  padding: var(--spacing-050);
 
   opacity: 0;
   transform: scale(0.7);
@@ -238,12 +238,12 @@
 }
 
 .clearBtn:hover {
-  background: rgba(0, 0, 0, 0.07);
+  background: var(--color-luminosity-dark-ghost-hover);
 }
 
 .clearBtn:active {
   transform: scale(0.9);
-  background: rgba(0, 0, 0, 0.12);
+  background: var(--color-luminosity-dark-ghost-active);
 }
 
 .clearIcon {
@@ -271,7 +271,7 @@
 /* SM */
 
 .sm .inputWrapper {
-  padding: 6px 8px;
+  padding: var(--spacing-075) var(--spacing-100);
 }
 
 .sm .textarea {
@@ -280,18 +280,18 @@
 
 .sm .errorIcon {
   top: 7px;
-  right: 8px;
+  right: var(--spacing-100);
 }
 
 .sm .hasError .textarea {
-  padding-right: 24px;
+  padding-right: var(--spacing-300);
 }
 
 
 /* MD */
 
 .md .inputWrapper {
-  padding: 8px 12px;
+  padding: var(--spacing-100) var(--spacing-150);
 }
 
 .md .textarea {
@@ -307,7 +307,7 @@
 /* LG */
 
 .lg .inputWrapper {
-  padding: 12px;
+  padding: var(--spacing-150);
 }
 
 .lg .textarea {

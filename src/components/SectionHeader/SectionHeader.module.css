@@ -1,24 +1,24 @@
 ﻿.sectionHeader {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: var(--spacing-125);
+  margin-bottom: var(--spacing-300);
 }
 
 .sectionIcon {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   flex-shrink: 0;
   user-select: none;
 }
 
 .sectionTitle {
-  color: var(--color-text-primary);
+  color: var(--color-fill-primary);
 }
 
 .sectionCount {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   background: var(--color-surface-tertiary);
-  padding: 2px 9px;
-  border-radius: 100px;
+  padding: var(--spacing-025) 9px;
+  border-radius: var(--border-radius-full);
   margin-left: auto;
 }

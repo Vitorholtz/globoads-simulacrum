@@ -1,6 +1,6 @@
 ﻿.specimen {
-  border: 1px solid var(--color-border-ui);
-  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
 }
 
@@ -10,31 +10,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 18px 36px;
-  border-bottom: 1px solid var(--color-border-ui);
+  gap: var(--spacing-200);
+  padding: 18px var(--spacing-450);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 .nameRow {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-100);
   flex-shrink: 0;
 }
 
 .nameTag {
-  color: var(--color-text-secondary);
+  color: var(--color-fill-secondary);
   background: var(--color-surface-tertiary);
-  padding: 3px 10px;
-  border-radius: 100px;
+  padding: 3px var(--spacing-125);
+  border-radius: var(--border-radius-full);
   white-space: nowrap;
 }
 
 .classTag {
   color: var(--color-fill-accent);
   background: var(--color-surface-accent);
-  padding: 3px 10px;
-  border-radius: 100px;
+  padding: 3px var(--spacing-125);
+  border-radius: var(--border-radius-full);
   font-family: var(--font-family-code);
   white-space: nowrap;
 }
@@ -42,21 +42,21 @@
 .specs {
   display: flex;
   align-items: center;
-  gap: 6px;
-  color: var(--color-text-tertiary);
+  gap: var(--spacing-075);
+  color: var(--color-fill-tertiary);
   white-space: nowrap;
 }
 
 .sep {
-  color: var(--color-border-ui);
+  color: var(--color-border-tertiary);
 }
 
 /* â”€â”€ Sample â”€â”€ */
 
 .sample {
-  padding: 40px 36px;
-  color: var(--color-text-primary);
-  border-bottom: 1px solid var(--color-border-ui);
+  padding: var(--spacing-500) var(--spacing-450);
+  color: var(--color-fill-primary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
   white-space: pre-line;
 }
 
@@ -66,14 +66,14 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 32px;
-  padding: 18px 36px;
+  gap: var(--spacing-400);
+  padding: 18px var(--spacing-450);
 }
 
 .tokenSection {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
+  gap: var(--spacing-100) var(--spacing-250);
   flex: 1;
 }
 
@@ -85,9 +85,9 @@
 }
 
 .tokenGroupLabel {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   text-transform: uppercase;
-  margin-right: 2px;
+  margin-right: var(--spacing-025);
   white-space: nowrap;
 }
 
@@ -95,22 +95,22 @@
   color: var(--color-fill-accent);
   font-family: var(--font-family-code);
   background: var(--color-surface-accent);
-  padding: 2px 7px;
-  border-radius: var(--radius-sm);
+  padding: var(--spacing-025) 7px;
+  border-radius: var(--border-radius-sm);
   white-space: nowrap;
 }
 
 .tokenVarContextual {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   font-family: var(--font-family-code);
   background: var(--color-surface-tertiary);
-  padding: 2px 7px;
-  border-radius: var(--radius-sm);
+  padding: var(--spacing-025) 7px;
+  border-radius: var(--border-radius-sm);
   white-space: nowrap;
 }
 
 .usage {
-  color: var(--color-text-tertiary);
+  color: var(--color-fill-tertiary);
   margin: 0;
   max-width: 320px;
   flex-shrink: 0;

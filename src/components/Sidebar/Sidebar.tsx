@@ -61,6 +61,8 @@ export default function Sidebar() {
           <NavItem icon="palette" label="Colors" to="/colors" />
           <NavItem icon="format_size" label="Typography" to="/typography" />
           <NavItem icon="grid_view" label="Iconography" to="/icons" />
+          <NavItem icon="straighten" label="Dimensões" to="/dimensions" />
+          <NavItem icon="auto_awesome" label="Efeitos" to="/effects" />
         </div>
 
         <div className={styles.section}>
@@ -121,6 +123,11 @@ export default function Sidebar() {
         <div className={styles.section}>
           <span className={`type-caption-sm ${styles.sectionLabel}`}>Overlays</span>
           <NavItem icon="tooltip" label="Tooltip" to="/tooltip" />
+        </div>
+
+        <div className={styles.section}>
+          <span className={`type-caption-sm ${styles.sectionLabel}`}>Visual resources</span>
+          <NavItem icon="account_circle" label="Avatar" to="/avatar" />
         </div>
       </div>
 
