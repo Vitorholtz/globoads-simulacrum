@@ -3,7 +3,6 @@ import globoAdsLogo from '../../assets/globo-ads-logo.svg'
 import { CATEGORIES, PAGES } from '../../pages/registry'
 import styles from './Sidebar.module.css'
 
-
 interface NavItemProps {
   label: string
   to: string
@@ -17,9 +16,7 @@ function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
     return (
       <span className={[`type-body-sm`, styles.navItem, styles.navItemDisabled].join(' ')}>
         <span className={styles.navItemInner}>
-          <span className={`material-symbols-rounded icon-md ${styles.navIcon}`}>
-            {icon}
-          </span>
+          <span className={`material-symbols-rounded icon-md ${styles.navIcon}`}>{icon}</span>
           {label}
         </span>
         {badge && <span className={`type-caption-xs ${styles.badge}`}>{badge}</span>}
@@ -37,7 +34,9 @@ function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
       {({ isActive }) => (
         <>
           <span className={styles.navItemInner}>
-            <span className={`material-symbols-rounded icon-md ${isActive ? 'icon-filled' : ''} ${styles.navIcon}`}>
+            <span
+              className={`material-symbols-rounded icon-md ${isActive ? 'icon-filled' : ''} ${styles.navIcon}`}
+            >
               {icon}
             </span>
             {label}
@@ -51,7 +50,7 @@ function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
 
 export default function Sidebar() {
   return (
-    <nav className={styles.sidebar}>
+    <nav className={styles.sidebar} aria-label="Navegação principal">
       <div className={styles.logoArea}>
         <img src={globoAdsLogo} alt="Globo Ads" className={styles.logo} />
       </div>
@@ -64,7 +63,9 @@ export default function Sidebar() {
           return (
             <div
               key={category}
-              className={index === 0 ? `${styles.section} ${styles.sectionDivider}` : styles.section}
+              className={
+                index === 0 ? `${styles.section} ${styles.sectionDivider}` : styles.section
+              }
             >
               <span className={`type-caption-sm ${styles.sectionLabel}`}>{category}</span>
               {items.map((page) => (

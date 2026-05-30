@@ -88,17 +88,13 @@ export default function TextField({
     if (!isControlled) setInternalValue('')
   }
 
-  const rootCls = [
-    styles.root,
-    styles[size],
-    isDisabled ? styles.disabled : '',
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const rootCls = [styles.root, styles[size], isDisabled ? styles.disabled : '', className ?? '']
+    .filter(Boolean)
+    .join(' ')
 
-  const wrapperCls = [
-    styles.inputWrapper,
-    hasError ? styles.hasError : '',
-  ].filter(Boolean).join(' ')
+  const wrapperCls = [styles.inputWrapper, hasError ? styles.hasError : '']
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className={rootCls}>
@@ -109,7 +105,7 @@ export default function TextField({
               {label}
             </label>
             {descriptionText && (
-              <span className={styles.descriptionBtn} role="button" tabIndex={0} aria-label="Mais informações">
+              <button type="button" className={styles.descriptionBtn} aria-label="Mais informações">
                 <span
                   className={`material-symbols-rounded icon-xs ${styles.descriptionIcon}`}
                   aria-hidden="true"
@@ -120,17 +116,14 @@ export default function TextField({
                   {descriptionText}
                   <span className={styles.tooltipArrow} aria-hidden="true" />
                 </span>
-              </span>
+              </button>
             )}
           </div>
           {optional && <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>}
         </div>
       )}
 
-      <div
-        className={wrapperCls}
-        data-state={forceState}
-      >
+      <div className={wrapperCls} data-state={forceState}>
         {leadingIcon && (
           <span
             className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.leadingIcon}`}
@@ -168,7 +161,10 @@ export default function TextField({
             type="button"
             className={styles.clearBtn}
             data-visible={showClear ? 'true' : 'false'}
-            onMouseDown={(e) => { e.preventDefault(); handleClear() }}
+            onMouseDown={(e) => {
+              e.preventDefault()
+              handleClear()
+            }}
             tabIndex={-1}
             aria-label="Limpar campo"
             aria-hidden={!showClear}
@@ -183,9 +179,7 @@ export default function TextField({
         )}
       </div>
 
-      {helpText && !hasError && (
-        <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>
-      )}
+      {helpText && !hasError && <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>}
       {hasError && errorMessage && (
         <p className={`type-body-xs ${styles.errorText}`}>{errorMessage}</p>
       )}

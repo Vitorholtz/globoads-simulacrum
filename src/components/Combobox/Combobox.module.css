@@ -39,6 +39,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
   cursor: help;
   border-radius: var(--border-radius-sm);
   outline: none;

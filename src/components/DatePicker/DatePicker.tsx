@@ -52,14 +52,17 @@ export default function DatePicker({
 }: DatePickerProps) {
   const generatedId = useId()
   const inputId = id ?? generatedId
+  const popupId = `${inputId}-popup`
   const containerRef = useRef<HTMLDivElement>(null)
-  const wrapperRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLButtonElement>(null)
   const popupRef = useRef<HTMLDivElement>(null)
 
   const [internalValue, setInternalValue] = useState<Date | null>(defaultValue ?? null)
   const [pendingDate, setPendingDate] = useState<Date | null>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [popupPos, setPopupPos] = useState<{ top: number; left: number; minWidth: number } | null>(null)
+  const [popupPos, setPopupPos] = useState<{ top: number; left: number; minWidth: number } | null>(
+    null
+  )
 
   const isControlled = value !== undefined
   const currentValue = isControlled ? value : internalValue
@@ -119,15 +122,12 @@ export default function DatePicker({
   function handleToggle() {
     if (isDisabled || !!forceState) return
     if (!isOpen) setPendingDate(currentValue ?? null)
-    setIsOpen(o => !o)
+    setIsOpen((o) => !o)
   }
 
-  const rootCls = [
-    styles.root,
-    styles[size],
-    isDisabled ? styles.disabled : '',
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const rootCls = [styles.root, styles[size], isDisabled ? styles.disabled : '', className ?? '']
+    .filter(Boolean)
+    .join(' ')
 
   const wrapperStateAttr = forceState && forceState !== 'disabled' ? forceState : undefined
 
@@ -135,7 +135,9 @@ export default function DatePicker({
     styles.inputWrapper,
     hasError ? styles.hasError : '',
     isActive && !hasError ? styles.isActive : '',
-  ].filter(Boolean).join(' ')
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className={rootCls} ref={containerRef}>
@@ -148,22 +150,26 @@ export default function DatePicker({
         </div>
       )}
 
-      <div
+      <button
         id={inputId}
         ref={wrapperRef}
-        role="button"
-        tabIndex={isDisabled ? -1 : 0}
+        type="button"
         aria-expanded={isOpen}
         aria-haspopup="dialog"
+        aria-controls={popupId}
         className={wrapperCls}
         data-state={wrapperStateAttr}
         onClick={handleToggle}
+        disabled={isDisabled}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggle() }
           if (e.key === 'Escape') setIsOpen(false)
         }}
       >
-        <span className={[styles.inputText, displayValue ? styles.filled : ''].filter(Boolean).join(' ')}>
+        <span
+          className={[styles.inputText, displayValue ? styles.filled : '']
+            .filter(Boolean)
+            .join(' ')}
+        >
           {displayValue || 'dd/mm/aa'}
         </span>
 
@@ -190,31 +196,33 @@ export default function DatePicker({
             calendar_today
           </span>
         )}
-      </div>
+      </button>
 
-      {isOpen && !forceState && popupPos && createPortal(
-        <div
-          ref={popupRef}
-          className={styles.calendarPopup}
-          style={{ position: 'fixed', top: popupPos.top, left: popupPos.left }}
-          role="dialog"
-          aria-modal="false"
-        >
-          <Calendar
-            size="sm"
-            value={pendingDate ?? undefined}
-            onChange={handleCalendarChange}
-            onConfirm={handleConfirm}
-            onCancel={handleCancel}
-            confirmDisabled={!pendingDate}
-          />
-        </div>,
-        document.body
-      )}
+      {isOpen &&
+        !forceState &&
+        popupPos &&
+        createPortal(
+          <div
+            id={popupId}
+            ref={popupRef}
+            className={styles.calendarPopup}
+            style={{ position: 'fixed', top: popupPos.top, left: popupPos.left }}
+            role="dialog"
+            aria-modal="false"
+          >
+            <Calendar
+              size="sm"
+              value={pendingDate ?? undefined}
+              onChange={handleCalendarChange}
+              onConfirm={handleConfirm}
+              onCancel={handleCancel}
+              confirmDisabled={!pendingDate}
+            />
+          </div>,
+          document.body
+        )}
 
-      {helpText && !hasError && (
-        <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>
-      )}
+      {helpText && !hasError && <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>}
       {hasError && errorMessage && (
         <p className={`type-body-xs ${styles.errorText}`}>{errorMessage}</p>
       )}

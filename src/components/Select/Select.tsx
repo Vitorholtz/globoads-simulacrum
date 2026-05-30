@@ -72,13 +72,13 @@ export default function Select({
   const isForced = !!forceState
   const isDropdownOpen = forceState === 'active' || isOpen
 
-  const selectedOption = options.find(o => o.value === currentValue)
+  const selectedOption = options.find((o) => o.value === currentValue)
   const displayText = selectedOption?.label ?? ''
   const isPlaceholder = !displayText
 
   function handleToggle() {
     if (isForced || isDisabled) return
-    setIsOpen(prev => !prev)
+    setIsOpen((prev) => !prev)
   }
 
   function handleSelect(option: SelectOption) {
@@ -95,7 +95,7 @@ export default function Select({
     }
     if ((e.key === 'Enter' || e.key === ' ') && !isForced && !isDisabled) {
       e.preventDefault()
-      setIsOpen(prev => !prev)
+      setIsOpen((prev) => !prev)
     }
   }
 
@@ -110,17 +110,13 @@ export default function Select({
     return () => document.removeEventListener('mousedown', onOutsideClick)
   }, [isOpen])
 
-  const rootCls = [
-    styles.root,
-    styles[size],
-    isDisabled ? styles.disabled : '',
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const rootCls = [styles.root, styles[size], isDisabled ? styles.disabled : '', className ?? '']
+    .filter(Boolean)
+    .join(' ')
 
-  const wrapperCls = [
-    styles.inputWrapper,
-    hasError ? styles.hasError : '',
-  ].filter(Boolean).join(' ')
+  const wrapperCls = [styles.inputWrapper, hasError ? styles.hasError : '']
+    .filter(Boolean)
+    .join(' ')
 
   // forceState='active' shows dropdown without any border override (matches Figma normal border for open state)
   const dataState = forceState === 'active' ? undefined : forceState
@@ -134,7 +130,7 @@ export default function Select({
               {label}
             </label>
             {descriptionText && (
-              <span className={styles.descriptionBtn} role="button" tabIndex={0} aria-label="Mais informações">
+              <button type="button" className={styles.descriptionBtn} aria-label="Mais informações">
                 <span
                   className={`material-symbols-rounded icon-xs ${styles.descriptionIcon}`}
                   aria-hidden="true"
@@ -145,7 +141,7 @@ export default function Select({
                   {descriptionText}
                   <span className={styles.tooltipArrow} aria-hidden="true" />
                 </span>
-              </span>
+              </button>
             )}
           </div>
           {optional && <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>}
@@ -185,7 +181,9 @@ export default function Select({
                 'icon-md',
                 styles.chevronIcon,
                 isDropdownOpen ? styles.chevronOpen : '',
-              ].filter(Boolean).join(' ')}
+              ]
+                .filter(Boolean)
+                .join(' ')}
               aria-hidden="true"
             >
               keyboard_arrow_down
@@ -193,7 +191,11 @@ export default function Select({
           </span>
         </button>
 
-        <div className={[styles.dropdown, isDropdownOpen ? styles.dropdownOpen : ''].filter(Boolean).join(' ')}>
+        <div
+          className={[styles.dropdown, isDropdownOpen ? styles.dropdownOpen : '']
+            .filter(Boolean)
+            .join(' ')}
+        >
           <ul
             id={listboxId}
             className={styles.listbox}
@@ -208,8 +210,17 @@ export default function Select({
                   key={option.value}
                   role="option"
                   aria-selected={isSelected}
-                  className={['type-caption-lg', styles.option, isSelected ? styles.optionSelected : ''].filter(Boolean).join(' ')}
-                  onMouseDown={(e) => { e.preventDefault(); handleSelect(option) }}
+                  className={[
+                    'type-caption-lg',
+                    styles.option,
+                    isSelected ? styles.optionSelected : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  onMouseDown={(e) => {
+                    e.preventDefault()
+                    handleSelect(option)
+                  }}
                 >
                   {option.label}
                 </li>
@@ -221,9 +232,7 @@ export default function Select({
 
       {name && <input type="hidden" name={name} value={currentValue} />}
 
-      {helpText && !hasError && (
-        <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>
-      )}
+      {helpText && !hasError && <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>}
       {hasError && errorMessage && (
         <p className={`type-body-xs ${styles.errorText}`}>{errorMessage}</p>
       )}
