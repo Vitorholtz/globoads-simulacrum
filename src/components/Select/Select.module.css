@@ -73,7 +73,9 @@
 
   opacity: 0;
   transform: translateY(var(--spacing-050));
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
 }
 
 .descriptionBtn:hover .tooltip,
@@ -100,7 +102,10 @@
   background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-primary);
   border-radius: var(--border-radius-lg);
-  transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
 }
 
 /* Hover — real */
@@ -162,7 +167,7 @@
   outline: none;
   background: var(--color-surface-ghost);
   cursor: pointer;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   -webkit-font-smoothing: antialiased;
   border-radius: var(--border-radius-lg);
   -webkit-appearance: none;
@@ -264,7 +269,7 @@
 .option {
   padding: var(--spacing-100);
   border-radius: var(--border-radius-md);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-fill-primary);
   cursor: pointer;
   overflow: hidden;
@@ -312,7 +317,6 @@
 .sm .option {
 }
 
-
 /* MD */
 
 .md .trigger {
@@ -322,7 +326,6 @@
 
 .md .option {
 }
-
 
 /* LG */
 

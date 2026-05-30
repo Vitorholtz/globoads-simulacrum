@@ -44,7 +44,7 @@
 }
 
 .positionLabel {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -89,7 +89,7 @@
 }
 
 .variantLabel {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -116,7 +116,7 @@
 }
 
 .guidelineTitle {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   margin-bottom: var(--spacing-125);
 }

@@ -9,8 +9,12 @@
 
 /* ── Sizes ── */
 
-.sm { width: 270px; }
-.md { width: 400px; }
+.sm {
+  width: 270px;
+}
+.md {
+  width: 400px;
+}
 
 /* ── Header ── */
 
@@ -29,7 +33,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 
 /* ── Weekdays row ── */
 
@@ -94,7 +97,8 @@
   left: 50%;
   right: 0;
   background: rgba(24, 92, 251, 0.08);
-  border-radius: var(--border-radius-xl) var(--border-radius-none) var(--border-radius-none) var(--border-radius-xl);
+  border-radius: var(--border-radius-xl) var(--border-radius-none) var(--border-radius-none)
+    var(--border-radius-xl);
 }
 
 /* Range end: strip from left → center, rounded right cap */
@@ -102,7 +106,8 @@
   left: 0;
   right: 50%;
   background: rgba(24, 92, 251, 0.08);
-  border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl) var(--border-radius-none);
+  border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl)
+    var(--border-radius-none);
 }
 
 /* Hover preview end */
@@ -110,7 +115,8 @@
   left: 0;
   right: 50%;
   background: rgba(24, 92, 251, 0.05);
-  border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl) var(--border-radius-none);
+  border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl)
+    var(--border-radius-none);
 }
 
 /* ── Day button ── */
@@ -148,7 +154,7 @@
 
 /* Today indicator — dot below number */
 .dayToday {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .dayToday::after {
@@ -167,7 +173,7 @@
 .daySelected {
   background: var(--color-fill-accent);
   color: var(--color-fill-inverse);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .daySelected:hover {
@@ -182,7 +188,7 @@
 .dayHoverEnd {
   background: rgba(24, 92, 251, 0.2);
   color: var(--color-fill-accent);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .dayHoverEnd:hover {

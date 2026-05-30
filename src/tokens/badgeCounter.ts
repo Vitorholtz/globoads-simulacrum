@@ -1,4 +1,4 @@
-import { GuidelineDef } from './types'
+import type { GuidelineDef } from './types'
 
 export interface BadgeCounterExampleDef {
   value: string

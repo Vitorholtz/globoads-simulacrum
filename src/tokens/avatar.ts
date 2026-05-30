@@ -1,4 +1,4 @@
-import { GuidelineDef, VariantDef } from './types'
+import type { GuidelineDef, VariantDef } from './types'
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type AvatarVariant = 'initial' | 'photo' | 'placeholder'

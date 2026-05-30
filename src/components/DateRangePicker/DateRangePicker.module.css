@@ -39,7 +39,9 @@
   border-radius: var(--border-radius-lg);
   cursor: pointer;
   outline: none;
-  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
 .inputWrapper:hover:not([data-state]):not(.isActive) {
@@ -78,7 +80,7 @@
 
 .dateText {
   font-family: var(--font-family-sans);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   color: var(--color-fill-tertiary);
   white-space: nowrap;
   pointer-events: none;
@@ -135,7 +137,7 @@
   padding: var(--spacing-125) var(--spacing-200) 0;
   font-family: var(--font-family-sans);
   font-size: var(--font-size-075);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-fill-accent);
   text-align: center;
 }
@@ -176,4 +178,3 @@
   font-size: var(--font-size-100);
   line-height: var(--line-height-150);
 }
-

@@ -48,7 +48,7 @@ export const TOAST_VARIANTS: ToastVariantDef[] = [
   },
 ]
 
-import { GuidelineDef } from './types'
+import type { GuidelineDef } from './types'
 
 export const TOAST_GUIDELINES: GuidelineDef[] = [
   {

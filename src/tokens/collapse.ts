@@ -1,4 +1,4 @@
-import { GuidelineDef, StateDef } from './types'
+import type { GuidelineDef, StateDef } from './types'
 
 export type CollapseSize = 'xs' | 'sm' | 'md' | 'lg'
 

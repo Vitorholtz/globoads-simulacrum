@@ -1,4 +1,4 @@
-import { GuidelineDef, VariantDef } from './types'
+import type { GuidelineDef, VariantDef } from './types'
 
 export type PaginationVariant = 'default' | 'pages' | 'items' | 'buttons'
 

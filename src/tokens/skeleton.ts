@@ -10,7 +10,7 @@ export type SkeletonType =
 
 export type SkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
 
-import { GuidelineDef, VariantDef } from './types'
+import type { GuidelineDef, VariantDef } from './types'
 
 export interface SkeletonSizeDef {
   id: SkeletonSize

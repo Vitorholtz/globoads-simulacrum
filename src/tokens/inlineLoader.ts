@@ -10,7 +10,7 @@ export type InlineLoaderColor =
   | 'critical'
   | 'inverse'
 
-import { GuidelineDef, VariantDef } from './types'
+import type { GuidelineDef, VariantDef } from './types'
 
 export interface InlineLoaderSizeDef {
   id: InlineLoaderSize

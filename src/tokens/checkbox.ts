@@ -1,4 +1,4 @@
-import { GuidelineDef, BehaviorDef, StateDef, VariantDef } from './types'
+import type { GuidelineDef, BehaviorDef, StateDef, VariantDef } from './types'
 
 export type CheckboxBehavior = 'unchecked' | 'partial' | 'checked'
 export type CheckboxType = 'default' | 'inverter'

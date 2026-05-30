@@ -69,7 +69,7 @@
   position: absolute;
   left: 0;
   color: var(--color-fill-tertiary);
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 /* â”€â”€ Diaria card demo â”€â”€ */

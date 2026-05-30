@@ -41,7 +41,9 @@
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-primary);
   cursor: pointer;
-  transition: background 0.12s ease, box-shadow 0.12s ease;
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease;
   outline: none;
 }
 
@@ -85,10 +87,18 @@
 }
 
 /* Padding per position to give the tooltip room to breathe */
-.padUp     { padding: 60px var(--spacing-500) var(--spacing-300); }
-.padBottom { padding: var(--spacing-300) var(--spacing-500) 60px; }
-.padRight  { padding: var(--spacing-500) 120px var(--spacing-500) var(--spacing-500); }
-.padLeft   { padding: var(--spacing-500) var(--spacing-500) var(--spacing-500) 120px; }
+.padUp {
+  padding: 60px var(--spacing-500) var(--spacing-300);
+}
+.padBottom {
+  padding: var(--spacing-300) var(--spacing-500) 60px;
+}
+.padRight {
+  padding: var(--spacing-500) 120px var(--spacing-500) var(--spacing-500);
+}
+.padLeft {
+  padding: var(--spacing-500) var(--spacing-500) var(--spacing-500) 120px;
+}
 
 /* ── Alignments grid ── */
 
@@ -115,8 +125,14 @@
 }
 
 /* Shift trigger for start/end so the arrow anchoring is visible */
-.alignCard:first-child .alignPreview { justify-content: flex-start; padding-left: var(--spacing-500); }
-.alignCard:last-child  .alignPreview { justify-content: flex-end;   padding-right: var(--spacing-500); }
+.alignCard:first-child .alignPreview {
+  justify-content: flex-start;
+  padding-left: var(--spacing-500);
+}
+.alignCard:last-child .alignPreview {
+  justify-content: flex-end;
+  padding-right: var(--spacing-500);
+}
 
 /* ── Card body (shared) ── */
 
@@ -129,7 +145,7 @@
 }
 
 .cardLabel {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -155,7 +171,7 @@
 }
 
 .guidelineTitle {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   margin-bottom: var(--spacing-125);
 }

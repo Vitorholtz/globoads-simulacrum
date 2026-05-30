@@ -1,4 +1,4 @@
-import { GuidelineDef, StateDef, VariantDef } from './types'
+import type { GuidelineDef, StateDef, VariantDef } from './types'
 
 export const ACCORDION_VARIANTS: VariantDef<string>[] = [
   {

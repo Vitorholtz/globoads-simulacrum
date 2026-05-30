@@ -77,7 +77,7 @@ export const INFO_PANEL_CONTENT_VARIANTS: InfoPanelContentDef[] = [
   },
 ]
 
-import { GuidelineDef } from './types'
+import type { GuidelineDef } from './types'
 
 export const INFO_PANEL_GUIDELINES: GuidelineDef[] = [
   {

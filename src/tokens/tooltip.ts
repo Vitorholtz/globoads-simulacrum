@@ -39,7 +39,7 @@ export const TOOLTIP_POSITIONS: TooltipPositionDef[] = [
   },
 ]
 
-import { GuidelineDef, VariantDef } from './types'
+import type { GuidelineDef, VariantDef } from './types'
 
 export const TOOLTIP_ALIGNMENTS: VariantDef<TooltipAlign>[] = [
   {

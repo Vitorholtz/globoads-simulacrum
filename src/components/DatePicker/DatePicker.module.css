@@ -40,7 +40,10 @@
   overflow: hidden;
   cursor: pointer;
   outline: none;
-  transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
 }
 
 /* Hover — real */
@@ -103,7 +106,7 @@
   flex: 1;
   min-width: 0;
   font-family: var(--font-family-sans);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   color: var(--color-fill-tertiary);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -207,4 +210,3 @@
   font-size: var(--font-size-100);
   line-height: var(--line-height-150);
 }
-

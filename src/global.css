@@ -81,6 +81,7 @@
      Usar os tokens garante consistência semântica: "semibold" sempre
      significa 600, independente da fonte. */
 
+   --font-weight-light: 300;
    --font-weight-regular: 400;
    --font-weight-medium: 500;
    --font-weight-semibold: 600;

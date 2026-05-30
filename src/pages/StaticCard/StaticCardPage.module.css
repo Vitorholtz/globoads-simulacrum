@@ -75,7 +75,8 @@
 .campaignBar {
   flex: 1;
   background: var(--color-fill-accent);
-  border-radius: var(--border-radius-xs) var(--border-radius-xs) var(--border-radius-none) var(--border-radius-none);
+  border-radius: var(--border-radius-xs) var(--border-radius-xs) var(--border-radius-none)
+    var(--border-radius-none);
   opacity: 0.7;
   min-height: 3px;
 }
@@ -156,7 +157,7 @@
   position: absolute;
   left: 0;
   color: var(--color-fill-tertiary);
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 /* â”€â”€ Guidelines â”€â”€ */

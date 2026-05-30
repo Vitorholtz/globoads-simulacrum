@@ -1,4 +1,4 @@
-import { GuidelineDef, BehaviorDef, VariantDef } from './types'
+import type { GuidelineDef, BehaviorDef, VariantDef } from './types'
 
 export type SwitchBehavior = 'unchecked' | 'checked'
 export type SwitchType = 'default' | 'inverter'

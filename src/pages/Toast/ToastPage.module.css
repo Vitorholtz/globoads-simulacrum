@@ -57,25 +57,40 @@
   padding: var(--spacing-100) 18px var(--spacing-100) var(--spacing-150);
   border: none;
   border-radius: var(--border-radius-2xl);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-family: inherit;
   color: var(--color-fill-inverse);
   cursor: pointer;
   outline: none;
-  transition: opacity 0.12s ease, transform 0.1s ease, box-shadow 0.12s ease;
+  transition:
+    opacity 0.12s ease,
+    transform 0.1s ease,
+    box-shadow 0.12s ease;
 }
 
-.triggerBtn:hover  { opacity: 0.88; }
-.triggerBtn:active { transform: scale(0.97); }
+.triggerBtn:hover {
+  opacity: 0.88;
+}
+.triggerBtn:active {
+  transform: scale(0.97);
+}
 
 .triggerBtn:focus-visible {
   box-shadow: var(--outline-focus);
 }
 
-.trigger_neutral  { background: var(--color-fill-secondary); }
-.trigger_success  { background: var(--color-fill-success); }
-.trigger_warning  { background: var(--color-fill-warning); }
-.trigger_critical { background: var(--color-fill-critical); }
+.trigger_neutral {
+  background: var(--color-fill-secondary);
+}
+.trigger_success {
+  background: var(--color-fill-success);
+}
+.trigger_warning {
+  background: var(--color-fill-warning);
+}
+.trigger_critical {
+  background: var(--color-fill-critical);
+}
 
 .triggerIcon {
   font-size: var(--font-size-125);
@@ -132,7 +147,7 @@
 }
 
 .cardLabel {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -158,7 +173,7 @@
 }
 
 .guidelineTitle {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   margin-bottom: var(--spacing-125);
 }

@@ -1,4 +1,4 @@
-import { GuidelineDef, BehaviorDef, VariantDef } from './types'
+import type { GuidelineDef, BehaviorDef, VariantDef } from './types'
 
 export type RadioBehavior = 'unchecked' | 'checked'
 export type RadioType = 'default' | 'inverter'

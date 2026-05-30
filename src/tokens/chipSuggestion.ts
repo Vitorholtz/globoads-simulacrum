@@ -1,4 +1,4 @@
-import { GuidelineDef, BehaviorDef } from './types'
+import type { GuidelineDef, BehaviorDef } from './types'
 
 export type ChipBehavior = 'unchecked' | 'checked'
 export type ChipState = 'normal' | 'hover' | 'focus' | 'active' | 'dragged' | 'disabled'

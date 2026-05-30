@@ -39,7 +39,7 @@
 }
 
 .variantLabel {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -78,7 +78,7 @@
   flex: 1;
   text-align: center;
   padding: var(--spacing-175) var(--spacing-200);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
@@ -98,7 +98,7 @@
 }
 
 .sizeLabel {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -151,7 +151,7 @@
 
 .initialsName {
   color: var(--color-fill-primary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .initialsArrow {
@@ -160,7 +160,7 @@
 
 .initialsResult {
   color: var(--color-fill-tertiary);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .initialsNote {
@@ -201,7 +201,7 @@
   flex: 1;
   text-align: center;
   padding: var(--spacing-175) var(--spacing-200);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
@@ -224,7 +224,7 @@
   width: 140px;
   flex-shrink: 0;
   padding: var(--spacing-300) var(--spacing-300);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   border-right: var(--border-width-sm) solid var(--color-border-tertiary);
 }
@@ -265,7 +265,7 @@
 }
 
 .guidelineTitle {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   margin-bottom: var(--spacing-125);
 }

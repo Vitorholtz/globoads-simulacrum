@@ -48,7 +48,7 @@
 }
 
 .specKey {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   width: 120px;
   flex-shrink: 0;
@@ -105,7 +105,7 @@
 }
 
 .contextNavLabel {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-fill-primary);
 }
 
@@ -117,7 +117,7 @@
 }
 
 .contextLabel {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -145,7 +145,7 @@
 }
 
 .guidelineTitle {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
   margin-bottom: var(--spacing-125);
 }

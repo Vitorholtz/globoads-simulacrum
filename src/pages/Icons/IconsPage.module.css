@@ -31,7 +31,7 @@
 }
 
 .libraryName {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: var(--color-fill-primary);
 }
 
@@ -174,7 +174,7 @@
   position: absolute;
   left: 0;
   color: var(--color-fill-tertiary);
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 .variantExamples {

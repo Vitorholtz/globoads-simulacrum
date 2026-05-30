@@ -16,7 +16,6 @@
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
-
 .logo {
   display: block;
   height: 28px;
@@ -73,11 +72,13 @@
   text-align: left;
   text-decoration: none;
   padding: 7px var(--spacing-125);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   color: var(--color-fill-primary);
   cursor: pointer;
   border-radius: var(--border-radius-md);
-  transition: background 0.12s ease, color 0.12s ease;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease;
 }
 
 .navItemInner {
@@ -105,7 +106,7 @@
 .navItemActive {
   color: var(--color-fill-accent);
   background: var(--color-surface-accent);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .navItemActive .navIcon {

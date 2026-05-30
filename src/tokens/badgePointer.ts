@@ -1,4 +1,4 @@
-import { GuidelineDef } from './types'
+import type { GuidelineDef } from './types'
 
 export const BADGE_POINTER_GUIDELINES: GuidelineDef[] = [
   {

@@ -16,7 +16,7 @@
         "outline-width": ["px"]
       },
       {
-        "severity": "warning",
+        "severity": "error",
         "message": "Hardcoded value in border property — use a var(--border-*) token instead (CLAUDE.md §CSS conventions)"
       }
     ],
@@ -26,7 +26,7 @@
         "font-weight": ["/^[0-9]+$/"]
       },
       {
-        "severity": "warning",
+        "severity": "error",
         "message": "Numeric font-weight — use a type-* utility class or var(--font-weight-*) token instead (CLAUDE.md §CSS conventions)"
       }
     ]

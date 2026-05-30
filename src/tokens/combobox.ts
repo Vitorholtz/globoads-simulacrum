@@ -1,4 +1,4 @@
-import { GuidelineDef, StateDef } from './types'
+import type { GuidelineDef, StateDef } from './types'
 
 export type ComboboxSize = 'sm' | 'md' | 'lg'
 
