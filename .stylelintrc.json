@@ -1,0 +1,34 @@
+{
+  "ignoreFiles": ["dist/**", "node_modules/**", "src/global.css"],
+  "rules": {
+    "color-no-invalid-hex": true,
+    "no-duplicate-selectors": true,
+    "declaration-no-important": true,
+
+    "declaration-property-unit-disallowed-list": [
+      {
+        "border-radius": ["px", "rem"],
+        "border-width": ["px"],
+        "border-top-width": ["px"],
+        "border-right-width": ["px"],
+        "border-bottom-width": ["px"],
+        "border-left-width": ["px"],
+        "outline-width": ["px"]
+      },
+      {
+        "severity": "warning",
+        "message": "Hardcoded value in border property — use a var(--border-*) token instead (CLAUDE.md §CSS conventions)"
+      }
+    ],
+
+    "declaration-property-value-disallowed-list": [
+      {
+        "font-weight": ["/^[0-9]+$/"]
+      },
+      {
+        "severity": "warning",
+        "message": "Numeric font-weight — use a type-* utility class or var(--font-weight-*) token instead (CLAUDE.md §CSS conventions)"
+      }
+    ]
+  }
+}
