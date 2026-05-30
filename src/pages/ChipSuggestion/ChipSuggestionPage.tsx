@@ -2,7 +2,6 @@ import ChipSuggestion from '../../components/ChipSuggestion/ChipSuggestion'
 import { CHIP_BEHAVIORS, CHIP_STATES, CHIP_GUIDELINES } from '../../tokens/chipSuggestion'
 import type { ChipBehavior } from '../../tokens/chipSuggestion'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './ChipSuggestionPage.module.css'
@@ -23,8 +22,7 @@ export default function ChipSuggestionPage() {
       />
 
       {/* ── Comportamentos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="sell" title="Comportamentos" count="2 comportamentos" />
+      <Section icon="sell" title="Comportamentos" count="2 comportamentos">
         <div className={styles.behaviorsGrid}>
           {CHIP_BEHAVIORS.map((b) => (
             <div key={b.id} className={styles.behaviorCard}>
@@ -38,11 +36,10 @@ export default function ChipSuggestionPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados — Matriz ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count="6 estados" />
+      <Section icon="toggle_on" title="Estados" count="6 estados">
         <div className={styles.matrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
@@ -68,7 +65,7 @@ export default function ChipSuggestionPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

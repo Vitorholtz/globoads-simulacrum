@@ -1,5 +1,4 @@
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import Combobox from '../../components/Combobox/Combobox'
 import {
   COMBOBOX_SIZES,
@@ -39,8 +38,7 @@ export default function ComboboxPage() {
       />
 
       {/* ── Estilos de Conteúdo ── */}
-      <div className={styles.section}>
-        <SectionHeader icon="style" title="Estilos de Conteúdo" />
+      <Section icon="style" title="Estilos de Conteúdo">
         <div className={styles.stylesGrid}>
           <div className={styles.styleCard}>
             <div className={styles.stylePreview}>
@@ -68,11 +66,10 @@ export default function ComboboxPage() {
             </div>
           </div>
         </div>
-      </div>
+      </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <div className={styles.section}>
-        <SectionHeader icon="straighten" title="Escala de Tamanhos" count={3} />
+      <Section icon="straighten" title="Escala de Tamanhos" count={3}>
         <div className={styles.sizeScaleContainer}>
           {COMBOBOX_SIZES.map((size) => (
             <div key={size.id} className={styles.sizeRow}>
@@ -92,11 +89,10 @@ export default function ComboboxPage() {
             </div>
           ))}
         </div>
-      </div>
+      </Section>
 
       {/* ── Estados ── */}
-      <div className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count={5} />
+      <Section icon="toggle_on" title="Estados" count={5}>
         <div className={styles.stateMatrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
@@ -129,11 +125,10 @@ export default function ComboboxPage() {
             </div>
           ))}
         </div>
-      </div>
+      </Section>
 
       {/* ── Configurações ── */}
-      <div className={styles.section}>
-        <SectionHeader icon="tune" title="Configurações" count={6} />
+      <Section icon="tune" title="Configurações" count={6}>
         <div className={styles.configGrid}>
           <div className={styles.configCard}>
             <div className={styles.configPreview}>
@@ -211,7 +206,7 @@ export default function ComboboxPage() {
             </div>
           </div>
         </div>
-      </div>
+      </Section>
 
       {/* ── Diretrizes de Uso ── */}
       <Section icon="menu_book" title="Diretrizes de Uso">

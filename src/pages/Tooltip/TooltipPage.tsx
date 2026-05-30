@@ -1,6 +1,5 @@
 import Tooltip from '../../components/Tooltip/Tooltip'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import { TOOLTIP_POSITIONS, TOOLTIP_ALIGNMENTS, TOOLTIP_GUIDELINES } from '../../tokens/tooltip'
 import type { TooltipPosition } from '../../tokens/tooltip'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
@@ -39,8 +38,7 @@ export default function TooltipPage() {
       />
 
       {/* ── Componente ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="tooltip" title="Componente" />
+      <Section icon="tooltip" title="Componente">
         <div className={styles.componentDemo}>
           <div className={styles.componentDemoInner}>
             <Tooltip text="Editar campanha" position="up" align="middle">
@@ -57,15 +55,10 @@ export default function TooltipPage() {
             Passe o mouse sobre os ícones para ver o Tooltip
           </p>
         </div>
-      </section>
+      </Section>
 
       {/* ── Posições ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="open_with"
-          title="Posições"
-          count={`${TOOLTIP_POSITIONS.length} posições`}
-        />
+      <Section icon="open_with" title="Posições" count={`${TOOLTIP_POSITIONS.length} posições`}>
         <div className={styles.positionsGrid}>
           {TOOLTIP_POSITIONS.map((pos) => (
             <div key={pos.id} className={styles.positionCard}>
@@ -81,15 +74,14 @@ export default function TooltipPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Alinhamentos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="align_horizontal_left"
-          title="Alinhamentos"
-          count={`${TOOLTIP_ALIGNMENTS.length} alinhamentos`}
-        />
+      <Section
+        icon="align_horizontal_left"
+        title="Alinhamentos"
+        count={`${TOOLTIP_ALIGNMENTS.length} alinhamentos`}
+      >
         <div className={styles.alignGrid}>
           {TOOLTIP_ALIGNMENTS.map((align) => (
             <div key={align.id} className={styles.alignCard}>
@@ -105,7 +97,7 @@ export default function TooltipPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

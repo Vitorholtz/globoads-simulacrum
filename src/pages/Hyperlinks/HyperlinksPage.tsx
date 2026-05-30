@@ -2,7 +2,6 @@ import Hyperlink from '../../components/Hyperlink/Hyperlink'
 import { HYPERLINK_SIZES, HYPERLINK_STATES, HYPERLINK_GUIDELINES } from '../../tokens/hyperlinks'
 import type { HyperlinkSize } from '../../tokens/hyperlinks'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './HyperlinksPage.module.css'
@@ -29,12 +28,11 @@ export default function HyperlinksPage() {
       />
 
       {/* ── Escala de Tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Escala de Tamanhos"
-          count={`${HYPERLINK_SIZES.length} tamanhos`}
-        />
+      <Section
+        icon="straighten"
+        title="Escala de Tamanhos"
+        count={`${HYPERLINK_SIZES.length} tamanhos`}
+      >
         <div className={styles.sizeScaleContainer}>
           {HYPERLINK_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -65,15 +63,10 @@ export default function HyperlinksPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="toggle_on"
-          title="Estados"
-          count={`${HYPERLINK_STATES.length} estados`}
-        />
+      <Section icon="toggle_on" title="Estados" count={`${HYPERLINK_STATES.length} estados`}>
         <div className={styles.stateMatrix}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
@@ -107,11 +100,10 @@ export default function HyperlinksPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Link Externo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="open_in_new" title="Link Externo" />
+      <Section icon="open_in_new" title="Link Externo">
         <div className={styles.externalGrid}>
           {HYPERLINK_SIZES.map((s) => (
             <div key={s.id} className={styles.externalCard}>
@@ -143,7 +135,7 @@ export default function HyperlinksPage() {
             segurança.
           </p>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

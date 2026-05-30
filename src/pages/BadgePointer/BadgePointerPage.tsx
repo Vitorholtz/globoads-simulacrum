@@ -1,7 +1,6 @@
 import BadgePointer from '../../components/BadgePointer/BadgePointer'
 import { BADGE_POINTER_GUIDELINES } from '../../tokens/badgePointer'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './BadgePointerPage.module.css'
@@ -20,8 +19,7 @@ export default function BadgePointerPage() {
       />
 
       {/* ── Componente ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="fiber_manual_record" title="Componente" />
+      <Section icon="fiber_manual_record" title="Componente">
         <div className={styles.componentCard}>
           <div className={styles.componentPreview}>
             <BadgePointer />
@@ -49,11 +47,10 @@ export default function BadgePointerPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Uso em contexto ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="layers" title="Uso em Contexto" />
+      <Section icon="layers" title="Uso em Contexto">
         <div className={styles.contextGrid}>
           <div className={styles.contextCard}>
             <div className={styles.contextPreview}>
@@ -98,7 +95,7 @@ export default function BadgePointerPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

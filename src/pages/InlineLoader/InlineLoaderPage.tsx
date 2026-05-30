@@ -7,7 +7,6 @@ import {
 } from '../../tokens/inlineLoader'
 import type { InlineLoaderType, InlineLoaderSize } from '../../tokens/inlineLoader'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './InlineLoaderPage.module.css'
@@ -34,12 +33,7 @@ export default function InlineLoaderPage() {
       />
 
       {/* ── Tipos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="motion_blur"
-          title="Tipos"
-          count={`${INLINE_LOADER_TYPES.length} tipos`}
-        />
+      <Section icon="motion_blur" title="Tipos" count={`${INLINE_LOADER_TYPES.length} tipos`}>
         <div className={styles.typesContainer}>
           {INLINE_LOADER_TYPES.map((t) => (
             <div key={t.id} className={styles.typeRow}>
@@ -58,15 +52,10 @@ export default function InlineLoaderPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Tamanhos"
-          count={`${INLINE_LOADER_SIZES.length} tamanhos`}
-        />
+      <Section icon="straighten" title="Tamanhos" count={`${INLINE_LOADER_SIZES.length} tamanhos`}>
         <div className={styles.sizesTable}>
           {/* Header */}
           <div className={styles.sizesHeader}>
@@ -97,15 +86,10 @@ export default function InlineLoaderPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Cores ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="palette"
-          title="Cores"
-          count={`${INLINE_LOADER_COLORS.length} cores`}
-        />
+      <Section icon="palette" title="Cores" count={`${INLINE_LOADER_COLORS.length} cores`}>
         <div className={styles.colorsGrid}>
           {INLINE_LOADER_COLORS.map((c) => (
             <div key={c.id} className={styles.colorCard}>
@@ -123,7 +107,7 @@ export default function InlineLoaderPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

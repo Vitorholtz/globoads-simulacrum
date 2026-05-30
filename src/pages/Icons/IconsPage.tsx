@@ -8,7 +8,6 @@ import {
   VARIANT_DEMO_ICONS,
 } from '../../tokens/icons'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './IconsPage.module.css'
@@ -33,8 +32,7 @@ export default function IconsPage() {
       />
 
       {/* ── Biblioteca ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="library_books" title="Biblioteca" />
+      <Section icon="library_books" title="Biblioteca">
         <div className={styles.libraryCard}>
           <div className={styles.libraryInfo}>
             <div className={styles.libraryTitleRow}>
@@ -91,11 +89,10 @@ export default function IconsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="style" title="Variantes" count="2 variantes" />
+      <Section icon="style" title="Variantes" count="2 variantes">
         <div className={styles.variantsGrid}>
           {ICON_VARIANT_RULES.map((rule) => (
             <div key={rule.variant} className={styles.variantCard}>
@@ -127,16 +124,14 @@ export default function IconsPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Tokens de Ícone ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="token"
-          title="Tokens de Ícone"
-          count={`${ICON_CLASS_TOKENS.length + 1} classes`}
-        />
-
+      <Section
+        icon="token"
+        title="Tokens de Ícone"
+        count={`${ICON_CLASS_TOKENS.length + 1} classes`}
+      >
         <div className={styles.tokenUsage}>
           <div className={styles.tokenUsageInfo}>
             <span className={`type-caption-sm ${styles.tokenUsageLabel}`}>Como usar</span>
@@ -210,15 +205,10 @@ export default function IconsPage() {
             </span>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Escala de Tamanhos"
-          count={`${ICON_SIZES.length} tamanhos`}
-        />
+      <Section icon="straighten" title="Escala de Tamanhos" count={`${ICON_SIZES.length} tamanhos`}>
         <div className={styles.sizeScaleContainer}>
           {ICON_SIZES.map((size) => (
             <div key={size.value} className={styles.sizeRow}>
@@ -247,7 +237,7 @@ export default function IconsPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
@@ -255,12 +245,7 @@ export default function IconsPage() {
       </Section>
 
       {/* ── Catálogo ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="apps"
-          title="Catálogo de Referência"
-          count={`${totalCatalogIcons} ícones`}
-        />
+      <Section icon="apps" title="Catálogo de Referência" count={`${totalCatalogIcons} ícones`}>
         <p className={`type-body-md ${styles.catalogNote}`}>
           Cada célula exibe o ícone nas duas variantes: Outlined à esquerda e Filled à direita.
         </p>
@@ -298,7 +283,7 @@ export default function IconsPage() {
             </div>
           </div>
         ))}
-      </section>
+      </Section>
     </div>
   )
 }

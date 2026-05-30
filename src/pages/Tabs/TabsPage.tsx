@@ -10,7 +10,6 @@ import {
 } from '../../tokens/tabs'
 import type { TabPosition } from '../../tokens/tabs'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './TabsPage.module.css'
@@ -62,22 +61,20 @@ export default function TabsPage() {
       />
 
       {/* ── Posições ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="tab" title="Posições" count={`${TAB_POSITIONS.length} posições`} />
+      <Section icon="tab" title="Posições" count={`${TAB_POSITIONS.length} posições`}>
         <div className={styles.positionGrid}>
           {TAB_POSITIONS.map((p) => (
             <PositionDemo key={p.id} position={p.id} description={p.description} />
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Variantes de Conteúdo ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="tune"
-          title="Variantes de Conteúdo"
-          count={`${TAB_CONTENT_VARIANTS.length} variantes`}
-        />
+      <Section
+        icon="tune"
+        title="Variantes de Conteúdo"
+        count={`${TAB_CONTENT_VARIANTS.length} variantes`}
+      >
         <div className={styles.variantGrid}>
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
@@ -139,7 +136,7 @@ export default function TabsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

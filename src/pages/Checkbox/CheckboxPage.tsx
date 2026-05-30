@@ -8,7 +8,6 @@ import {
 } from '../../tokens/checkbox'
 import type { CheckboxBehavior, CheckboxType } from '../../tokens/checkbox'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './CheckboxPage.module.css'
@@ -71,8 +70,7 @@ export default function CheckboxPage() {
       />
 
       {/* ── Comportamentos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="check_box" title="Comportamentos" count="3 comportamentos" />
+      <Section icon="check_box" title="Comportamentos" count="3 comportamentos">
         <div className={styles.behaviorsGrid}>
           {CHECKBOX_BEHAVIORS.map((b) => (
             <div key={b.id} className={styles.behaviorCard}>
@@ -86,11 +84,10 @@ export default function CheckboxPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados — Matriz ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count="5 estados" />
+      <Section icon="toggle_on" title="Estados" count="5 estados">
         {ALL_TYPES.map((type) => (
           <div key={type} className={styles.matrixContainer}>
             <div className={styles.matrixTypeHeader}>
@@ -132,11 +129,10 @@ export default function CheckboxPage() {
             ))}
           </div>
         ))}
-      </section>
+      </Section>
 
       {/* ── Tipos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="swap_horiz" title="Tipos" count="2 tipos" />
+      <Section icon="swap_horiz" title="Tipos" count="2 tipos">
         <div className={styles.typesGrid}>
           {CHECKBOX_TYPES.map((t) => (
             <div key={t.id} className={styles.typeCard}>
@@ -158,11 +154,10 @@ export default function CheckboxPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Help Text ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="info" title="Help Text" />
+      <Section icon="info" title="Help Text">
         <div className={styles.helpTextContainer}>
           <div className={styles.helpTextPreview}>
             <Checkbox
@@ -195,7 +190,7 @@ export default function CheckboxPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

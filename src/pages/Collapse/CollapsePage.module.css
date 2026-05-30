@@ -1,10 +1,4 @@
-﻿/* ── Sections ── */
-
-.section {
-  margin-bottom: var(--spacing-900);
-}
-
-/* ── Styles grid ── */
+﻿/* ── Styles grid ── */
 
 .stylesGrid {
   display: grid;

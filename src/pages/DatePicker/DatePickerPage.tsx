@@ -3,7 +3,6 @@ import DatePicker from '../../components/DatePicker/DatePicker'
 import DateRangePicker, { type DateRange } from '../../components/DateRangePicker/DateRangePicker'
 import Calendar from '../../components/Calendar/Calendar'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import {
   DATE_PICKER_SIZES,
   DATE_PICKER_STATES,
@@ -42,8 +41,7 @@ export default function DatePickerPage() {
       />
 
       {/* ── Estilos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="edit_calendar" title="Estilos de Conteúdo" count="2 estilos" />
+      <Section icon="edit_calendar" title="Estilos de Conteúdo" count="2 estilos">
         <div className={styles.stylesGrid}>
           <div className={styles.styleCard}>
             <div className={styles.stylePreview}>
@@ -71,15 +69,14 @@ export default function DatePickerPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Escala de tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Escala de Tamanhos"
-          count={`${DATE_PICKER_SIZES.length} tamanhos`}
-        />
+      <Section
+        icon="straighten"
+        title="Escala de Tamanhos"
+        count={`${DATE_PICKER_SIZES.length} tamanhos`}
+      >
         <div className={styles.sizeScaleContainer}>
           {DATE_PICKER_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -107,15 +104,10 @@ export default function DatePickerPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="toggle_on"
-          title="Estados"
-          count={`${DATE_PICKER_STATES.length} estados`}
-        />
+      <Section icon="toggle_on" title="Estados" count={`${DATE_PICKER_STATES.length} estados`}>
         <div className={styles.stateMatrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
@@ -156,11 +148,10 @@ export default function DatePickerPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Demo Interativo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="touch_app" title="Date Picker Interativo" />
+      <Section icon="touch_app" title="Date Picker Interativo">
         <div className={styles.interactiveContainer}>
           <div className={styles.interactiveDemo}>
             <div className={styles.demoFields}>
@@ -191,11 +182,10 @@ export default function DatePickerPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Date Range Picker Interativo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="date_range" title="Date Range Picker" />
+      <Section icon="date_range" title="Date Range Picker">
         <div className={styles.interactiveContainer}>
           <div className={`${styles.interactiveDemo} ${styles.interactiveDemoCenter}`}>
             <div className={styles.demoFields}>
@@ -221,14 +211,12 @@ export default function DatePickerPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ════════════════════════════════
           CALENDÁRIO
       ════════════════════════════════ */}
-      <section className={styles.section}>
-        <SectionHeader icon="calendar_month" title="Calendário" count="2 tamanhos" />
-
+      <Section icon="calendar_month" title="Calendário" count="2 tamanhos">
         <div className={styles.calendarSizeContainer}>
           {CALENDAR_SIZES.map((s) => (
             <div key={s.id} className={styles.calendarSizeRow}>
@@ -253,11 +241,10 @@ export default function DatePickerPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Calendário Interativo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="event" title="Calendário Interativo" />
+      <Section icon="event" title="Calendário Interativo">
         <div className={styles.calendarInteractiveGrid}>
           <div className={styles.calendarInteractiveCard}>
             <div className={`type-caption-sm ${styles.calendarInteractiveLabel}`}>
@@ -289,7 +276,7 @@ export default function DatePickerPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

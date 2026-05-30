@@ -1,7 +1,6 @@
 import Badge from '../../components/Badge/Badge'
 import { BADGE_VARIANTS, BADGE_GUIDELINES } from '../../tokens/badge'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './BadgePage.module.css'
@@ -28,12 +27,7 @@ export default function BadgePage() {
       />
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="label"
-          title="Variantes"
-          count={`${BADGE_VARIANTS.length} variantes`}
-        />
+      <Section icon="label" title="Variantes" count={`${BADGE_VARIANTS.length} variantes`}>
         <div className={styles.variantsContainer}>
           {BADGE_VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantRow}>
@@ -47,11 +41,10 @@ export default function BadgePage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Anatomia ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="info" title="Anatomia" />
+      <Section icon="info" title="Anatomia">
         <div className={styles.anatomyCard}>
           <div className={styles.anatomyPreview}>
             <Badge variant="neutral" label="Badge" />
@@ -89,7 +82,7 @@ export default function BadgePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

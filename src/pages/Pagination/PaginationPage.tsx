@@ -3,7 +3,6 @@ import Pagination from '../../components/Pagination/Pagination'
 import { PAGINATION_VARIANTS, PAGINATION_GUIDELINES } from '../../tokens/pagination'
 import type { PaginationVariantDef } from '../../tokens/pagination'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './PaginationPage.module.css'
@@ -48,22 +47,20 @@ export default function PaginationPage() {
       />
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="more_horiz"
-          title="Variantes"
-          count={`${PAGINATION_VARIANTS.length} variantes`}
-        />
+      <Section
+        icon="more_horiz"
+        title="Variantes"
+        count={`${PAGINATION_VARIANTS.length} variantes`}
+      >
         <div className={styles.variantGrid}>
           {PAGINATION_VARIANTS.map((v) => (
             <VariantDemo key={v.id} def={v} />
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count="2 estados" />
+      <Section icon="toggle_on" title="Estados" count="2 estados">
         <div className={styles.statesGrid}>
           <div className={styles.stateCard}>
             <div className={styles.statePreview}>
@@ -90,7 +87,7 @@ export default function PaginationPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

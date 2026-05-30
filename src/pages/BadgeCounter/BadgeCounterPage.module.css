@@ -1,11 +1,5 @@
 ﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
-/* ── Sections ── */
-
-.section {
-  margin-bottom: var(--spacing-900);
-}
-
 /* ── Exemplos de Valor ── */
 
 .examplesContainer {

@@ -12,7 +12,6 @@ import {
 } from '../../tokens/skeleton'
 import type { SkeletonSize } from '../../tokens/skeleton'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './SkeletonPage.module.css'
@@ -31,8 +30,7 @@ export default function SkeletonPage() {
       />
 
       {/* ── Tipos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="category" title="Tipos" count={`${SKELETON_TYPES.length} tipos`} />
+      <Section icon="category" title="Tipos" count={`${SKELETON_TYPES.length} tipos`}>
         <div className={styles.typesGrid}>
           {SKELETON_TYPES.map((t) => (
             <div key={t.id} className={styles.typeCard}>
@@ -54,12 +52,10 @@ export default function SkeletonPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="straighten" title="Tamanhos" count="22 variações" />
-
+      <Section icon="straighten" title="Tamanhos" count="22 variações">
         {/* Row 1: Button, Input, Avatar, Body */}
         <div className={styles.sizesGrid}>
           {/* Button */}
@@ -188,7 +184,7 @@ export default function SkeletonPage() {
             </span>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

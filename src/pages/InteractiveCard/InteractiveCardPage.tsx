@@ -6,7 +6,6 @@ import {
 } from '../../tokens/cards'
 import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import g1Logo from '../../assets/logos/g1.svg'
 import geLogo from '../../assets/logos/ge.svg'
 import gshowLogo from '../../assets/logos/gshow.svg'
@@ -80,8 +79,7 @@ export default function InteractiveCardPage() {
       />
 
       {/* ── Estilos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="style" title="Estilos" count="2 estilos" />
+      <Section icon="style" title="Estilos" count="2 estilos">
         <div className={styles.stylesGrid}>
           {CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>
@@ -104,15 +102,10 @@ export default function InteractiveCardPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="toggle_on"
-          title="Estados"
-          count={`${INTERACTIVE_CARD_STATES.length} estados`}
-        />
+      <Section icon="toggle_on" title="Estados" count={`${INTERACTIVE_CARD_STATES.length} estados`}>
         {CARD_STYLES.map((s) => (
           <div key={s.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixStyleHeader}>
@@ -141,7 +134,7 @@ export default function InteractiveCardPage() {
             </div>
           </div>
         ))}
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

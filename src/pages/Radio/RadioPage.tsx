@@ -3,7 +3,6 @@ import Radio from '../../components/Radio/Radio'
 import { RADIO_BEHAVIORS, RADIO_TYPES, RADIO_GUIDELINES, MATRIX_STATES } from '../../tokens/radio'
 import type { RadioBehavior, RadioType } from '../../tokens/radio'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './RadioPage.module.css'
@@ -42,12 +41,7 @@ export default function RadioPage() {
       />
 
       {/* ── Comportamentos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="radio_button_checked"
-          title="Comportamentos"
-          count="2 comportamentos"
-        />
+      <Section icon="radio_button_checked" title="Comportamentos" count="2 comportamentos">
         <div className={styles.behaviorsGrid}>
           {RADIO_BEHAVIORS.map((b) => (
             <div key={b.id} className={styles.behaviorCard}>
@@ -61,11 +55,10 @@ export default function RadioPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados — Matriz ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count="5 estados" />
+      <Section icon="toggle_on" title="Estados" count="5 estados">
         {ALL_TYPES.map((type) => (
           <div key={type} className={styles.matrixContainer}>
             <div className={styles.matrixTypeHeader}>
@@ -102,11 +95,10 @@ export default function RadioPage() {
             ))}
           </div>
         ))}
-      </section>
+      </Section>
 
       {/* ── Tipos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="swap_horiz" title="Tipos" count="2 tipos" />
+      <Section icon="swap_horiz" title="Tipos" count="2 tipos">
         <div className={styles.typesGrid}>
           {RADIO_TYPES.map((t) => (
             <div key={t.id} className={styles.typeCard}>
@@ -130,11 +122,10 @@ export default function RadioPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Help Text ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="info" title="Help Text" />
+      <Section icon="info" title="Help Text">
         <div className={styles.helpTextContainer}>
           <div className={styles.helpTextPreview}>
             <Radio
@@ -173,7 +164,7 @@ export default function RadioPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

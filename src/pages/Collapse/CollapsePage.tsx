@@ -1,6 +1,5 @@
 import Collapse from '../../components/Collapse/Collapse'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import {
   COLLAPSE_SIZES,
   COLLAPSE_STATES,
@@ -28,8 +27,7 @@ export default function CollapsePage() {
       />
 
       {/* ── Estilos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="unfold_more" title="Estilos de Conteúdo" count="2 estilos" />
+      <Section icon="unfold_more" title="Estilos de Conteúdo" count="2 estilos">
         <div className={styles.stylesGrid}>
           <div className={styles.styleCard}>
             <div className={styles.stylePreview}>
@@ -69,15 +67,14 @@ export default function CollapsePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Escala de tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Escala de Tamanhos"
-          count={`${COLLAPSE_SIZES.length} tamanhos`}
-        />
+      <Section
+        icon="straighten"
+        title="Escala de Tamanhos"
+        count={`${COLLAPSE_SIZES.length} tamanhos`}
+      >
         <div className={styles.sizeScaleContainer}>
           {COLLAPSE_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -109,15 +106,10 @@ export default function CollapsePage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="toggle_on"
-          title="Estados"
-          count={`${COLLAPSE_STATES.length} estados`}
-        />
+      <Section icon="toggle_on" title="Estados" count={`${COLLAPSE_STATES.length} estados`}>
         <div className={styles.stateMatrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
@@ -141,11 +133,10 @@ export default function CollapsePage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Demo Interativo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="touch_app" title="Demo Interativo" />
+      <Section icon="touch_app" title="Demo Interativo">
         <div className={styles.demoContainer}>
           {COLLAPSE_DEMO_ITEMS.map((item, i) => (
             <div
@@ -167,7 +158,7 @@ export default function CollapsePage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

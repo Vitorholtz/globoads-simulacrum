@@ -8,7 +8,6 @@ import {
 } from '../../tokens/avatar'
 import type { AvatarSize, AvatarVariant } from '../../tokens/avatar'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './AvatarPage.module.css'
@@ -46,12 +45,7 @@ export default function AvatarPage() {
       />
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="person"
-          title="Variantes"
-          count={`${AVATAR_VARIANTS.length} variantes`}
-        />
+      <Section icon="person" title="Variantes" count={`${AVATAR_VARIANTS.length} variantes`}>
         <div className={styles.variantsGrid}>
           {AVATAR_VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
@@ -70,15 +64,14 @@ export default function AvatarPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Escala de Tamanhos"
-          count={`${AVATAR_SIZES.length} tamanhos`}
-        />
+      <Section
+        icon="straighten"
+        title="Escala de Tamanhos"
+        count={`${AVATAR_SIZES.length} tamanhos`}
+      >
         <div className={styles.sizesContainer}>
           <div className={styles.sizesHeader}>
             <div className={styles.sizesRowLabel} />
@@ -110,11 +103,10 @@ export default function AvatarPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Lógica de Iniciais ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="abc" title="Lógica de Iniciais" />
+      <Section icon="abc" title="Lógica de Iniciais">
         <div className={styles.initialsContainer}>
           <div className={styles.initialsDemo}>
             <div className={styles.initialsExample}>
@@ -129,11 +121,10 @@ export default function AvatarPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Avatar Group ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="group" title="Avatar Group" />
+      <Section icon="group" title="Avatar Group">
         <p className={`type-body-md ${styles.groupDescription}`}>
           Grupos de avatares são usados para mostrar um conjunto de indivíduos na interface.
           Suportam três variantes: <strong>Initials</strong>, <strong>Placeholders</strong> e{' '}
@@ -173,7 +164,7 @@ export default function AvatarPage() {
         </div>
 
         <GuidelinesGrid items={AVATAR_GROUP_GUIDELINES} className={styles.groupGuidelinesGrid} />
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

@@ -2,7 +2,7 @@ import { FONT_FAMILIES, TYPOGRAPHY_GROUPS } from '../../tokens/typography'
 import FontFamilyCard from '../../components/FontFamilyCard/FontFamilyCard'
 import TypeSpecimen from '../../components/TypeSpecimen/TypeSpecimen'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import Section from '../../components/Section/Section'
 import styles from './TypographyPage.module.css'
 
 const totalStyles = TYPOGRAPHY_GROUPS.reduce((acc, g) => acc + g.tokens.length, 0)
@@ -28,29 +28,32 @@ export default function TypographyPage() {
         ]}
       />
 
-      <section className={styles.section}>
-        <SectionHeader icon="font_download" title="Famílias Tipográficas" count={`${FONT_FAMILIES.length} famílias`} />
+      <Section
+        icon="font_download"
+        title="Famílias Tipográficas"
+        count={`${FONT_FAMILIES.length} famílias`}
+      >
         <div className={styles.familiesGrid}>
           {FONT_FAMILIES.map((family) => (
             <FontFamilyCard key={family.id} family={family} />
           ))}
         </div>
-      </section>
+      </Section>
 
       {TYPOGRAPHY_GROUPS.map((group) => (
-        <section key={group.category} className={styles.section}>
-          <SectionHeader
-            icon={SECTION_ICONS[group.category] ?? 'text_fields'}
-            title={group.title}
-            count={`${group.tokens.length} estilos`}
-          />
+        <Section
+          key={group.category}
+          icon={SECTION_ICONS[group.category] ?? 'text_fields'}
+          title={group.title}
+          count={`${group.tokens.length} estilos`}
+        >
           <p className={`type-body-md ${styles.groupDescription}`}>{group.description}</p>
           <div className={styles.specimensContainer}>
             {group.tokens.map((token) => (
               <TypeSpecimen key={token.name} token={token} />
             ))}
           </div>
-        </section>
+        </Section>
       ))}
     </div>
   )

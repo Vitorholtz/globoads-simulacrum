@@ -1,6 +1,5 @@
 import InfoPanel from '../../components/InfoPanel/InfoPanel'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import {
   INFO_PANEL_VARIANTS,
   INFO_PANEL_CONTENT_VARIANTS,
@@ -25,8 +24,7 @@ export default function InfoPanelPage() {
       />
 
       {/* ── Componente ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="info" title="Componente" />
+      <Section icon="info" title="Componente">
         <div className={styles.demoArea}>
           <div className={styles.demoGrid}>
             {INFO_PANEL_VARIANTS.map((variant) => (
@@ -39,15 +37,10 @@ export default function InfoPanelPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="style"
-          title="Variantes"
-          count={`${INFO_PANEL_VARIANTS.length} variantes`}
-        />
+      <Section icon="style" title="Variantes" count={`${INFO_PANEL_VARIANTS.length} variantes`}>
         <div className={styles.variantsGrid}>
           {INFO_PANEL_VARIANTS.map((variant) => (
             <div key={variant.id} className={styles.variantCard}>
@@ -65,15 +58,14 @@ export default function InfoPanelPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Conteúdo ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="notes"
-          title="Combinações de conteúdo"
-          count={`${INFO_PANEL_CONTENT_VARIANTS.length} combinações`}
-        />
+      <Section
+        icon="notes"
+        title="Combinações de conteúdo"
+        count={`${INFO_PANEL_CONTENT_VARIANTS.length} combinações`}
+      >
         <div className={styles.contentGrid}>
           {INFO_PANEL_CONTENT_VARIANTS.map((combo) => (
             <div key={combo.label} className={styles.variantCard}>
@@ -91,7 +83,7 @@ export default function InfoPanelPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de uso">

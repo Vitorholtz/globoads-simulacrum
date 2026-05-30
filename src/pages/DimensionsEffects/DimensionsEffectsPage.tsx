@@ -1,11 +1,11 @@
 import BorderRadiusRow from '../../components/BorderRadiusRow/BorderRadiusRow'
 import BorderWidthRow from '../../components/BorderWidthRow/BorderWidthRow'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import SpacingRow from '../../components/SpacingRow/SpacingRow'
 import { BORDER_RADIUS_TOKENS } from '../../tokens/borderRadius'
 import { BORDER_WIDTH_TOKENS } from '../../tokens/borderWidth'
 import { SPACING_TOKENS } from '../../tokens/spacing'
+import Section from '../../components/Section/Section'
 import styles from './DimensionsEffectsPage.module.css'
 
 export default function DimensionsEffectsPage() {
@@ -22,44 +22,37 @@ export default function DimensionsEffectsPage() {
         ]}
       />
 
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Espaçamentos"
-          count={`${SPACING_TOKENS.length} tokens`}
-        />
+      <Section icon="straighten" title="Espaçamentos" count={`${SPACING_TOKENS.length} tokens`}>
         <div className={styles.tokenList}>
-          {SPACING_TOKENS.map(token => (
+          {SPACING_TOKENS.map((token) => (
             <SpacingRow key={token.variable} token={token} />
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className={styles.section}>
-        <SectionHeader
-          icon="border_style"
-          title="Espessuras de Borda"
-          count={`${BORDER_WIDTH_TOKENS.length} tokens`}
-        />
+      <Section
+        icon="border_style"
+        title="Espessuras de Borda"
+        count={`${BORDER_WIDTH_TOKENS.length} tokens`}
+      >
         <div className={styles.tokenList}>
-          {BORDER_WIDTH_TOKENS.map(token => (
+          {BORDER_WIDTH_TOKENS.map((token) => (
             <BorderWidthRow key={token.variable} token={token} />
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className={styles.section}>
-        <SectionHeader
-          icon="rounded_corner"
-          title="Raios de Borda"
-          count={`${BORDER_RADIUS_TOKENS.length} tokens`}
-        />
+      <Section
+        icon="rounded_corner"
+        title="Raios de Borda"
+        count={`${BORDER_RADIUS_TOKENS.length} tokens`}
+      >
         <div className={styles.tokenList}>
-          {BORDER_RADIUS_TOKENS.map(token => (
+          {BORDER_RADIUS_TOKENS.map((token) => (
             <BorderRadiusRow key={token.variable} token={token} />
           ))}
         </div>
-      </section>
+      </Section>
     </div>
   )
 }

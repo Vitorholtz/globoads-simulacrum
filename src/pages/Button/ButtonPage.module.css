@@ -1,11 +1,5 @@
 ﻿/* Header styles â†’ PageHeader.module.css  |  Section header styles â†’ SectionHeader.module.css */
 
-/* â”€â”€ Sections â”€â”€ */
-
-.section {
-  margin-bottom: var(--spacing-900);
-}
-
 /* â”€â”€ Variant cards â”€â”€ */
 
 .variantsGrid {

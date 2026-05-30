@@ -1,10 +1,4 @@
-﻿/* ── Sections ── */
-
-.section {
-  margin-bottom: var(--spacing-900);
-}
-
-/* ── Static demo area ── */
+﻿/* ── Static demo area ── */
 
 .demoArea {
   background: var(--color-surface-secondary);

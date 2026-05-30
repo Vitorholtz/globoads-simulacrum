@@ -1,10 +1,4 @@
-﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
-
-.section {
-  margin-bottom: var(--spacing-800);
-}
-
-.groupDescription {
+﻿.groupDescription {
   color: var(--color-fill-secondary);
   margin-bottom: var(--spacing-350);
   max-width: 680px;

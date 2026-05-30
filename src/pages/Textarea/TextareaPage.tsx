@@ -7,7 +7,6 @@ import {
   TEXTAREA_MATRIX_COLS,
 } from '../../tokens/textarea'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './TextareaPage.module.css'
@@ -27,8 +26,7 @@ export default function TextareaPage() {
       />
 
       {/* ── Estilos de Conteúdo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="edit_note" title="Estilos de Conteúdo" count="2 estilos" />
+      <Section icon="edit_note" title="Estilos de Conteúdo" count="2 estilos">
         <div className={styles.stylesGrid}>
           <div className={styles.styleCard}>
             <div className={styles.stylePreview}>
@@ -56,15 +54,14 @@ export default function TextareaPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Escala de Tamanhos"
-          count={`${TEXTAREA_SIZES.length} tamanhos`}
-        />
+      <Section
+        icon="straighten"
+        title="Escala de Tamanhos"
+        count={`${TEXTAREA_SIZES.length} tamanhos`}
+      >
         <div className={styles.sizeScaleContainer}>
           {TEXTAREA_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -92,15 +89,10 @@ export default function TextareaPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="toggle_on"
-          title="Estados"
-          count={`${TEXTAREA_STATES.length} estados`}
-        />
+      <Section icon="toggle_on" title="Estados" count={`${TEXTAREA_STATES.length} estados`}>
         <div className={styles.stateMatrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
@@ -134,11 +126,10 @@ export default function TextareaPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Configurações ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="tune" title="Configurações" count="6 configurações" />
+      <Section icon="tune" title="Configurações" count="6 configurações">
         <div className={styles.configGrid}>
           <div className={styles.configCard}>
             <div className={styles.configPreview}>
@@ -230,7 +221,7 @@ export default function TextareaPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

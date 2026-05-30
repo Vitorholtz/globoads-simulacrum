@@ -8,7 +8,6 @@ import {
 } from '../../tokens/switch'
 import type { SwitchBehavior, SwitchType } from '../../tokens/switch'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './SwitchPage.module.css'
@@ -54,8 +53,7 @@ export default function SwitchPage() {
       />
 
       {/* ── Comportamentos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Comportamentos" count="2 comportamentos" />
+      <Section icon="toggle_on" title="Comportamentos" count="2 comportamentos">
         <div className={styles.behaviorsGrid}>
           {SWITCH_BEHAVIORS.map((b) => (
             <div key={b.id} className={styles.behaviorCard}>
@@ -69,11 +67,10 @@ export default function SwitchPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados — Matriz ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="radio_button_checked" title="Estados" count="5 estados" />
+      <Section icon="radio_button_checked" title="Estados" count="5 estados">
         {ALL_TYPES.map((type) => (
           <div key={type} className={styles.matrixContainer}>
             <div className={styles.matrixTypeHeader}>
@@ -110,11 +107,10 @@ export default function SwitchPage() {
             ))}
           </div>
         ))}
-      </section>
+      </Section>
 
       {/* ── Tipos ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="swap_horiz" title="Tipos" count="2 tipos" />
+      <Section icon="swap_horiz" title="Tipos" count="2 tipos">
         <div className={styles.typesGrid}>
           {SWITCH_TYPES.map((t) => (
             <div key={t.id} className={styles.typeCard}>
@@ -138,11 +134,10 @@ export default function SwitchPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Help Text ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="info" title="Help Text" />
+      <Section icon="info" title="Help Text">
         <div className={styles.helpTextContainer}>
           <div className={styles.helpTextPreview}>
             <Switch
@@ -175,7 +170,7 @@ export default function SwitchPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

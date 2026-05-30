@@ -10,7 +10,6 @@ import {
 } from '../../tokens/buttons'
 import type { ButtonVariant, ButtonSize } from '../../tokens/buttons'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './ButtonPage.module.css'
@@ -129,8 +128,7 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
       />
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="style" title="Variantes" count="3 variantes" />
+      <Section icon="style" title="Variantes" count="3 variantes">
         <div className={styles.variantsGrid}>
           {VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
@@ -163,15 +161,14 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="straighten"
-          title="Escala de Tamanhos"
-          count={`${BUTTON_SIZES.length} tamanhos`}
-        />
+      <Section
+        icon="straighten"
+        title="Escala de Tamanhos"
+        count={`${BUTTON_SIZES.length} tamanhos`}
+      >
         <div className={styles.sizeScaleContainer}>
           {BUTTON_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -206,11 +203,10 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count={`${BUTTON_STATES.length} estados`} />
+      <Section icon="toggle_on" title="Estados" count={`${BUTTON_STATES.length} estados`}>
         {VARIANTS.map((v) => (
           <div key={v.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixVariantHeader}>
@@ -252,15 +248,10 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
             ))}
           </div>
         ))}
-      </section>
+      </Section>
 
       {/* ── Conteúdo e Ícones ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="format_shapes"
-          title="Configurações de Conteúdo"
-          count="4 configurações"
-        />
+      <Section icon="format_shapes" title="Configurações de Conteúdo" count="4 configurações">
         <div className={styles.contentGrid}>
           {contentDemo.map((c) => (
             <div key={c.label} className={styles.contentCard}>
@@ -282,7 +273,7 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

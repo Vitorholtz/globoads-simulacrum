@@ -2,7 +2,6 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
 import type { BreadcrumbItem } from '../../components/Breadcrumb/Breadcrumb'
 import { BREADCRUMB_DEPTHS, BREADCRUMB_GUIDELINES } from '../../tokens/breadcrumb'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './BreadcrumbPage.module.css'
@@ -28,12 +27,7 @@ export default function BreadcrumbPage() {
       />
 
       {/* ── Profundidades ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="route"
-          title="Profundidades"
-          count={`${BREADCRUMB_DEPTHS.length} exemplos`}
-        />
+      <Section icon="route" title="Profundidades" count={`${BREADCRUMB_DEPTHS.length} exemplos`}>
         <div className={styles.depthsContainer}>
           {BREADCRUMB_DEPTHS.map((depth) => (
             <div key={depth.label} className={styles.depthRow}>
@@ -47,11 +41,10 @@ export default function BreadcrumbPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Anatomia ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="info" title="Anatomia" />
+      <Section icon="info" title="Anatomia">
         <div className={styles.anatomyCard}>
           <div className={styles.anatomyPreview}>
             <Breadcrumb
@@ -93,7 +86,7 @@ export default function BreadcrumbPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

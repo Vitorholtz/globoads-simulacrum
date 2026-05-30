@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Toast from '../../components/Toast/Toast'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import { TOAST_VARIANTS, TOAST_GUIDELINES } from '../../tokens/toast'
 import type { ToastType } from '../../tokens/toast'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
@@ -62,8 +61,7 @@ export default function ToastPage() {
       />
 
       {/* ── Componente ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="notification_important" title="Componente" />
+      <Section icon="notification_important" title="Componente">
         <div className={styles.demoArea}>
           <div className={styles.demoGrid}>
             {TOAST_VARIANTS.map((v) => (
@@ -77,11 +75,10 @@ export default function ToastPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Demo interativo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="play_circle" title="Demo interativo" />
+      <Section icon="play_circle" title="Demo interativo">
         <div className={styles.interactiveCard}>
           <p className={`type-body-sm ${styles.interactiveHint}`}>
             Clique em um dos botões para ver o Toast aparecer na tela e desaparecer automaticamente
@@ -106,15 +103,10 @@ export default function ToastPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="style"
-          title="Variantes"
-          count={`${TOAST_VARIANTS.length} variantes`}
-        />
+      <Section icon="style" title="Variantes" count={`${TOAST_VARIANTS.length} variantes`}>
         <div className={styles.variantsGrid}>
           {TOAST_VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
@@ -128,11 +120,10 @@ export default function ToastPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Combinações de conteúdo ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="notes" title="Combinações de conteúdo" count="3 combinações" />
+      <Section icon="notes" title="Combinações de conteúdo" count="3 combinações">
         <div className={styles.contentGrid}>
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
@@ -182,7 +173,7 @@ export default function ToastPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de uso">

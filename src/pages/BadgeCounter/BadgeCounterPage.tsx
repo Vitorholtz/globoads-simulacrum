@@ -4,7 +4,6 @@ import Tabs from '../../components/Tabs/Tabs'
 import type { TabItem } from '../../components/Tabs/Tabs'
 import { BADGE_COUNTER_EXAMPLES, BADGE_COUNTER_GUIDELINES } from '../../tokens/badgeCounter'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import styles from './BadgeCounterPage.module.css'
@@ -31,12 +30,11 @@ export default function BadgeCounterPage() {
       />
 
       {/* ── Exemplos de Valor ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="badge"
-          title="Exemplos de Valor"
-          count={`${BADGE_COUNTER_EXAMPLES.length} exemplos`}
-        />
+      <Section
+        icon="badge"
+        title="Exemplos de Valor"
+        count={`${BADGE_COUNTER_EXAMPLES.length} exemplos`}
+      >
         <div className={styles.examplesContainer}>
           {BADGE_COUNTER_EXAMPLES.map((ex) => (
             <div key={ex.value} className={styles.exampleRow}>
@@ -53,11 +51,10 @@ export default function BadgeCounterPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Anatomia ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="info" title="Anatomia" />
+      <Section icon="info" title="Anatomia">
         <div className={styles.anatomyCard}>
           <div className={styles.anatomyPreview}>
             <div className={styles.anatomyDiagram}>
@@ -99,11 +96,10 @@ export default function BadgeCounterPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Contextos de Uso ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="widgets" title="Contextos de Uso" />
+      <Section icon="widgets" title="Contextos de Uso">
         <div className={styles.contextsGrid}>
           <div className={styles.contextCard}>
             <div className={styles.contextPreview}>
@@ -148,7 +144,7 @@ export default function BadgeCounterPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">

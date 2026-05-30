@@ -1,6 +1,5 @@
 import Accordion from '../../components/Accordion/Accordion'
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import { ACCORDION_STATES, ACCORDION_GUIDELINES, ACCORDION_VARIANTS } from '../../tokens/accordion'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
@@ -139,20 +138,14 @@ export default function AccordionPage() {
       />
 
       {/* ── Componente ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="expand_all" title="Componente" />
+      <Section icon="expand_all" title="Componente">
         <div className={styles.componentDemo}>
           <Accordion items={DEMO_ITEMS} defaultOpenId="segmentacao" />
         </div>
-      </section>
+      </Section>
 
       {/* ── Variantes ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="tune"
-          title="Variantes"
-          count={`${ACCORDION_VARIANTS.length} variantes`}
-        />
+      <Section icon="tune" title="Variantes" count={`${ACCORDION_VARIANTS.length} variantes`}>
         <div className={styles.variantsGrid}>
           {ACCORDION_VARIANTS.map((variant) => (
             <div key={variant.id} className={styles.variantCard}>
@@ -171,15 +164,10 @@ export default function AccordionPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Estados ── */}
-      <section className={styles.section}>
-        <SectionHeader
-          icon="toggle_on"
-          title="Estados"
-          count={`${ACCORDION_STATES.length} estados`}
-        />
+      <Section icon="toggle_on" title="Estados" count={`${ACCORDION_STATES.length} estados`}>
         <div className={styles.statesGrid}>
           {ACCORDION_STATES.map((state) => (
             <div key={state.id} className={styles.stateCard}>
@@ -198,7 +186,7 @@ export default function AccordionPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
