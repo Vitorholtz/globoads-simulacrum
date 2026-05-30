@@ -10,6 +10,7 @@ import {
 import type { SelectSizeDef } from '../../tokens/select'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import styles from './SelectPage.module.css'
 
 function sizeSpecs(size: SelectSizeDef) {
@@ -92,47 +93,28 @@ export default function SelectPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={6}>
-        <div className={styles.stateMatrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {SELECT_MATRIX_COLS.map((col) => (
-              <div key={col.id} className={styles.matrixCellLabel}>
-                {col.label}
-              </div>
-            ))}
-          </div>
-
-          {SELECT_MATRIX_STATES.map((state) => (
-            <div key={state.label} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {SELECT_MATRIX_COLS.map((col) => (
-                  <div
-                    key={col.id}
-                    className={[
-                      styles.matrixCell,
-                      state.id === 'active' ? styles.matrixCellActive : '',
-                    ]
-                      .filter(Boolean)
-                      .join(' ')}
-                  >
-                    <div className={styles.matrixField}>
-                      <Select
-                        options={SELECT_DEMO_OPTIONS}
-                        size="md"
-                        forceState={state.force}
-                        defaultValue={col.filled ? 'item-1' : undefined}
-                        errorMessage={state.id === 'error' ? 'Campo obrigatório' : undefined}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <StateMatrix
+          columns={SELECT_MATRIX_COLS}
+          rows={SELECT_MATRIX_STATES}
+          labelWidth={120}
+          align="start"
+          cellPad="sm"
+          overflow="visible"
+          getCellClassName={(state) =>
+            state.id === 'active' ? styles.matrixCellActive : undefined
+          }
+          renderCell={(state, col) => (
+            <div className={styles.matrixField}>
+              <Select
+                options={SELECT_DEMO_OPTIONS}
+                size="md"
+                forceState={state.force}
+                defaultValue={col.filled ? 'item-1' : undefined}
+                errorMessage={state.id === 'error' ? 'Campo obrigatório' : undefined}
+              />
             </div>
-          ))}
-        </div>
+          )}
+        />
       </Section>
 
       {/* ── Configurações ── */}

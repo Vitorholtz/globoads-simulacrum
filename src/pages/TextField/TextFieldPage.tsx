@@ -9,6 +9,7 @@ import {
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import styles from './TextFieldPage.module.css'
 
 export default function TextFieldPage() {
@@ -93,40 +94,22 @@ export default function TextFieldPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={`${TEXT_FIELD_STATES.length} estados`}>
-        <div className={styles.stateMatrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {TEXT_FIELD_MATRIX_COLS.map((col) => (
-              <div key={col.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                {col.label}
-              </div>
-            ))}
-          </div>
-
-          {TEXT_FIELD_MATRIX_STATES.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {TEXT_FIELD_MATRIX_COLS.map((col) => (
-                  <div key={col.id} className={styles.matrixCell}>
-                    <TextField
-                      size="md"
-                      label="Label"
-                      placeholder="Text here"
-                      defaultValue={col.value}
-                      leadingIcon={col.icon}
-                      forceState={state.force}
-                      errorMessage={state.id === 'error' ? 'Required error text!' : undefined}
-                      className={styles.matrixField}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={TEXT_FIELD_MATRIX_COLS}
+          rows={TEXT_FIELD_MATRIX_STATES}
+          renderCell={(state, col) => (
+            <TextField
+              size="md"
+              label="Label"
+              placeholder="Text here"
+              defaultValue={col.value}
+              leadingIcon={col.icon}
+              forceState={state.force}
+              errorMessage={state.id === 'error' ? 'Required error text!' : undefined}
+              className={styles.matrixField}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Configurações ── */}

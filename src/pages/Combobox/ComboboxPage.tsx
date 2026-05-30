@@ -9,6 +9,7 @@ import {
 import type { ComboboxSizeDef } from '../../tokens/combobox'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import styles from './ComboboxPage.module.css'
 
 const FILLED_CHIPS = ['Chip 1', 'Chip 2', 'Chip 3']
@@ -93,38 +94,24 @@ export default function ComboboxPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={5}>
-        <div className={styles.stateMatrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {COMBOBOX_MATRIX_COLS.map((col) => (
-              <div key={col.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                {col.label}
-              </div>
-            ))}
-          </div>
-
-          {COMBOBOX_MATRIX_STATES.map((state) => (
-            <div key={state.label} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {COMBOBOX_MATRIX_COLS.map((col) => (
-                  <div key={col.id} className={styles.matrixCell}>
-                    <div className={styles.matrixField}>
-                      <Combobox
-                        size="md"
-                        forceState={state.force}
-                        defaultValue={col.filled ? FILLED_CHIPS : undefined}
-                        errorMessage={state.id === 'error' ? 'Campo obrigatório' : undefined}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <StateMatrix
+          columns={COMBOBOX_MATRIX_COLS}
+          rows={COMBOBOX_MATRIX_STATES}
+          labelWidth={120}
+          align="start"
+          cellPad="sm"
+          overflow="visible"
+          renderCell={(state, col) => (
+            <div className={styles.matrixField}>
+              <Combobox
+                size="md"
+                forceState={state.force}
+                defaultValue={col.filled ? FILLED_CHIPS : undefined}
+                errorMessage={state.id === 'error' ? 'Campo obrigatório' : undefined}
+              />
             </div>
-          ))}
-        </div>
+          )}
+        />
       </Section>
 
       {/* ── Configurações ── */}

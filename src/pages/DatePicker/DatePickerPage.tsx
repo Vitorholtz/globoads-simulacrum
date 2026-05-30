@@ -7,11 +7,13 @@ import {
   DATE_PICKER_SIZES,
   DATE_PICKER_STATES,
   DATE_PICKER_MATRIX_STATES,
+  DATE_PICKER_MATRIX_COLS,
   CALENDAR_SIZES,
   DATE_PICKER_GUIDELINES,
 } from '../../tokens/datePicker'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import styles from './DatePickerPage.module.css'
 
 const EXAMPLE_DATE = new Date(2025, 4, 26) // 26/05/2025
@@ -108,46 +110,20 @@ export default function DatePickerPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={`${DATE_PICKER_STATES.length} estados`}>
-        <div className={styles.stateMatrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            <div className={`type-caption-xs ${styles.matrixCellLabel}`}>Placeholder</div>
-            <div className={`type-caption-xs ${styles.matrixCellLabel}`}>Filled</div>
-          </div>
-
-          {DATE_PICKER_MATRIX_STATES.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                <div className={styles.matrixCell}>
-                  <DatePicker
-                    size="md"
-                    label="Data"
-                    forceState={state.force}
-                    errorMessage={
-                      state.id === 'error' ? 'Data inválida ou obrigatória.' : undefined
-                    }
-                    className={styles.matrixField}
-                  />
-                </div>
-                <div className={styles.matrixCell}>
-                  <DatePicker
-                    size="md"
-                    label="Data"
-                    defaultValue={EXAMPLE_DATE}
-                    forceState={state.force}
-                    errorMessage={
-                      state.id === 'error' ? 'Data inválida ou obrigatória.' : undefined
-                    }
-                    className={styles.matrixField}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={DATE_PICKER_MATRIX_COLS}
+          rows={DATE_PICKER_MATRIX_STATES}
+          renderCell={(state, col) => (
+            <DatePicker
+              size="md"
+              label="Data"
+              defaultValue={col.filled ? EXAMPLE_DATE : undefined}
+              forceState={state.force}
+              errorMessage={state.id === 'error' ? 'Data inválida ou obrigatória.' : undefined}
+              className={styles.matrixField}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Demo Interativo ── */}

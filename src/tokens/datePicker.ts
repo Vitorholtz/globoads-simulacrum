@@ -111,3 +111,8 @@ export const DATE_PICKER_MATRIX_STATES: {
   { id: 'error', label: 'Error', force: 'error' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]
+
+export const DATE_PICKER_MATRIX_COLS: { id: string; label: string; filled: boolean }[] = [
+  { id: 'placeholder', label: 'Placeholder', filled: false },
+  { id: 'filled', label: 'Filled', filled: true },
+]

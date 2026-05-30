@@ -9,6 +9,7 @@ import {
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import styles from './TextareaPage.module.css'
 
 export default function TextareaPage() {
@@ -93,39 +94,23 @@ export default function TextareaPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={`${TEXTAREA_STATES.length} estados`}>
-        <div className={styles.stateMatrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {TEXTAREA_MATRIX_COLS.map((col) => (
-              <div key={col.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                {col.label}
-              </div>
-            ))}
-          </div>
-
-          {TEXTAREA_MATRIX_STATES.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {TEXTAREA_MATRIX_COLS.map((col) => (
-                  <div key={col.id} className={styles.matrixCell}>
-                    <Textarea
-                      size="md"
-                      label="Label"
-                      placeholder="Text here"
-                      defaultValue={col.defaultValue}
-                      forceState={state.force}
-                      errorMessage={state.id === 'error' ? 'Required error text!' : undefined}
-                      className={styles.matrixField}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={TEXTAREA_MATRIX_COLS}
+          rows={TEXTAREA_MATRIX_STATES}
+          labelWidth={120}
+          align="start"
+          renderCell={(state, col) => (
+            <Textarea
+              size="md"
+              label="Label"
+              placeholder="Text here"
+              defaultValue={col.defaultValue}
+              forceState={state.force}
+              errorMessage={state.id === 'error' ? 'Required error text!' : undefined}
+              className={styles.matrixField}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Configurações ── */}
