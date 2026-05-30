@@ -9,18 +9,13 @@ import {
 } from '../../tokens/icons'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './IconsPage.module.css'
 
 const totalCatalogIcons = ICON_CATEGORIES.reduce((acc, c) => acc + c.icons.length, 0)
 
 const SIZE_CLS: Record<number, string> = { 20: 'icon-md', 24: 'icon-lg', 32: 'icon-xl' }
-
-const GUIDELINE_ICONS: Record<string, string> = {
-  'Consistência de variante': 'tune',
-  'Tamanho mínimo e toque': 'touch_app',
-  'Espaçamento com texto': 'format_align_left',
-  'Cor e semântica de estado': 'palette',
-}
 
 export default function IconsPage() {
   return (
@@ -48,19 +43,22 @@ export default function IconsPage() {
             </div>
             <p className={`type-body-md ${styles.libraryDescription}`}>
               Material Symbols é a mais recente geração da biblioteca de ícones do Google,
-              construída sobre uma fonte de eixo variável que expõe os eixos FILL, GRAD, opsz
-              e wght. O estilo Rounded utiliza pontas e junções arredondadas, conferindo ao
-              sistema uma linguagem visual mais amigável e coerente com a identidade Globo Ads.
+              construída sobre uma fonte de eixo variável que expõe os eixos FILL, GRAD, opsz e
+              wght. O estilo Rounded utiliza pontas e junções arredondadas, conferindo ao sistema
+              uma linguagem visual mais amigável e coerente com a identidade Globo Ads.
             </p>
             <div className={styles.libraryAttr}>
               <div className={styles.attrRow}>
                 <span className={`type-caption-sm ${styles.attrLabel}`}>Fonte</span>
-                <span className={`type-body-md ${styles.attrValue}`}>Google Fonts — Material Symbols Rounded</span>
+                <span className={`type-body-md ${styles.attrValue}`}>
+                  Google Fonts — Material Symbols Rounded
+                </span>
               </div>
               <div className={styles.attrRow}>
                 <span className={`type-caption-sm ${styles.attrLabel}`}>Eixo FILL</span>
                 <span className={`type-body-md ${styles.attrValue}`}>
-                  <code className={`type-caption-sm ${styles.attrCode}`}>FILL 0</code> Outlined &nbsp;·&nbsp;
+                  <code className={`type-caption-sm ${styles.attrCode}`}>FILL 0</code> Outlined
+                  &nbsp;·&nbsp;
                   <code className={`type-caption-sm ${styles.attrCode}`}>FILL 1</code> Filled
                 </span>
               </div>
@@ -77,11 +75,17 @@ export default function IconsPage() {
             </div>
           </div>
           <div className={styles.libraryPreview}>
-            {['home', 'search', 'notifications', 'bookmark', 'settings', 'edit', 'share', 'star'].map((icon) => (
-              <span
-                key={icon}
-                className="material-symbols-rounded icon-xl"
-              >
+            {[
+              'home',
+              'search',
+              'notifications',
+              'bookmark',
+              'settings',
+              'edit',
+              'share',
+              'star',
+            ].map((icon) => (
+              <span key={icon} className="material-symbols-rounded icon-xl">
                 {icon}
               </span>
             ))}
@@ -113,7 +117,9 @@ export default function IconsPage() {
                 </div>
                 <ul className={styles.variantWhen}>
                   {rule.when.map((item) => (
-                    <li key={item} className="type-body-md">{item}</li>
+                    <li key={item} className="type-body-md">
+                      {item}
+                    </li>
                   ))}
                 </ul>
                 <div className={`type-caption-sm ${styles.variantExamples}`}>{rule.examples}</div>
@@ -125,17 +131,23 @@ export default function IconsPage() {
 
       {/* ── Tokens de Ícone ── */}
       <section className={styles.section}>
-        <SectionHeader icon="token" title="Tokens de Ícone" count={`${ICON_CLASS_TOKENS.length + 1} classes`} />
+        <SectionHeader
+          icon="token"
+          title="Tokens de Ícone"
+          count={`${ICON_CLASS_TOKENS.length + 1} classes`}
+        />
 
         <div className={styles.tokenUsage}>
           <div className={styles.tokenUsageInfo}>
             <span className={`type-caption-sm ${styles.tokenUsageLabel}`}>Como usar</span>
             <p className={`type-body-md ${styles.tokenUsageText}`}>
               Combine uma classe de tamanho com{' '}
-              <code className={`type-caption-sm ${styles.inlineCode}`}>material-symbols-rounded</code>.{' '}
-              Para o estado preenchido, adicione{' '}
-              <code className={`type-caption-sm ${styles.inlineCode}`}>icon-filled</code>{' '}
-              após a classe de tamanho.
+              <code className={`type-caption-sm ${styles.inlineCode}`}>
+                material-symbols-rounded
+              </code>
+              . Para o estado preenchido, adicione{' '}
+              <code className={`type-caption-sm ${styles.inlineCode}`}>icon-filled</code> após a
+              classe de tamanho.
             </p>
           </div>
           <div className={styles.tokenUsageSnippets}>
@@ -183,25 +195,41 @@ export default function IconsPage() {
                 home
               </span>
             </div>
-            <code className={`type-caption-md ${styles.tokenClass}`}>.{ICON_FILLED_MODIFIER.className}</code>
+            <code className={`type-caption-md ${styles.tokenClass}`}>
+              .{ICON_FILLED_MODIFIER.className}
+            </code>
             <span className={`type-caption-sm ${styles.tokenModifierBadge}`}>modificador</span>
-            <code className={`type-caption-sm ${styles.tokenVar}`}>{ICON_FILLED_MODIFIER.cssValue}</code>
-            <span className={`type-body-md ${styles.tokenDesc}`}>{ICON_FILLED_MODIFIER.description}</span>
-            <span className={`type-caption-sm ${styles.tokenUsedIn}`}>{ICON_FILLED_MODIFIER.usedIn}</span>
+            <code className={`type-caption-sm ${styles.tokenVar}`}>
+              {ICON_FILLED_MODIFIER.cssValue}
+            </code>
+            <span className={`type-body-md ${styles.tokenDesc}`}>
+              {ICON_FILLED_MODIFIER.description}
+            </span>
+            <span className={`type-caption-sm ${styles.tokenUsedIn}`}>
+              {ICON_FILLED_MODIFIER.usedIn}
+            </span>
           </div>
         </div>
       </section>
 
       {/* ── Escala de Tamanhos ── */}
       <section className={styles.section}>
-        <SectionHeader icon="straighten" title="Escala de Tamanhos" count={`${ICON_SIZES.length} tamanhos`} />
+        <SectionHeader
+          icon="straighten"
+          title="Escala de Tamanhos"
+          count={`${ICON_SIZES.length} tamanhos`}
+        />
         <div className={styles.sizeScaleContainer}>
           {ICON_SIZES.map((size) => (
             <div key={size.value} className={styles.sizeRow}>
               <div className={styles.sizeIconWrap}>
                 <span
                   className={`material-symbols-rounded ${SIZE_CLS[size.value] ?? ''}`}
-                  style={SIZE_CLS[size.value] ? { color: 'var(--color-fill-primary)' } : { fontSize: `${size.value}px`, color: 'var(--color-fill-primary)' }}
+                  style={
+                    SIZE_CLS[size.value]
+                      ? { color: 'var(--color-fill-primary)' }
+                      : { fontSize: `${size.value}px`, color: 'var(--color-fill-primary)' }
+                  }
                 >
                   home
                 </span>
@@ -222,30 +250,17 @@ export default function IconsPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {ICON_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <div className={styles.guidelineIconWrap}>
-                <span
-                  className="material-symbols-rounded icon-md"
-                  style={{ color: 'var(--color-fill-tertiary)' }}
-                >
-                  {GUIDELINE_ICONS[g.title] ?? 'info'}
-                </span>
-              </div>
-              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={ICON_GUIDELINES} />
+      </Section>
 
       {/* ── Catálogo ── */}
       <section className={styles.section}>
-        <SectionHeader icon="apps" title="Catálogo de Referência" count={`${totalCatalogIcons} ícones`} />
+        <SectionHeader
+          icon="apps"
+          title="Catálogo de Referência"
+          count={`${totalCatalogIcons} ícones`}
+        />
         <p className={`type-body-md ${styles.catalogNote}`}>
           Cada célula exibe o ícone nas duas variantes: Outlined à esquerda e Filled à direita.
         </p>
@@ -253,8 +268,12 @@ export default function IconsPage() {
           <div key={category.id} className={styles.categorySection}>
             <div className={styles.categoryHeader}>
               <h3 className={`type-caption-md ${styles.categoryName}`}>{category.name}</h3>
-              <span className={`type-caption-sm ${styles.categoryDesc}`}>{category.description}</span>
-              <span className={`type-caption-sm ${styles.categoryCount}`}>{category.icons.length}</span>
+              <span className={`type-caption-sm ${styles.categoryDesc}`}>
+                {category.description}
+              </span>
+              <span className={`type-caption-sm ${styles.categoryCount}`}>
+                {category.icons.length}
+              </span>
             </div>
             <div className={styles.iconGrid}>
               {category.icons.map((icon) => (

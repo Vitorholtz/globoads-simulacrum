@@ -1,11 +1,17 @@
 import InteractiveCard from '../../components/InteractiveCard/InteractiveCard'
-import { CARD_STYLES, INTERACTIVE_CARD_STATES, INTERACTIVE_CARD_GUIDELINES } from '../../tokens/cards'
+import {
+  CARD_STYLES,
+  INTERACTIVE_CARD_STATES,
+  INTERACTIVE_CARD_GUIDELINES,
+} from '../../tokens/cards'
 import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import g1Logo from '../../assets/logos/g1.svg'
 import geLogo from '../../assets/logos/ge.svg'
 import gshowLogo from '../../assets/logos/gshow.svg'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './InteractiveCardPage.module.css'
 
 const TALENT_PHOTO = '/campaign-talent.jpg'
@@ -19,20 +25,39 @@ function DiariaCard() {
   return (
     <div className={styles.diariaCard}>
       <div className={styles.diariaHeader}>
-        <span
-          className={`material-symbols-rounded icon-md ${styles.diariaChannelIcon}`}
-        >devices</span>
+        <span className={`material-symbols-rounded icon-md ${styles.diariaChannelIcon}`}>
+          devices
+        </span>
         <span className={`type-body-md ${styles.diariaChannel}`}>Digital</span>
         <div className={styles.diariaHeaderLogos}>
-          <img src={g1Logo} alt="G1" className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoG1}`} />
-          <img src={geLogo} alt="GE" className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoGe}`} />
-          <img src={gshowLogo} alt="GShow" className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoGshow}`} />
+          <img
+            src={g1Logo}
+            alt="G1"
+            className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoG1}`}
+          />
+          <img
+            src={geLogo}
+            alt="GE"
+            className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoGe}`}
+          />
+          <img
+            src={gshowLogo}
+            alt="GShow"
+            className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoGshow}`}
+          />
           <span className={`type-caption-sm ${styles.diariaMoreCount}`}>+4</span>
         </div>
       </div>
       <div className={styles.diariaContent}>
-        <h4 className={`type-display-sm ${styles.diariaTitle}`}>Diárias<br />na Globo</h4>
-        <p className={`type-body-md ${styles.diariaDesc}`}>Anuncie por 24 horas em uma ou mais plataformas da Globo e alcance seu público onde ele está.</p>
+        <h4 className={`type-display-sm ${styles.diariaTitle}`}>
+          Diárias
+          <br />
+          na Globo
+        </h4>
+        <p className={`type-body-md ${styles.diariaDesc}`}>
+          Anuncie por 24 horas em uma ou mais plataformas da Globo e alcance seu público onde ele
+          está.
+        </p>
       </div>
       <div className={styles.diariaPhotoWrap}>
         <img src={TALENT_PHOTO} alt="" className={styles.diariaPhoto} />
@@ -40,7 +65,6 @@ function DiariaCard() {
     </div>
   )
 }
-
 
 export default function InteractiveCardPage() {
   return (
@@ -61,10 +85,7 @@ export default function InteractiveCardPage() {
         <div className={styles.stylesGrid}>
           {CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>
-              <div
-                className={styles.stylePreview}
-                style={{ background: STYLE_PREVIEW_BG[s.id] }}
-              >
+              <div className={styles.stylePreview} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
                 <InteractiveCard style={s.id} className={styles.demoCard}>
                   <DiariaCard />
                 </InteractiveCard>
@@ -74,7 +95,9 @@ export default function InteractiveCardPage() {
                 <p className={`type-body-md ${styles.styleDesc}`}>{s.description}</p>
                 <ul className={styles.styleWhen}>
                   {s.when.map((item) => (
-                    <li key={item} className="type-body-md">{item}</li>
+                    <li key={item} className="type-body-md">
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -85,7 +108,11 @@ export default function InteractiveCardPage() {
 
       {/* ── Estados ── */}
       <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count={`${INTERACTIVE_CARD_STATES.length} estados`} />
+        <SectionHeader
+          icon="toggle_on"
+          title="Estados"
+          count={`${INTERACTIVE_CARD_STATES.length} estados`}
+        />
         {CARD_STYLES.map((s) => (
           <div key={s.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixStyleHeader}>
@@ -94,18 +121,19 @@ export default function InteractiveCardPage() {
             </div>
             <div className={styles.matrixHeaderRow}>
               {INTERACTIVE_CARD_STATES.map((state) => (
-                <div key={state.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>{state.label}</div>
+                <div key={state.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>
+                  {state.label}
+                </div>
               ))}
             </div>
-            <div
-              className={styles.matrixCellsRow}
-              style={{ background: STYLE_PREVIEW_BG[s.id] }}
-            >
+            <div className={styles.matrixCellsRow} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
               {INTERACTIVE_CARD_STATES.map((state) => (
                 <div key={state.id} className={styles.matrixCell}>
                   <InteractiveCard
                     style={s.id as CardStyle}
-                    forceState={state.id === 'normal' ? undefined : state.id as 'hover' | 'focus' | 'active'}
+                    forceState={
+                      state.id === 'normal' ? undefined : (state.id as 'hover' | 'focus' | 'active')
+                    }
                     className={styles.matrixCard}
                   />
                 </div>
@@ -116,18 +144,9 @@ export default function InteractiveCardPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {INTERACTIVE_CARD_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={INTERACTIVE_CARD_GUIDELINES} />
+      </Section>
     </div>
   )
 }

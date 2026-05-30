@@ -6,6 +6,8 @@ import {
   INFO_PANEL_CONTENT_VARIANTS,
   INFO_PANEL_GUIDELINES,
 } from '../../tokens/infoPanel'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './InfoPanelPage.module.css'
 
 export default function InfoPanelPage() {
@@ -27,7 +29,7 @@ export default function InfoPanelPage() {
         <SectionHeader icon="info" title="Componente" />
         <div className={styles.demoArea}>
           <div className={styles.demoGrid}>
-            {INFO_PANEL_VARIANTS.map(variant => (
+            {INFO_PANEL_VARIANTS.map((variant) => (
               <InfoPanel
                 key={variant.id}
                 type={variant.id}
@@ -41,9 +43,13 @@ export default function InfoPanelPage() {
 
       {/* ── Variantes ── */}
       <section className={styles.section}>
-        <SectionHeader icon="style" title="Variantes" count={`${INFO_PANEL_VARIANTS.length} variantes`} />
+        <SectionHeader
+          icon="style"
+          title="Variantes"
+          count={`${INFO_PANEL_VARIANTS.length} variantes`}
+        />
         <div className={styles.variantsGrid}>
-          {INFO_PANEL_VARIANTS.map(variant => (
+          {INFO_PANEL_VARIANTS.map((variant) => (
             <div key={variant.id} className={styles.variantCard}>
               <div className={styles.variantPreview}>
                 <InfoPanel
@@ -63,9 +69,13 @@ export default function InfoPanelPage() {
 
       {/* ── Conteúdo ── */}
       <section className={styles.section}>
-        <SectionHeader icon="notes" title="Combinações de conteúdo" count={`${INFO_PANEL_CONTENT_VARIANTS.length} combinações`} />
+        <SectionHeader
+          icon="notes"
+          title="Combinações de conteúdo"
+          count={`${INFO_PANEL_CONTENT_VARIANTS.length} combinações`}
+        />
         <div className={styles.contentGrid}>
-          {INFO_PANEL_CONTENT_VARIANTS.map(combo => (
+          {INFO_PANEL_CONTENT_VARIANTS.map((combo) => (
             <div key={combo.label} className={styles.variantCard}>
               <div className={styles.variantPreview}>
                 <InfoPanel
@@ -84,18 +94,9 @@ export default function InfoPanelPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de uso" />
-        <div className={styles.guidelinesGrid}>
-          {INFO_PANEL_GUIDELINES.map(g => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de uso">
+        <GuidelinesGrid items={INFO_PANEL_GUIDELINES} />
+      </Section>
     </div>
   )
 }

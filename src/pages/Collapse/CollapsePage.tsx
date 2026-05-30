@@ -9,6 +9,8 @@ import {
   COLLAPSE_DEMO_ITEMS,
   COLLAPSE_PREVIEW_TEXT,
 } from '../../tokens/collapse'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './CollapsePage.module.css'
 
 export default function CollapsePage() {
@@ -168,18 +170,9 @@ export default function CollapsePage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {COLLAPSE_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={COLLAPSE_GUIDELINES} />
+      </Section>
     </div>
   )
 }

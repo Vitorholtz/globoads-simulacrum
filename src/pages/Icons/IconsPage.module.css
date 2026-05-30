@@ -389,48 +389,6 @@
   padding-right: var(--spacing-400);
 }
 
-/* â”€â”€ Guidelines â”€â”€ */
-
-.guidelinesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
-.guidelineCard {
-  background: var(--color-surface-primary);
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-450) var(--spacing-500);
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.guidelineIconWrap {
-  margin-bottom: var(--spacing-250);
-  flex-shrink: 0;
-  color: var(--color-fill-tertiary);
-}
-
-.guidelineTitle {
-  color: var(--color-fill-primary);
-  margin-bottom: 10px;
-}
-
-.guidelineBody {
-  color: var(--color-fill-secondary);
-  flex: 1;
-}
-
-.guidelineRule {
-  color: var(--color-fill-tertiary);
-  font-style: italic;
-  padding-top: var(--spacing-250);
-  margin-top: var(--spacing-250);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
 /* â”€â”€ Catalog â”€â”€ */
 
 .catalogNote {

@@ -8,6 +8,8 @@ import {
 import type { InlineLoaderType, InlineLoaderSize } from '../../tokens/inlineLoader'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './InlineLoaderPage.module.css'
 
 const ELLIPSIS_LABELS: Record<InlineLoaderType, string> = {
@@ -33,7 +35,11 @@ export default function InlineLoaderPage() {
 
       {/* ── Tipos ── */}
       <section className={styles.section}>
-        <SectionHeader icon="motion_blur" title="Tipos" count={`${INLINE_LOADER_TYPES.length} tipos`} />
+        <SectionHeader
+          icon="motion_blur"
+          title="Tipos"
+          count={`${INLINE_LOADER_TYPES.length} tipos`}
+        />
         <div className={styles.typesContainer}>
           {INLINE_LOADER_TYPES.map((t) => (
             <div key={t.id} className={styles.typeRow}>
@@ -56,7 +62,11 @@ export default function InlineLoaderPage() {
 
       {/* ── Tamanhos ── */}
       <section className={styles.section}>
-        <SectionHeader icon="straighten" title="Tamanhos" count={`${INLINE_LOADER_SIZES.length} tamanhos`} />
+        <SectionHeader
+          icon="straighten"
+          title="Tamanhos"
+          count={`${INLINE_LOADER_SIZES.length} tamanhos`}
+        />
         <div className={styles.sizesTable}>
           {/* Header */}
           <div className={styles.sizesHeader}>
@@ -91,11 +101,22 @@ export default function InlineLoaderPage() {
 
       {/* ── Cores ── */}
       <section className={styles.section}>
-        <SectionHeader icon="palette" title="Cores" count={`${INLINE_LOADER_COLORS.length} cores`} />
+        <SectionHeader
+          icon="palette"
+          title="Cores"
+          count={`${INLINE_LOADER_COLORS.length} cores`}
+        />
         <div className={styles.colorsGrid}>
           {INLINE_LOADER_COLORS.map((c) => (
             <div key={c.id} className={styles.colorCard}>
-              <div className={[styles.colorPreview, c.id === 'inverse' ? styles.colorPreviewInverse : ''].filter(Boolean).join(' ')}>
+              <div
+                className={[
+                  styles.colorPreview,
+                  c.id === 'inverse' ? styles.colorPreviewInverse : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
                 <InlineLoader type="spinner" size="md" color={c.id} />
               </div>
               <span className={`type-caption-sm ${styles.colorLabel}`}>{c.label}</span>
@@ -105,18 +126,9 @@ export default function InlineLoaderPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {INLINE_LOADER_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={INLINE_LOADER_GUIDELINES} />
+      </Section>
     </div>
   )
 }

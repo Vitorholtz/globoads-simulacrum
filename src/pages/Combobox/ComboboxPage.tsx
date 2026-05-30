@@ -8,6 +8,8 @@ import {
   COMBOBOX_MATRIX_COLS,
 } from '../../tokens/combobox'
 import type { ComboboxSizeDef } from '../../tokens/combobox'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './ComboboxPage.module.css'
 
 const FILLED_CHIPS = ['Chip 1', 'Chip 2', 'Chip 3']
@@ -212,18 +214,9 @@ export default function ComboboxPage() {
       </div>
 
       {/* ── Diretrizes de Uso ── */}
-      <div className={styles.section}>
-        <SectionHeader icon="menu_book" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {COMBOBOX_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <span className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</span>
-              <span className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</span>
-              <span className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Section icon="menu_book" title="Diretrizes de Uso">
+        <GuidelinesGrid items={COMBOBOX_GUIDELINES} />
+      </Section>
     </div>
   )
 }

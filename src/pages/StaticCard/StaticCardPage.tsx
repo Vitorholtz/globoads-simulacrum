@@ -4,6 +4,8 @@ import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import Badge from '../../components/Badge/Badge'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './StaticCardPage.module.css'
 
 const STYLE_PREVIEW_BG: Record<CardStyle, string> = {
@@ -39,9 +41,9 @@ function CampaignCard() {
           <span className={`type-caption-xs ${styles.campaignStatLabel}`}>CTR</span>
         </div>
         <div className={styles.campaignTrend}>
-          <span
-            className={`material-symbols-rounded icon-md ${styles.campaignTrendIcon}`}
-          >trending_up</span>
+          <span className={`material-symbols-rounded icon-md ${styles.campaignTrendIcon}`}>
+            trending_up
+          </span>
           <span className={`type-caption-sm ${styles.campaignTrendValue}`}>+12%</span>
         </div>
       </div>
@@ -56,9 +58,7 @@ export default function StaticCardPage() {
         breadcrumb="Structures"
         title="Static Cards"
         subtitle="Static Cards agrupam conteúdo, conceitos ou tarefas relacionadas, facilitando leitura, compreensão e organização visual da informação. Possuem função exclusivamente estrutural e informativa — sem comportamento de interação aplicado ao container principal."
-        stats={[
-          { value: 2, label: 'Estilos' },
-        ]}
+        stats={[{ value: 2, label: 'Estilos' }]}
       />
 
       {/* ── Estilos ── */}
@@ -67,10 +67,7 @@ export default function StaticCardPage() {
         <div className={styles.stylesGrid}>
           {CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>
-              <div
-                className={styles.stylePreview}
-                style={{ background: STYLE_PREVIEW_BG[s.id] }}
-              >
+              <div className={styles.stylePreview} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
                 <StaticCard style={s.id} className={styles.demoCard}>
                   <CampaignCard />
                 </StaticCard>
@@ -80,7 +77,9 @@ export default function StaticCardPage() {
                 <p className={`type-body-md ${styles.styleDesc}`}>{s.description}</p>
                 <ul className={styles.styleWhen}>
                   {s.when.map((item) => (
-                    <li key={item} className="type-body-md">{item}</li>
+                    <li key={item} className="type-body-md">
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -90,18 +89,9 @@ export default function StaticCardPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {STATIC_CARD_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={STATIC_CARD_GUIDELINES} />
+      </Section>
     </div>
   )
 }

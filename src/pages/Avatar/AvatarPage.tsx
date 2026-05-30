@@ -1,9 +1,16 @@
 import Avatar from '../../components/Avatar/Avatar'
 import AvatarGroup from '../../components/AvatarGroup/AvatarGroup'
-import { AVATAR_SIZES, AVATAR_VARIANTS, AVATAR_GUIDELINES, AVATAR_GROUP_GUIDELINES } from '../../tokens/avatar'
+import {
+  AVATAR_SIZES,
+  AVATAR_VARIANTS,
+  AVATAR_GUIDELINES,
+  AVATAR_GROUP_GUIDELINES,
+} from '../../tokens/avatar'
 import type { AvatarSize, AvatarVariant } from '../../tokens/avatar'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './AvatarPage.module.css'
 
 const DEMO_NAME = 'Ana Maria Braga'
@@ -40,7 +47,11 @@ export default function AvatarPage() {
 
       {/* ── Variantes ── */}
       <section className={styles.section}>
-        <SectionHeader icon="person" title="Variantes" count={`${AVATAR_VARIANTS.length} variantes`} />
+        <SectionHeader
+          icon="person"
+          title="Variantes"
+          count={`${AVATAR_VARIANTS.length} variantes`}
+        />
         <div className={styles.variantsGrid}>
           {AVATAR_VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
@@ -63,12 +74,18 @@ export default function AvatarPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <section className={styles.section}>
-        <SectionHeader icon="straighten" title="Escala de Tamanhos" count={`${AVATAR_SIZES.length} tamanhos`} />
+        <SectionHeader
+          icon="straighten"
+          title="Escala de Tamanhos"
+          count={`${AVATAR_SIZES.length} tamanhos`}
+        />
         <div className={styles.sizesContainer}>
           <div className={styles.sizesHeader}>
             <div className={styles.sizesRowLabel} />
             {AVATAR_VARIANTS.map((v) => (
-              <div key={v.id} className={`type-caption-md ${styles.sizesColHeader}`}>{v.label}</div>
+              <div key={v.id} className={`type-caption-md ${styles.sizesColHeader}`}>
+                {v.label}
+              </div>
             ))}
           </div>
           {AVATAR_SIZES.map((s) => (
@@ -107,7 +124,8 @@ export default function AvatarPage() {
               <span className={`type-caption-md ${styles.initialsResult}`}>AB</span>
             </div>
             <p className={`type-body-sm ${styles.initialsNote}`}>
-              As iniciais são extraídas do primeiro caractere do primeiro nome e do primeiro caractere do último nome. Em tamanho XS, apenas a inicial do primeiro nome é exibida.
+              As iniciais são extraídas do primeiro caractere do primeiro nome e do primeiro
+              caractere do último nome. Em tamanho XS, apenas a inicial do primeiro nome é exibida.
             </p>
           </div>
         </div>
@@ -117,7 +135,9 @@ export default function AvatarPage() {
       <section className={styles.section}>
         <SectionHeader icon="group" title="Avatar Group" />
         <p className={`type-body-md ${styles.groupDescription}`}>
-          Grupos de avatares são usados para mostrar um conjunto de indivíduos na interface. Suportam três variantes: <strong>Initials</strong>, <strong>Placeholders</strong> e <strong>Photos</strong>.
+          Grupos de avatares são usados para mostrar um conjunto de indivíduos na interface.
+          Suportam três variantes: <strong>Initials</strong>, <strong>Placeholders</strong> e{' '}
+          <strong>Photos</strong>.
         </p>
         <div className={styles.groupsContainer}>
           <div className={styles.groupsHeader}>
@@ -152,30 +172,13 @@ export default function AvatarPage() {
           </div>
         </div>
 
-        <div className={`${styles.guidelinesGrid} ${styles.groupGuidelinesGrid}`}>
-          {AVATAR_GROUP_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
+        <GuidelinesGrid items={AVATAR_GROUP_GUIDELINES} className={styles.groupGuidelinesGrid} />
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {AVATAR_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={AVATAR_GUIDELINES} />
+      </Section>
     </div>
   )
 }

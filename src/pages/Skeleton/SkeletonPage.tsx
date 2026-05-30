@@ -13,6 +13,8 @@ import {
 import type { SkeletonSize } from '../../tokens/skeleton'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './SkeletonPage.module.css'
 
 export default function SkeletonPage() {
@@ -100,7 +102,9 @@ export default function SkeletonPage() {
                 </div>
               ))}
             </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Avatar · XS / SM / MD / LG / XL</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
+              Avatar · XS / SM / MD / LG / XL
+            </span>
           </div>
 
           {/* Body */}
@@ -115,7 +119,9 @@ export default function SkeletonPage() {
                 </div>
               ))}
             </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Body · XS / SM / MD / LG</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
+              Body · XS / SM / MD / LG
+            </span>
           </div>
         </div>
 
@@ -148,7 +154,9 @@ export default function SkeletonPage() {
                 </div>
               ))}
             </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Caption · SM / MD / LG</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
+              Caption · SM / MD / LG
+            </span>
           </div>
 
           {/* Display */}
@@ -163,7 +171,9 @@ export default function SkeletonPage() {
                 </div>
               ))}
             </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Display · SM / MD / LG / XL / 2XL / 3XL</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
+              Display · SM / MD / LG / XL / 2XL / 3XL
+            </span>
           </div>
 
           {/* Card */}
@@ -173,24 +183,17 @@ export default function SkeletonPage() {
               <Skeleton type="card" height={120} />
               <Skeleton type="card" height={160} />
             </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Card · altura livre via prop</span>
+            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
+              Card · altura livre via prop
+            </span>
           </div>
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {SKELETON_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={SKELETON_GUIDELINES} />
+      </Section>
     </div>
   )
 }

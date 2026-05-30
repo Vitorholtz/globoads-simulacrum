@@ -9,6 +9,8 @@ import {
   SELECT_DEMO_OPTIONS,
 } from '../../tokens/select'
 import type { SelectSizeDef } from '../../tokens/select'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './SelectPage.module.css'
 
 function sizeSpecs(size: SelectSizeDef) {
@@ -226,18 +228,9 @@ export default function SelectPage() {
       </div>
 
       {/* ── Diretrizes de Uso ── */}
-      <div className={styles.section}>
-        <SectionHeader icon="menu_book" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {SELECT_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <span className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</span>
-              <span className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</span>
-              <span className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Section icon="menu_book" title="Diretrizes de Uso">
+        <GuidelinesGrid items={SELECT_GUIDELINES} />
+      </Section>
     </div>
   )
 }

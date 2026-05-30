@@ -11,6 +11,8 @@ import {
 import type { ButtonVariant, ButtonSize } from '../../tokens/buttons'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './ButtonPage.module.css'
 
 type MatrixCell = {
@@ -283,18 +285,9 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-md ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={GUIDELINES} />
+      </Section>
     </div>
   )
 }

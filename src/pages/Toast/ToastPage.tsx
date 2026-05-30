@@ -4,6 +4,8 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import { TOAST_VARIANTS, TOAST_GUIDELINES } from '../../tokens/toast'
 import type { ToastType } from '../../tokens/toast'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './ToastPage.module.css'
 
 const TYPE_TRIGGER_LABEL: Record<ToastType, string> = {
@@ -44,7 +46,7 @@ export default function ToastPage() {
     setActive({ type, uid: uidRef.current })
   }
 
-  const activeVariant = active ? TOAST_VARIANTS.find(v => v.id === active.type) : null
+  const activeVariant = active ? TOAST_VARIANTS.find((v) => v.id === active.type) : null
 
   return (
     <div>
@@ -64,7 +66,7 @@ export default function ToastPage() {
         <SectionHeader icon="notification_important" title="Componente" />
         <div className={styles.demoArea}>
           <div className={styles.demoGrid}>
-            {TOAST_VARIANTS.map(v => (
+            {TOAST_VARIANTS.map((v) => (
               <Toast
                 key={v.id}
                 type={v.id}
@@ -82,10 +84,11 @@ export default function ToastPage() {
         <SectionHeader icon="play_circle" title="Demo interativo" />
         <div className={styles.interactiveCard}>
           <p className={`type-body-sm ${styles.interactiveHint}`}>
-            Clique em um dos botões para ver o Toast aparecer na tela e desaparecer automaticamente após {DISMISS_MS / 1000} segundos.
+            Clique em um dos botões para ver o Toast aparecer na tela e desaparecer automaticamente
+            após {DISMISS_MS / 1000} segundos.
           </p>
           <div className={styles.triggerRow}>
-            {TOAST_VARIANTS.map(v => (
+            {TOAST_VARIANTS.map((v) => (
               <button
                 key={v.id}
                 type="button"
@@ -107,16 +110,16 @@ export default function ToastPage() {
 
       {/* ── Variantes ── */}
       <section className={styles.section}>
-        <SectionHeader icon="style" title="Variantes" count={`${TOAST_VARIANTS.length} variantes`} />
+        <SectionHeader
+          icon="style"
+          title="Variantes"
+          count={`${TOAST_VARIANTS.length} variantes`}
+        />
         <div className={styles.variantsGrid}>
-          {TOAST_VARIANTS.map(v => (
+          {TOAST_VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
               <div className={styles.variantPreview}>
-                <Toast
-                  type={v.id}
-                  title={v.exampleTitle}
-                  description={v.exampleDescription}
-                />
+                <Toast type={v.id} title={v.exampleTitle} description={v.exampleDescription} />
               </div>
               <div className={styles.cardBody}>
                 <span className={`type-body-sm ${styles.cardLabel}`}>{v.label}</span>
@@ -133,12 +136,17 @@ export default function ToastPage() {
         <div className={styles.contentGrid}>
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
-              <Toast type="neutral" title="Campanha salva" description="Suas alterações foram salvas com sucesso." />
+              <Toast
+                type="neutral"
+                title="Campanha salva"
+                description="Suas alterações foram salvas com sucesso."
+              />
             </div>
             <div className={styles.cardBody}>
               <span className={`type-body-sm ${styles.cardLabel}`}>Título e descrição</span>
               <span className={`type-body-sm ${styles.cardDesc}`}>
-                Configuração padrão e recomendada. O título comunica a essência e a descrição fornece o contexto. Mantenha visível por ao menos 5 segundos.
+                Configuração padrão e recomendada. O título comunica a essência e a descrição
+                fornece o contexto. Mantenha visível por ao menos 5 segundos.
               </span>
             </div>
           </div>
@@ -150,19 +158,26 @@ export default function ToastPage() {
             <div className={styles.cardBody}>
               <span className={`type-body-sm ${styles.cardLabel}`}>Apenas título</span>
               <span className={`type-body-sm ${styles.cardDesc}`}>
-                Use quando a mensagem é simples o suficiente para uma única linha. O título deve ser autoexplicativo. Pode ser dispensado em 3 segundos.
+                Use quando a mensagem é simples o suficiente para uma única linha. O título deve ser
+                autoexplicativo. Pode ser dispensado em 3 segundos.
               </span>
             </div>
           </div>
 
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
-              <Toast type="neutral" title="Campanha salva" description="Suas alterações foram salvas com sucesso." closable={false} />
+              <Toast
+                type="neutral"
+                title="Campanha salva"
+                description="Suas alterações foram salvas com sucesso."
+                closable={false}
+              />
             </div>
             <div className={styles.cardBody}>
               <span className={`type-body-sm ${styles.cardLabel}`}>Sem botão de fechar</span>
               <span className={`type-body-sm ${styles.cardDesc}`}>
-                Use quando o Toast deve desaparecer apenas automaticamente, sem oferecer controle manual ao usuário. Adequado para mensagens de confirmação simples.
+                Use quando o Toast deve desaparecer apenas automaticamente, sem oferecer controle
+                manual ao usuário. Adequado para mensagens de confirmação simples.
               </span>
             </div>
           </div>
@@ -170,18 +185,9 @@ export default function ToastPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de uso" />
-        <div className={styles.guidelinesGrid}>
-          {TOAST_GUIDELINES.map(g => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de uso">
+        <GuidelinesGrid items={TOAST_GUIDELINES} />
+      </Section>
 
       {/* ── Toast portal ── */}
       {active && activeVariant && (

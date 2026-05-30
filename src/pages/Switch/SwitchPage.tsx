@@ -9,6 +9,8 @@ import {
 import type { SwitchBehavior, SwitchType } from '../../tokens/switch'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './SwitchPage.module.css'
 
 const ALL_BEHAVIORS: SwitchBehavior[] = ['unchecked', 'checked']
@@ -16,21 +18,23 @@ const ALL_TYPES: SwitchType[] = ['default', 'inverter']
 
 function BehaviorDemo({ initial }: { initial: SwitchBehavior }) {
   const [checked, setChecked] = useState(initial === 'checked')
-  return (
-    <Switch checked={checked} onChange={setChecked} label="Switch" />
-  )
+  return <Switch checked={checked} onChange={setChecked} label="Switch" />
 }
 
 export default function SwitchPage() {
   const [typesState, setTypesState] = useState({
-    default:  [false, true, false] as [boolean, boolean, boolean],
+    default: [false, true, false] as [boolean, boolean, boolean],
     inverter: [false, true, false] as [boolean, boolean, boolean],
   })
 
   function setTypeOption(type: SwitchType, idx: number, val: boolean) {
-    setTypesState(prev => ({
+    setTypesState((prev) => ({
       ...prev,
-      [type]: prev[type].map((v: boolean, i: number) => i === idx ? val : v) as [boolean, boolean, boolean],
+      [type]: prev[type].map((v: boolean, i: number) => (i === idx ? val : v)) as [
+        boolean,
+        boolean,
+        boolean,
+      ],
     }))
   }
 
@@ -98,12 +102,7 @@ export default function SwitchPage() {
                 <div className={styles.matrixCells}>
                   {ALL_BEHAVIORS.map((b) => (
                     <div key={b} className={styles.matrixCell}>
-                      <Switch
-                        behavior={b}
-                        type={type}
-                        forceState={state.force}
-                        label="Switch"
-                      />
+                      <Switch behavior={b} type={type} forceState={state.force} label="Switch" />
                     </div>
                   ))}
                 </div>
@@ -120,15 +119,17 @@ export default function SwitchPage() {
           {SWITCH_TYPES.map((t) => (
             <div key={t.id} className={styles.typeCard}>
               <div className={styles.typePreview}>
-                {(['Notificações', 'Modo escuro', 'Salvar automaticamente'] as const).map((lbl, idx) => (
-                  <Switch
-                    key={lbl}
-                    checked={typesState[t.id][idx]}
-                    onChange={(v) => setTypeOption(t.id, idx, v)}
-                    type={t.id}
-                    label={lbl}
-                  />
-                ))}
+                {(['Notificações', 'Modo escuro', 'Salvar automaticamente'] as const).map(
+                  (lbl, idx) => (
+                    <Switch
+                      key={lbl}
+                      checked={typesState[t.id][idx]}
+                      onChange={(v) => setTypeOption(t.id, idx, v)}
+                      type={t.id}
+                      label={lbl}
+                    />
+                  )
+                )}
               </div>
               <div className={styles.typeBody}>
                 <span className={`type-body-sm ${styles.typeName}`}>{t.label}</span>
@@ -168,25 +169,18 @@ export default function SwitchPage() {
           </div>
           <div className={styles.helpTextBody}>
             <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a configuração. Use-o para explicar pré-requisitos, consequências da ativação ou restrições de plano. Mantenha-o conciso — no máximo duas linhas.
+              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a
+              configuração. Use-o para explicar pré-requisitos, consequências da ativação ou
+              restrições de plano. Mantenha-o conciso — no máximo duas linhas.
             </p>
           </div>
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {SWITCH_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={SWITCH_GUIDELINES} />
+      </Section>
     </div>
   )
 }

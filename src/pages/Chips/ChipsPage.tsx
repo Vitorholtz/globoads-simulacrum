@@ -16,6 +16,7 @@ import { CHIP_ASSIST_GUIDELINES } from '../../tokens/chipAssist'
 
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import styles from './ChipsPage.module.css'
 
 const SUGGESTION_BEHAVIORS: ChipBehavior[] = ['unchecked', 'checked']
@@ -43,8 +44,8 @@ export default function ChipsPage() {
       <section className={styles.chipSection}>
         <SectionHeader icon="sell" title="Chip · Suggestion" />
         <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de sugestão ajudam a restringir a intenção do usuário ao apresentar sugestões geradas
-          dinamicamente, como possíveis respostas ou filtros de pesquisa.
+          Os chips de sugestão ajudam a restringir a intenção do usuário ao apresentar sugestões
+          geradas dinamicamente, como possíveis respostas ou filtros de pesquisa.
         </p>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
@@ -89,15 +90,7 @@ export default function ChipsPage() {
         </div>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <div className={styles.guidelinesGrid}>
-          {CHIP_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
+        <GuidelinesGrid items={CHIP_GUIDELINES} />
       </section>
 
       {/* ═══════════════════════════════════════
@@ -106,8 +99,9 @@ export default function ChipsPage() {
       <section className={styles.chipSection}>
         <SectionHeader icon="filter_alt" title="Chip · Filter" />
         <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de filtro são usados para filtrar um conteúdo ou definir escolhas. São uma boa alternativa
-          aos botões para segmentação ou checkbox ao visualizar uma lista ou resultados de pesquisa.
+          Os chips de filtro são usados para filtrar um conteúdo ou definir escolhas. São uma boa
+          alternativa aos botões para segmentação ou checkbox ao visualizar uma lista ou resultados
+          de pesquisa.
         </p>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
@@ -152,15 +146,7 @@ export default function ChipsPage() {
         </div>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <div className={styles.guidelinesGrid}>
-          {CHIP_FILTER_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
+        <GuidelinesGrid items={CHIP_FILTER_GUIDELINES} />
       </section>
 
       {/* ═══════════════════════════════════════
@@ -169,8 +155,8 @@ export default function ChipsPage() {
       <section className={styles.chipSection}>
         <SectionHeader icon="input" title="Chip · Input" />
         <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de entrada representam informações discretas inseridas por um usuário, como contatos
-          ou opções de filtro em um campo de pesquisa.
+          Os chips de entrada representam informações discretas inseridas por um usuário, como
+          contatos ou opções de filtro em um campo de pesquisa.
         </p>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estilos</h4>
@@ -215,15 +201,7 @@ export default function ChipsPage() {
         </div>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <div className={styles.guidelinesGrid}>
-          {CHIP_INPUT_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
+        <GuidelinesGrid items={CHIP_INPUT_GUIDELINES} />
       </section>
 
       {/* ═══════════════════════════════════════
@@ -232,9 +210,9 @@ export default function ChipsPage() {
       <section className={styles.chipSection}>
         <SectionHeader icon="auto_awesome" title="Chip · Assist" />
         <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de assistência representam ações inteligentes ou automatizadas. Eles servem como se o
-          usuário pedisse a um assistente para concluir a ação, aparecendo de forma dinâmica e contextual
-          em uma interface.
+          Os chips de assistência representam ações inteligentes ou automatizadas. Eles servem como
+          se o usuário pedisse a um assistente para concluir a ação, aparecendo de forma dinâmica e
+          contextual em uma interface.
         </p>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
@@ -258,15 +236,7 @@ export default function ChipsPage() {
         </div>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <div className={styles.guidelinesGrid}>
-          {CHIP_ASSIST_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-sm ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
+        <GuidelinesGrid items={CHIP_ASSIST_GUIDELINES} />
       </section>
     </div>
   )

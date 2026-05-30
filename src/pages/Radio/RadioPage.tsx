@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import Radio from '../../components/Radio/Radio'
-import {
-  RADIO_BEHAVIORS,
-  RADIO_TYPES,
-  RADIO_GUIDELINES,
-  MATRIX_STATES,
-} from '../../tokens/radio'
+import { RADIO_BEHAVIORS, RADIO_TYPES, RADIO_GUIDELINES, MATRIX_STATES } from '../../tokens/radio'
 import type { RadioBehavior, RadioType } from '../../tokens/radio'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './RadioPage.module.css'
 
 const ALL_BEHAVIORS: RadioBehavior[] = ['unchecked', 'checked']
@@ -18,13 +15,7 @@ const GROUP_OPTIONS = ['Opção 1', 'Opção 2', 'Opção 3'] as const
 
 function BehaviorDemo({ initial }: { initial: RadioBehavior }) {
   const [checked, setChecked] = useState(initial === 'checked')
-  return (
-    <Radio
-      checked={checked}
-      onChange={setChecked}
-      label="Radio"
-    />
-  )
+  return <Radio checked={checked} onChange={setChecked} label="Radio" />
 }
 
 export default function RadioPage() {
@@ -52,7 +43,11 @@ export default function RadioPage() {
 
       {/* ── Comportamentos ── */}
       <section className={styles.section}>
-        <SectionHeader icon="radio_button_checked" title="Comportamentos" count="2 comportamentos" />
+        <SectionHeader
+          icon="radio_button_checked"
+          title="Comportamentos"
+          count="2 comportamentos"
+        />
         <div className={styles.behaviorsGrid}>
           {RADIO_BEHAVIORS.map((b) => (
             <div key={b.id} className={styles.behaviorCard}>
@@ -99,12 +94,7 @@ export default function RadioPage() {
                 <div className={styles.matrixCells}>
                   {ALL_BEHAVIORS.map((b) => (
                     <div key={b} className={styles.matrixCell}>
-                      <Radio
-                        behavior={b}
-                        type={type}
-                        forceState={state.force}
-                        label="Radio"
-                      />
+                      <Radio behavior={b} type={type} forceState={state.force} label="Radio" />
                     </div>
                   ))}
                 </div>
@@ -125,7 +115,7 @@ export default function RadioPage() {
                   <Radio
                     key={lbl}
                     checked={typesValue[t.id] === lbl}
-                    onChange={() => setTypesValue(prev => ({ ...prev, [t.id]: lbl }))}
+                    onChange={() => setTypesValue((prev) => ({ ...prev, [t.id]: lbl }))}
                     type={t.id}
                     name={`type-demo-${t.id}`}
                     value={lbl}
@@ -177,25 +167,18 @@ export default function RadioPage() {
           </div>
           <div className={styles.helpTextBody}>
             <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre cada opção. Use-o para explicar consequências, custos ou restrições da seleção. Mantenha-o conciso — no máximo duas linhas.
+              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre cada opção.
+              Use-o para explicar consequências, custos ou restrições da seleção. Mantenha-o conciso
+              — no máximo duas linhas.
             </p>
           </div>
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {RADIO_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={RADIO_GUIDELINES} />
+      </Section>
     </div>
   )
 }

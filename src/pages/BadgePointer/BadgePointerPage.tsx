@@ -2,6 +2,8 @@ import BadgePointer from '../../components/BadgePointer/BadgePointer'
 import { BADGE_POINTER_GUIDELINES } from '../../tokens/badgePointer'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './BadgePointerPage.module.css'
 
 export default function BadgePointerPage() {
@@ -27,7 +29,9 @@ export default function BadgePointerPage() {
           <div className={styles.componentSpecs}>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Container</span>
-              <span className={`type-body-sm ${styles.specVal}`}>16 × 16px · display inline-flex · centralizador</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                16 × 16px · display inline-flex · centralizador
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Ponto</span>
@@ -35,7 +39,9 @@ export default function BadgePointerPage() {
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Cor</span>
-              <span className={`type-body-sm ${styles.specVal}`}>--color-fill-critical (#B70634)</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                --color-fill-critical (#B70634)
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Interação</span>
@@ -49,11 +55,13 @@ export default function BadgePointerPage() {
       <section className={styles.section}>
         <SectionHeader icon="layers" title="Uso em Contexto" />
         <div className={styles.contextGrid}>
-
           <div className={styles.contextCard}>
             <div className={styles.contextPreview}>
               <div className={styles.contextIconWrapper}>
-                <span className="material-symbols-rounded icon-lg" style={{ color: 'var(--color-fill-secondary)' }}>
+                <span
+                  className="material-symbols-rounded icon-lg"
+                  style={{ color: 'var(--color-fill-secondary)' }}
+                >
                   notifications
                 </span>
                 <BadgePointer className={styles.contextPointer} />
@@ -61,14 +69,20 @@ export default function BadgePointerPage() {
             </div>
             <div className={styles.contextMeta}>
               <span className={`type-body-sm ${styles.contextLabel}`}>Sobre ícone</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>Aplicado no canto superior direito de um ícone de ação ou navegação para indicar que há notificações não lidas.</p>
+              <p className={`type-body-sm ${styles.contextDesc}`}>
+                Aplicado no canto superior direito de um ícone de ação ou navegação para indicar que
+                há notificações não lidas.
+              </p>
             </div>
           </div>
 
           <div className={styles.contextCard}>
             <div className={styles.contextPreview}>
               <div className={styles.contextNavItem}>
-                <span className="material-symbols-rounded icon-md" style={{ color: 'var(--color-fill-secondary)' }}>
+                <span
+                  className="material-symbols-rounded icon-md"
+                  style={{ color: 'var(--color-fill-secondary)' }}
+                >
                   inbox
                 </span>
                 <span className={`type-body-sm ${styles.contextNavLabel}`}>Caixa de entrada</span>
@@ -77,26 +91,19 @@ export default function BadgePointerPage() {
             </div>
             <div className={styles.contextMeta}>
               <span className={`type-body-sm ${styles.contextLabel}`}>Em item de menu</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>Posicionado inline ao final de um item de navegação para sinalizar conteúdo novo naquela seção.</p>
+              <p className={`type-body-sm ${styles.contextDesc}`}>
+                Posicionado inline ao final de um item de navegação para sinalizar conteúdo novo
+                naquela seção.
+              </p>
             </div>
           </div>
-
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {BADGE_POINTER_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={BADGE_POINTER_GUIDELINES} />
+      </Section>
     </div>
   )
 }

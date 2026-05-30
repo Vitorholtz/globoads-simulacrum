@@ -11,6 +11,8 @@ import {
   CALENDAR_SIZES,
   DATE_PICKER_GUIDELINES,
 } from '../../tokens/datePicker'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './DatePickerPage.module.css'
 
 const EXAMPLE_DATE = new Date(2025, 4, 26) // 26/05/2025
@@ -290,18 +292,9 @@ export default function DatePickerPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {DATE_PICKER_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={DATE_PICKER_GUIDELINES} />
+      </Section>
     </div>
   )
 }

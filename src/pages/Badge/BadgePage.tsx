@@ -2,6 +2,8 @@ import Badge from '../../components/Badge/Badge'
 import { BADGE_VARIANTS, BADGE_GUIDELINES } from '../../tokens/badge'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './BadgePage.module.css'
 
 const EXAMPLE_LABELS: Record<string, string> = {
@@ -27,7 +29,11 @@ export default function BadgePage() {
 
       {/* ── Variantes ── */}
       <section className={styles.section}>
-        <SectionHeader icon="label" title="Variantes" count={`${BADGE_VARIANTS.length} variantes`} />
+        <SectionHeader
+          icon="label"
+          title="Variantes"
+          count={`${BADGE_VARIANTS.length} variantes`}
+        />
         <div className={styles.variantsContainer}>
           {BADGE_VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantRow}>
@@ -53,11 +59,15 @@ export default function BadgePage() {
           <div className={styles.anatomySpecs}>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Tipografia</span>
-              <span className={`type-body-sm ${styles.specVal}`}>12px · weight 500 · font-family base</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                12px · weight 500 · font-family base
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Padding</span>
-              <span className={`type-body-sm ${styles.specVal}`}>2px vertical · 4px horizontal</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                2px vertical · 4px horizontal
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Border-radius</span>
@@ -69,7 +79,9 @@ export default function BadgePage() {
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Fundo</span>
-              <span className={`type-body-sm ${styles.specVal}`}>Surface da variante correspondente</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                Surface da variante correspondente
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Interação</span>
@@ -80,18 +92,9 @@ export default function BadgePage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {BADGE_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={BADGE_GUIDELINES} />
+      </Section>
     </div>
   )
 }

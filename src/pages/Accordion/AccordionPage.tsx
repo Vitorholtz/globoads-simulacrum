@@ -2,6 +2,8 @@ import Accordion from '../../components/Accordion/Accordion'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
 import { ACCORDION_STATES, ACCORDION_GUIDELINES, ACCORDION_VARIANTS } from '../../tokens/accordion'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './AccordionPage.module.css'
 
 const DEMO_ITEMS = [
@@ -37,9 +39,9 @@ const DEMO_ITEMS = [
     content: (
       <div className={styles.contentBox}>
         <p className={`type-body-sm ${styles.contentText}`}>
-          Campanha programada para veicular entre 01/06/2026 e 30/06/2026. Horário preferencial:
-          das 18h às 23h nos dias úteis e integral aos finais de semana. Pausa automática em
-          feriados nacionais habilitada.
+          Campanha programada para veicular entre 01/06/2026 e 30/06/2026. Horário preferencial: das
+          18h às 23h nos dias úteis e integral aos finais de semana. Pausa automática em feriados
+          nacionais habilitada.
         </p>
       </div>
     ),
@@ -50,9 +52,9 @@ const DEMO_ITEMS = [
     content: (
       <div className={styles.contentBox}>
         <p className={`type-body-sm ${styles.contentText}`}>
-          Estimativa de alcance semanal: 2,4 milhões de usuários únicos. CPM médio projetado de
-          R$ 18,50. Taxa de conclusão esperada de 82% com base em campanhas similares veiculadas
-          no último trimestre.
+          Estimativa de alcance semanal: 2,4 milhões de usuários únicos. CPM médio projetado de R$
+          18,50. Taxa de conclusão esperada de 82% com base em campanhas similares veiculadas no
+          último trimestre.
         </p>
       </div>
     ),
@@ -89,12 +91,36 @@ const VARIANT_ITEMS = {
     { id: 'v2', label: 'Orçamento Diário', detail: 'R$ 480', content: VARIANT_CONTENT },
   ],
   'with-badge': [
-    { id: 'v1', label: 'Aprovação Criativa', badge: { label: 'Pendente', variant: 'warning' as const }, content: VARIANT_CONTENT },
-    { id: 'v2', label: 'Veiculação', badge: { label: 'Ativo', variant: 'success' as const }, content: VARIANT_CONTENT },
+    {
+      id: 'v1',
+      label: 'Aprovação Criativa',
+      badge: { label: 'Pendente', variant: 'warning' as const },
+      content: VARIANT_CONTENT,
+    },
+    {
+      id: 'v2',
+      label: 'Veiculação',
+      badge: { label: 'Ativo', variant: 'success' as const },
+      content: VARIANT_CONTENT,
+    },
   ],
   'with-all': [
-    { id: 'v1', label: 'Campanha Verão 2026', icon: 'campaign', detail: 'Video 6s', badge: { label: 'Em revisão', variant: 'warning' as const }, content: VARIANT_CONTENT },
-    { id: 'v2', label: 'Retargeting App', icon: 'phone_iphone', detail: 'Display', badge: { label: 'Ativo', variant: 'success' as const }, content: VARIANT_CONTENT },
+    {
+      id: 'v1',
+      label: 'Campanha Verão 2026',
+      icon: 'campaign',
+      detail: 'Video 6s',
+      badge: { label: 'Em revisão', variant: 'warning' as const },
+      content: VARIANT_CONTENT,
+    },
+    {
+      id: 'v2',
+      label: 'Retargeting App',
+      icon: 'phone_iphone',
+      detail: 'Display',
+      badge: { label: 'Ativo', variant: 'success' as const },
+      content: VARIANT_CONTENT,
+    },
   ],
 }
 
@@ -122,9 +148,13 @@ export default function AccordionPage() {
 
       {/* ── Variantes ── */}
       <section className={styles.section}>
-        <SectionHeader icon="tune" title="Variantes" count={`${ACCORDION_VARIANTS.length} variantes`} />
+        <SectionHeader
+          icon="tune"
+          title="Variantes"
+          count={`${ACCORDION_VARIANTS.length} variantes`}
+        />
         <div className={styles.variantsGrid}>
-          {ACCORDION_VARIANTS.map(variant => (
+          {ACCORDION_VARIANTS.map((variant) => (
             <div key={variant.id} className={styles.variantCard}>
               <div className={styles.variantPreview}>
                 <div className={styles.variantPreviewInner}>
@@ -145,9 +175,13 @@ export default function AccordionPage() {
 
       {/* ── Estados ── */}
       <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count={`${ACCORDION_STATES.length} estados`} />
+        <SectionHeader
+          icon="toggle_on"
+          title="Estados"
+          count={`${ACCORDION_STATES.length} estados`}
+        />
         <div className={styles.statesGrid}>
-          {ACCORDION_STATES.map(state => (
+          {ACCORDION_STATES.map((state) => (
             <div key={state.id} className={styles.stateCard}>
               <div className={styles.statePreview}>
                 <div className={styles.statePreviewInner}>
@@ -167,18 +201,9 @@ export default function AccordionPage() {
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {ACCORDION_GUIDELINES.map(g => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={ACCORDION_GUIDELINES} />
+      </Section>
     </div>
   )
 }

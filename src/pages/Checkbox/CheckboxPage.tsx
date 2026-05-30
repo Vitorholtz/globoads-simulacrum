@@ -9,6 +9,8 @@ import {
 import type { CheckboxBehavior, CheckboxType } from '../../tokens/checkbox'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './CheckboxPage.module.css'
 
 const ALL_BEHAVIORS: CheckboxBehavior[] = ['unchecked', 'partial', 'checked']
@@ -37,14 +39,18 @@ function BehaviorDemo({ initial }: { initial: CheckboxBehavior }) {
 export default function CheckboxPage() {
   // Types section: 3 independent options per type
   const [typesState, setTypesState] = useState({
-    default:  [false, false, false] as [boolean, boolean, boolean],
+    default: [false, false, false] as [boolean, boolean, boolean],
     inverter: [false, false, false] as [boolean, boolean, boolean],
   })
 
   function setTypeOption(type: CheckboxType, idx: number, val: boolean) {
-    setTypesState(prev => ({
+    setTypesState((prev) => ({
       ...prev,
-      [type]: prev[type].map((v: boolean, i: number) => i === idx ? val : v) as [boolean, boolean, boolean],
+      [type]: prev[type].map((v: boolean, i: number) => (i === idx ? val : v)) as [
+        boolean,
+        boolean,
+        boolean,
+      ],
     }))
   }
 
@@ -183,25 +189,18 @@ export default function CheckboxPage() {
           </div>
           <div className={styles.helpTextBody}>
             <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a opção. Use-o para explicar consequências, requisitos ou restrições da seleção. Mantenha-o conciso — no máximo duas linhas.
+              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a opção. Use-o
+              para explicar consequências, requisitos ou restrições da seleção. Mantenha-o conciso —
+              no máximo duas linhas.
             </p>
           </div>
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {CHECKBOX_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={CHECKBOX_GUIDELINES} />
+      </Section>
     </div>
   )
 }

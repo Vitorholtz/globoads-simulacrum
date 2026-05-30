@@ -1,12 +1,10 @@
 import Hyperlink from '../../components/Hyperlink/Hyperlink'
-import {
-  HYPERLINK_SIZES,
-  HYPERLINK_STATES,
-  HYPERLINK_GUIDELINES,
-} from '../../tokens/hyperlinks'
+import { HYPERLINK_SIZES, HYPERLINK_STATES, HYPERLINK_GUIDELINES } from '../../tokens/hyperlinks'
 import type { HyperlinkSize } from '../../tokens/hyperlinks'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './HyperlinksPage.module.css'
 
 type ForceState = 'hover' | 'focus' | 'active' | undefined
@@ -32,7 +30,11 @@ export default function HyperlinksPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <section className={styles.section}>
-        <SectionHeader icon="straighten" title="Escala de Tamanhos" count={`${HYPERLINK_SIZES.length} tamanhos`} />
+        <SectionHeader
+          icon="straighten"
+          title="Escala de Tamanhos"
+          count={`${HYPERLINK_SIZES.length} tamanhos`}
+        />
         <div className={styles.sizeScaleContainer}>
           {HYPERLINK_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -42,14 +44,23 @@ export default function HyperlinksPage() {
               <div className={styles.sizeMeta}>
                 <div className={styles.sizeValueRow}>
                   <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && <span className={`type-caption-sm ${styles.sizeBadge}`}>Recomendado</span>}
-                  {s.warning && <span className={`type-caption-sm ${styles.sizeBadgeWarning}`}>⚠ Restrito</span>}
+                  {s.recommended && (
+                    <span className={`type-caption-sm ${styles.sizeBadge}`}>Recomendado</span>
+                  )}
+                  {s.warning && (
+                    <span className={`type-caption-sm ${styles.sizeBadgeWarning}`}>⚠ Restrito</span>
+                  )}
                 </div>
                 <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
               </div>
               <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>font {s.fontSize}px · lh {s.lineHeight}px</span><br />
-                <span>icon {s.iconSize}px · gap {s.gap}px</span>
+                <span>
+                  font {s.fontSize}px · lh {s.lineHeight}px
+                </span>
+                <br />
+                <span>
+                  icon {s.iconSize}px · gap {s.gap}px
+                </span>
               </div>
             </div>
           ))}
@@ -58,12 +69,18 @@ export default function HyperlinksPage() {
 
       {/* ── Estados ── */}
       <section className={styles.section}>
-        <SectionHeader icon="toggle_on" title="Estados" count={`${HYPERLINK_STATES.length} estados`} />
+        <SectionHeader
+          icon="toggle_on"
+          title="Estados"
+          count={`${HYPERLINK_STATES.length} estados`}
+        />
         <div className={styles.stateMatrix}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
             {HYPERLINK_SIZES.map((s) => (
-              <div key={s.id} className={`type-caption-xs ${styles.matrixSizeLabel}`}>{s.label}</div>
+              <div key={s.id} className={`type-caption-xs ${styles.matrixSizeLabel}`}>
+                {s.label}
+              </div>
             ))}
           </div>
           {HYPERLINK_STATES.map((state) => (
@@ -73,10 +90,7 @@ export default function HyperlinksPage() {
               </div>
               {HYPERLINK_SIZES.map((s) => (
                 <div key={s.id} className={styles.matrixCell}>
-                  <Hyperlink
-                    size={s.id as HyperlinkSize}
-                    forceState={toForceState(state.id)}
-                  >
+                  <Hyperlink size={s.id as HyperlinkSize} forceState={toForceState(state.id)}>
                     Hyperlink
                   </Hyperlink>
                 </div>
@@ -108,7 +122,9 @@ export default function HyperlinksPage() {
               </div>
               <div className={styles.externalMeta}>
                 <span className={`type-body-sm ${styles.externalSizeLabel}`}>{s.label}</span>
-                <span className={`type-caption-sm ${styles.externalIconSpec}`}>icon {s.iconSize}px</span>
+                <span className={`type-caption-sm ${styles.externalIconSpec}`}>
+                  icon {s.iconSize}px
+                </span>
               </div>
             </div>
           ))}
@@ -121,24 +137,18 @@ export default function HyperlinksPage() {
             info
           </span>
           <p className="type-body-sm">
-            Use o prop <code>external</code> em links que abrem fora da aplicação. O ícone <strong>open_in_new</strong> é adicionado automaticamente, e o atributo <code>target="_blank"</code> com <code>rel="noopener noreferrer"</code> é aplicado para segurança.
+            Use o prop <code>external</code> em links que abrem fora da aplicação. O ícone{' '}
+            <strong>open_in_new</strong> é adicionado automaticamente, e o atributo{' '}
+            <code>target="_blank"</code> com <code>rel="noopener noreferrer"</code> é aplicado para
+            segurança.
           </p>
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {HYPERLINK_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={HYPERLINK_GUIDELINES} />
+      </Section>
     </div>
   )
 }

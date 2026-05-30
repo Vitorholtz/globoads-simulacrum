@@ -5,6 +5,8 @@ import type { TabItem } from '../../components/Tabs/Tabs'
 import { BADGE_COUNTER_EXAMPLES, BADGE_COUNTER_GUIDELINES } from '../../tokens/badgeCounter'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './BadgeCounterPage.module.css'
 
 const TAB_CONTEXT_ITEMS: TabItem[] = [
@@ -30,7 +32,11 @@ export default function BadgeCounterPage() {
 
       {/* ── Exemplos de Valor ── */}
       <section className={styles.section}>
-        <SectionHeader icon="badge" title="Exemplos de Valor" count={`${BADGE_COUNTER_EXAMPLES.length} exemplos`} />
+        <SectionHeader
+          icon="badge"
+          title="Exemplos de Valor"
+          count={`${BADGE_COUNTER_EXAMPLES.length} exemplos`}
+        />
         <div className={styles.examplesContainer}>
           {BADGE_COUNTER_EXAMPLES.map((ex) => (
             <div key={ex.value} className={styles.exampleRow}>
@@ -81,11 +87,15 @@ export default function BadgeCounterPage() {
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Background</span>
-              <span className={`type-body-sm ${styles.specVal}`}>--color-fill-critical · #B70634</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                --color-fill-critical · #B70634
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Cor do texto</span>
-              <span className={`type-body-sm ${styles.specVal}`}>--color-fill-inverse · #FFFFFF</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                --color-fill-inverse · #FFFFFF
+              </span>
             </div>
           </div>
         </div>
@@ -97,15 +107,13 @@ export default function BadgeCounterPage() {
         <div className={styles.contextsGrid}>
           <div className={styles.contextCard}>
             <div className={styles.contextPreview}>
-              <Tabs
-                items={TAB_CONTEXT_ITEMS}
-                activeId={activeTab}
-                onChange={setActiveTab}
-              />
+              <Tabs items={TAB_CONTEXT_ITEMS} activeId={activeTab} onChange={setActiveTab} />
             </div>
             <div className={styles.contextMeta}>
               <span className={`type-body-sm ${styles.contextLabel}`}>Em tabs e navegação</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>Badge posicionado imediatamente após o rótulo, alinhado ao centro vertical.</p>
+              <p className={`type-body-sm ${styles.contextDesc}`}>
+                Badge posicionado imediatamente após o rótulo, alinhado ao centro vertical.
+              </p>
             </div>
           </div>
 
@@ -113,25 +121,19 @@ export default function BadgeCounterPage() {
             <div className={styles.contextPreview}>
               <div className={styles.contextIconExample}>
                 <div className={styles.contextIconWrapper}>
-                  <span
-                    className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}
-                  >
+                  <span className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}>
                     notifications
                   </span>
                   <BadgeCounter value="3" className={styles.contextIconBadge} />
                 </div>
                 <div className={styles.contextIconWrapper}>
-                  <span
-                    className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}
-                  >
+                  <span className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}>
                     chat
                   </span>
                   <BadgeCounter value="99+" className={styles.contextIconBadge} />
                 </div>
                 <div className={styles.contextIconWrapper}>
-                  <span
-                    className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}
-                  >
+                  <span className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}>
                     mail
                   </span>
                   <BadgeCounter value="12" className={styles.contextIconBadge} />
@@ -140,25 +142,18 @@ export default function BadgeCounterPage() {
             </div>
             <div className={styles.contextMeta}>
               <span className={`type-body-sm ${styles.contextLabel}`}>Sobre ícones</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>Badge ancorado no canto superior direito do ícone, indicando itens pendentes.</p>
+              <p className={`type-body-sm ${styles.contextDesc}`}>
+                Badge ancorado no canto superior direito do ícone, indicando itens pendentes.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {BADGE_COUNTER_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={BADGE_COUNTER_GUIDELINES} />
+      </Section>
     </div>
   )
 }

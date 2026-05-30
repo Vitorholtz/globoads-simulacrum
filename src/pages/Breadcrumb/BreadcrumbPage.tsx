@@ -3,6 +3,8 @@ import type { BreadcrumbItem } from '../../components/Breadcrumb/Breadcrumb'
 import { BREADCRUMB_DEPTHS, BREADCRUMB_GUIDELINES } from '../../tokens/breadcrumb'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/Section/Section'
 import styles from './BreadcrumbPage.module.css'
 
 function depthToItems(labels: string[]): BreadcrumbItem[] {
@@ -27,7 +29,11 @@ export default function BreadcrumbPage() {
 
       {/* ── Profundidades ── */}
       <section className={styles.section}>
-        <SectionHeader icon="route" title="Profundidades" count={`${BREADCRUMB_DEPTHS.length} exemplos`} />
+        <SectionHeader
+          icon="route"
+          title="Profundidades"
+          count={`${BREADCRUMB_DEPTHS.length} exemplos`}
+        />
         <div className={styles.depthsContainer}>
           {BREADCRUMB_DEPTHS.map((depth) => (
             <div key={depth.label} className={styles.depthRow}>
@@ -55,15 +61,21 @@ export default function BreadcrumbPage() {
           <div className={styles.anatomySpecs}>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Links anteriores</span>
-              <span className={`type-body-sm ${styles.specVal}`}>14px · weight 500 · cor accent</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                14px · weight 500 · cor accent
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Página atual</span>
-              <span className={`type-body-sm ${styles.specVal}`}>16px · weight 600 · cor primária</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                16px · weight 600 · cor primária
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Separador</span>
-              <span className={`type-body-sm ${styles.specVal}`}>chevron_right · 16px · cor secundária</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                chevron_right · 16px · cor secundária
+              </span>
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Gap entre itens</span>
@@ -75,25 +87,18 @@ export default function BreadcrumbPage() {
             </div>
             <div className={styles.specRow}>
               <span className={`type-body-sm ${styles.specKey}`}>Página atual</span>
-              <span className={`type-body-sm ${styles.specVal}`}>não interativa · aria-current="page"</span>
+              <span className={`type-body-sm ${styles.specVal}`}>
+                não interativa · aria-current="page"
+              </span>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Diretrizes ── */}
-      <section className={styles.section}>
-        <SectionHeader icon="checklist" title="Diretrizes de Uso" />
-        <div className={styles.guidelinesGrid}>
-          {BREADCRUMB_GUIDELINES.map((g) => (
-            <div key={g.title} className={styles.guidelineCard}>
-              <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
-              <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
-              <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={BREADCRUMB_GUIDELINES} />
+      </Section>
     </div>
   )
 }
