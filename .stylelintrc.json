@@ -8,11 +8,17 @@
     "declaration-property-unit-disallowed-list": [
       {
         "border-radius": ["px", "rem"],
+        "border": ["px"],
+        "border-top": ["px"],
+        "border-right": ["px"],
+        "border-bottom": ["px"],
+        "border-left": ["px"],
         "border-width": ["px"],
         "border-top-width": ["px"],
         "border-right-width": ["px"],
         "border-bottom-width": ["px"],
         "border-left-width": ["px"],
+        "outline": ["px"],
         "outline-width": ["px"]
       },
       {

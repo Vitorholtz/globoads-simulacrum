@@ -43,7 +43,7 @@
 }
 
 .nav::-webkit-scrollbar-thumb:hover {
-  background: var(--color-fill-tertiary, #c0c0c8);
+  background: var(--color-fill-tertiary);
 }
 
 .section {
