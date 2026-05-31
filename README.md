@@ -38,32 +38,24 @@ pnpm test:watch   # vitest watch
 ```
 src/
 ├── components/     # Reusable components (design system + layout primitives)
-│   ├── Section/          # Page section wrapper (SectionHeader + spacing)
-│   ├── GuidelinesGrid/   # 2-col guideline card grid
-│   ├── StateMatrix/      # State × variation documentation matrix
-│   ├── DimensionRow/     # Foundation token row (spacing/border)
-│   ├── FieldLabel/       # Input label row (label + tooltip + optional tag)
-│   ├── FieldMessage/     # Input help/error line
-│   └── ...               # All design system components
 ├── pages/          # One directory per page (*Page.tsx + *Page.module.css)
 │   └── registry.tsx      # Single source of truth for routes and sidebar nav
 ├── tokens/         # Token constants (variants, sizes, states, guidelines)
 │   └── types.ts          # Shared base types (GuidelineDef, StateDef, …)
-└── utils/
-    ├── cx.ts             # cx(...classes) — joins truthy class names
-    └── color.ts          # hexLuminance, isLightColor
+└── utils/          # cx (class joiner), color (hexLuminance, isLightColor)
 ```
 
-### Adding a page
+Layers flow `tokens → components → pages → registry`. One entry in
+[`src/pages/registry.tsx`](src/pages/registry.tsx) wires up both the route and the sidebar nav item.
 
-One entry in [`src/pages/registry.tsx`](src/pages/registry.tsx) wires up both the route and the sidebar nav item — no edits to `App.tsx` or `Sidebar.tsx` needed.
+## Documentation
 
-### Token layer
+Detailed docs live in [`docs/`](docs/) (in Portuguese, AI-facing):
 
-All content lives in `src/tokens/`. Pages import and map over tokens — no hardcoded data in page components.
+- [docs/arquitetura.md](docs/arquitetura.md) — how the layers, router and registry connect
+- [docs/convencoes.md](docs/convencoes.md) — CSS / token / naming rules (the non-negotiables)
+- [docs/guia-novo-componente.md](docs/guia-novo-componente.md) — step-by-step to add a component/page
+- [docs/decisoes.md](docs/decisoes.md) — why each structural choice was made
+- [docs/tokens.md](docs/tokens.md) — map of the token layer
 
-### CSS conventions
-
-- All styles are CSS Modules — no global utility classes except the `type-*` typography scale.
-- Colors, border widths, border radii, and spacing always use `var(--token-*)` — never hardcoded values.
-- Shared component markup (labels, messages, section headers, guideline cards) lives in the shared components above, not duplicated per page.
+`CLAUDE.md` is the lean entry point (project identity + golden rules + pointers into `docs/`).
