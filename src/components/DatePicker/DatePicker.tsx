@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, useLayoutEffect, useId } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './DatePicker.module.css'
 import Calendar from '../Calendar/Calendar'
+import FieldLabel from '../FieldLabel/FieldLabel'
+import FieldMessage from '../FieldMessage/FieldMessage'
 import type { DatePickerSize } from '../../tokens/datePicker'
 
 export interface DatePickerProps {
@@ -141,14 +143,7 @@ export default function DatePicker({
 
   return (
     <div className={rootCls} ref={containerRef}>
-      {showLabel && (
-        <div className={styles.labelRow}>
-          <label className={`type-caption-md ${styles.label}`} htmlFor={inputId}>
-            {label}
-          </label>
-          {optional && <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>}
-        </div>
-      )}
+      <FieldLabel showLabel={showLabel} label={label} optional={optional} htmlFor={inputId} />
 
       <button
         id={inputId}
@@ -222,10 +217,7 @@ export default function DatePicker({
           document.body
         )}
 
-      {helpText && !hasError && <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>}
-      {hasError && errorMessage && (
-        <p className={`type-body-xs ${styles.errorText}`}>{errorMessage}</p>
-      )}
+      <FieldMessage helpText={helpText} errorMessage={errorMessage} hasError={hasError} />
     </div>
   )
 }

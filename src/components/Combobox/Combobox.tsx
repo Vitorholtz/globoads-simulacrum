@@ -1,5 +1,7 @@
 import { useState, useId } from 'react'
 import styles from './Combobox.module.css'
+import FieldLabel from '../FieldLabel/FieldLabel'
+import FieldMessage from '../FieldMessage/FieldMessage'
 import type { ComboboxSize } from '../../tokens/combobox'
 import ChipInput from '../ChipInput/ChipInput'
 
@@ -144,30 +146,13 @@ export default function Combobox({
 
   return (
     <div className={rootCls}>
-      {showLabel && (
-        <div className={styles.labelRow}>
-          <div className={styles.labelGroup}>
-            <label className={`type-caption-md ${styles.label}`} htmlFor={inputId}>
-              {label}
-            </label>
-            {descriptionText && (
-              <button type="button" className={styles.descriptionBtn} aria-label="Mais informações">
-                <span
-                  className={`material-symbols-rounded icon-xs ${styles.descriptionIcon}`}
-                  aria-hidden="true"
-                >
-                  info
-                </span>
-                <span className={`type-body-sm ${styles.tooltip}`} role="tooltip">
-                  {descriptionText}
-                  <span className={styles.tooltipArrow} aria-hidden="true" />
-                </span>
-              </button>
-            )}
-          </div>
-          {optional && <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>}
-        </div>
-      )}
+      <FieldLabel
+        showLabel={showLabel}
+        label={label}
+        optional={optional}
+        descriptionText={descriptionText}
+        htmlFor={inputId}
+      />
 
       <div className={wrapperCls} data-state={forceState}>
         <span
@@ -250,10 +235,7 @@ export default function Combobox({
 
       {name && chips.map((chip) => <input key={chip} type="hidden" name={name} value={chip} />)}
 
-      {helpText && !hasError && <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>}
-      {hasError && errorMessage && (
-        <p className={`type-body-xs ${styles.errorText}`}>{errorMessage}</p>
-      )}
+      <FieldMessage helpText={helpText} errorMessage={errorMessage} hasError={hasError} />
     </div>
   )
 }

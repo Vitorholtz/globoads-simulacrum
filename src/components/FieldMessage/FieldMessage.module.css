@@ -1,0 +1,9 @@
+.helpText {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fill-secondary);
+}
+
+.errorText {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fill-critical);
+}

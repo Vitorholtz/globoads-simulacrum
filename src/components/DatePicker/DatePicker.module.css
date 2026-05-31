@@ -10,23 +10,6 @@
 
 /* ── Label row ── */
 
-.labelRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-050);
-}
-
-.label {
-  color: var(--color-fill-secondary);
-  cursor: pointer;
-}
-
-.optionalTag {
-  color: var(--color-fill-tertiary);
-  white-space: nowrap;
-}
-
 /* ── Input wrapper ── */
 
 .inputWrapper {
@@ -164,16 +147,6 @@
 }
 
 /* ── Help / Error text ── */
-
-.helpText {
-  font-weight: var(--font-weight-regular);
-  color: var(--color-fill-secondary);
-}
-
-.errorText {
-  font-weight: var(--font-weight-regular);
-  color: var(--color-fill-critical);
-}
 
 /* ══════════════════════════════════════
    SIZES

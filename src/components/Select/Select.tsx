@@ -1,5 +1,7 @@
 import { useState, useId, useRef, useEffect } from 'react'
 import styles from './Select.module.css'
+import FieldLabel from '../FieldLabel/FieldLabel'
+import FieldMessage from '../FieldMessage/FieldMessage'
 import type { SelectSize, SelectOption } from '../../tokens/select'
 
 export type { SelectSize, SelectOption }
@@ -123,30 +125,13 @@ export default function Select({
 
   return (
     <div className={rootCls} ref={rootRef}>
-      {showLabel && (
-        <div className={styles.labelRow}>
-          <div className={styles.labelGroup}>
-            <label className={`type-caption-md ${styles.label}`} htmlFor={triggerId}>
-              {label}
-            </label>
-            {descriptionText && (
-              <button type="button" className={styles.descriptionBtn} aria-label="Mais informações">
-                <span
-                  className={`material-symbols-rounded icon-xs ${styles.descriptionIcon}`}
-                  aria-hidden="true"
-                >
-                  info
-                </span>
-                <span className={`type-body-sm ${styles.tooltip}`} role="tooltip">
-                  {descriptionText}
-                  <span className={styles.tooltipArrow} aria-hidden="true" />
-                </span>
-              </button>
-            )}
-          </div>
-          {optional && <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>}
-        </div>
-      )}
+      <FieldLabel
+        showLabel={showLabel}
+        label={label}
+        optional={optional}
+        descriptionText={descriptionText}
+        htmlFor={triggerId}
+      />
 
       <div className={wrapperCls} data-state={dataState}>
         <button
@@ -232,10 +217,7 @@ export default function Select({
 
       {name && <input type="hidden" name={name} value={currentValue} />}
 
-      {helpText && !hasError && <p className={`type-body-xs ${styles.helpText}`}>{helpText}</p>}
-      {hasError && errorMessage && (
-        <p className={`type-body-xs ${styles.errorText}`}>{errorMessage}</p>
-      )}
+      <FieldMessage helpText={helpText} errorMessage={errorMessage} hasError={hasError} />
     </div>
   )
 }
