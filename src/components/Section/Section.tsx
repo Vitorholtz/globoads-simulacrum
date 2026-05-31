@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import SectionHeader from '../SectionHeader/SectionHeader'
+import { cx } from '../../utils/cx'
 import styles from './Section.module.css'
 
 interface SectionProps {
@@ -16,7 +17,7 @@ interface SectionProps {
  * scaffold duplicated across every documentation page.
  */
 export default function Section({ icon, title, count, children, className }: SectionProps) {
-  const cls = [styles.section, className ?? ''].filter(Boolean).join(' ')
+  const cls = cx(styles.section, className ?? '')
 
   return (
     <section className={cls}>

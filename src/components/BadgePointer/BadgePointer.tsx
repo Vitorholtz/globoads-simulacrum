@@ -1,3 +1,4 @@
+import { cx } from '../../utils/cx'
 import styles from './BadgePointer.module.css'
 
 interface BadgePointerProps {
@@ -6,7 +7,7 @@ interface BadgePointerProps {
 
 export default function BadgePointer({ className }: BadgePointerProps) {
   return (
-    <span className={[styles.pointer, className].filter(Boolean).join(' ')}>
+    <span className={cx(styles.pointer, className)}>
       <span className={styles.dot} />
     </span>
   )

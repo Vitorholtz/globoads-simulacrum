@@ -1,3 +1,4 @@
+import { cx } from '../../utils/cx'
 import styles from './Avatar.module.css'
 import type { AvatarSize, AvatarVariant } from '../../tokens/avatar'
 
@@ -20,7 +21,6 @@ const INITIALS_TYPE: Record<AvatarSize, string> = {
   xl: 'type-title-lg',
 }
 
-
 function getInitials(name: string, singleChar: boolean): string {
   const parts = name.trim().split(/\s+/).filter(Boolean)
   if (parts.length === 0) return '?'
@@ -38,7 +38,7 @@ export default function Avatar({
 }: AvatarProps) {
   const initials = getInitials(name, size === 'xs')
 
-  const cls = [styles.avatar, styles[size], className ?? ''].filter(Boolean).join(' ')
+  const cls = cx(styles.avatar, styles[size], className ?? '')
 
   return (
     <div className={cls}>

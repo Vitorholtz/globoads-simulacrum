@@ -1,5 +1,6 @@
 import styles from './StaticCard.module.css'
 import type { CardStyle } from '../../tokens/cards'
+import { cx } from '../../utils/cx'
 
 export interface StaticCardProps {
   style?: CardStyle
@@ -10,11 +11,11 @@ export interface StaticCardProps {
 export default function StaticCard({ style = 'on-primary', children, className }: StaticCardProps) {
   return (
     <div
-      className={[
+      className={cx(
         styles.card,
         style === 'on-secondary' ? styles.onSecondary : '',
-        className ?? '',
-      ].filter(Boolean).join(' ')}
+        className ?? ''
+      )}
     >
       {children}
     </div>

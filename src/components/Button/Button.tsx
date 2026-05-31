@@ -1,3 +1,4 @@
+import { cx } from '../../utils/cx'
 import styles from './Button.module.css'
 import type { ButtonVariant, ButtonSize } from '../../tokens/buttons'
 
@@ -42,7 +43,7 @@ export default function Button({
   const hasIconRight = !!iconRight && !isIconOnly
   const isDisabled = disabled || forceState === 'disabled'
 
-  const cls = [
+  const cls = cx(
     styles.btn,
     styles[variant],
     styles[size],
@@ -50,8 +51,8 @@ export default function Button({
     isIconOnly ? styles.iconOnly : '',
     hasIconLeft ? styles.hasIconLeft : '',
     hasIconRight ? styles.hasIconRight : '',
-    className ?? '',
-  ].filter(Boolean).join(' ')
+    className ?? ''
+  )
 
   function renderIcon(name: string) {
     return (
@@ -65,12 +66,7 @@ export default function Button({
   }
 
   return (
-    <button
-      className={cls}
-      disabled={isDisabled}
-      data-state={forceState}
-      {...rest}
-    >
+    <button className={cls} disabled={isDisabled} data-state={forceState} {...rest}>
       {/* Icon-only layout */}
       {isIconOnly && renderIcon((iconLeft || iconRight)!)}
 

@@ -1,4 +1,5 @@
 import type { GuidelineDef } from '../../tokens/types'
+import { cx } from '../../utils/cx'
 import styles from './GuidelinesGrid.module.css'
 
 interface GuidelinesGridProps {
@@ -12,7 +13,7 @@ interface GuidelinesGridProps {
  * across every documentation page. Pair with `<Section icon="checklist">`.
  */
 export default function GuidelinesGrid({ items, className }: GuidelinesGridProps) {
-  const cls = [styles.guidelinesGrid, className ?? ''].filter(Boolean).join(' ')
+  const cls = cx(styles.guidelinesGrid, className ?? '')
 
   return (
     <div className={cls}>

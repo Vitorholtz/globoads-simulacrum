@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react'
 import styles from './Checkbox.module.css'
 import type { CheckboxBehavior, CheckboxType } from '../../tokens/checkbox'
+import { cx } from '../../utils/cx'
 
 export type { CheckboxBehavior, CheckboxType }
-
 
 export interface CheckboxProps {
   /** Controlled checked state */
@@ -49,34 +49,24 @@ export default function Checkbox({
     behavior ?? (indeterminate ? 'partial' : checked ? 'checked' : 'unchecked')
 
   const icon =
-    effectiveBehavior === 'checked' ? 'check'
-    : effectiveBehavior === 'partial' ? 'remove'
-    : null
+    effectiveBehavior === 'checked' ? 'check' : effectiveBehavior === 'partial' ? 'remove' : null
 
   const isDisabled = disabled || forceState === 'disabled'
 
   // forceState (or real disabled) drives data-state — any data-state disables pointer-events in CSS
   const effectiveState = forceState ?? (disabled ? 'disabled' : undefined)
 
-  const cls = [
-    styles.checkbox,
-    type === 'inverter' ? styles.inverter : '',
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const cls = cx(styles.checkbox, type === 'inverter' ? styles.inverter : '', className ?? '')
 
   return (
-    <label
-      className={cls}
-      data-state={effectiveState}
-      data-behavior={effectiveBehavior}
-    >
+    <label className={cls} data-state={effectiveState} data-behavior={effectiveBehavior}>
       <div className={styles.input}>
         <input
           ref={inputRef}
           type="checkbox"
           className={styles.nativeInput}
           checked={checked}
-          onChange={e => onChange?.(e.target.checked)}
+          onChange={(e) => onChange?.(e.target.checked)}
           disabled={isDisabled}
         />
         {icon && (

@@ -1,3 +1,4 @@
+import { cx } from '../../utils/cx'
 import styles from './ChipInput.module.css'
 import type { ChipInputStyle } from '../../tokens/chipInput'
 import Avatar from '../Avatar/Avatar'
@@ -23,26 +24,14 @@ export default function ChipInput({
   forceState,
   className,
 }: ChipInputProps) {
-  const cls = [
-    styles.chip,
-    styles[style],
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const cls = cx(styles.chip, styles[style], className ?? '')
 
   return (
-    <div
-      className={cls}
-      data-state={forceState}
-    >
-      {style === 'person' && (
-        <Avatar size="xs" variant="placeholder" aria-hidden="true" />
-      )}
+    <div className={cls} data-state={forceState}>
+      {style === 'person' && <Avatar size="xs" variant="placeholder" aria-hidden="true" />}
 
       {style === 'icon' && (
-        <span
-          className={`material-symbols-rounded icon-sm ${styles.leadIcon}`}
-          aria-hidden="true"
-        >
+        <span className={`material-symbols-rounded icon-sm ${styles.leadIcon}`} aria-hidden="true">
           {icon}
         </span>
       )}
@@ -55,10 +44,7 @@ export default function ChipInput({
         aria-label="Remover"
         tabIndex={forceState === 'disabled' ? -1 : 0}
       >
-        <span
-          className={`material-symbols-rounded icon-sm ${styles.closeIcon}`}
-          aria-hidden="true"
-        >
+        <span className={`material-symbols-rounded icon-sm ${styles.closeIcon}`} aria-hidden="true">
           close
         </span>
       </button>

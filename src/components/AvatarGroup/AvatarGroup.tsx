@@ -1,6 +1,7 @@
 import Avatar from '../Avatar/Avatar'
 import styles from './AvatarGroup.module.css'
 import type { AvatarSize, AvatarVariant } from '../../tokens/avatar'
+import { cx } from '../../utils/cx'
 
 export interface AvatarItem {
   name?: string
@@ -15,14 +16,9 @@ export interface AvatarGroupProps {
   className?: string
 }
 
-export default function AvatarGroup({
-  items,
-  label,
-  size = 'xs',
-  className,
-}: AvatarGroupProps) {
+export default function AvatarGroup({ items, label, size = 'xs', className }: AvatarGroupProps) {
   return (
-    <div className={[styles.group, className ?? ''].filter(Boolean).join(' ')}>
+    <div className={cx(styles.group, className ?? '')}>
       <div className={styles.avatars}>
         {items.map((item, i) => {
           const variant: AvatarVariant =

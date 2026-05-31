@@ -1,5 +1,6 @@
 import styles from './Radio.module.css'
 import type { RadioBehavior, RadioType } from '../../tokens/radio'
+import { cx } from '../../utils/cx'
 
 export type { RadioBehavior, RadioType }
 
@@ -36,30 +37,21 @@ export default function Radio({
   value,
   className,
 }: RadioProps) {
-  const effectiveBehavior: RadioBehavior =
-    behavior ?? (checked ? 'checked' : 'unchecked')
+  const effectiveBehavior: RadioBehavior = behavior ?? (checked ? 'checked' : 'unchecked')
 
   const isDisabled = disabled || forceState === 'disabled'
   const effectiveState = forceState ?? (disabled ? 'disabled' : undefined)
 
-  const cls = [
-    styles.radio,
-    type === 'inverter' ? styles.inverter : '',
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const cls = cx(styles.radio, type === 'inverter' ? styles.inverter : '', className ?? '')
 
   return (
-    <label
-      className={cls}
-      data-state={effectiveState}
-      data-behavior={effectiveBehavior}
-    >
+    <label className={cls} data-state={effectiveState} data-behavior={effectiveBehavior}>
       <div className={styles.input}>
         <input
           type="radio"
           className={styles.nativeInput}
           checked={checked}
-          onChange={e => onChange?.(e.target.checked)}
+          onChange={(e) => onChange?.(e.target.checked)}
           disabled={isDisabled}
           name={name}
           value={value}

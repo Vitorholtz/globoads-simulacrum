@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './Pagination.module.css'
 import type { PaginationVariant } from '../../tokens/pagination'
+import { cx } from '../../utils/cx'
 
 export interface PaginationProps {
   variant?: PaginationVariant
@@ -58,10 +59,10 @@ export default function Pagination({
   const itemEnd = totalItems ? Math.min(page * itemsPerPage, totalItems) : page * itemsPerPage
 
   return (
-    <div className={[styles.pagination, styles[variant], className ?? ''].filter(Boolean).join(' ')}>
+    <div className={cx(styles.pagination, styles[variant], className ?? '')}>
       {/* Seta anterior */}
       <button
-        className={[styles.chevronBtn, isFirst ? styles.disabled : ''].filter(Boolean).join(' ')}
+        className={cx(styles.chevronBtn, isFirst ? styles.disabled : '')}
         onClick={() => !isFirst && onChange(page - 1)}
         disabled={isFirst}
         aria-label="Página anterior"
@@ -77,9 +78,9 @@ export default function Pagination({
           <input
             className={`type-body-sm ${styles.pageInput}`}
             value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
+            onChange={(e) => setInputValue(e.target.value)}
             onBlur={commitInput}
-            onKeyDown={e => e.key === 'Enter' && commitInput()}
+            onKeyDown={(e) => e.key === 'Enter' && commitInput()}
             aria-label="Página atual"
           />
           <span className={`type-body-sm ${styles.infoText}`}>
@@ -91,10 +92,13 @@ export default function Pagination({
       {/* Variante: items */}
       {variant === 'items' && (
         <div className={styles.infos}>
-          <span className={`type-body-sm ${styles.infoText}`}>{itemStart}–{itemEnd}</span>
+          <span className={`type-body-sm ${styles.infoText}`}>
+            {itemStart}–{itemEnd}
+          </span>
           <span className={`type-body-sm ${styles.infoText}`}>de</span>
           <span className={`type-body-sm ${styles.infoText}`}>
-            {totalItems != null ? formatBR(totalItems) : '?'} {(totalItems ?? 0) === 1 ? 'item' : 'itens'}
+            {totalItems != null ? formatBR(totalItems) : '?'}{' '}
+            {(totalItems ?? 0) === 1 ? 'item' : 'itens'}
           </span>
         </div>
       )}
@@ -102,16 +106,18 @@ export default function Pagination({
       {/* Variante: buttons */}
       {variant === 'buttons' && (
         <div className={styles.pageButtons}>
-          {getPageWindow(page, totalPages).map(p => (
+          {getPageWindow(page, totalPages).map((p) => (
             <button
               key={p}
-              className={['type-caption-md', styles.pageBtn, p === page ? styles.pageBtnActive : ''].filter(Boolean).join(' ')}
+              className={cx(
+                'type-caption-md',
+                styles.pageBtn,
+                p === page ? styles.pageBtnActive : ''
+              )}
               onClick={() => onChange(p)}
               aria-current={p === page ? 'page' : undefined}
             >
-              <span className={p === page ? styles.pageBtnLabel : ''}>
-                {p}
-              </span>
+              <span className={p === page ? styles.pageBtnLabel : ''}>{p}</span>
             </button>
           ))}
         </div>
@@ -119,7 +125,7 @@ export default function Pagination({
 
       {/* Seta próxima */}
       <button
-        className={[styles.chevronBtn, isLast ? styles.disabled : ''].filter(Boolean).join(' ')}
+        className={cx(styles.chevronBtn, isLast ? styles.disabled : '')}
         onClick={() => !isLast && onChange(page + 1)}
         disabled={isLast}
         aria-label="Próxima página"

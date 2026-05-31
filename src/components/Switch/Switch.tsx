@@ -1,8 +1,8 @@
 import styles from './Switch.module.css'
 import type { SwitchBehavior, SwitchType } from '../../tokens/switch'
+import { cx } from '../../utils/cx'
 
 export type { SwitchBehavior, SwitchType }
-
 
 export interface SwitchProps {
   checked?: boolean
@@ -35,24 +35,16 @@ export default function Switch({
   const isDisabled = disabled || forceState === 'disabled'
   const effectiveState = forceState ?? (disabled ? 'disabled' : undefined)
 
-  const cls = [
-    styles.switch,
-    type === 'inverter' ? styles.inverter : '',
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const cls = cx(styles.switch, type === 'inverter' ? styles.inverter : '', className ?? '')
 
   return (
-    <label
-      className={cls}
-      data-state={effectiveState}
-      data-behavior={effectiveBehavior}
-    >
+    <label className={cls} data-state={effectiveState} data-behavior={effectiveBehavior}>
       <div className={styles.track}>
         <input
           type="checkbox"
           className={styles.nativeInput}
           checked={effectiveBehavior === 'checked'}
-          onChange={e => onChange?.(e.target.checked)}
+          onChange={(e) => onChange?.(e.target.checked)}
           disabled={isDisabled}
         />
         <span

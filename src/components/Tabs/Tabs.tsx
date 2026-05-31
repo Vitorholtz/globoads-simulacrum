@@ -1,3 +1,4 @@
+import { cx } from '../../utils/cx'
 import styles from './Tabs.module.css'
 import BadgeCounter from '../BadgeCounter/BadgeCounter'
 import type { TabItem, TabPosition } from '../../tokens/tabs'
@@ -20,10 +21,7 @@ export default function Tabs({
   className,
 }: TabsProps) {
   return (
-    <div
-      role="tablist"
-      className={[styles.tabs, styles[position], className ?? ''].filter(Boolean).join(' ')}
-    >
+    <div role="tablist" className={cx(styles.tabs, styles[position], className ?? '')}>
       {items.map((item) => {
         const isActive = item.id === activeId
         return (

@@ -1,4 +1,5 @@
 import type { BadgeVariant } from '../../tokens/badge'
+import { cx } from '../../utils/cx'
 import styles from './Badge.module.css'
 
 interface BadgeProps {
@@ -9,8 +10,6 @@ interface BadgeProps {
 
 export default function Badge({ variant = 'neutral', label, className }: BadgeProps) {
   return (
-    <span className={['type-caption-sm', styles.badge, styles[variant], className].filter(Boolean).join(' ')}>
-      {label}
-    </span>
+    <span className={cx('type-caption-sm', styles.badge, styles[variant], className)}>{label}</span>
   )
 }

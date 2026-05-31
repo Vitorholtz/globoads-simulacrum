@@ -1,5 +1,6 @@
 import styles from './ChipSuggestion.module.css'
 import type { ChipBehavior } from '../../tokens/chipSuggestion'
+import { cx } from '../../utils/cx'
 
 export type { ChipBehavior }
 
@@ -20,19 +21,14 @@ export default function ChipSuggestion({
 }: ChipSuggestionProps) {
   const isDisabled = disabled || forceState === 'disabled'
 
-  const cls = [
+  const cls = cx(
     styles.chip,
     behavior === 'checked' ? styles.checked : styles.unchecked,
-    className ?? '',
-  ].filter(Boolean).join(' ')
+    className ?? ''
+  )
 
   return (
-    <button
-      className={cls}
-      disabled={isDisabled}
-      data-state={forceState}
-      {...rest}
-    >
+    <button className={cls} disabled={isDisabled} data-state={forceState} {...rest}>
       <span className={`type-caption-md ${styles.label}`}>{label}</span>
     </button>
   )

@@ -1,4 +1,5 @@
 import type { TooltipPosition, TooltipAlign } from '../../tokens/tooltip'
+import { cx } from '../../utils/cx'
 import styles from './Tooltip.module.css'
 
 export interface TooltipProps {
@@ -21,13 +22,13 @@ export default function Tooltip({
       {children}
       <div
         role="tooltip"
-        className={[
+        className={cx(
           'type-body-sm',
           styles.tooltip,
           styles[position],
           styles[align],
-          forceVisible ? styles.visible : '',
-        ].filter(Boolean).join(' ')}
+          forceVisible ? styles.visible : ''
+        )}
       >
         {text}
         <span className={styles.arrow} aria-hidden="true" />

@@ -1,4 +1,9 @@
-import type { InlineLoaderType, InlineLoaderSize, InlineLoaderColor } from '../../tokens/inlineLoader'
+import type {
+  InlineLoaderType,
+  InlineLoaderSize,
+  InlineLoaderColor,
+} from '../../tokens/inlineLoader'
+import { cx } from '../../utils/cx'
 import styles from './InlineLoader.module.css'
 
 export type { InlineLoaderType, InlineLoaderSize, InlineLoaderColor }
@@ -17,14 +22,14 @@ const ELLIPSIS_FONT_SIZE: Record<InlineLoaderSize, number> = { sm: 12, md: 14, l
 const DOT_SIZE: Record<InlineLoaderSize, number> = { sm: 4, md: 5, lg: 6 }
 
 const COLOR_VAR: Record<InlineLoaderColor, string> = {
-  primary:   'var(--color-fill-primary)',
+  primary: 'var(--color-fill-primary)',
   secondary: 'var(--color-fill-secondary)',
-  tertiary:  'var(--color-fill-tertiary)',
-  accent:    'var(--color-fill-accent)',
-  success:   'var(--color-fill-success)',
-  warning:   'var(--color-fill-warning)',
-  critical:  'var(--color-fill-critical)',
-  inverse:   'var(--color-fill-inverse)',
+  tertiary: 'var(--color-fill-tertiary)',
+  accent: 'var(--color-fill-accent)',
+  success: 'var(--color-fill-success)',
+  warning: 'var(--color-fill-warning)',
+  critical: 'var(--color-fill-critical)',
+  inverse: 'var(--color-fill-inverse)',
 }
 
 export default function InlineLoader({
@@ -39,7 +44,7 @@ export default function InlineLoader({
 
   return (
     <span
-      className={[styles.loader, className].filter(Boolean).join(' ')}
+      className={cx(styles.loader, className)}
       style={{ color: COLOR_VAR[color] }}
       role="status"
       aria-label={label}
@@ -53,24 +58,36 @@ export default function InlineLoader({
 
       {type === 'rippler' && (
         <span className={styles.rippler} style={{ width: sizePx, height: sizePx }}>
-          <span
-            className={styles.ripplerDot}
-            style={{ width: dotSize, height: dotSize }}
-          />
+          <span className={styles.ripplerDot} style={{ width: dotSize, height: dotSize }} />
           <span
             className={`${styles.ripplerRing} ${styles.ring1}`}
-            style={{ width: dotSize, height: dotSize, marginTop: -dotSize / 2, marginLeft: -dotSize / 2 }}
+            style={{
+              width: dotSize,
+              height: dotSize,
+              marginTop: -dotSize / 2,
+              marginLeft: -dotSize / 2,
+            }}
           />
           <span
             className={`${styles.ripplerRing} ${styles.ring2}`}
-            style={{ width: dotSize, height: dotSize, marginTop: -dotSize / 2, marginLeft: -dotSize / 2 }}
+            style={{
+              width: dotSize,
+              height: dotSize,
+              marginTop: -dotSize / 2,
+              marginLeft: -dotSize / 2,
+            }}
           />
         </span>
       )}
 
       {type === 'sparkle' && (
         <span className={styles.sparkle} style={{ width: sizePx, height: sizePx }}>
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
             <path d="M12 0L13.2 9.88L24 12L13.2 14.12L12 24L10.8 14.12L0 12L10.8 9.88L12 0Z" />
           </svg>
         </span>

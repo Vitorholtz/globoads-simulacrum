@@ -1,5 +1,6 @@
 import styles from './ChipFilter.module.css'
 import type { ChipFilterBehavior } from '../../tokens/chipFilter'
+import { cx } from '../../utils/cx'
 
 export type { ChipFilterBehavior }
 
@@ -23,24 +24,12 @@ export default function ChipFilter({
   const isChecked = behavior === 'checked'
   const isDisabled = disabled || forceState === 'disabled'
 
-  const cls = [
-    styles.chip,
-    isChecked ? styles.checked : styles.unchecked,
-    className ?? '',
-  ].filter(Boolean).join(' ')
+  const cls = cx(styles.chip, isChecked ? styles.checked : styles.unchecked, className ?? '')
 
   return (
-    <button
-      className={cls}
-      disabled={isDisabled}
-      data-state={forceState}
-      {...rest}
-    >
+    <button className={cls} disabled={isDisabled} data-state={forceState} {...rest}>
       {isChecked && (
-        <span
-          className={`material-symbols-rounded icon-sm ${styles.icon}`}
-          aria-hidden="true"
-        >
+        <span className={`material-symbols-rounded icon-sm ${styles.icon}`} aria-hidden="true">
           check
         </span>
       )}

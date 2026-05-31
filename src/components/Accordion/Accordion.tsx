@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { BadgeVariant } from '../../tokens/badge'
 import Badge from '../Badge/Badge'
+import { cx } from '../../utils/cx'
 import styles from './Accordion.module.css'
 
 export interface AccordionItem {
@@ -22,12 +23,12 @@ export default function Accordion({ items, defaultOpenId = null, className }: Ac
   const [openId, setOpenId] = useState<string | null>(defaultOpenId)
 
   function handleToggle(id: string) {
-    setOpenId(prev => (prev === id ? null : id))
+    setOpenId((prev) => (prev === id ? null : id))
   }
 
   return (
-    <div className={[styles.accordion, className ?? ''].filter(Boolean).join(' ')}>
-      {items.map(item => {
+    <div className={cx(styles.accordion, className ?? '')}>
+      {items.map((item) => {
         const isOpen = openId === item.id
         return (
           <div key={item.id} className={styles.section}>
@@ -49,15 +50,13 @@ export default function Accordion({ items, defaultOpenId = null, className }: Ac
               {item.detail && (
                 <span className={`type-body-xs ${styles.detail}`}>{item.detail}</span>
               )}
-              {item.badge && (
-                <Badge label={item.badge.label} variant={item.badge.variant} />
-              )}
+              {item.badge && <Badge label={item.badge.label} variant={item.badge.variant} />}
               <span
-                className={[
+                className={cx(
                   'material-symbols-rounded icon-md',
                   styles.chevron,
-                  isOpen ? styles.chevronOpen : '',
-                ].filter(Boolean).join(' ')}
+                  isOpen ? styles.chevronOpen : ''
+                )}
                 aria-hidden="true"
               >
                 keyboard_arrow_down
@@ -65,9 +64,7 @@ export default function Accordion({ items, defaultOpenId = null, className }: Ac
             </button>
             <div className={styles.contentWrapper} data-open={isOpen ? 'true' : 'false'}>
               <div className={styles.contentOverflow}>
-                <div className={styles.contentPadded}>
-                  {item.content}
-                </div>
+                <div className={styles.contentPadded}>{item.content}</div>
               </div>
             </div>
           </div>

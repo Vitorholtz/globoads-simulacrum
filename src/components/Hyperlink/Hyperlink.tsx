@@ -1,3 +1,4 @@
+import { cx } from '../../utils/cx'
 import styles from './Hyperlink.module.css'
 import type { HyperlinkSize } from '../../tokens/hyperlinks'
 
@@ -35,13 +36,13 @@ export default function Hyperlink({
   className,
   ...rest
 }: HyperlinkProps) {
-  const cls = [
+  const cls = cx(
     SIZE_CLASS[size],
     underline ? 'hyperlink-underline' : '',
     styles.hyperlink,
     styles[size],
-    className ?? '',
-  ].filter(Boolean).join(' ')
+    className ?? ''
+  )
 
   return (
     <a

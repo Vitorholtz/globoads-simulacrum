@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './Calendar.module.css'
 import Button from '../Button/Button'
 import type { CalendarSize } from '../../tokens/datePicker'
+import { cx } from '../../utils/cx'
 
 export interface CalendarProps {
   size?: CalendarSize
@@ -18,10 +19,27 @@ export interface CalendarProps {
 }
 
 const WEEKDAYS = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
-const MONTHS_PT = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+const MONTHS_PT = [
+  'jan',
+  'fev',
+  'mar',
+  'abr',
+  'mai',
+  'jun',
+  'jul',
+  'ago',
+  'set',
+  'out',
+  'nov',
+  'dez',
+]
 
 function sameDay(a: Date, b: Date) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  )
 }
 
 export default function Calendar({
@@ -51,17 +69,23 @@ export default function Calendar({
   while (cells.length % 7 !== 0) cells.push(null)
 
   function prevMonth() {
-    if (viewMonth === 0) { setViewYear(y => y - 1); setViewMonth(11) }
-    else setViewMonth(m => m - 1)
+    if (viewMonth === 0) {
+      setViewYear((y) => y - 1)
+      setViewMonth(11)
+    } else setViewMonth((m) => m - 1)
   }
 
   function nextMonth() {
-    if (viewMonth === 11) { setViewYear(y => y + 1); setViewMonth(0) }
-    else setViewMonth(m => m + 1)
+    if (viewMonth === 11) {
+      setViewYear((y) => y + 1)
+      setViewMonth(0)
+    } else setViewMonth((m) => m + 1)
   }
 
   function isToday(day: number) {
-    return today.getFullYear() === viewYear && today.getMonth() === viewMonth && today.getDate() === day
+    return (
+      today.getFullYear() === viewYear && today.getMonth() === viewMonth && today.getDate() === day
+    )
   }
 
   function isSelected(day: number) {
@@ -80,7 +104,8 @@ export default function Calendar({
 
     const effectiveEnd = rangeEnd ?? hoverDate
     if (effectiveEnd) {
-      const [lo, hi] = rangeStart <= effectiveEnd ? [rangeStart, effectiveEnd] : [effectiveEnd, rangeStart]
+      const [lo, hi] =
+        rangeStart <= effectiveEnd ? [rangeStart, effectiveEnd] : [effectiveEnd, rangeStart]
       if (d > lo && d < hi) return rangeEnd ? styles.inRange : styles.hoverInRange
     }
 
@@ -99,18 +124,36 @@ export default function Calendar({
   }
 
   return (
-    <div className={[styles.root, styles[size], className ?? ''].filter(Boolean).join(' ')}>
+    <div className={cx(styles.root, styles[size], className ?? '')}>
       <div className={styles.header}>
-        <Button type="button" variant="tertiary" size="md" iconLeft="arrow_back" onClick={prevMonth} aria-label="Mês anterior" />
-        <span className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}>
+        <Button
+          type="button"
+          variant="tertiary"
+          size="md"
+          iconLeft="arrow_back"
+          onClick={prevMonth}
+          aria-label="Mês anterior"
+        />
+        <span
+          className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}
+        >
           {MONTHS_PT[viewMonth]}/{String(viewYear).slice(2)}
         </span>
-        <Button type="button" variant="tertiary" size="md" iconLeft="arrow_forward" onClick={nextMonth} aria-label="Próximo mês" />
+        <Button
+          type="button"
+          variant="tertiary"
+          size="md"
+          iconLeft="arrow_forward"
+          onClick={nextMonth}
+          aria-label="Próximo mês"
+        />
       </div>
 
       <div className={styles.weekdays}>
         {WEEKDAYS.map((d, i) => (
-          <span key={i} className={`type-caption-md ${styles.weekday}`}>{d}</span>
+          <span key={i} className={`type-caption-md ${styles.weekday}`}>
+            {d}
+          </span>
         ))}
       </div>
 
@@ -118,20 +161,22 @@ export default function Calendar({
         {cells.map((day, i) => {
           const rangeCellClass = day !== null ? getRangeCellClass(day) : ''
           return (
-            <div key={i} className={[styles.dayCell, rangeCellClass].filter(Boolean).join(' ')}>
+            <div key={i} className={cx(styles.dayCell, rangeCellClass)}>
               {day !== null && (
                 <button
                   type="button"
-                  className={[
+                  className={cx(
                     size === 'sm' ? 'type-caption-md' : 'type-caption-lg',
                     styles.day,
                     !isRangeMode && isSelected(day) ? styles.daySelected : '',
                     isRangeMode && isDayRangeEndpoint(day) ? styles.daySelected : '',
                     isRangeMode && isDayHoverEnd(day) ? styles.dayHoverEnd : '',
-                    isToday(day) ? styles.dayToday : '',
-                  ].filter(Boolean).join(' ')}
+                    isToday(day) ? styles.dayToday : ''
+                  )}
                   onClick={() => onChange?.(new Date(viewYear, viewMonth, day))}
-                  onMouseEnter={() => isRangeMode && onHoverChange?.(new Date(viewYear, viewMonth, day))}
+                  onMouseEnter={() =>
+                    isRangeMode && onHoverChange?.(new Date(viewYear, viewMonth, day))
+                  }
                   onMouseLeave={() => isRangeMode && onHoverChange?.(null)}
                   aria-label={`${day} de ${MONTHS_PT[viewMonth]} de ${viewYear}`}
                   aria-pressed={!isRangeMode ? isSelected(day) : isDayRangeEndpoint(day)}
@@ -152,7 +197,13 @@ export default function Calendar({
             </Button>
           )}
           {onConfirm && (
-            <Button variant="primary" size="md" className={styles.footerBtn} onClick={onConfirm} disabled={confirmDisabled}>
+            <Button
+              variant="primary"
+              size="md"
+              className={styles.footerBtn}
+              onClick={onConfirm}
+              disabled={confirmDisabled}
+            >
               Confirmar
             </Button>
           )}

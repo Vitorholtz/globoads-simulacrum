@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
+import { cx } from '../../utils/cx'
 import styles from './StateMatrix.module.css'
 
 /** Minimal shape a column needs; extra fields are passed through to renderCell. */
@@ -103,7 +104,7 @@ export default function StateMatrix<C extends ColumnLike, R extends RowLike>({
             {columns.map((col) => {
               const extra = getCellClassName?.(row, col)
               return (
-                <div key={col.id} className={[styles.cell, extra ?? ''].filter(Boolean).join(' ')}>
+                <div key={col.id} className={cx(styles.cell, extra ?? '')}>
                   {renderCell(row, col)}
                 </div>
               )

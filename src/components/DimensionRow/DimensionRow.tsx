@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
+import { cx } from '../../utils/cx'
 import styles from './DimensionRow.module.css'
 
 /** Common shape shared by spacing / border-width / border-radius tokens. */
@@ -38,7 +39,7 @@ export default function DimensionRow({
     '--dim-display-h': `${displayHeight}px`,
   } as CSSProperties
 
-  const displayCls = [styles.display, fill ? styles.displayFill : ''].filter(Boolean).join(' ')
+  const displayCls = cx(styles.display, fill ? styles.displayFill : '')
 
   return (
     <div className={styles.row} style={style}>

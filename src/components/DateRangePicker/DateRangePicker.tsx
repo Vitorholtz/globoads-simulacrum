@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import styles from './DateRangePicker.module.css'
 import Calendar from '../Calendar/Calendar'
 import type { DatePickerSize } from '../../tokens/datePicker'
+import { cx } from '../../utils/cx'
 
 export interface DateRange {
   start: Date
@@ -192,9 +193,7 @@ export default function DateRangePicker({
           }
         }}
       >
-        <span
-          className={[styles.dateText, startText ? styles.filled : ''].filter(Boolean).join(' ')}
-        >
+        <span className={cx(styles.dateText, startText ? styles.filled : '')}>
           {startText || 'dd/mm/aa'}
         </span>
 
@@ -202,7 +201,7 @@ export default function DateRangePicker({
           east
         </span>
 
-        <span className={[styles.dateText, endText ? styles.filled : ''].filter(Boolean).join(' ')}>
+        <span className={cx(styles.dateText, endText ? styles.filled : '')}>
           {endText || 'dd/mm/aa'}
         </span>
 

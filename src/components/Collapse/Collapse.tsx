@@ -1,6 +1,7 @@
 import { useState, useId } from 'react'
 import styles from './Collapse.module.css'
 import type { CollapseSize } from '../../tokens/collapse'
+import { cx } from '../../utils/cx'
 
 export interface CollapseProps {
   size?: CollapseSize
@@ -55,18 +56,11 @@ export default function Collapse({
     onToggle?.(next)
   }
 
-  const rootCls = [styles.root, styles[size], className ?? ''].filter(Boolean).join(' ')
+  const rootCls = cx(styles.root, styles[size], className ?? '')
 
-  const triggerCls = [
-    styles.trigger,
-    TYPE_CLS[size],
-    forceState ? styles[forceState] : '',
-  ].filter(Boolean).join(' ')
+  const triggerCls = cx(styles.trigger, TYPE_CLS[size], forceState ? styles[forceState] : '')
 
-  const contentCls = [
-    styles.content,
-    !isOpen ? styles.contentClamped : '',
-  ].filter(Boolean).join(' ')
+  const contentCls = cx(styles.content, !isOpen ? styles.contentClamped : '')
 
   const label = isOpen ? labelCollapse : labelExpand
 
@@ -90,11 +84,11 @@ export default function Collapse({
       >
         <span className={styles.triggerText}>{label}</span>
         <span
-          className={[
+          className={cx(
             `material-symbols-rounded ${ICON_CLS[size]}`,
             styles.triggerIcon,
-            isOpen ? styles.triggerIconOpen : '',
-          ].filter(Boolean).join(' ')}
+            isOpen ? styles.triggerIconOpen : ''
+          )}
           aria-hidden="true"
         >
           keyboard_arrow_down

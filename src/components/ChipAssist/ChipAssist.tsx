@@ -1,3 +1,4 @@
+import { cx } from '../../utils/cx'
 import styles from './ChipAssist.module.css'
 
 export interface ChipAssistProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,19 +19,11 @@ export default function ChipAssist({
 }: ChipAssistProps) {
   const isDisabled = disabled || forceState === 'disabled'
 
-  const cls = [styles.chip, className ?? ''].filter(Boolean).join(' ')
+  const cls = cx(styles.chip, className ?? '')
 
   return (
-    <button
-      className={cls}
-      disabled={isDisabled}
-      data-state={forceState}
-      {...rest}
-    >
-      <span
-        className={`material-symbols-rounded icon-sm ${styles.icon}`}
-        aria-hidden="true"
-      >
+    <button className={cls} disabled={isDisabled} data-state={forceState} {...rest}>
+      <span className={`material-symbols-rounded icon-sm ${styles.icon}`} aria-hidden="true">
         {icon}
       </span>
       <span className={`type-caption-md ${styles.label}`}>{label}</span>

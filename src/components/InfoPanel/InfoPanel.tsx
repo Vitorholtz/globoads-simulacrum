@@ -1,4 +1,5 @@
 import type { InfoPanelType } from '../../tokens/infoPanel'
+import { cx } from '../../utils/cx'
 import styles from './InfoPanel.module.css'
 
 const ICON_MAP: Record<InfoPanelType, string> = {
@@ -8,7 +9,6 @@ const ICON_MAP: Record<InfoPanelType, string> = {
   critical: 'error',
 }
 
-
 interface InfoPanelProps {
   type?: InfoPanelType
   title?: string
@@ -16,13 +16,15 @@ interface InfoPanelProps {
   className?: string
 }
 
-export default function InfoPanel({ type = 'neutral', title, description, className }: InfoPanelProps) {
+export default function InfoPanel({
+  type = 'neutral',
+  title,
+  description,
+  className,
+}: InfoPanelProps) {
   return (
-    <div className={[styles.root, styles[type], className].filter(Boolean).join(' ')} role="note">
-      <span
-        className={`material-symbols-rounded icon-lg ${styles.icon}`}
-        aria-hidden="true"
-      >
+    <div className={cx(styles.root, styles[type], className)} role="note">
+      <span className={`material-symbols-rounded icon-lg ${styles.icon}`} aria-hidden="true">
         {ICON_MAP[type]}
       </span>
       <div className={styles.content}>
