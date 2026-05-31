@@ -31,10 +31,33 @@ function formatDate(date: Date | null | undefined): string {
   return `${d}/${m}/${y}`
 }
 
+function applyDateMask(value: string): string {
+  const d = value.replace(/\D/g, '').slice(0, 8)
+  if (d.length <= 2) return d
+  if (d.length <= 4) return `${d.slice(0, 2)}/${d.slice(2)}`
+  return `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}`
+}
+
+function parseDateString(text: string): Date | null {
+  if (text.length !== 10) return null
+  const [dd, mm, yyyy] = text.split('/')
+  const dv = parseInt(dd, 10), mv = parseInt(mm, 10) - 1, yv = parseInt(yyyy, 10)
+  if (isNaN(dv) || isNaN(mv) || isNaN(yv)) return null
+  const date = new Date(yv, mv, dv)
+  if (date.getFullYear() !== yv || date.getMonth() !== mv || date.getDate() !== dv) return null
+  return date
+}
+
 const ICON_CLS: Record<DatePickerSize, string> = {
   sm: 'icon-sm',
   md: 'icon-md',
   lg: 'icon-lg',
+}
+
+const INPUT_TYPE: Record<DatePickerSize, string> = {
+  sm: 'type-body-sm',
+  md: 'type-body-md',
+  lg: 'type-body-md',
 }
 
 export default function DatePicker({
@@ -56,12 +79,15 @@ export default function DatePicker({
   const inputId = id ?? generatedId
   const popupId = `${inputId}-popup`
   const containerRef = useRef<HTMLDivElement>(null)
-  const wrapperRef = useRef<HTMLButtonElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const popupRef = useRef<HTMLDivElement>(null)
+  const calendarBtnRef = useRef<HTMLButtonElement>(null)
 
   const [internalValue, setInternalValue] = useState<Date | null>(defaultValue ?? null)
+  const [inputText, setInputText] = useState<string>(() => formatDate(defaultValue ?? null))
   const [pendingDate, setPendingDate] = useState<Date | null>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [isLeaving, setIsLeaving] = useState(false)
   const [popupPos, setPopupPos] = useState<{ top: number; left: number; minWidth: number } | null>(
     null
   )
@@ -70,23 +96,41 @@ export default function DatePicker({
   const currentValue = isControlled ? value : internalValue
 
   const isDisabled = disabled || forceState === 'disabled'
-  const hasError = forceState === 'error' || (!!errorMessage && !forceState)
-  const isActive = forceState === 'active' || forceState === 'focus' || (!forceState && isOpen)
+  const hasTypedError = inputText.length === 10 && !parseDateString(inputText)
+  const hasError = forceState === 'error' || hasTypedError || (!!errorMessage && !forceState)
+  const displayError = hasTypedError && !errorMessage ? 'Data inválida' : errorMessage
+  const isActive = forceState === 'active' || forceState === 'focus' || (!forceState && isOpen && !isLeaving)
 
-  const displayValue = formatDate(currentValue)
+  useEffect(() => {
+    if (isControlled) setInputText(formatDate(value ?? null))
+  }, [isControlled, value])
 
   useEffect(() => {
     function handleOutsideClick(e: MouseEvent) {
       const target = e.target as Node
       const insideContainer = containerRef.current?.contains(target)
       const insidePopup = popupRef.current?.contains(target)
-      if (!insideContainer && !insidePopup) setIsOpen(false)
+      if (!insideContainer && !insidePopup) setIsLeaving(true)
     }
     if (isOpen) {
       document.addEventListener('mousedown', handleOutsideClick)
     }
     return () => document.removeEventListener('mousedown', handleOutsideClick)
   }, [isOpen])
+
+  // Move focus into the calendar when it opens.
+  // requestAnimationFrame defers until after the popup is in the DOM
+  // (useLayoutEffect sets popupPos → re-render → popup mounts → then rAF fires).
+  useEffect(() => {
+    if (!isOpen || isLeaving) return
+    const frame = requestAnimationFrame(() => {
+      const firstFocusable = popupRef.current?.querySelector<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+      firstFocusable?.focus()
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [isOpen, isLeaving])
 
   useLayoutEffect(() => {
     if (!isOpen || !wrapperRef.current) return
@@ -104,27 +148,47 @@ export default function DatePicker({
     }
   }, [isOpen])
 
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const masked = applyDateMask(e.target.value)
+    setInputText(masked)
+    const parsed = parseDateString(masked)
+    if (parsed) {
+      if (!isControlled) setInternalValue(parsed)
+      onChange?.(parsed)
+    } else if (masked === '') {
+      if (!isControlled) setInternalValue(null)
+      onChange?.(null)
+    }
+  }
+
   function handleCalendarChange(date: Date) {
     setPendingDate(date)
   }
 
   function handleConfirm() {
     if (pendingDate) {
+      setInputText(formatDate(pendingDate))
       if (!isControlled) setInternalValue(pendingDate)
       onChange?.(pendingDate)
     }
-    setIsOpen(false)
+    setIsLeaving(true)
   }
 
   function handleCancel() {
     setPendingDate(null)
-    setIsOpen(false)
+    setIsLeaving(true)
   }
 
   function handleToggle() {
     if (isDisabled || !!forceState) return
-    if (!isOpen) setPendingDate(currentValue ?? null)
-    setIsOpen((o) => !o)
+    if (isLeaving) { setIsLeaving(false); return }
+    if (isOpen) {
+      setIsLeaving(true)
+    } else {
+      const parsed = parseDateString(inputText)
+      setPendingDate(parsed ?? currentValue ?? null)
+      setIsOpen(true)
+    }
   }
 
   const rootCls = [styles.root, styles[size], isDisabled ? styles.disabled : '', className ?? '']
@@ -145,65 +209,71 @@ export default function DatePicker({
     <div className={rootCls} ref={containerRef}>
       <FieldLabel showLabel={showLabel} label={label} optional={optional} htmlFor={inputId} />
 
-      <button
-        id={inputId}
-        ref={wrapperRef}
-        type="button"
-        aria-expanded={isOpen}
-        aria-haspopup="dialog"
-        aria-controls={popupId}
-        className={wrapperCls}
-        data-state={wrapperStateAttr}
-        onClick={handleToggle}
-        disabled={isDisabled}
-        onKeyDown={(e) => {
-          if (e.key === 'Escape') setIsOpen(false)
-        }}
-      >
-        <span
-          className={[styles.inputText, displayValue ? styles.filled : '']
-            .filter(Boolean)
-            .join(' ')}
-        >
-          {displayValue || 'dd/mm/aa'}
-        </span>
+      <div ref={wrapperRef} className={wrapperCls} data-state={wrapperStateAttr}>
+        <input
+          id={inputId}
+          type="text"
+          className={`${INPUT_TYPE[size]} ${styles.inputField}`}
+          inputMode="numeric"
+          maxLength={10}
+          placeholder="DD/MM/AAAA"
+          value={inputText}
+          onChange={handleInputChange}
+          disabled={isDisabled}
+          readOnly={!!forceState}
+          tabIndex={!!forceState ? -1 : undefined}
+          aria-invalid={hasError || undefined}
+          onKeyDown={(e) => { if (e.key === 'Escape') setIsLeaving(true) }}
+        />
 
-        {hasError ? (
-          <>
-            <span
-              className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.calendarIcon} ${styles.errorCalendarIcon}`}
-              aria-hidden="true"
-            >
-              calendar_today
-            </span>
-            <span
-              className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.errorIcon}`}
-              aria-hidden="true"
-            >
-              error
-            </span>
-          </>
-        ) : (
+        {hasError && (
           <span
-            className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.calendarIcon}`}
+            className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.errorIcon}`}
+            aria-hidden="true"
+          >
+            error
+          </span>
+        )}
+
+        <button
+          ref={calendarBtnRef}
+          type="button"
+          className={styles.calendarBtn}
+          onClick={handleToggle}
+          disabled={isDisabled || !!forceState}
+          tabIndex={!!forceState ? -1 : undefined}
+          aria-expanded={isOpen && !isLeaving}
+          aria-haspopup="dialog"
+          aria-controls={popupId}
+          aria-label="Abrir calendário"
+        >
+          <span
+            className={`material-symbols-rounded ${ICON_CLS[size]} ${hasError ? styles.errorCalendarIcon : styles.calendarIcon}`}
             aria-hidden="true"
           >
             calendar_today
           </span>
-        )}
-      </button>
+        </button>
+      </div>
 
-      {isOpen &&
+      {(isOpen || isLeaving) &&
         !forceState &&
         popupPos &&
         createPortal(
           <div
             id={popupId}
             ref={popupRef}
-            className={styles.calendarPopup}
+            className={[styles.calendarPopup, isLeaving ? styles.calendarPopupLeaving : ''].filter(Boolean).join(' ')}
             style={{ position: 'fixed', top: popupPos.top, left: popupPos.left }}
             role="dialog"
             aria-modal="false"
+            onAnimationEnd={() => {
+              if (isLeaving) {
+                setIsLeaving(false)
+                setIsOpen(false)
+                calendarBtnRef.current?.focus()
+              }
+            }}
           >
             <Calendar
               size="sm"
@@ -217,7 +287,7 @@ export default function DatePicker({
           document.body
         )}
 
-      <FieldMessage helpText={helpText} errorMessage={errorMessage} hasError={hasError} />
+      <FieldMessage helpText={helpText} errorMessage={displayError} hasError={hasError} />
     </div>
   )
 }

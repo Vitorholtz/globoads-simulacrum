@@ -1,4 +1,9 @@
-﻿.root {
+﻿@keyframes motion-enter-right {
+  from { opacity: 0; transform: translateX(6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.root {
   position: relative;
   display: flex;
   gap: var(--spacing-025);
@@ -7,6 +12,10 @@
   border-radius: var(--border-radius-2xl);
   width: 100%;
   max-width: 360px;
+  animation-name: motion-enter-right;
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
 }
 
 
@@ -59,7 +68,7 @@
   background: var(--color-surface-ghost);
   cursor: pointer;
   color: var(--color-fill-inverse);
-  transition: background 0.12s ease;
+  transition: background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .closeBtn:hover {

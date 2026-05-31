@@ -39,7 +39,7 @@
 .descriptionIcon {
   display: block;
   color: var(--color-fill-tertiary);
-  transition: color 0.12s ease;
+  transition: color var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .descriptionBtn:hover .descriptionIcon,
@@ -66,8 +66,8 @@
   opacity: 0;
   transform: translateY(var(--spacing-050));
   transition:
-    opacity 0.15s ease,
-    transform 0.15s ease;
+    opacity var(--motion-duration-slow) var(--motion-easing-default),
+    transform var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .descriptionBtn:hover .tooltip,

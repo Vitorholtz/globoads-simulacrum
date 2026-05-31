@@ -21,7 +21,7 @@
     rgba(255, 255, 255, 0.6) 50%,
     transparent 100%
   );
-  animation: skeletonShimmer 1.6s ease-in-out infinite;
+  animation: skeletonShimmer 1.6s var(--motion-easing-in-out) infinite;
 }
 
 /* ── Shape variants ── */

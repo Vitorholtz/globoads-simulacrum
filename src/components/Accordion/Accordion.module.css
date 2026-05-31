@@ -26,7 +26,7 @@
   outline: none;
   position: relative;
   z-index: 1;
-  transition: background 0.12s ease, box-shadow 0.12s ease;
+  transition: background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .header:hover {
@@ -69,7 +69,7 @@
 .chevron {
   flex-shrink: 0;
   color: var(--color-fill-primary);
-  transition: transform 0.22s ease;
+  transition: transform var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .chevronOpen {
@@ -81,7 +81,7 @@
 .contentWrapper {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.22s ease;
+  transition: grid-template-rows var(--motion-duration-slow) var(--motion-easing-default);
   overflow: hidden;
   border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
 }

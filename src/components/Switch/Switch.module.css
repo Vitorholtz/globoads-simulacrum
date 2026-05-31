@@ -51,7 +51,7 @@
   padding: var(--spacing-025);
   flex-shrink: 0;
   background: var(--sw-track);
-  transition: background-color 120ms ease, box-shadow 120ms ease;
+  transition: background-color var(--motion-duration-base) var(--motion-easing-default);
   overflow: hidden;
   isolation: isolate;
 }
@@ -70,7 +70,7 @@
   pointer-events: none;
   color: var(--sw-track);
   opacity: 0;
-  transition: color 120ms ease;
+  transition: color var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .switch[data-behavior='checked'] .checkIcon {
@@ -88,7 +88,7 @@
   top: var(--spacing-025);
   left: var(--spacing-025);
   z-index: 1;
-  transition: left 150ms ease;
+  transition: left var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .switch[data-behavior='checked'] .thumb {
@@ -181,7 +181,7 @@
 .label {
   color: var(--color-fill-secondary);
   white-space: nowrap;
-  transition: color 120ms ease;
+  transition: color var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* Active state darkens the label */

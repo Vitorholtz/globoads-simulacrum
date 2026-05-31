@@ -14,7 +14,7 @@
   user-select: none;
   outline: none;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  transition: background var(--motion-duration-base) var(--motion-easing-default), box-shadow var(--motion-duration-base) var(--motion-easing-default), opacity var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* ── States (neutral only — no checked variant) ── */

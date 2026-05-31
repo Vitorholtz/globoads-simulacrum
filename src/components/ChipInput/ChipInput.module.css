@@ -10,7 +10,7 @@
   white-space: nowrap;
   color: var(--color-fill-secondary);
   -webkit-font-smoothing: antialiased;
-  transition: background 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease, opacity 0.12s ease;
+  transition: background var(--motion-duration-base) var(--motion-easing-default), filter var(--motion-duration-base) var(--motion-easing-default), opacity var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* ── Style-specific padding ── */

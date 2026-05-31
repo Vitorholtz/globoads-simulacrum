@@ -1,0 +1,159 @@
+import { useState } from 'react'
+import Button from '../../components/Button/Button'
+import PageHeader from '../../components/PageHeader/PageHeader'
+import Section from '../../components/Section/Section'
+import { MOTION_DURATION_TOKENS, MOTION_EASING_TOKENS, type DurationToken, type EasingToken } from '../../tokens/motion'
+import styles from './TransitionsPage.module.css'
+
+const DIRECTIONAL_DEMOS = [
+  { label: 'De cima', keyframe: 'motion-enter-top', icon: 'keyboard_arrow_down' },
+  { label: 'De baixo', keyframe: 'motion-enter-bottom', icon: 'keyboard_arrow_up' },
+  { label: 'Da esquerda', keyframe: 'motion-enter-left', icon: 'keyboard_arrow_right' },
+  { label: 'Da direita', keyframe: 'motion-enter-right', icon: 'keyboard_arrow_left' },
+]
+
+const USAGE_ROWS = [
+  { token: '--motion-duration-fast', ms: '100ms', use: 'Hover sutil: tabs, hyperlinks, células de calendário' },
+  { token: '--motion-duration-base', ms: '120ms', use: 'Hover, focus e active: botões, inputs, chips, cards' },
+  { token: '--motion-duration-slow', ms: '200ms', use: 'Mudanças estruturais: chevron, dropdown, accordion, entrada de painel' },
+  { token: '--motion-easing-default', ms: 'ease', use: 'Padrão para todas as transições de estado interativo' },
+  { token: '--motion-easing-out', ms: 'ease-out', use: 'Entrada de popovers, painéis e toasts' },
+  { token: '--motion-easing-in-out', ms: 'ease-in-out', use: 'Animações de loop: shimmer, loader pulsante' },
+  { token: '--motion-easing-linear', ms: 'linear', use: 'Rotação contínua de spinners' },
+]
+
+function DurationCard({ token }: { token: DurationToken }) {
+  return (
+    <div
+      className={styles.durationCard}
+      style={{ '--demo-duration': `var(${token.variable})` } as React.CSSProperties}
+    >
+      <div className={styles.cardPreview}>
+        <div className={styles.demoTrack}>
+          <div className={styles.demoBlock} />
+        </div>
+      </div>
+      <div className={styles.cardBody}>
+        <div className={styles.tokenMeta}>
+          <code className={`type-body-sm ${styles.tokenVar}`}>{token.variable}</code>
+          <span className={`type-body-sm ${styles.tokenMs}`}>{token.valueMs}ms</span>
+        </div>
+        <p className={`type-body-sm ${styles.tokenDesc}`}>{token.description}</p>
+      </div>
+    </div>
+  )
+}
+
+function EasingCard({ token }: { token: EasingToken }) {
+  return (
+    <div
+      className={styles.easingCard}
+      style={{ '--demo-easing': `var(${token.variable})` } as React.CSSProperties}
+    >
+      <div className={styles.cardPreview}>
+        <div className={styles.demoTrack}>
+          <div className={styles.easingBlock} />
+        </div>
+      </div>
+      <div className={styles.cardBody}>
+        <div className={styles.tokenMeta}>
+          <code className={`type-body-sm ${styles.tokenVar}`}>{token.variable}</code>
+          <span className={`type-body-sm ${styles.tokenMs}`}>{token.value}</span>
+        </div>
+        <p className={`type-body-sm ${styles.tokenDesc}`}>{token.description}</p>
+      </div>
+    </div>
+  )
+}
+
+function EntranceCard({ label, keyframe, icon }: (typeof DIRECTIONAL_DEMOS)[number]) {
+  const [animKey, setAnimKey] = useState(0)
+
+  return (
+    <div className={styles.entranceCard}>
+      <div className={styles.entranceStage}>
+        <div
+          key={animKey}
+          className={styles.entranceBlock}
+          style={{ animationName: keyframe } as React.CSSProperties}
+        />
+      </div>
+      <div className={styles.entranceBody}>
+        <Button
+          variant="secondary"
+          iconLeft={icon}
+          className={styles.entranceBtn}
+          onClick={() => setAnimKey((k) => k + 1)}
+        >
+          {label}
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+export default function TransitionsPage() {
+  return (
+    <div>
+      <PageHeader
+        breadcrumb="Foundation"
+        title="Transições"
+        subtitle="Tokens de duração e easing que governam todas as animações e transições do Design System. Componentes referenciam esses tokens — nunca valores literais."
+        stats={[
+          { value: MOTION_DURATION_TOKENS.length, label: 'tokens de duração' },
+          { value: MOTION_EASING_TOKENS.length, label: 'funções de easing' },
+        ]}
+      />
+
+      <Section icon="timer" title="Duração" count={`${MOTION_DURATION_TOKENS.length} tokens`}>
+        <p className={`type-body-sm ${styles.sectionNote}`}>
+          Passe o mouse sobre cada card para visualizar a duração.
+        </p>
+        <div className={styles.tokenGrid}>
+          {MOTION_DURATION_TOKENS.map((token) => (
+            <DurationCard key={token.variable} token={token} />
+          ))}
+        </div>
+      </Section>
+
+      <Section icon="show_chart" title="Easing" count={`${MOTION_EASING_TOKENS.length} funções`}>
+        <p className={`type-body-sm ${styles.sectionNote}`}>
+          Mesma duração (200ms), curvas diferentes. Passe o mouse para comparar.
+        </p>
+        <div className={styles.tokenGrid}>
+          {MOTION_EASING_TOKENS.map((token) => (
+            <EasingCard key={token.variable} token={token} />
+          ))}
+        </div>
+      </Section>
+
+      <Section icon="animation" title="Entradas direcionais" count="4 keyframes">
+        <p className={`type-body-sm ${styles.sectionNote}`}>
+          Keyframes globais para componentes renderizados condicionalmente. Clique para reproduzir.
+        </p>
+        <div className={styles.entranceGrid}>
+          {DIRECTIONAL_DEMOS.map((demo) => (
+            <EntranceCard key={demo.keyframe} {...demo} />
+          ))}
+        </div>
+      </Section>
+
+      <Section icon="book_2" title="Guia de uso">
+        <div className={styles.usageTable}>
+          <div className={styles.usageHeader}>
+            <span className={`type-body-sm ${styles.usageColToken}`}>Token</span>
+            <span className={`type-body-sm ${styles.usageColValue}`}>Valor</span>
+            <span className="type-body-sm">Quando usar</span>
+          </div>
+          {USAGE_ROWS.map((row) => (
+            <div key={row.token} className={styles.usageRow}>
+              <code className={`type-body-sm ${styles.usageToken}`}>{row.token}</code>
+              <span className={`type-body-sm ${styles.usageValue}`}>{row.ms}</span>
+              <span className={`type-body-sm ${styles.usageUse}`}>{row.use}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
+    </div>
+  )
+}

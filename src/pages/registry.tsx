@@ -1,10 +1,12 @@
 import type { ComponentType } from 'react'
 import {
+  PlaygroundPage,
   ColorsPage,
   TypographyPage,
   IconsPage,
   DimensionsEffectsPage,
   EffectsPage,
+  TransitionsPage,
   ButtonPage,
   DangerButtonPage,
   StaticCardPage,
@@ -49,6 +51,7 @@ import {
  */
 
 export const CATEGORIES = [
+  'Playground',
   'Foundation',
   'Actions',
   'Structures',
@@ -81,12 +84,16 @@ export interface PageDef {
 }
 
 export const PAGES: PageDef[] = [
+  // ── Playground ──
+  { path: '/playground', label: 'Playground', icon: 'science', category: 'Playground', component: PlaygroundPage },
+
   // ── Foundation ──
   { path: '/colors',      label: 'Colors',      icon: 'palette',      category: 'Foundation', component: ColorsPage },
   { path: '/typography',  label: 'Typography',  icon: 'format_size',  category: 'Foundation', component: TypographyPage },
   { path: '/icons',       label: 'Iconography', icon: 'grid_view',    category: 'Foundation', component: IconsPage },
   { path: '/dimensions',  label: 'Dimensões',   icon: 'straighten',   category: 'Foundation', component: DimensionsEffectsPage },
   { path: '/effects',     label: 'Efeitos',     icon: 'auto_awesome', category: 'Foundation', component: EffectsPage },
+  { path: '/transitions', label: 'Transições',  icon: 'animation',    category: 'Foundation', component: TransitionsPage },
 
   // ── Actions ──
   { path: '/button',        label: 'Button',          icon: 'smart_button', category: 'Actions', component: ButtonPage },

@@ -5,6 +5,7 @@ import {
   TEXT_FIELD_GUIDELINES,
   TEXT_FIELD_MATRIX_STATES,
   TEXT_FIELD_MATRIX_COLS,
+  TEXT_FIELD_MASKS,
 } from '../../tokens/textField'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
@@ -22,7 +23,7 @@ export default function TextFieldPage() {
         stats={[
           { value: 3, label: 'Tamanhos' },
           { value: 5, label: 'Estados' },
-          { value: 2, label: 'Estilos' },
+          { value: TEXT_FIELD_MASKS.length, label: 'Máscaras' },
         ]}
       />
 
@@ -197,6 +198,24 @@ export default function TextFieldPage() {
               </span>
             </div>
           </div>
+        </div>
+      </Section>
+
+      {/* ── Máscaras de Entrada ── */}
+      <Section icon="pin" title="Máscaras de Entrada" count={`${TEXT_FIELD_MASKS.length} formatos`}>
+        <div className={styles.maskGrid}>
+          {TEXT_FIELD_MASKS.map((m) => (
+            <div key={m.id} className={styles.maskCard}>
+              <div className={styles.maskPreview}>
+                <TextField label={m.label} placeholder={m.placeholder} mask={m.id} size="md" />
+              </div>
+              <div className={styles.maskBody}>
+                <span className={`type-body-sm ${styles.maskName}`}>{m.label}</span>
+                <span className={`type-caption-sm ${styles.maskDesc}`}>{m.description}</span>
+                <span className={`type-caption-sm ${styles.maskExample}`}>Ex: {m.example}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </Section>
 

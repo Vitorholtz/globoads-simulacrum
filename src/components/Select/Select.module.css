@@ -16,9 +16,8 @@
   border: var(--border-width-sm) solid var(--color-border-primary);
   border-radius: var(--border-radius-lg);
   transition:
-    border-color 0.12s ease,
-    box-shadow 0.12s ease,
-    background 0.12s ease;
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* Hover — real */
@@ -126,7 +125,7 @@
 .chevronIcon {
   color: var(--color-fill-primary);
   display: block;
-  transition: transform 0.15s ease;
+  transition: transform var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .chevronOpen {
@@ -156,9 +155,9 @@
   visibility: hidden;
   pointer-events: none;
   transition:
-    opacity 0.15s ease,
-    transform 0.15s ease,
-    visibility 0.15s ease;
+    opacity var(--motion-duration-slow) var(--motion-easing-default),
+    transform var(--motion-duration-slow) var(--motion-easing-default),
+    visibility var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .dropdownOpen {
@@ -169,6 +168,51 @@
 }
 
 /* ── Listbox & options ── */
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  padding: var(--spacing-075) var(--spacing-100);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  margin-bottom: var(--spacing-050);
+}
+
+.searchIcon {
+  color: var(--color-fill-tertiary);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-fill-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.searchInput::placeholder {
+  color: var(--color-fill-tertiary);
+}
+
+.listboxScroll {
+  max-height: var(--spacing-2400);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-tertiary) transparent;
+}
+
+.listboxScroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.listboxScroll::-webkit-scrollbar-thumb {
+  background: var(--color-border-tertiary);
+  border-radius: var(--border-radius-full);
+}
 
 .listbox {
   list-style: none;
@@ -188,7 +232,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: background 0.1s ease;
+  transition: background var(--motion-duration-fast) var(--motion-easing-default);
   border: var(--border-width-md) solid transparent;
   -webkit-font-smoothing: antialiased;
 }
@@ -200,6 +244,10 @@
 .optionSelected {
   background: var(--color-luminosity-dark-ghost-subtle);
   border-color: rgba(24, 92, 251, 0.8);
+}
+
+.optionHighlighted {
+  background: var(--color-action-solid-ghost-hover);
 }
 
 /* ── Help text ── */

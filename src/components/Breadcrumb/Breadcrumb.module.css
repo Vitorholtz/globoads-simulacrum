@@ -29,7 +29,6 @@
 /* ── Link (itens anteriores) ── */
 
 .link {
-  transition: box-shadow 120ms ease;
   font-weight: var(--font-weight-medium);
   color: var(--color-fill-accent);
   background: none;

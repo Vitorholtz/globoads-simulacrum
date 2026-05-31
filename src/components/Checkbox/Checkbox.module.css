@@ -73,7 +73,7 @@
   height: 16px;
   border-radius: var(--border-radius-sm);
   z-index: 1;
-  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, border-width 80ms ease;
+  transition: background-color var(--motion-duration-base) var(--motion-easing-default), border-color var(--motion-duration-base) var(--motion-easing-default), border-width var(--motion-duration-fast) var(--motion-easing-default);
 }
 
 /* ════════════════════════════════════

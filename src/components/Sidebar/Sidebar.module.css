@@ -77,8 +77,8 @@
   cursor: pointer;
   border-radius: var(--border-radius-md);
   transition:
-    background 0.12s ease,
-    color 0.12s ease;
+    background var(--motion-duration-base) var(--motion-easing-default),
+    color var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .navItemInner {
@@ -89,7 +89,7 @@
 
 .navIcon {
   color: var(--color-fill-secondary);
-  transition: color 0.12s ease;
+  transition: color var(--motion-duration-base) var(--motion-easing-default);
   flex-shrink: 0;
   user-select: none;
 }

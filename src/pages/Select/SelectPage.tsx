@@ -6,6 +6,7 @@ import {
   SELECT_MATRIX_STATES,
   SELECT_MATRIX_COLS,
   SELECT_DEMO_OPTIONS,
+  SELECT_DEMO_OPTIONS_LONG,
 } from '../../tokens/select'
 import type { SelectSizeDef } from '../../tokens/select'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
@@ -198,6 +199,41 @@ export default function SelectPage() {
               <span className={`type-caption-sm ${styles.configDesc}`}>
                 Campo inicializado com um valor padrão já selecionado. Útil quando uma opção é a
                 mais comum ou recomendada.
+              </span>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── Muitas opções ── */}
+      <Section icon="list" title="Muitas opções">
+        <div className={styles.manyOptionsGrid}>
+          <div className={styles.configCard}>
+            <div className={styles.configPreview}>
+              <Select options={SELECT_DEMO_OPTIONS_LONG} placeholder="Selecione o formato" />
+            </div>
+            <div className={styles.configBody}>
+              <span className={`type-body-sm ${styles.configName}`}>Com scroll</span>
+              <span className={`type-caption-sm ${styles.configDesc}`}>
+                Quando a lista excede a altura máxima do dropdown, as opções ficam acessíveis via
+                scroll. Sempre ativo — não requer configuração extra.
+              </span>
+            </div>
+          </div>
+
+          <div className={styles.configCard}>
+            <div className={styles.configPreview}>
+              <Select
+                options={SELECT_DEMO_OPTIONS_LONG}
+                placeholder="Selecione o formato"
+                searchable
+              />
+            </div>
+            <div className={styles.configBody}>
+              <span className={`type-body-sm ${styles.configName}`}>Pesquisável</span>
+              <span className={`type-caption-sm ${styles.configDesc}`}>
+                A prop <strong>searchable</strong> adiciona um campo de busca no topo do dropdown
+                que filtra as opções em tempo real. Recomendado a partir de 8 itens.
               </span>
             </div>
           </div>

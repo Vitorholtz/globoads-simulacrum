@@ -57,7 +57,7 @@
   border-radius: var(--border-radius-full);
   background: var(--color-surface-primary);
   box-sizing: border-box;
-  transition: border-color 120ms ease, border-width 80ms ease, box-shadow 120ms ease;
+  transition: border-color var(--motion-duration-base) var(--motion-easing-default), border-width var(--motion-duration-fast) var(--motion-easing-default);
 }
 
 /* ════════════════════════════════════

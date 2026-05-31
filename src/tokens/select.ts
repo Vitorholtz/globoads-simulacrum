@@ -85,8 +85,8 @@ export const SELECT_STATES: StateDef<string>[] = [
 export const SELECT_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para listas de opções fixas',
-    body: 'O Select é indicado quando o usuário deve escolher entre um conjunto predefinido de opções. Evite usá-lo para listas muito longas — nesse caso, considere uma busca ou autocomplete.',
-    rule: 'Use Select quando houver entre 3 e 10 opções bem definidas.',
+    body: 'O Select é indicado quando o usuário deve escolher entre um conjunto predefinido de opções. Para listas com 8 ou mais itens, ative a prop searchable para que o usuário filtre sem precisar percorrer toda a lista.',
+    rule: 'Use Select para até 7 opções; ative searchable a partir de 8.',
   },
   {
     title: 'Sempre use uma label descritiva',
@@ -128,4 +128,22 @@ export const SELECT_DEMO_OPTIONS: SelectOption[] = [
   { value: 'item-2', label: 'Item 2' },
   { value: 'item-3', label: 'Item 3' },
   { value: 'item-4', label: 'Item 4' },
+]
+
+export const SELECT_DEMO_OPTIONS_LONG: SelectOption[] = [
+  { value: 'display', label: 'Display' },
+  { value: 'video', label: 'Vídeo' },
+  { value: 'search', label: 'Search' },
+  { value: 'social', label: 'Social' },
+  { value: 'native', label: 'Native' },
+  { value: 'programmatic', label: 'Programático' },
+  { value: 'sponsorship', label: 'Patrocínio' },
+  { value: 'branded-content', label: 'Branded Content' },
+  { value: 'influencer', label: 'Influenciadores' },
+  { value: 'audio', label: 'Áudio' },
+  { value: 'ooh', label: 'OOH / DOOH' },
+  { value: 'connected-tv', label: 'Connected TV' },
+  { value: 'email', label: 'E-mail Marketing' },
+  { value: 'push', label: 'Push Notification' },
+  { value: 'sms', label: 'SMS' },
 ]

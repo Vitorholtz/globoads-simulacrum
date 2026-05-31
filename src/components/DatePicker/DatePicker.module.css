@@ -1,4 +1,4 @@
-﻿/* ── Root ── */
+/* ── Root ── */
 
 .root {
   display: flex;
@@ -17,18 +17,13 @@
   align-items: center;
   gap: var(--spacing-100);
   width: 100%;
-  padding: 0;
-  text-align: left;
   background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-primary);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  cursor: pointer;
-  outline: none;
   transition:
-    border-color 0.12s ease,
-    box-shadow 0.12s ease,
-    background 0.12s ease;
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* Hover — real */
@@ -54,6 +49,12 @@
   box-shadow: var(--outline-focus-out);
 }
 
+/* Focus — real (input inside focused) */
+.inputWrapper:focus-within:not([data-state]):not(.isActive):not(.hasError) {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
+}
+
 /* Error */
 .inputWrapper.hasError,
 .inputWrapper[data-state='error'] {
@@ -64,13 +65,6 @@
 /* Disabled forced */
 .inputWrapper[data-state='disabled'] {
   background: var(--color-surface-tertiary);
-  cursor: not-allowed;
-}
-
-/* Keyboard focus ring */
-.inputWrapper:focus-visible:not([data-state]):not(.isActive):not(.hasError) {
-  border-color: var(--color-fill-accent);
-  box-shadow: var(--outline-focus-out);
 }
 
 /* ── Disabled root ── */
@@ -82,25 +76,61 @@
 
 .disabled .inputWrapper {
   background: var(--color-surface-tertiary);
-  cursor: not-allowed;
 }
 
-/* ── Input text display ── */
+/* ── Input field ── */
 
-.inputText {
+.inputField {
   flex: 1;
   min-width: 0;
-  font-family: var(--font-family-sans);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-fill-tertiary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  pointer-events: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-fill-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-.inputText.filled {
-  color: var(--color-fill-primary);
+.inputField::placeholder {
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Calendar icon button ── */
+
+.calendarBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.calendarBtn::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--spacing-050) * -1);
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-default),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.calendarBtn:hover::before {
+  background: var(--color-luminosity-dark-ghost-subtle);
+}
+
+.calendarBtn:focus-visible::before {
+  background: var(--color-luminosity-dark-ghost-subtle);
+  box-shadow: var(--outline-focus-out);
+}
+
+.calendarBtn:disabled {
+  cursor: not-allowed;
 }
 
 /* ── Icons ── */
@@ -109,7 +139,6 @@
   flex-shrink: 0;
   color: var(--color-fill-secondary);
   display: block;
-  pointer-events: none;
 }
 
 .errorCalendarIcon {
@@ -125,15 +154,14 @@
 
 /* ── Calendar popup ── */
 
-@keyframes calendarIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+@keyframes motion-enter-top {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes motion-exit-top {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-6px); }
 }
 
 .calendarPopup {
@@ -143,8 +171,18 @@
   box-shadow: var(--shadows-high);
   overflow: hidden;
   background: var(--color-surface-primary);
-  animation: calendarIn 0.14s ease-out;
-  transform: translateX(-50%);
+  translate: -50% 0;
+  animation-name: motion-enter-top;
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.calendarPopupLeaving {
+  pointer-events: none;
+  animation-name: motion-exit-top;
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
 }
 
 /* ── Help / Error text ── */
@@ -159,29 +197,14 @@
   padding: var(--spacing-075) var(--spacing-100);
 }
 
-.sm .inputText {
-  font-size: var(--font-size-087);
-  line-height: var(--line-height-125);
-}
-
 /* MD */
 
 .md .inputWrapper {
   padding: var(--spacing-100) var(--spacing-150);
 }
 
-.md .inputText {
-  font-size: var(--font-size-100);
-  line-height: var(--line-height-150);
-}
-
 /* LG */
 
 .lg .inputWrapper {
   padding: var(--spacing-150);
-}
-
-.lg .inputText {
-  font-size: var(--font-size-100);
-  line-height: var(--line-height-150);
 }

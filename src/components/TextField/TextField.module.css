@@ -20,9 +20,8 @@
   overflow: hidden;
   cursor: text;
   transition:
-    border-color 0.12s ease,
-    box-shadow 0.12s ease,
-    background 0.12s ease;
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* Hover — real */

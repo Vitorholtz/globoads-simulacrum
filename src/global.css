@@ -306,6 +306,19 @@
 
    /* ── Opacity tokens ── */
    --opacity-disabled: 0.48;
+
+   /* ── Motion tokens ──
+      3 durações e 4 curvas de easing para todas as transições e animações do DS.
+      Componentes referenciam esses tokens — nunca valores literais. */
+
+   --motion-duration-fast: 100ms;
+   --motion-duration-base: 120ms;
+   --motion-duration-slow: 200ms;
+
+   --motion-easing-default: ease;
+   --motion-easing-out:     ease-out;
+   --motion-easing-in-out:  ease-in-out;
+   --motion-easing-linear:  linear;
 }
 
 
@@ -576,4 +589,32 @@ body {
 /* Modifier — deve vir após as classes de tamanho para a cascade funcionar. */
 .icon-filled {
    font-variation-settings: var(--font-variation-filled);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   MOTION — Keyframes de entrada direcional
+   Usados em componentes renderizados condicionalmente (aparecem/
+   desaparecem do DOM). Combinam fade de opacity com deslocamento
+   de 6px. Consumidos via: animation: motion-enter-* var(--motion-duration-slow) var(--motion-easing-out)
+───────────────────────────────────────────────────────────── */
+
+@keyframes motion-enter-top {
+   from { opacity: 0; transform: translateY(-6px); }
+   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes motion-enter-bottom {
+   from { opacity: 0; transform: translateY(6px); }
+   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes motion-enter-left {
+   from { opacity: 0; transform: translateX(-6px); }
+   to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes motion-enter-right {
+   from { opacity: 0; transform: translateX(6px); }
+   to   { opacity: 1; transform: translateX(0); }
 }

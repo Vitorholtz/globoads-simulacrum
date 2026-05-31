@@ -29,7 +29,7 @@
   color: var(--color-fill-accent);
   border-radius: var(--border-radius-xs);
   outline: none;
-  transition: color 0.18s ease;
+  transition: color var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .trigger:hover { color: var(--color-action-solid-fill-hover); }
@@ -53,7 +53,7 @@
 .triggerText {
   text-decoration: underline;
   text-decoration-color: transparent;
-  transition: text-decoration-color 0.18s ease;
+  transition: text-decoration-color var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .trigger:hover .triggerText,
@@ -70,7 +70,7 @@
 .triggerIcon {
   flex-shrink: 0;
   display: block;
-  transition: transform 0.22s ease;
+  transition: transform var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .triggerIconOpen {

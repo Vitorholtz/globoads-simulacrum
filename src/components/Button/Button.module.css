@@ -16,7 +16,7 @@
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
   outline: none;
-  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  transition: background var(--motion-duration-base) var(--motion-easing-default), opacity var(--motion-duration-base) var(--motion-easing-default);
   line-height: var(--line-height-icon);
 }
 
@@ -84,7 +84,7 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.18s ease;
+  transition: opacity var(--motion-duration-slow) var(--motion-easing-default);
   pointer-events: none;
 }
 

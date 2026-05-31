@@ -25,13 +25,41 @@
   gap: var(--spacing-050);
 }
 
-.monthLabel {
+.headerCenter {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monthLabel {
   color: var(--color-fill-primary);
-  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.monthLabelBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-025);
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--spacing-050) var(--spacing-100);
+  color: var(--color-fill-primary);
+  border-radius: var(--border-radius-md);
+  transition: background var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.monthLabelBtn:hover {
+  background: var(--color-luminosity-dark-ghost-subtle);
+}
+
+.monthLabelBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--outline-focus-out);
 }
 
 /* ── Weekdays row ── */
@@ -134,12 +162,17 @@
   color: var(--color-fill-accent);
   position: relative;
   z-index: 1;
-  transition: background 0.1s ease;
+  transition: background var(--motion-duration-fast) var(--motion-easing-default);
   flex-shrink: 0;
 }
 
 .day:hover {
   background: var(--color-action-solid-ghost-hover);
+}
+
+.day:focus-visible {
+  outline: none;
+  box-shadow: var(--outline-focus-out);
 }
 
 .day:active {
@@ -193,6 +226,51 @@
 
 .dayHoverEnd:hover {
   background: rgba(24, 92, 251, 0.24);
+}
+
+/* ── Year / Month picker grid ── */
+
+.yearMonthGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-050);
+  padding: var(--spacing-050) 0;
+}
+
+.pickerCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border: none;
+  background: var(--color-surface-ghost);
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  color: var(--color-fill-accent);
+  transition: background var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.pickerCell:hover {
+  background: var(--color-action-solid-ghost-hover);
+}
+
+.pickerCell:focus-visible {
+  outline: none;
+  box-shadow: var(--outline-focus-out);
+}
+
+.pickerCell:active {
+  background: var(--color-action-solid-ghost-active);
+}
+
+.pickerCellSelected {
+  background: var(--color-fill-accent);
+  color: var(--color-fill-inverse);
+  font-weight: var(--font-weight-semibold);
+}
+
+.pickerCellSelected:hover {
+  background: var(--color-action-solid-fill-hover);
 }
 
 /* ── Footer (Cancelar / Confirmar) ── */

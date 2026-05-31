@@ -2,9 +2,55 @@ import { useState, useId } from 'react'
 import styles from './TextField.module.css'
 import FieldLabel from '../FieldLabel/FieldLabel'
 import FieldMessage from '../FieldMessage/FieldMessage'
-import type { TextFieldSize } from '../../tokens/textField'
+import type { TextFieldSize, TextFieldMask } from '../../tokens/textField'
 
-export type { TextFieldSize }
+export type { TextFieldSize, TextFieldMask }
+
+function applyMask(value: string, mask: TextFieldMask): string {
+  const d = value.replace(/\D/g, '')
+  switch (mask) {
+    case 'cpf': {
+      const s = d.slice(0, 11)
+      if (s.length <= 3) return s
+      if (s.length <= 6) return `${s.slice(0, 3)}.${s.slice(3)}`
+      if (s.length <= 9) return `${s.slice(0, 3)}.${s.slice(3, 6)}.${s.slice(6)}`
+      return `${s.slice(0, 3)}.${s.slice(3, 6)}.${s.slice(6, 9)}-${s.slice(9)}`
+    }
+    case 'cnpj': {
+      const s = d.slice(0, 14)
+      if (s.length <= 2) return s
+      if (s.length <= 5) return `${s.slice(0, 2)}.${s.slice(2)}`
+      if (s.length <= 8) return `${s.slice(0, 2)}.${s.slice(2, 5)}.${s.slice(5)}`
+      if (s.length <= 12) return `${s.slice(0, 2)}.${s.slice(2, 5)}.${s.slice(5, 8)}/${s.slice(8)}`
+      return `${s.slice(0, 2)}.${s.slice(2, 5)}.${s.slice(5, 8)}/${s.slice(8, 12)}-${s.slice(12)}`
+    }
+    case 'phone': {
+      const s = d.slice(0, 11)
+      if (s.length === 0) return ''
+      if (s.length <= 2) return `(${s}`
+      const area = s.slice(0, 2)
+      const rest = s.slice(2)
+      if (s.length <= 6) return `(${area}) ${rest}`
+      if (s.length <= 10) return `(${area}) ${rest.slice(0, 4)}-${rest.slice(4)}`
+      return `(${area}) ${rest.slice(0, 5)}-${rest.slice(5)}`
+    }
+    case 'cep': {
+      const s = d.slice(0, 8)
+      if (s.length <= 5) return s
+      return `${s.slice(0, 5)}-${s.slice(5)}`
+    }
+    case 'date': {
+      const s = d.slice(0, 8)
+      if (s.length <= 2) return s
+      if (s.length <= 4) return `${s.slice(0, 2)}/${s.slice(2)}`
+      return `${s.slice(0, 2)}/${s.slice(2, 4)}/${s.slice(4)}`
+    }
+  }
+}
+
+const MASK_MAX_LENGTH: Record<TextFieldMask, number> = {
+  cpf: 14, cnpj: 18, phone: 15, cep: 9, date: 10,
+}
 
 export interface TextFieldProps {
   size?: TextFieldSize
@@ -25,6 +71,7 @@ export interface TextFieldProps {
   defaultValue?: string
   disabled?: boolean
   readOnly?: boolean
+  mask?: TextFieldMask
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   className?: string
 }
@@ -64,6 +111,7 @@ export default function TextField({
   defaultValue,
   disabled,
   readOnly,
+  mask,
   onChange,
   className,
 }: TextFieldProps) {
@@ -82,7 +130,9 @@ export default function TextField({
   const showClear = currentValue !== '' && (forceState === 'focus' || (!forceState && isFocused))
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!isControlled) setInternalValue(e.target.value)
+    const next = mask ? applyMask(e.target.value, mask) : e.target.value
+    if (!isControlled) setInternalValue(next)
+    if (mask) e.target.value = next
     onChange?.(e)
   }
 
@@ -123,6 +173,8 @@ export default function TextField({
           name={name}
           className={`${INPUT_TYPE[size]} ${styles.input}`}
           type="text"
+          inputMode={mask ? 'numeric' : undefined}
+          maxLength={mask ? MASK_MAX_LENGTH[mask] : undefined}
           placeholder={placeholder}
           value={isControlled ? value : internalValue}
           onChange={handleChange}

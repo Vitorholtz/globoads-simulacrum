@@ -11,7 +11,7 @@
   text-align: left;
   width: 100%;
   outline: none;
-  transition: box-shadow 0.12s ease;
+  transition: box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .onSecondary {

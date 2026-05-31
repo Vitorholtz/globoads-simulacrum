@@ -1,10 +1,12 @@
 import { lazy } from 'react'
 
+export const PlaygroundPage          = lazy(() => import('./Playground/PlaygroundPage'))
 export const ColorsPage            = lazy(() => import('./Colors/ColorsPage'))
 export const TypographyPage        = lazy(() => import('./Typography/TypographyPage'))
 export const IconsPage             = lazy(() => import('./Icons/IconsPage'))
 export const DimensionsEffectsPage = lazy(() => import('./DimensionsEffects/DimensionsEffectsPage'))
 export const EffectsPage           = lazy(() => import('./Effects/EffectsPage'))
+export const TransitionsPage       = lazy(() => import('./Transitions/TransitionsPage'))
 export const ButtonPage            = lazy(() => import('./Button/ButtonPage'))
 export const DangerButtonPage      = lazy(() => import('./DangerButton/DangerButtonPage'))
 export const StaticCardPage        = lazy(() => import('./StaticCard/StaticCardPage'))

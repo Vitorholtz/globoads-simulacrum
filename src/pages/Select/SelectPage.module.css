@@ -183,4 +183,12 @@
   color: var(--color-fill-secondary);
 }
 
-/* ── Guidelines ── */
+/* ── Many options (2-col to give the dropdown enough width) ── */
+
+.manyOptionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-200);
+}
+
+/* Guidelines ── */

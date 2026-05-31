@@ -58,8 +58,7 @@
   outline: none;
   transition:
     opacity 0.12s ease,
-    transform 0.1s ease,
-    box-shadow 0.12s ease;
+    transform 0.1s ease;
 }
 
 .triggerBtn:hover {
@@ -153,21 +152,30 @@
 
 /* ── Toast portal (fixed overlay) ── */
 
+@keyframes motion-enter-right {
+  from { opacity: 0; transform: translateX(6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes motion-exit-right {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(6px); }
+}
+
 .toastPortal {
   position: fixed;
   top: var(--spacing-300);
   right: var(--spacing-300);
   z-index: 9000;
-  animation: toastIn 0.25s ease-out forwards;
+  animation-name: motion-enter-right;
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
 }
 
-@keyframes toastIn {
-  from {
-    opacity: 0;
-    transform: translateX(48px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.leaving {
+  animation-name: motion-exit-right;
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
 }

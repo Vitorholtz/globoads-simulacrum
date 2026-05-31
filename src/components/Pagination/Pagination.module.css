@@ -27,7 +27,7 @@
   border-radius: var(--border-radius-lg);
   background: var(--color-surface-ghost);
   cursor: pointer;
-  transition: background 120ms ease, box-shadow 120ms ease;
+  transition: background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .chevronIcon {
@@ -87,7 +87,6 @@
   color: var(--color-fill-primary);
   text-align: center;
   outline: none;
-  transition: box-shadow 120ms ease;
 }
 
 .pageInput:focus {
@@ -113,7 +112,7 @@
   background: var(--color-surface-ghost);
   color: var(--color-fill-secondary);
   cursor: pointer;
-  transition: background 120ms ease, box-shadow 120ms ease;
+  transition: background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .pageBtn:hover {

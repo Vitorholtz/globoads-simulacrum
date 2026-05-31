@@ -27,20 +27,36 @@ interface ActiveToast {
 }
 
 const DISMISS_MS = 4000
+const EXIT_MS = 250
 
 export default function ToastPage() {
   const [active, setActive] = useState<ActiveToast | null>(null)
+  const [leaving, setLeaving] = useState(false)
   const uidRef = useRef(0)
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const dismiss = useCallback(() => setActive(null), [])
+  const startExit = useCallback(() => {
+    setLeaving(true)
+    leaveTimerRef.current = setTimeout(() => {
+      setActive(null)
+      setLeaving(false)
+    }, EXIT_MS)
+  }, [])
 
   useEffect(() => {
     if (!active) return
-    const timer = setTimeout(dismiss, DISMISS_MS)
+    const timer = setTimeout(startExit, DISMISS_MS)
     return () => clearTimeout(timer)
-  }, [active, dismiss])
+  }, [active, startExit])
+
+  useEffect(() => () => { if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current) }, [])
 
   function trigger(type: ToastType) {
+    if (leaveTimerRef.current) {
+      clearTimeout(leaveTimerRef.current)
+      leaveTimerRef.current = null
+    }
+    setLeaving(false)
     uidRef.current += 1
     setActive({ type, uid: uidRef.current })
   }
@@ -182,12 +198,15 @@ export default function ToastPage() {
 
       {/* ── Toast portal ── */}
       {active && activeVariant && (
-        <div key={active.uid} className={styles.toastPortal}>
+        <div
+          key={active.uid}
+          className={[styles.toastPortal, leaving && styles.leaving].filter(Boolean).join(' ')}
+        >
           <Toast
             type={active.type}
             title={activeVariant.exampleTitle}
             description={activeVariant.exampleDescription}
-            onClose={dismiss}
+            onClose={startExit}
           />
         </div>
       )}
