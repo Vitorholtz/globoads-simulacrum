@@ -1,73 +1,69 @@
-# React + TypeScript + Vite
+# Globo Ads Simulacrum
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Design-system documentation app for Globo Ads — a Storybook-like reference built with React + Vite, no UI libraries.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+|           |                                            |
+| --------- | ------------------------------------------ |
+| Framework | React 19 + React Router v7                 |
+| Build     | Vite 8 + TypeScript 6                      |
+| Styles    | CSS Modules (no Tailwind, no UI library)   |
+| Tests     | Vitest + Testing Library (55 tests)        |
+| Linting   | ESLint + Stylelint + Prettier              |
+| CI        | GitHub Actions (tsc → lint → test → build) |
 
-## React Compiler
+## Getting started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm dev          # http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Commands
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm dev          # dev server
+pnpm build        # tsc -b && vite build
+pnpm preview      # preview production build
+pnpm lint         # eslint
+pnpm lint:css     # stylelint
+pnpm tsc --noEmit # type-check only
+pnpm test         # vitest run (CI mode)
+pnpm test:watch   # vitest watch
 ```
+
+## Architecture
+
+```
+src/
+├── components/     # Reusable components (design system + layout primitives)
+│   ├── Section/          # Page section wrapper (SectionHeader + spacing)
+│   ├── GuidelinesGrid/   # 2-col guideline card grid
+│   ├── StateMatrix/      # State × variation documentation matrix
+│   ├── DimensionRow/     # Foundation token row (spacing/border)
+│   ├── FieldLabel/       # Input label row (label + tooltip + optional tag)
+│   ├── FieldMessage/     # Input help/error line
+│   └── ...               # All design system components
+├── pages/          # One directory per page (*Page.tsx + *Page.module.css)
+│   └── registry.tsx      # Single source of truth for routes and sidebar nav
+├── tokens/         # Token constants (variants, sizes, states, guidelines)
+│   └── types.ts          # Shared base types (GuidelineDef, StateDef, …)
+└── utils/
+    ├── cx.ts             # cx(...classes) — joins truthy class names
+    └── color.ts          # hexLuminance, isLightColor
+```
+
+### Adding a page
+
+One entry in [`src/pages/registry.tsx`](src/pages/registry.tsx) wires up both the route and the sidebar nav item — no edits to `App.tsx` or `Sidebar.tsx` needed.
+
+### Token layer
+
+All content lives in `src/tokens/`. Pages import and map over tokens — no hardcoded data in page components.
+
+### CSS conventions
+
+- All styles are CSS Modules — no global utility classes except the `type-*` typography scale.
+- Colors, border widths, border radii, and spacing always use `var(--token-*)` — never hardcoded values.
+- Shared component markup (labels, messages, section headers, guideline cards) lives in the shared components above, not duplicated per page.
