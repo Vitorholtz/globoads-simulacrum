@@ -1,0 +1,10 @@
+.footer {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-200) var(--spacing-400);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.text {
+  color: var(--color-fill-tertiary);
+}

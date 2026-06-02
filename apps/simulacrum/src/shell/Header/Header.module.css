@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 var(--spacing-400);
+  background: var(--color-surface-primary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  text-decoration: none;
+  color: var(--color-fill-primary);
+}
+
+.logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.product {
+  color: var(--color-fill-secondary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
