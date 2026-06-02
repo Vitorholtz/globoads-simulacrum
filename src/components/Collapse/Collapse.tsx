@@ -10,9 +10,13 @@ export interface CollapseProps {
   labelExpand?: string
   labelCollapse?: string
   children?: React.ReactNode
+  /** Initial open state for uncontrolled usage; ignored once `open` is provided */
   defaultOpen?: boolean
+  /** Controlled open state; pair with `onToggle` */
   open?: boolean
+  /** Fires with the new open state on every expand/collapse */
   onToggle?: (open: boolean) => void
+  /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active'
   className?: string
 }

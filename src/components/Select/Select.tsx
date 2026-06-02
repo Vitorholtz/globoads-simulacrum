@@ -9,14 +9,19 @@ export type { SelectSize, SelectOption }
 export interface SelectProps {
   size?: SelectSize
   label?: string
+  /** Hides the label visually; it remains in the DOM for screen readers */
   showLabel?: boolean
+  /** Appends "(opcional)" to the label */
   optional?: boolean
+  /** Tooltip text shown on the info icon beside the label */
   descriptionText?: string
   placeholder?: string
   helpText?: string
   errorMessage?: string
   options?: SelectOption[]
+  /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active' | 'error' | 'disabled'
+  /** Adds a search input inside the dropdown to filter options by label */
   searchable?: boolean
   id?: string
   name?: string
@@ -141,16 +146,12 @@ export default function Select({
       if (!isOpen) {
         const idx = visibleOptions.findIndex((o) => o.value === currentValue)
         setHighlightedIndex(
-          e.key === 'ArrowDown'
-            ? idx >= 0 ? idx : 0
-            : idx >= 0 ? idx : visibleOptions.length - 1
+          e.key === 'ArrowDown' ? (idx >= 0 ? idx : 0) : idx >= 0 ? idx : visibleOptions.length - 1
         )
         setIsOpen(true)
       } else {
         setHighlightedIndex((i) =>
-          e.key === 'ArrowDown'
-            ? Math.min(i + 1, visibleOptions.length - 1)
-            : Math.max(i - 1, 0)
+          e.key === 'ArrowDown' ? Math.min(i + 1, visibleOptions.length - 1) : Math.max(i - 1, 0)
         )
       }
       return
@@ -234,9 +235,7 @@ export default function Select({
   const dataState = forceState === 'active' ? undefined : forceState
 
   const activeDescendant =
-    isDropdownOpen && highlightedIndex >= 0
-      ? `${listboxId}-opt-${highlightedIndex}`
-      : undefined
+    isDropdownOpen && highlightedIndex >= 0 ? `${listboxId}-opt-${highlightedIndex}` : undefined
 
   return (
     <div className={rootCls} ref={rootRef}>
@@ -325,42 +324,44 @@ export default function Select({
             </div>
           )}
           <div className={styles.listboxScroll}>
-          <ul
-            id={listboxId}
-            className={styles.listbox}
-            role="listbox"
-            aria-label={label}
-            aria-hidden={!isDropdownOpen}
-          >
-            {visibleOptions.map((option, index) => {
-              const isSelected = option.value === currentValue
-              const isHighlighted = index === highlightedIndex
-              return (
-                <li
-                  key={option.value}
-                  id={`${listboxId}-opt-${index}`}
-                  ref={(el) => { optionRefs.current[index] = el }}
-                  role="option"
-                  aria-selected={isSelected}
-                  className={[
-                    'type-caption-lg',
-                    styles.option,
-                    isSelected ? styles.optionSelected : '',
-                    isHighlighted ? styles.optionHighlighted : '',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                  onMouseDown={(e) => {
-                    e.preventDefault()
-                    handleSelect(option)
-                  }}
-                  onMouseEnter={() => setHighlightedIndex(index)}
-                >
-                  {option.label}
-                </li>
-              )
-            })}
-          </ul>
+            <ul
+              id={listboxId}
+              className={styles.listbox}
+              role="listbox"
+              aria-label={label}
+              aria-hidden={!isDropdownOpen}
+            >
+              {visibleOptions.map((option, index) => {
+                const isSelected = option.value === currentValue
+                const isHighlighted = index === highlightedIndex
+                return (
+                  <li
+                    key={option.value}
+                    id={`${listboxId}-opt-${index}`}
+                    ref={(el) => {
+                      optionRefs.current[index] = el
+                    }}
+                    role="option"
+                    aria-selected={isSelected}
+                    className={[
+                      'type-caption-lg',
+                      styles.option,
+                      isSelected ? styles.optionSelected : '',
+                      isHighlighted ? styles.optionHighlighted : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
+                    onMouseDown={(e) => {
+                      e.preventDefault()
+                      handleSelect(option)
+                    }}
+                    onMouseEnter={() => setHighlightedIndex(index)}
+                  >
+                    {option.label}
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ export interface AccordionItem {
 
 export interface AccordionProps {
   items: AccordionItem[]
+  /** id of the item that starts expanded on first render (uncontrolled usage) */
   defaultOpenId?: string | null
   className?: string
 }

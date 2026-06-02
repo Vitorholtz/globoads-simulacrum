@@ -19,6 +19,7 @@ export interface CheckboxProps {
   type?: CheckboxType
   label?: string
   helpText?: string
+  /** Conditionally displays helpText below the label */
   showHelpText?: boolean
   className?: string
 }

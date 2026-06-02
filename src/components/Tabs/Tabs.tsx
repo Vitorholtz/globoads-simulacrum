@@ -7,6 +7,7 @@ export type { TabItem }
 
 export interface TabsProps {
   items: TabItem[]
+  /** id of the currently active tab; must match an id from items */
   activeId?: string
   onChange?: (id: string) => void
   position?: TabPosition

@@ -3,9 +3,11 @@ import { cx } from '../../utils/cx'
 import styles from './Tooltip.module.css'
 
 export interface TooltipProps {
+  /** Tooltip content text */
   text: string
   position?: TooltipPosition
   align?: TooltipAlign
+  /** Always shows the tooltip, bypassing the hover/focus trigger — for showcase/docs only */
   forceVisible?: boolean
   children: React.ReactNode
 }

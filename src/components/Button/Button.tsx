@@ -7,8 +7,11 @@ export type { ButtonVariant, ButtonSize }
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   size?: ButtonSize
+  /** Material Symbol icon name; renders left of the label (or as icon-only when no children) */
   iconLeft?: string
+  /** Material Symbol icon name; renders right of the label (or as icon-only when no children) */
   iconRight?: string
+  /** Applies destructive/danger styling */
   danger?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active' | 'disabled'

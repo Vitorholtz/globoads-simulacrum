@@ -8,12 +8,19 @@ export interface CalendarProps {
   size?: CalendarSize
   value?: Date | null
   onChange?: (date: Date) => void
+  /** Range selection start date; enables range-highlight rendering when provided */
   rangeStart?: Date | null
+  /** Range selection end date */
   rangeEnd?: Date | null
+  /** Tracked hover date for in-progress range preview */
   hoverDate?: Date | null
+  /** Fires as the user hovers over days during range selection */
   onHoverChange?: (date: Date | null) => void
+  /** Fires when the user confirms their selection (confirm button click) */
   onConfirm?: () => void
+  /** Fires when the user cancels without confirming */
   onCancel?: () => void
+  /** Disables the confirm button — typically when no date is selected yet */
   confirmDisabled?: boolean
   className?: string
 }
@@ -73,8 +80,7 @@ export default function Calendar({
     if (focusedDay !== null) return focusedDay
     if (value && value.getFullYear() === viewYear && value.getMonth() === viewMonth)
       return value.getDate()
-    if (today.getFullYear() === viewYear && today.getMonth() === viewMonth)
-      return today.getDate()
+    if (today.getFullYear() === viewYear && today.getMonth() === viewMonth) return today.getDate()
     return 1
   })()
 
@@ -94,23 +100,42 @@ export default function Calendar({
 
   function prevNav() {
     setFocusedDay(null)
-    if (view === 'years') { setYearPageStart(s => s - 12); return }
-    if (view === 'months') { setViewYear(y => y - 1); return }
-    if (viewMonth === 0) { setViewYear((y) => y - 1); setViewMonth(11) }
-    else setViewMonth((m) => m - 1)
+    if (view === 'years') {
+      setYearPageStart((s) => s - 12)
+      return
+    }
+    if (view === 'months') {
+      setViewYear((y) => y - 1)
+      return
+    }
+    if (viewMonth === 0) {
+      setViewYear((y) => y - 1)
+      setViewMonth(11)
+    } else setViewMonth((m) => m - 1)
   }
 
   function nextNav() {
     setFocusedDay(null)
-    if (view === 'years') { setYearPageStart(s => s + 12); return }
-    if (view === 'months') { setViewYear(y => y + 1); return }
-    if (viewMonth === 11) { setViewYear((y) => y + 1); setViewMonth(0) }
-    else setViewMonth((m) => m + 1)
+    if (view === 'years') {
+      setYearPageStart((s) => s + 12)
+      return
+    }
+    if (view === 'months') {
+      setViewYear((y) => y + 1)
+      return
+    }
+    if (viewMonth === 11) {
+      setViewYear((y) => y + 1)
+      setViewMonth(0)
+    } else setViewMonth((m) => m + 1)
   }
 
   function handleGridKeyDown(e: React.KeyboardEvent) {
     const arrowDelta: Partial<Record<string, number>> = {
-      ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7,
+      ArrowLeft: -1,
+      ArrowRight: 1,
+      ArrowUp: -7,
+      ArrowDown: 7,
     }
     const delta = arrowDelta[e.key]
 
@@ -178,8 +203,10 @@ export default function Calendar({
     return sameDay(new Date(viewYear, viewMonth, day), hoverDate)
   }
 
-  const prevLabel = view === 'years' ? 'Período anterior' : view === 'months' ? 'Ano anterior' : 'Mês anterior'
-  const nextLabel = view === 'years' ? 'Próximo período' : view === 'months' ? 'Próximo ano' : 'Próximo mês'
+  const prevLabel =
+    view === 'years' ? 'Período anterior' : view === 'months' ? 'Ano anterior' : 'Mês anterior'
+  const nextLabel =
+    view === 'years' ? 'Próximo período' : view === 'months' ? 'Próximo ano' : 'Próximo mês'
 
   return (
     <div className={cx(styles.root, styles[size], className ?? '')}>
@@ -198,17 +225,26 @@ export default function Calendar({
             <button
               type="button"
               className={styles.monthLabelBtn}
-              onClick={() => { setYearPageStart(Math.floor(viewYear / 12) * 12); setView('years') }}
+              onClick={() => {
+                setYearPageStart(Math.floor(viewYear / 12) * 12)
+                setView('years')
+              }}
               aria-label="Selecionar ano e mês"
             >
-              <span className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}>
+              <span
+                className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}
+              >
                 {MONTHS_PT[viewMonth]}/{String(viewYear).slice(2)}
               </span>
-              <span className="material-symbols-rounded icon-sm" aria-hidden="true">keyboard_arrow_down</span>
+              <span className="material-symbols-rounded icon-sm" aria-hidden="true">
+                keyboard_arrow_down
+              </span>
             </button>
           )}
           {view === 'years' && (
-            <span className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}>
+            <span
+              className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}
+            >
               {yearPageStart}–{yearPageStart + 11}
             </span>
           )}
@@ -219,10 +255,14 @@ export default function Calendar({
               onClick={() => setView('years')}
               aria-label="Selecionar ano"
             >
-              <span className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}>
+              <span
+                className={`${size === 'sm' ? 'type-title-sm' : 'type-title-md'} ${styles.monthLabel}`}
+              >
                 {viewYear}
               </span>
-              <span className="material-symbols-rounded icon-sm" aria-hidden="true">keyboard_arrow_up</span>
+              <span className="material-symbols-rounded icon-sm" aria-hidden="true">
+                keyboard_arrow_up
+              </span>
             </button>
           )}
         </div>
@@ -239,7 +279,7 @@ export default function Calendar({
 
       {view === 'years' && (
         <div className={styles.yearMonthGrid}>
-          {Array.from({ length: 12 }, (_, i) => yearPageStart + i).map(year => (
+          {Array.from({ length: 12 }, (_, i) => yearPageStart + i).map((year) => (
             <button
               key={year}
               type="button"
@@ -248,7 +288,10 @@ export default function Calendar({
                 styles.pickerCell,
                 year === viewYear ? styles.pickerCellSelected : ''
               )}
-              onClick={() => { setViewYear(year); setView('months') }}
+              onClick={() => {
+                setViewYear(year)
+                setView('months')
+              }}
               aria-label={String(year)}
               aria-pressed={year === viewYear}
             >
@@ -269,7 +312,11 @@ export default function Calendar({
                 styles.pickerCell,
                 i === viewMonth ? styles.pickerCellSelected : ''
               )}
-              onClick={() => { setViewMonth(i); setFocusedDay(null); setView('days') }}
+              onClick={() => {
+                setViewMonth(i)
+                setFocusedDay(null)
+                setView('days')
+              }}
               aria-label={`${month} de ${viewYear}`}
               aria-pressed={i === viewMonth}
             >

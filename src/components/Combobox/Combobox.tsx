@@ -10,18 +10,25 @@ export type { ComboboxSize }
 export interface ComboboxProps {
   size?: ComboboxSize
   label?: string
+  /** Hides the label visually; it remains in the DOM for screen readers */
   showLabel?: boolean
+  /** Appends "(opcional)" to the label */
   optional?: boolean
+  /** Tooltip text shown on the info icon beside the label */
   descriptionText?: string
   placeholder?: string
   helpText?: string
   errorMessage?: string
+  /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'error' | 'disabled'
   id?: string
   name?: string
+  /** Controlled array of chip values */
   value?: string[]
+  /** Initial chip values for uncontrolled usage */
   defaultValue?: string[]
   disabled?: boolean
+  /** Fires with the full updated chips array on every add or remove */
   onChange?: (values: string[]) => void
   className?: string
 }

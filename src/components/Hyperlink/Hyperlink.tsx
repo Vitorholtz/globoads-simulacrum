@@ -6,7 +6,9 @@ export type { HyperlinkSize }
 
 export interface HyperlinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   size?: HyperlinkSize
+  /** Adds target="_blank", rel="noopener noreferrer", and an external icon */
   external?: boolean
+  /** Shows a persistent underline instead of the hover-only default */
   underline?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active'

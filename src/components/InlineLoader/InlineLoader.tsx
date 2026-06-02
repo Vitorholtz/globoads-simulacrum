@@ -12,6 +12,7 @@ interface InlineLoaderProps {
   type: InlineLoaderType
   size?: InlineLoaderSize
   color?: InlineLoaderColor
+  /** Screen reader aria-label; also rendered as visible text in the "ellipsis" variant */
   label?: string
   className?: string
 }

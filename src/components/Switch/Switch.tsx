@@ -5,6 +5,7 @@ import { cx } from '../../utils/cx'
 export type { SwitchBehavior, SwitchType }
 
 export interface SwitchProps {
+  /** Controlled checked state */
   checked?: boolean
   onChange?: (checked: boolean) => void
   disabled?: boolean
@@ -15,6 +16,7 @@ export interface SwitchProps {
   type?: SwitchType
   label?: string
   helpText?: string
+  /** Conditionally displays helpText below the label */
   showHelpText?: boolean
   className?: string
 }

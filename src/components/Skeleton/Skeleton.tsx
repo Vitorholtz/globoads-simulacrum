@@ -7,7 +7,9 @@ export type { SkeletonType, SkeletonSize }
 interface SkeletonProps {
   type: SkeletonType
   size?: SkeletonSize
+  /** Explicit width; numbers are treated as px, strings as raw CSS values (default: 100%) */
   width?: string | number
+  /** Explicit height override; numbers are treated as px — defaults to the size-based intrinsic height */
   height?: string | number
   className?: string
 }

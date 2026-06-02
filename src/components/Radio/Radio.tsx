@@ -16,6 +16,7 @@ export interface RadioProps {
   type?: RadioType
   label?: string
   helpText?: string
+  /** Conditionally displays helpText below the label */
   showHelpText?: boolean
   /** Radio group name for native mutual exclusion */
   name?: string

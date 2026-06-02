@@ -8,7 +8,9 @@ export interface PaginationProps {
   variant?: PaginationVariant
   page: number
   totalPages: number
+  /** Total item count; displayed in "items" variant as "X–Y de Z itens" */
   totalItems?: number
+  /** Items per page used by "items" variant to compute the visible range */
   itemsPerPage?: number
   onChange: (page: number) => void
   className?: string

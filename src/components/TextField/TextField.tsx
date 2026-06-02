@@ -49,16 +49,23 @@ function applyMask(value: string, mask: TextFieldMask): string {
 }
 
 const MASK_MAX_LENGTH: Record<TextFieldMask, number> = {
-  cpf: 14, cnpj: 18, phone: 15, cep: 9, date: 10,
+  cpf: 14,
+  cnpj: 18,
+  phone: 15,
+  cep: 9,
+  date: 10,
 }
 
 export interface TextFieldProps {
   size?: TextFieldSize
   label?: string
+  /** Hides the label visually; it remains in the DOM for screen readers */
   showLabel?: boolean
+  /** Appends "(opcional)" to the label */
   optional?: boolean
-  /** Texto exibido no tooltip do ícone de informação ao lado da label */
+  /** Tooltip text shown on the info icon beside the label */
   descriptionText?: string
+  /** Material Symbol icon name shown at the start of the input */
   leadingIcon?: string
   placeholder?: string
   helpText?: string
@@ -71,6 +78,7 @@ export interface TextFieldProps {
   defaultValue?: string
   disabled?: boolean
   readOnly?: boolean
+  /** Applies an input mask — auto-formats digits as CPF, CNPJ, phone, CEP, or date */
   mask?: TextFieldMask
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   className?: string

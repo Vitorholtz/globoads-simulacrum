@@ -9,14 +9,17 @@ export type { TextareaSize }
 export interface TextareaProps {
   size?: TextareaSize
   label?: string
+  /** Hides the label visually; it remains in the DOM for screen readers */
   showLabel?: boolean
+  /** Appends "(opcional)" to the label */
   optional?: boolean
-  /** Texto exibido no tooltip do ícone de informação ao lado da label */
+  /** Tooltip text shown on the info icon beside the label */
   descriptionText?: string
   placeholder?: string
   helpText?: string
   errorMessage?: string
   maxLength?: number
+  /** Shows a "N caracteres restantes" counter below the textarea; requires maxLength */
   showCounter?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'error' | 'disabled'

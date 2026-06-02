@@ -8,7 +8,9 @@ export interface AvatarProps {
   size?: AvatarSize
   variant?: AvatarVariant
   name?: string
+  /** Photo URL — only used when variant="photo" */
   src?: string
+  /** Alt text for the photo image; defaults to `name` when omitted */
   alt?: string
   className?: string
 }

@@ -8,12 +8,13 @@ const ICON_MAP: Record<ToastType, string> = {
   critical: 'error',
 }
 
-
 interface ToastProps {
   type?: ToastType
   title?: string
   description?: string
+  /** Shows the close (×) button */
   closable?: boolean
+  /** Callback fired when the user clicks the close button */
   onClose?: () => void
   className?: string
 }
@@ -35,10 +36,7 @@ export default function Toast({
       aria-live="polite"
     >
       <div className={styles.iconWrap}>
-        <span
-          className={`material-symbols-rounded icon-md ${styles.icon}`}
-          aria-hidden="true"
-        >
+        <span className={`material-symbols-rounded icon-md ${styles.icon}`} aria-hidden="true">
           {ICON_MAP[type]}
         </span>
       </div>
