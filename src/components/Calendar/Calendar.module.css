@@ -109,14 +109,14 @@
 .inRange::before {
   left: 0;
   right: 0;
-  background: var(--color-luminosity-accent-subtle);
+  background: color-mix(in srgb, var(--color-fill-accent) 8%, transparent);
   border-radius: var(--border-radius-none);
 }
 
 .hoverInRange::before {
   left: 0;
   right: 0;
-  background: var(--color-luminosity-accent-ghost);
+  background: color-mix(in srgb, var(--color-fill-accent) 5%, transparent);
   border-radius: var(--border-radius-none);
 }
 
@@ -124,7 +124,7 @@
 .rangeStart::before {
   left: 50%;
   right: 0;
-  background: var(--color-luminosity-accent-subtle);
+  background: color-mix(in srgb, var(--color-fill-accent) 8%, transparent);
   border-radius: var(--border-radius-xl) var(--border-radius-none) var(--border-radius-none)
     var(--border-radius-xl);
 }
@@ -133,7 +133,7 @@
 .rangeEnd::before {
   left: 0;
   right: 50%;
-  background: var(--color-luminosity-accent-subtle);
+  background: color-mix(in srgb, var(--color-fill-accent) 8%, transparent);
   border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl)
     var(--border-radius-none);
 }
@@ -142,7 +142,7 @@
 .rangeHoverEnd::before {
   left: 0;
   right: 50%;
-  background: var(--color-luminosity-accent-ghost);
+  background: color-mix(in srgb, var(--color-fill-accent) 5%, transparent);
   border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl)
     var(--border-radius-none);
 }
@@ -182,7 +182,7 @@
 /* In-range cells: hover darkens the strip */
 .inRange .day:hover,
 .hoverInRange .day:hover {
-  background: var(--color-luminosity-accent-hover);
+  background: color-mix(in srgb, var(--color-fill-accent) 10%, transparent);
 }
 
 /* Today indicator — dot below number */
@@ -214,18 +214,18 @@
 }
 
 .daySelected.dayToday::after {
-  background: var(--color-luminosity-light-ghost-strong);
+  background: color-mix(in srgb, var(--color-fill-inverse) 70%, transparent);
 }
 
 /* Hover end preview (tentative range end) */
 .dayHoverEnd {
-  background: var(--color-luminosity-accent-soft);
+  background: color-mix(in srgb, var(--color-fill-accent) 20%, transparent);
   color: var(--color-fill-accent);
   font-weight: var(--font-weight-semibold);
 }
 
 .dayHoverEnd:hover {
-  background: var(--color-luminosity-accent-active);
+  background: color-mix(in srgb, var(--color-fill-accent) 24%, transparent);
 }
 
 /* ── Year / Month picker grid ── */

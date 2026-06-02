@@ -246,14 +246,6 @@
    --color-luminosity-light-ghost-hover:  #FFFFFF2E;
    --color-luminosity-light-ghost-active: #FFFFFF4D;
    --color-luminosity-light-ghost-focus:  #FFFFFF8C;
-   --color-luminosity-light-ghost-strong: #FFFFFFB3;
-
-   /* Accent blue (--color-fill-accent) em escala de opacidade — range selection do Calendar */
-   --color-luminosity-accent-ghost:  #185CFB0D;
-   --color-luminosity-accent-subtle: #185CFB14;
-   --color-luminosity-accent-hover:  #185CFB1A;
-   --color-luminosity-accent-soft:   #185CFB33;
-   --color-luminosity-accent-active: #185CFB3D;
 
 
    /* ── Tokens de cor: Border ──
