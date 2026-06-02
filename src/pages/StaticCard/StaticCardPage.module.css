@@ -149,11 +149,10 @@
 }
 
 .styleWhen li::before {
-  content: 'â€“';
+  content: '\2022';
   position: absolute;
   left: 0;
   color: var(--color-fill-tertiary);
-  font-weight: var(--font-weight-light);
 }
 
 /* â”€â”€ Guidelines â”€â”€ */

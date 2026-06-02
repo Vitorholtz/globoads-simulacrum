@@ -38,7 +38,9 @@
   background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-primary);
   border-radius: var(--border-radius-lg);
-  transition: border-color var(--motion-duration-base) var(--motion-easing-default);
+  transition:
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .inputWrapper:hover:not([data-state]):not(.isActive) {
@@ -146,13 +148,25 @@
 /* ── Calendar popup ── */
 
 @keyframes motion-enter-top {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes motion-exit-top {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(-6px); }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
 }
 
 .calendarPopup {

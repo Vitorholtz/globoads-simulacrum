@@ -10,6 +10,8 @@ import {
 } from '../../tokens/collapse'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './CollapsePage.module.css'
 
 export default function CollapsePage() {
@@ -27,10 +29,10 @@ export default function CollapsePage() {
       />
 
       {/* ── Estilos ── */}
-      <Section icon="unfold_more" title="Estilos de Conteúdo" count="2 estilos">
-        <div className={styles.stylesGrid}>
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
+      <Section icon="unfold_more" title="Estilos de Conteúdo" count={2}>
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
               <div className={styles.previewBox}>
                 <Collapse size="md" lines={3}>
                   <p className={`type-body-sm ${styles.previewBodyText}`}>
@@ -38,18 +40,13 @@ export default function CollapsePage() {
                   </p>
                 </Collapse>
               </div>
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Recolhido</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                O texto é truncado ao número de linhas configurado. O acionador "Ver mais" com seta
-                para baixo aparece imediatamente abaixo.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
+            }
+            title="Recolhido"
+            description='O texto é truncado ao número de linhas configurado. O acionador "Ver mais" com seta para baixo aparece imediatamente abaixo.'
+            align="stretch"
+          />
+          <DemoCard
+            preview={
               <div className={styles.previewBox}>
                 <Collapse size="md" lines={3} defaultOpen>
                   <p className={`type-body-sm ${styles.previewBodyText}`}>
@@ -57,24 +54,16 @@ export default function CollapsePage() {
                   </p>
                 </Collapse>
               </div>
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Expandido</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                O texto completo é exibido. O acionador muda para "Ver menos" com a seta rotacionada
-                para cima.
-              </span>
-            </div>
-          </div>
-        </div>
+            }
+            title="Expandido"
+            description='O texto completo é exibido. O acionador muda para "Ver menos" com a seta rotacionada para cima.'
+            align="stretch"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Escala de tamanhos ── */}
-      <Section
-        icon="straighten"
-        title="Escala de Tamanhos"
-        count={`${COLLAPSE_SIZES.length} tamanhos`}
-      >
+      <Section icon="straighten" title="Escala de Tamanhos" count={COLLAPSE_SIZES.length}>
         <div className={styles.sizeScaleContainer}>
           {COLLAPSE_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -109,7 +98,7 @@ export default function CollapsePage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${COLLAPSE_STATES.length} estados`}>
+      <Section icon="toggle_on" title="Estados" count={COLLAPSE_STATES.length}>
         <div className={styles.stateMatrixContainer}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />

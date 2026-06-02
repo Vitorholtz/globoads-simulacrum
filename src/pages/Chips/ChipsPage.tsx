@@ -15,15 +15,30 @@ import type { ChipInputStyle } from '../../tokens/chipInput'
 import { CHIP_ASSIST_GUIDELINES } from '../../tokens/chipAssist'
 
 import PageHeader from '../../components/PageHeader/PageHeader'
-import SectionHeader from '../../components/SectionHeader/SectionHeader'
+import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './ChipsPage.module.css'
 
 const SUGGESTION_BEHAVIORS: ChipBehavior[] = ['unchecked', 'checked']
 const FILTER_BEHAVIORS: ChipFilterBehavior[] = ['unchecked', 'checked']
 const INPUT_STYLES: ChipInputStyle[] = ['default', 'person', 'icon']
 
-const CHIP_STATES_FOR_MATRIX = CHIP_STATES
+const SUGGESTION_COLS = SUGGESTION_BEHAVIORS.map((id) => ({
+  id,
+  label: CHIP_BEHAVIORS.find((b) => b.id === id)?.label ?? id,
+}))
+const FILTER_COLS = FILTER_BEHAVIORS.map((id) => ({
+  id,
+  label: CHIP_FILTER_BEHAVIORS.find((b) => b.id === id)?.label ?? id,
+}))
+const INPUT_COLS = INPUT_STYLES.map((id) => ({
+  id,
+  label: CHIP_INPUT_STYLES.find((s) => s.id === id)?.label ?? id,
+}))
+const ASSIST_COLS = [{ id: 'unchecked', label: 'Unchecked' }]
 
 export default function ChipsPage() {
   return (
@@ -41,203 +56,130 @@ export default function ChipsPage() {
       {/* ═══════════════════════════════════════
           CHIP · SUGGESTION
           ═══════════════════════════════════════ */}
-      <section className={styles.chipSection}>
-        <SectionHeader icon="sell" title="Chip · Suggestion" />
-        <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de sugestão ajudam a restringir a intenção do usuário ao apresentar sugestões
-          geradas dinamicamente, como possíveis respostas ou filtros de pesquisa.
-        </p>
-
+      <Section
+        icon="sell"
+        title="Chip · Suggestion"
+        description="Os chips de sugestão ajudam a restringir a intenção do usuário ao apresentar sugestões geradas dinamicamente, como possíveis respostas ou filtros de pesquisa."
+      >
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
-        <div className={styles.behaviorsGrid2}>
+        <CardGrid cols={2}>
           {CHIP_BEHAVIORS.map((b) => (
-            <div key={b.id} className={styles.behaviorCard}>
-              <div className={styles.behaviorPreview}>
-                <ChipSuggestion behavior={b.id} label="Sugestão" />
-              </div>
-              <div className={styles.behaviorBody}>
-                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
-                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={b.id}
+              preview={<ChipSuggestion behavior={b.id} label="Sugestão" />}
+              title={b.label}
+              description={b.description}
+            />
           ))}
-        </div>
+        </CardGrid>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
-        <div className={styles.matrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {SUGGESTION_BEHAVIORS.map((b) => (
-              <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                {CHIP_BEHAVIORS.find((bh) => bh.id === b)?.label}
-              </div>
-            ))}
-          </div>
-          {CHIP_STATES_FOR_MATRIX.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {SUGGESTION_BEHAVIORS.map((b) => (
-                  <div key={b} className={styles.matrixCell}>
-                    <ChipSuggestion behavior={b} forceState={state.force} label="Sugestão" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={SUGGESTION_COLS}
+          rows={CHIP_STATES}
+          labelWidth={112}
+          cellPad="sm"
+          renderCell={(state, col) => (
+            <ChipSuggestion behavior={col.id} forceState={state.force} label="Sugestão" />
+          )}
+        />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <GuidelinesGrid items={CHIP_GUIDELINES} />
-      </section>
+      </Section>
 
       {/* ═══════════════════════════════════════
           CHIP · FILTER
           ═══════════════════════════════════════ */}
-      <section className={styles.chipSection}>
-        <SectionHeader icon="filter_alt" title="Chip · Filter" />
-        <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de filtro são usados para filtrar um conteúdo ou definir escolhas. São uma boa
-          alternativa aos botões para segmentação ou checkbox ao visualizar uma lista ou resultados
-          de pesquisa.
-        </p>
-
+      <Section
+        icon="filter_alt"
+        title="Chip · Filter"
+        description="Os chips de filtro são usados para filtrar um conteúdo ou definir escolhas. São uma boa alternativa aos botões para segmentação ou checkbox ao visualizar uma lista ou resultados de pesquisa."
+      >
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
-        <div className={styles.behaviorsGrid2}>
+        <CardGrid cols={2}>
           {CHIP_FILTER_BEHAVIORS.map((b) => (
-            <div key={b.id} className={styles.behaviorCard}>
-              <div className={styles.behaviorPreview}>
-                <ChipFilter behavior={b.id} label="Filtro" dropdown />
-              </div>
-              <div className={styles.behaviorBody}>
-                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
-                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={b.id}
+              preview={<ChipFilter behavior={b.id} label="Filtro" dropdown />}
+              title={b.label}
+              description={b.description}
+            />
           ))}
-        </div>
+        </CardGrid>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
-        <div className={styles.matrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {FILTER_BEHAVIORS.map((b) => (
-              <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                {CHIP_FILTER_BEHAVIORS.find((bh) => bh.id === b)?.label}
-              </div>
-            ))}
-          </div>
-          {CHIP_STATES_FOR_MATRIX.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {FILTER_BEHAVIORS.map((b) => (
-                  <div key={b} className={styles.matrixCell}>
-                    <ChipFilter behavior={b} forceState={state.force} label="Filtro" dropdown />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={FILTER_COLS}
+          rows={CHIP_STATES}
+          labelWidth={112}
+          cellPad="sm"
+          renderCell={(state, col) => (
+            <ChipFilter behavior={col.id} forceState={state.force} label="Filtro" dropdown />
+          )}
+        />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <GuidelinesGrid items={CHIP_FILTER_GUIDELINES} />
-      </section>
+      </Section>
 
       {/* ═══════════════════════════════════════
           CHIP · INPUT
           ═══════════════════════════════════════ */}
-      <section className={styles.chipSection}>
-        <SectionHeader icon="input" title="Chip · Input" />
-        <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de entrada representam informações discretas inseridas por um usuário, como
-          contatos ou opções de filtro em um campo de pesquisa.
-        </p>
-
+      <Section
+        icon="input"
+        title="Chip · Input"
+        description="Os chips de entrada representam informações discretas inseridas por um usuário, como contatos ou opções de filtro em um campo de pesquisa."
+      >
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estilos</h4>
-        <div className={styles.behaviorsGrid3}>
+        <CardGrid cols={3}>
           {CHIP_INPUT_STYLES.map((s) => (
-            <div key={s.id} className={styles.behaviorCard}>
-              <div className={styles.behaviorPreview}>
-                <ChipInput style={s.id} label="Entrada" icon="label" />
-              </div>
-              <div className={styles.behaviorBody}>
-                <span className={`type-body-sm ${styles.behaviorName}`}>{s.label}</span>
-                <p className={`type-body-sm ${styles.behaviorDesc}`}>{s.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={s.id}
+              preview={<ChipInput style={s.id} label="Entrada" icon="label" />}
+              title={s.label}
+              description={s.description}
+            />
           ))}
-        </div>
+        </CardGrid>
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
-        <div className={styles.matrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {INPUT_STYLES.map((s) => (
-              <div key={s} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                {CHIP_INPUT_STYLES.find((st) => st.id === s)?.label}
-              </div>
-            ))}
-          </div>
-          {CHIP_STATES_FOR_MATRIX.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {INPUT_STYLES.map((s) => (
-                  <div key={s} className={styles.matrixCell}>
-                    <ChipInput style={s} forceState={state.force} label="Entrada" icon="label" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={INPUT_COLS}
+          rows={CHIP_STATES}
+          labelWidth={112}
+          cellPad="sm"
+          renderCell={(state, col) => (
+            <ChipInput style={col.id} forceState={state.force} label="Entrada" icon="label" />
+          )}
+        />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <GuidelinesGrid items={CHIP_INPUT_GUIDELINES} />
-      </section>
+      </Section>
 
       {/* ═══════════════════════════════════════
           CHIP · ASSIST
           ═══════════════════════════════════════ */}
-      <section className={styles.chipSection}>
-        <SectionHeader icon="auto_awesome" title="Chip · Assist" />
-        <p className={`type-body-sm ${styles.chipDesc}`}>
-          Os chips de assistência representam ações inteligentes ou automatizadas. Eles servem como
-          se o usuário pedisse a um assistente para concluir a ação, aparecendo de forma dinâmica e
-          contextual em uma interface.
-        </p>
-
+      <Section
+        icon="auto_awesome"
+        title="Chip · Assist"
+        description="Os chips de assistência representam ações inteligentes ou automatizadas. Eles servem como se o usuário pedisse a um assistente para concluir a ação, aparecendo de forma dinâmica e contextual em uma interface."
+      >
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estados</h4>
-        <div className={styles.matrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            <div className={`type-caption-xs ${styles.matrixCellLabel}`}>Unchecked</div>
-          </div>
-          {CHIP_STATES_FOR_MATRIX.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                <div className={styles.matrixCell}>
-                  <ChipAssist icon="calendar_today" label="Criar evento" forceState={state.force} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={ASSIST_COLS}
+          rows={CHIP_STATES}
+          labelWidth={112}
+          cellPad="sm"
+          renderCell={(state) => (
+            <ChipAssist icon="calendar_today" label="Criar evento" forceState={state.force} />
+          )}
+        />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
         <GuidelinesGrid items={CHIP_ASSIST_GUIDELINES} />
-      </section>
+      </Section>
     </div>
   )
 }

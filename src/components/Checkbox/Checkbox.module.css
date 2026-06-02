@@ -1,6 +1,6 @@
 ﻿/* ── Wrapper ── */
 
-.checkbox {
+.root {
   display: flex;
   gap: var(--spacing-100);
   align-items: flex-start;
@@ -11,16 +11,16 @@
   user-select: none;
 }
 
-.checkbox.inverter {
+.root.inverter {
   flex-direction: row-reverse;
 }
 
 /* Any forced state (matrix/docs) disables all pointer interaction */
-.checkbox[data-state] {
+.root[data-state] {
   pointer-events: none;
 }
 
-.checkbox[data-state='disabled'] {
+.root[data-state='disabled'] {
   opacity: var(--opacity-disabled);
 }
 
@@ -73,20 +73,23 @@
   height: 16px;
   border-radius: var(--border-radius-sm);
   z-index: 1;
-  transition: background-color var(--motion-duration-base) var(--motion-easing-default), border-color var(--motion-duration-base) var(--motion-easing-default), border-width var(--motion-duration-fast) var(--motion-easing-default);
+  transition:
+    background-color var(--motion-duration-base) var(--motion-easing-default),
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    border-width var(--motion-duration-fast) var(--motion-easing-default);
 }
 
 /* ════════════════════════════════════
    VISUAL STATES — base (Normal)
    ════════════════════════════════════ */
 
-.checkbox[data-behavior='unchecked'] .shape {
+.root[data-behavior='unchecked'] .shape {
   background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-primary);
 }
 
-.checkbox[data-behavior='partial'] .shape,
-.checkbox[data-behavior='checked'] .shape {
+.root[data-behavior='partial'] .shape,
+.root[data-behavior='checked'] .shape {
   background: var(--color-fill-accent);
 }
 
@@ -96,34 +99,34 @@
    ════════════════════════════════════ */
 
 /* Hover */
-.checkbox:not([data-state]):hover[data-behavior='unchecked'] .shape {
+.root:not([data-state]):hover[data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
 }
 
-.checkbox:not([data-state]):hover[data-behavior='partial'] .shape,
-.checkbox:not([data-state]):hover[data-behavior='checked'] .shape {
+.root:not([data-state]):hover[data-behavior='partial'] .shape,
+.root:not([data-state]):hover[data-behavior='checked'] .shape {
   background: var(--color-action-solid-fill-hover);
 }
 
 /* Focus (keyboard only — :focus-visible prevents ring on mouse click) */
-.checkbox:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] .shape {
+.root:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
   box-shadow: var(--outline-focus);
 }
 
-.checkbox:not([data-state]):has(input:focus-visible)[data-behavior='partial'] .shape,
-.checkbox:not([data-state]):has(input:focus-visible)[data-behavior='checked'] .shape {
+.root:not([data-state]):has(input:focus-visible)[data-behavior='partial'] .shape,
+.root:not([data-state]):has(input:focus-visible)[data-behavior='checked'] .shape {
   background: var(--color-action-solid-fill-hover);
   box-shadow: var(--outline-focus);
 }
 
 /* Active (mouse down) */
-.checkbox:not([data-state]):active[data-behavior='unchecked'] .shape {
+.root:not([data-state]):active[data-behavior='unchecked'] .shape {
   border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
-.checkbox:not([data-state]):active[data-behavior='partial'] .shape,
-.checkbox:not([data-state]):active[data-behavior='checked'] .shape {
+.root:not([data-state]):active[data-behavior='partial'] .shape,
+.root:not([data-state]):active[data-behavior='checked'] .shape {
   background: var(--color-action-solid-fill-active);
 }
 
@@ -133,34 +136,34 @@
    ════════════════════════════════════ */
 
 /* Forced hover */
-.checkbox[data-state='hover'][data-behavior='unchecked'] .shape {
+.root[data-state='hover'][data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
 }
 
-.checkbox[data-state='hover'][data-behavior='partial'] .shape,
-.checkbox[data-state='hover'][data-behavior='checked'] .shape {
+.root[data-state='hover'][data-behavior='partial'] .shape,
+.root[data-state='hover'][data-behavior='checked'] .shape {
   background: var(--color-action-solid-fill-hover);
 }
 
 /* Forced focus */
-.checkbox[data-state='focus'][data-behavior='unchecked'] .shape {
+.root[data-state='focus'][data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
   box-shadow: var(--outline-focus);
 }
 
-.checkbox[data-state='focus'][data-behavior='partial'] .shape,
-.checkbox[data-state='focus'][data-behavior='checked'] .shape {
+.root[data-state='focus'][data-behavior='partial'] .shape,
+.root[data-state='focus'][data-behavior='checked'] .shape {
   background: var(--color-action-solid-fill-hover);
   box-shadow: var(--outline-focus);
 }
 
 /* Forced active */
-.checkbox[data-state='active'][data-behavior='unchecked'] .shape {
+.root[data-state='active'][data-behavior='unchecked'] .shape {
   border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
-.checkbox[data-state='active'][data-behavior='partial'] .shape,
-.checkbox[data-state='active'][data-behavior='checked'] .shape {
+.root[data-state='active'][data-behavior='partial'] .shape,
+.root[data-state='active'][data-behavior='checked'] .shape {
   background: var(--color-action-solid-fill-active);
 }
 

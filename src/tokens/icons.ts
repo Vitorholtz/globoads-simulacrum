@@ -6,6 +6,7 @@ export type IconClassToken = {
   cssVar: string
   description: string
   usedIn: string
+  recommended?: boolean
 }
 
 export type IconModifierToken = {
@@ -76,6 +77,7 @@ export const ICON_CLASS_TOKENS: IconClassToken[] = [
     cssVar: '--font-size-150',
     description: 'Ações de destaque — campos lg, calendário e paginação',
     usedIn: 'DatePicker · Pagination',
+    recommended: true,
   },
   {
     className: 'icon-xl',
@@ -89,7 +91,8 @@ export const ICON_CLASS_TOKENS: IconClassToken[] = [
 export const ICON_FILLED_MODIFIER: IconModifierToken = {
   className: 'icon-filled',
   cssValue: 'FILL 1',
-  description: 'Ativa o eixo FILL da variable font. Deve vir sempre após a classe de tamanho e comunica estado ativo, selecionado ou de alta ênfase — nunca decorativo.',
+  description:
+    'Ativa o eixo FILL da variable font. Comunica estado ativo, selecionado ou de alta ênfase.',
   usedIn: 'Nav ativo · Favorito · Toggle marcado',
 }
 
@@ -109,16 +112,6 @@ export const ICON_SIZES: IconSizeToken[] = [
     value: 32,
     label: '32px',
     description: 'Ações em destaque, cabeçalhos de card e itens de lista ampliados',
-  },
-  {
-    value: 40,
-    label: '40px',
-    description: 'Empty states, modais de confirmação e ilustrações de suporte',
-  },
-  {
-    value: 48,
-    label: '48px',
-    description: 'Comunicação visual, onboarding e telas com foco no ícone',
   },
 ]
 

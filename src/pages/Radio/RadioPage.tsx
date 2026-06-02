@@ -6,6 +6,8 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './RadioPage.module.css'
 
 const ALL_BEHAVIORS: RadioBehavior[] = ['unchecked', 'checked']
@@ -24,13 +26,11 @@ function BehaviorDemo({ initial }: { initial: RadioBehavior }) {
 }
 
 export default function RadioPage() {
-  // Types section: one selected value per type group
   const [typesValue, setTypesValue] = useState<Record<RadioType, string>>({
     default: '',
     inverter: '',
   })
 
-  // Help text section
   const [helpValue, setHelpValue] = useState('mensal')
 
   return (
@@ -47,24 +47,22 @@ export default function RadioPage() {
       />
 
       {/* ── Comportamentos ── */}
-      <Section icon="radio_button_checked" title="Comportamentos" count="2 comportamentos">
-        <div className={styles.behaviorsGrid}>
+      <Section icon="radio_button_checked" title="Comportamentos" count={2}>
+        <CardGrid cols={2}>
           {RADIO_BEHAVIORS.map((b) => (
-            <div key={b.id} className={styles.behaviorCard}>
-              <div className={styles.behaviorPreview}>
-                <BehaviorDemo initial={b.id} />
-              </div>
-              <div className={styles.behaviorBody}>
-                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
-                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={b.id}
+              preview={<BehaviorDemo initial={b.id} />}
+              title={b.label}
+              description={b.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Estados — Matriz ── */}
-      <Section icon="toggle_on" title="Estados" count="5 estados">
+      <Section icon="toggle_on" title="Estados" count={5}>
         {ALL_TYPES.map((type) => {
           const typeDef = RADIO_TYPES.find((t) => t.id === type)
           return (
@@ -85,30 +83,32 @@ export default function RadioPage() {
       </Section>
 
       {/* ── Tipos ── */}
-      <Section icon="swap_horiz" title="Tipos" count="2 tipos">
-        <div className={styles.typesGrid}>
+      <Section icon="swap_horiz" title="Tipos" count={2}>
+        <CardGrid cols={2}>
           {RADIO_TYPES.map((t) => (
-            <div key={t.id} className={styles.typeCard}>
-              <div className={styles.typePreview}>
-                {GROUP_OPTIONS.map((lbl) => (
-                  <Radio
-                    key={lbl}
-                    checked={typesValue[t.id] === lbl}
-                    onChange={() => setTypesValue((prev) => ({ ...prev, [t.id]: lbl }))}
-                    type={t.id}
-                    name={`type-demo-${t.id}`}
-                    value={lbl}
-                    label={lbl}
-                  />
-                ))}
-              </div>
-              <div className={styles.typeBody}>
-                <span className={`type-body-sm ${styles.typeName}`}>{t.label}</span>
-                <p className={`type-body-sm ${styles.typeDesc}`}>{t.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={t.id}
+              preview={
+                <div className={styles.typeList}>
+                  {GROUP_OPTIONS.map((lbl) => (
+                    <Radio
+                      key={lbl}
+                      checked={typesValue[t.id] === lbl}
+                      onChange={() => setTypesValue((prev) => ({ ...prev, [t.id]: lbl }))}
+                      type={t.id}
+                      name={`type-demo-${t.id}`}
+                      value={lbl}
+                      label={lbl}
+                    />
+                  ))}
+                </div>
+              }
+              title={t.label}
+              description={t.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Help Text ── */}

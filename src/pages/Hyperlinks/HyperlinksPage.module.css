@@ -177,48 +177,6 @@
   color: var(--color-fill-secondary);
 }
 
-/* ── External section ── */
-
-.externalGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-200);
-  margin-bottom: var(--spacing-200);
-}
-
-.externalCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-}
-
-.externalPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-450) var(--spacing-300);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.externalMeta {
-  padding: var(--spacing-200) var(--spacing-250);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.externalSizeLabel {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.externalIconSpec {
-  font-family: var(--font-family-code);
-  color: var(--color-fill-tertiary);
-}
-
 .externalNote {
   display: flex;
   align-items: flex-start;

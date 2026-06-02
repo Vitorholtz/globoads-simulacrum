@@ -79,7 +79,7 @@ export default function InteractiveCardPage() {
       />
 
       {/* ── Estilos ── */}
-      <Section icon="style" title="Estilos" count="2 estilos">
+      <Section icon="style" title="Estilos" count={2}>
         <div className={styles.stylesGrid}>
           {CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>
@@ -105,7 +105,7 @@ export default function InteractiveCardPage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${INTERACTIVE_CARD_STATES.length} estados`}>
+      <Section icon="toggle_on" title="Estados" count={INTERACTIVE_CARD_STATES.length}>
         {CARD_STYLES.map((s) => (
           <div key={s.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixStyleHeader}>

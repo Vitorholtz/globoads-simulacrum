@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import Button from '../../components/Button/Button'
+import DurationCard from '../../components/DurationCard/DurationCard'
+import EasingCard from '../../components/EasingCard/EasingCard'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import Section from '../../components/Section/Section'
-import { MOTION_DURATION_TOKENS, MOTION_EASING_TOKENS, type DurationToken, type EasingToken } from '../../tokens/motion'
+import { MOTION_DURATION_TOKENS, MOTION_EASING_TOKENS } from '../../tokens/motion'
 import styles from './TransitionsPage.module.css'
 
 const DIRECTIONAL_DEMOS = [
@@ -13,58 +15,34 @@ const DIRECTIONAL_DEMOS = [
 ]
 
 const USAGE_ROWS = [
-  { token: '--motion-duration-fast', ms: '100ms', use: 'Hover sutil: tabs, hyperlinks, células de calendário' },
-  { token: '--motion-duration-base', ms: '120ms', use: 'Hover, focus e active: botões, inputs, chips, cards' },
-  { token: '--motion-duration-slow', ms: '200ms', use: 'Mudanças estruturais: chevron, dropdown, accordion, entrada de painel' },
-  { token: '--motion-easing-default', ms: 'ease', use: 'Padrão para todas as transições de estado interativo' },
+  {
+    token: '--motion-duration-fast',
+    ms: '100ms',
+    use: 'Hover sutil: tabs, hyperlinks, células de calendário',
+  },
+  {
+    token: '--motion-duration-base',
+    ms: '120ms',
+    use: 'Hover, focus e active: botões, inputs, chips, cards',
+  },
+  {
+    token: '--motion-duration-slow',
+    ms: '200ms',
+    use: 'Mudanças estruturais: chevron, dropdown, accordion, entrada de painel',
+  },
+  {
+    token: '--motion-easing-default',
+    ms: 'ease',
+    use: 'Padrão para todas as transições de estado interativo',
+  },
   { token: '--motion-easing-out', ms: 'ease-out', use: 'Entrada de popovers, painéis e toasts' },
-  { token: '--motion-easing-in-out', ms: 'ease-in-out', use: 'Animações de loop: shimmer, loader pulsante' },
+  {
+    token: '--motion-easing-in-out',
+    ms: 'ease-in-out',
+    use: 'Animações de loop: shimmer, loader pulsante',
+  },
   { token: '--motion-easing-linear', ms: 'linear', use: 'Rotação contínua de spinners' },
 ]
-
-function DurationCard({ token }: { token: DurationToken }) {
-  return (
-    <div
-      className={styles.durationCard}
-      style={{ '--demo-duration': `var(${token.variable})` } as React.CSSProperties}
-    >
-      <div className={styles.cardPreview}>
-        <div className={styles.demoTrack}>
-          <div className={styles.demoBlock} />
-        </div>
-      </div>
-      <div className={styles.cardBody}>
-        <div className={styles.tokenMeta}>
-          <code className={`type-body-sm ${styles.tokenVar}`}>{token.variable}</code>
-          <span className={`type-body-sm ${styles.tokenMs}`}>{token.valueMs}ms</span>
-        </div>
-        <p className={`type-body-sm ${styles.tokenDesc}`}>{token.description}</p>
-      </div>
-    </div>
-  )
-}
-
-function EasingCard({ token }: { token: EasingToken }) {
-  return (
-    <div
-      className={styles.easingCard}
-      style={{ '--demo-easing': `var(${token.variable})` } as React.CSSProperties}
-    >
-      <div className={styles.cardPreview}>
-        <div className={styles.demoTrack}>
-          <div className={styles.easingBlock} />
-        </div>
-      </div>
-      <div className={styles.cardBody}>
-        <div className={styles.tokenMeta}>
-          <code className={`type-body-sm ${styles.tokenVar}`}>{token.variable}</code>
-          <span className={`type-body-sm ${styles.tokenMs}`}>{token.value}</span>
-        </div>
-        <p className={`type-body-sm ${styles.tokenDesc}`}>{token.description}</p>
-      </div>
-    </div>
-  )
-}
 
 function EntranceCard({ label, keyframe, icon }: (typeof DIRECTIONAL_DEMOS)[number]) {
   const [animKey, setAnimKey] = useState(0)
@@ -105,7 +83,7 @@ export default function TransitionsPage() {
         ]}
       />
 
-      <Section icon="timer" title="Duração" count={`${MOTION_DURATION_TOKENS.length} tokens`}>
+      <Section icon="timer" title="Duração" count={MOTION_DURATION_TOKENS.length}>
         <p className={`type-body-sm ${styles.sectionNote}`}>
           Passe o mouse sobre cada card para visualizar a duração.
         </p>
@@ -116,7 +94,7 @@ export default function TransitionsPage() {
         </div>
       </Section>
 
-      <Section icon="show_chart" title="Easing" count={`${MOTION_EASING_TOKENS.length} funções`}>
+      <Section icon="show_chart" title="Easing" count={MOTION_EASING_TOKENS.length}>
         <p className={`type-body-sm ${styles.sectionNote}`}>
           Mesma duração (200ms), curvas diferentes. Passe o mouse para comparar.
         </p>
@@ -141,13 +119,13 @@ export default function TransitionsPage() {
       <Section icon="book_2" title="Guia de uso">
         <div className={styles.usageTable}>
           <div className={styles.usageHeader}>
-            <span className={`type-body-sm ${styles.usageColToken}`}>Token</span>
-            <span className={`type-body-sm ${styles.usageColValue}`}>Valor</span>
-            <span className="type-body-sm">Quando usar</span>
+            <span className="type-caption-sm">Token</span>
+            <span className="type-caption-sm">Valor</span>
+            <span className="type-caption-sm">Quando usar</span>
           </div>
           {USAGE_ROWS.map((row) => (
             <div key={row.token} className={styles.usageRow}>
-              <code className={`type-body-sm ${styles.usageToken}`}>{row.token}</code>
+              <code className={`type-caption-sm ${styles.usageToken}`}>{row.token}</code>
               <span className={`type-body-sm ${styles.usageValue}`}>{row.ms}</span>
               <span className={`type-body-sm ${styles.usageUse}`}>{row.use}</span>
             </div>

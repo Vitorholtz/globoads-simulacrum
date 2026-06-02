@@ -13,7 +13,7 @@ export interface BreadcrumbProps {
 export default function Breadcrumb({ items, className }: BreadcrumbProps) {
   return (
     <nav aria-label="Breadcrumb" className={className}>
-      <ol className={styles.breadcrumb}>
+      <ol className={styles.root}>
         {items.map((item, index) => {
           const isLast = index === items.length - 1
           return (

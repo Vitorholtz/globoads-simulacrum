@@ -13,108 +13,6 @@
   gap: var(--spacing-200);
 }
 
-/* ── Duration card ── */
-
-.durationCard,
-.easingCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  display: flex;
-  flex-direction: column;
-}
-
-/* ── Shared card preview area ── */
-
-.cardPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-  padding: var(--spacing-200);
-}
-
-/* ── Shared card body ── */
-
-.cardBody {
-  padding: var(--spacing-200);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-}
-
-/* ── Demo track (shared by duration + easing) ── */
-
-.demoTrack {
-  position: relative;
-  height: 40px;
-  width: 100%;
-  background: var(--color-surface-tertiary);
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 0 var(--spacing-075);
-}
-
-/* Demo block — duration: duration from card's --demo-duration */
-
-.demoBlock {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--border-radius-sm);
-  background: var(--color-fill-accent);
-  flex-shrink: 0;
-  transition: transform var(--demo-duration, var(--motion-duration-base)) var(--motion-easing-default);
-}
-
-.durationCard:hover .demoBlock {
-  transform: translateX(calc(100% + var(--spacing-200)));
-}
-
-/* Easing block — fixed duration, easing from --demo-easing */
-
-.easingBlock {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--border-radius-sm);
-  background: var(--color-fill-accent);
-  flex-shrink: 0;
-  transition: transform var(--motion-duration-slow) var(--demo-easing, var(--motion-easing-default));
-}
-
-.easingCard:hover .easingBlock {
-  transform: translateX(calc(100% + var(--spacing-200)));
-}
-
-/* ── Token meta row (variable + value) ── */
-
-.tokenMeta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--spacing-100);
-}
-
-.tokenVar {
-  color: var(--color-fill-accent);
-  font-family: var(--font-family-code);
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.tokenMs {
-  color: var(--color-fill-secondary);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.tokenDesc {
-  color: var(--color-fill-tertiary);
-}
-
 /* ── Entrance demos ── */
 
 .entranceGrid {
@@ -171,46 +69,44 @@
   overflow: hidden;
 }
 
-.usageHeader {
+.usageHeader,
+.usageRow {
   display: grid;
-  grid-template-columns: 1fr 100px 1fr;
-  gap: var(--spacing-150);
-  padding: var(--spacing-100) var(--spacing-200);
-  background: var(--color-surface-tertiary);
-  color: var(--color-fill-secondary);
-  font-weight: var(--font-weight-medium);
+  grid-template-columns: 280px 140px 1fr;
+  align-items: center;
+  gap: 0 var(--spacing-250);
+  padding: 0 var(--spacing-400);
+}
+
+.usageHeader {
+  background: var(--color-surface-secondary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  min-height: 48px;
+  color: var(--color-fill-tertiary);
+  text-transform: uppercase;
 }
 
 .usageRow {
-  display: grid;
-  grid-template-columns: 1fr 100px 1fr;
-  gap: var(--spacing-150);
-  padding: var(--spacing-125) var(--spacing-200);
+  background: var(--color-surface-primary);
   border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-  align-items: center;
-}
-
-.usageRow:nth-child(even) {
-  background: var(--color-surface-secondary);
+  min-height: 64px;
 }
 
 .usageToken {
-  color: var(--color-fill-accent);
   font-family: var(--font-family-code);
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--color-fill-accent);
+  background: var(--color-surface-accent);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-025) var(--spacing-150);
   white-space: nowrap;
+  width: fit-content;
 }
 
 .usageValue {
   color: var(--color-fill-secondary);
+  font-family: var(--font-family-code);
 }
 
 .usageUse {
-  color: var(--color-fill-primary);
-}
-
-.usageColToken,
-.usageColValue {
-  font-weight: var(--font-weight-medium);
+  color: var(--color-fill-secondary);
 }

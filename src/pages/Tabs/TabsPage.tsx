@@ -61,7 +61,7 @@ export default function TabsPage() {
       />
 
       {/* ── Posições ── */}
-      <Section icon="tab" title="Posições" count={`${TAB_POSITIONS.length} posições`}>
+      <Section icon="tab" title="Posições" count={TAB_POSITIONS.length}>
         <div className={styles.positionGrid}>
           {TAB_POSITIONS.map((p) => (
             <PositionDemo key={p.id} position={p.id} description={p.description} />
@@ -70,11 +70,7 @@ export default function TabsPage() {
       </Section>
 
       {/* ── Variantes de Conteúdo ── */}
-      <Section
-        icon="tune"
-        title="Variantes de Conteúdo"
-        count={`${TAB_CONTENT_VARIANTS.length} variantes`}
-      >
+      <Section icon="tune" title="Variantes de Conteúdo" count={TAB_CONTENT_VARIANTS.length}>
         <div className={styles.variantGrid}>
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>

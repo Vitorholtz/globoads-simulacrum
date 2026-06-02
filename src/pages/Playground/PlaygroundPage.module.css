@@ -1,32 +1,14 @@
-/* ── Form layout ── */
+/* ── Form container ── */
 
-.formWrap {
-  padding: var(--spacing-400);
-  display: flex;
-  justify-content: center;
-}
-
-.formCard {
-  width: min(720px, 100%);
-  background: var(--color-surface-primary);
+.formContainer {
+  max-width: 720px;
+  margin: var(--spacing-600) auto;
+  padding: var(--spacing-600);
   border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-500);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-400);
+  border-radius: var(--border-radius-lg);
 }
 
-.formSection {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-300);
-}
-
-.sectionTitle {
-  color: var(--color-fill-primary);
-  font-weight: var(--font-weight-semibold);
-}
+/* ── Field grid ── */
 
 .fieldGrid {
   display: grid;
@@ -39,27 +21,34 @@
   grid-column: 1 / -1;
 }
 
-.divider {
-  height: var(--border-width-sm);
-  background: var(--color-border-tertiary);
-}
-
 .formFooter {
   display: flex;
   justify-content: flex-end;
-  padding-top: var(--spacing-200);
+  margin-top: var(--spacing-300);
 }
 
 /* ── Toast portal ── */
 
 @keyframes motion-enter-right {
-  from { opacity: 0; transform: translateX(6px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes motion-exit-right {
-  from { opacity: 1; transform: translateX(0); }
-  to   { opacity: 0; transform: translateX(6px); }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(6px);
+  }
 }
 
 .toastArea {

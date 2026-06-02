@@ -14,9 +14,11 @@ import {
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './DatePickerPage.module.css'
 
-const EXAMPLE_DATE = new Date(2025, 4, 26) // 26/05/2025
+const EXAMPLE_DATE = new Date(2025, 4, 26)
 
 export default function DatePickerPage() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
@@ -42,43 +44,39 @@ export default function DatePickerPage() {
         ]}
       />
 
-      {/* ── Estilos ── */}
-      <Section icon="edit_calendar" title="Estilos de Conteúdo" count="2 estilos">
-        <div className={styles.stylesGrid}>
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <DatePicker label="Data de início" size="md" />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Placeholder</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Campo vazio exibindo o placeholder DD/MM/AAAA. Indica o formato esperado sem
-                preencher valor.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <DatePicker label="Data de início" size="md" defaultValue={EXAMPLE_DATE} />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Filled</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Campo preenchido com data selecionada. Texto em Fill Primary para diferenciar de
-                placeholder.
-              </span>
-            </div>
-          </div>
-        </div>
+      {/* ── Estilos de Conteúdo ── */}
+      <Section
+        icon="edit_calendar"
+        title="Estilos de Conteúdo"
+        count={2}
+        description="O campo exibe dois estados visuais distintos conforme a interação do usuário."
+      >
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker label="Data de início" size="md" />
+              </div>
+            }
+            title="Placeholder"
+            description="Campo vazio exibindo o placeholder DD/MM/AAAA. Indica o formato esperado sem preencher valor."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker label="Data de início" size="md" defaultValue={EXAMPLE_DATE} />
+              </div>
+            }
+            title="Filled"
+            description="Campo preenchido com data selecionada. Texto em Fill Primary para diferenciar de placeholder."
+            previewPad="lg"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Escala de tamanhos ── */}
-      <Section
-        icon="straighten"
-        title="Escala de Tamanhos"
-        count={`${DATE_PICKER_SIZES.length} tamanhos`}
-      >
+      <Section icon="straighten" title="Escala de Tamanhos" count={DATE_PICKER_SIZES.length}>
         <div className={styles.sizeScaleContainer}>
           {DATE_PICKER_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -109,7 +107,7 @@ export default function DatePickerPage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${DATE_PICKER_STATES.length} estados`}>
+      <Section icon="toggle_on" title="Estados" count={DATE_PICKER_STATES.length}>
         <StateMatrix
           columns={DATE_PICKER_MATRIX_COLS}
           rows={DATE_PICKER_MATRIX_STATES}
@@ -192,7 +190,7 @@ export default function DatePickerPage() {
       {/* ════════════════════════════════
           CALENDÁRIO
       ════════════════════════════════ */}
-      <Section icon="calendar_month" title="Calendário" count="2 tamanhos">
+      <Section icon="calendar_month" title="Calendário" count={2}>
         <div className={styles.calendarSizeContainer}>
           {CALENDAR_SIZES.map((s) => (
             <div key={s.id} className={styles.calendarSizeRow}>

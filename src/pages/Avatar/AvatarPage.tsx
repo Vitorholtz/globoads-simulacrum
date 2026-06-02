@@ -10,6 +10,8 @@ import type { AvatarSize, AvatarVariant } from '../../tokens/avatar'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './AvatarPage.module.css'
 
 const DEMO_NAME = 'Ana Maria Braga'
@@ -45,33 +47,29 @@ export default function AvatarPage() {
       />
 
       {/* ── Variantes ── */}
-      <Section icon="person" title="Variantes" count={`${AVATAR_VARIANTS.length} variantes`}>
-        <div className={styles.variantsGrid}>
+      <Section icon="person" title="Variantes" count={AVATAR_VARIANTS.length}>
+        <CardGrid cols={2}>
           {AVATAR_VARIANTS.map((v) => (
-            <div key={v.id} className={styles.variantCard}>
-              <div className={styles.variantPreview}>
+            <DemoCard
+              key={v.id}
+              preview={
                 <Avatar
                   size="xl"
                   variant={v.id as AvatarVariant}
                   name={DEMO_NAME}
                   src={v.id === 'photo' ? DEMO_SRC_PHOTO : undefined}
                 />
-              </div>
-              <div className={styles.variantBody}>
-                <span className={`type-caption-md ${styles.variantLabel}`}>{v.label}</span>
-                <p className={`type-body-md ${styles.variantDesc}`}>{v.description}</p>
-              </div>
-            </div>
+              }
+              title={v.label}
+              description={v.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <Section
-        icon="straighten"
-        title="Escala de Tamanhos"
-        count={`${AVATAR_SIZES.length} tamanhos`}
-      >
+      <Section icon="straighten" title="Escala de Tamanhos" count={AVATAR_SIZES.length}>
         <div className={styles.sizesContainer}>
           <div className={styles.sizesHeader}>
             <div className={styles.sizesRowLabel} />

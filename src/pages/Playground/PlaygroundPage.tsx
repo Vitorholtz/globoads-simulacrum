@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import PageHeader from '../../components/PageHeader/PageHeader'
+import Section from '../../components/Section/Section'
 import TextField from '../../components/TextField/TextField'
 import Select from '../../components/Select/Select'
 import Textarea from '../../components/Textarea/Textarea'
@@ -105,22 +106,32 @@ export default function PlaygroundPage() {
 
   function setStr(key: keyof FormFields) {
     return (e: React.ChangeEvent<HTMLInputElement>) =>
-      setFields(prev => ({ ...prev, [key]: e.target.value }) as FormFields)
+      setFields((prev) => ({ ...prev, [key]: e.target.value }) as FormFields)
   }
 
   function setTextarea(key: keyof FormFields) {
     return (e: React.ChangeEvent<HTMLTextAreaElement>) =>
-      setFields(prev => ({ ...prev, [key]: e.target.value }) as FormFields)
+      setFields((prev) => ({ ...prev, [key]: e.target.value }) as FormFields)
   }
 
   function setSel(key: keyof FormFields) {
-    return (val: string) => setFields(prev => ({ ...prev, [key]: val }) as FormFields)
+    return (val: string) => setFields((prev) => ({ ...prev, [key]: val }) as FormFields)
   }
 
   const isComplete = Boolean(
-    fields.nomeCompleto && fields.email && fields.telefone && fields.cpf && fields.nascimento &&
-    fields.cep && fields.estado && fields.cidade && fields.bairro && fields.logradouro &&
-    fields.empresa && fields.cargo && fields.area
+    fields.nomeCompleto &&
+    fields.email &&
+    fields.telefone &&
+    fields.cpf &&
+    fields.nascimento &&
+    fields.cep &&
+    fields.estado &&
+    fields.cidade &&
+    fields.bairro &&
+    fields.logradouro &&
+    fields.empresa &&
+    fields.cargo &&
+    fields.area
   )
 
   function err(val: string | Date | null) {
@@ -144,12 +155,9 @@ export default function PlaygroundPage() {
         subtitle="Área temporária para testar composições com os componentes do Design System."
       />
 
-      <div className={styles.formWrap}>
-        <form className={styles.formCard} onSubmit={handleSubmit}>
-
-          {/* Dados pessoais */}
-          <div className={styles.formSection}>
-            <p className={`type-title-sm ${styles.sectionTitle}`}>Dados pessoais</p>
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit}>
+          <Section icon="person" title="Dados pessoais">
             <div className={styles.fieldGrid}>
               <TextField
                 className={styles.fieldFull}
@@ -188,17 +196,13 @@ export default function PlaygroundPage() {
               <DatePicker
                 label="Data de nascimento"
                 value={fields.nascimento}
-                onChange={date => setFields(prev => ({ ...prev, nascimento: date }))}
+                onChange={(date) => setFields((prev) => ({ ...prev, nascimento: date }))}
                 errorMessage={err(fields.nascimento)}
               />
             </div>
-          </div>
+          </Section>
 
-          <div className={styles.divider} />
-
-          {/* Endereço */}
-          <div className={styles.formSection}>
-            <p className={`type-title-sm ${styles.sectionTitle}`}>Endereço</p>
+          <Section icon="location_on" title="Endereço">
             <div className={styles.fieldGrid}>
               <TextField
                 label="CEP"
@@ -248,13 +252,9 @@ export default function PlaygroundPage() {
                 onChange={setStr('complemento')}
               />
             </div>
-          </div>
+          </Section>
 
-          <div className={styles.divider} />
-
-          {/* Perfil profissional */}
-          <div className={styles.formSection}>
-            <p className={`type-title-sm ${styles.sectionTitle}`}>Perfil profissional</p>
+          <Section icon="work" title="Perfil profissional">
             <div className={styles.fieldGrid}>
               <TextField
                 label="Empresa"
@@ -292,14 +292,13 @@ export default function PlaygroundPage() {
                 onChange={setTextarea('sobre')}
               />
             </div>
-          </div>
+          </Section>
 
           <div className={styles.formFooter}>
             <Button type="submit" variant="primary">
               Cadastrar
             </Button>
           </div>
-
         </form>
       </div>
 

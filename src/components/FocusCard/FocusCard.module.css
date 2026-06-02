@@ -23,8 +23,8 @@
 .info {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-050);
-  padding: var(--spacing-200);
+  gap: var(--spacing-100);
+  padding: var(--spacing-300) var(--spacing-300) var(--spacing-250);
   border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
@@ -33,11 +33,10 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-100);
-  margin-bottom: var(--spacing-025);
+  margin-bottom: var(--spacing-050);
 }
 
 .name {
-  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 
@@ -55,4 +54,8 @@
 .variable {
   color: var(--color-fill-accent);
   font-family: var(--font-family-code);
+  background: var(--color-surface-accent);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-025) var(--spacing-150);
+  align-self: flex-start;
 }

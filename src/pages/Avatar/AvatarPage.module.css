@@ -1,48 +1,6 @@
 /* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
-/* ── Variantes ── */
-
-.variantsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
-.variantCard {
-  background: var(--color-surface-primary);
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.variantPreview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-700) var(--spacing-400);
-  background: var(--color-surface-secondary);
-}
-
-.variantBody {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-075);
-  padding: var(--spacing-300) var(--spacing-400);
-}
-
-.variantLabel {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.variantDesc {
-  color: var(--color-fill-secondary);
-  margin: 0;
-}
-
-/* ── Tamanhos ── */
+/* ── Tamanhos ──*/
 
 .sizesContainer {
   background: var(--color-surface-primary);

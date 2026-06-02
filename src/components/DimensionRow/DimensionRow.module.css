@@ -20,10 +20,6 @@
   gap: var(--spacing-050);
 }
 
-.name {
-  font-weight: var(--font-weight-semibold);
-}
-
 .value {
   color: var(--color-fill-tertiary);
 }
@@ -31,8 +27,16 @@
 .variable {
   flex: 1;
   min-width: 0;
+  text-align: left;
+}
+
+.variable > span {
   font-family: var(--font-family-code);
   color: var(--color-fill-accent);
+  background: var(--color-surface-accent);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-025) var(--spacing-150);
+  display: inline-block;
 }
 
 .display {

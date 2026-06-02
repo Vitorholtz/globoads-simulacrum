@@ -61,7 +61,7 @@ export default function StaticCardPage() {
       />
 
       {/* ── Estilos ── */}
-      <Section icon="style" title="Estilos" count="2 estilos">
+      <Section icon="style" title="Estilos" count={2}>
         <div className={styles.stylesGrid}>
           {CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>

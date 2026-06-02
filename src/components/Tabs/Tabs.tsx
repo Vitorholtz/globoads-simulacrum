@@ -21,7 +21,7 @@ export default function Tabs({
   className,
 }: TabsProps) {
   return (
-    <div role="tablist" className={cx(styles.tabs, styles[position], className ?? '')}>
+    <div role="tablist" className={cx(styles.root, styles[position], className ?? '')}>
       {items.map((item) => {
         const isActive = item.id === activeId
         return (

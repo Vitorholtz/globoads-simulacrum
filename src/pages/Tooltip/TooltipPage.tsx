@@ -58,7 +58,7 @@ export default function TooltipPage() {
       </Section>
 
       {/* ── Posições ── */}
-      <Section icon="open_with" title="Posições" count={`${TOOLTIP_POSITIONS.length} posições`}>
+      <Section icon="open_with" title="Posições" count={TOOLTIP_POSITIONS.length}>
         <div className={styles.positionsGrid}>
           {TOOLTIP_POSITIONS.map((pos) => (
             <div key={pos.id} className={styles.positionCard}>
@@ -77,11 +77,7 @@ export default function TooltipPage() {
       </Section>
 
       {/* ── Alinhamentos ── */}
-      <Section
-        icon="align_horizontal_left"
-        title="Alinhamentos"
-        count={`${TOOLTIP_ALIGNMENTS.length} alinhamentos`}
-      >
+      <Section icon="align_horizontal_left" title="Alinhamentos" count={TOOLTIP_ALIGNMENTS.length}>
         <div className={styles.alignGrid}>
           {TOOLTIP_ALIGNMENTS.map((align) => (
             <div key={align.id} className={styles.alignCard}>

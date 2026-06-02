@@ -58,3 +58,31 @@ Sempre referencie via `var(--token-*)`. **Nunca** hardcode valores px/rem.
 
 - Ao construir interfaces, **sempre** use os componentes existentes em `src/components/` — nunca HTML puro.
 - Ao **modificar** um componente, atualize todos os consumidores (páginas/componentes pai) que o usam.
+
+## Vocabulário canônico de documentação
+
+### Nomes de seção (títulos padronizados)
+
+| Conceito          | Título canônico       |
+| ----------------- | --------------------- |
+| Variações visuais | **Variantes**         |
+| Tamanhos          | **Tamanhos**          |
+| Interações        | **Estados**           |
+| Props/opções      | **Configurações**     |
+| Tipos de conteúdo | **Conteúdo**          |
+| Boas práticas     | **Diretrizes de Uso** |
+
+### `count` na pílula de seção
+
+`count` deve ser **sempre numérico** (ex.: `count={3}`). O substantivo já está no título da seção
+("Tamanhos", "Variantes"). Nunca passe strings como `"3 tamanhos"`.
+
+### Chrome de documentação: componentes disponíveis
+
+- `<Section>` / `<SectionHeader>` — wrapper de seção com `description?` opcional (texto de orientação
+  abaixo do header, `type-body-sm`, máx. 640 px).
+- `<DemoCard preview={…} title="…">` — card preview + corpo unificado. Props:
+  `description?`, `badge?`, `tokens?: string[]`, `previewPad?: 'sm'|'md'|'lg'`, `align?: 'center'|'stretch'`.
+- `<CardGrid cols={2|3|4|'auto'}>` — grade responsiva com `gap: --spacing-200`. Padrão: `auto-fill`.
+- `<CopyChip value="--token-name">` — chip copiável para tokens/classes CSS.
+- `<StateMatrix>` / `<GuidelinesGrid>` — já padrão; **não reimplementar** em páginas.

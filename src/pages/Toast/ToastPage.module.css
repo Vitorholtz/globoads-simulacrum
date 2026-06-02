@@ -1,4 +1,4 @@
-﻿/* ── Static demo area ── */
+/* ── Static demo area ── */
 
 .demoArea {
   background: var(--color-surface-secondary);
@@ -90,76 +90,28 @@
   line-height: var(--line-height-icon);
 }
 
-/* ── Variants grid ── */
-
-.variantsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
-/* ── Content combinations grid ── */
-
-.contentGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
-/* ── Shared card ── */
-
-.variantCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  display: flex;
-  flex-direction: column;
-}
-
-.variantPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-  padding: var(--spacing-400) var(--spacing-300);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.variantPreview > * {
-  width: 100%;
-  max-width: 360px;
-}
-
-.cardBody {
-  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-075);
-  flex: 1;
-}
-
-.cardLabel {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.cardDesc {
-  color: var(--color-fill-secondary);
-}
-
-/* ── Guidelines ── */
-
 /* ── Toast portal (fixed overlay) ── */
 
 @keyframes motion-enter-right {
-  from { opacity: 0; transform: translateX(6px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes motion-exit-right {
-  from { opacity: 1; transform: translateX(0); }
-  to   { opacity: 0; transform: translateX(6px); }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(6px);
+  }
 }
 
 .toastPortal {

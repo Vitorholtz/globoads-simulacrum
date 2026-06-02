@@ -11,6 +11,8 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './SwitchPage.module.css'
 
 const ALL_BEHAVIORS: SwitchBehavior[] = ['unchecked', 'checked']
@@ -59,24 +61,22 @@ export default function SwitchPage() {
       />
 
       {/* ── Comportamentos ── */}
-      <Section icon="toggle_on" title="Comportamentos" count="2 comportamentos">
-        <div className={styles.behaviorsGrid}>
+      <Section icon="toggle_on" title="Comportamentos" count={2}>
+        <CardGrid cols={2}>
           {SWITCH_BEHAVIORS.map((b) => (
-            <div key={b.id} className={styles.behaviorCard}>
-              <div className={styles.behaviorPreview}>
-                <BehaviorDemo initial={b.id} />
-              </div>
-              <div className={styles.behaviorBody}>
-                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
-                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={b.id}
+              preview={<BehaviorDemo initial={b.id} />}
+              title={b.label}
+              description={b.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Estados — Matriz ── */}
-      <Section icon="radio_button_checked" title="Estados" count="5 estados">
+      <Section icon="radio_button_checked" title="Estados" count={5}>
         {ALL_TYPES.map((type) => {
           const typeDef = SWITCH_TYPES.find((t) => t.id === type)
           return (
@@ -97,30 +97,32 @@ export default function SwitchPage() {
       </Section>
 
       {/* ── Tipos ── */}
-      <Section icon="swap_horiz" title="Tipos" count="2 tipos">
-        <div className={styles.typesGrid}>
+      <Section icon="swap_horiz" title="Tipos" count={2}>
+        <CardGrid cols={2}>
           {SWITCH_TYPES.map((t) => (
-            <div key={t.id} className={styles.typeCard}>
-              <div className={styles.typePreview}>
-                {(['Notificações', 'Modo escuro', 'Salvar automaticamente'] as const).map(
-                  (lbl, idx) => (
-                    <Switch
-                      key={lbl}
-                      checked={typesState[t.id][idx]}
-                      onChange={(v) => setTypeOption(t.id, idx, v)}
-                      type={t.id}
-                      label={lbl}
-                    />
-                  )
-                )}
-              </div>
-              <div className={styles.typeBody}>
-                <span className={`type-body-sm ${styles.typeName}`}>{t.label}</span>
-                <p className={`type-body-sm ${styles.typeDesc}`}>{t.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={t.id}
+              preview={
+                <div className={styles.typeList}>
+                  {(['Notificações', 'Modo escuro', 'Salvar automaticamente'] as const).map(
+                    (lbl, idx) => (
+                      <Switch
+                        key={lbl}
+                        checked={typesState[t.id][idx]}
+                        onChange={(v) => setTypeOption(t.id, idx, v)}
+                        type={t.id}
+                        label={lbl}
+                      />
+                    )
+                  )}
+                </div>
+              }
+              title={t.label}
+              description={t.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Help Text ── */}

@@ -36,13 +36,7 @@ export default function Hyperlink({
   className,
   ...rest
 }: HyperlinkProps) {
-  const cls = cx(
-    SIZE_CLASS[size],
-    underline ? 'hyperlink-underline' : '',
-    styles.hyperlink,
-    styles[size],
-    className ?? ''
-  )
+  const cls = cx(SIZE_CLASS[size], styles.root, styles[size], className ?? '')
 
   return (
     <a
@@ -53,7 +47,7 @@ export default function Hyperlink({
       rel={external ? 'noopener noreferrer' : undefined}
       {...rest}
     >
-      {children}
+      <span className={cx(styles.label, underline ? styles.labelUnderline : '')}>{children}</span>
       {external && (
         <span
           className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.externalIcon}`}

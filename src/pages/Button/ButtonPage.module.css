@@ -1,12 +1,4 @@
-﻿/* Header styles â†’ PageHeader.module.css  |  Section header styles â†’ SectionHeader.module.css */
-
-/* â”€â”€ Variant cards â”€â”€ */
-
-.variantsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-200);
-}
+/* ── Variant cards (preview + rich body — too complex for DemoCard) ── */
 
 .variantCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
@@ -76,14 +68,13 @@
 }
 
 .variantWhen li::before {
-  content: 'â€“';
+  content: '\2022';
   position: absolute;
   left: 0;
   color: var(--color-fill-tertiary);
-  font-weight: var(--font-weight-light);
 }
 
-/* â”€â”€ Size scale â”€â”€ */
+/* ── Size scale ── */
 
 .sizeScaleContainer {
   background: var(--color-surface-primary);
@@ -151,144 +142,3 @@
   line-height: var(--line-height-150);
   white-space: nowrap;
 }
-
-/* â”€â”€ State matrix â”€â”€ */
-
-.stateMatrixContainer {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  background: var(--color-surface-primary);
-  margin-bottom: var(--spacing-200);
-}
-
-.stateMatrixContainer:last-child {
-  margin-bottom: 0;
-}
-
-.matrixVariantHeader {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-125);
-  padding: var(--spacing-200) var(--spacing-300);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-secondary);
-}
-
-.matrixVariantName {
-  color: var(--color-fill-primary);
-}
-
-.matrixVariantTagline {
-  color: var(--color-fill-tertiary);
-}
-
-.matrixRow {
-  display: flex;
-  align-items: center;
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.matrixRow:last-child {
-  border-bottom: none;
-}
-
-.matrixStateLabel {
-  width: 96px;
-  flex-shrink: 0;
-  padding: 0 24px;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-secondary);
-}
-
-.matrixStateName {
-  color: var(--color-fill-tertiary);
-  text-transform: uppercase;
-}
-
-.matrixCells {
-  display: flex;
-  flex: 1;
-}
-
-.matrixCell {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-250) var(--spacing-200);
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.matrixCell:last-child {
-  border-right: none;
-}
-
-.matrixCellLabel {
-  color: var(--color-fill-tertiary);
-  text-transform: uppercase;
-  text-align: center;
-  padding: var(--spacing-175) var(--spacing-100);
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-  flex: 1;
-}
-
-.matrixCellLabel:last-child {
-  border-right: none;
-}
-
-.matrixHeaderRow {
-  display: flex;
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-primary);
-}
-
-.matrixHeaderSpacer {
-  width: 96px;
-  flex-shrink: 0;
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-/* â”€â”€ Content variants â”€â”€ */
-
-.contentGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-200);
-}
-
-.contentCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-}
-
-.contentPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-500) var(--spacing-300);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contentBody {
-  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-075);
-}
-
-.contentName {
-  color: var(--color-fill-primary);
-}
-
-.contentDesc {
-  color: var(--color-fill-secondary);
-}
-
-/* â”€â”€ Guidelines â”€â”€ */

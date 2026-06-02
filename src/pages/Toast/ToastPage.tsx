@@ -5,6 +5,8 @@ import { TOAST_VARIANTS, TOAST_GUIDELINES } from '../../tokens/toast'
 import type { ToastType } from '../../tokens/toast'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './ToastPage.module.css'
 
 const TYPE_TRIGGER_LABEL: Record<ToastType, string> = {
@@ -49,7 +51,12 @@ export default function ToastPage() {
     return () => clearTimeout(timer)
   }, [active, startExit])
 
-  useEffect(() => () => { if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current) }, [])
+  useEffect(
+    () => () => {
+      if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current)
+    },
+    []
+  )
 
   function trigger(type: ToastType) {
     if (leaveTimerRef.current) {
@@ -122,77 +129,71 @@ export default function ToastPage() {
       </Section>
 
       {/* ── Variantes ── */}
-      <Section icon="style" title="Variantes" count={`${TOAST_VARIANTS.length} variantes`}>
-        <div className={styles.variantsGrid}>
+      <Section
+        icon="style"
+        title="Variantes"
+        count={TOAST_VARIANTS.length}
+        description="Cada variante usa uma cor semântica para comunicar o nível de importância da mensagem."
+      >
+        <CardGrid cols={2}>
           {TOAST_VARIANTS.map((v) => (
-            <div key={v.id} className={styles.variantCard}>
-              <div className={styles.variantPreview}>
+            <DemoCard
+              key={v.id}
+              preview={
                 <Toast type={v.id} title={v.exampleTitle} description={v.exampleDescription} />
-              </div>
-              <div className={styles.cardBody}>
-                <span className={`type-body-sm ${styles.cardLabel}`}>{v.label}</span>
-                <span className={`type-body-sm ${styles.cardDesc}`}>{v.description}</span>
-              </div>
-            </div>
+              }
+              title={v.label}
+              description={v.description}
+              align="stretch"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Combinações de conteúdo ── */}
-      <Section icon="notes" title="Combinações de conteúdo" count="3 combinações">
-        <div className={styles.contentGrid}>
-          <div className={styles.variantCard}>
-            <div className={styles.variantPreview}>
+      <Section
+        icon="notes"
+        title="Conteúdo"
+        count={3}
+        description="O Toast suporta três combinações de conteúdo que cobrem os cenários mais comuns."
+      >
+        <CardGrid cols={3}>
+          <DemoCard
+            preview={
               <Toast
                 type="neutral"
                 title="Campanha salva"
                 description="Suas alterações foram salvas com sucesso."
               />
-            </div>
-            <div className={styles.cardBody}>
-              <span className={`type-body-sm ${styles.cardLabel}`}>Título e descrição</span>
-              <span className={`type-body-sm ${styles.cardDesc}`}>
-                Configuração padrão e recomendada. O título comunica a essência e a descrição
-                fornece o contexto. Mantenha visível por ao menos 5 segundos.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.variantCard}>
-            <div className={styles.variantPreview}>
-              <Toast type="neutral" title="Campanha salva com sucesso." />
-            </div>
-            <div className={styles.cardBody}>
-              <span className={`type-body-sm ${styles.cardLabel}`}>Apenas título</span>
-              <span className={`type-body-sm ${styles.cardDesc}`}>
-                Use quando a mensagem é simples o suficiente para uma única linha. O título deve ser
-                autoexplicativo. Pode ser dispensado em 3 segundos.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.variantCard}>
-            <div className={styles.variantPreview}>
+            }
+            title="Título e descrição"
+            description="Configuração padrão e recomendada. O título comunica a essência e a descrição fornece o contexto. Mantenha visível por ao menos 5 segundos."
+            align="stretch"
+          />
+          <DemoCard
+            preview={<Toast type="neutral" title="Campanha salva com sucesso." />}
+            title="Apenas título"
+            description="Use quando a mensagem é simples o suficiente para uma única linha. O título deve ser autoexplicativo. Pode ser dispensado em 3 segundos."
+            align="stretch"
+          />
+          <DemoCard
+            preview={
               <Toast
                 type="neutral"
                 title="Campanha salva"
                 description="Suas alterações foram salvas com sucesso."
                 closable={false}
               />
-            </div>
-            <div className={styles.cardBody}>
-              <span className={`type-body-sm ${styles.cardLabel}`}>Sem botão de fechar</span>
-              <span className={`type-body-sm ${styles.cardDesc}`}>
-                Use quando o Toast deve desaparecer apenas automaticamente, sem oferecer controle
-                manual ao usuário. Adequado para mensagens de confirmação simples.
-              </span>
-            </div>
-          </div>
-        </div>
+            }
+            title="Sem botão de fechar"
+            description="Use quando o Toast deve desaparecer apenas automaticamente, sem oferecer controle manual ao usuário. Adequado para mensagens de confirmação simples."
+            align="stretch"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}
-      <Section icon="checklist" title="Diretrizes de uso">
+      <Section icon="checklist" title="Diretrizes de Uso">
         <GuidelinesGrid items={TOAST_GUIDELINES} />
       </Section>
 

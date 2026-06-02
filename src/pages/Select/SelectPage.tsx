@@ -12,6 +12,8 @@ import type { SelectSizeDef } from '../../tokens/select'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './SelectPage.module.css'
 
 function sizeSpecs(size: SelectSizeDef) {
@@ -39,34 +41,33 @@ export default function SelectPage() {
       />
 
       {/* ── Estilos de Conteúdo ── */}
-      <Section icon="style" title="Estilos de Conteúdo">
-        <div className={styles.stylesGrid}>
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <Select options={SELECT_DEMO_OPTIONS} size="md" />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Placeholder</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Estado inicial do campo quando nenhuma opção foi selecionada. O texto de placeholder
-                orienta o usuário sobre o que selecionar.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <Select options={SELECT_DEMO_OPTIONS} size="md" defaultValue="item-1" />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Filled</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Estado após a seleção de uma opção. O valor escolhido é exibido no campo com cor
-                primária, diferenciando-se do placeholder.
-              </span>
-            </div>
-          </div>
-        </div>
+      <Section
+        icon="style"
+        title="Estilos de Conteúdo"
+        description="O campo exibe dois estados visuais distintos conforme a interação do usuário."
+      >
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <Select options={SELECT_DEMO_OPTIONS} size="md" />
+              </div>
+            }
+            title="Placeholder"
+            description="Estado inicial do campo quando nenhuma opção foi selecionada. O texto de placeholder orienta o usuário sobre o que selecionar."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <Select options={SELECT_DEMO_OPTIONS} size="md" defaultValue="item-1" />
+              </div>
+            }
+            title="Filled"
+            description="Estado após a seleção de uma opção. O valor escolhido é exibido no campo com cor primária, diferenciando-se do placeholder."
+            previewPad="lg"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Escala de Tamanhos ── */}
@@ -119,125 +120,84 @@ export default function SelectPage() {
       </Section>
 
       {/* ── Configurações ── */}
-      <Section icon="tune" title="Configurações" count={6}>
-        <div className={styles.configGrid}>
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <Select options={SELECT_DEMO_OPTIONS} />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Padrão</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Campo de seleção básico com label e placeholder. Ponto de partida para a maioria dos
-                formulários.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <Select options={SELECT_DEMO_OPTIONS} optional />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Opcional</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Campo não obrigatório identificado com a tag "Opcional" ao lado da label.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <Select options={SELECT_DEMO_OPTIONS} showLabel={false} />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Sem label</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Útil quando o contexto da interface já deixa o propósito do campo evidente.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+      <Section
+        icon="tune"
+        title="Configurações"
+        count={6}
+        description="Combinações de props que cobrem os cenários mais comuns de formulários."
+      >
+        <CardGrid cols={3}>
+          <DemoCard
+            preview={<Select options={SELECT_DEMO_OPTIONS} />}
+            title="Padrão"
+            description="Campo de seleção básico com label e placeholder. Ponto de partida para a maioria dos formulários."
+          />
+          <DemoCard
+            preview={<Select options={SELECT_DEMO_OPTIONS} optional />}
+            title="Opcional"
+            description={
+              'Campo não obrigatório identificado com a tag "Opcional" ao lado da label.'
+            }
+          />
+          <DemoCard
+            preview={<Select options={SELECT_DEMO_OPTIONS} showLabel={false} />}
+            title="Sem label"
+            description="Útil quando o contexto da interface já deixa o propósito do campo evidente."
+          />
+          <DemoCard
+            preview={
               <Select
                 options={SELECT_DEMO_OPTIONS}
                 descriptionText="Selecione a opção que melhor descreve o seu caso de uso."
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com descrição</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Ícone de informação ao lado da label exibe um tooltip de contexto ao passar o
-                cursor.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+            }
+            title="Com descrição"
+            description="Ícone de informação ao lado da label exibe um tooltip de contexto ao passar o cursor."
+          />
+          <DemoCard
+            preview={
               <Select
                 options={SELECT_DEMO_OPTIONS}
                 helpText="Escolha a opção mais adequada ao seu caso."
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com texto de ajuda</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Texto de apoio abaixo do campo orienta o usuário sobre o contexto ou as opções
-                disponíveis.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <Select options={SELECT_DEMO_OPTIONS} defaultValue="item-1" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Pré-selecionado</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Campo inicializado com um valor padrão já selecionado. Útil quando uma opção é a
-                mais comum ou recomendada.
-              </span>
-            </div>
-          </div>
-        </div>
+            }
+            title="Com texto de ajuda"
+            description="Texto de apoio abaixo do campo orienta o usuário sobre o contexto ou as opções disponíveis."
+          />
+          <DemoCard
+            preview={<Select options={SELECT_DEMO_OPTIONS} defaultValue="item-1" />}
+            title="Pré-selecionado"
+            description="Campo inicializado com um valor padrão já selecionado. Útil quando uma opção é a mais comum ou recomendada."
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Muitas opções ── */}
-      <Section icon="list" title="Muitas opções">
-        <div className={styles.manyOptionsGrid}>
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+      <Section
+        icon="list"
+        title="Muitas opções"
+        description="Comportamentos automáticos quando a lista de opções é extensa."
+      >
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
               <Select options={SELECT_DEMO_OPTIONS_LONG} placeholder="Selecione o formato" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com scroll</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Quando a lista excede a altura máxima do dropdown, as opções ficam acessíveis via
-                scroll. Sempre ativo — não requer configuração extra.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+            }
+            title="Com scroll"
+            description="Quando a lista excede a altura máxima do dropdown, as opções ficam acessíveis via scroll. Sempre ativo — não requer configuração extra."
+          />
+          <DemoCard
+            preview={
               <Select
                 options={SELECT_DEMO_OPTIONS_LONG}
                 placeholder="Selecione o formato"
                 searchable
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Pesquisável</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                A prop <strong>searchable</strong> adiciona um campo de busca no topo do dropdown
-                que filtra as opções em tempo real. Recomendado a partir de 8 itens.
-              </span>
-            </div>
-          </div>
-        </div>
+            }
+            title="Pesquisável"
+            description={`A prop searchable adiciona um campo de busca no topo do dropdown que filtra as opções em tempo real. Recomendado a partir de 8 itens.`}
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes de Uso ── */}

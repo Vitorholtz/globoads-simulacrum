@@ -9,18 +9,15 @@ export default function FocusCard({ token }: FocusCardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.preview}>
-        <div
-          className={styles.element}
-          style={{ boxShadow: `var(${token.variable})` }}
-        />
+        <div className={styles.element} style={{ boxShadow: `var(${token.variable})` }} />
       </div>
       <div className={styles.info}>
         <div className={styles.header}>
-          <span className={`type-body-md ${styles.name}`}>{token.name}</span>
-          <span className={`type-caption-md ${styles.useCase}`}>{token.useCase}</span>
+          <span className={`type-title-sm ${styles.name}`}>{token.name}</span>
+          <span className={`type-caption-sm ${styles.useCase}`}>{token.useCase}</span>
         </div>
-        <span className={`type-caption-md ${styles.value}`}>{token.cssValue}</span>
-        <span className={`type-caption-md ${styles.variable}`}>{token.variable}</span>
+        <span className={`type-caption-sm ${styles.variable}`}>{token.variable}</span>
+        <span className={`type-caption-sm ${styles.value}`}>{token.cssValue}</span>
       </div>
     </div>
   )

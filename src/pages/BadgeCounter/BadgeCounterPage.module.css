@@ -1,5 +1,3 @@
-﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
-
 /* ── Exemplos de Valor ── */
 
 .examplesContainer {
@@ -120,48 +118,7 @@
   color: var(--color-fill-secondary);
 }
 
-/* ── Contextos de Uso ── */
-
-.contextsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
-.contextCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-}
-
-.contextPreview {
-  background: var(--color-surface-secondary);
-  padding: var(--spacing-500) var(--spacing-400);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 140px;
-}
-
-.contextMeta {
-  padding: var(--spacing-200) var(--spacing-250);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-050);
-}
-
-.contextLabel {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.contextDesc {
-  color: var(--color-fill-secondary);
-}
-
-/* Icon context example */
+/* ── Context preview helpers ── */
 
 .contextIconExample {
   display: flex;
@@ -185,5 +142,3 @@
   top: -4px;
   right: -6px;
 }
-
-/* ── Guidelines ── */

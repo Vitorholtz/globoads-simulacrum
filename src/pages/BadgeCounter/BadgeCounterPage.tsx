@@ -6,6 +6,8 @@ import { BADGE_COUNTER_EXAMPLES, BADGE_COUNTER_GUIDELINES } from '../../tokens/b
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './BadgeCounterPage.module.css'
 
 const TAB_CONTEXT_ITEMS: TabItem[] = [
@@ -16,6 +18,7 @@ const TAB_CONTEXT_ITEMS: TabItem[] = [
 
 export default function BadgeCounterPage() {
   const [activeTab, setActiveTab] = useState('notificacoes')
+
   return (
     <div>
       <PageHeader
@@ -30,11 +33,7 @@ export default function BadgeCounterPage() {
       />
 
       {/* ── Exemplos de Valor ── */}
-      <Section
-        icon="badge"
-        title="Exemplos de Valor"
-        count={`${BADGE_COUNTER_EXAMPLES.length} exemplos`}
-      >
+      <Section icon="badge" title="Exemplos de Valor" count={BADGE_COUNTER_EXAMPLES.length}>
         <div className={styles.examplesContainer}>
           {BADGE_COUNTER_EXAMPLES.map((ex) => (
             <div key={ex.value} className={styles.exampleRow}>
@@ -100,21 +99,17 @@ export default function BadgeCounterPage() {
 
       {/* ── Contextos de Uso ── */}
       <Section icon="widgets" title="Contextos de Uso">
-        <div className={styles.contextsGrid}>
-          <div className={styles.contextCard}>
-            <div className={styles.contextPreview}>
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
               <Tabs items={TAB_CONTEXT_ITEMS} activeId={activeTab} onChange={setActiveTab} />
-            </div>
-            <div className={styles.contextMeta}>
-              <span className={`type-body-sm ${styles.contextLabel}`}>Em tabs e navegação</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>
-                Badge posicionado imediatamente após o rótulo, alinhado ao centro vertical.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.contextCard}>
-            <div className={styles.contextPreview}>
+            }
+            title="Em tabs e navegação"
+            description="Badge posicionado imediatamente após o rótulo, alinhado ao centro vertical."
+            align="stretch"
+          />
+          <DemoCard
+            preview={
               <div className={styles.contextIconExample}>
                 <div className={styles.contextIconWrapper}>
                   <span className={`material-symbols-rounded icon-lg ${styles.contextIcon}`}>
@@ -135,15 +130,12 @@ export default function BadgeCounterPage() {
                   <BadgeCounter value="12" className={styles.contextIconBadge} />
                 </div>
               </div>
-            </div>
-            <div className={styles.contextMeta}>
-              <span className={`type-body-sm ${styles.contextLabel}`}>Sobre ícones</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>
-                Badge ancorado no canto superior direito do ícone, indicando itens pendentes.
-              </p>
-            </div>
-          </div>
-        </div>
+            }
+            title="Sobre ícones"
+            description="Badge ancorado no canto superior direito do ícone, indicando itens pendentes."
+            previewPad="lg"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

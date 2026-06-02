@@ -1,6 +1,6 @@
 ﻿/* ── Wrapper ── */
 
-.radio {
+.root {
   display: flex;
   gap: var(--spacing-100);
   align-items: flex-start;
@@ -11,16 +11,16 @@
   user-select: none;
 }
 
-.radio.inverter {
+.root.inverter {
   flex-direction: row-reverse;
 }
 
 /* Any forced state (matrix/docs) disables all pointer interaction */
-.radio[data-state] {
+.root[data-state] {
   pointer-events: none;
 }
 
-.radio[data-state='disabled'] {
+.root[data-state='disabled'] {
   opacity: var(--opacity-disabled);
 }
 
@@ -57,18 +57,20 @@
   border-radius: var(--border-radius-full);
   background: var(--color-surface-primary);
   box-sizing: border-box;
-  transition: border-color var(--motion-duration-base) var(--motion-easing-default), border-width var(--motion-duration-fast) var(--motion-easing-default);
+  transition:
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    border-width var(--motion-duration-fast) var(--motion-easing-default);
 }
 
 /* ════════════════════════════════════
    VISUAL STATES — base (Normal)
    ════════════════════════════════════ */
 
-.radio[data-behavior='unchecked'] .shape {
+.root[data-behavior='unchecked'] .shape {
   border: var(--border-width-sm) solid var(--color-border-primary);
 }
 
-.radio[data-behavior='checked'] .shape {
+.root[data-behavior='checked'] .shape {
   border: var(--border-width-lg) solid var(--color-fill-accent);
 }
 
@@ -78,31 +80,31 @@
    ════════════════════════════════════ */
 
 /* Hover */
-.radio:not([data-state]):hover[data-behavior='unchecked'] .shape {
+.root:not([data-state]):hover[data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
 }
 
-.radio:not([data-state]):hover[data-behavior='checked'] .shape {
+.root:not([data-state]):hover[data-behavior='checked'] .shape {
   border-color: var(--color-action-solid-fill-hover);
 }
 
 /* Focus (keyboard only) */
-.radio:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] .shape {
+.root:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
   box-shadow: var(--outline-focus);
 }
 
-.radio:not([data-state]):has(input:focus-visible)[data-behavior='checked'] .shape {
+.root:not([data-state]):has(input:focus-visible)[data-behavior='checked'] .shape {
   border-color: var(--color-action-solid-fill-hover);
   box-shadow: var(--outline-focus);
 }
 
 /* Active (mouse down) */
-.radio:not([data-state]):active[data-behavior='unchecked'] .shape {
+.root:not([data-state]):active[data-behavior='unchecked'] .shape {
   border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
-.radio:not([data-state]):active[data-behavior='checked'] .shape {
+.root:not([data-state]):active[data-behavior='checked'] .shape {
   border-color: var(--color-action-solid-fill-active);
 }
 
@@ -112,31 +114,31 @@
    ════════════════════════════════════ */
 
 /* Forced hover */
-.radio[data-state='hover'][data-behavior='unchecked'] .shape {
+.root[data-state='hover'][data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
 }
 
-.radio[data-state='hover'][data-behavior='checked'] .shape {
+.root[data-state='hover'][data-behavior='checked'] .shape {
   border-color: var(--color-action-solid-fill-hover);
 }
 
 /* Forced focus */
-.radio[data-state='focus'][data-behavior='unchecked'] .shape {
+.root[data-state='focus'][data-behavior='unchecked'] .shape {
   border-color: var(--color-border-secondary);
   box-shadow: var(--outline-focus);
 }
 
-.radio[data-state='focus'][data-behavior='checked'] .shape {
+.root[data-state='focus'][data-behavior='checked'] .shape {
   border-color: var(--color-action-solid-fill-hover);
   box-shadow: var(--outline-focus);
 }
 
 /* Forced active */
-.radio[data-state='active'][data-behavior='unchecked'] .shape {
+.root[data-state='active'][data-behavior='unchecked'] .shape {
   border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
-.radio[data-state='active'][data-behavior='checked'] .shape {
+.root[data-state='active'][data-behavior='checked'] .shape {
   border-color: var(--color-action-solid-fill-active);
 }
 

@@ -3,6 +3,8 @@ import { BADGE_POINTER_GUIDELINES } from '../../tokens/badgePointer'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './BadgePointerPage.module.css'
 
 export default function BadgePointerPage() {
@@ -51,9 +53,9 @@ export default function BadgePointerPage() {
 
       {/* ── Uso em contexto ── */}
       <Section icon="layers" title="Uso em Contexto">
-        <div className={styles.contextGrid}>
-          <div className={styles.contextCard}>
-            <div className={styles.contextPreview}>
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
               <div className={styles.contextIconWrapper}>
                 <span
                   className="material-symbols-rounded icon-lg"
@@ -63,18 +65,13 @@ export default function BadgePointerPage() {
                 </span>
                 <BadgePointer className={styles.contextPointer} />
               </div>
-            </div>
-            <div className={styles.contextMeta}>
-              <span className={`type-body-sm ${styles.contextLabel}`}>Sobre ícone</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>
-                Aplicado no canto superior direito de um ícone de ação ou navegação para indicar que
-                há notificações não lidas.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.contextCard}>
-            <div className={styles.contextPreview}>
+            }
+            title="Sobre ícone"
+            description="Aplicado no canto superior direito de um ícone de ação ou navegação para indicar que há notificações não lidas."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
               <div className={styles.contextNavItem}>
                 <span
                   className="material-symbols-rounded icon-md"
@@ -85,16 +82,12 @@ export default function BadgePointerPage() {
                 <span className={`type-body-sm ${styles.contextNavLabel}`}>Caixa de entrada</span>
                 <BadgePointer />
               </div>
-            </div>
-            <div className={styles.contextMeta}>
-              <span className={`type-body-sm ${styles.contextLabel}`}>Em item de menu</span>
-              <p className={`type-body-sm ${styles.contextDesc}`}>
-                Posicionado inline ao final de um item de navegação para sinalizar conteúdo novo
-                naquela seção.
-              </p>
-            </div>
-          </div>
-        </div>
+            }
+            title="Em item de menu"
+            description="Posicionado inline ao final de um item de navegação para sinalizar conteúdo novo naquela seção."
+            previewPad="lg"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

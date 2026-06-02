@@ -1,6 +1,6 @@
 ﻿/* ── Base ── */
 
-.tabs {
+.root {
   display: inline-flex;
   position: relative;
 }
@@ -128,4 +128,3 @@
   flex-shrink: 0;
   display: block;
 }
-

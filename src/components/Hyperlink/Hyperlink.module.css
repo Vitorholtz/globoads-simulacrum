@@ -1,6 +1,6 @@
 ﻿/* ── Base ── */
 
-.hyperlink {
+.root {
   display: inline-flex;
   align-items: center;
   font-style: normal;
@@ -32,6 +32,18 @@
   gap: var(--spacing-050);
 }
 
+/* ── Label (text only — keeps underline away from the icon) ── */
+
+.label {
+  display: inline;
+}
+
+.labelUnderline {
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
 /* ── External icon ── */
 
 .externalIcon {
@@ -41,9 +53,13 @@
 
 /* ── Hover state ── */
 
-.hyperlink:hover,
-.hyperlink[data-state='hover'] {
+.root:hover,
+.root[data-state='hover'] {
   color: var(--color-action-solid-fill-hover);
+}
+
+.root:hover .label,
+.root[data-state='hover'] .label {
   text-decoration: underline;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -51,20 +67,28 @@
 
 /* ── Focus state ── */
 
-.hyperlink:focus-visible,
-.hyperlink[data-state='focus'] {
+.root:focus-visible,
+.root[data-state='focus'] {
   color: var(--color-action-solid-fill-hover);
+  box-shadow: var(--outline-focus);
+}
+
+.root:focus-visible .label,
+.root[data-state='focus'] .label {
   text-decoration: underline;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  box-shadow: var(--outline-focus);
 }
 
 /* ── Active state ── */
 
-.hyperlink:active,
-.hyperlink[data-state='active'] {
+.root:active,
+.root[data-state='active'] {
   color: var(--color-action-solid-fill-active);
+}
+
+.root:active .label,
+.root[data-state='active'] .label {
   text-decoration: underline;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;

@@ -22,7 +22,7 @@ export default function DimensionsEffectsPage() {
         ]}
       />
 
-      <Section icon="straighten" title="Espaçamentos" count={`${SPACING_TOKENS.length} tokens`}>
+      <Section icon="straighten" title="Espaçamentos" count={SPACING_TOKENS.length}>
         <div className={styles.tokenList}>
           {SPACING_TOKENS.map((token) => (
             <SpacingRow key={token.variable} token={token} />
@@ -30,11 +30,7 @@ export default function DimensionsEffectsPage() {
         </div>
       </Section>
 
-      <Section
-        icon="border_style"
-        title="Espessuras de Borda"
-        count={`${BORDER_WIDTH_TOKENS.length} tokens`}
-      >
+      <Section icon="border_style" title="Espessuras de Borda" count={BORDER_WIDTH_TOKENS.length}>
         <div className={styles.tokenList}>
           {BORDER_WIDTH_TOKENS.map((token) => (
             <BorderWidthRow key={token.variable} token={token} />
@@ -42,11 +38,7 @@ export default function DimensionsEffectsPage() {
         </div>
       </Section>
 
-      <Section
-        icon="rounded_corner"
-        title="Raios de Borda"
-        count={`${BORDER_RADIUS_TOKENS.length} tokens`}
-      >
+      <Section icon="rounded_corner" title="Raios de Borda" count={BORDER_RADIUS_TOKENS.length}>
         <div className={styles.tokenList}>
           {BORDER_RADIUS_TOKENS.map((token) => (
             <BorderRadiusRow key={token.variable} token={token} />

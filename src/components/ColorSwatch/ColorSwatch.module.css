@@ -38,7 +38,11 @@
     linear-gradient(45deg, transparent 75%, #e8e8e8 75%),
     linear-gradient(-45deg, transparent 75%, #e8e8e8 75%);
   background-size: 16px 16px;
-  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0px;
 }
 
 /* cores claras: texto escuro + inset para mostrar borda */
@@ -47,11 +51,11 @@
 }
 
 .preview[data-light] .previewName {
-  color: rgba(0, 0, 0, 0.80);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .preview[data-light] .previewValue {
-  color: rgba(0, 0, 0, 0.40);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 /* â”€â”€ Meta â”€â”€ */
@@ -69,9 +73,9 @@
   font-family: var(--font-family-code);
   color: var(--color-fill-accent);
   background: var(--color-surface-accent);
-  padding: var(--spacing-050) 9px;
-  border-radius: var(--border-radius-sm);
-  width: fit-content;
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-025) var(--spacing-150);
+  align-self: flex-start;
 }
 
 .description {

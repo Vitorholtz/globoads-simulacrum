@@ -17,7 +17,8 @@
   border-radius: var(--border-radius-lg);
   transition:
     border-color var(--motion-duration-base) var(--motion-easing-default),
-    background var(--motion-duration-base) var(--motion-easing-default);
+    background var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* Hover — real */

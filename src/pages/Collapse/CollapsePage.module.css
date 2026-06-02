@@ -1,28 +1,4 @@
-﻿/* ── Styles grid ── */
-
-.stylesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
-.styleCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.stylePreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-500);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+﻿/* ── Preview helpers ── */
 
 .previewBox {
   width: 100%;
@@ -32,29 +8,6 @@
 .previewBodyText {
   color: var(--color-fill-secondary);
   margin: 0;
-}
-
-.styleBody {
-  padding: var(--spacing-300) var(--spacing-350) var(--spacing-350);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-  flex: 1;
-}
-
-.styleName {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.styleDesc {
-  color: var(--color-fill-secondary);
-}
-
-.previewText {
-  color: var(--color-fill-secondary);
-  margin: var(--spacing-100) 0 0;
-  max-width: 360px;
 }
 
 /* ── Size scale ── */

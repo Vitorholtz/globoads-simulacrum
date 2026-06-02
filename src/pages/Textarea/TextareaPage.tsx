@@ -10,6 +10,8 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './TextareaPage.module.css'
 
 export default function TextareaPage() {
@@ -27,42 +29,43 @@ export default function TextareaPage() {
       />
 
       {/* ── Estilos de Conteúdo ── */}
-      <Section icon="edit_note" title="Estilos de Conteúdo" count="2 estilos">
-        <div className={styles.stylesGrid}>
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <Textarea label="Label" placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Placeholder</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Campo vazio exibindo o placeholder. Indica o tipo de informação esperada sem
-                comprometer a label.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <Textarea label="Label" placeholder="Text here" defaultValue="Text here" size="md" />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Filled</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Campo preenchido com valor do usuário. Texto em Fill Primary para diferenciar de
-                placeholder.
-              </span>
-            </div>
-          </div>
-        </div>
+      <Section
+        icon="edit_note"
+        title="Estilos de Conteúdo"
+        count={2}
+        description="O campo exibe dois estados visuais distintos conforme a interação do usuário."
+      >
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <Textarea label="Label" placeholder="Text here" size="md" />
+              </div>
+            }
+            title="Placeholder"
+            description="Campo vazio exibindo o placeholder. Indica o tipo de informação esperada sem comprometer a label."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <Textarea
+                  label="Label"
+                  placeholder="Text here"
+                  defaultValue="Text here"
+                  size="md"
+                />
+              </div>
+            }
+            title="Filled"
+            description="Campo preenchido com valor do usuário. Texto em Fill Primary para diferenciar de placeholder."
+            previewPad="lg"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <Section
-        icon="straighten"
-        title="Escala de Tamanhos"
-        count={`${TEXTAREA_SIZES.length} tamanhos`}
-      >
+      <Section icon="straighten" title="Escala de Tamanhos" count={TEXTAREA_SIZES.length}>
         <div className={styles.sizeScaleContainer}>
           {TEXTAREA_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -93,7 +96,7 @@ export default function TextareaPage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${TEXTAREA_STATES.length} estados`}>
+      <Section icon="toggle_on" title="Estados" count={TEXTAREA_STATES.length}>
         <StateMatrix
           columns={TEXTAREA_MATRIX_COLS}
           rows={TEXTAREA_MATRIX_STATES}
@@ -114,63 +117,44 @@ export default function TextareaPage() {
       </Section>
 
       {/* ── Configurações ── */}
-      <Section icon="tune" title="Configurações" count="6 configurações">
-        <div className={styles.configGrid}>
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <Textarea label="Label" placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Padrão</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Label + campo. Configuração base para a maioria dos formulários.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <Textarea label="Label" optional placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Opcional</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Tag "Opcional" à direita da label para sinalizar campos não obrigatórios.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <Textarea showLabel={false} placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Sem label</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Quando o contexto visual torna a label dispensável — ex: campo de anotações isolado.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+      <Section
+        icon="tune"
+        title="Configurações"
+        count={6}
+        description="Combinações de props que cobrem os cenários mais comuns de formulários."
+      >
+        <CardGrid cols={3}>
+          <DemoCard
+            preview={<Textarea label="Label" placeholder="Text here" size="md" />}
+            title="Padrão"
+            description="Label + campo. Configuração base para a maioria dos formulários."
+          />
+          <DemoCard
+            preview={<Textarea label="Label" optional placeholder="Text here" size="md" />}
+            title="Opcional"
+            description={
+              'Tag "Opcional" à direita da label para sinalizar campos não obrigatórios.'
+            }
+          />
+          <DemoCard
+            preview={<Textarea showLabel={false} placeholder="Text here" size="md" />}
+            title="Sem label"
+            description="Quando o contexto visual torna a label dispensável — ex: campo de anotações isolado."
+          />
+          <DemoCard
+            preview={
               <Textarea
                 label="Label"
                 descriptionText="Informação adicional sobre este campo aparece aqui."
                 placeholder="Text here"
                 size="md"
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com descrição</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Ícone ⓘ ao lado da label exibe um tooltip com contexto adicional ao passar o mouse.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+            }
+            title="Com descrição"
+            description="Ícone ⓘ ao lado da label exibe um tooltip com contexto adicional ao passar o mouse."
+          />
+          <DemoCard
+            preview={
               <Textarea
                 label="Label"
                 placeholder="Text here"
@@ -179,33 +163,23 @@ export default function TextareaPage() {
                 showCounter
                 size="md"
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com contador</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Exibe o número de caracteres restantes. Habilitar somente quando houver um limite
-                máximo definido.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+            }
+            title="Com contador"
+            description="Exibe o número de caracteres restantes. Habilitar somente quando houver um limite máximo definido."
+          />
+          <DemoCard
+            preview={
               <Textarea
                 label="Label"
                 placeholder="Text here"
                 helpText="Help text here..."
                 size="md"
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com texto de ajuda</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Texto de suporte abaixo do campo com instruções adicionais.
-              </span>
-            </div>
-          </div>
-        </div>
+            }
+            title="Com texto de ajuda"
+            description="Texto de suporte abaixo do campo com instruções adicionais."
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

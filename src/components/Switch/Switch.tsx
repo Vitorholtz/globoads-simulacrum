@@ -35,7 +35,7 @@ export default function Switch({
   const isDisabled = disabled || forceState === 'disabled'
   const effectiveState = forceState ?? (disabled ? 'disabled' : undefined)
 
-  const cls = cx(styles.switch, type === 'inverter' ? styles.inverter : '', className ?? '')
+  const cls = cx(styles.root, type === 'inverter' ? styles.inverter : '', className ?? '')
 
   return (
     <label className={cls} data-state={effectiveState} data-behavior={effectiveBehavior}>

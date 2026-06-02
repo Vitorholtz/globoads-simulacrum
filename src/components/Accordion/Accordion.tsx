@@ -27,7 +27,7 @@ export default function Accordion({ items, defaultOpenId = null, className }: Ac
   }
 
   return (
-    <div className={cx(styles.accordion, className ?? '')}>
+    <div className={cx(styles.root, className ?? '')}>
       {items.map((item) => {
         const isOpen = openId === item.id
         return (

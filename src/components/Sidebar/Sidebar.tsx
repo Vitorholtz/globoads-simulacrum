@@ -50,7 +50,7 @@ function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
 
 export default function Sidebar() {
   return (
-    <nav className={styles.sidebar} aria-label="Navegação principal">
+    <nav className={styles.root} aria-label="Navegação principal">
       <div className={styles.logoArea}>
         <img src={globoAdsLogo} alt="Globo Ads" className={styles.logo} />
       </div>

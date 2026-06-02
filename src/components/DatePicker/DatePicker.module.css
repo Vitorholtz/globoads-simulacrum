@@ -23,7 +23,8 @@
   overflow: hidden;
   transition:
     border-color var(--motion-duration-base) var(--motion-easing-default),
-    background var(--motion-duration-base) var(--motion-easing-default);
+    background var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* Hover — real */
@@ -155,13 +156,25 @@
 /* ── Calendar popup ── */
 
 @keyframes motion-enter-top {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes motion-exit-top {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(-6px); }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
 }
 
 .calendarPopup {

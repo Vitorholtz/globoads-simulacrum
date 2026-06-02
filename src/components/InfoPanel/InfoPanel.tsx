@@ -28,8 +28,8 @@ export default function InfoPanel({
         {ICON_MAP[type]}
       </span>
       <div className={styles.content}>
-        {title && <p className={`type-body-md ${styles.title}`}>{title}</p>}
-        {description && <p className={`type-body-md ${styles.description}`}>{description}</p>}
+        {title && <p className={`type-title-sm`}>{title}</p>}
+        {description && <p className={`type-body-sm ${styles.description}`}>{description}</p>}
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-﻿.groupDescription {
+.groupDescription {
   color: var(--color-fill-secondary);
   margin-bottom: var(--spacing-350);
   max-width: 680px;
@@ -13,5 +13,5 @@
 .specimensContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-150);
+  gap: var(--spacing-400);
 }

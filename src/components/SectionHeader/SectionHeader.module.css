@@ -1,8 +1,11 @@
-﻿.sectionHeader {
+﻿.root {
+  margin-bottom: var(--spacing-300);
+}
+
+.sectionHeaderRow {
   display: flex;
   align-items: center;
   gap: var(--spacing-125);
-  margin-bottom: var(--spacing-300);
 }
 
 .sectionIcon {
@@ -21,4 +24,10 @@
   padding: var(--spacing-025) 9px;
   border-radius: var(--border-radius-full);
   margin-left: auto;
+}
+
+.sectionDescription {
+  color: var(--color-fill-secondary);
+  max-width: 640px;
+  margin-top: var(--spacing-150);
 }

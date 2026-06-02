@@ -21,7 +21,8 @@
   cursor: text;
   transition:
     border-color var(--motion-duration-base) var(--motion-easing-default),
-    background var(--motion-duration-base) var(--motion-easing-default);
+    background var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* Hover — real */

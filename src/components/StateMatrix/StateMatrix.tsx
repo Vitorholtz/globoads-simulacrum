@@ -80,7 +80,7 @@ export default function StateMatrix<C extends ColumnLike, R extends RowLike>({
     <div className={cls} style={style}>
       {header && (
         <div className={styles.groupHeader}>
-          <span className={`type-body-sm ${styles.groupHeaderName}`}>{header.name}</span>
+          <span className={`type-title-sm ${styles.groupHeaderName}`}>{header.name}</span>
           {header.description != null && (
             <span className={`type-body-sm ${styles.groupHeaderDesc}`}>— {header.description}</span>
           )}

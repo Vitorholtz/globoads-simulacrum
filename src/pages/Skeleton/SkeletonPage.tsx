@@ -14,6 +14,8 @@ import type { SkeletonSize } from '../../tokens/skeleton'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './SkeletonPage.module.css'
 
 export default function SkeletonPage() {
@@ -30,12 +32,13 @@ export default function SkeletonPage() {
       />
 
       {/* ── Tipos ── */}
-      <Section icon="category" title="Tipos" count={`${SKELETON_TYPES.length} tipos`}>
-        <div className={styles.typesGrid}>
+      <Section icon="category" title="Tipos" count={SKELETON_TYPES.length}>
+        <CardGrid cols={4}>
           {SKELETON_TYPES.map((t) => (
-            <div key={t.id} className={styles.typeCard}>
-              <div className={styles.typePreview}>
-                {t.id === 'avatar' ? (
+            <DemoCard
+              key={t.id}
+              preview={
+                t.id === 'avatar' ? (
                   <Skeleton type="avatar" size="md" />
                 ) : t.id === 'input' ? (
                   <Skeleton type="input" size="md" />
@@ -43,22 +46,19 @@ export default function SkeletonPage() {
                   <Skeleton type="card" height={80} />
                 ) : (
                   <Skeleton type={t.id} size="md" />
-                )}
-              </div>
-              <div className={styles.typeMeta}>
-                <span className={`type-body-sm ${styles.typeLabel}`}>{t.label}</span>
-                <p className={`type-caption-sm ${styles.typeDesc}`}>{t.description}</p>
-              </div>
-            </div>
+                )
+              }
+              title={t.label}
+              description={t.description}
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Tamanhos ── */}
-      <Section icon="straighten" title="Tamanhos" count="22 variações">
+      <Section icon="straighten" title="Tamanhos" count={22}>
         {/* Row 1: Button, Input, Avatar, Body */}
         <div className={styles.sizesGrid}>
-          {/* Button */}
           <div className={styles.sizeCard}>
             <div className={styles.sizePreview}>
               {SKELETON_BUTTON_SIZES.map((s) => (
@@ -73,7 +73,6 @@ export default function SkeletonPage() {
             <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Button · SM / MD / LG</span>
           </div>
 
-          {/* Input */}
           <div className={styles.sizeCard}>
             <div className={styles.sizePreview}>
               {SKELETON_INPUT_SIZES.map((s) => (
@@ -88,7 +87,6 @@ export default function SkeletonPage() {
             <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Input · SM / MD / LG</span>
           </div>
 
-          {/* Avatar */}
           <div className={styles.sizeCard}>
             <div className={[styles.sizePreview, styles.sizePreviewRow].join(' ')}>
               {SKELETON_AVATAR_SIZES.map((s) => (
@@ -103,7 +101,6 @@ export default function SkeletonPage() {
             </span>
           </div>
 
-          {/* Body */}
           <div className={styles.sizeCard}>
             <div className={styles.sizePreview}>
               {SKELETON_BODY_SIZES.map((s) => (
@@ -123,7 +120,6 @@ export default function SkeletonPage() {
 
         {/* Row 2: Title, Caption, Display, Card */}
         <div className={[styles.sizesGrid, styles.sizesGridSecondRow].join(' ')}>
-          {/* Title */}
           <div className={styles.sizeCard}>
             <div className={styles.sizePreview}>
               {SKELETON_TITLE_SIZES.map((s) => (
@@ -138,7 +134,6 @@ export default function SkeletonPage() {
             <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Title · SM / MD / LG</span>
           </div>
 
-          {/* Caption */}
           <div className={styles.sizeCard}>
             <div className={styles.sizePreview}>
               {SKELETON_CAPTION_SIZES.map((s) => (
@@ -155,7 +150,6 @@ export default function SkeletonPage() {
             </span>
           </div>
 
-          {/* Display */}
           <div className={styles.sizeCard}>
             <div className={styles.sizePreview}>
               {SKELETON_DISPLAY_SIZES.map((s) => (
@@ -172,7 +166,6 @@ export default function SkeletonPage() {
             </span>
           </div>
 
-          {/* Card */}
           <div className={styles.sizeCard}>
             <div className={styles.sizePreview}>
               <Skeleton type="card" height={80} />

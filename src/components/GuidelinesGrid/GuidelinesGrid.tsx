@@ -13,13 +13,13 @@ interface GuidelinesGridProps {
  * across every documentation page. Pair with `<Section icon="checklist">`.
  */
 export default function GuidelinesGrid({ items, className }: GuidelinesGridProps) {
-  const cls = cx(styles.guidelinesGrid, className ?? '')
+  const cls = cx(styles.root, className ?? '')
 
   return (
     <div className={cls}>
       {items.map((g) => (
         <div key={g.title} className={styles.guidelineCard}>
-          <h3 className={`type-body-md ${styles.guidelineTitle}`}>{g.title}</h3>
+          <h3 className={`type-title-sm ${styles.guidelineTitle}`}>{g.title}</h3>
           <p className={`type-body-sm ${styles.guidelineBody}`}>{g.body}</p>
           <div className={`type-caption-sm ${styles.guidelineRule}`}>{g.rule}</div>
         </div>

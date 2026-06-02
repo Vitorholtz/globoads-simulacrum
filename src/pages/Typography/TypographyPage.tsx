@@ -28,11 +28,7 @@ export default function TypographyPage() {
         ]}
       />
 
-      <Section
-        icon="font_download"
-        title="Famílias Tipográficas"
-        count={`${FONT_FAMILIES.length} famílias`}
-      >
+      <Section icon="font_download" title="Famílias Tipográficas" count={FONT_FAMILIES.length}>
         <div className={styles.familiesGrid}>
           {FONT_FAMILIES.map((family) => (
             <FontFamilyCard key={family.id} family={family} />
@@ -45,7 +41,7 @@ export default function TypographyPage() {
           key={group.category}
           icon={SECTION_ICONS[group.category] ?? 'text_fields'}
           title={group.title}
-          count={`${group.tokens.length} estilos`}
+          count={group.tokens.length}
         >
           <p className={`type-body-md ${styles.groupDescription}`}>{group.description}</p>
           <div className={styles.specimensContainer}>

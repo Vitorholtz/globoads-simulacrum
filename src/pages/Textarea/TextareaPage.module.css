@@ -1,46 +1,8 @@
-﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+/* ── Content preview ── */
 
-/* ── Styles grid (Placeholder / Filled) ── */
-
-.stylesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
-.styleCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  display: flex;
-  flex-direction: column;
-}
-
-.stylePreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-600) var(--spacing-500);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-}
-
-.styleBody {
-  padding: var(--spacing-300) var(--spacing-350) var(--spacing-350);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-  flex: 1;
-}
-
-.styleName {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.styleDesc {
-  color: var(--color-fill-secondary);
+.contentPreview {
+  width: 100%;
+  max-width: 280px;
 }
 
 /* ── Size scale ── */
@@ -119,45 +81,3 @@
   max-width: 280px;
   width: 100%;
 }
-
-/* ── Config cards ── */
-
-.configGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-200);
-}
-
-.configCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-}
-
-.configPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-450) var(--spacing-300);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-}
-
-.configBody {
-  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-075);
-}
-
-.configName {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.configDesc {
-  color: var(--color-fill-secondary);
-}
-
-/* ── Guidelines ── */

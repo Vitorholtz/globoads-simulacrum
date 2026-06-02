@@ -1,0 +1,27 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  background: var(--color-surface-tertiary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-025) var(--spacing-150) var(--spacing-025) var(--spacing-125);
+  cursor: pointer;
+  color: var(--color-fill-secondary);
+  font-family: var(--font-family-code);
+  transition: background var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.chip:hover {
+  background: var(--color-surface-secondary);
+}
+
+.chipValue {
+  color: var(--color-fill-primary);
+}
+
+.chipIcon {
+  color: var(--color-fill-tertiary);
+  flex-shrink: 0;
+  user-select: none;
+}

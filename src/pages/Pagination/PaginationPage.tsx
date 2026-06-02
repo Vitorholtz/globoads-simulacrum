@@ -5,31 +5,20 @@ import type { PaginationVariantDef } from '../../tokens/pagination'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
-import styles from './PaginationPage.module.css'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 
 function VariantDemo({ def }: { def: PaginationVariantDef }) {
   const [page, setPage] = useState(3)
-  const totalPages = 12
-  const totalItems = 1200
-  const itemsPerPage = 10
-
   return (
-    <div className={styles.variantCard}>
-      <div className={styles.variantPreview}>
-        <Pagination
-          variant={def.id}
-          page={page}
-          totalPages={totalPages}
-          totalItems={totalItems}
-          itemsPerPage={itemsPerPage}
-          onChange={setPage}
-        />
-      </div>
-      <div className={styles.variantMeta}>
-        <span className={`type-body-sm ${styles.variantLabel}`}>{def.label}</span>
-        <p className={`type-body-sm ${styles.variantDesc}`}>{def.description}</p>
-      </div>
-    </div>
+    <Pagination
+      variant={def.id}
+      page={page}
+      totalPages={12}
+      totalItems={1200}
+      itemsPerPage={10}
+      onChange={setPage}
+    />
   )
 }
 
@@ -47,46 +36,33 @@ export default function PaginationPage() {
       />
 
       {/* ── Variantes ── */}
-      <Section
-        icon="more_horiz"
-        title="Variantes"
-        count={`${PAGINATION_VARIANTS.length} variantes`}
-      >
-        <div className={styles.variantGrid}>
+      <Section icon="more_horiz" title="Variantes" count={PAGINATION_VARIANTS.length}>
+        <CardGrid cols={2}>
           {PAGINATION_VARIANTS.map((v) => (
-            <VariantDemo key={v.id} def={v} />
+            <DemoCard
+              key={v.id}
+              preview={<VariantDemo def={v} />}
+              title={v.label}
+              description={v.description}
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count="2 estados">
-        <div className={styles.statesGrid}>
-          <div className={styles.stateCard}>
-            <div className={styles.statePreview}>
-              <Pagination variant="buttons" page={1} totalPages={10} onChange={() => {}} />
-            </div>
-            <div className={styles.stateMeta}>
-              <span className={`type-body-sm ${styles.stateLabel}`}>Primeira página</span>
-              <p className={`type-body-sm ${styles.stateDesc}`}>
-                Seta "anterior" desabilitada com opacidade reduzida. Indica ao usuário que não há
-                páginas anteriores disponíveis.
-              </p>
-            </div>
-          </div>
-          <div className={styles.stateCard}>
-            <div className={styles.statePreview}>
-              <Pagination variant="buttons" page={10} totalPages={10} onChange={() => {}} />
-            </div>
-            <div className={styles.stateMeta}>
-              <span className={`type-body-sm ${styles.stateLabel}`}>Última página</span>
-              <p className={`type-body-sm ${styles.stateDesc}`}>
-                Seta "próxima" desabilitada com opacidade reduzida. Indica ao usuário que não há
-                mais páginas à frente.
-              </p>
-            </div>
-          </div>
-        </div>
+      <Section icon="toggle_on" title="Estados" count={2}>
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={<Pagination variant="buttons" page={1} totalPages={10} onChange={() => {}} />}
+            title="Primeira página"
+            description='Seta "anterior" desabilitada com opacidade reduzida. Indica ao usuário que não há páginas anteriores disponíveis.'
+          />
+          <DemoCard
+            preview={<Pagination variant="buttons" page={10} totalPages={10} onChange={() => {}} />}
+            title="Última página"
+            description='Seta "próxima" desabilitada com opacidade reduzida. Indica ao usuário que não há mais páginas à frente.'
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

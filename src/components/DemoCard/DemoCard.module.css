@@ -1,0 +1,67 @@
+.card {
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.preview {
+  background: var(--color-surface-secondary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.previewPadSm {
+  padding: var(--spacing-300) var(--spacing-250);
+}
+
+.previewPadMd {
+  padding: var(--spacing-450) var(--spacing-400);
+}
+
+.previewPadLg {
+  padding: var(--spacing-600) var(--spacing-500);
+}
+
+.previewStretch {
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.previewStretch > * {
+  width: 100%;
+}
+
+.body {
+  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-075);
+  flex: 1;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-125);
+}
+
+.title {
+  color: var(--color-fill-primary);
+}
+
+.badge {
+  color: var(--color-fill-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: var(--spacing-025) 9px;
+  border-radius: var(--border-radius-full);
+}
+
+.description {
+  color: var(--color-fill-secondary);
+}

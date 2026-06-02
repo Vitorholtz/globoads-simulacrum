@@ -7,6 +7,8 @@ import {
 } from '../../tokens/infoPanel'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './InfoPanelPage.module.css'
 
 export default function InfoPanelPage() {
@@ -40,49 +42,49 @@ export default function InfoPanelPage() {
       </Section>
 
       {/* ── Variantes ── */}
-      <Section icon="style" title="Variantes" count={`${INFO_PANEL_VARIANTS.length} variantes`}>
-        <div className={styles.variantsGrid}>
+      <Section icon="style" title="Variantes" count={INFO_PANEL_VARIANTS.length}>
+        <CardGrid cols={2}>
           {INFO_PANEL_VARIANTS.map((variant) => (
-            <div key={variant.id} className={styles.variantCard}>
-              <div className={styles.variantPreview}>
+            <DemoCard
+              key={variant.id}
+              preview={
                 <InfoPanel
                   type={variant.id}
                   title={variant.label}
                   description="Descrição complementar da mensagem."
                 />
-              </div>
-              <div className={styles.cardBody}>
-                <span className={`type-body-sm ${styles.cardLabel}`}>{variant.label}</span>
-                <span className={`type-body-sm ${styles.cardDesc}`}>{variant.description}</span>
-              </div>
-            </div>
+              }
+              title={variant.label}
+              description={variant.description}
+              align="stretch"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Conteúdo ── */}
       <Section
         icon="notes"
         title="Combinações de conteúdo"
-        count={`${INFO_PANEL_CONTENT_VARIANTS.length} combinações`}
+        count={INFO_PANEL_CONTENT_VARIANTS.length}
       >
-        <div className={styles.contentGrid}>
+        <CardGrid cols={3}>
           {INFO_PANEL_CONTENT_VARIANTS.map((combo) => (
-            <div key={combo.label} className={styles.variantCard}>
-              <div className={styles.variantPreview}>
+            <DemoCard
+              key={combo.label}
+              preview={
                 <InfoPanel
                   type="neutral"
                   title={combo.showTitle ? combo.exampleTitle : undefined}
                   description={combo.showDescription ? combo.exampleDescription : undefined}
                 />
-              </div>
-              <div className={styles.cardBody}>
-                <span className={`type-body-sm ${styles.cardLabel}`}>{combo.label}</span>
-                <span className={`type-body-sm ${styles.cardDesc}`}>{combo.description}</span>
-              </div>
-            </div>
+              }
+              title={combo.label}
+              description={combo.description}
+              align="stretch"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

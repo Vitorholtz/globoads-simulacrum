@@ -1,6 +1,6 @@
 ﻿/* ── Base ── */
 
-.pagination {
+.root {
   display: inline-flex;
   align-items: center;
   gap: 0;
@@ -14,50 +14,6 @@
 
 .buttons {
   gap: var(--spacing-050);
-}
-
-/* ── Setas (chevrons) ── */
-
-.chevronBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-100);
-  border: none;
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-ghost);
-  cursor: pointer;
-  transition: background var(--motion-duration-base) var(--motion-easing-default);
-}
-
-.chevronIcon {
-  display: block;
-  background: var(--color-fill-accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.chevronBtn:hover {
-  background: var(--color-luminosity-dark-ghost-hover);
-}
-
-.chevronBtn:active {
-  background: var(--color-luminosity-dark-ghost-active);
-}
-
-.chevronBtn:focus-visible {
-  outline: none;
-  box-shadow: var(--outline-focus);
-}
-
-.chevronBtn.disabled {
-  opacity: var(--opacity-disabled);
-  cursor: default;
-}
-
-.chevronBtn.disabled:hover {
-  background: var(--color-surface-ghost);
 }
 
 /* ── Infos (pages + items) ── */

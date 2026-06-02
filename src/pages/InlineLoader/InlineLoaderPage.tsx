@@ -33,7 +33,7 @@ export default function InlineLoaderPage() {
       />
 
       {/* ── Tipos ── */}
-      <Section icon="motion_blur" title="Tipos" count={`${INLINE_LOADER_TYPES.length} tipos`}>
+      <Section icon="motion_blur" title="Tipos" count={INLINE_LOADER_TYPES.length}>
         <div className={styles.typesContainer}>
           {INLINE_LOADER_TYPES.map((t) => (
             <div key={t.id} className={styles.typeRow}>
@@ -55,7 +55,7 @@ export default function InlineLoaderPage() {
       </Section>
 
       {/* ── Tamanhos ── */}
-      <Section icon="straighten" title="Tamanhos" count={`${INLINE_LOADER_SIZES.length} tamanhos`}>
+      <Section icon="straighten" title="Tamanhos" count={INLINE_LOADER_SIZES.length}>
         <div className={styles.sizesTable}>
           {/* Header */}
           <div className={styles.sizesHeader}>
@@ -89,7 +89,7 @@ export default function InlineLoaderPage() {
       </Section>
 
       {/* ── Cores ── */}
-      <Section icon="palette" title="Cores" count={`${INLINE_LOADER_COLORS.length} cores`}>
+      <Section icon="palette" title="Cores" count={INLINE_LOADER_COLORS.length}>
         <div className={styles.colorsGrid}>
           {INLINE_LOADER_COLORS.map((c) => (
             <div key={c.id} className={styles.colorCard}>

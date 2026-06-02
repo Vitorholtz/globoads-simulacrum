@@ -12,9 +12,13 @@ import type { ButtonVariant, ButtonSize } from '../../tokens/buttons'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './ButtonPage.module.css'
 
-type MatrixCell = {
+type MatrixCol = {
+  id: string
   label: string
   iconLeft: string | undefined
   iconRight: string | undefined
@@ -102,11 +106,35 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
   const contentDemo = CONTENT_DEMOS[isDanger ? 'danger' : 'default']
   const matrixIcon = isDanger ? 'delete' : 'add'
 
-  const matrixContent: MatrixCell[] = [
-    { label: 'Text only', iconLeft: undefined, iconRight: undefined, children: 'Button' },
-    { label: 'Icon left', iconLeft: matrixIcon, iconRight: undefined, children: 'Button' },
-    { label: 'Icon right', iconLeft: undefined, iconRight: 'arrow_forward', children: 'Button' },
-    { label: 'Icon only', iconLeft: matrixIcon, iconRight: undefined, children: undefined },
+  const matrixCols: MatrixCol[] = [
+    {
+      id: 'text-only',
+      label: 'Text only',
+      iconLeft: undefined,
+      iconRight: undefined,
+      children: 'Button',
+    },
+    {
+      id: 'icon-left',
+      label: 'Icon left',
+      iconLeft: matrixIcon,
+      iconRight: undefined,
+      children: 'Button',
+    },
+    {
+      id: 'icon-right',
+      label: 'Icon right',
+      iconLeft: undefined,
+      iconRight: 'arrow_forward',
+      children: 'Button',
+    },
+    {
+      id: 'icon-only',
+      label: 'Icon only',
+      iconLeft: matrixIcon,
+      iconRight: undefined,
+      children: undefined,
+    },
   ]
 
   return (
@@ -128,8 +156,13 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
       />
 
       {/* ── Variantes ── */}
-      <Section icon="style" title="Variantes" count="3 variantes">
-        <div className={styles.variantsGrid}>
+      <Section
+        icon="style"
+        title="Variantes"
+        count={3}
+        description="Cada variante comunica um nível de ênfase diferente. Use apenas uma variante Primary por tela."
+      >
+        <CardGrid cols={3}>
           {VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
               <div className={styles.variantPreview}>
@@ -160,15 +193,11 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <Section
-        icon="straighten"
-        title="Escala de Tamanhos"
-        count={`${BUTTON_SIZES.length} tamanhos`}
-      >
+      <Section icon="straighten" title="Escala de Tamanhos" count={BUTTON_SIZES.length}>
         <div className={styles.sizeScaleContainer}>
           {BUTTON_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -206,56 +235,44 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${BUTTON_STATES.length} estados`}>
+      <Section icon="toggle_on" title="Estados" count={BUTTON_STATES.length}>
         {VARIANTS.map((v) => (
-          <div key={v.id} className={styles.stateMatrixContainer}>
-            <div className={styles.matrixVariantHeader}>
-              <span className={`type-caption-md ${styles.matrixVariantName}`}>{v.name}</span>
-              <span className={`type-caption-sm ${styles.matrixVariantTagline}`}>
-                — {v.tagline}
-              </span>
-            </div>
-            <div className={styles.matrixHeaderRow}>
-              <div className={styles.matrixHeaderSpacer} />
-              {matrixContent.map((c) => (
-                <div key={c.label} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                  {c.label}
-                </div>
-              ))}
-            </div>
-            {BUTTON_MATRIX_STATES.map((state) => (
-              <div key={state.id} className={styles.matrixRow}>
-                <div className={styles.matrixStateLabel}>
-                  <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-                </div>
-                <div className={styles.matrixCells}>
-                  {matrixContent.map((c) => (
-                    <div key={c.label} className={styles.matrixCell}>
-                      <Button
-                        variant={v.id as ButtonVariant}
-                        size="md"
-                        iconLeft={c.iconLeft}
-                        iconRight={c.iconRight}
-                        forceState={state.force}
-                        danger={isDanger}
-                      >
-                        {c.children}
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <StateMatrix
+            key={v.id}
+            columns={matrixCols}
+            rows={BUTTON_MATRIX_STATES}
+            group
+            header={{ name: v.name, description: v.tagline }}
+            labelWidth={96}
+            cellPad="sm"
+            renderCell={(state, col) => (
+              <Button
+                variant={v.id as ButtonVariant}
+                size="md"
+                iconLeft={col.iconLeft}
+                iconRight={col.iconRight}
+                forceState={state.force}
+                danger={isDanger}
+              >
+                {col.children}
+              </Button>
+            )}
+          />
         ))}
       </Section>
 
-      {/* ── Conteúdo e Ícones ── */}
-      <Section icon="format_shapes" title="Configurações de Conteúdo" count="4 configurações">
-        <div className={styles.contentGrid}>
+      {/* ── Configurações de Conteúdo ── */}
+      <Section
+        icon="format_shapes"
+        title="Configurações de Conteúdo"
+        count={4}
+        description="Combinações de label e ícone que cobrem todos os cenários de uso."
+      >
+        <CardGrid cols={4}>
           {contentDemo.map((c) => (
-            <div key={c.label} className={styles.contentCard}>
-              <div className={styles.contentPreview}>
+            <DemoCard
+              key={c.label}
+              preview={
                 <Button
                   variant="primary"
                   size="md"
@@ -265,14 +282,12 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
                 >
                   {c.children}
                 </Button>
-              </div>
-              <div className={styles.contentBody}>
-                <span className={`type-caption-md ${styles.contentName}`}>{c.label}</span>
-                <span className={`type-caption-sm ${styles.contentDesc}`}>{c.desc}</span>
-              </div>
-            </div>
+              }
+              title={c.label}
+              description={c.desc}
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

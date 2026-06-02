@@ -6,24 +6,11 @@ interface FontFamilyCardProps {
 }
 
 export default function FontFamilyCard({ family }: FontFamilyCardProps) {
-  const maxWeight = family.weights[family.weights.length - 1].value
-
   return (
     <div className={styles.card}>
       <div className={styles.showcase}>
-        <div
-          className={`type-display-xl ${styles.showcaseHeadline}`}
-          style={{ fontFamily: family.cssFamily, fontWeight: maxWeight }}
-        >
+        <div className={`${family.specimenClassName} ${styles.showcaseHeadline}`}>
           {family.specimenText}
-        </div>
-        <div
-          className={`type-body-sm ${styles.showcaseAlphabet}`}
-          style={{ fontFamily: family.cssFamily, fontWeight: family.weights[0].value }}
-        >
-          Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll
-          <br />
-          Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
         </div>
       </div>
 
@@ -43,7 +30,7 @@ export default function FontFamilyCard({ family }: FontFamilyCardProps) {
         </div>
         <div className={styles.cssRow}>
           <span className={`type-caption-sm ${styles.cssLabel}`}>CSS</span>
-          <code className={`type-caption-sm font-code ${styles.cssVar}`}>{family.cssVariable}</code>
+          <code className={`type-caption-sm ${styles.cssVar}`}>{family.cssVariable}</code>
         </div>
       </div>
     </div>

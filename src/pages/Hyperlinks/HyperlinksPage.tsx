@@ -4,6 +4,8 @@ import type { HyperlinkSize } from '../../tokens/hyperlinks'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './HyperlinksPage.module.css'
 
 type ForceState = 'hover' | 'focus' | 'active' | undefined
@@ -28,11 +30,7 @@ export default function HyperlinksPage() {
       />
 
       {/* ── Escala de Tamanhos ── */}
-      <Section
-        icon="straighten"
-        title="Escala de Tamanhos"
-        count={`${HYPERLINK_SIZES.length} tamanhos`}
-      >
+      <Section icon="straighten" title="Escala de Tamanhos" count={HYPERLINK_SIZES.length}>
         <div className={styles.sizeScaleContainer}>
           {HYPERLINK_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -66,7 +64,7 @@ export default function HyperlinksPage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${HYPERLINK_STATES.length} estados`}>
+      <Section icon="toggle_on" title="Estados" count={HYPERLINK_STATES.length}>
         <div className={styles.stateMatrix}>
           <div className={styles.matrixHeaderRow}>
             <div className={styles.matrixHeaderSpacer} />
@@ -104,23 +102,20 @@ export default function HyperlinksPage() {
 
       {/* ── Link Externo ── */}
       <Section icon="open_in_new" title="Link Externo">
-        <div className={styles.externalGrid}>
+        <CardGrid cols={4}>
           {HYPERLINK_SIZES.map((s) => (
-            <div key={s.id} className={styles.externalCard}>
-              <div className={styles.externalPreview}>
+            <DemoCard
+              key={s.id}
+              preview={
                 <Hyperlink size={s.id as HyperlinkSize} external href="#">
                   Hyperlink
                 </Hyperlink>
-              </div>
-              <div className={styles.externalMeta}>
-                <span className={`type-body-sm ${styles.externalSizeLabel}`}>{s.label}</span>
-                <span className={`type-caption-sm ${styles.externalIconSpec}`}>
-                  icon {s.iconSize}px
-                </span>
-              </div>
-            </div>
+              }
+              title={s.label}
+              description={`icon ${s.iconSize}px`}
+            />
           ))}
-        </div>
+        </CardGrid>
         <div className={styles.externalNote}>
           <span
             className={`material-symbols-rounded icon-md ${styles.externalNoteIcon}`}

@@ -14,7 +14,7 @@ interface PageHeaderProps {
 
 export default function PageHeader({ breadcrumb, title, subtitle, stats }: PageHeaderProps) {
   return (
-    <header className={styles.pageHeader}>
+    <header className={styles.root}>
       <div className={`type-caption-sm ${styles.breadcrumb}`}>{breadcrumb}</div>
       <h1 className={`type-display-sm ${styles.pageTitle}`}>{title}</h1>
       <p className={`type-body-md ${styles.pageSubtitle}`}>{subtitle}</p>

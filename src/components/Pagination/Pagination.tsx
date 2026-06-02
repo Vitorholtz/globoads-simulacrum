@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '../Button/Button'
 import styles from './Pagination.module.css'
 import type { PaginationVariant } from '../../tokens/pagination'
 import { cx } from '../../utils/cx'
@@ -59,18 +60,16 @@ export default function Pagination({
   const itemEnd = totalItems ? Math.min(page * itemsPerPage, totalItems) : page * itemsPerPage
 
   return (
-    <div className={cx(styles.pagination, styles[variant], className ?? '')}>
+    <div className={cx(styles.root, styles[variant], className ?? '')}>
       {/* Seta anterior */}
-      <button
-        className={cx(styles.chevronBtn, isFirst ? styles.disabled : '')}
-        onClick={() => !isFirst && onChange(page - 1)}
+      <Button
+        variant="tertiary"
+        size="sm"
+        iconLeft="chevron_left"
         disabled={isFirst}
         aria-label="Página anterior"
-      >
-        <span className={`material-symbols-rounded icon-md ${styles.chevronIcon}`}>
-          chevron_left
-        </span>
-      </button>
+        onClick={() => onChange(page - 1)}
+      />
 
       {/* Variante: pages */}
       {variant === 'pages' && (
@@ -124,16 +123,14 @@ export default function Pagination({
       )}
 
       {/* Seta próxima */}
-      <button
-        className={cx(styles.chevronBtn, isLast ? styles.disabled : '')}
-        onClick={() => !isLast && onChange(page + 1)}
+      <Button
+        variant="tertiary"
+        size="sm"
+        iconLeft="chevron_right"
         disabled={isLast}
         aria-label="Próxima página"
-      >
-        <span className={`material-symbols-rounded icon-md ${styles.chevronIcon}`}>
-          chevron_right
-        </span>
-      </button>
+        onClick={() => onChange(page + 1)}
+      />
     </div>
   )
 }

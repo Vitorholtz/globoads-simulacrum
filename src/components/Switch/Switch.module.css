@@ -1,6 +1,6 @@
 ﻿/* ── Wrapper ── */
 
-.switch {
+.root {
   display: flex;
   gap: var(--spacing-100);
   align-items: center;
@@ -14,16 +14,16 @@
   --sw-track: var(--color-fill-tertiary);
 }
 
-.switch.inverter {
+.root.inverter {
   flex-direction: row-reverse;
 }
 
 /* Any forced state disables pointer interaction */
-.switch[data-state] {
+.root[data-state] {
   pointer-events: none;
 }
 
-.switch[data-state='disabled'] {
+.root[data-state='disabled'] {
   opacity: var(--opacity-disabled);
 }
 
@@ -73,7 +73,7 @@
   transition: color var(--motion-duration-base) var(--motion-easing-default);
 }
 
-.switch[data-behavior='checked'] .checkIcon {
+.root[data-behavior='checked'] .checkIcon {
   opacity: 1;
 }
 
@@ -91,7 +91,7 @@
   transition: left var(--motion-duration-slow) var(--motion-easing-default);
 }
 
-.switch[data-behavior='checked'] .thumb {
+.root[data-behavior='checked'] .thumb {
   left: 18px;
 }
 
@@ -100,73 +100,73 @@
    ════════════════════════════════════ */
 
 /* Checked (all states inherit from behavior='checked') */
-.switch[data-behavior='checked'] {
+.root[data-behavior='checked'] {
   --sw-track: var(--color-fill-accent);
 }
 
 /* ── REAL INTERACTION (no forced data-state) ── */
 
 /* Hover */
-.switch:not([data-state]):hover[data-behavior='unchecked'] {
+.root:not([data-state]):hover[data-behavior='unchecked'] {
   --sw-track: var(--color-fill-secondary);
 }
 
-.switch:not([data-state]):hover[data-behavior='checked'] {
+.root:not([data-state]):hover[data-behavior='checked'] {
   --sw-track: var(--color-action-solid-fill-hover);
 }
 
 /* Focus (keyboard — :focus-visible via :has) */
-.switch:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] {
+.root:not([data-state]):has(input:focus-visible)[data-behavior='unchecked'] {
   --sw-track: var(--color-fill-secondary);
 }
 
-.switch:not([data-state]):has(input:focus-visible)[data-behavior='checked'] {
+.root:not([data-state]):has(input:focus-visible)[data-behavior='checked'] {
   --sw-track: var(--color-action-solid-fill-hover);
 }
 
-.switch:not([data-state]):has(input:focus-visible) .track {
+.root:not([data-state]):has(input:focus-visible) .track {
   box-shadow: var(--outline-focus);
 }
 
 /* Active */
-.switch:not([data-state]):active[data-behavior='unchecked'] {
+.root:not([data-state]):active[data-behavior='unchecked'] {
   --sw-track: var(--color-fill-primary);
 }
 
-.switch:not([data-state]):active[data-behavior='checked'] {
+.root:not([data-state]):active[data-behavior='checked'] {
   --sw-track: var(--color-action-solid-fill-active);
 }
 
 /* ── FORCED STATES (docs / matrix) ── */
 
 /* Forced hover */
-.switch[data-state='hover'][data-behavior='unchecked'] {
+.root[data-state='hover'][data-behavior='unchecked'] {
   --sw-track: var(--color-fill-secondary);
 }
 
-.switch[data-state='hover'][data-behavior='checked'] {
+.root[data-state='hover'][data-behavior='checked'] {
   --sw-track: var(--color-action-solid-fill-hover);
 }
 
 /* Forced focus */
-.switch[data-state='focus'][data-behavior='unchecked'] {
+.root[data-state='focus'][data-behavior='unchecked'] {
   --sw-track: var(--color-fill-secondary);
 }
 
-.switch[data-state='focus'][data-behavior='checked'] {
+.root[data-state='focus'][data-behavior='checked'] {
   --sw-track: var(--color-action-solid-fill-hover);
 }
 
-.switch[data-state='focus'] .track {
+.root[data-state='focus'] .track {
   box-shadow: var(--outline-focus);
 }
 
 /* Forced active */
-.switch[data-state='active'][data-behavior='unchecked'] {
+.root[data-state='active'][data-behavior='unchecked'] {
   --sw-track: var(--color-fill-primary);
 }
 
-.switch[data-state='active'][data-behavior='checked'] {
+.root[data-state='active'][data-behavior='checked'] {
   --sw-track: var(--color-action-solid-fill-active);
 }
 
@@ -185,8 +185,8 @@
 }
 
 /* Active state darkens the label */
-.switch:not([data-state]):active .label,
-.switch[data-state='active'] .label {
+.root:not([data-state]):active .label,
+.root[data-state='active'] .label {
   color: var(--color-fill-primary);
 }
 

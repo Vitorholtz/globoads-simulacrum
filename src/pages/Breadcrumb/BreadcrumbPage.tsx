@@ -27,7 +27,7 @@ export default function BreadcrumbPage() {
       />
 
       {/* ── Profundidades ── */}
-      <Section icon="route" title="Profundidades" count={`${BREADCRUMB_DEPTHS.length} exemplos`}>
+      <Section icon="route" title="Profundidades" count={BREADCRUMB_DEPTHS.length}>
         <div className={styles.depthsContainer}>
           {BREADCRUMB_DEPTHS.map((depth) => (
             <div key={depth.label} className={styles.depthRow}>

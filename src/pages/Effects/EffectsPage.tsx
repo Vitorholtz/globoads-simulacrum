@@ -19,7 +19,7 @@ export default function EffectsPage() {
         ]}
       />
 
-      <Section icon="shadow" title="Sombras" count={`${SHADOW_TOKENS.length} tokens`}>
+      <Section icon="shadow" title="Sombras" count={SHADOW_TOKENS.length}>
         <div className={styles.shadowGrid}>
           {SHADOW_TOKENS.map((token) => (
             <ShadowRow key={token.variable} token={token} />
@@ -27,11 +27,7 @@ export default function EffectsPage() {
         </div>
       </Section>
 
-      <Section
-        icon="center_focus_strong"
-        title="Estilos de foco"
-        count={`${FOCUS_TOKENS.length} estilos`}
-      >
+      <Section icon="center_focus_strong" title="Estilos de foco" count={FOCUS_TOKENS.length}>
         <div className={styles.focusGrid}>
           {FOCUS_TOKENS.map((token) => (
             <FocusCard key={token.variable} token={token} />

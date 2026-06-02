@@ -17,8 +17,11 @@ export default function ColorGroup({ group, icon }: ColorGroupProps) {
           </span>
         )}
         <h2 className={`type-title-md ${styles.title}`}>{group.label}</h2>
-        <span className={`type-caption-sm ${styles.count}`}>{group.tokens.length} tokens</span>
+        <span className={`type-caption-sm ${styles.count}`}>{group.tokens.length}</span>
       </div>
+      {group.description && (
+        <p className={`type-body-sm ${styles.description}`}>{group.description}</p>
+      )}
       <div className={styles.grid}>
         {group.tokens.map((token) => (
           <ColorSwatch key={token.variable} token={token} />

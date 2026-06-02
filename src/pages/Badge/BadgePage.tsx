@@ -27,7 +27,7 @@ export default function BadgePage() {
       />
 
       {/* ── Variantes ── */}
-      <Section icon="label" title="Variantes" count={`${BADGE_VARIANTS.length} variantes`}>
+      <Section icon="label" title="Variantes" count={BADGE_VARIANTS.length}>
         <div className={styles.variantsContainer}>
           {BADGE_VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantRow}>

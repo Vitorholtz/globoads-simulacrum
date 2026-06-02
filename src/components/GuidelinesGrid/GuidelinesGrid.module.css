@@ -1,4 +1,4 @@
-.guidelinesGrid {
+.root {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-200);
@@ -16,7 +16,6 @@
 
 .guidelineTitle {
   margin-bottom: var(--spacing-125);
-  font-weight: var(--font-weight-semibold);
   color: var(--color-fill-primary);
 }
 

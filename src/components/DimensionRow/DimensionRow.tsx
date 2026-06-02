@@ -44,12 +44,12 @@ export default function DimensionRow({
   return (
     <div className={styles.row} style={style}>
       <div className={styles.meta}>
-        <span className={`type-body-md ${styles.name}`}>{token.name}</span>
+        <span className={`type-title-sm ${styles.name}`}>{token.name}</span>
         <span className={`type-caption-md ${styles.value}`}>
           {token.valuePx === 0 ? '0' : `${token.valueRem} / ${token.valuePx}px`}
         </span>
       </div>
-      <div className={`type-caption-md ${styles.variable}`}>
+      <div className={`type-caption-sm ${styles.variable}`}>
         <span>{token.variable}</span>
       </div>
       <div className={displayCls}>{children}</div>

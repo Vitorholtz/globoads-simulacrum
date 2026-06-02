@@ -1,49 +1,6 @@
 ﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
-/* ── Tipos ── */
-
-.typesGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-150);
-}
-
-.typeCard {
-  background: var(--color-surface-primary);
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.typePreview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-400) var(--spacing-300);
-  background: var(--color-surface-secondary);
-  min-height: 100px;
-}
-
-.typeMeta {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-050);
-  padding: var(--spacing-200) var(--spacing-250);
-}
-
-.typeLabel {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.typeDesc {
-  color: var(--color-fill-secondary);
-  margin: 0;
-}
-
-/* ── Tamanhos ── */
+/* ── Tamanhos ──*/
 
 .sizesGrid {
   display: grid;

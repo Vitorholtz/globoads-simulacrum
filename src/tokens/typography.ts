@@ -9,6 +9,7 @@ export type FontFamilyDef = {
   purpose: string
   description: string
   specimenText: string
+  specimenClassName: string
 }
 
 export type TypographyToken = {
@@ -44,13 +45,12 @@ export const FONT_FAMILIES: FontFamilyDef[] = [
     name: 'Globotipo Corporativa',
     cssFamily: FAMILY_DISPLAY,
     cssVariable: '--font-family-display-01',
-    weights: [
-      { value: 400, label: 'Regular' },
-    ],
+    weights: [{ value: 400, label: 'Regular' }],
     purpose: 'Display & Headlines',
     description:
       'Fonte primária para títulos de grande destaque, elementos de comunicação expressivos e peças de brand. Utilizada exclusivamente em estilos Display — nunca em textos corridos ou conteúdo de leitura contínua.',
     specimenText: 'Conectando pessoas',
+    specimenClassName: 'type-display-xl',
   },
   {
     id: 'inter-variable',
@@ -66,7 +66,8 @@ export const FONT_FAMILIES: FontFamilyDef[] = [
     purpose: 'Interface & Produto',
     description:
       'Fonte principal para toda a interface de produto: títulos de seção, texto de corpo, labels, captions e elementos de formulário. Projetada para alta legibilidade em telas de alta densidade.',
-    specimenText: 'Interface de qualidade',
+    specimenText: 'Sua marca alcança\nmilhões de pessoas',
+    specimenClassName: 'type-title-lg',
   },
 ]
 
@@ -89,7 +90,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Globo Ads.',
         usage: 'Peças de brand de máximo impacto, splash screens de campanha',
-        fixedTokens: ['--font-family-display-01', '--font-weight-regular', '--font-size-500', '--line-height-500'],
+        fixedTokens: [
+          '--font-family-display-01',
+          '--font-weight-regular',
+          '--font-size-500',
+          '--line-height-500',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -104,7 +110,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Alcance o Brasil\ncom a Globo.',
         usage: 'Hero sections, splash screens, campanhas de grande destaque',
-        fixedTokens: ['--font-family-display-01', '--font-weight-regular', '--font-size-425', '--line-height-425'],
+        fixedTokens: [
+          '--font-family-display-01',
+          '--font-weight-regular',
+          '--font-size-425',
+          '--line-height-425',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -119,7 +130,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'TV, Digital e TV Conectada.',
         usage: 'Títulos de seção de alta hierarquia, landing pages, módulos de destaque',
-        fixedTokens: ['--font-family-display-01', '--font-weight-regular', '--font-size-350', '--line-height-350'],
+        fixedTokens: [
+          '--font-family-display-01',
+          '--font-weight-regular',
+          '--font-size-350',
+          '--line-height-350',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -134,7 +150,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Milhões de impressões por dia.',
         usage: 'Subtítulos de hero, cabeçalhos de páginas especiais, módulos editoriais',
-        fixedTokens: ['--font-family-display-01', '--font-weight-regular', '--font-size-300', '--line-height-300'],
+        fixedTokens: [
+          '--font-family-display-01',
+          '--font-weight-regular',
+          '--font-size-300',
+          '--line-height-300',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -149,7 +170,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Campanhas que geram impacto real.',
         usage: 'Cabeçalhos de seção expressivos, módulos de destaque intermediários',
-        fixedTokens: ['--font-family-display-01', '--font-weight-regular', '--font-size-250', '--line-height-250'],
+        fixedTokens: [
+          '--font-family-display-01',
+          '--font-weight-regular',
+          '--font-size-250',
+          '--line-height-250',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -164,7 +190,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Ative sua marca no maior ecossistema de mídia do Brasil.',
         usage: 'Títulos de cards de destaque, chamadas em módulos editoriais, pull quotes',
-        fixedTokens: ['--font-family-display-01', '--font-weight-regular', '--font-size-200', '--line-height-200'],
+        fixedTokens: [
+          '--font-family-display-01',
+          '--font-weight-regular',
+          '--font-size-200',
+          '--line-height-200',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -178,8 +209,14 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         lineHeight: 24,
         letterSpacing: '0',
         sampleText: 'G1, GE, GSHOW e Globo.com.',
-        usage: 'Chamadas compactas, labels de seção com identidade de marca, destaques em contextos densos',
-        fixedTokens: ['--font-family-display-01', '--font-weight-regular', '--font-size-150', '--line-height-150'],
+        usage:
+          'Chamadas compactas, labels de seção com identidade de marca, destaques em contextos densos',
+        fixedTokens: [
+          '--font-family-display-01',
+          '--font-weight-regular',
+          '--font-size-150',
+          '--line-height-150',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
     ],
@@ -202,7 +239,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Desempenho da campanha',
         usage: 'Títulos de card, cabeçalhos de painel lateral, grupos de configuração',
-        fixedTokens: ['--font-family-sans', '--font-weight-semibold', '--font-size-150', '--line-height-175'],
+        fixedTokens: [
+          '--font-family-sans',
+          '--font-weight-semibold',
+          '--font-size-150',
+          '--line-height-175',
+        ],
         contextualTokens: ['--color-fill-[primary]', '--text-decoration-[none]'],
       },
       {
@@ -217,7 +259,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Resumo de impressões e diárias',
         usage: 'Subtítulos de seção, rótulos de grupo, títulos de modal',
-        fixedTokens: ['--font-family-sans', '--font-weight-semibold', '--font-size-125', '--line-height-150'],
+        fixedTokens: [
+          '--font-family-sans',
+          '--font-weight-semibold',
+          '--font-size-125',
+          '--line-height-150',
+        ],
         contextualTokens: ['--color-fill-[primary]', '--text-decoration-[none]'],
       },
       {
@@ -232,7 +279,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Configuração de veiculação',
         usage: 'Títulos de accordion, rótulos de formulário, cabeçalhos de tabela',
-        fixedTokens: ['--font-family-sans', '--font-weight-semibold', '--font-size-100', '--line-height-125'],
+        fixedTokens: [
+          '--font-family-sans',
+          '--font-weight-semibold',
+          '--font-size-100',
+          '--line-height-125',
+        ],
         contextualTokens: ['--color-fill-[primary]', '--text-decoration-[none]'],
       },
     ],
@@ -257,7 +309,11 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
           'A Globo oferece o maior inventário de mídia do Brasil,\nunindo TV aberta, TV Conectada e plataformas digitais\npara maximizar o alcance das suas campanhas.',
         usage: 'Aberturas editoriais, textos de introdução de alto impacto, hero body text',
         fixedTokens: ['--font-family-sans', '--font-size-125', '--line-height-200'],
-        contextualTokens: ['--font-weight-[regular]', '--color-fill-[primary]', '--text-decoration-[none]'],
+        contextualTokens: [
+          '--font-weight-[regular]',
+          '--color-fill-[primary]',
+          '--text-decoration-[none]',
+        ],
       },
       {
         category: 'body',
@@ -273,7 +329,11 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
           'Com o Globo Ads, você planeja, ativa e acompanha campanhas\nem TV, digital e TV Conectada — com dados de audiência\nem tempo real e total visibilidade sobre impressões e diárias.',
         usage: 'Parágrafos de introdução, descrições longas, textos explicativos',
         fixedTokens: ['--font-family-sans', '--font-size-100', '--line-height-150'],
-        contextualTokens: ['--font-weight-[regular]', '--color-fill-[primary]', '--text-decoration-[none]'],
+        contextualTokens: [
+          '--font-weight-[regular]',
+          '--color-fill-[primary]',
+          '--text-decoration-[none]',
+        ],
       },
       {
         category: 'body',
@@ -289,7 +349,11 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
           'Acompanhe o desempenho dos seus anúncios\nem G1, GE, GSHOW e Globo.com. Relatórios de\nimpress​ões, cliques e impactos por período de veiculação.',
         usage: 'Texto padrão de interface, parágrafos, descrições de componente',
         fixedTokens: ['--font-family-sans', '--font-size-087', '--line-height-125'],
-        contextualTokens: ['--font-weight-[regular]', '--color-fill-[primary]', '--text-decoration-[none]'],
+        contextualTokens: [
+          '--font-weight-[regular]',
+          '--color-fill-[primary]',
+          '--text-decoration-[none]',
+        ],
       },
       {
         category: 'body',
@@ -305,7 +369,11 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
           'Dados de audiência atualizados diariamente\npara todas as praças e formatos disponíveis no Globo Ads.',
         usage: 'Notas de rodapé, textos de ajuda, informações complementares',
         fixedTokens: ['--font-family-sans', '--font-size-075', '--line-height-100'],
-        contextualTokens: ['--font-weight-[regular]', '--color-fill-[primary]', '--text-decoration-[none]'],
+        contextualTokens: [
+          '--font-weight-[regular]',
+          '--color-fill-[primary]',
+          '--text-decoration-[none]',
+        ],
       },
     ],
   },
@@ -327,7 +395,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Impressões · Diárias · Impactos · TV Conectada',
         usage: 'Labels de navegação, cabeçalhos de coluna, rótulos de campo proeminentes',
-        fixedTokens: ['--font-family-sans', '--font-weight-medium', '--font-size-100', '--line-height-125'],
+        fixedTokens: [
+          '--font-family-sans',
+          '--font-weight-medium',
+          '--font-size-100',
+          '--line-height-125',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -342,7 +415,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Período de veiculação · Praça · Formato · Canal',
         usage: 'Labels de formulário, badges, timestamps, metadados',
-        fixedTokens: ['--font-family-sans', '--font-weight-medium', '--font-size-087', '--line-height-100'],
+        fixedTokens: [
+          '--font-family-sans',
+          '--font-weight-medium',
+          '--font-size-087',
+          '--line-height-100',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -357,7 +435,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'G1 · GE · GSHOW · Globo.com · Globo Ads',
         usage: 'Tags de versão, tooltips, anotações de baixa prioridade',
-        fixedTokens: ['--font-family-sans', '--font-weight-medium', '--font-size-075', '--line-height-100'],
+        fixedTokens: [
+          '--font-family-sans',
+          '--font-weight-medium',
+          '--font-size-075',
+          '--line-height-100',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
       {
@@ -372,7 +455,12 @@ export const TYPOGRAPHY_GROUPS: TypographyGroup[] = [
         letterSpacing: '0',
         sampleText: 'Atualizado em tempo real · Globo Ads',
         usage: 'Anotações de baixa prioridade, versões, tooltips de detalhe',
-        fixedTokens: ['--font-family-sans', '--font-weight-medium', '--font-size-062', '--line-height-075'],
+        fixedTokens: [
+          '--font-family-sans',
+          '--font-weight-medium',
+          '--font-size-062',
+          '--line-height-075',
+        ],
         contextualTokens: ['--color-fill-[primary]'],
       },
     ],

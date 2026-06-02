@@ -1,4 +1,4 @@
-﻿.sidebar {
+﻿.root {
   width: var(--sidebar-width);
   background: var(--color-surface-primary);
   border-right: var(--border-width-sm) solid var(--color-border-tertiary);

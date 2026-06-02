@@ -7,6 +7,7 @@ interface SectionProps {
   icon: string
   title: string
   count?: string | number
+  description?: string
   children: ReactNode
   className?: string
 }
@@ -16,12 +17,19 @@ interface SectionProps {
  * Replaces the `<section className={styles.section}>` + `<SectionHeader />`
  * scaffold duplicated across every documentation page.
  */
-export default function Section({ icon, title, count, children, className }: SectionProps) {
-  const cls = cx(styles.section, className ?? '')
+export default function Section({
+  icon,
+  title,
+  count,
+  description,
+  children,
+  className,
+}: SectionProps) {
+  const cls = cx(styles.root, className ?? '')
 
   return (
     <section className={cls}>
-      <SectionHeader icon={icon} title={title} count={count} />
+      <SectionHeader icon={icon} title={title} count={count} description={description} />
       {children}
     </section>
   )

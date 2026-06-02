@@ -3,7 +3,6 @@ import {
   ICON_CLASS_TOKENS,
   ICON_FILLED_MODIFIER,
   ICON_GUIDELINES,
-  ICON_SIZES,
   ICON_VARIANT_RULES,
   VARIANT_DEMO_ICONS,
 } from '../../tokens/icons'
@@ -13,8 +12,6 @@ import Section from '../../components/Section/Section'
 import styles from './IconsPage.module.css'
 
 const totalCatalogIcons = ICON_CATEGORIES.reduce((acc, c) => acc + c.icons.length, 0)
-
-const SIZE_CLS: Record<number, string> = { 20: 'icon-md', 24: 'icon-lg', 32: 'icon-xl' }
 
 export default function IconsPage() {
   return (
@@ -26,7 +23,7 @@ export default function IconsPage() {
         stats={[
           { value: '2500+', label: 'Ícones' },
           { value: 2, label: 'Variantes' },
-          { value: ICON_SIZES.length, label: 'Tamanhos' },
+          { value: ICON_CLASS_TOKENS.length, label: 'Tamanhos' },
           { value: ICON_CATEGORIES.length, label: 'Categorias' },
         ]}
       />
@@ -92,7 +89,7 @@ export default function IconsPage() {
       </Section>
 
       {/* ── Variantes ── */}
-      <Section icon="style" title="Variantes" count="2 variantes">
+      <Section icon="style" title="Variantes" count={ICON_VARIANT_RULES.length}>
         <div className={styles.variantsGrid}>
           {ICON_VARIANT_RULES.map((rule) => (
             <div key={rule.variant} className={styles.variantCard}>
@@ -127,34 +124,7 @@ export default function IconsPage() {
       </Section>
 
       {/* ── Tokens de Ícone ── */}
-      <Section
-        icon="token"
-        title="Tokens de Ícone"
-        count={`${ICON_CLASS_TOKENS.length + 1} classes`}
-      >
-        <div className={styles.tokenUsage}>
-          <div className={styles.tokenUsageInfo}>
-            <span className={`type-caption-sm ${styles.tokenUsageLabel}`}>Como usar</span>
-            <p className={`type-body-md ${styles.tokenUsageText}`}>
-              Combine uma classe de tamanho com{' '}
-              <code className={`type-caption-sm ${styles.inlineCode}`}>
-                material-symbols-rounded
-              </code>
-              . Para o estado preenchido, adicione{' '}
-              <code className={`type-caption-sm ${styles.inlineCode}`}>icon-filled</code> após a
-              classe de tamanho.
-            </p>
-          </div>
-          <div className={styles.tokenUsageSnippets}>
-            <code className={`type-caption-sm ${styles.tokenSnippet}`}>
-              {'<span class="material-symbols-rounded icon-md">home</span>'}
-            </code>
-            <code className={`type-caption-sm ${styles.tokenSnippet}`}>
-              {'<span class="material-symbols-rounded icon-md icon-filled">home</span>'}
-            </code>
-          </div>
-        </div>
-
+      <Section icon="token" title="Tokens de Ícone" count={ICON_CLASS_TOKENS.length + 1}>
         <div className={styles.tokenTable}>
           <div className={styles.tokenTableHead}>
             <span />
@@ -175,9 +145,11 @@ export default function IconsPage() {
                 </span>
               </div>
               <code className={`type-caption-md ${styles.tokenClass}`}>.{token.className}</code>
-              <span className={`type-caption-md ${styles.tokenSize}`}>{token.size}px</span>
+              <div className={styles.tokenSizeCell}>
+                <span className={`type-caption-md ${styles.tokenSize}`}>{token.size}px</span>
+              </div>
               <code className={`type-caption-sm ${styles.tokenVar}`}>{token.cssVar}</code>
-              <span className={`type-body-md ${styles.tokenDesc}`}>{token.description}</span>
+              <span className={`type-body-sm ${styles.tokenDesc}`}>{token.description}</span>
               <span className={`type-caption-sm ${styles.tokenUsedIn}`}>{token.usedIn}</span>
             </div>
           ))}
@@ -197,7 +169,7 @@ export default function IconsPage() {
             <code className={`type-caption-sm ${styles.tokenVar}`}>
               {ICON_FILLED_MODIFIER.cssValue}
             </code>
-            <span className={`type-body-md ${styles.tokenDesc}`}>
+            <span className={`type-body-sm ${styles.tokenDesc}`}>
               {ICON_FILLED_MODIFIER.description}
             </span>
             <span className={`type-caption-sm ${styles.tokenUsedIn}`}>
@@ -207,45 +179,8 @@ export default function IconsPage() {
         </div>
       </Section>
 
-      {/* ── Escala de Tamanhos ── */}
-      <Section icon="straighten" title="Escala de Tamanhos" count={`${ICON_SIZES.length} tamanhos`}>
-        <div className={styles.sizeScaleContainer}>
-          {ICON_SIZES.map((size) => (
-            <div key={size.value} className={styles.sizeRow}>
-              <div className={styles.sizeIconWrap}>
-                <span
-                  className={`material-symbols-rounded ${SIZE_CLS[size.value] ?? ''}`}
-                  style={
-                    SIZE_CLS[size.value]
-                      ? { color: 'var(--color-fill-primary)' }
-                      : { fontSize: `${size.value}px`, color: 'var(--color-fill-primary)' }
-                  }
-                >
-                  home
-                </span>
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-caption-md ${styles.sizeLabel}`}>{size.label}</span>
-                  {size.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-md ${styles.sizeDescription}`}>{size.description}</span>
-              </div>
-              <span className={`type-caption-sm ${styles.sizePx}`}>{size.value}px</span>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── Diretrizes ── */}
-      <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={ICON_GUIDELINES} />
-      </Section>
-
       {/* ── Catálogo ── */}
-      <Section icon="apps" title="Catálogo de Referência" count={`${totalCatalogIcons} ícones`}>
+      <Section icon="apps" title="Catálogo de Referência" count={totalCatalogIcons}>
         <p className={`type-body-md ${styles.catalogNote}`}>
           Cada célula exibe o ícone nas duas variantes: Outlined à esquerda e Filled à direita.
         </p>
@@ -283,6 +218,11 @@ export default function IconsPage() {
             </div>
           </div>
         ))}
+      </Section>
+
+      {/* ── Diretrizes ── */}
+      <Section icon="checklist" title="Diretrizes de Uso">
+        <GuidelinesGrid items={ICON_GUIDELINES} />
       </Section>
     </div>
   )

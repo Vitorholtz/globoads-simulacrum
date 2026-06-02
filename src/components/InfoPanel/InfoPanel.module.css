@@ -31,10 +31,7 @@
 /* ── Icon ── */
 
 .icon {
-  font-size: var(--font-size-150);
-  line-height: var(--line-height-icon);
   flex-shrink: 0;
-  margin-top: var(--spacing-012);
 }
 
 /* ── Content ── */
@@ -44,8 +41,4 @@
   flex-direction: column;
   flex: 1;
   min-width: 0;
-}
-
-.title {
-  font-weight: var(--font-weight-semibold);
 }

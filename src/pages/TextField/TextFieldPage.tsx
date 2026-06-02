@@ -11,6 +11,8 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './TextFieldPage.module.css'
 
 export default function TextFieldPage() {
@@ -28,42 +30,43 @@ export default function TextFieldPage() {
       />
 
       {/* ── Estilos de Conteúdo ── */}
-      <Section icon="edit" title="Estilos de Conteúdo" count="2 estilos">
-        <div className={styles.stylesGrid}>
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <TextField label="Label" placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Placeholder</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Campo vazio exibindo o placeholder. Indica o tipo de informação esperada sem
-                comprometer a label.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.styleCard}>
-            <div className={styles.stylePreview}>
-              <TextField label="Label" placeholder="Text here" defaultValue="Text here" size="md" />
-            </div>
-            <div className={styles.styleBody}>
-              <span className={`type-body-sm ${styles.styleName}`}>Filled</span>
-              <span className={`type-body-sm ${styles.styleDesc}`}>
-                Campo preenchido com valor do usuário. Texto em Fill Primary para diferenciar de
-                placeholder.
-              </span>
-            </div>
-          </div>
-        </div>
+      <Section
+        icon="edit"
+        title="Estilos de Conteúdo"
+        count={2}
+        description="O campo exibe dois estados visuais distintos conforme a interação do usuário."
+      >
+        <CardGrid cols={2}>
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <TextField label="Label" placeholder="Text here" size="md" />
+              </div>
+            }
+            title="Placeholder"
+            description="Campo vazio exibindo o placeholder. Indica o tipo de informação esperada sem comprometer a label."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <TextField
+                  label="Label"
+                  placeholder="Text here"
+                  defaultValue="Text here"
+                  size="md"
+                />
+              </div>
+            }
+            title="Filled"
+            description="Campo preenchido com valor do usuário. Texto em Fill Primary para diferenciar de placeholder."
+            previewPad="lg"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Escala de Tamanhos ── */}
-      <Section
-        icon="straighten"
-        title="Escala de Tamanhos"
-        count={`${TEXT_FIELD_SIZES.length} tamanhos`}
-      >
+      <Section icon="straighten" title="Escala de Tamanhos" count={TEXT_FIELD_SIZES.length}>
         <div className={styles.sizeScaleContainer}>
           {TEXT_FIELD_SIZES.map((s) => (
             <div key={s.id} className={styles.sizeRow}>
@@ -94,7 +97,7 @@ export default function TextFieldPage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${TEXT_FIELD_STATES.length} estados`}>
+      <Section icon="toggle_on" title="Estados" count={TEXT_FIELD_STATES.length}>
         <StateMatrix
           columns={TEXT_FIELD_MATRIX_COLS}
           rows={TEXT_FIELD_MATRIX_STATES}
@@ -114,109 +117,83 @@ export default function TextFieldPage() {
       </Section>
 
       {/* ── Configurações ── */}
-      <Section icon="tune" title="Configurações" count="4 configurações">
-        <div className={styles.configGrid}>
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <TextField label="Label" placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Padrão</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Label + campo. Configuração base para a maioria dos formulários.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <TextField label="Label" optional placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Opcional</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Tag "Opcional" à direita da label para sinalizar campos não obrigatórios.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
-              <TextField showLabel={false} placeholder="Text here" size="md" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Sem label</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Quando o contexto visual torna a label dispensável — ex: campo de busca isolado ou
-                em um header.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+      <Section
+        icon="tune"
+        title="Configurações"
+        count={6}
+        description="Combinações de props que cobrem os cenários mais comuns de formulários."
+      >
+        <CardGrid cols={3}>
+          <DemoCard
+            preview={<TextField label="Label" placeholder="Text here" size="md" />}
+            title="Padrão"
+            description="Label + campo. Configuração base para a maioria dos formulários."
+          />
+          <DemoCard
+            preview={<TextField label="Label" optional placeholder="Text here" size="md" />}
+            title="Opcional"
+            description={
+              'Tag "Opcional" à direita da label para sinalizar campos não obrigatórios.'
+            }
+          />
+          <DemoCard
+            preview={<TextField showLabel={false} placeholder="Text here" size="md" />}
+            title="Sem label"
+            description="Quando o contexto visual torna a label dispensável — ex: campo de busca isolado ou em um header."
+          />
+          <DemoCard
+            preview={
               <TextField
                 label="Label"
                 descriptionText="Informação adicional sobre este campo aparece aqui."
                 placeholder="Text here"
                 size="md"
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com descrição</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Ícone ⓘ ao lado da label exibe um tooltip com contexto adicional ao passar o mouse.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+            }
+            title="Com descrição"
+            description="Ícone ⓘ ao lado da label exibe um tooltip com contexto adicional ao passar o mouse."
+          />
+          <DemoCard
+            preview={
               <TextField label="Busca" leadingIcon="search" placeholder="Pesquisar..." size="md" />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com ícone</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Ícone à esquerda reforça o tipo de dado esperado sem substituir a label.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.configCard}>
-            <div className={styles.configPreview}>
+            }
+            title="Com ícone"
+            description="Ícone à esquerda reforça o tipo de dado esperado sem substituir a label."
+          />
+          <DemoCard
+            preview={
               <TextField
                 label="Label"
                 placeholder="Text here"
                 helpText="Help text here..."
                 size="md"
               />
-            </div>
-            <div className={styles.configBody}>
-              <span className={`type-body-sm ${styles.configName}`}>Com texto de ajuda</span>
-              <span className={`type-caption-sm ${styles.configDesc}`}>
-                Texto de suporte abaixo do campo com instruções adicionais.
-              </span>
-            </div>
-          </div>
-        </div>
+            }
+            title="Com texto de ajuda"
+            description="Texto de suporte abaixo do campo com instruções adicionais."
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Máscaras de Entrada ── */}
-      <Section icon="pin" title="Máscaras de Entrada" count={`${TEXT_FIELD_MASKS.length} formatos`}>
-        <div className={styles.maskGrid}>
+      <Section
+        icon="pin"
+        title="Máscaras de Entrada"
+        count={TEXT_FIELD_MASKS.length}
+        description="Formatos automáticos de entrada que guiam o preenchimento e garantem consistência dos dados."
+      >
+        <CardGrid>
           {TEXT_FIELD_MASKS.map((m) => (
-            <div key={m.id} className={styles.maskCard}>
-              <div className={styles.maskPreview}>
+            <DemoCard
+              key={m.id}
+              preview={
                 <TextField label={m.label} placeholder={m.placeholder} mask={m.id} size="md" />
-              </div>
-              <div className={styles.maskBody}>
-                <span className={`type-body-sm ${styles.maskName}`}>{m.label}</span>
-                <span className={`type-caption-sm ${styles.maskDesc}`}>{m.description}</span>
-                <span className={`type-caption-sm ${styles.maskExample}`}>Ex: {m.example}</span>
-              </div>
-            </div>
+              }
+              title={m.label}
+              description={`${m.description} · Ex: ${m.example}`}
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

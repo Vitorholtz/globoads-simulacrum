@@ -3,6 +3,8 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import { ACCORDION_STATES, ACCORDION_GUIDELINES, ACCORDION_VARIANTS } from '../../tokens/accordion'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './AccordionPage.module.css'
 
 const DEMO_ITEMS = [
@@ -145,47 +147,43 @@ export default function AccordionPage() {
       </Section>
 
       {/* ── Variantes ── */}
-      <Section icon="tune" title="Variantes" count={`${ACCORDION_VARIANTS.length} variantes`}>
-        <div className={styles.variantsGrid}>
+      <Section icon="tune" title="Variantes" count={ACCORDION_VARIANTS.length}>
+        <CardGrid cols={2}>
           {ACCORDION_VARIANTS.map((variant) => (
-            <div key={variant.id} className={styles.variantCard}>
-              <div className={styles.variantPreview}>
-                <div className={styles.variantPreviewInner}>
-                  <Accordion
-                    items={VARIANT_ITEMS[variant.id as keyof typeof VARIANT_ITEMS]}
-                    defaultOpenId={VARIANT_ITEMS[variant.id as keyof typeof VARIANT_ITEMS][0].id}
-                  />
-                </div>
-              </div>
-              <div className={styles.variantBody}>
-                <span className={`type-body-sm ${styles.variantName}`}>{variant.label}</span>
-                <span className={`type-body-sm ${styles.variantDesc}`}>{variant.description}</span>
-              </div>
-            </div>
+            <DemoCard
+              key={variant.id}
+              preview={
+                <Accordion
+                  items={VARIANT_ITEMS[variant.id as keyof typeof VARIANT_ITEMS]}
+                  defaultOpenId={VARIANT_ITEMS[variant.id as keyof typeof VARIANT_ITEMS][0].id}
+                />
+              }
+              title={variant.label}
+              description={variant.description}
+              align="stretch"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={`${ACCORDION_STATES.length} estados`}>
-        <div className={styles.statesGrid}>
+      <Section icon="toggle_on" title="Estados" count={ACCORDION_STATES.length}>
+        <CardGrid cols={2}>
           {ACCORDION_STATES.map((state) => (
-            <div key={state.id} className={styles.stateCard}>
-              <div className={styles.statePreview}>
-                <div className={styles.statePreviewInner}>
-                  <Accordion
-                    items={STATE_SINGLE_ITEM}
-                    defaultOpenId={state.id === 'expanded' ? 'state-item' : null}
-                  />
-                </div>
-              </div>
-              <div className={styles.stateBody}>
-                <span className={`type-body-sm ${styles.stateName}`}>{state.label}</span>
-                <span className={`type-body-sm ${styles.stateDesc}`}>{state.description}</span>
-              </div>
-            </div>
+            <DemoCard
+              key={state.id}
+              preview={
+                <Accordion
+                  items={STATE_SINGLE_ITEM}
+                  defaultOpenId={state.id === 'expanded' ? 'state-item' : null}
+                />
+              }
+              title={state.label}
+              description={state.description}
+              align="stretch"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

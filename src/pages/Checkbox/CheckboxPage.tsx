@@ -11,6 +11,8 @@ import PageHeader from '../../components/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/Section/Section'
 import StateMatrix from '../../components/StateMatrix/StateMatrix'
+import DemoCard from '../../components/DemoCard/DemoCard'
+import CardGrid from '../../components/CardGrid/CardGrid'
 import styles from './CheckboxPage.module.css'
 
 const ALL_BEHAVIORS: CheckboxBehavior[] = ['unchecked', 'partial', 'checked']
@@ -21,14 +23,13 @@ const BEHAVIOR_COLUMNS = ALL_BEHAVIORS.map((id) => ({
   label: CHECKBOX_BEHAVIORS.find((bh) => bh.id === id)?.label ?? id,
 }))
 
-// Interactive behavior demo — starts in the given behavior state, fully clickable
 function BehaviorDemo({ initial }: { initial: CheckboxBehavior }) {
   const [checked, setChecked] = useState(initial === 'checked')
   const [indeterminate, setIndeterminate] = useState(initial === 'partial')
 
   function handleChange(v: boolean) {
     setChecked(v)
-    setIndeterminate(false) // clicking always resolves indeterminate
+    setIndeterminate(false)
   }
 
   return (
@@ -42,7 +43,6 @@ function BehaviorDemo({ initial }: { initial: CheckboxBehavior }) {
 }
 
 export default function CheckboxPage() {
-  // Types section: 3 independent options per type
   const [typesState, setTypesState] = useState({
     default: [false, false, false] as [boolean, boolean, boolean],
     inverter: [false, false, false] as [boolean, boolean, boolean],
@@ -59,7 +59,6 @@ export default function CheckboxPage() {
     }))
   }
 
-  // Help text section
   const [helpState, setHelpState] = useState([false, true] as [boolean, boolean])
 
   return (
@@ -76,24 +75,22 @@ export default function CheckboxPage() {
       />
 
       {/* ── Comportamentos ── */}
-      <Section icon="check_box" title="Comportamentos" count="3 comportamentos">
-        <div className={styles.behaviorsGrid}>
+      <Section icon="check_box" title="Comportamentos" count={3}>
+        <CardGrid cols={3}>
           {CHECKBOX_BEHAVIORS.map((b) => (
-            <div key={b.id} className={styles.behaviorCard}>
-              <div className={styles.behaviorPreview}>
-                <BehaviorDemo initial={b.id} />
-              </div>
-              <div className={styles.behaviorBody}>
-                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
-                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={b.id}
+              preview={<BehaviorDemo initial={b.id} />}
+              title={b.label}
+              description={b.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Estados — Matriz ── */}
-      <Section icon="toggle_on" title="Estados" count="5 estados">
+      <Section icon="toggle_on" title="Estados" count={5}>
         {ALL_TYPES.map((type) => {
           const typeDef = CHECKBOX_TYPES.find((t) => t.id === type)
           return (
@@ -114,28 +111,30 @@ export default function CheckboxPage() {
       </Section>
 
       {/* ── Tipos ── */}
-      <Section icon="swap_horiz" title="Tipos" count="2 tipos">
-        <div className={styles.typesGrid}>
+      <Section icon="swap_horiz" title="Tipos" count={2}>
+        <CardGrid cols={2}>
           {CHECKBOX_TYPES.map((t) => (
-            <div key={t.id} className={styles.typeCard}>
-              <div className={styles.typePreview}>
-                {(['Opção 1', 'Opção 2', 'Opção 3'] as const).map((lbl, idx) => (
-                  <Checkbox
-                    key={lbl}
-                    checked={typesState[t.id][idx]}
-                    onChange={(v) => setTypeOption(t.id, idx, v)}
-                    type={t.id}
-                    label={lbl}
-                  />
-                ))}
-              </div>
-              <div className={styles.typeBody}>
-                <span className={`type-body-sm ${styles.typeName}`}>{t.label}</span>
-                <p className={`type-body-sm ${styles.typeDesc}`}>{t.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={t.id}
+              preview={
+                <div className={styles.typeList}>
+                  {(['Opção 1', 'Opção 2', 'Opção 3'] as const).map((lbl, idx) => (
+                    <Checkbox
+                      key={lbl}
+                      checked={typesState[t.id][idx]}
+                      onChange={(v) => setTypeOption(t.id, idx, v)}
+                      type={t.id}
+                      label={lbl}
+                    />
+                  ))}
+                </div>
+              }
+              title={t.label}
+              description={t.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Help Text ── */}

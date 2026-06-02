@@ -1,89 +1,10 @@
-﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+/* ── Type preview list (column of options) ── */
 
-/* ── Behavior cards ── */
-
-.behaviorsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-200);
-}
-
-.behaviorCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.behaviorPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-500) var(--spacing-400);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.behaviorBody {
-  padding: var(--spacing-300) var(--spacing-350) var(--spacing-350);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-  flex: 1;
-}
-
-.behaviorName {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.behaviorDesc {
-  color: var(--color-fill-secondary);
-}
-
-/* ── Types ── */
-
-.typesGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-200);
-}
-
-.typeCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.typePreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-500) var(--spacing-600);
+.typeList {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-200);
   align-items: flex-start;
-}
-
-.typeBody {
-  padding: var(--spacing-300) var(--spacing-350) var(--spacing-350);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-}
-
-.typeName {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.typeDesc {
-  color: var(--color-fill-secondary);
 }
 
 /* ── Help text section ── */
@@ -117,5 +38,3 @@
 .helpTextDesc {
   color: var(--color-fill-secondary);
 }
-
-/* ── Guidelines ── */
