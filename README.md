@@ -1,6 +1,6 @@
 # Globo Ads Simulacrum
 
-Design-system documentation app for Globo Ads — a Storybook-like reference built with React + Vite, no UI libraries.
+Design-system documentation app for Globo Ads — built with React + Vite, no UI libraries.
 
 ## Stack
 
