@@ -10,7 +10,10 @@
   white-space: nowrap;
   color: var(--color-fill-secondary);
   -webkit-font-smoothing: antialiased;
-  transition: background var(--motion-duration-base) var(--motion-easing-default), filter var(--motion-duration-base) var(--motion-easing-default), opacity var(--motion-duration-base) var(--motion-easing-default);
+  transition:
+    background var(--motion-duration-base) var(--motion-easing-default),
+    filter var(--motion-duration-base) var(--motion-easing-default),
+    opacity var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* ── Style-specific padding ── */
@@ -50,7 +53,7 @@
 }
 
 .chip[data-state='dragged'] {
-  background: #e2e2e3;
+  background: var(--color-luminosity-dark-ghost-active);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12));
   cursor: grab;
 }
@@ -59,7 +62,6 @@
   opacity: var(--opacity-disabled);
   pointer-events: none;
 }
-
 
 /* ── Leading icon (Icon style) ── */
 

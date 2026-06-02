@@ -9,7 +9,9 @@ import type { DatePickerSize } from '../../tokens/datePicker'
 export interface DatePickerProps {
   size?: DatePickerSize
   label?: string
+  /** Hides the label visually; it remains in the DOM for screen readers */
   showLabel?: boolean
+  /** Appends "(opcional)" to the label */
   optional?: boolean
   helpText?: string
   errorMessage?: string
@@ -86,7 +88,9 @@ export default function DatePicker({
   const calendarBtnRef = useRef<HTMLButtonElement>(null)
 
   const [internalValue, setInternalValue] = useState<Date | null>(defaultValue ?? null)
-  const [inputText, setInputText] = useState<string>(() => formatDate(defaultValue ?? null))
+  const [inputText, setInputText] = useState<string>(() =>
+    value !== undefined ? formatDate(value) : formatDate(defaultValue ?? null)
+  )
   const [pendingDate, setPendingDate] = useState<Date | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [isLeaving, setIsLeaving] = useState(false)
@@ -257,7 +261,7 @@ export default function DatePicker({
           tabIndex={forceState ? -1 : undefined}
           aria-expanded={isOpen && !isLeaving}
           aria-haspopup="dialog"
-          aria-controls={popupId}
+          aria-controls={isOpen && !isLeaving ? popupId : undefined}
           aria-label="Abrir calendário"
         >
           <span

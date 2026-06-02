@@ -296,7 +296,6 @@ export const PAGES: PageDef[] = [
     category: 'Inputs',
     component: DatePickerPage,
   },
-
   // ── Utilities ──
   {
     path: '/collapse',

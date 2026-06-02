@@ -11,7 +11,7 @@
 
 .tooltip {
   position: absolute;
-  background: #252527;
+  background: var(--color-fill-primary);
   color: var(--color-fill-inverse);
   padding: var(--spacing-050) var(--spacing-100);
   border-radius: var(--border-radius-md);
@@ -34,7 +34,7 @@
 
 .arrow {
   position: absolute;
-  background: #252527;
+  background: var(--color-fill-primary);
 }
 
 /* ── Position: Up (tooltip above, arrow at bottom pointing down) ── */
@@ -50,13 +50,27 @@
   clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
-.up.start  { left: 0; }
-.up.middle { left: 50%; transform: translateX(-50%); }
-.up.end    { right: 0; }
+.up.start {
+  left: 0;
+}
+.up.middle {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.up.end {
+  right: 0;
+}
 
-.up.start  .arrow { left: var(--spacing-100); }
-.up.middle .arrow { left: 50%; transform: translateX(-50%); }
-.up.end    .arrow { right: var(--spacing-100); }
+.up.start .arrow {
+  left: var(--spacing-100);
+}
+.up.middle .arrow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.up.end .arrow {
+  right: var(--spacing-100);
+}
 
 /* ── Position: Bottom (tooltip below, arrow at top pointing up) ── */
 
@@ -71,13 +85,27 @@
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
-.bottom.start  { left: 0; }
-.bottom.middle { left: 50%; transform: translateX(-50%); }
-.bottom.end    { right: 0; }
+.bottom.start {
+  left: 0;
+}
+.bottom.middle {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottom.end {
+  right: 0;
+}
 
-.bottom.start  .arrow { left: var(--spacing-100); }
-.bottom.middle .arrow { left: 50%; transform: translateX(-50%); }
-.bottom.end    .arrow { right: var(--spacing-100); }
+.bottom.start .arrow {
+  left: var(--spacing-100);
+}
+.bottom.middle .arrow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottom.end .arrow {
+  right: var(--spacing-100);
+}
 
 /* ── Position: Right (tooltip to the right, arrow at left pointing left) ── */
 
@@ -92,13 +120,27 @@
   clip-path: polygon(100% 0%, 100% 100%, 0% 50%);
 }
 
-.right.start  { top: 0; }
-.right.middle { top: 50%; transform: translateY(-50%); }
-.right.end    { bottom: 0; }
+.right.start {
+  top: 0;
+}
+.right.middle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.right.end {
+  bottom: 0;
+}
 
-.right.start  .arrow { top: var(--spacing-100); }
-.right.middle .arrow { top: 50%; transform: translateY(-50%); }
-.right.end    .arrow { bottom: var(--spacing-100); }
+.right.start .arrow {
+  top: var(--spacing-100);
+}
+.right.middle .arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.right.end .arrow {
+  bottom: var(--spacing-100);
+}
 
 /* ── Position: Left (tooltip to the left, arrow at right pointing right) ── */
 
@@ -113,10 +155,24 @@
   clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
 }
 
-.left.start  { top: 0; }
-.left.middle { top: 50%; transform: translateY(-50%); }
-.left.end    { bottom: 0; }
+.left.start {
+  top: 0;
+}
+.left.middle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.left.end {
+  bottom: 0;
+}
 
-.left.start  .arrow { top: var(--spacing-100); }
-.left.middle .arrow { top: 50%; transform: translateY(-50%); }
-.left.end    .arrow { bottom: var(--spacing-100); }
+.left.start .arrow {
+  top: var(--spacing-100);
+}
+.left.middle .arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.left.end .arrow {
+  bottom: var(--spacing-100);
+}

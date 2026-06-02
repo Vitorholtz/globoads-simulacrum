@@ -257,6 +257,7 @@
    --color-border-tertiary: #00000014;
    /* mais suave — separadores de chrome */
    --color-border-accent: #65BDFE;
+   --color-border-accent-strong: #185cfbcc;
    --color-border-accent-gradient: linear-gradient(to right, #185CFB 0%, #8800F8 100%);
    --color-border-success: #6CE95D;
    --color-border-warning: #FFE543;

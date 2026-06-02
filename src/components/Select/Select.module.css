@@ -244,7 +244,7 @@
 
 .optionSelected {
   background: var(--color-luminosity-dark-ghost-subtle);
-  border-color: rgba(24, 92, 251, 0.8);
+  border-color: var(--color-border-accent-strong);
 }
 
 .optionHighlighted {

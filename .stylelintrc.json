@@ -2,6 +2,7 @@
   "ignoreFiles": ["dist/**", "node_modules/**", "src/global.css"],
   "rules": {
     "color-no-invalid-hex": true,
+    "color-named": "never",
     "no-duplicate-selectors": true,
     "declaration-no-important": true,
 

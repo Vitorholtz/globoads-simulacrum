@@ -11,7 +11,10 @@
   user-select: none;
   outline: none;
   -webkit-font-smoothing: antialiased;
-  transition: background var(--motion-duration-base) var(--motion-easing-default), box-shadow var(--motion-duration-base) var(--motion-easing-default), opacity var(--motion-duration-base) var(--motion-easing-default);
+  transition:
+    background var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default),
+    opacity var(--motion-duration-base) var(--motion-easing-default);
 }
 
 /* ── UNCHECKED ── */
@@ -40,7 +43,7 @@
 }
 
 .unchecked[data-state='dragged'] {
-  background: #e2e2e3;
+  background: var(--color-luminosity-dark-ghost-active);
   box-shadow: var(--shadows-low);
 }
 

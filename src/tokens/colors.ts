@@ -202,6 +202,14 @@ export const COLOR_GROUPS: ColorGroup[] = [
           'Cor de borda auxiliar para elementos de destaque e componentes de ações principais.',
       },
       {
+        type: 'solid',
+        value: '#185cfbcc',
+        name: 'Border Accent Strong',
+        variable: '--color-border-accent-strong',
+        description:
+          'Variante com maior opacidade do accent. Usada em bordas de itens selecionados em dropdowns e listboxes.',
+      },
+      {
         type: 'gradient',
         stops: ['#185CFB', '#8800F8'],
         name: 'Border Accent Gradient',
