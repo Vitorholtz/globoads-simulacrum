@@ -390,6 +390,54 @@ export const COLOR_GROUPS: ColorGroup[] = [
         description:
           'Sobreposição branca para o anel de foco de elementos em superfície escura. Garante visibilidade do indicador de acessibilidade sem depender da cor de foco padrão.',
       },
+      {
+        type: 'solid',
+        value: '#FFFFFFB3',
+        name: 'Light ghost Strong',
+        variable: '--color-luminosity-light-ghost-strong',
+        description:
+          'Sobreposição branca de alta opacidade (70%). Usada no dot indicador de "hoje" quando o dia está selecionado (fundo accent azul).',
+      },
+      {
+        type: 'solid',
+        value: '#185CFB0D',
+        name: 'Accent ghost',
+        variable: '--color-luminosity-accent-ghost',
+        description:
+          'Accent azul em opacidade mínima (5%). Fundo de preview do range durante o hover — sinaliza a seleção sem competir com o strip confirmado.',
+      },
+      {
+        type: 'solid',
+        value: '#185CFB14',
+        name: 'Accent Subtle',
+        variable: '--color-luminosity-accent-subtle',
+        description:
+          'Accent azul em opacidade sutil (8%). Fundo dos strips in-range confirmados no Calendar — mantém a faixa visível sem ofuscar o texto dos dias.',
+      },
+      {
+        type: 'solid',
+        value: '#185CFB1A',
+        name: 'Accent Hover',
+        variable: '--color-luminosity-accent-hover',
+        description:
+          'Accent azul em opacidade leve (10%). Hover sobre células dentro do range selecionado — reforço visual sem sair da paleta de range.',
+      },
+      {
+        type: 'solid',
+        value: '#185CFB33',
+        name: 'Accent Soft',
+        variable: '--color-luminosity-accent-soft',
+        description:
+          'Accent azul em opacidade moderada (20%). Fundo do botão de fim tentativo do range (hover end) antes de confirmar a seleção.',
+      },
+      {
+        type: 'solid',
+        value: '#185CFB3D',
+        name: 'Accent Active',
+        variable: '--color-luminosity-accent-active',
+        description:
+          'Accent azul em opacidade média (24%). Hover sobre o botão de fim tentativo — reforça o feedback de interação sem atingir a opacidade do endpoint confirmado.',
+      },
     ],
   },
 ]

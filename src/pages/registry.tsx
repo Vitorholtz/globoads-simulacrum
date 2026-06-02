@@ -349,3 +349,10 @@ export const PAGES: PageDef[] = [
 
 /** Path the index route ("/") redirects to. */
 export const DEFAULT_PATH = '/colors'
+
+type PagePath = (typeof PAGES)[number]['path']
+
+/** Type-safe route constants derived from PAGES. Keys are SCREAMING_SNAKE_CASE. */
+export const ROUTES = Object.fromEntries(
+  PAGES.map((p) => [p.path.slice(1).replace(/-/g, '_').toUpperCase(), p.path])
+) as Record<string, PagePath>

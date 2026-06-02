@@ -15,6 +15,7 @@
     "lint:css": "stylelint \"src/**/*.module.css\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "add:component": "node scripts/add-component.mjs",
     "prepare": "husky"
   },
   "lint-staged": {

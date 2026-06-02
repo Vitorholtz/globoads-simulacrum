@@ -109,14 +109,14 @@
 .inRange::before {
   left: 0;
   right: 0;
-  background: rgba(24, 92, 251, 0.08);
+  background: var(--color-luminosity-accent-subtle);
   border-radius: var(--border-radius-none);
 }
 
 .hoverInRange::before {
   left: 0;
   right: 0;
-  background: rgba(24, 92, 251, 0.05);
+  background: var(--color-luminosity-accent-ghost);
   border-radius: var(--border-radius-none);
 }
 
@@ -124,7 +124,7 @@
 .rangeStart::before {
   left: 50%;
   right: 0;
-  background: rgba(24, 92, 251, 0.08);
+  background: var(--color-luminosity-accent-subtle);
   border-radius: var(--border-radius-xl) var(--border-radius-none) var(--border-radius-none)
     var(--border-radius-xl);
 }
@@ -133,7 +133,7 @@
 .rangeEnd::before {
   left: 0;
   right: 50%;
-  background: rgba(24, 92, 251, 0.08);
+  background: var(--color-luminosity-accent-subtle);
   border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl)
     var(--border-radius-none);
 }
@@ -142,7 +142,7 @@
 .rangeHoverEnd::before {
   left: 0;
   right: 50%;
-  background: rgba(24, 92, 251, 0.05);
+  background: var(--color-luminosity-accent-ghost);
   border-radius: var(--border-radius-none) var(--border-radius-xl) var(--border-radius-xl)
     var(--border-radius-none);
 }
@@ -182,7 +182,7 @@
 /* In-range cells: hover darkens the strip */
 .inRange .day:hover,
 .hoverInRange .day:hover {
-  background: rgba(24, 92, 251, 0.1);
+  background: var(--color-luminosity-accent-hover);
 }
 
 /* Today indicator — dot below number */
@@ -214,18 +214,18 @@
 }
 
 .daySelected.dayToday::after {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-luminosity-light-ghost-strong);
 }
 
 /* Hover end preview (tentative range end) */
 .dayHoverEnd {
-  background: rgba(24, 92, 251, 0.2);
+  background: var(--color-luminosity-accent-soft);
   color: var(--color-fill-accent);
   font-weight: var(--font-weight-semibold);
 }
 
 .dayHoverEnd:hover {
-  background: rgba(24, 92, 251, 0.24);
+  background: var(--color-luminosity-accent-active);
 }
 
 /* ── Year / Month picker grid ── */
