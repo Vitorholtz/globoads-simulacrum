@@ -16,7 +16,9 @@
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
   outline: none;
-  transition: background var(--motion-duration-base) var(--motion-easing-default), opacity var(--motion-duration-base) var(--motion-easing-default);
+  transition:
+    background var(--motion-duration-base) var(--motion-easing-default),
+    opacity var(--motion-duration-base) var(--motion-easing-default);
   line-height: var(--line-height-icon);
 }
 
@@ -44,19 +46,43 @@
 }
 
 /* Icon-only: square padding */
-.iconOnly.sm { padding: var(--spacing-100); }
-.iconOnly.md { padding: var(--spacing-125); }
-.iconOnly.lg { padding: var(--spacing-175); }
+.iconOnly.sm {
+  padding: var(--spacing-100);
+}
+.iconOnly.md {
+  padding: var(--spacing-125);
+}
+.iconOnly.lg {
+  padding: var(--spacing-175);
+}
 
 /* Icon-left asymmetric padding (icon side tighter) */
-.hasIconLeft.sm { padding-left: var(--spacing-100);  padding-right: var(--spacing-150); }
-.hasIconLeft.md { padding-left: var(--spacing-150); padding-right: var(--spacing-200); }
-.hasIconLeft.lg { padding-left: var(--spacing-200); padding-right: var(--spacing-250); }
+.hasIconLeft.sm {
+  padding-left: var(--spacing-100);
+  padding-right: var(--spacing-150);
+}
+.hasIconLeft.md {
+  padding-left: var(--spacing-150);
+  padding-right: var(--spacing-200);
+}
+.hasIconLeft.lg {
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-250);
+}
 
 /* Icon-right asymmetric padding */
-.hasIconRight.sm { padding-left: var(--spacing-150); padding-right: var(--spacing-100);  }
-.hasIconRight.md { padding-left: var(--spacing-200); padding-right: var(--spacing-150); }
-.hasIconRight.lg { padding-left: var(--spacing-250); padding-right: var(--spacing-200); }
+.hasIconRight.sm {
+  padding-left: var(--spacing-150);
+  padding-right: var(--spacing-100);
+}
+.hasIconRight.md {
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-150);
+}
+.hasIconRight.lg {
+  padding-left: var(--spacing-250);
+  padding-right: var(--spacing-200);
+}
 
 /* ── Inner elements ── */
 
@@ -88,8 +114,12 @@
   pointer-events: none;
 }
 
-.primary::before { background: var(--color-action-grad-fill-hover); }
-.primary::after  { background: var(--color-action-grad-fill-active); }
+.primary::before {
+  background: var(--color-action-grad-fill-hover);
+}
+.primary::after {
+  background: var(--color-action-grad-fill-active);
+}
 
 .primary:hover:not(:disabled):not([data-state='disabled'])::before,
 .primary[data-state='hover']::before {
@@ -239,4 +269,3 @@
   background-clip: unset;
   color: var(--color-fill-critical);
 }
-

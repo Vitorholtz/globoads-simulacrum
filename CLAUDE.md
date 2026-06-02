@@ -1,52 +1,39 @@
-# CLAUDE.md
+# CLAUDE.md — Workspace
 
-Guia para o Claude Code neste repositório. Mantenha **enxuto** — só o que precisa estar presente
-em todo turno. O detalhe vive em `docs/` e é lido sob demanda (links abaixo, não `@import`, para não
-inflar o contexto a cada turno).
+Monorepo **pnpm** da iniciativa Globo Ads. Mantenha este guia **enxuto**: regras específicas de
+cada pacote vivem no `CLAUDE.md` do próprio pacote (lidos sob demanda ao trabalhar nele).
 
-**Globo Ads Simulacrum** — app de documentação do Globo Ads Design System. Biblioteca de
-componentes e fundações reutilizáveis, deliberadamente simples. Stack: React 19 + Vite 8 + TS 6 +
-CSS Modules + React Router v7. Sem bibliotecas de UI.
+## Pacotes
 
-## Golden rules (não quebrar)
+| Pacote                                                        | O que é                                                              |
+| ------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [`packages/ds`](packages/ds/CLAUDE.md) — `@globo-ads/ds`      | Design System: tokens, componentes, fundações e app de documentação. |
+| [`apps/simulacrum`](apps/simulacrum/CLAUDE.md) — `simulacrum` | Interfaces, jornadas e fluxos do produto, consumindo o DS.           |
 
-1. **Tokens, nunca hardcode.** Borda/raio/espaçamento/cor sempre via `var(--token-*)`. Nunca `1px`,
-   `8px`, `#fff` em `border`/`border-radius`/`padding`/`color`. (Exceção: spread de `box-shadow`.)
-2. **Sem aliases semânticos de cor.** Use tokens crus (`--color-fill-primary`, `--color-surface-primary`,
-   `--color-border-tertiary`). Não existem `--color-text-*`/`--color-bg-*`.
-3. **Texto via utility class `type-*`.** Nunca declarar `font-*`/`line-height` direto no CSS Module.
-   Ícones via `material-symbols-rounded` + utility de tamanho; nunca `fontVariationSettings` inline.
-4. **CSS Modules apenas**, escopado por componente/página. Sem sombras. Fundos planos.
-5. **`registry.tsx` é a fonte única de navegação.** Nova página = token + componente + página +
-   **uma** entrada em `src/pages/registry.tsx`. Nunca editar rotas em `App.tsx`/`Sidebar.tsx`.
-   Use `ROUTES` (exportado de `registry.tsx`) para navegação programática — nunca strings literais de rota.
-6. **Sem dado hardcoded em páginas.** Conteúdo vem de `src/tokens/*`; páginas importam e mapeiam.
-7. **Use o Design System.** Componha com `src/components/*`, nunca HTML puro. Ao alterar um
-   componente, atualize todos os consumidores.
-8. **Idioma:** conteúdo (tokens/docs) em **português**; identificadores de código e comandos em **inglês**.
-9. **pnpm** apenas — nunca npm/yarn.
+## Regras do workspace (não quebrar)
 
-## Comandos
+1. **Direção de dependência:** `simulacrum` depende de `@globo-ads/ds` (`workspace:*`). O DS **nunca**
+   importa do Simulacrum.
+2. **Sempre usar o DS.** Interfaces no Simulacrum compõem `@globo-ads/ds`; nunca HTML puro nem
+   reimplementação de componente que já existe no DS.
+3. **Promoção ao DS é deliberada.** Componente específico do produto nasce em `apps/simulacrum/src/components/`.
+   Só migra para o DS quando há valor real de reutilização — nunca antecipe.
+4. **Config de tooling é compartilhada e vive só na raiz:** `eslint.config.js`, `.prettierrc`,
+   `.stylelintrc.json`, `.husky/`. Cada pacote tem scripts `lint`/`test`/`build` próprios que
+   resolvem essas configs por busca ascendente — rode-os de dentro do pacote.
+5. **pnpm** apenas — nunca npm/yarn. Comandos por pacote via `pnpm --filter`.
+
+## Comandos (raiz)
 
 ```powershell
-pnpm dev          # dev server em http://localhost:5173
-pnpm build        # tsc -b && vite build
-pnpm lint         # eslint   (lint:css = stylelint)
-pnpm test         # vitest run
-pnpm add:component <Nome>  # scaffold: component + CSS + token + page + lazy import
+pnpm install            # instala todo o workspace
+pnpm dev:ds             # documentação do DS  (porta 5173)
+pnpm dev:sim            # app Simulacrum       (porta 5174)
+pnpm build              # build de todos os pacotes
+pnpm test               # testes de todos os pacotes
+pnpm lint               # eslint em todo o workspace
+pnpm lint:css           # stylelint em todo o workspace
 ```
 
-Lista completa de scripts: [`package.json`](package.json) e [README.md](README.md).
-
-## Documentação (leia sob demanda)
-
-| Tarefa                                                 | Leia                                                         |
-| ------------------------------------------------------ | ------------------------------------------------------------ |
-| Entender como tudo se conecta (router, camadas, fluxo) | [docs/arquitetura.md](docs/arquitetura.md)                   |
-| Escrever/alterar CSS, tokens, nomes                    | [docs/convencoes.md](docs/convencoes.md)                     |
-| Adicionar componente / página                          | [docs/guia-novo-componente.md](docs/guia-novo-componente.md) |
-| Entender o _porquê_ de uma escolha                     | [docs/decisoes.md](docs/decisoes.md)                         |
-| Mapa da camada de tokens                               | [docs/tokens.md](docs/tokens.md)                             |
-
-> Inventários (páginas, valores de CSS vars, props) vivem no código — `registry.tsx`, `global.css`,
-> `src/tokens/*`, os `.tsx`. Não os duplique nesta doc nem em `docs/`.
+> Ao trabalhar dentro de um pacote, leia o `CLAUDE.md` dele. Inventários (componentes, tokens,
+> rotas) vivem no código — não duplique em docs.

@@ -12,21 +12,24 @@ export const BORDER_RADIUS_TOKENS: BorderRadiusToken[] = [
     variable: '--border-radius-none',
     valuePx: 0,
     valueRem: '0rem',
-    description: 'Sem arredondamento. Utilizado em elementos que exigem cantos vivos, como separadores e bordas de tabela.',
+    description:
+      'Sem arredondamento. Utilizado em elementos que exigem cantos vivos, como separadores e bordas de tabela.',
   },
   {
     name: 'Border Radius XS',
     variable: '--border-radius-xs',
     valuePx: 2,
     valueRem: '0.125rem',
-    description: 'Arredondamento mínimo. Indicado para elementos muito pequenos como badges e chips compactos.',
+    description:
+      'Arredondamento mínimo. Indicado para elementos muito pequenos como badges e chips compactos.',
   },
   {
     name: 'Border Radius SM',
     variable: '--border-radius-sm',
     valuePx: 4,
     valueRem: '0.25rem',
-    description: 'Arredondamento pequeno. Padrão para checkboxes, inputs e componentes de formulário.',
+    description:
+      'Arredondamento pequeno. Padrão para checkboxes, inputs e componentes de formulário.',
   },
   {
     name: 'Border Radius MD',
@@ -68,13 +71,15 @@ export const BORDER_RADIUS_TOKENS: BorderRadiusToken[] = [
     variable: '--border-radius-4xl',
     valuePx: 32,
     valueRem: '2rem',
-    description: 'Arredondamento 4XL. Reservado para elementos de grande escala com cantos muito suaves.',
+    description:
+      'Arredondamento 4XL. Reservado para elementos de grande escala com cantos muito suaves.',
   },
   {
     name: 'Border Radius Full',
     variable: '--border-radius-full',
     valuePx: 999,
     valueRem: '62.4375rem',
-    description: 'Arredondamento completo. Cria formas de pílula ou círculo. Utilizado em botões pill, avatares e tags arredondadas.',
+    description:
+      'Arredondamento completo. Cria formas de pílula ou círculo. Utilizado em botões pill, avatares e tags arredondadas.',
   },
 ]

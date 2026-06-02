@@ -32,8 +32,12 @@
   transition: color var(--motion-duration-slow) var(--motion-easing-default);
 }
 
-.trigger:hover { color: var(--color-action-solid-fill-hover); }
-.trigger.hover { color: var(--color-action-solid-fill-hover); }
+.trigger:hover {
+  color: var(--color-action-solid-fill-hover);
+}
+.trigger.hover {
+  color: var(--color-action-solid-fill-hover);
+}
 
 .trigger:focus-visible {
   color: var(--color-action-solid-fill-hover);
@@ -45,8 +49,12 @@
   box-shadow: var(--outline-focus);
 }
 
-.trigger:active { color: var(--color-action-solid-fill-active); }
-.trigger.active { color: var(--color-action-solid-fill-active); }
+.trigger:active {
+  color: var(--color-action-solid-fill-active);
+}
+.trigger.active {
+  color: var(--color-action-solid-fill-active);
+}
 
 /* ── Trigger text — underline only here, never on the icon ── */
 
@@ -87,7 +95,6 @@
   gap: var(--spacing-025);
 }
 
-
 .xs .content + .trigger {
   margin-top: var(--spacing-050);
 }
@@ -97,7 +104,6 @@
 .sm .trigger {
   gap: var(--spacing-050);
 }
-
 
 .sm .content + .trigger {
   margin-top: var(--spacing-075);
@@ -109,7 +115,6 @@
   gap: var(--spacing-050);
 }
 
-
 .md .content + .trigger {
   margin-top: var(--spacing-100);
 }
@@ -119,7 +124,6 @@
 .lg .trigger {
   gap: var(--spacing-050);
 }
-
 
 .lg .content + .trigger {
   margin-top: var(--spacing-125);

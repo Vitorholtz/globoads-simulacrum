@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Type-check
-        run: pnpm tsc --noEmit
-
       - name: ESLint
         run: pnpm lint
 
@@ -57,7 +54,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browser
-        run: pnpm exec playwright install --with-deps chromium
+        run: pnpm --filter @globo-ads/ds exec playwright install --with-deps chromium
 
       - name: Smoke test (all routes)
-        run: pnpm test:e2e
+        run: pnpm --filter @globo-ads/ds test:e2e

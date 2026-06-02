@@ -1,6 +1,12 @@
 ﻿@keyframes motion-enter-right {
-  from { opacity: 0; transform: translateX(6px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .root {
@@ -18,13 +24,20 @@
   animation-fill-mode: backwards;
 }
 
-
 /* ── Type variants ── */
 
-.neutral  { background: var(--color-fill-secondary); }
-.success  { background: var(--color-fill-success); }
-.warning  { background: var(--color-fill-warning); }
-.critical { background: var(--color-fill-critical); }
+.neutral {
+  background: var(--color-fill-secondary);
+}
+.success {
+  background: var(--color-fill-success);
+}
+.warning {
+  background: var(--color-fill-warning);
+}
+.critical {
+  background: var(--color-fill-critical);
+}
 
 /* ── Icon ── */
 
@@ -50,8 +63,6 @@
   padding: var(--spacing-075) 0;
   color: var(--color-fill-inverse);
 }
-
-
 
 /* ── Close button ── */
 

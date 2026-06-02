@@ -20,7 +20,8 @@ export const HYPERLINK_SIZES: HyperlinkSizeDef[] = [
     lineHeight: 16,
     iconSize: 14,
     gap: 2,
-    description: 'Uso restrito a contextos muito densos. Fontes abaixo de 13px comprometem a leiturabilidade — prefira SM como tamanho mínimo.',
+    description:
+      'Uso restrito a contextos muito densos. Fontes abaixo de 13px comprometem a leiturabilidade — prefira SM como tamanho mínimo.',
     warning: 'Tamanho abaixo do mínimo recomendado de legibilidade.',
   },
   {
@@ -49,14 +50,23 @@ export const HYPERLINK_SIZES: HyperlinkSizeDef[] = [
     lineHeight: 32,
     iconSize: 24,
     gap: 4,
-    description: 'Textos maiores, trechos de destaque e interfaces com hierarquia visual mais ampla.',
+    description:
+      'Textos maiores, trechos de destaque e interfaces com hierarquia visual mais ampla.',
   },
 ]
 
 export const HYPERLINK_STATES = [
   { id: 'normal', label: 'Normal', description: 'Estado padrão em repouso — sem sublinhado.' },
-  { id: 'hover',  label: 'Hover',  description: 'Cursor sobre o link — sublinhado visível, cor mais escura.' },
-  { id: 'focus',  label: 'Focus',  description: 'Foco via teclado — sublinhado e anel de acessibilidade.' },
+  {
+    id: 'hover',
+    label: 'Hover',
+    description: 'Cursor sobre o link — sublinhado visível, cor mais escura.',
+  },
+  {
+    id: 'focus',
+    label: 'Focus',
+    description: 'Foco via teclado — sublinhado e anel de acessibilidade.',
+  },
   { id: 'active', label: 'Active', description: 'Link pressionado — tom de azul mais escuro.' },
 ] as const
 

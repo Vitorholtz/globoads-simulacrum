@@ -108,9 +108,39 @@ export interface TextFieldMaskDef {
 }
 
 export const TEXT_FIELD_MASKS: TextFieldMaskDef[] = [
-  { id: 'phone', label: 'Telefone', placeholder: '(11) 91234-5678',   example: '(11) 91234-5678',   description: 'Celular (11 dígitos) e fixo (10 dígitos) com DDD.' },
-  { id: 'cpf',   label: 'CPF',      placeholder: '000.000.000-00',     example: '123.456.789-09',     description: 'Cadastro de Pessoa Física — XXX.XXX.XXX-XX.' },
-  { id: 'cnpj',  label: 'CNPJ',     placeholder: '00.000.000/0000-00', example: '12.345.678/0001-90', description: 'Cadastro de Pessoa Jurídica — XX.XXX.XXX/XXXX-XX.' },
-  { id: 'cep',   label: 'CEP',      placeholder: '00000-000',          example: '01310-100',           description: 'Código de Endereçamento Postal — XXXXX-XXX.' },
-  { id: 'date',  label: 'Data',     placeholder: 'DD/MM/AAAA',         example: '31/12/2025',          description: 'Data no formato brasileiro DD/MM/AAAA.' },
+  {
+    id: 'phone',
+    label: 'Telefone',
+    placeholder: '(11) 91234-5678',
+    example: '(11) 91234-5678',
+    description: 'Celular (11 dígitos) e fixo (10 dígitos) com DDD.',
+  },
+  {
+    id: 'cpf',
+    label: 'CPF',
+    placeholder: '000.000.000-00',
+    example: '123.456.789-09',
+    description: 'Cadastro de Pessoa Física — XXX.XXX.XXX-XX.',
+  },
+  {
+    id: 'cnpj',
+    label: 'CNPJ',
+    placeholder: '00.000.000/0000-00',
+    example: '12.345.678/0001-90',
+    description: 'Cadastro de Pessoa Jurídica — XX.XXX.XXX/XXXX-XX.',
+  },
+  {
+    id: 'cep',
+    label: 'CEP',
+    placeholder: '00000-000',
+    example: '01310-100',
+    description: 'Código de Endereçamento Postal — XXXXX-XXX.',
+  },
+  {
+    id: 'date',
+    label: 'Data',
+    placeholder: 'DD/MM/AAAA',
+    example: '31/12/2025',
+    description: 'Data no formato brasileiro DD/MM/AAAA.',
+  },
 ]

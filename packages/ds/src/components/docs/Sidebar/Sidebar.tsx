@@ -27,11 +27,11 @@ function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) =>
+      className={({ isActive }: { isActive: boolean }) =>
         ['type-body-sm', styles.navItem, isActive ? styles.navItemActive : ''].join(' ')
       }
     >
-      {({ isActive }) => (
+      {({ isActive }: { isActive: boolean }) => (
         <>
           <span className={styles.navItemInner}>
             <span

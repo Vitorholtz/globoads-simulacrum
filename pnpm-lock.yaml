@@ -7,6 +7,45 @@ settings:
 importers:
 
   .:
+    devDependencies:
+      '@eslint/js':
+        specifier: ^10.0.1
+        version: 10.0.1(eslint@10.4.0)
+      eslint:
+        specifier: ^10.3.0
+        version: 10.4.0
+      eslint-plugin-react-hooks:
+        specifier: ^7.1.1
+        version: 7.1.1(eslint@10.4.0)
+      eslint-plugin-react-refresh:
+        specifier: ^0.5.2
+        version: 0.5.2(eslint@10.4.0)
+      globals:
+        specifier: ^17.6.0
+        version: 17.6.0
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
+      lint-staged:
+        specifier: ^17.0.6
+        version: 17.0.6
+      prettier:
+        specifier: ^3.8.3
+        version: 3.8.3
+      stylelint:
+        specifier: ^17.12.0
+        version: 17.12.0(typescript@6.0.3)
+      stylelint-config-standard:
+        specifier: ^40.0.0
+        version: 40.0.0(stylelint@17.12.0(typescript@6.0.3))
+      typescript:
+        specifier: ~6.0.2
+        version: 6.0.3
+      typescript-eslint:
+        specifier: ^8.59.2
+        version: 8.59.4(eslint@10.4.0)(typescript@6.0.3)
+
+  packages/ds:
     dependencies:
       '@fontsource-variable/inter':
         specifier: ^5.2.8
@@ -66,18 +105,12 @@ importers:
       globals:
         specifier: ^17.6.0
         version: 17.6.0
-      husky:
-        specifier: ^9.1.7
-        version: 9.1.7
       jest-axe:
         specifier: ^10.0.0
         version: 10.0.0
       jsdom:
         specifier: ^29.1.1
         version: 29.1.1
-      lint-staged:
-        specifier: ^17.0.6
-        version: 17.0.6
       playwright:
         specifier: ^1.60.0
         version: 1.60.0

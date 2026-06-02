@@ -12,11 +12,26 @@
 
 /* ── Sizes ── */
 
-.xs { width: 1.5rem; height: 1.5rem; }
-.sm { width: 2rem;   height: 2rem; }
-.md { width: 2.5rem; height: 2.5rem; }
-.lg { width: 3.5rem; height: 3.5rem; }
-.xl { width: 5rem;   height: 5rem; }
+.xs {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.sm {
+  width: 2rem;
+  height: 2rem;
+}
+.md {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.lg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.xl {
+  width: 5rem;
+  height: 5rem;
+}
 
 /* ── Inner elements ── */
 
