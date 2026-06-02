@@ -41,7 +41,9 @@ function applyDateMask(value: string): string {
 function parseDateString(text: string): Date | null {
   if (text.length !== 10) return null
   const [dd, mm, yyyy] = text.split('/')
-  const dv = parseInt(dd, 10), mv = parseInt(mm, 10) - 1, yv = parseInt(yyyy, 10)
+  const dv = parseInt(dd, 10),
+    mv = parseInt(mm, 10) - 1,
+    yv = parseInt(yyyy, 10)
   if (isNaN(dv) || isNaN(mv) || isNaN(yv)) return null
   const date = new Date(yv, mv, dv)
   if (date.getFullYear() !== yv || date.getMonth() !== mv || date.getDate() !== dv) return null
@@ -95,15 +97,18 @@ export default function DatePicker({
   const isControlled = value !== undefined
   const currentValue = isControlled ? value : internalValue
 
+  const [prevControlledValue, setPrevControlledValue] = useState(value)
+  if (isControlled && value !== prevControlledValue) {
+    setPrevControlledValue(value)
+    setInputText(formatDate(value ?? null))
+  }
+
   const isDisabled = disabled || forceState === 'disabled'
   const hasTypedError = inputText.length === 10 && !parseDateString(inputText)
   const hasError = forceState === 'error' || hasTypedError || (!!errorMessage && !forceState)
   const displayError = hasTypedError && !errorMessage ? 'Data inválida' : errorMessage
-  const isActive = forceState === 'active' || forceState === 'focus' || (!forceState && isOpen && !isLeaving)
-
-  useEffect(() => {
-    if (isControlled) setInputText(formatDate(value ?? null))
-  }, [isControlled, value])
+  const isActive =
+    forceState === 'active' || forceState === 'focus' || (!forceState && isOpen && !isLeaving)
 
   useEffect(() => {
     function handleOutsideClick(e: MouseEvent) {
@@ -124,10 +129,13 @@ export default function DatePicker({
   useEffect(() => {
     if (!isOpen || isLeaving) return
     const frame = requestAnimationFrame(() => {
+      const rovingDay = popupRef.current?.querySelector<HTMLButtonElement>(
+        '[data-day][tabindex="0"]'
+      )
       const firstFocusable = popupRef.current?.querySelector<HTMLElement>(
         'button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
       )
-      firstFocusable?.focus()
+      ;(rovingDay ?? firstFocusable)?.focus()
     })
     return () => cancelAnimationFrame(frame)
   }, [isOpen, isLeaving])
@@ -181,7 +189,10 @@ export default function DatePicker({
 
   function handleToggle() {
     if (isDisabled || !!forceState) return
-    if (isLeaving) { setIsLeaving(false); return }
+    if (isLeaving) {
+      setIsLeaving(false)
+      return
+    }
     if (isOpen) {
       setIsLeaving(true)
     } else {
@@ -221,9 +232,11 @@ export default function DatePicker({
           onChange={handleInputChange}
           disabled={isDisabled}
           readOnly={!!forceState}
-          tabIndex={!!forceState ? -1 : undefined}
+          tabIndex={forceState ? -1 : undefined}
           aria-invalid={hasError || undefined}
-          onKeyDown={(e) => { if (e.key === 'Escape') setIsLeaving(true) }}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setIsLeaving(true)
+          }}
         />
 
         {hasError && (
@@ -241,7 +254,7 @@ export default function DatePicker({
           className={styles.calendarBtn}
           onClick={handleToggle}
           disabled={isDisabled || !!forceState}
-          tabIndex={!!forceState ? -1 : undefined}
+          tabIndex={forceState ? -1 : undefined}
           aria-expanded={isOpen && !isLeaving}
           aria-haspopup="dialog"
           aria-controls={popupId}
@@ -263,10 +276,15 @@ export default function DatePicker({
           <div
             id={popupId}
             ref={popupRef}
-            className={[styles.calendarPopup, isLeaving ? styles.calendarPopupLeaving : ''].filter(Boolean).join(' ')}
+            className={[styles.calendarPopup, isLeaving ? styles.calendarPopupLeaving : '']
+              .filter(Boolean)
+              .join(' ')}
             style={{ position: 'fixed', top: popupPos.top, left: popupPos.left }}
             role="dialog"
             aria-modal="false"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') setIsLeaving(true)
+            }}
             onAnimationEnd={() => {
               if (isLeaving) {
                 setIsLeaving(false)

@@ -42,7 +42,9 @@ function applyDateMask(value: string): string {
 function parseDateString(text: string): Date | null {
   if (text.length !== 10) return null
   const [dd, mm, yyyy] = text.split('/')
-  const dv = parseInt(dd, 10), mv = parseInt(mm, 10) - 1, yv = parseInt(yyyy, 10)
+  const dv = parseInt(dd, 10),
+    mv = parseInt(mm, 10) - 1,
+    yv = parseInt(yyyy, 10)
   if (isNaN(dv) || isNaN(mv) || isNaN(yv)) return null
   const date = new Date(yv, mv, dv)
   if (date.getFullYear() !== yv || date.getMonth() !== mv || date.getDate() !== dv) return null
@@ -85,7 +87,9 @@ export default function DateRangePicker({
 
   const [internalStart, setInternalStart] = useState<Date | null>(defaultValue?.start ?? null)
   const [internalEnd, setInternalEnd] = useState<Date | null>(defaultValue?.end ?? null)
-  const [startInputText, setStartInputText] = useState(() => formatDate(defaultValue?.start ?? null))
+  const [startInputText, setStartInputText] = useState(() =>
+    formatDate(defaultValue?.start ?? null)
+  )
   const [endInputText, setEndInputText] = useState(() => formatDate(defaultValue?.end ?? null))
   const [pendingStart, setPendingStart] = useState<Date | null>(null)
   const [pendingEnd, setPendingEnd] = useState<Date | null>(null)
@@ -93,21 +97,29 @@ export default function DateRangePicker({
   const [isOpen, setIsOpen] = useState(false)
   const [isLeaving, setIsLeaving] = useState(false)
   const [selecting, setSelecting] = useState<'start' | 'end'>('start')
-  const [popupPos, setPopupPos] = useState<{ top: number; left: number; minWidth: number } | null>(null)
+  const [popupPos, setPopupPos] = useState<{ top: number; left: number; minWidth: number } | null>(
+    null
+  )
 
   const isControlled = value !== undefined
   const currentStart = isControlled ? (value.start ?? null) : internalStart
   const currentEnd = isControlled ? (value.end ?? null) : internalEnd
   const isDisabled = disabled || forceState === 'disabled'
-  const isActive = forceState === 'active' || forceState === 'focus' || (!forceState && isOpen && !isLeaving)
+  const isActive =
+    forceState === 'active' || forceState === 'focus' || (!forceState && isOpen && !isLeaving)
 
-  // Sync controlled value → input text
-  useEffect(() => {
-    if (isControlled) {
+  const [prevStart, setPrevStart] = useState(value?.start)
+  const [prevEnd, setPrevEnd] = useState(value?.end)
+  if (isControlled) {
+    if (value?.start !== prevStart) {
+      setPrevStart(value?.start)
       setStartInputText(formatDate(value?.start ?? null))
+    }
+    if (value?.end !== prevEnd) {
+      setPrevEnd(value?.end)
       setEndInputText(formatDate(value?.end ?? null))
     }
-  }, [isControlled, value?.start, value?.end])
+  }
 
   // Close on outside click
   useEffect(() => {
@@ -127,10 +139,13 @@ export default function DateRangePicker({
   useEffect(() => {
     if (!isOpen || isLeaving) return
     const frame = requestAnimationFrame(() => {
+      const rovingDay = popupRef.current?.querySelector<HTMLButtonElement>(
+        '[data-day][tabindex="0"]'
+      )
       const firstFocusable = popupRef.current?.querySelector<HTMLElement>(
         'button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
       )
-      firstFocusable?.focus()
+      ;(rovingDay ?? firstFocusable)?.focus()
     })
     return () => cancelAnimationFrame(frame)
   }, [isOpen, isLeaving])
@@ -222,8 +237,13 @@ export default function DateRangePicker({
 
   function handleToggle() {
     if (isDisabled || !!forceState) return
-    if (isLeaving) { setIsLeaving(false); return }
-    if (isOpen) { setIsLeaving(true) } else {
+    if (isLeaving) {
+      setIsLeaving(false)
+      return
+    }
+    if (isOpen) {
+      setIsLeaving(true)
+    } else {
       setPendingStart(parseDateString(startInputText) ?? currentStart)
       setPendingEnd(parseDateString(endInputText) ?? currentEnd)
       setSelecting('start')
@@ -242,7 +262,10 @@ export default function DateRangePicker({
     .join(' ')
 
   const escKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') { setIsLeaving(true); setSelecting('start') }
+    if (e.key === 'Escape') {
+      setIsLeaving(true)
+      setSelecting('start')
+    }
   }
 
   return (
@@ -268,7 +291,7 @@ export default function DateRangePicker({
           onChange={handleStartInputChange}
           disabled={isDisabled}
           readOnly={!!forceState}
-          tabIndex={!!forceState ? -1 : undefined}
+          tabIndex={forceState ? -1 : undefined}
           onKeyDown={escKeyDown}
         />
 
@@ -287,7 +310,7 @@ export default function DateRangePicker({
           onChange={handleEndInputChange}
           disabled={isDisabled}
           readOnly={!!forceState}
-          tabIndex={!!forceState ? -1 : undefined}
+          tabIndex={forceState ? -1 : undefined}
           onKeyDown={escKeyDown}
         />
 
@@ -297,7 +320,7 @@ export default function DateRangePicker({
           className={styles.calendarBtn}
           onClick={handleToggle}
           disabled={isDisabled || !!forceState}
-          tabIndex={!!forceState ? -1 : undefined}
+          tabIndex={forceState ? -1 : undefined}
           aria-expanded={isOpen && !isLeaving}
           aria-haspopup="dialog"
           aria-controls={popupId}
@@ -323,6 +346,12 @@ export default function DateRangePicker({
             style={{ position: 'fixed', top: popupPos.top, left: popupPos.left }}
             role="dialog"
             aria-modal="false"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setIsLeaving(true)
+                setSelecting('start')
+              }
+            }}
             onAnimationEnd={() => {
               if (isLeaving) {
                 setIsLeaving(false)
