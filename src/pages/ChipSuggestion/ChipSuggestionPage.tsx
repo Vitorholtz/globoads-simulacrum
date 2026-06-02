@@ -1,9 +1,9 @@
 import ChipSuggestion from '../../components/ChipSuggestion/ChipSuggestion'
 import { CHIP_BEHAVIORS, CHIP_STATES, CHIP_GUIDELINES } from '../../tokens/chipSuggestion'
 import type { ChipBehavior } from '../../tokens/chipSuggestion'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './ChipSuggestionPage.module.css'
 
 const ALL_BEHAVIORS: ChipBehavior[] = ['unchecked', 'checked']

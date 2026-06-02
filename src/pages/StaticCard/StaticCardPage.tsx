@@ -1,10 +1,10 @@
 import StaticCard from '../../components/StaticCard/StaticCard'
 import { CARD_STYLES, STATIC_CARD_GUIDELINES } from '../../tokens/cards'
 import type { CardStyle } from '../../tokens/cards'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Badge from '../../components/Badge/Badge'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './StaticCardPage.module.css'
 
 const STYLE_PREVIEW_BG: Record<CardStyle, string> = {

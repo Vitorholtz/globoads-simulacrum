@@ -1,4 +1,4 @@
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Combobox from '../../components/Combobox/Combobox'
 import {
   COMBOBOX_SIZES,
@@ -7,11 +7,11 @@ import {
   COMBOBOX_MATRIX_COLS,
 } from '../../tokens/combobox'
 import type { ComboboxSizeDef } from '../../tokens/combobox'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import StateMatrix from '../../components/StateMatrix/StateMatrix'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './ComboboxPage.module.css'
 
 const FILLED_CHIPS = ['Chip 1', 'Chip 2', 'Chip 3']

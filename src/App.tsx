@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Sidebar from './components/Sidebar/Sidebar'
+import Sidebar from './components/docs/Sidebar/Sidebar'
 import { DEFAULT_PATH, PAGES } from './pages/registry'
 import styles from './App.module.css'
 

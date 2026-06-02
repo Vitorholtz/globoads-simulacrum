@@ -1,9 +1,9 @@
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
 import type { BreadcrumbItem } from '../../components/Breadcrumb/Breadcrumb'
 import { BREADCRUMB_DEPTHS, BREADCRUMB_GUIDELINES } from '../../tokens/breadcrumb'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './BreadcrumbPage.module.css'
 
 function depthToItems(labels: string[]): BreadcrumbItem[] {

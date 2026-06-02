@@ -1,9 +1,9 @@
 import Tooltip from '../../components/Tooltip/Tooltip'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import { TOOLTIP_POSITIONS, TOOLTIP_ALIGNMENTS, TOOLTIP_GUIDELINES } from '../../tokens/tooltip'
 import type { TooltipPosition } from '../../tokens/tooltip'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './TooltipPage.module.css'
 
 function TriggerIcon() {

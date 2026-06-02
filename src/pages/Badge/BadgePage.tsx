@@ -1,8 +1,8 @@
 import Badge from '../../components/Badge/Badge'
 import { BADGE_VARIANTS, BADGE_GUIDELINES } from '../../tokens/badge'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './BadgePage.module.css'
 
 const EXAMPLE_LABELS: Record<string, string> = {

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Button from '../../components/Button/Button'
-import DurationCard from '../../components/DurationCard/DurationCard'
-import EasingCard from '../../components/EasingCard/EasingCard'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import Section from '../../components/Section/Section'
+import DurationCard from '../../components/docs/DurationCard/DurationCard'
+import EasingCard from '../../components/docs/EasingCard/EasingCard'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import Section from '../../components/docs/Section/Section'
 import { MOTION_DURATION_TOKENS, MOTION_EASING_TOKENS } from '../../tokens/motion'
 import styles from './TransitionsPage.module.css'
 

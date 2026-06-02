@@ -6,9 +6,9 @@ import {
   INLINE_LOADER_GUIDELINES,
 } from '../../tokens/inlineLoader'
 import type { InlineLoaderType, InlineLoaderSize } from '../../tokens/inlineLoader'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './InlineLoaderPage.module.css'
 
 const ELLIPSIS_LABELS: Record<InlineLoaderType, string> = {

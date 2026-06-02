@@ -9,9 +9,9 @@ import {
   DEMO_BADGE_TABS,
 } from '../../tokens/tabs'
 import type { TabPosition } from '../../tokens/tabs'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './TabsPage.module.css'
 
 function PositionDemo({ position, description }: { position: TabPosition; description: string }) {

@@ -1,5 +1,5 @@
 import Collapse from '../../components/Collapse/Collapse'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import {
   COLLAPSE_SIZES,
   COLLAPSE_STATES,
@@ -8,10 +8,10 @@ import {
   COLLAPSE_DEMO_ITEMS,
   COLLAPSE_PREVIEW_TEXT,
 } from '../../tokens/collapse'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './CollapsePage.module.css'
 
 export default function CollapsePage() {

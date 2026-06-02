@@ -2,7 +2,7 @@ import { useState } from 'react'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import DateRangePicker, { type DateRange } from '../../components/DateRangePicker/DateRangePicker'
 import Calendar from '../../components/Calendar/Calendar'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import {
   DATE_PICKER_SIZES,
   DATE_PICKER_STATES,
@@ -11,11 +11,11 @@ import {
   CALENDAR_SIZES,
   DATE_PICKER_GUIDELINES,
 } from '../../tokens/datePicker'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import StateMatrix from '../../components/StateMatrix/StateMatrix'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './DatePickerPage.module.css'
 
 const EXAMPLE_DATE = new Date(2025, 4, 26)

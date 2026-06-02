@@ -6,12 +6,12 @@ import {
   TEXTAREA_MATRIX_STATES,
   TEXTAREA_MATRIX_COLS,
 } from '../../tokens/textarea'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import StateMatrix from '../../components/StateMatrix/StateMatrix'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './TextareaPage.module.css'
 
 export default function TextareaPage() {

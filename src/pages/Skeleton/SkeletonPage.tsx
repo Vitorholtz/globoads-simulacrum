@@ -11,11 +11,11 @@ import {
   SKELETON_GUIDELINES,
 } from '../../tokens/skeleton'
 import type { SkeletonSize } from '../../tokens/skeleton'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './SkeletonPage.module.css'
 
 export default function SkeletonPage() {

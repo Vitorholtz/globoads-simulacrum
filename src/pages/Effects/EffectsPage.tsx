@@ -1,9 +1,9 @@
-import FocusCard from '../../components/FocusCard/FocusCard'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import ShadowRow from '../../components/ShadowRow/ShadowRow'
+import FocusCard from '../../components/docs/FocusCard/FocusCard'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import ShadowRow from '../../components/docs/ShadowRow/ShadowRow'
 import { FOCUS_TOKENS } from '../../tokens/focus'
 import { SHADOW_TOKENS } from '../../tokens/shadow'
-import Section from '../../components/Section/Section'
+import Section from '../../components/docs/Section/Section'
 import styles from './EffectsPage.module.css'
 
 export default function EffectsPage() {

@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import Section from '../../components/Section/Section'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import Section from '../../components/docs/Section/Section'
 import TextField from '../../components/TextField/TextField'
 import Select from '../../components/Select/Select'
 import Textarea from '../../components/Textarea/Textarea'

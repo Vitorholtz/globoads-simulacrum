@@ -1,11 +1,11 @@
-import BorderRadiusRow from '../../components/BorderRadiusRow/BorderRadiusRow'
-import BorderWidthRow from '../../components/BorderWidthRow/BorderWidthRow'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import SpacingRow from '../../components/SpacingRow/SpacingRow'
+import BorderRadiusRow from '../../components/docs/BorderRadiusRow/BorderRadiusRow'
+import BorderWidthRow from '../../components/docs/BorderWidthRow/BorderWidthRow'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import SpacingRow from '../../components/docs/SpacingRow/SpacingRow'
 import { BORDER_RADIUS_TOKENS } from '../../tokens/borderRadius'
 import { BORDER_WIDTH_TOKENS } from '../../tokens/borderWidth'
 import { SPACING_TOKENS } from '../../tokens/spacing'
-import Section from '../../components/Section/Section'
+import Section from '../../components/docs/Section/Section'
 import styles from './DimensionsEffectsPage.module.css'
 
 export default function DimensionsEffectsPage() {

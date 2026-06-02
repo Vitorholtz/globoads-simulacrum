@@ -14,12 +14,12 @@ import type { ChipInputStyle } from '../../tokens/chipInput'
 
 import { CHIP_ASSIST_GUIDELINES } from '../../tokens/chipAssist'
 
-import PageHeader from '../../components/PageHeader/PageHeader'
-import Section from '../../components/Section/Section'
-import StateMatrix from '../../components/StateMatrix/StateMatrix'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import Section from '../../components/docs/Section/Section'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './ChipsPage.module.css'
 
 const SUGGESTION_BEHAVIORS: ChipBehavior[] = ['unchecked', 'checked']

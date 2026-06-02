@@ -5,12 +5,12 @@ import {
   INTERACTIVE_CARD_GUIDELINES,
 } from '../../tokens/cards'
 import type { CardStyle } from '../../tokens/cards'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import g1Logo from '../../assets/logos/g1.svg'
 import geLogo from '../../assets/logos/ge.svg'
 import gshowLogo from '../../assets/logos/gshow.svg'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
 import styles from './InteractiveCardPage.module.css'
 
 const TALENT_PHOTO = '/campaign-talent.jpg'

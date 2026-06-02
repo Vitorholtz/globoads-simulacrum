@@ -1,14 +1,14 @@
 import InfoPanel from '../../components/InfoPanel/InfoPanel'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import {
   INFO_PANEL_VARIANTS,
   INFO_PANEL_CONTENT_VARIANTS,
   INFO_PANEL_GUIDELINES,
 } from '../../tokens/infoPanel'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './InfoPanelPage.module.css'
 
 export default function InfoPanelPage() {

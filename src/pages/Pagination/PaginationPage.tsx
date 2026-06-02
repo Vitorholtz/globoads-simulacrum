@@ -2,11 +2,11 @@ import { useState } from 'react'
 import Pagination from '../../components/Pagination/Pagination'
 import { PAGINATION_VARIANTS, PAGINATION_GUIDELINES } from '../../tokens/pagination'
 import type { PaginationVariantDef } from '../../tokens/pagination'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 
 function VariantDemo({ def }: { def: PaginationVariantDef }) {
   const [page, setPage] = useState(3)

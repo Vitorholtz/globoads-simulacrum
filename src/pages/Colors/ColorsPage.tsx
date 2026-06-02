@@ -1,6 +1,6 @@
 import { COLOR_GROUPS } from '../../tokens/colors'
-import ColorGroup from '../../components/ColorGroup/ColorGroup'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import ColorGroup from '../../components/docs/ColorGroup/ColorGroup'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 
 const GROUP_ICONS: Record<string, string> = {
   Fill: 'format_color_fill',
@@ -20,11 +20,7 @@ export default function ColorsPage() {
         stats={COLOR_GROUPS.map((g) => ({ value: g.tokens.length, label: g.label }))}
       />
       {COLOR_GROUPS.map((group) => (
-        <ColorGroup
-          key={group.label}
-          group={group}
-          icon={GROUP_ICONS[group.label]}
-        />
+        <ColorGroup key={group.label} group={group} icon={GROUP_ICONS[group.label]} />
       ))}
     </div>
   )

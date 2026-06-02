@@ -1,4 +1,4 @@
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Select from '../../components/Select/Select'
 import {
   SELECT_SIZES,
@@ -9,11 +9,11 @@ import {
   SELECT_DEMO_OPTIONS_LONG,
 } from '../../tokens/select'
 import type { SelectSizeDef } from '../../tokens/select'
-import GuidelinesGrid from '../../components/GuidelinesGrid/GuidelinesGrid'
-import Section from '../../components/Section/Section'
-import StateMatrix from '../../components/StateMatrix/StateMatrix'
-import DemoCard from '../../components/DemoCard/DemoCard'
-import CardGrid from '../../components/CardGrid/CardGrid'
+import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import Section from '../../components/docs/Section/Section'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './SelectPage.module.css'
 
 function sizeSpecs(size: SelectSizeDef) {

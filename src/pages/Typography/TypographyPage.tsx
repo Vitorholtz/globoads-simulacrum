@@ -1,8 +1,8 @@
 import { FONT_FAMILIES, TYPOGRAPHY_GROUPS } from '../../tokens/typography'
-import FontFamilyCard from '../../components/FontFamilyCard/FontFamilyCard'
-import TypeSpecimen from '../../components/TypeSpecimen/TypeSpecimen'
-import PageHeader from '../../components/PageHeader/PageHeader'
-import Section from '../../components/Section/Section'
+import FontFamilyCard from '../../components/docs/FontFamilyCard/FontFamilyCard'
+import TypeSpecimen from '../../components/docs/TypeSpecimen/TypeSpecimen'
+import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import Section from '../../components/docs/Section/Section'
 import styles from './TypographyPage.module.css'
 
 const totalStyles = TYPOGRAPHY_GROUPS.reduce((acc, g) => acc + g.tokens.length, 0)
