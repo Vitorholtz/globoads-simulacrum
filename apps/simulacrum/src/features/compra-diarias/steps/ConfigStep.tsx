@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button, StaticCard, Badge, Accordion } from '@globo-ads/ds'
+import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import {
   getPortal,
   formatCurrency,
@@ -81,8 +82,15 @@ export default function ConfigStep() {
     initialDatesPerCoverage ?? {}
   )
   const [openCalendarCode, setOpenCalendarCode] = useState<string | null>(null)
+  const [showBackConfirm, setShowBackConfirm] = useState(false)
 
   const shouldGroup = produto.coverages.length > 8
+
+  const hasSelections = produto.isRegional
+    ? Object.values(datesPerCoverage).some((d) => d.length > 0)
+    : dates.length > 0
+
+  const canAdvance = hasSelections
 
   function toggleCalendar(code: string) {
     setOpenCalendarCode((prev) => (prev === code ? null : code))
@@ -92,9 +100,14 @@ export default function ConfigStep() {
     setDatesPerCoverage((prev) => ({ ...prev, [code]: newDates }))
   }
 
-  const canAdvance = produto.isRegional
-    ? Object.values(datesPerCoverage).some((d) => d.length > 0)
-    : dates.length > 0
+  function clearSelections() {
+    if (produto.isRegional) {
+      setDatesPerCoverage({})
+      setOpenCalendarCode(null)
+    } else {
+      setDates([])
+    }
+  }
 
   function handleNext() {
     if (!canAdvance) return
@@ -136,6 +149,18 @@ export default function ConfigStep() {
           {/* ── Regional flow ── */}
           {produto.isRegional && (
             <fieldset className={styles.fieldset}>
+              {hasSelections && (
+                <div className={styles.fieldsetActions}>
+                  <Button
+                    variant="tertiary"
+                    size="sm"
+                    iconLeft="clear_all"
+                    onClick={clearSelections}
+                  >
+                    Limpar seleção
+                  </Button>
+                </div>
+              )}
               {shouldGroup ? (
                 <div className={styles.regionGroups}>
                   {MACROREGIONS.map(({ label, codes }) => {
@@ -183,12 +208,24 @@ export default function ConfigStep() {
               <div className={styles.calendarCardHeader}>
                 <div className={styles.calendarTitleRow}>
                   <p className={`type-title-sm ${styles.calendarTitle}`}>Dias de veiculação</p>
-                  {dates.length > 0 && (
-                    <Badge
-                      variant="accent"
-                      label={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`}
-                    />
-                  )}
+                  <div className={styles.calendarTitleActions}>
+                    {dates.length > 0 && (
+                      <Badge
+                        variant="accent"
+                        label={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`}
+                      />
+                    )}
+                    {dates.length > 0 && (
+                      <Button
+                        variant="tertiary"
+                        size="sm"
+                        iconLeft="clear_all"
+                        onClick={clearSelections}
+                      >
+                        Limpar
+                      </Button>
+                    )}
+                  </div>
                 </div>
                 {dates.length > 0 && (
                   <span className={`type-body-xs ${styles.calendarDates}`}>
@@ -355,7 +392,11 @@ export default function ConfigStep() {
           />
 
           <div className={styles.actions}>
-            <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(2)}>
+            <Button
+              variant="secondary"
+              iconLeft="arrow_back"
+              onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
+            >
               Voltar
             </Button>
             <Button
@@ -369,6 +410,18 @@ export default function ConfigStep() {
           </div>
         </aside>
       </div>
+
+      <ConfirmDialog
+        isOpen={showBackConfirm}
+        title="Descartar seleção?"
+        description="Você tem dias selecionados. Ao voltar, eles serão descartados e você precisará refazê-los."
+        confirmLabel="Descartar e voltar"
+        onConfirm={() => {
+          setShowBackConfirm(false)
+          setStep(2)
+        }}
+        onCancel={() => setShowBackConfirm(false)}
+      />
     </section>
   )
 }

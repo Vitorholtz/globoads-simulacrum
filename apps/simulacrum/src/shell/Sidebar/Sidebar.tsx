@@ -100,7 +100,15 @@ function NavItemContent({ item, isActive }: { item: NavItem; isActive?: boolean 
   )
 }
 
-function SortableNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
+function NavItemRow({
+  item,
+  onNavigate,
+  draggable = false,
+}: {
+  item: NavItem
+  onNavigate: () => void
+  draggable?: boolean
+}) {
   const {
     attributes,
     listeners,
@@ -109,17 +117,39 @@ function SortableNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () =
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: item.path })
+  } = useSortable({ id: item.path, disabled: !draggable })
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+  const linkContent = item.external ? (
+    <a
+      href={item.path}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.item}
+      onClick={onNavigate}
+    >
+      <NavItemContent item={item} />
+    </a>
+  ) : (
+    <NavLink
+      to={item.path}
+      end={item.path === '/'}
+      className={({ isActive }) =>
+        [styles.item, isActive ? styles.active : ''].filter(Boolean).join(' ')
+      }
+      onClick={onNavigate}
+    >
+      {({ isActive }) => <NavItemContent item={item} isActive={isActive} />}
+    </NavLink>
+  )
+
+  if (!draggable) {
+    return <li>{linkContent}</li>
   }
 
   return (
     <li
       ref={setNodeRef}
-      style={style}
+      style={{ transform: CSS.Transform.toString(transform), transition }}
       className={[styles.sortableItem, isDragging ? styles.dragging : ''].filter(Boolean).join(' ')}
     >
       <button
@@ -134,57 +164,7 @@ function SortableNavItem({ item, onNavigate }: { item: NavItem; onNavigate: () =
           drag_indicator
         </span>
       </button>
-
-      {item.external ? (
-        <a
-          href={item.path}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.item}
-          onClick={onNavigate}
-        >
-          <NavItemContent item={item} />
-        </a>
-      ) : (
-        <NavLink
-          to={item.path}
-          end={item.path === '/'}
-          className={({ isActive }) =>
-            [styles.item, isActive ? styles.active : ''].filter(Boolean).join(' ')
-          }
-          onClick={onNavigate}
-        >
-          {({ isActive }) => <NavItemContent item={item} isActive={isActive} />}
-        </NavLink>
-      )}
-    </li>
-  )
-}
-
-function StaticItem({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
-  return (
-    <li>
-      {item.external ? (
-        <a
-          href={item.path}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.item}
-          onClick={onNavigate}
-        >
-          <NavItemContent item={item} />
-        </a>
-      ) : (
-        <NavLink
-          to={item.path}
-          className={({ isActive }) =>
-            [styles.item, isActive ? styles.active : ''].filter(Boolean).join(' ')
-          }
-          onClick={onNavigate}
-        >
-          {({ isActive }) => <NavItemContent item={item} isActive={isActive} />}
-        </NavLink>
-      )}
+      {linkContent}
     </li>
   )
 }
@@ -289,7 +269,7 @@ export default function Sidebar({ onMouseEnter, onMouseLeave, onNavigate }: Side
               >
                 <ul className={styles.list}>
                   {section.items.map((item) => (
-                    <SortableNavItem key={item.path} item={item} onNavigate={onNavigate} />
+                    <NavItemRow key={item.path} item={item} onNavigate={onNavigate} draggable />
                   ))}
                 </ul>
               </SortableContext>
@@ -311,7 +291,7 @@ export default function Sidebar({ onMouseEnter, onMouseLeave, onNavigate }: Side
       <div className={styles.footer}>
         <ul className={styles.list}>
           {NAV_FOOTER.map((item) => (
-            <StaticItem key={item.path} item={item} onNavigate={onNavigate} />
+            <NavItemRow key={item.path} item={item} onNavigate={onNavigate} />
           ))}
         </ul>
         <div className={styles.footerText}>

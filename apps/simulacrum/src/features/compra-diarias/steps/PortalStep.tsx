@@ -1,4 +1,4 @@
-import { Badge, InteractiveCard } from '@globo-ads/ds'
+import { Badge, InteractiveCard, Tooltip } from '@globo-ads/ds'
 import {
   PORTALS,
   PORTAL_DISPLAY_NAMES,
@@ -55,9 +55,14 @@ export default function PortalStep() {
               </div>
 
               <div className={styles.cardFooter}>
-                <span className={`type-caption-md ${styles.maxImpressions}`}>
-                  Até {formatImpressions(stats.maxImpressions)} impressões/dia
-                </span>
+                <Tooltip
+                  text="Estimativa de alcance diário para o produto com maior cobertura neste portal"
+                  position="bottom"
+                >
+                  <span className={`type-caption-md ${styles.maxImpressions}`}>
+                    Até {formatImpressions(stats.maxImpressions)} impressões/dia
+                  </span>
+                </Tooltip>
               </div>
             </InteractiveCard>
           )

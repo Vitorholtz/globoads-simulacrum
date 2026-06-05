@@ -81,6 +81,11 @@
   margin-bottom: var(--spacing-150);
 }
 
+.fieldsetActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .fieldsetDesc {
   color: var(--color-fill-secondary);
   margin-top: calc(-1 * var(--spacing-100));
@@ -109,6 +114,13 @@
 }
 
 .calendarTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-100);
+}
+
+.calendarTitleActions {
   display: flex;
   align-items: center;
   gap: var(--spacing-100);

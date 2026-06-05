@@ -42,3 +42,25 @@
 .cardDesc {
   color: var(--color-fill-secondary);
 }
+
+/* ── Em breve ── */
+
+.cardComingSoon {
+  opacity: 0.6;
+}
+
+.cardComingSoonHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--spacing-050);
+}
+
+.cardIconMuted {
+  color: var(--color-fill-tertiary);
+}
+
+.cardTitleMuted {
+  color: var(--color-fill-secondary);
+}
