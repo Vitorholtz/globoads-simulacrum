@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import type { MouseEventHandler } from 'react'
 import {
@@ -23,6 +23,46 @@ import { Button, Hyperlink } from '@globo-ads/ds'
 import { NAV_SECTIONS, NAV_FOOTER } from '../routes'
 import type { NavItem, NavSection } from '../routes'
 import styles from './Sidebar.module.css'
+
+const SIDEBAR_ORDER_KEY = 'sidebar_order'
+
+type SectionOrder = Record<string, string[]>
+
+function readSavedOrder(): SectionOrder | null {
+  try {
+    const raw = localStorage.getItem(SIDEBAR_ORDER_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    if (typeof parsed !== 'object' || parsed === null) return null
+    return parsed as SectionOrder
+  } catch {
+    return null
+  }
+}
+
+function applyOrder(sections: NavSection[], savedOrder: SectionOrder): NavSection[] {
+  return sections.map((section) => {
+    const paths = savedOrder[section.title]
+    if (!Array.isArray(paths)) return section
+    const itemMap = new Map(section.items.map((i) => [i.path, i]))
+    const reordered = paths.flatMap((p) => (itemMap.get(p) ? [itemMap.get(p)!] : []))
+    const seen = new Set(paths)
+    const unseen = section.items.filter((i) => !seen.has(i.path))
+    return { ...section, items: [...reordered, ...unseen] }
+  })
+}
+
+function saveOrder(sections: NavSection[]) {
+  try {
+    const order: SectionOrder = {}
+    for (const s of sections) {
+      order[s.title] = s.items.map((i) => i.path)
+    }
+    localStorage.setItem(SIDEBAR_ORDER_KEY, JSON.stringify(order))
+  } catch {
+    // localStorage indisponível
+  }
+}
 
 function findSection(sections: NavSection[], id: string) {
   return sections.find((s) => s.items.some((i) => i.path === id)) ?? null
@@ -156,8 +196,15 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ onMouseEnter, onMouseLeave, onNavigate }: SidebarProps) {
-  const [sections, setSections] = useState<NavSection[]>(NAV_SECTIONS)
+  const [sections, setSections] = useState<NavSection[]>(() => {
+    const saved = readSavedOrder()
+    return saved ? applyOrder(NAV_SECTIONS, saved) : NAV_SECTIONS
+  })
   const [activeId, setActiveId] = useState<string | null>(null)
+
+  useEffect(() => {
+    saveOrder(sections)
+  }, [sections])
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }))
 

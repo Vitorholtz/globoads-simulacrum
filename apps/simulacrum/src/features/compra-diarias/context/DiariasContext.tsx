@@ -18,6 +18,20 @@ const EMPTY_SELECTION: DiariasSelection = {
 }
 
 const SESSION_KEY = 'diarias_wizard'
+const VALID_STEPS = new Set<number>([1, 2, 3, 4])
+
+function parseDate(d: unknown): Date | null {
+  if (typeof d !== 'string') return null
+  const date = new Date(d)
+  return isNaN(date.getTime()) ? null : date
+}
+
+function parseDates(arr: unknown[]): Date[] {
+  return arr.flatMap((d) => {
+    const date = parseDate(d)
+    return date ? [date] : []
+  })
+}
 
 function readSession(): {
   step: Step
@@ -28,15 +42,17 @@ function readSession(): {
     const raw = sessionStorage.getItem(SESSION_KEY)
     if (!raw) return null
     const parsed = JSON.parse(raw)
+    const step = Number(parsed.step)
+    if (!VALID_STEPS.has(step)) return null
     return {
-      step: parsed.step as Step,
+      step: step as Step,
       selection: {
         ...parsed.selection,
-        dates: (parsed.selection.dates ?? []).map((d: string) => new Date(d)),
+        dates: parseDates(parsed.selection.dates ?? []),
         regionalSelections: (parsed.selection.regionalSelections ?? []).map(
-          (r: { coverage: string; dates: string[] }) => ({
+          (r: { coverage: string; dates: unknown[] }) => ({
             ...r,
-            dates: r.dates.map((d) => new Date(d)),
+            dates: parseDates(r.dates ?? []),
           })
         ),
       },
@@ -44,14 +60,14 @@ function readSession(): {
         (p: {
           portal: PortalId
           produto: DiariaProduto
-          dates: string[]
-          regionalSelections: { coverage: string; dates: string[] }[]
+          dates: unknown[]
+          regionalSelections: { coverage: string; dates: unknown[] }[]
         }) => ({
           ...p,
-          dates: (p.dates ?? []).map((d) => new Date(d)),
+          dates: parseDates(p.dates ?? []),
           regionalSelections: (p.regionalSelections ?? []).map((r) => ({
             ...r,
-            dates: r.dates.map((d) => new Date(d)),
+            dates: parseDates(r.dates ?? []),
           })),
         })
       ),
