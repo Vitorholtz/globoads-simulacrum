@@ -2,12 +2,8 @@ import { Button, Badge, InfoPanel } from '@globo-ads/ds'
 import { getPortal, PORTAL_DISPLAY_NAMES, formatCurrency } from '../../../data/diarias'
 import type { ConfirmedSelection } from '../../../data/diarias'
 import { computeTotal } from '../../../data/rules/diarias'
+import { useDiarias } from '../context/DiariasContext'
 import styles from './RecibosStep.module.css'
-
-interface RecibosStepProps {
-  purchases: ConfirmedSelection[]
-  onReset: () => void
-}
 
 function summarize(p: ConfirmedSelection): string {
   if (p.produto.isRegional) {
@@ -61,7 +57,8 @@ function ReceiptCard({ purchase }: { purchase: ConfirmedSelection }) {
   )
 }
 
-export default function RecibosStep({ purchases, onReset }: RecibosStepProps) {
+export default function RecibosStep() {
+  const { purchases, handleReset: onReset } = useDiarias()
   const totalValue = purchases.reduce((sum, p) => sum + computeTotal(p), 0)
   const n = purchases.length
 

@@ -15,6 +15,7 @@ import {
   getPrimaryDimension,
   computeTotal,
 } from '../../../data/rules/diarias'
+import { useDiarias } from '../context/DiariasContext'
 import styles from './ResumoStep.module.css'
 
 function formatDate(date: Date): string {
@@ -317,27 +318,18 @@ function ExpandablePurchaseCard({
   )
 }
 
-interface ResumoStepProps {
-  selection: ConfirmedSelection
-  purchases: ConfirmedSelection[]
-  onBack: () => void
-  onAddToCart: (confirmed: ConfirmedSelection) => void
-  onFinalize: (confirmed: ConfirmedSelection) => void
-  onEditPurchase: (purchase: ConfirmedSelection, index: number) => void
-  onDeletePurchase: (index: number) => void
-  onDeleteCurrentPurchase: () => void
-}
-
-export default function ResumoStep({
-  selection,
-  purchases,
-  onBack,
-  onAddToCart,
-  onFinalize,
-  onEditPurchase,
-  onDeletePurchase,
-  onDeleteCurrentPurchase,
-}: ResumoStepProps) {
+export default function ResumoStep() {
+  const {
+    selection: rawSelection,
+    purchases,
+    setStep,
+    handleAddToCart: onAddToCart,
+    handleFinalize: onFinalize,
+    handleEditPurchase: onEditPurchase,
+    handleDeletePurchase: onDeletePurchase,
+    handleDeleteCurrentPurchase: onDeleteCurrentPurchase,
+  } = useDiarias()
+  const selection = rawSelection as ConfirmedSelection
   // -1 = compra atual; >= 0 = índice em purchases
   const [pendingDeleteIndex, setPendingDeleteIndex] = useState<number | null>(null)
   const pendingCount = purchases.length
@@ -360,7 +352,7 @@ export default function ResumoStep({
         <ExpandablePurchaseCard
           selection={selection}
           defaultOpen
-          onEdit={onBack}
+          onEdit={() => setStep(3)}
           onDelete={() => setPendingDeleteIndex(-1)}
         />
         {purchases.map((p, i) => (
@@ -382,7 +374,7 @@ export default function ResumoStep({
       )}
 
       <div className={styles.actions}>
-        <Button variant="tertiary" iconLeft="arrow_back" onClick={onBack}>
+        <Button variant="tertiary" iconLeft="arrow_back" onClick={() => setStep(3)}>
           Voltar
         </Button>
         <div className={styles.actionsRight}>

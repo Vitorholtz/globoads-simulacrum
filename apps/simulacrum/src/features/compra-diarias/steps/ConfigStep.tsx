@@ -14,19 +14,9 @@ import {
   getPrimaryDimension,
   formatDateShort,
 } from '../../../data/rules/diarias'
+import { useDiarias } from '../context/DiariasContext'
 import MultiDateCalendar from '../../../components/MultiDateCalendar/MultiDateCalendar'
 import styles from './ConfigStep.module.css'
-
-interface ConfigStepProps {
-  produto: DiariaProduto
-  initialDates?: Date[]
-  initialDatesPerCoverage?: Record<string, Date[]>
-  onNext: (
-    regionalSelections: import('../../../data/diarias').RegionalSelection[],
-    dates: Date[]
-  ) => void
-  onBack: () => void
-}
 
 interface CoverageRowProps {
   cov: CoverageInfo
@@ -76,13 +66,14 @@ function CoverageRow({ cov, produto, dates, isOpen, onToggle, onDatesChange }: C
   )
 }
 
-export default function ConfigStep({
-  produto,
-  initialDates,
-  initialDatesPerCoverage,
-  onNext,
-  onBack,
-}: ConfigStepProps) {
+export default function ConfigStep() {
+  const { selection, handleConfigNext: onNext, setStep } = useDiarias()
+  const produto = selection.produto!
+  const initialDates = selection.dates
+  const initialDatesPerCoverage = Object.fromEntries(
+    selection.regionalSelections.map((r) => [r.coverage, r.dates])
+  )
+
   const portal = getPortal(produto.portalId)
 
   const [dates, setDates] = useState<Date[]>(initialDates ?? [])
@@ -364,7 +355,7 @@ export default function ConfigStep({
           />
 
           <div className={styles.actions}>
-            <Button variant="secondary" iconLeft="arrow_back" onClick={onBack}>
+            <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(2)}>
               Voltar
             </Button>
             <Button

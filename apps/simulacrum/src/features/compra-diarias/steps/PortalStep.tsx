@@ -5,14 +5,11 @@ import {
   getPortalStats,
   formatImpressions,
 } from '../../../data/diarias'
-import type { PortalId } from '../../../data/diarias'
+import { useDiarias } from '../context/DiariasContext'
 import styles from './PortalStep.module.css'
 
-interface PortalStepProps {
-  onSelect: (portalId: PortalId) => void
-}
-
-export default function PortalStep({ onSelect }: PortalStepProps) {
+export default function PortalStep() {
+  const { handlePortalSelect: onSelect } = useDiarias()
   return (
     <section className={styles.section}>
       <header className={styles.header}>

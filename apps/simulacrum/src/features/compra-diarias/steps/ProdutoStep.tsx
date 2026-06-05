@@ -7,14 +7,9 @@ import {
   getPriceForCoverage,
 } from '../../../data/diarias'
 import { getAdFormat, getPrimaryDimension } from '../../../data/rules/diarias'
-import type { DiariaProduto, PortalId } from '../../../data/diarias'
+import type { DiariaProduto } from '../../../data/diarias'
+import { useDiarias } from '../context/DiariasContext'
 import styles from './ProdutoStep.module.css'
-
-interface ProdutoStepProps {
-  portalId: PortalId
-  onSelect: (produto: DiariaProduto) => void
-  onBack: () => void
-}
 
 function CardMetrics({ produto }: { produto: DiariaProduto }) {
   if (produto.isRegional) {
@@ -47,7 +42,9 @@ function CardMetrics({ produto }: { produto: DiariaProduto }) {
   )
 }
 
-export default function ProdutoStep({ portalId, onSelect, onBack }: ProdutoStepProps) {
+export default function ProdutoStep() {
+  const { selection, handleProdutoSelect: onSelect, setStep } = useDiarias()
+  const portalId = selection.portal!
   const portal = getPortal(portalId)
   const produtos = getProductsByPortal(portalId)
 
@@ -136,7 +133,7 @@ export default function ProdutoStep({ portalId, onSelect, onBack }: ProdutoStepP
       </div>
 
       <div className={styles.actions}>
-        <Button variant="secondary" iconLeft="arrow_back" onClick={onBack}>
+        <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(1)}>
           Voltar
         </Button>
       </div>
