@@ -2,32 +2,95 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
-  padding: 0 var(--spacing-400);
+  height: 72px;
   background: var(--color-surface-primary);
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  flex-shrink: 0;
 }
 
-.brand {
+/* ── Left ── */
+
+.left {
   display: flex;
   align-items: center;
-  gap: var(--spacing-100);
-  text-decoration: none;
-  color: var(--color-fill-primary);
+  gap: var(--spacing-300);
+  height: 100%;
+  padding: var(--spacing-200) var(--spacing-300) var(--spacing-200) var(--spacing-200);
+}
+
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
 }
 
 .logo {
-  height: 28px;
+  height: 24px;
   width: auto;
   display: block;
 }
 
-.product {
-  color: var(--color-fill-secondary);
+.subheader {
+  color: var(--color-fill-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Shared divider ── */
+
+.divider {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: var(--color-border-tertiary);
+  flex-shrink: 0;
+}
+
+/* ── Right ── */
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-300);
+  height: 100%;
+  padding: var(--spacing-150) var(--spacing-300);
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--spacing-100);
+  gap: var(--spacing-050);
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 767px) {
+  .header {
+    height: 60px;
+  }
+
+  .left {
+    padding: 0 var(--spacing-150);
+    gap: var(--spacing-150);
+  }
+
+  .logoGroup {
+    gap: var(--spacing-100);
+  }
+
+  .right {
+    padding: 0 var(--spacing-150);
+    gap: var(--spacing-150);
+  }
+
+  .hideMobile {
+    display: none;
+  }
+}
+
+/* Botões de ação e menu usam ícone sólido — "Nova campanha" mantém o gradiente */
+.logoGroup,
+.actions {
+  --color-fill-accent-gradient: var(--color-fill-primary);
 }

@@ -1,0 +1,151 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.pageSubtitle {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Step Indicator ── */
+
+.stepIndicator {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-150);
+  width: 40px;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.stepDotContainer {
+  position: relative;
+  display: inline-flex;
+}
+
+.stepBadge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  pointer-events: none;
+}
+
+.stepItemClickable {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.stepItemClickable:hover .stepDot {
+  box-shadow:
+    0 0 0 3px var(--color-surface-primary),
+    0 0 0 5px var(--color-fill-accent);
+}
+
+.stepItemClickable:focus-visible .stepDot {
+  outline: var(--border-width-md) solid var(--color-fill-accent);
+  outline-offset: 3px;
+}
+
+.stepDot {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  background: var(--color-surface-primary);
+  color: var(--color-fill-tertiary);
+  transition:
+    background var(--motion-duration-base),
+    border-color var(--motion-duration-base),
+    color var(--motion-duration-base),
+    box-shadow var(--motion-duration-base);
+}
+
+.stepDot.active {
+  background: var(--color-fill-accent);
+  border-color: var(--color-fill-accent);
+  color: var(--color-surface-primary);
+  box-shadow:
+    0 0 0 3px var(--color-surface-primary),
+    0 0 0 5px var(--color-fill-accent);
+}
+
+.stepDot.done {
+  background: var(--color-fill-accent);
+  border-color: var(--color-fill-accent);
+  color: var(--color-surface-primary);
+}
+
+/* linha posicionada no eixo vertical dos dots (margin-top = metade do dot) */
+.stepLine {
+  flex: 1;
+  height: var(--border-width-md);
+  align-self: flex-start;
+  margin-top: 20px;
+  background: var(--color-border-tertiary);
+  transition: background var(--motion-duration-slow);
+}
+
+.stepLine.lineDone {
+  background: var(--color-fill-accent);
+}
+
+.stepLabel {
+  color: var(--color-fill-tertiary);
+  white-space: nowrap;
+  text-align: center;
+  width: max-content;
+}
+
+.stepLabel.active {
+  color: var(--color-fill-primary);
+}
+
+.stepLabel.done {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Step content entrance ── */
+
+@keyframes stepEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stepContent {
+  animation: stepEnter var(--motion-duration-slow) var(--motion-easing-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepContent {
+    animation: none;
+  }
+}

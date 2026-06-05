@@ -1,0 +1,417 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.subtitle {
+  color: var(--color-fill-secondary);
+}
+
+.portalContext {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-100) var(--spacing-150);
+  margin-top: var(--spacing-200);
+}
+
+.portalContextLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+.portalLogo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface-primary);
+}
+
+.portalLabel {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Body grid ── */
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--spacing-400);
+  align-items: flex-start;
+}
+
+@media (max-width: 767px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+/* ── Fieldset base ── */
+
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.fieldsetLegend {
+  color: var(--color-fill-primary);
+  padding: 0;
+  margin-bottom: var(--spacing-150);
+}
+
+.fieldsetDesc {
+  color: var(--color-fill-secondary);
+  margin-top: calc(-1 * var(--spacing-100));
+}
+
+.fieldsetDivider {
+  height: 1px;
+  background: var(--color-border-tertiary);
+  margin: var(--spacing-050) 0;
+}
+
+/* ── Calendar card (national flow) ── */
+
+.calendarCard {
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.calendarCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  padding: var(--spacing-200);
+}
+
+.calendarTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+.calendarTitle {
+  color: var(--color-fill-primary);
+}
+
+.calendarDates {
+  color: var(--color-fill-secondary);
+}
+
+.calendarCardDivider {
+  height: 1px;
+  background: var(--color-border-tertiary);
+}
+
+.calendarCardBody {
+  padding: var(--spacing-200);
+  display: flex;
+  justify-content: center;
+  background: var(--color-surface-secondary);
+}
+
+/* ── Region option container (coverage list) ── */
+
+.regionGroups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.regionOptionGroup {
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.regionOptionContainer {
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.regionSectionLabel {
+  padding: var(--spacing-100) var(--spacing-150);
+  background: var(--color-surface-secondary);
+  color: var(--color-fill-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+/* ── Inline calendar (regional flow, below selected row) ── */
+
+.inlineCalendarWrapper {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-200);
+  background: var(--color-surface-secondary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.inlineCalendarWrapper:last-child {
+  border-bottom: none;
+}
+
+/* ── Coverage option row ── */
+
+.coverageRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-150);
+  padding: var(--spacing-150) var(--spacing-150);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  transition: background 0.1s;
+  cursor: pointer;
+}
+
+.coverageRow:last-child {
+  border-bottom: none;
+}
+
+.coverageRow:hover {
+  background: var(--color-surface-secondary);
+}
+
+.coverageRowInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  flex: 1;
+  min-width: 0;
+}
+
+.coverageRowNameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+.coverageRowName {
+  color: var(--color-fill-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.coverageRowDates {
+  color: var(--color-fill-secondary);
+}
+
+.coverageRowMeta {
+  color: var(--color-fill-tertiary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.coverageRowPrice {
+  color: var(--color-fill-accent);
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* ── Summary aside ── */
+
+.summaryColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  position: sticky;
+  top: calc(72px + var(--spacing-300));
+  align-self: flex-start;
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.summaryTitle {
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-100);
+}
+
+.accordionContent {
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-250);
+}
+
+.formatList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formatItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+}
+
+.formatThumb {
+  width: 56px;
+  height: auto;
+  display: block;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
+.formatIcon {
+  color: var(--color-fill-tertiary);
+  flex-shrink: 0;
+}
+
+.formatInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  min-width: 0;
+}
+
+.formatHeadline {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-050);
+  flex-wrap: wrap;
+}
+
+.formatName {
+  color: var(--color-fill-primary);
+}
+
+.formatSpecs {
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+}
+
+.formatPositions {
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Pricing card ── */
+
+.pricingCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  padding: var(--spacing-250);
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.priceLabel {
+  color: var(--color-fill-secondary);
+}
+
+.priceValue {
+  color: var(--color-fill-primary);
+  text-align: right;
+}
+
+.priceHint {
+  color: var(--color-fill-tertiary);
+}
+
+.priceRegionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-200);
+  padding: var(--spacing-100) 0;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+.priceRegionRowPending {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-200);
+  padding: var(--spacing-100) 0;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-sm);
+  opacity: 0.6;
+}
+
+.priceRegionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.priceRegionLabel {
+  color: var(--color-fill-secondary);
+}
+
+.priceRegionImp {
+  color: var(--color-fill-tertiary);
+}
+
+.priceDayCount {
+  color: var(--color-fill-tertiary);
+}
+
+.priceDivider {
+  height: 1px;
+  background: var(--color-border-tertiary);
+}
+
+.priceSubtotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.priceSubtotalLabel {
+  color: var(--color-fill-secondary);
+}
+
+.priceSubtotalValue {
+  color: var(--color-fill-accent);
+}
+
+/* ── Actions ── */
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-150);
+}

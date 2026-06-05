@@ -1,0 +1,63 @@
+.dialog {
+  border: none;
+  border-radius: var(--border-radius-lg);
+  padding: 0;
+  max-width: 440px;
+  width: 90%;
+  margin: auto;
+  background: var(--color-surface-primary);
+  box-shadow: var(--shadows-high);
+  animation: dialogEnter var(--motion-duration-slow) var(--motion-easing-out) both;
+}
+
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  animation: backdropEnter var(--motion-duration-slow) var(--motion-easing-out) both;
+}
+
+@keyframes dialogEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes backdropEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+  padding: var(--spacing-250);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--color-fill-primary);
+}
+
+.description {
+  color: var(--color-fill-primary);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-150);
+}

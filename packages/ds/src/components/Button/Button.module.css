@@ -121,7 +121,11 @@
   background: var(--color-action-grad-fill-active);
 }
 
-.primary:hover:not(:disabled):not([data-state='disabled'])::before,
+@media (hover: hover) {
+  .primary:hover:not(:disabled):not([data-state='disabled'])::before {
+    opacity: 1;
+  }
+}
 .primary[data-state='hover']::before {
   opacity: 1;
 }
@@ -149,7 +153,11 @@
   border-color: var(--color-border-primary);
 }
 
-.secondary:hover:not(:disabled):not([data-state='disabled']),
+@media (hover: hover) {
+  .secondary:hover:not(:disabled):not([data-state='disabled']) {
+    background: var(--color-action-solid-ghost-hover);
+  }
+}
 .secondary[data-state='hover'] {
   background: var(--color-action-solid-ghost-hover);
 }
@@ -170,7 +178,11 @@
   border: none;
 }
 
-.tertiary:hover:not(:disabled):not([data-state='disabled']),
+@media (hover: hover) {
+  .tertiary:hover:not(:disabled):not([data-state='disabled']) {
+    background: var(--color-action-solid-ghost-hover);
+  }
+}
 .tertiary[data-state='hover'] {
   background: var(--color-action-solid-ghost-hover);
 }
@@ -222,7 +234,11 @@
   display: none;
 }
 
-.danger.primary:hover:not(:disabled):not([data-state='disabled']),
+@media (hover: hover) {
+  .danger.primary:hover:not(:disabled):not([data-state='disabled']) {
+    background: var(--color-action-critical-fill-hover);
+  }
+}
 .danger.primary[data-state='hover'] {
   background: var(--color-action-critical-fill-hover);
 }
@@ -234,7 +250,11 @@
 
 /* ── Danger Secondary: borda neutra (igual ao Secondary padrão), texto vermelho ── */
 
-.danger.secondary:hover:not(:disabled):not([data-state='disabled']),
+@media (hover: hover) {
+  .danger.secondary:hover:not(:disabled):not([data-state='disabled']) {
+    background: var(--color-action-critical-ghost-hover);
+  }
+}
 .danger.secondary[data-state='hover'] {
   background: var(--color-action-critical-ghost-hover);
 }
@@ -246,7 +266,11 @@
 
 /* ── Danger Tertiary: ghost, texto vermelho ── */
 
-.danger.tertiary:hover:not(:disabled):not([data-state='disabled']),
+@media (hover: hover) {
+  .danger.tertiary:hover:not(:disabled):not([data-state='disabled']) {
+    background: var(--color-action-critical-ghost-hover);
+  }
+}
 .danger.tertiary[data-state='hover'] {
   background: var(--color-action-critical-ghost-hover);
 }

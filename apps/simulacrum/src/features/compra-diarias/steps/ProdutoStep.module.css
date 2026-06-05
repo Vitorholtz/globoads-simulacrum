@@ -1,0 +1,172 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.portalContext {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-100) var(--spacing-150);
+  margin-top: var(--spacing-200);
+}
+
+.portalContextLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+}
+
+.portalLogo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface-primary);
+}
+
+.productCount {
+  color: var(--color-fill-tertiary);
+}
+
+.portalLabel {
+  color: var(--color-fill-secondary);
+}
+
+.subtitle {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Grid ── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-200);
+}
+
+/* ── Card ── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  padding: var(--spacing-250);
+  text-align: left;
+  align-items: flex-start;
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-150);
+  width: 100%;
+}
+
+.cardTitle {
+  color: var(--color-fill-primary);
+  flex: 1;
+}
+
+.cardDivider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border-tertiary);
+}
+
+/* ── Format list ── */
+
+.formatCount {
+  color: var(--color-fill-tertiary);
+}
+
+.formatList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.formatItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+}
+
+.formatThumb {
+  width: 56px;
+  height: auto;
+  display: block;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
+.formatInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  min-width: 0;
+}
+
+.formatHeadline {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-050);
+  flex-wrap: wrap;
+}
+
+.formatName {
+  color: var(--color-fill-primary);
+}
+
+.formatSpecs {
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+}
+
+.formatPositions {
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Card metrics ── */
+
+.cardMetrics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-100);
+  width: 100%;
+}
+
+.metricImpressions {
+  color: var(--color-fill-accent);
+}
+
+.metricPrice {
+  color: var(--color-fill-secondary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Actions ── */
+
+.actions {
+  display: flex;
+}

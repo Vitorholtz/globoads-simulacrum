@@ -7,7 +7,7 @@
 /* ── Section ── */
 
 .section {
-  background: var(--color-surface-tertiary);
+  background: var(--color-surface-secondary);
   border-radius: var(--border-radius-lg);
 }
 

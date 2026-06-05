@@ -1,0 +1,128 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+  max-width: 680px;
+}
+
+/* ── Success header ── */
+
+.successHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-200);
+}
+
+.successIcon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-success);
+  border-radius: var(--border-radius-full);
+  color: var(--color-fill-success);
+}
+
+.successText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.successDesc {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Receipt list ── */
+
+.receiptList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+/* ── Individual receipt card ── */
+
+.receiptCard {
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.receiptCardHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-300);
+  padding: var(--spacing-300);
+}
+
+.portalSide {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+}
+
+.portalLogo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface-secondary);
+  flex-shrink: 0;
+}
+
+.produtoSide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.produtoRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.metaLabel {
+  color: var(--color-fill-tertiary);
+  margin-bottom: 2px;
+}
+
+.metaValue {
+  color: var(--color-fill-primary);
+}
+
+/* ── Card footer: summary + total ── */
+
+.receiptCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-150) var(--spacing-300);
+  background: var(--color-surface-secondary);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.summary {
+  color: var(--color-fill-secondary);
+}
+
+.total {
+  color: var(--color-fill-accent);
+}
+
+/* ── Footer CTA ── */
+
+.footer {
+  display: flex;
+  justify-content: flex-start;
+}

@@ -1,0 +1,154 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.label {
+  color: var(--color-fill-primary);
+}
+
+.calendar {
+  display: inline-flex;
+  flex-direction: column;
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-100);
+  background: var(--color-surface-primary);
+  min-width: 280px;
+  max-width: 320px;
+}
+
+/* ── Header ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  gap: var(--spacing-050);
+}
+
+.headerCenter {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monthLabel {
+  color: var(--color-fill-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Weekdays ── */
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: var(--spacing-150) 0;
+}
+
+.weekday {
+  color: var(--color-fill-secondary);
+  text-align: center;
+}
+
+/* ── Day grid ── */
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.dayCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius-lg);
+  border: none;
+  background: var(--color-surface-ghost);
+  color: var(--color-fill-accent);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  transition: background var(--motion-duration-fast) var(--motion-easing-default);
+  padding: 0;
+}
+
+.day:hover {
+  background: var(--color-action-solid-ghost-hover);
+}
+
+.day:focus-visible {
+  outline: none;
+  box-shadow: var(--outline-focus-out);
+}
+
+.daySelected {
+  background: var(--color-fill-accent);
+  color: var(--color-fill-inverse);
+  font-weight: var(--font-weight-semibold);
+}
+
+.daySelected:hover {
+  background: var(--color-action-solid-fill-hover);
+}
+
+.dayToday {
+  font-weight: var(--font-weight-bold);
+}
+
+.dayToday::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: var(--border-radius-full);
+  background: var(--color-fill-accent);
+}
+
+.daySelected.dayToday::after {
+  background: color-mix(in srgb, var(--color-fill-inverse) 70%, transparent);
+}
+
+.dayDisabled {
+  opacity: var(--opacity-disabled);
+  background: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Footer ── */
+
+.footer {
+  border-top: var(--border-width-thin) solid var(--color-border-tertiary);
+  padding: var(--spacing-150) var(--spacing-050) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-100);
+}
+
+.footerHint {
+  color: var(--color-fill-tertiary);
+}
+
+.footerCount {
+  color: var(--color-fill-secondary);
+  font-weight: var(--font-weight-semibold);
+}
