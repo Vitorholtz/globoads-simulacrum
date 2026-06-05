@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, StaticCard, Badge, Accordion } from '@globo-ads/ds'
+import { Button, StaticCard, Badge, Accordion, MultiDateCalendar } from '@globo-ads/ds'
 import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import {
   getPortal,
@@ -16,7 +16,6 @@ import {
   formatDateShort,
 } from '../../../data/rules/diarias'
 import { useDiarias } from '../context/DiariasContext'
-import MultiDateCalendar from '../../../components/MultiDateCalendar/MultiDateCalendar'
 import styles from './ConfigStep.module.css'
 
 interface CoverageRowProps {
@@ -32,7 +31,7 @@ function CoverageRow({ cov, produto, dates, isOpen, onToggle, onDatesChange }: C
   const priceDay = getPriceForCoverage(produto, cov.code)
   return (
     <>
-      <div className={styles.coverageRow} onClick={onToggle}>
+      <button type="button" className={styles.coverageRow} onClick={onToggle}>
         <div className={styles.coverageRowInfo}>
           <div className={styles.coverageRowNameRow}>
             <span className={`type-body-sm ${styles.coverageRowName}`}>
@@ -57,7 +56,7 @@ function CoverageRow({ cov, produto, dates, isOpen, onToggle, onDatesChange }: C
         <span className={`type-body-xs ${styles.coverageRowPrice}`}>
           {formatCurrency(priceDay)}/dia
         </span>
-      </div>
+      </button>
       {isOpen && (
         <div className={styles.inlineCalendarWrapper}>
           <MultiDateCalendar value={dates} onChange={onDatesChange} />
@@ -89,6 +88,10 @@ export default function ConfigStep() {
   const hasSelections = produto.isRegional
     ? Object.values(datesPerCoverage).some((d) => d.length > 0)
     : dates.length > 0
+
+  const totalSelectedDays = produto.isRegional
+    ? Object.values(datesPerCoverage).reduce((sum, d) => sum + d.length, 0)
+    : dates.length
 
   const canAdvance = hasSelections
 
@@ -151,10 +154,14 @@ export default function ConfigStep() {
             <fieldset className={styles.fieldset}>
               {hasSelections && (
                 <div className={styles.fieldsetActions}>
+                  <span className={`type-caption-md ${styles.fieldsetDayCount}`}>
+                    {totalSelectedDays}{' '}
+                    {totalSelectedDays === 1 ? 'dia selecionado' : 'dias selecionados'}
+                  </span>
                   <Button
                     variant="tertiary"
                     size="sm"
-                    iconLeft="clear_all"
+                    iconLeft="remove_done"
                     onClick={clearSelections}
                   >
                     Limpar seleção
@@ -219,7 +226,7 @@ export default function ConfigStep() {
                       <Button
                         variant="tertiary"
                         size="sm"
-                        iconLeft="clear_all"
+                        iconLeft="remove_done"
                         onClick={clearSelections}
                       >
                         Limpar
@@ -265,7 +272,7 @@ export default function ConfigStep() {
                         return (
                           <div key={c.code} className={styles.priceRegionRow}>
                             <div className={styles.priceRegionInfo}>
-                              <span className={`type-caption-sm ${styles.priceRegionLabel}`}>
+                              <span className={`type-caption-md ${styles.priceRegionLabel}`}>
                                 {STATE_LABELS[c.code] ?? c.code}
                                 <span className={styles.priceDayCount}>
                                   {' '}
@@ -273,7 +280,7 @@ export default function ConfigStep() {
                                 </span>
                               </span>
                               {covInfo && (
-                                <span className={`type-body-xs ${styles.priceRegionImp}`}>
+                                <span className={`type-caption-md ${styles.priceRegionImp}`}>
                                   ~{formatImpressions(covInfo.impressions)} imp./dia
                                 </span>
                               )}

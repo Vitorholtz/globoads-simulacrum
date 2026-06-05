@@ -166,6 +166,7 @@
    /* ── Sombras ── */
 
    --shadows-ground:  0 0 0 1px #0000001F;
+   --shadows-raised:  0 4px 16px 1px #00000014;
    --shadows-low:     0 4px 8px 2px #0000001F;
    --shadows-base:    0 4px 16px 0 #00000033;
    --shadows-high:    0 8px 24px 0 #00000033;
@@ -243,6 +244,7 @@
    --color-luminosity-dark-ghost-subtle:  #0000000A;
    --color-luminosity-dark-ghost-hover:   #00000012;
    --color-luminosity-dark-ghost-active:  #0000001F;
+   --color-luminosity-dark-backdrop:      #00000066;
    --color-luminosity-light-ghost-hover:  #FFFFFF2E;
    --color-luminosity-light-ghost-active: #FFFFFF4D;
    --color-luminosity-light-ghost-focus:  #FFFFFF8C;

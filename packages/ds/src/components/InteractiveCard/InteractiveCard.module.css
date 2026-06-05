@@ -5,7 +5,7 @@
   background: var(--color-surface-secondary);
   border-radius: var(--border-radius-2xl);
   padding: var(--spacing-250);
-  overflow: hidden;
+  overflow: visible;
   border: none;
   cursor: pointer;
   text-align: left;

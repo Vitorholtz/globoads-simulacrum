@@ -2,6 +2,7 @@ import { useState } from 'react'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import DateRangePicker, { type DateRange } from '../../components/DateRangePicker/DateRangePicker'
 import Calendar from '../../components/Calendar/Calendar'
+import MultiDateCalendar from '../../components/MultiDateCalendar/MultiDateCalendar'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import {
   DATE_PICKER_SIZES,
@@ -25,6 +26,7 @@ export default function DatePickerPage() {
   const [calendarDateSm, setCalendarDateSm] = useState<Date | null>(null)
   const [calendarDateMd, setCalendarDateMd] = useState<Date | null>(null)
   const [selectedRange, setSelectedRange] = useState<DateRange | null>(null)
+  const [multiDates, setMultiDates] = useState<Date[]>([])
 
   function formatDisplay(d: Date | null): string {
     if (!d) return '—'
@@ -248,6 +250,45 @@ export default function DatePickerPage() {
                 {formatDisplay(calendarDateMd)}
               </span>
             </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── Calendário Multi-Data ── */}
+      <Section
+        icon="event_available"
+        title="Calendário Multi-Data"
+        description="Variante para seleção de múltiplas datas não-consecutivas. Ideal para fluxos onde o usuário escolhe dias avulsos — como compra de diárias ou agendamentos recorrentes."
+      >
+        <div className={styles.interactiveContainer}>
+          <div className={`${styles.interactiveDemo} ${styles.interactiveDemoCenter}`}>
+            <MultiDateCalendar value={multiDates} onChange={setMultiDates} />
+          </div>
+          <div className={styles.interactiveInfo}>
+            <div className={styles.infoBox}>
+              <span className={`type-caption-sm ${styles.infoLabel}`}>Selecionados</span>
+              <span className={`type-body-lg ${styles.infoValue}`}>
+                {multiDates.length === 0
+                  ? '—'
+                  : `${multiDates.length} ${multiDates.length === 1 ? 'dia' : 'dias'}`}
+              </span>
+            </div>
+            {multiDates.length > 0 && (
+              <div className={styles.infoBox}>
+                <span className={`type-caption-sm ${styles.infoLabel}`}>Datas</span>
+                <ul className={styles.multiDateList}>
+                  {multiDates.map((d) => (
+                    <li key={d.toISOString()} className={`type-body-sm ${styles.multiDateItem}`}>
+                      {formatDisplay(d)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <p className={`type-body-sm ${styles.infoHint}`}>
+              Clique nos dias para selecionar ou desselecionar. Use as setas do teclado para navegar
+              e PageUp/PageDown para trocar de mês.
+            </p>
           </div>
         </div>
       </Section>

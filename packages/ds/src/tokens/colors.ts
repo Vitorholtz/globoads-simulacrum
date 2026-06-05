@@ -368,6 +368,14 @@ export const COLOR_GROUPS: ColorGroup[] = [
       },
       {
         type: 'solid',
+        value: '#00000066',
+        name: 'Dark Backdrop',
+        variable: '--color-luminosity-dark-backdrop',
+        description:
+          'Sobreposição escura para fundos de modais, dialogs e popovers. Cria separação visual total entre o overlay e o conteúdo abaixo.',
+      },
+      {
+        type: 'solid',
         value: '#FFFFFF2E',
         name: 'Light ghost Hover',
         variable: '--color-luminosity-light-ghost-hover',

@@ -73,7 +73,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border: var(--border-width-md) solid var(--color-border-tertiary);
   background: var(--color-surface-primary);
   color: var(--color-fill-tertiary);
   transition:

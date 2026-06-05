@@ -20,6 +20,7 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Favoritos',
     items: [
       { path: '/', label: 'Página Inicial', icon: 'home' },
+      { path: '/compra-diarias', label: 'Compra de Diárias', icon: 'shopping_cart' },
       { path: '/minhas-campanhas', label: 'Minhas Campanhas', icon: 'campaign' },
       { path: '/criativos-materiais', label: 'Criativos e Materiais', icon: 'palette' },
     ],

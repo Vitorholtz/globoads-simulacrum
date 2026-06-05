@@ -55,12 +55,18 @@ export default function PortalStep() {
               </div>
 
               <div className={styles.cardFooter}>
+                <span className={`type-body-sm ${styles.maxImpressions}`}>
+                  Até {formatImpressions(stats.maxImpressions)} impressões/dia
+                </span>
                 <Tooltip
                   text="Estimativa de alcance diário para o produto com maior cobertura neste portal"
-                  position="bottom"
+                  position="up"
                 >
-                  <span className={`type-caption-md ${styles.maxImpressions}`}>
-                    Até {formatImpressions(stats.maxImpressions)} impressões/dia
+                  <span
+                    className={`material-symbols-rounded icon-sm ${styles.tooltipIcon}`}
+                    aria-label="Mais informações sobre impressões"
+                  >
+                    info
                   </span>
                 </Tooltip>
               </div>

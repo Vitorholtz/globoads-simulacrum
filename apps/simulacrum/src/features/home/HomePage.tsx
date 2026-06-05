@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { InteractiveCard, StaticCard, Badge } from '@globo-ads/ds'
 import { NAV_SECTIONS } from '../../shell/routes'
-import { FEATURES } from '../../shell/features'
 import styles from './HomePage.module.css'
 
-const IMPLEMENTED_PATHS = new Set(FEATURES.map((f) => f.path))
+// Atualizar junto com features.ts ao adicionar nova jornada implementada.
+const IMPLEMENTED_PATHS = new Set(['/compra-diarias'])
 
 const JOURNEY_DESCRIPTIONS: Record<string, string> = {
   '/compra-diarias':
@@ -13,14 +13,6 @@ const JOURNEY_DESCRIPTIONS: Record<string, string> = {
   '/criativos-materiais': 'Envie e organize os criativos das suas campanhas.',
   '/resultados': 'Visualize relatórios e métricas de impacto das suas ações.',
   '/financeiro': 'Consulte faturas, pagamentos e extratos financeiros.',
-}
-
-const JOURNEY_ICONS: Record<string, string> = {
-  '/compra-diarias': 'shopping_cart',
-  '/minhas-campanhas': 'campaign',
-  '/criativos-materiais': 'palette',
-  '/resultados': 'analytics',
-  '/financeiro': 'payments',
 }
 
 interface JourneyEntry {
@@ -32,47 +24,20 @@ interface JourneyEntry {
 }
 
 function buildJourneys(): JourneyEntry[] {
-  const seen = new Set<string>()
   const journeys: JourneyEntry[] = []
-
-  // Jornadas implementadas que não estão no sidebar (ex: /compra-diarias)
-  for (const feature of FEATURES) {
-    if (feature.path === '/') continue
-    seen.add(feature.path)
-    journeys.push({
-      path: feature.path,
-      label: findLabel(feature.path),
-      icon: JOURNEY_ICONS[feature.path] ?? 'work',
-      description: JOURNEY_DESCRIPTIONS[feature.path] ?? '',
-      implemented: true,
-    })
-  }
-
-  // Itens do NAV_SECTIONS ainda não implementados
   for (const section of NAV_SECTIONS) {
     for (const item of section.items) {
-      if (item.external || item.path === '/' || seen.has(item.path)) continue
-      seen.add(item.path)
+      if (item.external || item.path === '/') continue
       journeys.push({
         path: item.path,
         label: item.label,
-        icon: JOURNEY_ICONS[item.path] ?? item.icon,
+        icon: item.icon,
         description: JOURNEY_DESCRIPTIONS[item.path] ?? '',
         implemented: IMPLEMENTED_PATHS.has(item.path),
       })
     }
   }
-
   return journeys
-}
-
-function findLabel(path: string): string {
-  for (const section of NAV_SECTIONS) {
-    const item = section.items.find((i) => i.path === path)
-    if (item) return item.label
-  }
-  const labels: Record<string, string> = { '/compra-diarias': 'Compra de Diárias' }
-  return labels[path] ?? path
 }
 
 export default function HomePage() {

@@ -14,6 +14,13 @@ export const SHADOW_TOKENS: ShadowToken[] = [
       'Sombra de contorno sutil. Delimita elementos flutuantes sobre superfícies de mesma cor, como menus sobre fundo branco.',
   },
   {
+    name: 'Shadow Raised',
+    variable: '--shadows-raised',
+    cssValue: '0 4px 16px 1px #00000014',
+    description:
+      'Elevação muito baixa. Para elementos com leve separação da superfície, como chips flutuantes, cards in-line ou hints de campos.',
+  },
+  {
     name: 'Shadow Low',
     variable: '--shadows-low',
     cssValue: '0 4px 8px 2px #0000001F',

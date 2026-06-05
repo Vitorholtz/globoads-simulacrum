@@ -142,9 +142,9 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
             return (
               <div key={r.coverage} className={styles.tableRow}>
                 <div className={styles.tableCell}>
-                  <p className={`type-body-sm ${styles.tableRegionName}`}>
+                  <p className={`type-caption-md ${styles.tableRegionName}`}>
                     {STATE_LABELS[r.coverage] ?? r.coverage}
-                    <span className={`type-body-xs ${styles.tableDayCount}`}>
+                    <span className={`type-caption-md ${styles.tableDayCount}`}>
                       {' '}
                       · {r.dates.length} {r.dates.length === 1 ? 'dia' : 'dias'}
                     </span>
@@ -172,9 +172,9 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
         ) : (
           <div className={styles.tableRow}>
             <div className={styles.tableCell}>
-              <p className={`type-body-sm ${styles.tableRegionName}`}>
+              <p className={`type-caption-md ${styles.tableRegionName}`}>
                 Nacional
-                <span className={`type-body-xs ${styles.tableDayCount}`}>
+                <span className={`type-caption-md ${styles.tableDayCount}`}>
                   {' '}
                   · {dates.length} {dates.length === 1 ? 'dia' : 'dias'}
                 </span>

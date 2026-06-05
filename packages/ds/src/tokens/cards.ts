@@ -55,8 +55,8 @@ export const STATIC_CARD_GUIDELINES: GuidelineDef[] = [
   },
   {
     title: 'Espaçamento interno',
-    body: 'O padding interno padrão é 12px. Em cards com conteúdo rico ou ações, use 16px ou 20px para garantir respiração visual adequada. Nunca utilize padding menor que 12px para preservar legibilidade.',
-    rule: 'Padding mínimo: 12px.',
+    body: 'O padding interno padrão recomendado é 20px. Cards são amplamente usados e o contexto de uso pode variar bastante — adapte conforme a densidade e hierarquia do conteúdo. Nunca utilize padding menor que 12px para preservar legibilidade.',
+    rule: 'Padding padrão: 20px. Mínimo aceitável: 12px.',
   },
 ]
 
@@ -86,6 +86,11 @@ export const INTERACTIVE_CARD_GUIDELINES: GuidelineDef[] = [
     title: 'Contraste com o contexto',
     body: 'Mesma regra dos Static Cards: "On Primary" sobre fundos brancos e "On Secondary" sobre fundos cinza. Os estados visuais de interação devem ser percebidos claramente sobre o fundo escolhido.',
     rule: 'On Primary sobre branco; On Secondary sobre cinza.',
+  },
+  {
+    title: 'Espaçamento interno',
+    body: 'O padding interno padrão recomendado é 20px. O Interactive Card já usa 20px por padrão. Adapte conforme a densidade e o contexto de uso — em listas compactas ou cards encaixados, valores menores são aceitáveis. Nunca utilize padding menor que 12px.',
+    rule: 'Padding padrão: 20px. Mínimo aceitável: 12px.',
   },
   {
     title: 'Ações filhas e propagação de eventos',

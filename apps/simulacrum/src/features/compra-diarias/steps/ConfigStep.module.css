@@ -83,7 +83,12 @@
 
 .fieldsetActions {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fieldsetDayCount {
+  color: var(--color-fill-tertiary);
 }
 
 .fieldsetDesc {
@@ -171,9 +176,7 @@
 .regionSectionLabel {
   padding: var(--spacing-100) var(--spacing-150);
   background: var(--color-surface-secondary);
-  color: var(--color-fill-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--color-fill-secondary);
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
@@ -198,9 +201,13 @@
   align-items: flex-start;
   gap: var(--spacing-150);
   padding: var(--spacing-150) var(--spacing-150);
+  border: none;
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  transition: background var(--motion-duration-base) var(--motion-easing-default);
+  background: none;
+  width: 100%;
+  text-align: left;
   cursor: pointer;
+  transition: background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .coverageRow:last-child {
@@ -209,6 +216,11 @@
 
 .coverageRow:hover {
   background: var(--color-surface-secondary);
+}
+
+.coverageRow:focus-visible {
+  outline: none;
+  box-shadow: var(--outline-focus);
 }
 
 .coverageRowInfo {
@@ -384,7 +396,7 @@
 .priceRegionInfo {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-025);
+  gap: var(--spacing-050);
   min-width: 0;
 }
 

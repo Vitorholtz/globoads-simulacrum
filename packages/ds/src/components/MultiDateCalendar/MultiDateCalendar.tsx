@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Button, Tooltip } from '@globo-ads/ds'
+import { useState, useRef, useEffect } from 'react'
+import Button from '../Button/Button'
 import styles from './MultiDateCalendar.module.css'
 
 const WEEKDAYS = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
@@ -39,7 +39,7 @@ function toKey(d: Date): string {
   return `${y}-${m}-${day}`
 }
 
-interface MultiDateCalendarProps {
+export interface MultiDateCalendarProps {
   label?: string
   value: Date[]
   onChange: (dates: Date[]) => void
@@ -49,6 +49,8 @@ export default function MultiDateCalendar({ label, value, onChange }: MultiDateC
   const today = new Date()
   const [viewYear, setViewYear] = useState(today.getFullYear())
   const [viewMonth, setViewMonth] = useState(today.getMonth())
+  const [focusedDay, setFocusedDay] = useState<number | null>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
 
   const selectedKeys = new Set(value.map(toKey))
 
@@ -60,6 +62,21 @@ export default function MultiDateCalendar({ label, value, onChange }: MultiDateC
   for (let d = 1; d <= daysInMonth; d++) cells.push(d)
   while (cells.length % 7 !== 0) cells.push(null)
 
+  const rovingDay = (() => {
+    if (focusedDay !== null) return focusedDay
+    const selectedInView = value.find(
+      (d) => d.getFullYear() === viewYear && d.getMonth() === viewMonth
+    )
+    if (selectedInView) return selectedInView.getDate()
+    if (today.getFullYear() === viewYear && today.getMonth() === viewMonth) return today.getDate()
+    return 1
+  })()
+
+  useEffect(() => {
+    if (focusedDay === null) return
+    gridRef.current?.querySelector<HTMLButtonElement>(`[data-day="${focusedDay}"]`)?.focus()
+  }, [focusedDay, viewMonth, viewYear])
+
   function toggleDay(day: number) {
     const d = new Date(viewYear, viewMonth, day)
     const key = toKey(d)
@@ -70,6 +87,7 @@ export default function MultiDateCalendar({ label, value, onChange }: MultiDateC
   }
 
   function prevMonth() {
+    setFocusedDay(null)
     if (viewMonth === 0) {
       setViewYear((y) => y - 1)
       setViewMonth(11)
@@ -77,10 +95,43 @@ export default function MultiDateCalendar({ label, value, onChange }: MultiDateC
   }
 
   function nextMonth() {
+    setFocusedDay(null)
     if (viewMonth === 11) {
       setViewYear((y) => y + 1)
       setViewMonth(0)
     } else setViewMonth((m) => m + 1)
+  }
+
+  function handleGridKeyDown(e: React.KeyboardEvent) {
+    const arrowDelta: Partial<Record<string, number>> = {
+      ArrowLeft: -1,
+      ArrowRight: 1,
+      ArrowUp: -7,
+      ArrowDown: 7,
+    }
+    const delta = arrowDelta[e.key]
+
+    if (e.key === 'PageUp' || e.key === 'PageDown') {
+      e.preventDefault()
+      const sign = e.key === 'PageUp' ? -1 : 1
+      const base = focusedDay ?? rovingDay
+      const target = new Date(viewYear, viewMonth + sign, 1)
+      const lastDay = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate()
+      setViewYear(target.getFullYear())
+      setViewMonth(target.getMonth())
+      setFocusedDay(Math.min(base, lastDay))
+      return
+    }
+
+    if (delta === undefined) return
+    e.preventDefault()
+    const current = new Date(viewYear, viewMonth, focusedDay ?? rovingDay)
+    current.setDate(current.getDate() + delta)
+    if (current.getFullYear() !== viewYear || current.getMonth() !== viewMonth) {
+      setViewYear(current.getFullYear())
+      setViewMonth(current.getMonth())
+    }
+    setFocusedDay(current.getDate())
   }
 
   function isToday(day: number) {
@@ -132,7 +183,7 @@ export default function MultiDateCalendar({ label, value, onChange }: MultiDateC
           ))}
         </div>
 
-        <div className={styles.daysGrid}>
+        <div ref={gridRef} className={styles.daysGrid} onKeyDown={handleGridKeyDown}>
           {cells.map((day, i) => {
             if (day === null) return <div key={i} className={styles.dayCell} aria-hidden="true" />
             const key = toKey(new Date(viewYear, viewMonth, day))
@@ -142,6 +193,8 @@ export default function MultiDateCalendar({ label, value, onChange }: MultiDateC
               <div key={i} className={styles.dayCell}>
                 <button
                   type="button"
+                  data-day={day}
+                  tabIndex={day === rovingDay ? 0 : -1}
                   className={[
                     'type-caption-md',
                     styles.day,
@@ -173,16 +226,15 @@ export default function MultiDateCalendar({ label, value, onChange }: MultiDateC
               <span className={`type-caption-md ${styles.footerCount}`}>
                 {value.length} {value.length === 1 ? 'dia selecionado' : 'dias selecionados'}
               </span>
-              <Tooltip text="Limpar datas" position="up" align="end">
-                <Button
-                  type="button"
-                  variant="tertiary"
-                  size="sm"
-                  iconLeft="cleaning_services"
-                  onClick={() => onChange([])}
-                  aria-label="Limpar datas"
-                />
-              </Tooltip>
+              <Button
+                type="button"
+                variant="tertiary"
+                size="sm"
+                iconLeft="remove_done"
+                onClick={() => onChange([])}
+              >
+                Limpar
+              </Button>
             </>
           )}
         </div>

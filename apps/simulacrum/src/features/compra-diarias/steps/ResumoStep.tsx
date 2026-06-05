@@ -64,12 +64,12 @@ export default function ResumoStep() {
       )}
 
       <div className={styles.actions}>
-        <Button variant="tertiary" iconLeft="arrow_back" onClick={() => setStep(3)}>
+        <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(3)}>
           Voltar
         </Button>
         <div className={styles.actionsRight}>
           <Button
-            variant="tertiary"
+            variant="secondary"
             iconLeft="add_shopping_cart"
             onClick={() => onAddToCart(selection)}
           >

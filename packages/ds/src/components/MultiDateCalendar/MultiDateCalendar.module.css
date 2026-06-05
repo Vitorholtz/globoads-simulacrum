@@ -11,7 +11,6 @@
 .calendar {
   display: inline-flex;
   flex-direction: column;
-  border: var(--border-width-thin) solid var(--color-border-secondary);
   border-radius: var(--border-radius-md);
   padding: var(--spacing-100);
   background: var(--color-surface-primary);
@@ -136,7 +135,6 @@
 /* ── Footer ── */
 
 .footer {
-  border-top: var(--border-width-thin) solid var(--color-border-tertiary);
   padding: var(--spacing-150) var(--spacing-050) 0;
   display: flex;
   align-items: center;
