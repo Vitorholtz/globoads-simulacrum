@@ -8,7 +8,12 @@ import {
   MACROREGIONS,
 } from '../../../data/diarias'
 import type { CoverageInfo, DiariaProduto } from '../../../data/diarias'
-import { AD_FORMATS_CATALOG } from '../../../data/catalog/adFormats'
+import {
+  STATE_LABELS,
+  getFormatSvg,
+  getPrimaryDimension,
+  formatDateShort,
+} from '../../../data/rules/diarias'
 import MultiDateCalendar from '../../../components/MultiDateCalendar/MultiDateCalendar'
 import styles from './ConfigStep.module.css'
 
@@ -21,52 +26,6 @@ interface ConfigStepProps {
     dates: Date[]
   ) => void
   onBack: () => void
-}
-
-const STATE_LABELS: Record<string, string> = {
-  AC: 'Acre',
-  AL: 'Alagoas',
-  AP: 'Amapá',
-  AM: 'Amazonas',
-  BA: 'Bahia',
-  CE: 'Ceará',
-  DF: 'Distrito Federal',
-  ES: 'Espírito Santo',
-  GO: 'Goiás',
-  MA: 'Maranhão',
-  MT: 'Mato Grosso',
-  MS: 'Mato Grosso do Sul',
-  MG: 'Minas Gerais',
-  PA: 'Pará',
-  PB: 'Paraíba',
-  PR: 'Paraná',
-  PE: 'Pernambuco',
-  PI: 'Piauí',
-  RJ: 'Rio de Janeiro',
-  RN: 'Rio Grande do Norte',
-  RS: 'Rio Grande do Sul',
-  RO: 'Rondônia',
-  RR: 'Roraima',
-  SC: 'Santa Catarina',
-  SP: 'São Paulo',
-  SE: 'Sergipe',
-  TO: 'Tocantins',
-}
-
-function getFormatSvg(formatId: string): string {
-  return AD_FORMATS_CATALOG.find((f) => f.id === formatId)?.svgPath ?? ''
-}
-
-function getPrimaryDimension(formatId: string) {
-  const fmt = AD_FORMATS_CATALOG.find((f) => f.id === formatId)
-  if (!fmt || fmt.dimensions.length === 0) return null
-  return fmt.dimensions.reduce((best, d) =>
-    d.width * d.height > best.width * best.height ? d : best
-  )
-}
-
-function formatDateShort(d: Date): string {
-  return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`
 }
 
 interface CoverageRowProps {

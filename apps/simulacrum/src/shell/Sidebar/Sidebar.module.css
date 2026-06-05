@@ -132,7 +132,7 @@
 
 .overlay {
   background: var(--color-surface-primary);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadows-base);
 }
 
 /* ── Mobile create button ── */

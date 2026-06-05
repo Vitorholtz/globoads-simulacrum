@@ -9,50 +9,13 @@ import {
   getPriceForCoverage,
 } from '../../../data/diarias'
 import type { ConfirmedSelection } from '../../../data/diarias'
-import { AD_FORMATS_CATALOG } from '../../../data/catalog/adFormats'
+import {
+  STATE_LABELS,
+  getFormatSvg,
+  getPrimaryDimension,
+  computeTotal,
+} from '../../../data/rules/diarias'
 import styles from './ResumoStep.module.css'
-
-function getFormatSvg(formatId: string): string {
-  return AD_FORMATS_CATALOG.find((f) => f.id === formatId)?.svgPath ?? ''
-}
-
-function getPrimaryDimension(formatId: string) {
-  const fmt = AD_FORMATS_CATALOG.find((f) => f.id === formatId)
-  if (!fmt || fmt.dimensions.length === 0) return null
-  return fmt.dimensions.reduce((best, d) =>
-    d.width * d.height > best.width * best.height ? d : best
-  )
-}
-
-const STATE_LABELS: Record<string, string> = {
-  AC: 'Acre',
-  AL: 'Alagoas',
-  AP: 'Amapá',
-  AM: 'Amazonas',
-  BA: 'Bahia',
-  CE: 'Ceará',
-  DF: 'Distrito Federal',
-  ES: 'Espírito Santo',
-  GO: 'Goiás',
-  MA: 'Maranhão',
-  MT: 'Mato Grosso',
-  MS: 'Mato Grosso do Sul',
-  MG: 'Minas Gerais',
-  PA: 'Pará',
-  PB: 'Paraíba',
-  PR: 'Paraná',
-  PE: 'Pernambuco',
-  PI: 'Piauí',
-  RJ: 'Rio de Janeiro',
-  RN: 'Rio Grande do Norte',
-  RS: 'Rio Grande do Sul',
-  RO: 'Rondônia',
-  RR: 'Roraima',
-  SC: 'Santa Catarina',
-  SP: 'São Paulo',
-  SE: 'Sergipe',
-  TO: 'Tocantins',
-}
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('pt-BR', {
@@ -61,16 +24,6 @@ function formatDate(date: Date): string {
     month: 'short',
     year: 'numeric',
   })
-}
-
-function computeTotal(p: ConfirmedSelection): number {
-  if (p.produto.isRegional) {
-    return p.regionalSelections.reduce(
-      (sum, r) => sum + r.dates.length * getPriceForCoverage(p.produto, r.coverage),
-      0
-    )
-  }
-  return p.dates.length * getPriceForCoverage(p.produto, 'Nacional')
 }
 
 function summarize(p: ConfirmedSelection): string {

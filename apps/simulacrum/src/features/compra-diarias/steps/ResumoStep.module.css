@@ -82,7 +82,7 @@
 
 .receiptMetaLabel {
   color: var(--color-fill-tertiary);
-  margin-bottom: 2px;
+  margin-bottom: var(--spacing-025);
 }
 
 .receiptMetaValue {
@@ -185,7 +185,7 @@
   display: grid;
   grid-template-columns: 1fr auto auto auto;
   gap: var(--spacing-200);
-  padding: 12px var(--spacing-200);
+  padding: var(--spacing-150) var(--spacing-200);
   background: var(--color-surface-secondary);
   border-radius: var(--border-radius-md);
   margin: var(--spacing-050) var(--spacing-300) var(--spacing-100);
@@ -245,7 +245,7 @@
 .tableCellMuted {
   color: var(--color-fill-tertiary);
   white-space: nowrap;
-  padding-top: 2px;
+  padding-top: var(--spacing-025);
 }
 
 .tableCellValue {
@@ -258,7 +258,7 @@
 .dateList {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-025);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -315,7 +315,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  transition: background var(--motion-duration-base);
+  transition: background var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .expandableCardHeader:hover {

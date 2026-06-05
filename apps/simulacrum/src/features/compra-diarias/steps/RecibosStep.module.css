@@ -49,9 +49,7 @@
   background: var(--color-surface-primary);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  box-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.06),
-    0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadows-low);
 }
 
 .receiptCardHeader {
@@ -94,7 +92,7 @@
 
 .metaLabel {
   color: var(--color-fill-tertiary);
-  margin-bottom: 2px;
+  margin-bottom: var(--spacing-025);
 }
 
 .metaValue {

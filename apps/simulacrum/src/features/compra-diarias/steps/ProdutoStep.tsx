@@ -6,7 +6,7 @@ import {
   formatImpressions,
   getPriceForCoverage,
 } from '../../../data/diarias'
-import { AD_FORMATS_CATALOG } from '../../../data/catalog/adFormats'
+import { getAdFormat, getPrimaryDimension } from '../../../data/rules/diarias'
 import type { DiariaProduto, PortalId } from '../../../data/diarias'
 import styles from './ProdutoStep.module.css'
 
@@ -14,18 +14,6 @@ interface ProdutoStepProps {
   portalId: PortalId
   onSelect: (produto: DiariaProduto) => void
   onBack: () => void
-}
-
-function getAdFormat(id: string) {
-  return AD_FORMATS_CATALOG.find((f) => f.id === id)
-}
-
-function getPrimaryDimension(id: string) {
-  const fmt = getAdFormat(id)
-  if (!fmt || fmt.dimensions.length === 0) return null
-  return fmt.dimensions.reduce((best, d) =>
-    d.width * d.height > best.width * best.height ? d : best
-  )
 }
 
 function CardMetrics({ produto }: { produto: DiariaProduto }) {

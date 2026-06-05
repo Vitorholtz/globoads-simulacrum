@@ -1,26 +1,12 @@
 import { Button, Badge, InfoPanel } from '@globo-ads/ds'
-import {
-  getPortal,
-  PORTAL_DISPLAY_NAMES,
-  formatCurrency,
-  getPriceForCoverage,
-} from '../../../data/diarias'
+import { getPortal, PORTAL_DISPLAY_NAMES, formatCurrency } from '../../../data/diarias'
 import type { ConfirmedSelection } from '../../../data/diarias'
+import { computeTotal } from '../../../data/rules/diarias'
 import styles from './RecibosStep.module.css'
 
 interface RecibosStepProps {
   purchases: ConfirmedSelection[]
   onReset: () => void
-}
-
-function computeTotal(p: ConfirmedSelection): number {
-  if (p.produto.isRegional) {
-    return p.regionalSelections.reduce(
-      (sum, r) => sum + r.dates.length * getPriceForCoverage(p.produto, r.coverage),
-      0
-    )
-  }
-  return p.dates.length * getPriceForCoverage(p.produto, 'Nacional')
 }
 
 function summarize(p: ConfirmedSelection): string {

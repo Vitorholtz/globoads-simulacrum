@@ -77,10 +77,10 @@
   background: var(--color-surface-primary);
   color: var(--color-fill-tertiary);
   transition:
-    background var(--motion-duration-base),
-    border-color var(--motion-duration-base),
-    color var(--motion-duration-base),
-    box-shadow var(--motion-duration-base);
+    background var(--motion-duration-base) var(--motion-easing-default),
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    color var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .stepDot.active {
@@ -105,7 +105,7 @@
   align-self: flex-start;
   margin-top: 20px;
   background: var(--color-border-tertiary);
-  transition: background var(--motion-duration-slow);
+  transition: background var(--motion-duration-slow) var(--motion-easing-default);
 }
 
 .stepLine.lineDone {

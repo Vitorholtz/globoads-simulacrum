@@ -12,8 +12,9 @@ Regras do workspace no [CLAUDE.md raiz](../../CLAUDE.md); regras do DS em [packa
 2. **Tokens, nunca hardcode.** Mesmas regras de CSS do DS: cor/borda/raio/espaçamento via
    `var(--token-*)`; texto via utility `type-*`; ícones via `material-symbols-rounded` + `icon-*`.
    (Dimensões de layout — `width`/`height`/`min-height` — em px são aceitáveis.)
-3. **Navegação vem de `src/shell/routes.ts`** (fonte única). Nova jornada = feature em
-   `src/features/<dominio>/` + entrada em `NAV`. Sidebar e rotas derivam daí.
+3. **Navegação vem de `src/shell/routes.ts`** (fonte única de labels/ícones/sidebar). Rotas com
+   componente real vivem em `src/shell/features.ts`. Nova jornada = feature em
+   `src/features/<dominio>/` + entrada em `NAV` (routes.ts) + entrada em `FEATURES` (features.ts).
 4. **Sem backend.** Dados são mocks tipados em `src/data/mock/`; regras de negócio são funções
    puras em `src/data/rules/`. Estado de sessão via React Context — sem libs de estado por ora.
 5. **Componente específico nasce aqui.** Em `src/components/`. Só promova ao DS quando houver
