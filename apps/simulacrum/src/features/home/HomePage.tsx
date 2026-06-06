@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { InteractiveCard, StaticCard, Badge } from '@globo-ads/ds'
 import { NAV_SECTIONS } from '../../shell/routes'
+import PageContainer from '../../components/PageContainer/PageContainer'
 import styles from './HomePage.module.css'
 
 // Atualizar junto com features.ts ao adicionar nova jornada implementada.
@@ -45,7 +46,7 @@ export default function HomePage() {
   const journeys = buildJourneys()
 
   return (
-    <div className={styles.page}>
+    <PageContainer>
       <header className={styles.intro}>
         <h1 className="type-title-lg">Bem-vindo ao Globo Ads</h1>
         <p className={`type-body-md ${styles.subtitle}`}>
@@ -88,6 +89,6 @@ export default function HomePage() {
           )
         )}
       </section>
-    </div>
+    </PageContainer>
   )
 }

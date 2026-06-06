@@ -63,6 +63,18 @@
   gap: var(--spacing-050);
 }
 
+.cartButtonWrapper {
+  position: relative;
+}
+
+.cartBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(25%, -25%);
+  pointer-events: none;
+}
+
 /* ── Mobile ── */
 
 @media (max-width: 767px) {

@@ -40,5 +40,11 @@ export const NAV_FOOTER: NavItem[] = [
   { path: '/ajuda', label: 'Ajuda', icon: 'help' },
 ]
 
+// Rotas que existem na plataforma mas não aparecem no sidebar (ex: carrinho)
+const HIDDEN_NAV: NavItem[] = [{ path: '/carrinho', label: 'Carrinho', icon: 'shopping_cart' }]
+
 // Mantém NAV plano para compatibilidade com usePageTitle no Header (exclui externos)
-export const NAV: NavItem[] = NAV_SECTIONS.flatMap((s) => s.items.filter((i) => !i.external))
+export const NAV: NavItem[] = [
+  ...NAV_SECTIONS.flatMap((s) => s.items.filter((i) => !i.external)),
+  ...HIDDEN_NAV,
+]

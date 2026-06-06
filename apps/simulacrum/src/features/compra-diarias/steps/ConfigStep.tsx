@@ -131,21 +131,32 @@ export default function ConfigStep() {
         <p className={`type-body-sm ${styles.subtitle}`}>
           Defina a localização e os dias em que seu anúncio será veiculado.
         </p>
-        <div className={styles.portalContext}>
-          <div className={styles.portalContextLeft}>
-            {portal.svgPath && (
-              <img src={portal.svgPath} alt={portal.name} className={styles.portalLogo} />
-            )}
-            <span className={`type-body-sm ${styles.portalLabel}`}>
-              {portal.url} · {produto.name}
-            </span>
-          </div>
-          <Badge
-            variant={produto.isRegional ? 'accent' : 'neutral'}
-            label={produto.isRegional ? 'Regional' : 'Nacional'}
-          />
-        </div>
       </header>
+
+      <div className={styles.portalContext}>
+        <span className={styles.portalContextBrand}>
+          {portal.svgPath && (
+            <img src={portal.svgPath} alt={portal.name} className={styles.portalLogo} />
+          )}
+          <span className={`type-body-sm ${styles.portalLabel}`}>{portal.url}</span>
+        </span>
+        <span className={styles.portalContextSep} aria-hidden="true" />
+        <span className={styles.portalContextChip}>
+          <span className="material-symbols-rounded icon-md" aria-hidden="true">
+            box
+          </span>
+          <span className="type-body-sm">{produto.name}</span>
+        </span>
+        <span className={styles.portalContextSep} aria-hidden="true" />
+        <span className={styles.portalContextChip}>
+          <span className="material-symbols-rounded icon-md" aria-hidden="true">
+            location_on
+          </span>
+          <span className="type-body-sm">
+            {produto.isRegional ? 'Cobertura Regional' : 'Cobertura Nacional'}
+          </span>
+        </span>
+      </div>
 
       <div className={styles.body}>
         <div className={styles.formColumn}>
@@ -398,25 +409,47 @@ export default function ConfigStep() {
             ]}
           />
 
-          <div className={styles.actions}>
-            <Button
-              variant="secondary"
-              iconLeft="arrow_back"
-              onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
-            >
-              Voltar
-            </Button>
-            <Button
-              variant="primary"
-              iconRight="arrow_forward"
-              onClick={handleNext}
-              disabled={!canAdvance}
-            >
-              Próximo
-            </Button>
-          </div>
+          {produto.isRegional && (
+            <div className={styles.actions}>
+              <Button
+                variant="secondary"
+                iconLeft="arrow_back"
+                onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
+              >
+                Voltar
+              </Button>
+              <Button
+                variant="primary"
+                iconRight="arrow_forward"
+                onClick={handleNext}
+                disabled={!canAdvance}
+              >
+                Próximo
+              </Button>
+            </div>
+          )}
         </aside>
       </div>
+
+      {!produto.isRegional && (
+        <div className={styles.actions}>
+          <Button
+            variant="secondary"
+            iconLeft="arrow_back"
+            onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
+          >
+            Voltar
+          </Button>
+          <Button
+            variant="primary"
+            iconRight="arrow_forward"
+            onClick={handleNext}
+            disabled={!canAdvance}
+          >
+            Próximo
+          </Button>
+        </div>
+      )}
 
       <ConfirmDialog
         isOpen={showBackConfirm}

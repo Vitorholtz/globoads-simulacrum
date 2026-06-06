@@ -1,8 +1,9 @@
-import { useLocation } from 'react-router-dom'
-import { Avatar, Button, Tooltip } from '@globo-ads/ds'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Avatar, BadgeCounter, Button, Tooltip } from '@globo-ads/ds'
 import logo from '@globo-ads/ds/assets/globo-ads-logo.svg'
 import { NAV } from '../routes'
 import HeaderSelector from '../../components/HeaderSelector/HeaderSelector'
+import { useCart } from '../../cart/CartContext'
 import styles from './Header.module.css'
 
 function usePageTitle(): string {
@@ -26,7 +27,9 @@ export default function Header({
   onMenuHoverEnter,
   onMenuHoverLeave,
 }: HeaderProps) {
+  const navigate = useNavigate()
   const pageTitle = usePageTitle()
+  const { itemCount } = useCart()
 
   return (
     <header className={styles.header}>
@@ -52,9 +55,17 @@ export default function Header({
 
       <div className={styles.right}>
         <div className={styles.actions}>
-          <Tooltip text="Carrinho" position="bottom">
-            <Button variant="tertiary" iconLeft="shopping_cart" aria-label="Carrinho" />
-          </Tooltip>
+          <div className={styles.cartButtonWrapper}>
+            <Tooltip text="Carrinho" position="bottom">
+              <Button
+                variant="tertiary"
+                iconLeft="shopping_cart"
+                aria-label="Carrinho"
+                onClick={() => navigate('/carrinho')}
+              />
+            </Tooltip>
+            {itemCount > 0 && <BadgeCounter value={itemCount} className={styles.cartBadge} />}
+          </div>
           <Tooltip text="Notificações" position="bottom">
             <Button variant="tertiary" iconLeft="notifications" aria-label="Notificações" />
           </Tooltip>

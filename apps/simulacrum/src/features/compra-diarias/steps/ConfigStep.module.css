@@ -17,18 +17,14 @@
 .portalContext {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-200);
-  background: var(--color-surface-secondary);
+  gap: var(--spacing-300);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-100) var(--spacing-150);
-  margin-top: var(--spacing-200);
 }
 
-.portalContextLeft {
+.portalContextBrand {
   display: flex;
   align-items: center;
-  gap: var(--spacing-100);
+  gap: var(--spacing-075);
 }
 
 .portalLogo {
@@ -36,18 +32,35 @@
   width: auto;
   object-fit: contain;
   border-radius: var(--border-radius-md);
-  background: var(--color-surface-primary);
+  background: var(--color-surface-secondary);
+  flex-shrink: 0;
 }
 
 .portalLabel {
   color: var(--color-fill-secondary);
+  white-space: nowrap;
+}
+
+.portalContextSep {
+  width: var(--border-width-sm);
+  height: 20px;
+  background: var(--color-border-tertiary);
+  flex-shrink: 0;
+}
+
+.portalContextChip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
 }
 
 /* ── Body grid ── */
 
 .body {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr var(--sidebar-panel-width);
   gap: var(--spacing-400);
   align-items: flex-start;
 }
@@ -107,7 +120,7 @@
 .calendarCard {
   background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-2xl);
   overflow: hidden;
 }
 
@@ -174,7 +187,7 @@
 }
 
 .regionSectionLabel {
-  padding: var(--spacing-100) var(--spacing-150);
+  padding: var(--spacing-150) var(--spacing-200);
   background: var(--color-surface-secondary);
   color: var(--color-fill-secondary);
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
@@ -200,7 +213,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-150);
-  padding: var(--spacing-150) var(--spacing-150);
+  padding: var(--spacing-200) var(--spacing-200);
   border: none;
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
   background: none;
@@ -290,7 +303,7 @@
 .formatList {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-150);
+  gap: var(--spacing-200);
   list-style: none;
   padding: 0;
   margin: 0;

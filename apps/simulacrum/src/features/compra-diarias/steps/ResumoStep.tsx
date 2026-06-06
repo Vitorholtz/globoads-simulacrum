@@ -1,40 +1,31 @@
 import { useState } from 'react'
-import { Button, InfoPanel } from '@globo-ads/ds'
-import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
-import { formatCurrency } from '../../../data/diarias'
+import { Button } from '@globo-ads/ds'
 import type { ConfirmedSelection } from '../../../data/diarias'
-import { computeTotal } from '../../../data/rules/diarias'
 import { ExpandablePurchaseCard } from '../../../components/PurchaseCard/PurchaseCard'
+import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './ResumoStep.module.css'
 
 export default function ResumoStep() {
   const {
     selection: rawSelection,
-    purchases,
+    isEditMode,
     setStep,
-    handleAddToCart: onAddToCart,
-    handleFinalize: onFinalize,
-    handleEditPurchase: onEditPurchase,
-    handleDeletePurchase: onDeletePurchase,
-    handleDeleteCurrentPurchase: onDeleteCurrentPurchase,
+    handleAddToCart,
+    handleUpdateCartItem,
+    handleCancel,
   } = useDiarias()
   const selection = rawSelection as ConfirmedSelection
-  // -1 = compra atual; >= 0 = índice em purchases
-  const [pendingDeleteIndex, setPendingDeleteIndex] = useState<number | null>(null)
-  const pendingCount = purchases.length
-  const currentTotal = computeTotal(selection)
-  const grandTotal = purchases.reduce((sum, p) => sum + computeTotal(p), 0) + currentTotal
-  const totalCount = pendingCount + 1
+  const [confirmDelete, setConfirmDelete] = useState(false)
 
   return (
     <section className={styles.section}>
       <header className={styles.header}>
         <h2 className="type-title-md">Revise seu pedido</h2>
         <p className={`type-body-sm ${styles.subtitle}`}>
-          {pendingCount > 0
-            ? `${totalCount} ${totalCount === 1 ? 'compra adicionada' : 'compras adicionadas'}. Finalize para concluir todas de uma vez.`
-            : 'Confirme os detalhes antes de finalizar a compra.'}
+          {isEditMode
+            ? 'Confirme as alterações antes de atualizar no carrinho.'
+            : 'Confirme os detalhes antes de adicionar ao carrinho.'}
         </p>
       </header>
 
@@ -43,54 +34,36 @@ export default function ResumoStep() {
           selection={selection}
           defaultOpen
           onEdit={() => setStep(3)}
-          onDelete={() => setPendingDeleteIndex(-1)}
+          onDelete={() => setConfirmDelete(true)}
         />
-        {purchases.map((p, i) => (
-          <ExpandablePurchaseCard
-            key={i}
-            selection={p}
-            onEdit={() => onEditPurchase(p, i)}
-            onDelete={() => setPendingDeleteIndex(i)}
-          />
-        ))}
       </div>
-
-      {pendingCount > 0 && (
-        <InfoPanel
-          type="neutral"
-          title={`Total de ${totalCount} compras: ${formatCurrency(grandTotal)}`}
-          description="Clique em 'Finalizar pedido' para concluir todas as compras de uma vez."
-        />
-      )}
 
       <div className={styles.actions}>
         <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(3)}>
           Voltar
         </Button>
-        <div className={styles.actionsRight}>
-          <Button
-            variant="secondary"
-            iconLeft="add_shopping_cart"
-            onClick={() => onAddToCart(selection)}
-          >
-            Continuar comprando
-          </Button>
-          <Button variant="primary" iconLeft="check" onClick={() => onFinalize(selection)}>
-            {pendingCount > 0 ? `Finalizar ${totalCount} pedidos` : 'Finalizar pedido'}
-          </Button>
-        </div>
+        <Button
+          variant="primary"
+          iconLeft={isEditMode ? 'check' : 'add_shopping_cart'}
+          onClick={() =>
+            isEditMode ? handleUpdateCartItem(selection) : handleAddToCart(selection)
+          }
+        >
+          {isEditMode ? 'Atualizar no carrinho' : 'Adicionar ao carrinho'}
+        </Button>
       </div>
+
       <ConfirmDialog
-        isOpen={pendingDeleteIndex !== null}
-        title="Excluir compra"
-        description="Tem certeza que deseja excluir esta compra? Esta ação não pode ser desfeita."
-        confirmLabel="Excluir compra"
-        onConfirm={() => {
-          if (pendingDeleteIndex === -1) onDeleteCurrentPurchase()
-          else if (pendingDeleteIndex !== null) onDeletePurchase(pendingDeleteIndex)
-          setPendingDeleteIndex(null)
-        }}
-        onCancel={() => setPendingDeleteIndex(null)}
+        isOpen={confirmDelete}
+        title={isEditMode ? 'Excluir do carrinho?' : 'Cancelar configuração?'}
+        description={
+          isEditMode
+            ? 'Este item será removido permanentemente do seu carrinho.'
+            : 'As configurações serão descartadas e você voltará ao início.'
+        }
+        confirmLabel="Excluir"
+        onConfirm={handleCancel}
+        onCancel={() => setConfirmDelete(false)}
       />
     </section>
   )

@@ -16,7 +16,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-card-min), 1fr));
   gap: var(--spacing-200);
 }
 
@@ -33,14 +33,26 @@
   border: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
+/* ── Card header (logo + title) ── */
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  width: 100%;
+}
+
 /* ── Logo ── */
 
 .logoWrapper {
   height: 48px;
+  width: 48px;
   border-radius: var(--border-radius-md);
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   background: var(--color-surface-secondary);
 }
 

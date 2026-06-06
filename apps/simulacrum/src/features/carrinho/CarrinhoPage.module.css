@@ -1,0 +1,124 @@
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.pageSubtitle {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Empty state ── */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-200);
+  padding: var(--spacing-800) var(--spacing-400);
+  text-align: center;
+  color: var(--color-fill-tertiary);
+}
+
+.emptyDesc {
+  color: var(--color-fill-secondary);
+  max-width: 320px;
+}
+
+/* ── Two-column layout ── */
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr var(--sidebar-panel-width);
+  gap: var(--spacing-400);
+  align-items: start;
+}
+
+/* ── Items list ── */
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.modalitySection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.modalityHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+/* ── Order summary ── */
+
+.summary {
+  position: sticky;
+  top: var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+  padding: var(--spacing-250);
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadows-raised);
+}
+
+.summaryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+}
+
+.summaryLabel {
+  color: var(--color-fill-secondary);
+}
+
+.summaryDivider {
+  height: var(--border-width-sm);
+  background: var(--color-border-tertiary);
+}
+
+.summaryTotal {
+  padding-top: var(--spacing-050);
+}
+
+.grandTotalValue {
+  color: var(--color-fill-accent);
+}
+
+.summaryActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  margin-top: var(--spacing-150);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 767px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary {
+    position: static;
+  }
+}

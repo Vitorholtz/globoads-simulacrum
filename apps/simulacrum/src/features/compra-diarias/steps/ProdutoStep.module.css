@@ -13,18 +13,14 @@
 .portalContext {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-200);
-  background: var(--color-surface-secondary);
+  gap: var(--spacing-300);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-100) var(--spacing-150);
-  margin-top: var(--spacing-200);
 }
 
-.portalContextLeft {
+.portalContextBrand {
   display: flex;
   align-items: center;
-  gap: var(--spacing-150);
+  gap: var(--spacing-075);
 }
 
 .portalLogo {
@@ -32,15 +28,28 @@
   width: auto;
   object-fit: contain;
   border-radius: var(--border-radius-md);
-  background: var(--color-surface-primary);
-}
-
-.productCount {
-  color: var(--color-fill-tertiary);
+  background: var(--color-surface-secondary);
+  flex-shrink: 0;
 }
 
 .portalLabel {
   color: var(--color-fill-secondary);
+  white-space: nowrap;
+}
+
+.portalContextSep {
+  width: var(--border-width-sm);
+  height: 20px;
+  background: var(--color-border-tertiary);
+  flex-shrink: 0;
+}
+
+.portalContextChip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
 }
 
 .subtitle {
@@ -51,7 +60,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-200);
 }
 
@@ -147,6 +156,14 @@
 
 /* ── Card metrics ── */
 
+.cardFooter {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
 .cardMetrics {
   display: flex;
   justify-content: space-between;
@@ -169,4 +186,8 @@
 
 .actions {
   display: flex;
+}
+
+.card:last-child:nth-child(odd) {
+  grid-column: span 2;
 }

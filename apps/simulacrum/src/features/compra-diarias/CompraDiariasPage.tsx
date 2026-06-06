@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom'
-import { Breadcrumb, BadgeCounter } from '@globo-ads/ds'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Breadcrumb } from '@globo-ads/ds'
 import { DiariasProvider, useDiarias, type Step } from './context/DiariasContext'
+import PageContainer from '../../components/PageContainer/PageContainer'
 import PortalStep from './steps/PortalStep'
 import ProdutoStep from './steps/ProdutoStep'
 import ConfigStep from './steps/ConfigStep'
 import ResumoStep from './steps/ResumoStep'
-import RecibosStep from './steps/RecibosStep'
 import styles from './CompraDiariasPage.module.css'
 
 const STEP_LABELS: Record<Step, string> = {
@@ -23,8 +23,11 @@ const STEP_ICONS: Record<Step, string> = {
 }
 
 export default function CompraDiariasPage() {
+  const [searchParams] = useSearchParams()
+  const editId = searchParams.get('edit')
+
   return (
-    <DiariasProvider>
+    <DiariasProvider editCartItemId={editId}>
       <CompraDiariasContent />
     </DiariasProvider>
   )
@@ -32,10 +35,10 @@ export default function CompraDiariasPage() {
 
 function CompraDiariasContent() {
   const navigate = useNavigate()
-  const { step, setStep, purchases, showReceipts } = useDiarias()
+  const { step, setStep } = useDiarias()
 
   return (
-    <div className={styles.page}>
+    <PageContainer narrow>
       <Breadcrumb
         items={[{ label: 'Página Inicial', onClick: () => navigate('/') }, { label: 'Diárias' }]}
       />
@@ -47,18 +50,12 @@ function CompraDiariasContent() {
         </p>
       </div>
 
-      {!showReceipts && (
-        <StepIndicator
-          currentStep={step}
-          onStepClick={setStep}
-          pendingCount={purchases.length + (step === 4 ? 1 : 0)}
-        />
-      )}
+      <StepIndicator currentStep={step} onStepClick={setStep} />
 
-      <div key={showReceipts ? 'receipts' : step} className={styles.stepContent}>
-        {showReceipts ? <RecibosStep /> : <ActiveStep />}
+      <div key={step} className={styles.stepContent}>
+        <ActiveStep />
       </div>
-    </div>
+    </PageContainer>
   )
 }
 
@@ -88,10 +85,9 @@ function ActiveStep() {
 interface StepIndicatorProps {
   currentStep: Step
   onStepClick: (step: Step) => void
-  pendingCount: number
 }
 
-function StepIndicator({ currentStep, onStepClick, pendingCount }: StepIndicatorProps) {
+function StepIndicator({ currentStep, onStepClick }: StepIndicatorProps) {
   const steps: Step[] = [1, 2, 3, 4]
 
   return (
@@ -99,7 +95,6 @@ function StepIndicator({ currentStep, onStepClick, pendingCount }: StepIndicator
       {steps.flatMap((s, index) => {
         const state = s < currentStep ? 'done' : s === currentStep ? 'active' : 'pending'
         const isDone = state === 'done'
-        const showBadge = s === 4 && pendingCount > 0
         const inner = (
           <>
             <div className={styles.stepDotContainer}>
@@ -114,7 +109,6 @@ function StepIndicator({ currentStep, onStepClick, pendingCount }: StepIndicator
                   </span>
                 )}
               </div>
-              {showBadge && <BadgeCounter value={pendingCount} className={styles.stepBadge} />}
             </div>
             <span className={`type-caption-sm ${styles.stepLabel} ${styles[state]}`}>
               {STEP_LABELS[s]}

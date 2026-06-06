@@ -47,6 +47,14 @@ export default function ProdutoStep() {
   const portalId = selection.portal!
   const portal = getPortal(portalId)
   const produtos = getProductsByPortal(portalId)
+  const hasNacional = produtos.some((p) => !p.isRegional)
+  const hasRegional = produtos.some((p) => p.isRegional)
+  const coverageLabel =
+    hasNacional && hasRegional
+      ? 'Cobertura Nacional e Regional'
+      : hasRegional
+        ? 'Cobertura Regional'
+        : 'Cobertura Nacional'
 
   return (
     <section className={styles.section}>
@@ -55,18 +63,32 @@ export default function ProdutoStep() {
         <p className={`type-body-sm ${styles.subtitle}`}>
           Cada produto define os formatos incluídos e onde o anúncio será exibido.
         </p>
-        <div className={styles.portalContext}>
-          <div className={styles.portalContextLeft}>
-            {portal.svgPath && (
-              <img src={portal.svgPath} alt={portal.name} className={styles.portalLogo} />
-            )}
-            <span className={`type-body-sm ${styles.portalLabel}`}>{portal.url}</span>
-          </div>
-          <span className={`type-body-sm ${styles.productCount}`}>
+      </header>
+
+      <div className={styles.portalContext}>
+        <span className={styles.portalContextBrand}>
+          {portal.svgPath && (
+            <img src={portal.svgPath} alt={portal.name} className={styles.portalLogo} />
+          )}
+          <span className={`type-body-sm ${styles.portalLabel}`}>{portal.url}</span>
+        </span>
+        <span className={styles.portalContextSep} aria-hidden="true" />
+        <span className={styles.portalContextChip}>
+          <span className="material-symbols-rounded icon-md" aria-hidden="true">
+            box
+          </span>
+          <span className="type-body-sm">
             {produtos.length} {produtos.length === 1 ? 'produto' : 'produtos'}
           </span>
-        </div>
-      </header>
+        </span>
+        <span className={styles.portalContextSep} aria-hidden="true" />
+        <span className={styles.portalContextChip}>
+          <span className="material-symbols-rounded icon-md" aria-hidden="true">
+            location_on
+          </span>
+          <span className="type-body-sm">{coverageLabel}</span>
+        </span>
+      </div>
 
       <div className={styles.grid}>
         {produtos.map((produto) => (
@@ -125,9 +147,10 @@ export default function ProdutoStep() {
               })}
             </ul>
 
-            <div className={styles.cardDivider} />
-
-            <CardMetrics produto={produto} />
+            <div className={styles.cardFooter}>
+              <div className={styles.cardDivider} />
+              <CardMetrics produto={produto} />
+            </div>
           </InteractiveCard>
         ))}
       </div>

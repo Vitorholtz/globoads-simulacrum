@@ -26,24 +26,26 @@ export default function PortalStep() {
               onClick={() => onSelect(portal.id)}
               aria-label={`Selecionar ${PORTAL_DISPLAY_NAMES[portal.id]}`}
             >
-              <div className={styles.logoWrapper}>
-                {portal.svgPath ? (
-                  <img
-                    src={portal.svgPath}
-                    alt={PORTAL_DISPLAY_NAMES[portal.id]}
-                    className={styles.logo}
-                  />
-                ) : (
-                  <span className={`type-title-md ${styles.logoFallback}`}>
-                    {PORTAL_DISPLAY_NAMES[portal.id]}
-                  </span>
-                )}
-              </div>
-
-              <div className={styles.cardBody}>
+              <div className={styles.cardHeader}>
+                <div className={styles.logoWrapper}>
+                  {portal.svgPath ? (
+                    <img
+                      src={portal.svgPath}
+                      alt={PORTAL_DISPLAY_NAMES[portal.id]}
+                      className={styles.logo}
+                    />
+                  ) : (
+                    <span className={`type-title-md ${styles.logoFallback}`}>
+                      {PORTAL_DISPLAY_NAMES[portal.id]}
+                    </span>
+                  )}
+                </div>
                 <p className={`type-title-sm ${styles.portalName}`}>
                   {PORTAL_DISPLAY_NAMES[portal.id]}
                 </p>
+              </div>
+
+              <div className={styles.cardBody}>
                 <p className={`type-body-sm ${styles.description}`}>{portal.description}</p>
                 <div className={styles.badgeRow}>
                   {stats.hasNational && <Badge variant="neutral" label="Nacional" />}
@@ -63,7 +65,7 @@ export default function PortalStep() {
                   position="up"
                 >
                   <span
-                    className={`material-symbols-rounded icon-sm ${styles.tooltipIcon}`}
+                    className={`material-symbols-rounded icon-md ${styles.tooltipIcon}`}
                     aria-label="Mais informações sobre impressões"
                   >
                     info
