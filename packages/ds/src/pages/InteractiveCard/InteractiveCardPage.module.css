@@ -228,4 +228,76 @@
   min-height: 96px;
 }
 
-/* â”€â”€ Guidelines â”€â”€ */
+/* ── Semantic variants ── */
+
+.variantsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-200);
+}
+
+.variantCard {
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.variantHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+  padding: var(--spacing-200) var(--spacing-300);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  background: var(--color-surface-secondary);
+}
+
+.variantTag {
+  font-family: var(--font-family-code);
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-secondary);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-025) var(--spacing-100);
+  color: var(--color-fill-primary);
+  white-space: nowrap;
+}
+
+.variantLabel {
+  color: var(--color-fill-primary);
+}
+
+.variantBody {
+  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  flex: 1;
+}
+
+.variantWhen {
+  color: var(--color-fill-secondary);
+  margin: 0;
+}
+
+.variantExample {
+  font-family: var(--font-family-code);
+  background: var(--color-surface-secondary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-150) var(--spacing-200);
+  color: var(--color-fill-secondary);
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.variantA11y {
+  color: var(--color-fill-tertiary);
+  margin: 0;
+  padding-top: var(--spacing-175);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+/* ── Guidelines ── */

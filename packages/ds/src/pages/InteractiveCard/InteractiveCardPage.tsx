@@ -3,6 +3,7 @@ import {
   CARD_STYLES,
   INTERACTIVE_CARD_STATES,
   INTERACTIVE_CARD_GUIDELINES,
+  INTERACTIVE_CARD_SEMANTIC_VARIANTS,
 } from '../../tokens/cards'
 import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
@@ -75,6 +76,7 @@ export default function InteractiveCardPage() {
         stats={[
           { value: 2, label: 'Estilos' },
           { value: 4, label: 'Estados' },
+          { value: 4, label: 'Variantes' },
         ]}
       />
 
@@ -134,6 +136,29 @@ export default function InteractiveCardPage() {
             </div>
           </div>
         ))}
+      </Section>
+
+      {/* ── Variantes semânticas ── */}
+      <Section
+        icon="code"
+        title="Variantes semânticas"
+        count={INTERACTIVE_CARD_SEMANTIC_VARIANTS.length}
+      >
+        <div className={styles.variantsGrid}>
+          {INTERACTIVE_CARD_SEMANTIC_VARIANTS.map((v) => (
+            <div key={v.as} className={styles.variantCard}>
+              <div className={styles.variantHeader}>
+                <code className={`type-body-sm ${styles.variantTag}`}>as=&quot;{v.as}&quot;</code>
+                <span className={`type-title-sm ${styles.variantLabel}`}>{v.label}</span>
+              </div>
+              <div className={styles.variantBody}>
+                <p className={`type-body-md ${styles.variantWhen}`}>{v.when}</p>
+                <pre className={`type-caption-sm ${styles.variantExample}`}>{v.example}</pre>
+                <p className={`type-caption-md ${styles.variantA11y}`}>{v.accessibility}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </Section>
 
       {/* ── Diretrizes ── */}

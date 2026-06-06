@@ -79,8 +79,8 @@ export const INTERACTIVE_CARD_GUIDELINES: GuidelineDef[] = [
   },
   {
     title: 'Semântica e acessibilidade',
-    body: 'O elemento raiz deve ter semântica de ação: use <button> para ações in-page ou <a> para navegação. Sempre forneça um aria-label descritivo quando o conteúdo visual não for suficiente para leitores de tela.',
-    rule: 'button para ação, a para navegação. aria-label obrigatório sem texto explícito.',
+    body: 'Use o prop `as` para adequar o elemento raiz ao contexto: `button` (padrão) para ações in-page; `a` para navegação real com URL; `label` para cards de seleção que envolvem um input oculto (radio ou checkbox); `div` para containers com múltiplos controles internos, exigindo tabIndex e role manuais. Forneça aria-label quando o conteúdo visual não for suficiente.',
+    rule: 'button → ação; a → link; label → seleção; div → controles aninhados.',
   },
   {
     title: 'Contraste com o contexto',
@@ -96,5 +96,48 @@ export const INTERACTIVE_CARD_GUIDELINES: GuidelineDef[] = [
     title: 'Ações filhas e propagação de eventos',
     body: 'Se o card contiver ações secundárias (menu de contexto, botão de favoritar), use stopPropagation para evitar que o clique no filho acione o card pai. Ações filhas não devem competir com a área acionável principal.',
     rule: 'stopPropagation em ações filhas para não disparar o card pai.',
+  },
+]
+
+export type SemanticVariantDef = {
+  as: 'button' | 'a' | 'label' | 'div'
+  label: string
+  when: string
+  example: string
+  accessibility: string
+}
+
+export const INTERACTIVE_CARD_SEMANTIC_VARIANTS: SemanticVariantDef[] = [
+  {
+    as: 'button',
+    label: 'Button (padrão)',
+    when: 'Ações in-page: navegação via router, abertura de modal, disparo de seleção.',
+    example: '<InteractiveCard onClick={handleClick}>…</InteractiveCard>',
+    accessibility: 'Focalizável e ativável por teclado nativamente. Semântica de ação clara.',
+  },
+  {
+    as: 'a',
+    label: 'Anchor',
+    when: 'Navegação real com URL — links para páginas externas ou destinos absolutos.',
+    example: '<InteractiveCard as="a" href="/rota">…</InteractiveCard>',
+    accessibility:
+      'Anunciado como link por leitores de tela. Suporta Ctrl+click e abertura em nova aba.',
+  },
+  {
+    as: 'label',
+    label: 'Label',
+    when: 'Cards de seleção: um input oculto (radio ou checkbox) fica dentro do card, e o label estilizado é a área clicável.',
+    example:
+      '<InteractiveCard as="label">\n  <input type="radio" className="sr-only" name="grupo" />\n  …\n</InteractiveCard>',
+    accessibility:
+      'O foco e o estado checado ficam no input nativo. Compatível com Screen Readers e navegação por teclado sem JS extra.',
+  },
+  {
+    as: 'div',
+    label: 'Div',
+    when: 'Containers com múltiplos controles interativos aninhados (switch, stepper, select). O card em si não é a ação — seus filhos são.',
+    example: '<InteractiveCard as="div" role="group" aria-label="Controles">…</InteractiveCard>',
+    accessibility:
+      'Responsabilidade do consumidor: tabIndex, role e handlers de teclado devem ser adicionados manualmente.',
   },
 ]
