@@ -3,15 +3,18 @@ import { useNavigate } from 'react-router-dom'
 import { Badge, Breadcrumb, Button, InfoPanel } from '@globo-ads/ds'
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog'
 import { ExpandablePurchaseCard } from '../../components/PurchaseCard/PurchaseCard'
+import { ImpressoesPurchaseCard } from '../../components/ImpressoesPurchaseCard/ImpressoesPurchaseCard'
 import PageContainer from '../../components/PageContainer/PageContainer'
 import { formatCurrency } from '../../data/diarias'
 import { useCart } from '../../cart/CartContext'
 import { clearDiariasWizardSession } from '../compra-diarias/context/DiariasContext'
+import { clearImpressoesWizardSession } from '../compra-impressoes/context/ImpressoesContext'
 import type { CartItem } from '../../cart/types'
 import styles from './CarrinhoPage.module.css'
 
 const MODALITY_LABELS: Record<CartItem['modality'], string> = {
   diarias: 'Diárias na Globo',
+  impressoes: 'Compra por Impressões',
 }
 
 export default function CarrinhoPage() {
@@ -43,6 +46,7 @@ export default function CarrinhoPage() {
   }
 
   const diariasItems = items.filter((item) => item.modality === 'diarias').toReversed()
+  const impressoesItems = items.filter((item) => item.modality === 'impressoes').toReversed()
 
   return (
     <PageContainer>
@@ -80,6 +84,28 @@ export default function CarrinhoPage() {
               </div>
             </section>
           )}
+
+          {impressoesItems.length > 0 && (
+            <section className={styles.modalitySection}>
+              <div className={styles.modalityHeader}>
+                <h2 className="type-title-sm">{MODALITY_LABELS.impressoes}</h2>
+                <Badge
+                  variant="neutral"
+                  label={`${impressoesItems.length} ${impressoesItems.length === 1 ? 'item' : 'itens'}`}
+                />
+              </div>
+              <div className={styles.cardList}>
+                {impressoesItems.map((item) => (
+                  <ImpressoesPurchaseCard
+                    key={item.id}
+                    selection={item.data}
+                    onEdit={() => navigate(`/compra-impressoes?edit=${item.id}`)}
+                    onDelete={() => setPendingRemoveId(item.id)}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         <aside className={styles.summary}>
@@ -93,6 +119,17 @@ export default function CarrinhoPage() {
                 </span>
                 <span className="type-caption-md">
                   {formatCurrency(diariasItems.reduce((sum, item) => sum + item.subtotal, 0))}
+                </span>
+              </div>
+            )}
+
+            {impressoesItems.length > 0 && (
+              <div className={styles.summaryRow}>
+                <span className={`type-body-sm ${styles.summaryLabel}`}>
+                  {MODALITY_LABELS.impressoes}
+                </span>
+                <span className="type-caption-md">
+                  {formatCurrency(impressoesItems.reduce((sum, item) => sum + item.subtotal, 0))}
                 </span>
               </div>
             )}
@@ -120,6 +157,7 @@ export default function CarrinhoPage() {
                 iconLeft="shopping_cart_checkout"
                 onClick={() => {
                   clearDiariasWizardSession()
+                  clearImpressoesWizardSession()
                   navigate('/')
                 }}
               >

@@ -1,0 +1,27 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.subtitle {
+  color: var(--color-fill-secondary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-150);
+}

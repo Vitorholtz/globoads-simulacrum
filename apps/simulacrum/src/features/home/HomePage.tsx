@@ -5,11 +5,13 @@ import PageContainer from '../../components/PageContainer/PageContainer'
 import styles from './HomePage.module.css'
 
 // Atualizar junto com features.ts ao adicionar nova jornada implementada.
-const IMPLEMENTED_PATHS = new Set(['/compra-diarias'])
+const IMPLEMENTED_PATHS = new Set(['/compra-diarias', '/compra-impressoes'])
 
 const JOURNEY_DESCRIPTIONS: Record<string, string> = {
   '/compra-diarias':
     'Compre espaços publicitários por dia em G1, GE, Globo.com, gshow e Globoplay.',
+  '/compra-impressoes':
+    'Contrate impressões por CPM e alcance seu público nas plataformas digitais da Globo.',
   '/minhas-campanhas': 'Acompanhe o desempenho e gerencie suas campanhas ativas.',
   '/criativos-materiais': 'Envie e organize os criativos das suas campanhas.',
   '/resultados': 'Visualize relatórios e métricas de impacto das suas ações.',

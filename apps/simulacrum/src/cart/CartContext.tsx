@@ -13,6 +13,11 @@ function parseISODates(arr: unknown[]): Date[] {
   })
 }
 
+function parseISODate(d: unknown): Date {
+  if (d instanceof Date) return d
+  return new Date(d as string)
+}
+
 function hydrateItem(item: CartItem): CartItem {
   if (item.modality === 'diarias') {
     return {
@@ -24,6 +29,16 @@ function hydrateItem(item: CartItem): CartItem {
           ...r,
           dates: parseISODates(r.dates as unknown[]),
         })),
+      },
+    }
+  }
+  if (item.modality === 'impressoes') {
+    return {
+      ...item,
+      data: {
+        ...item.data,
+        startDate: parseISODate(item.data.startDate),
+        endDate: parseISODate(item.data.endDate),
       },
     }
   }
@@ -87,7 +102,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const updateItem = useCallback((id: string, data: CartItem['data'], subtotal: number) => {
-    setItems((prev) => prev.map((item) => (item.id === id ? { ...item, data, subtotal } : item)))
+    setItems((prev) =>
+      prev.map((item) => (item.id === id ? ({ ...item, data, subtotal } as CartItem) : item))
+    )
     setToast({ title: 'Item atualizado no carrinho', description: 'As alterações foram salvas.' })
   }, [])
 

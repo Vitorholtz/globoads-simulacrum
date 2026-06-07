@@ -5,6 +5,7 @@
 import type { ComponentType } from 'react'
 import HomePage from '../features/home/HomePage'
 import CompraDiariasPage from '../features/compra-diarias/CompraDiariasPage'
+import CompraImpressoesPage from '../features/compra-impressoes/CompraImpressoesPage'
 import CarrinhoPage from '../features/carrinho/CarrinhoPage'
 
 export interface FeatureRoute {
@@ -15,5 +16,6 @@ export interface FeatureRoute {
 export const FEATURES: FeatureRoute[] = [
   { path: '/', component: HomePage },
   { path: '/compra-diarias', component: CompraDiariasPage },
+  { path: '/compra-impressoes', component: CompraImpressoesPage },
   { path: '/carrinho', component: CarrinhoPage },
 ]

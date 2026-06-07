@@ -1,0 +1,67 @@
+/* Pricing card lateral da Compra por Impressões — sempre visível, atualiza ao vivo. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  padding: var(--spacing-250);
+}
+
+.title {
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-050);
+}
+
+.hint {
+  color: var(--color-fill-tertiary);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.label {
+  color: var(--color-fill-secondary);
+  flex-shrink: 0;
+}
+
+.value {
+  color: var(--color-fill-primary);
+  text-align: right;
+}
+
+.objetivoName {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  color: var(--color-fill-secondary);
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border-tertiary);
+}
+
+.subtotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.subtotalLabel {
+  color: var(--color-fill-secondary);
+}
+
+.subtotalValue {
+  color: var(--color-fill-accent);
+}

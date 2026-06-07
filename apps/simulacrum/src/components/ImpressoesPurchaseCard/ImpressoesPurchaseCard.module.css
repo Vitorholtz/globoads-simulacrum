@@ -1,0 +1,320 @@
+/* Invoice/recibo da Compra por Impressões — layout próprio (impressões × CPM), não compartilha
+   classes com o PurchaseCard de Diárias. Mantém consistência visual via tokens do DS. */
+
+/* ── Receipt ── */
+
+.receipt {
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadows-raised);
+  overflow: hidden;
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.receiptHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-300);
+  padding: var(--spacing-300) var(--spacing-300) var(--spacing-250);
+}
+
+.receiptHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+}
+
+.receiptHeaderRight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.metaLabel {
+  color: var(--color-fill-tertiary);
+  margin-bottom: var(--spacing-025);
+}
+
+.metaValue {
+  color: var(--color-fill-primary);
+}
+
+.produtoRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex-wrap: wrap;
+}
+
+.objetivoRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* ── Dividers ── */
+
+.divider {
+  height: var(--border-width-sm);
+  background: var(--color-border-tertiary);
+  margin-inline: var(--spacing-300);
+}
+
+/* ── Sections ── */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  padding: var(--spacing-200) var(--spacing-300) var(--spacing-100);
+}
+
+.sectionLabel {
+  color: var(--color-fill-tertiary);
+}
+
+.formatList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formatItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+}
+
+.formatThumb {
+  width: 48px;
+  height: auto;
+  display: block;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
+.formatIcon {
+  color: var(--color-fill-tertiary);
+  flex-shrink: 0;
+}
+
+.formatInfo {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-100);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.formatName {
+  color: var(--color-fill-primary);
+}
+
+.formatSpecs {
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+}
+
+/* ── Platforms ── */
+
+.platformList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-100);
+}
+
+.platformChip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  padding: var(--spacing-075) var(--spacing-150);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-full);
+}
+
+.platformLogo {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.platformName {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Detail grid ── */
+
+.detailGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  padding: var(--spacing-200) var(--spacing-300);
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.detailLabel {
+  color: var(--color-fill-secondary);
+}
+
+.detailValue {
+  color: var(--color-fill-primary);
+  text-align: right;
+}
+
+/* ── Total row ── */
+
+.receiptTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+  padding: var(--spacing-150) var(--spacing-200);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  margin: 0 var(--spacing-300) var(--spacing-300);
+}
+
+.totalLabel {
+  color: var(--color-fill-secondary);
+}
+
+.totalValue {
+  color: var(--color-fill-accent);
+}
+
+/* ── Expandable card ── */
+
+.expandableCard {
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-2xl);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  transition: box-shadow var(--motion-duration-base) var(--motion-easing-default);
+}
+
+.expandableCard:has(.expandableCardHeader:hover) {
+  box-shadow: var(--shadows-low);
+}
+
+.expandableCard:has(.expandableCardHeader:focus-visible) {
+  box-shadow: var(--outline-focus-out), var(--shadows-low);
+}
+
+.expandableCard:has(.expandableCardHeader:active) {
+  box-shadow: var(--shadows-ground);
+}
+
+.expandableCardHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+  padding: var(--spacing-250);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.expandableCardLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+  min-width: 0;
+}
+
+.expandableIcon {
+  color: var(--color-fill-accent);
+  flex-shrink: 0;
+}
+
+.expandableCardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  min-width: 0;
+}
+
+.expandableName {
+  color: var(--color-fill-primary);
+}
+
+.expandableCardMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex-wrap: wrap;
+}
+
+.expandableMetaText {
+  color: var(--color-fill-secondary);
+}
+
+.expandableCardRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+  flex-shrink: 0;
+}
+
+.expandableTotalValue {
+  color: var(--color-fill-accent);
+}
+
+.expandableChevron {
+  color: var(--color-fill-tertiary);
+  transition: transform var(--motion-duration-base) var(--motion-easing-out);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.expandableCardBody {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--motion-duration-slow) var(--motion-easing-out);
+}
+
+.expandableCardBodyOpen {
+  grid-template-rows: 1fr;
+}
+
+.expandableCardBodyInner {
+  overflow: hidden;
+}
+
+.expandableCardBodyPad {
+  padding: var(--spacing-300) var(--spacing-250);
+  background: var(--color-surface-secondary);
+  position: relative;
+}
+
+.expandableCardActions {
+  position: absolute;
+  top: var(--spacing-300);
+  right: var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-100);
+}

@@ -1,0 +1,68 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.subtitle {
+  color: var(--color-fill-secondary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-card-min), 1fr));
+  gap: var(--spacing-200);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  padding: var(--spacing-250);
+  text-align: left;
+  align-items: flex-start;
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  height: 100%;
+}
+
+.cardSelected {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--spacing-050);
+}
+
+.cardIcon {
+  color: var(--color-fill-accent);
+}
+
+.check {
+  color: var(--color-fill-accent);
+}
+
+.cardTitle {
+  color: var(--color-fill-primary);
+}
+
+.cardDesc {
+  color: var(--color-fill-secondary);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-150);
+}

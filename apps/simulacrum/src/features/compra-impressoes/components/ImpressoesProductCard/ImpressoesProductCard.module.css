@@ -1,0 +1,94 @@
+/* Card de produto da Compra por Impressões — estrutura própria, sem reuso dos cards de Diárias. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  padding: var(--spacing-250);
+  text-align: left;
+  align-items: stretch;
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  height: 100%;
+}
+
+.cardSelected {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-150);
+}
+
+.thumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+}
+
+.thumb {
+  width: 44px;
+  height: auto;
+  display: block;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-sm);
+  flex-shrink: 0;
+}
+
+.check {
+  color: var(--color-fill-accent);
+  flex-shrink: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-075);
+  flex: 1;
+}
+
+.name {
+  color: var(--color-fill-primary);
+}
+
+.description {
+  color: var(--color-fill-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.formatsRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-075);
+}
+
+.moreFormats {
+  color: var(--color-fill-tertiary);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-150);
+  padding-top: var(--spacing-150);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.platforms {
+  color: var(--color-fill-secondary);
+}
+
+.cpm {
+  color: var(--color-fill-accent);
+  white-space: nowrap;
+  text-align: right;
+}

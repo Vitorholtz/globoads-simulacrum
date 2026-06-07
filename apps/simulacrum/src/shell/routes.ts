@@ -21,6 +21,7 @@ export const NAV_SECTIONS: NavSection[] = [
     items: [
       { path: '/', label: 'Página Inicial', icon: 'home' },
       { path: '/compra-diarias', label: 'Compra de Diárias', icon: 'shopping_cart' },
+      { path: '/compra-impressoes', label: 'Compra por Impressões', icon: 'ads_click' },
       { path: '/minhas-campanhas', label: 'Minhas Campanhas', icon: 'campaign' },
       { path: '/criativos-materiais', label: 'Criativos e Materiais', icon: 'palette' },
     ],
