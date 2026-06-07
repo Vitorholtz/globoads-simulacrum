@@ -48,8 +48,9 @@
 
    /* ── Layout ── */
    --sidebar-width: 260px;
-   --sidebar-panel-width: 368px;
-   --container-width: 1280px;
+   --sidebar-panel-width: 360px;
+   --container-width: 1200px;
+   --container-width-narrow: 1080px;
    --grid-card-min: 320px;
 
 
@@ -155,24 +156,24 @@
    /* ── Raios de borda ── */
 
    --border-radius-none: 0rem;
-   --border-radius-xs:   0.125rem;
-   --border-radius-sm:   0.25rem;
-   --border-radius-md:   0.5rem;
-   --border-radius-lg:   0.75rem;
-   --border-radius-xl:   1rem;
-   --border-radius-2xl:  1.25rem;
-   --border-radius-3xl:  1.5rem;
-   --border-radius-4xl:  2rem;
+   --border-radius-xs: 0.125rem;
+   --border-radius-sm: 0.25rem;
+   --border-radius-md: 0.5rem;
+   --border-radius-lg: 0.75rem;
+   --border-radius-xl: 1rem;
+   --border-radius-2xl: 1.25rem;
+   --border-radius-3xl: 1.5rem;
+   --border-radius-4xl: 2rem;
    --border-radius-full: 62.4375rem;
 
 
    /* ── Sombras ── */
 
-   --shadows-ground:  0 0 0 1px #0000001F;
-   --shadows-raised:  0 4px 16px 1px #00000014;
-   --shadows-low:     0 4px 8px 2px #0000001F;
-   --shadows-base:    0 4px 16px 0 #00000033;
-   --shadows-high:    0 8px 24px 0 #00000033;
+   --shadows-ground: 0 0 0 1px #0000001F;
+   --shadows-raised: 0 4px 16px 1px #00000014;
+   --shadows-low: 0 4px 8px 2px #0000001F;
+   --shadows-base: 0 4px 16px 0 #00000033;
+   --shadows-high: 0 8px 24px 0 #00000033;
    --shadows-diffuse: 0 8px 40px 0 #00000033;
 
 
@@ -180,7 +181,7 @@
      Outline/Focus     → componentes interativos genéricos (botão, chip, card…)
      Outline/Focus/Out → inputs com borda visível (TextField, Select, DatePicker…) */
 
-   --outline-focus:     0 0 0 2px var(--color-surface-primary), 0 0 0 4px var(--color-focus-default);
+   --outline-focus: 0 0 0 2px var(--color-surface-primary), 0 0 0 4px var(--color-focus-default);
    --outline-focus-out: 0 0 0 2px var(--color-focus-default);
 
 
@@ -228,29 +229,29 @@
      Grad  → estados sobre fundo gradiente accent.
      Critical → estados sobre fundo crítico. */
 
-   --color-action-solid-fill-hover:       #0050D1;
-   --color-action-solid-fill-active:      #0045B6;
-   --color-action-solid-ghost-hover:      #005DD91F;
-   --color-action-solid-ghost-active:     #005DD933;
-   --color-action-grad-fill-hover:        linear-gradient(135deg, #0050D1 0%, #7000D4 100%);
-   --color-action-grad-fill-active:       linear-gradient(135deg, #0045B6 0%, #5D00B3 100%);
-   --color-action-critical-fill-hover:    #930336;
-   --color-action-critical-fill-active:   #7A0237;
-   --color-action-critical-ghost-hover:   #B706341F;
-   --color-action-critical-ghost-active:  #B7063433;
+   --color-action-solid-fill-hover: #0050D1;
+   --color-action-solid-fill-active: #0045B6;
+   --color-action-solid-ghost-hover: #005DD91F;
+   --color-action-solid-ghost-active: #005DD933;
+   --color-action-grad-fill-hover: linear-gradient(135deg, #0050D1 0%, #7000D4 100%);
+   --color-action-grad-fill-active: linear-gradient(135deg, #0045B6 0%, #5D00B3 100%);
+   --color-action-critical-fill-hover: #930336;
+   --color-action-critical-fill-active: #7A0237;
+   --color-action-critical-ghost-hover: #B706341F;
+   --color-action-critical-ghost-active: #B7063433;
 
    /* ── Tokens de cor: Luminosidade ──
      Sobreposições neutras (preto ou branco com opacidade) para hover e
      active de botões ícone e itens de lista que não usam cor de destaque.
      Dark → sobre superfícies claras.  Light → sobre superfícies escuras. */
 
-   --color-luminosity-dark-ghost-subtle:  #0000000A;
-   --color-luminosity-dark-ghost-hover:   #00000012;
-   --color-luminosity-dark-ghost-active:  #0000001F;
-   --color-luminosity-dark-backdrop:      #00000066;
-   --color-luminosity-light-ghost-hover:  #FFFFFF2E;
+   --color-luminosity-dark-ghost-subtle: #0000000A;
+   --color-luminosity-dark-ghost-hover: #00000012;
+   --color-luminosity-dark-ghost-active: #0000001F;
+   --color-luminosity-dark-backdrop: #00000066;
+   --color-luminosity-light-ghost-hover: #FFFFFF2E;
    --color-luminosity-light-ghost-active: #FFFFFF4D;
-   --color-luminosity-light-ghost-focus:  #FFFFFF8C;
+   --color-luminosity-light-ghost-focus: #FFFFFF8C;
 
 
    /* ── Tokens de cor: Border ──
@@ -322,9 +323,9 @@
    --motion-duration-slow: 200ms;
 
    --motion-easing-default: ease;
-   --motion-easing-out:     ease-out;
-   --motion-easing-in-out:  ease-in-out;
-   --motion-easing-linear:  linear;
+   --motion-easing-out: ease-out;
+   --motion-easing-in-out: ease-in-out;
+   --motion-easing-linear: linear;
 }
 
 
@@ -606,21 +607,49 @@ body {
 ───────────────────────────────────────────────────────────── */
 
 @keyframes motion-enter-top {
-   from { opacity: 0; transform: translateY(-6px); }
-   to   { opacity: 1; transform: translateY(0); }
+   from {
+      opacity: 0;
+      transform: translateY(-6px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
 }
 
 @keyframes motion-enter-bottom {
-   from { opacity: 0; transform: translateY(6px); }
-   to   { opacity: 1; transform: translateY(0); }
+   from {
+      opacity: 0;
+      transform: translateY(6px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
 }
 
 @keyframes motion-enter-left {
-   from { opacity: 0; transform: translateX(-6px); }
-   to   { opacity: 1; transform: translateX(0); }
+   from {
+      opacity: 0;
+      transform: translateX(-6px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateX(0);
+   }
 }
 
 @keyframes motion-enter-right {
-   from { opacity: 0; transform: translateX(6px); }
-   to   { opacity: 1; transform: translateX(0); }
+   from {
+      opacity: 0;
+      transform: translateX(6px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateX(0);
+   }
 }

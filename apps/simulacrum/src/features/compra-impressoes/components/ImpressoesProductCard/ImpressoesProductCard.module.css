@@ -1,54 +1,41 @@
-/* Card de produto da Compra por Impressões — estrutura própria, sem reuso dos cards de Diárias. */
+/* Card de produto da Compra por Impressões — estado fechado e expandido inline. */
+
+/* ── Wrapper ── */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ── Card do produto (InteractiveCard on-secondary + borda) ── */
 
 .card {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-200);
-  padding: var(--spacing-250);
-  text-align: left;
-  align-items: stretch;
-  background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-tertiary);
-  height: 100%;
 }
 
 .cardSelected {
-  border-color: var(--color-fill-accent);
-  box-shadow: var(--outline-focus-out);
+  border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
-.header {
+/* ── Topo: info ── */
+
+.cardTop {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--spacing-150);
 }
 
-.thumbs {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-075);
-}
-
-.thumb {
-  width: 44px;
-  height: auto;
-  display: block;
-  background: var(--color-surface-secondary);
-  border-radius: var(--border-radius-sm);
-  flex-shrink: 0;
-}
-
-.check {
-  color: var(--color-fill-accent);
-  flex-shrink: 0;
-}
-
-.body {
+.cardInfo {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-075);
+  gap: var(--spacing-100);
   flex: 1;
+  min-width: 0;
 }
 
 .name {
@@ -63,32 +50,230 @@
   overflow: hidden;
 }
 
+/* ── Formatos ── */
+
+.formatsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.sectionLabel {
+  color: var(--color-fill-tertiary);
+}
+
 .formatsRow {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--spacing-075);
+  gap: var(--spacing-100);
+}
+
+.formatChip {
+  background: var(--color-surface-tertiary);
+  color: var(--color-fill-secondary);
+  padding: var(--spacing-025) var(--spacing-050);
+  border-radius: var(--border-radius-md);
+  white-space: nowrap;
 }
 
 .moreFormats {
   color: var(--color-fill-tertiary);
 }
 
+/* ── Divisor + rodapé ── */
+
+.divider {
+  height: 1px;
+  background: var(--color-border-tertiary);
+}
+
 .footer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-150);
-  padding-top: var(--spacing-150);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
-.platforms {
+.platformsCount {
   color: var(--color-fill-secondary);
+  transition: opacity var(--motion-duration-base) var(--motion-easing-default);
 }
 
-.cpm {
+.cpmRange {
   color: var(--color-fill-accent);
   white-space: nowrap;
-  text-align: right;
+  transition: opacity var(--motion-duration-base) var(--motion-easing-default);
+}
+
+.footerHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.footerConfigure {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: var(--color-fill-accent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-duration-base) var(--motion-easing-default);
+}
+
+.footerConfigureVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Expansão — altura animada via grid-template-rows (padrão Accordion DS) ── */
+
+.expansion {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--motion-duration-slow) var(--motion-easing-out);
+}
+
+.expansion[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+.expansionInner {
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity var(--motion-duration-slow) var(--motion-easing-out);
+}
+
+.expansion[data-open='true'] .expansionInner {
+  opacity: 1;
+}
+
+/* ── Painel de configuração ── */
+
+.configPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  padding: var(--spacing-250);
+  margin-top: var(--spacing-150);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-xl);
+}
+
+.configSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+/* ── Grid de plataformas ── */
+
+.platformsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-100);
+}
+
+/*
+ * Seletor pai garante especificidade sobre o InteractiveCard
+ * para sobrescrever border-radius e padding.
+ */
+.platformsGrid .platformItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-100);
+  padding: var(--spacing-100) var(--spacing-200) var(--spacing-100) var(--spacing-100);
+  border-radius: var(--border-radius-lg);
+}
+
+.platformItemFixed {
+  grid-column: 1 / -1;
+  justify-content: space-between;
+  background: var(--color-surface-primary);
+  cursor: default;
+  pointer-events: none;
+}
+
+.platformItemLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+  min-width: 0;
+  flex: 1;
+}
+
+.platformLogoWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.platformLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.platformName {
+  color: var(--color-fill-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Linhas de CPM (InteractiveCard as="div") ── */
+
+.cpmList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+/* Seletor pai para especificidade sobre o InteractiveCard */
+.cpmList .cpmRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-150);
+  padding: var(--spacing-150) var(--spacing-200);
+  border-radius: var(--border-radius-lg);
+}
+
+.cpmLabel {
+  color: var(--color-fill-primary);
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.cpmLabelDivider {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: var(--color-border-secondary);
+  margin: 0 var(--spacing-100);
+  flex-shrink: 0;
+}
+
+.cpmRowRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex-shrink: 0;
+}
+
+.cpmPrice {
+  color: var(--color-fill-accent);
+  white-space: nowrap;
 }

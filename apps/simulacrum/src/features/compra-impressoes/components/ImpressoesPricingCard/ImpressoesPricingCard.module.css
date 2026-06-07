@@ -39,6 +39,14 @@
   text-align: right;
 }
 
+.dateRange {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .objetivoName {
   display: flex;
   align-items: center;

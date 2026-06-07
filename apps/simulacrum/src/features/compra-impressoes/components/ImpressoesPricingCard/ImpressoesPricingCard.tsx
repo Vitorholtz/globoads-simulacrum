@@ -10,8 +10,9 @@ import {
   computeImpressoesTotal,
   formatCurrency,
   formatImpressions,
-  formatDateRange,
+  formatDateLong,
   getCpmOption,
+  getCpmSectionLabel,
   getEffectiveCpm,
 } from '../../../../data/rules/impressoes'
 import styles from './ImpressoesPricingCard.module.css'
@@ -42,7 +43,7 @@ export default function ImpressoesPricingCard({ selection }: ImpressoesPricingCa
   const total = computeImpressoesTotal(selection)
   const audience = audienceId ? getAudience(audienceId) : undefined
 
-  const hasAnything = Boolean(produto)
+  const hasAnything = Boolean(objetivo || produto)
 
   return (
     <StaticCard className={styles.card}>
@@ -83,11 +84,20 @@ export default function ImpressoesPricingCard({ selection }: ImpressoesPricingCa
             />
           )}
           {cpmOption && produto && produto.cpmOptions.length > 1 && (
-            <Row label="Formato/Secundagem" value={cpmOption.label} />
+            <Row label={getCpmSectionLabel(produto.id)} value={cpmOption.label} />
           )}
           {audience && <Row label="Audiência" value={audience.name} />}
           {selection.startDate && selection.endDate && (
-            <Row label="Período" value={formatDateRange(selection.startDate, selection.endDate)} />
+            <div className={styles.row}>
+              <span className={`type-body-sm ${styles.label}`}>Período</span>
+              <span className={`type-body-sm ${styles.value} ${styles.dateRange}`}>
+                {formatDateLong(selection.startDate)}
+                <span className="material-symbols-rounded icon-xs" aria-hidden="true">
+                  arrow_forward
+                </span>
+                {formatDateLong(selection.endDate)}
+              </span>
+            </div>
           )}
           {produto && selection.startDate && selection.endDate && (
             <Row label="Impressões" value={formatImpressions(selection.impressions)} />

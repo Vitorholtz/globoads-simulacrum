@@ -31,6 +31,9 @@
   position: sticky;
   top: calc(72px + var(--spacing-300));
   align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
 }
 
 /* ── Step Indicator ── */

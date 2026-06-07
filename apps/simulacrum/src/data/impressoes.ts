@@ -190,7 +190,8 @@ export const IMPRESSOES_CATALOG: ImpressoesProduto[] = [
   {
     id: 'v-globoplay',
     name: 'V Globoplay',
-    description: 'Formato de vídeo rotativo dentro do player do Globoplay.',
+    description:
+      'Formato de vídeo rotativo dentro do player do Globoplay, com alta viewability em ambiente de streaming.',
     formatIds: ['in-stream-video'],
     platforms: ['globoplay'],
     platformSelection: 'fixed',

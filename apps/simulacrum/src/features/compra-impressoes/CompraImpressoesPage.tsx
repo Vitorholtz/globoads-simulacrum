@@ -3,6 +3,7 @@ import { Breadcrumb } from '@globo-ads/ds'
 import { ImpressoesProvider, useImpressoes, type Step } from './context/ImpressoesContext'
 import PageContainer from '../../components/PageContainer/PageContainer'
 import ImpressoesPricingCard from './components/ImpressoesPricingCard/ImpressoesPricingCard'
+import ImpressoesFormatsAccordion from './components/ImpressoesFormatsAccordion/ImpressoesFormatsAccordion'
 import ObjetivoKpiStep from './steps/ObjetivoKpiStep'
 import ProdutoConfigStep from './steps/ProdutoConfigStep'
 import SegmentacaoStep from './steps/SegmentacaoStep'
@@ -69,6 +70,7 @@ function CompraImpressoesContent() {
         {showAside && (
           <aside className={styles.summaryColumn}>
             <ImpressoesPricingCard selection={selection} />
+            {selection.produto && <ImpressoesFormatsAccordion produto={selection.produto} />}
           </aside>
         )}
       </div>

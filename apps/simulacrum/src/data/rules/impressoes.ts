@@ -13,6 +13,15 @@ import {
 export { formatCurrency, formatImpressions } from '../diarias'
 export { getAdFormat, getFormatSvg, getPrimaryDimension } from './diarias'
 
+// ── Labels de seção de CPM ────────────────────────────────────────────────────
+
+export function getCpmSectionLabel(produtoId: string): string {
+  if (['v-globo', 'v-globoplay', 'globo-dai'].includes(produtoId)) return 'Duração do vídeo'
+  if (['binge-ads', 'pause-ads'].includes(produtoId)) return 'Dispositivos'
+  if (produtoId === 'fast') return 'Canal e duração do vídeo'
+  return 'Secundagem'
+}
+
 // ── Filtragem por objetivo ─────────────────────────────────────────────────────
 
 export function getProductsByObjetivo(objetivo: ImpressoesObjetivo): ImpressoesProduto[] {
@@ -59,7 +68,10 @@ export function isValidImpressions(value: number): boolean {
 // ── Período ────────────────────────────────────────────────────────────────────
 
 export function formatDateLong(d: Date): string {
-  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
+  const day = d.getDate()
+  const month = d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '')
+  const year = d.getFullYear()
+  return `${day} de ${month}/${year}`
 }
 
 export function formatDateRange(start: Date | null, end: Date | null): string {

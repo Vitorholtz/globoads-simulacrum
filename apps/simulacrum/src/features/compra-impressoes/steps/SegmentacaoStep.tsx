@@ -33,22 +33,12 @@ export default function SegmentacaoStep() {
               aria-pressed={isSelected}
               aria-label={`Audiência ${a.name}`}
             >
-              <div className={styles.cardHeader}>
-                <span
-                  className={`material-symbols-rounded icon-lg ${styles.cardIcon}`}
-                  aria-hidden="true"
-                >
-                  {a.icon}
-                </span>
-                {isSelected && (
-                  <span
-                    className={`material-symbols-rounded icon-md ${styles.check}`}
-                    aria-hidden="true"
-                  >
-                    check_circle
-                  </span>
-                )}
-              </div>
+              <span
+                className={`material-symbols-rounded icon-lg ${styles.cardIcon}`}
+                aria-hidden="true"
+              >
+                {a.icon}
+              </span>
               <span className={`type-title-sm ${styles.cardTitle}`}>{a.name}</span>
               <span className={`type-body-sm ${styles.cardDesc}`}>{a.description}</span>
             </InteractiveCard>

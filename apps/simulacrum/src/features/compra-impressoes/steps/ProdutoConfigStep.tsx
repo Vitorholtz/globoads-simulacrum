@@ -1,13 +1,7 @@
 import { useState } from 'react'
-import { Button, Checkbox, Radio } from '@globo-ads/ds'
-import {
-  OBJETIVOS,
-  PLATFORM_DISPLAY_NAMES,
-  getPlatform,
-  type ImpressoesProduto,
-  type PlatformId,
-} from '../../../data/impressoes'
-import { getProductsByObjetivo, formatCurrency } from '../../../data/rules/impressoes'
+import { Button } from '@globo-ads/ds'
+import { OBJETIVOS, type ImpressoesProduto, type PlatformId } from '../../../data/impressoes'
+import { getProductsByObjetivo } from '../../../data/rules/impressoes'
 import ImpressoesProductCard from '../components/ImpressoesProductCard/ImpressoesProductCard'
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './ProdutoConfigStep.module.css'
@@ -24,6 +18,13 @@ export default function ProdutoConfigStep() {
   const produto = products.find((p) => p.id === produtoId) ?? null
 
   function selectProduto(p: ImpressoesProduto) {
+    if (produtoId === p.id) {
+      setProdutoId(null)
+      setPlatforms([])
+      setCpmOptionId(null)
+      updateSelection({ produto: undefined, platforms: [], cpmOptionId: null })
+      return
+    }
     const defaultCpm = p.cpmOptions.length === 1 ? p.cpmOptions[0].id : null
     const defaultPlatforms = [...p.platforms]
     setProdutoId(p.id)
@@ -69,78 +70,14 @@ export default function ProdutoConfigStep() {
             key={p.id}
             produto={p}
             selected={produtoId === p.id}
+            selectedPlatforms={produtoId === p.id ? platforms : []}
+            selectedCpmOptionId={produtoId === p.id ? cpmOptionId : null}
             onSelect={() => selectProduto(p)}
+            onPlatformToggle={togglePlatform}
+            onCpmSelect={selectCpm}
           />
         ))}
       </div>
-
-      {produto && (
-        <div className={styles.config}>
-          <p className={`type-title-sm ${styles.configTitle}`}>Configuração de {produto.name}</p>
-
-          <fieldset className={styles.fieldset}>
-            <legend className={`type-body-sm ${styles.legend}`}>
-              {produto.platformSelection === 'multiple'
-                ? 'Plataformas (selecione uma ou mais)'
-                : 'Plataforma'}
-            </legend>
-            {produto.platformSelection === 'multiple' ? (
-              <div className={styles.platformOptions}>
-                {produto.platforms.map((p) => (
-                  <Checkbox
-                    key={p}
-                    checked={platforms.includes(p)}
-                    onChange={() => togglePlatform(p)}
-                    label={PLATFORM_DISPLAY_NAMES[p]}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className={styles.fixedPlatforms}>
-                {produto.platforms.map((p) => {
-                  const platform = getPlatform(p)
-                  return (
-                    <span key={p} className={styles.platformChip}>
-                      {platform.svgPath && (
-                        <img
-                          src={platform.svgPath}
-                          alt=""
-                          aria-hidden="true"
-                          className={styles.platformLogo}
-                        />
-                      )}
-                      <span className={`type-body-sm ${styles.platformChipName}`}>
-                        {PLATFORM_DISPLAY_NAMES[p]}
-                      </span>
-                    </span>
-                  )
-                })}
-                <span className={`type-caption-sm ${styles.platformNote}`}>Plataforma fixa</span>
-              </div>
-            )}
-          </fieldset>
-
-          {produto.cpmOptions.length > 1 && (
-            <fieldset className={styles.fieldset}>
-              <legend className={`type-body-sm ${styles.legend}`}>
-                Formato de entrega (define o CPM)
-              </legend>
-              <div className={styles.cpmOptions}>
-                {produto.cpmOptions.map((opt) => (
-                  <Radio
-                    key={opt.id}
-                    name="cpm-option"
-                    value={opt.id}
-                    checked={cpmOptionId === opt.id}
-                    onChange={() => selectCpm(opt.id)}
-                    label={`${opt.label} — ${formatCurrency(opt.cpm)} / mil`}
-                  />
-                ))}
-              </div>
-            </fieldset>
-          )}
-        </div>
-      )}
 
       <div className={styles.actions}>
         <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(1)}>
