@@ -48,9 +48,8 @@
 
    /* ── Layout ── */
    --sidebar-width: 260px;
-   --sidebar-panel-width: 360px;
-   --container-width: 1200px;
-   --container-width-narrow: 1080px;
+   --sidebar-panel-width: 368px;
+   --container-width: 1280px;
    --grid-card-min: 320px;
 
 

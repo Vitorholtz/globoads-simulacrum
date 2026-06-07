@@ -38,7 +38,7 @@ function CompraDiariasContent() {
   const { step, setStep } = useDiarias()
 
   return (
-    <PageContainer narrow>
+    <PageContainer>
       <Breadcrumb
         items={[{ label: 'Página Inicial', onClick: () => navigate('/') }, { label: 'Diárias' }]}
       />

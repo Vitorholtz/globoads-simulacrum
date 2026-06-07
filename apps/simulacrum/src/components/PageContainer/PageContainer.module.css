@@ -7,6 +7,6 @@
   gap: var(--spacing-400);
 }
 
-.narrow {
-  max-width: var(--container-width-narrow);
+.fluid {
+  max-width: 100%;
 }
