@@ -18,6 +18,8 @@ export interface RadioProps {
   helpText?: string
   /** Conditionally displays helpText below the label */
   showHelpText?: boolean
+  /** Accessible name — required when label is omitted */
+  'aria-label'?: string
   /** Radio group name for native mutual exclusion */
   name?: string
   value?: string
@@ -31,9 +33,10 @@ export default function Radio({
   behavior,
   forceState,
   type = 'default',
-  label = 'Radio',
+  label,
   helpText,
   showHelpText = false,
+  'aria-label': ariaLabel,
   name,
   value,
   className,
@@ -54,18 +57,21 @@ export default function Radio({
           checked={checked}
           onChange={(e) => onChange?.(e.target.checked)}
           disabled={isDisabled}
+          aria-label={ariaLabel}
           name={name}
           value={value}
         />
         <div className={styles.shape} />
       </div>
 
-      <div className={styles.textGroup}>
-        <span className={`type-body-md ${styles.label}`}>{label}</span>
-        {showHelpText && helpText && (
-          <span className={`type-body-xs ${styles.helpText}`}>{helpText}</span>
-        )}
-      </div>
+      {label && (
+        <div className={styles.textGroup}>
+          <span className={`type-body-md ${styles.label}`}>{label}</span>
+          {showHelpText && helpText && (
+            <span className={`type-body-xs ${styles.helpText}`}>{helpText}</span>
+          )}
+        </div>
+      )}
     </label>
   )
 }

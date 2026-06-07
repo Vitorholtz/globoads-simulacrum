@@ -38,3 +38,11 @@
 .helpTextDesc {
   color: var(--color-fill-secondary);
 }
+
+/* ── No-label section ── */
+
+.noLabelRow {
+  display: flex;
+  gap: var(--spacing-400);
+  align-items: center;
+}

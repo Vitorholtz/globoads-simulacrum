@@ -60,6 +60,11 @@ export default function CheckboxPage() {
   }
 
   const [helpState, setHelpState] = useState([false, true] as [boolean, boolean])
+  const [noLabelState, setNoLabelState] = useState([false, false, true] as [
+    boolean,
+    boolean,
+    boolean,
+  ])
 
   return (
     <div>
@@ -168,6 +173,34 @@ export default function CheckboxPage() {
               O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a opção. Use-o
               para explicar consequências, requisitos ou restrições da seleção. Mantenha-o conciso —
               no máximo duas linhas.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── Sem Rótulo ── */}
+      <Section icon="check_box_outline_blank" title="Sem Rótulo">
+        <div className={styles.helpTextContainer}>
+          <div className={styles.helpTextPreview}>
+            <div className={styles.noLabelRow}>
+              <Checkbox
+                checked={noLabelState[0]}
+                onChange={(v) => setNoLabelState([v, noLabelState[1], noLabelState[2]])}
+                aria-label="Selecionar primeiro item"
+              />
+              <Checkbox checked={noLabelState[1]} indeterminate aria-label="Seleção parcial" />
+              <Checkbox
+                checked={noLabelState[2]}
+                onChange={(v) => setNoLabelState([noLabelState[0], noLabelState[1], v])}
+                aria-label="Selecionar terceiro item"
+              />
+            </div>
+          </div>
+          <div className={styles.helpTextBody}>
+            <p className={`type-body-sm ${styles.helpTextDesc}`}>
+              Omita o <code>label</code> quando o contexto visual já identifica o controle — por
+              exemplo, colunas de seleção em tabelas. Sempre forneça <code>aria-label</code> para
+              garantir acessibilidade a leitores de tela.
             </p>
           </div>
         </div>

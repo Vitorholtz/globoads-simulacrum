@@ -32,6 +32,7 @@ export default function RadioPage() {
   })
 
   const [helpValue, setHelpValue] = useState('mensal')
+  const [noLabelValue, setNoLabelValue] = useState('b')
 
   return (
     <div>
@@ -148,6 +149,34 @@ export default function RadioPage() {
               O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre cada opção.
               Use-o para explicar consequências, custos ou restrições da seleção. Mantenha-o conciso
               — no máximo duas linhas.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── Sem Rótulo ── */}
+      <Section icon="radio_button_unchecked" title="Sem Rótulo">
+        <div className={styles.helpTextContainer}>
+          <div className={styles.helpTextPreview}>
+            <div className={styles.noLabelRow}>
+              {(['a', 'b', 'c'] as const).map((v) => (
+                <Radio
+                  key={v}
+                  checked={noLabelValue === v}
+                  onChange={() => setNoLabelValue(v)}
+                  name="no-label-demo"
+                  value={v}
+                  aria-label={`Opção ${v.toUpperCase()}`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className={styles.helpTextBody}>
+            <p className={`type-body-sm ${styles.helpTextDesc}`}>
+              Omita o <code>label</code> quando o contexto visual já identifica cada opção — por
+              exemplo, controles embutidos em linhas de tabela. Sempre forneça{' '}
+              <code>aria-label</code> para garantir acessibilidade a leitores de tela. O atributo{' '}
+              <code>name</code> continua obrigatório para o agrupamento nativo do browser.
             </p>
           </div>
         </div>

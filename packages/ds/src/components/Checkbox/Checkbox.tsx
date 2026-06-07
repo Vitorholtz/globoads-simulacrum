@@ -21,6 +21,8 @@ export interface CheckboxProps {
   helpText?: string
   /** Conditionally displays helpText below the label */
   showHelpText?: boolean
+  /** Accessible name — required when label is omitted */
+  'aria-label'?: string
   className?: string
 }
 
@@ -32,9 +34,10 @@ export default function Checkbox({
   behavior,
   forceState,
   type = 'default',
-  label = 'Checkbox',
+  label,
   helpText,
   showHelpText = false,
+  'aria-label': ariaLabel,
   className,
 }: CheckboxProps) {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -69,6 +72,7 @@ export default function Checkbox({
           checked={checked}
           onChange={(e) => onChange?.(e.target.checked)}
           disabled={isDisabled}
+          aria-label={ariaLabel}
         />
         {icon && (
           <span
@@ -81,12 +85,14 @@ export default function Checkbox({
         <div className={styles.shape} />
       </div>
 
-      <div className={styles.textGroup}>
-        <span className={`type-body-md ${styles.label}`}>{label}</span>
-        {showHelpText && helpText && (
-          <span className={`type-body-xs ${styles.helpText}`}>{helpText}</span>
-        )}
-      </div>
+      {label && (
+        <div className={styles.textGroup}>
+          <span className={`type-body-md ${styles.label}`}>{label}</span>
+          {showHelpText && helpText && (
+            <span className={`type-body-xs ${styles.helpText}`}>{helpText}</span>
+          )}
+        </div>
+      )}
     </label>
   )
 }
