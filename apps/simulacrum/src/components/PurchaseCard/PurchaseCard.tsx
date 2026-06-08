@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Badge, Tooltip } from '@globo-ads/ds'
+import { Button, Badge, Tooltip, Accordion } from '@globo-ads/ds'
 import {
   getPortal,
   PORTAL_DISPLAY_NAMES,
@@ -69,45 +69,6 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
             />
           </div>
         </div>
-      </div>
-
-      <div className={styles.receiptDivider} />
-
-      <div className={styles.receiptSection}>
-        <p className={`type-caption-sm ${styles.receiptSectionLabel}`}>Formatos</p>
-        <ul className={styles.formatList}>
-          {produto.formats.map((f) => {
-            const svgPath = getFormatSvg(f.formatId)
-            const dim = getPrimaryDimension(f.formatId)
-            return (
-              <li key={f.formatId} className={styles.formatItem}>
-                {svgPath ? (
-                  <img src={svgPath} alt="" aria-hidden="true" className={styles.formatThumb} />
-                ) : (
-                  <span
-                    className={`material-symbols-rounded icon-sm ${styles.formatIcon}`}
-                    aria-hidden="true"
-                  >
-                    {f.formatId === 'in-stream-video' ? 'play_circle' : 'image'}
-                  </span>
-                )}
-                <div className={styles.formatInfo}>
-                  <div className={styles.formatHeadline}>
-                    <span className={`type-caption-lg ${styles.formatName}`}>{f.formatName}</span>
-                    {dim && (
-                      <span className={`type-caption-sm ${styles.formatSpecs}`}>
-                        {dim.width}×{dim.height} | {f.devices}
-                      </span>
-                    )}
-                  </div>
-                  <span className={`type-caption-sm ${styles.formatPositions}`}>
-                    {f.positions.join(', ')}
-                  </span>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
       </div>
 
       <div className={styles.tableHeader}>
@@ -283,6 +244,57 @@ export function ExpandablePurchaseCard({
           <div className={styles.expandableCardBodyPad}>
             <div className={styles.receipt}>
               <InvoiceContent selection={selection} />
+            </div>
+            <div className={styles.accordionWrap}>
+              <Accordion
+                items={[
+                  {
+                    id: 'formatos',
+                    label: 'Formatos disponíveis',
+                    detail: `${selection.produto.formats.length} ${selection.produto.formats.length === 1 ? 'formato' : 'formatos'}`,
+                    content: (
+                      <div className={styles.accordionContent}>
+                        <ul className={styles.formatList}>
+                          {selection.produto.formats.map((f) => {
+                            const svgPath = getFormatSvg(f.formatId)
+                            const dim = getPrimaryDimension(f.formatId)
+                            return (
+                              <li key={f.formatId} className={styles.formatItem}>
+                                {svgPath ? (
+                                  <img
+                                    src={svgPath}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className={styles.formatThumb}
+                                  />
+                                ) : (
+                                  <span
+                                    className={`material-symbols-rounded icon-sm ${styles.formatIcon}`}
+                                    aria-hidden="true"
+                                  >
+                                    {f.formatId === 'in-stream-video' ? 'play_circle' : 'image'}
+                                  </span>
+                                )}
+                                <div className={styles.formatInfo}>
+                                  <span className={`type-caption-lg ${styles.formatName}`}>
+                                    {f.formatName}
+                                  </span>
+                                  {dim && (
+                                    <span className={`type-caption-sm ${styles.formatSpecs}`}>
+                                      {dim.width}×{dim.height}
+                                      {f.devices ? ` • ${f.devices}` : ''}
+                                    </span>
+                                  )}
+                                </div>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
             </div>
             {(onEdit || onDelete) && (
               <div className={styles.expandableCardActions}>

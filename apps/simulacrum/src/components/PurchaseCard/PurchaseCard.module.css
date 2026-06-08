@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-300);
-  padding: var(--spacing-300) var(--spacing-300) var(--spacing-250);
+  padding: var(--spacing-250);
 }
 
 .receiptHeaderLeft {
@@ -150,7 +150,7 @@
   padding: var(--spacing-150) var(--spacing-200);
   background: var(--color-surface-secondary);
   border-radius: var(--border-radius-md);
-  margin: var(--spacing-100) var(--spacing-300);
+  margin: var(--spacing-100) var(--spacing-250);
 }
 
 .tableHeadLabel {
@@ -166,7 +166,7 @@
 .tableRows {
   border-radius: var(--border-radius-md);
   overflow: hidden;
-  margin: 0 var(--spacing-300) var(--spacing-100);
+  margin: 0 var(--spacing-250);
 }
 
 .tableRow {
@@ -235,7 +235,7 @@
   padding: var(--spacing-150) var(--spacing-200);
   background: var(--color-surface-secondary);
   border-radius: var(--border-radius-md);
-  margin: 0 var(--spacing-300) var(--spacing-300);
+  margin: var(--spacing-100) var(--spacing-250) var(--spacing-250);
 }
 
 .totalLabel {
@@ -359,6 +359,18 @@
   padding: var(--spacing-300) var(--spacing-250);
   background: var(--color-surface-secondary);
   position: relative;
+}
+
+.accordionWrap {
+  margin-top: var(--spacing-200);
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.accordionContent {
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-250);
 }
 
 .expandableCardActions {

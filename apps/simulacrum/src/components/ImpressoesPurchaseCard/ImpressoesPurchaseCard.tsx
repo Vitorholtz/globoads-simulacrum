@@ -12,13 +12,11 @@ import {
   computeImpressoesTotal,
   formatCurrency,
   formatImpressions,
-  formatDateRange,
-  getAdFormat,
+  formatDateLong,
   getCpmOption,
   getEffectiveCpm,
-  getFormatSvg,
-  getPrimaryDimension,
 } from '../../data/rules/impressoes'
+import ImpressoesFormatsAccordion from '../../features/compra-impressoes/components/ImpressoesFormatsAccordion/ImpressoesFormatsAccordion'
 import styles from './ImpressoesPurchaseCard.module.css'
 
 function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection }) {
@@ -62,44 +60,6 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
         </div>
       </div>
 
-      <div className={styles.divider} />
-
-      <div className={styles.section}>
-        <p className={`type-caption-sm ${styles.sectionLabel}`}>Formatos</p>
-        <ul className={styles.formatList}>
-          {produto.formatIds.map((id) => {
-            const fmt = getAdFormat(id)
-            const svgPath = getFormatSvg(id)
-            const dim = getPrimaryDimension(id)
-            if (!fmt) return null
-            return (
-              <li key={id} className={styles.formatItem}>
-                {svgPath ? (
-                  <img src={svgPath} alt="" aria-hidden="true" className={styles.formatThumb} />
-                ) : (
-                  <span
-                    className={`material-symbols-rounded icon-sm ${styles.formatIcon}`}
-                    aria-hidden="true"
-                  >
-                    {fmt.category === 'video' ? 'play_circle' : 'image'}
-                  </span>
-                )}
-                <div className={styles.formatInfo}>
-                  <span className={`type-caption-lg ${styles.formatName}`}>{fmt.name}</span>
-                  {dim && (
-                    <span className={`type-caption-sm ${styles.formatSpecs}`}>
-                      {dim.width}×{dim.height}
-                      {fmt.devices.length > 0 &&
-                        ` • ${fmt.devices.map((d) => d.charAt(0).toUpperCase() + d.slice(1)).join(', ')}`}
-                    </span>
-                  )}
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-
       <div className={styles.section}>
         <p className={`type-caption-sm ${styles.sectionLabel}`}>Plataformas</p>
         <div className={styles.platformList}>
@@ -131,8 +91,12 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
         </div>
         <div className={styles.detailRow}>
           <span className={`type-body-sm ${styles.detailLabel}`}>Período</span>
-          <span className={`type-body-sm ${styles.detailValue}`}>
-            {formatDateRange(selection.startDate, selection.endDate)}
+          <span className={`type-body-sm ${styles.detailValue} ${styles.dateRange}`}>
+            {selection.startDate ? formatDateLong(selection.startDate) : '—'}
+            <span className="material-symbols-rounded icon-xs" aria-hidden="true">
+              arrow_forward
+            </span>
+            {selection.endDate ? formatDateLong(selection.endDate) : '—'}
           </span>
         </div>
         <div className={styles.detailRow}>
@@ -227,6 +191,9 @@ export function ImpressoesPurchaseCard({
           <div className={styles.expandableCardBodyPad}>
             <div className={styles.receipt}>
               <InvoiceContent selection={selection} />
+            </div>
+            <div className={styles.accordionWrap}>
+              <ImpressoesFormatsAccordion produto={selection.produto} />
             </div>
             {(onEdit || onDelete) && (
               <div className={styles.expandableCardActions}>

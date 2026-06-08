@@ -76,7 +76,7 @@ export function formatDateLong(d: Date): string {
 
 export function formatDateRange(start: Date | null, end: Date | null): string {
   if (!start || !end) return '—'
-  return `${formatDateLong(start)} – ${formatDateLong(end)}`
+  return `${formatDateLong(start)} → ${formatDateLong(end)}`
 }
 
 /** Número de dias do período (inclusivo). */
