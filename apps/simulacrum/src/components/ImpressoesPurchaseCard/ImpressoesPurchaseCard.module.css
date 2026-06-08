@@ -40,6 +40,7 @@
 
 .metaValue {
   color: var(--color-fill-primary);
+  white-space: nowrap;
 }
 
 .produtoRow {
@@ -53,8 +54,27 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-100);
-  flex-wrap: wrap;
-  justify-content: flex-end;
+}
+
+.objetivoHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+}
+
+.objetivoIconWrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
+.objetivoIconColor {
+  color: var(--color-fill-accent);
 }
 
 /* ── Dividers ── */
@@ -94,7 +114,7 @@
 }
 
 .formatThumb {
-  width: 48px;
+  width: 56px;
   height: auto;
   display: block;
   background: var(--color-surface-secondary);
@@ -109,9 +129,8 @@
 
 .formatInfo {
   display: flex;
-  align-items: baseline;
-  gap: var(--spacing-100);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--spacing-050);
   min-width: 0;
 }
 
@@ -136,15 +155,17 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-075);
-  padding: var(--spacing-075) var(--spacing-150);
+  padding: var(--spacing-050) var(--spacing-150) var(--spacing-050) var(--spacing-050);
   background: var(--color-surface-secondary);
   border-radius: var(--border-radius-full);
 }
 
 .platformLogo {
-  height: 20px;
-  width: auto;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
+  border-radius: var(--border-radius-full);
+  background: var(--color-surface-primary);
   flex-shrink: 0;
 }
 
@@ -241,9 +262,19 @@
   min-width: 0;
 }
 
+.expandableIconWrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
 .expandableIcon {
   color: var(--color-fill-accent);
-  flex-shrink: 0;
 }
 
 .expandableCardInfo {

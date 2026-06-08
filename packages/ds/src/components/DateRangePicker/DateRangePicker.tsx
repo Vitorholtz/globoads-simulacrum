@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useLayoutEffect, useId } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './DateRangePicker.module.css'
 import Calendar from '../Calendar/Calendar'
+import FieldMessage from '../FieldMessage/FieldMessage'
 import type { DatePickerSize } from '../../tokens/datePicker'
 import { cx } from '../../utils/cx'
 
@@ -18,6 +19,7 @@ export interface DateRangePickerProps {
   value?: { start: Date | null; end: Date | null }
   defaultValue?: { start: Date | null; end: Date | null }
   onChange?: (range: DateRange) => void
+  helpText?: string
   disabled?: boolean
   forceState?: 'hover' | 'focus' | 'active' | 'disabled'
   id?: string
@@ -71,6 +73,7 @@ export default function DateRangePicker({
   value,
   defaultValue,
   onChange,
+  helpText,
   disabled,
   forceState,
   id,
@@ -88,9 +91,11 @@ export default function DateRangePicker({
   const [internalStart, setInternalStart] = useState<Date | null>(defaultValue?.start ?? null)
   const [internalEnd, setInternalEnd] = useState<Date | null>(defaultValue?.end ?? null)
   const [startInputText, setStartInputText] = useState(() =>
-    formatDate(defaultValue?.start ?? null)
+    formatDate(value?.start ?? defaultValue?.start ?? null)
   )
-  const [endInputText, setEndInputText] = useState(() => formatDate(defaultValue?.end ?? null))
+  const [endInputText, setEndInputText] = useState(() =>
+    formatDate(value?.end ?? defaultValue?.end ?? null)
+  )
   const [pendingStart, setPendingStart] = useState<Date | null>(null)
   const [pendingEnd, setPendingEnd] = useState<Date | null>(null)
   const [hoverDate, setHoverDate] = useState<Date | null>(null)
@@ -334,6 +339,8 @@ export default function DateRangePicker({
           </span>
         </button>
       </div>
+
+      {helpText && <FieldMessage helpText={helpText} />}
 
       {(isOpen || isLeaving) &&
         !forceState &&

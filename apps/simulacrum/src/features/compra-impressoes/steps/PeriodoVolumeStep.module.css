@@ -15,46 +15,32 @@
 }
 
 .fields {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-300);
-  max-width: 480px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-400);
+  align-items: start;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-100);
+  gap: var(--spacing-150);
 }
 
-.fieldHint {
-  color: var(--color-fill-tertiary);
+.durationCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  padding: var(--spacing-200) var(--spacing-250);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-fill-secondary);
 }
 
 .presets {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-100);
-}
-
-.estimate {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--spacing-200);
-  padding: var(--spacing-200) var(--spacing-250);
-  background: var(--color-surface-secondary);
-  border-radius: var(--border-radius-lg);
-  max-width: 480px;
-}
-
-.estimateLabel {
-  color: var(--color-fill-secondary);
-}
-
-.estimateValue {
-  color: var(--color-fill-accent);
-  white-space: nowrap;
 }
 
 .actions {

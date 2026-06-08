@@ -45,11 +45,18 @@ function hydrateItem(item: CartItem): CartItem {
   return item
 }
 
+function isValidItem(item: CartItem): boolean {
+  if (item.modality === 'impressoes') {
+    return Boolean((item.data as { produto?: unknown })?.produto)
+  }
+  return true
+}
+
 function loadItems(): CartItem[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return []
-    return (JSON.parse(raw) as CartItem[]).map(hydrateItem)
+    return (JSON.parse(raw) as CartItem[]).map(hydrateItem).filter(isValidItem)
   } catch {
     return []
   }

@@ -25,7 +25,7 @@ const EMPTY_SELECTION: ImpressoesSelection = {
   audienceId: null,
   startDate: null,
   endDate: null,
-  impressions: MIN_IMPRESSIONS,
+  impressions: 0,
 }
 
 const SESSION_KEY = 'impressoes_wizard'

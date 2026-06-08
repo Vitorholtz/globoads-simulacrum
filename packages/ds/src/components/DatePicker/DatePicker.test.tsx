@@ -66,6 +66,21 @@ describe('DatePicker', () => {
     expect(btn).toHaveAttribute('aria-haspopup', 'dialog')
   })
 
+  it('renders "(opcional)" tag when optional is true', () => {
+    render(<DatePicker label="Data" optional />)
+    expect(screen.getByText('Opcional')).toBeInTheDocument()
+  })
+
+  it('hides label visually when showLabel is false', () => {
+    render(<DatePicker label="Data de início" showLabel={false} />)
+    expect(screen.queryByText('Data de início')).not.toBeInTheDocument()
+  })
+
+  it('renders description tooltip trigger when descriptionText is provided', () => {
+    render(<DatePicker label="Data" descriptionText="Use o formato DD/MM/AAAA." />)
+    expect(screen.getByRole('button', { name: 'Mais informações' })).toBeInTheDocument()
+  })
+
   it('has no accessibility violations', async () => {
     const { container } = render(<DatePicker label="Data" />)
     expect(await axe(container)).toHaveNoViolations()

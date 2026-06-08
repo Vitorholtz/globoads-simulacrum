@@ -33,19 +33,31 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
     <>
       <div className={styles.receiptHeader}>
         <div className={styles.receiptHeaderLeft}>
+          <div className={styles.objetivoHeaderRow}>
+            <div className={styles.objetivoIconWrap}>
+              <span
+                className={`material-symbols-rounded icon-lg ${styles.objetivoIconColor}`}
+                aria-hidden="true"
+              >
+                {objetivoInfo?.icon ?? 'ads_click'}
+              </span>
+            </div>
+            <div>
+              <p className={`type-caption-sm ${styles.metaLabel}`}>Objetivo</p>
+              <div className={styles.objetivoRow}>
+                <p className={`type-body-sm ${styles.metaValue}`}>{objetivoInfo?.name}</p>
+                {kpi && <Badge variant="accent" label={KPI_LABELS[kpi]} />}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.receiptHeaderRight}>
           <p className={`type-caption-sm ${styles.metaLabel}`}>Produto</p>
           <div className={styles.produtoRow}>
             <p className={`type-body-sm ${styles.metaValue}`}>{produto.name}</p>
             {cpmOption && produto.cpmOptions.length > 1 && (
               <Badge variant="neutral" label={cpmOption.label} />
             )}
-          </div>
-        </div>
-        <div className={styles.receiptHeaderRight}>
-          <p className={`type-caption-sm ${styles.metaLabel}`}>Objetivo</p>
-          <div className={styles.objetivoRow}>
-            <p className={`type-body-sm ${styles.metaValue}`}>{objetivoInfo?.name}</p>
-            {kpi && <Badge variant="accent" label={KPI_LABELS[kpi]} />}
           </div>
         </div>
       </div>
@@ -77,6 +89,8 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
                   {dim && (
                     <span className={`type-caption-sm ${styles.formatSpecs}`}>
                       {dim.width}×{dim.height}
+                      {fmt.devices.length > 0 &&
+                        ` • ${fmt.devices.map((d) => d.charAt(0).toUpperCase() + d.slice(1)).join(', ')}`}
                     </span>
                   )}
                 </div>
@@ -158,6 +172,8 @@ export function ImpressoesPurchaseCard({
   const total = computeImpressoesTotal(selection)
   const objetivoInfo = OBJETIVOS.find((o) => o.id === selection.objetivo)
 
+  if (!selection.produto) return null
+
   return (
     <div className={styles.expandableCard}>
       <button
@@ -167,12 +183,14 @@ export function ImpressoesPurchaseCard({
         aria-expanded={expanded}
       >
         <div className={styles.expandableCardLeft}>
-          <span
-            className={`material-symbols-rounded icon-lg ${styles.expandableIcon}`}
-            aria-hidden="true"
-          >
-            {objetivoInfo?.icon ?? 'ads_click'}
-          </span>
+          <div className={styles.expandableIconWrap}>
+            <span
+              className={`material-symbols-rounded icon-lg ${styles.expandableIcon}`}
+              aria-hidden="true"
+            >
+              {objetivoInfo?.icon ?? 'ads_click'}
+            </span>
+          </div>
           <div className={styles.expandableCardInfo}>
             <span className={`type-body-sm ${styles.expandableName}`}>
               {selection.produto.name}

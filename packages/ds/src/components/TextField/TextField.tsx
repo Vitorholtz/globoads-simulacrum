@@ -1,4 +1,4 @@
-import { useState, useId } from 'react'
+import { useState, useId, useRef } from 'react'
 import styles from './TextField.module.css'
 import FieldLabel from '../FieldLabel/FieldLabel'
 import FieldMessage from '../FieldMessage/FieldMessage'
@@ -125,6 +125,7 @@ export default function TextField({
 }: TextFieldProps) {
   const generatedId = useId()
   const inputId = id ?? generatedId
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const [internalValue, setInternalValue] = useState(defaultValue ?? '')
   const [isFocused, setIsFocused] = useState(false)
@@ -146,6 +147,13 @@ export default function TextField({
 
   function handleClear() {
     if (!isControlled) setInternalValue('')
+    if (onChange && inputRef.current) {
+      inputRef.current.value = ''
+      onChange({
+        target: inputRef.current,
+        currentTarget: inputRef.current,
+      } as React.ChangeEvent<HTMLInputElement>)
+    }
   }
 
   const rootCls = [styles.root, styles[size], isDisabled ? styles.disabled : '', className ?? '']
@@ -177,6 +185,7 @@ export default function TextField({
         )}
 
         <input
+          ref={inputRef}
           id={inputId}
           name={name}
           className={`${INPUT_TYPE[size]} ${styles.input}`}

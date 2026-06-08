@@ -59,7 +59,7 @@ export default function ImpressoesPricingCard({ selection }: ImpressoesPricingCa
             <div className={styles.row}>
               <span className={`type-body-sm ${styles.label}`}>Objetivo</span>
               <span className={styles.objetivoName}>
-                <span className="material-symbols-rounded icon-sm" aria-hidden="true">
+                <span className="material-symbols-rounded icon-md" aria-hidden="true">
                   {objetivoInfo.icon}
                 </span>
                 <span className={`type-body-sm ${styles.value}`}>{objetivoInfo.name}</span>

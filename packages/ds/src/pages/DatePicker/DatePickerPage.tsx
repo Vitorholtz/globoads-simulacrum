@@ -43,6 +43,7 @@ export default function DatePickerPage() {
           { value: 3, label: 'Tamanhos' },
           { value: 6, label: 'Estados' },
           { value: 2, label: 'Estilos' },
+          { value: 6, label: 'Configurações' },
         ]}
       />
 
@@ -124,6 +125,90 @@ export default function DatePickerPage() {
             />
           )}
         />
+      </Section>
+
+      {/* ── Configurações ── */}
+      <Section
+        icon="tune"
+        title="Configurações"
+        count={6}
+        description="Combinações de props que cobrem os cenários mais comuns de formulários com data."
+      >
+        <CardGrid cols={3}>
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker label="Data de início" size="md" />
+              </div>
+            }
+            title="Padrão"
+            description="Label + campo. Configuração base para a maioria dos formulários."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker label="Data de início" optional size="md" />
+              </div>
+            }
+            title="Opcional"
+            description='Sinaliza que o preenchimento não é obrigatório. Exibe a marcação "Opcional" ao lado do label.'
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker label="Data de início" showLabel={false} size="md" />
+              </div>
+            }
+            title="Sem label"
+            description="Label oculto visualmente mas presente no DOM para leitores de tela. Use quando o contexto dispensa rótulo visual."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker
+                  label="Data de início"
+                  descriptionText="Use o formato DD/MM/AAAA ou abra o calendário."
+                  size="md"
+                />
+              </div>
+            }
+            title="Com descrição"
+            description="Ícone de informação com tooltip. Ideal para explicar restrições de data ou o formato esperado."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker
+                  label="Data de início"
+                  helpText="Selecione a data de início da campanha."
+                  size="md"
+                />
+              </div>
+            }
+            title="Com texto de ajuda"
+            description="Texto de apoio abaixo do campo. Dica contextual que não compete com a mensagem de erro."
+            previewPad="lg"
+          />
+          <DemoCard
+            preview={
+              <div className={styles.contentPreview}>
+                <DatePicker
+                  label="Data de início"
+                  errorMessage="Data inválida ou obrigatória."
+                  forceState="error"
+                  size="md"
+                />
+              </div>
+            }
+            title="Com erro"
+            description="Estado de erro explícito via prop. Borda vermelha, ícone de alerta e mensagem abaixo do campo."
+            previewPad="lg"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Demo Interativo ── */}

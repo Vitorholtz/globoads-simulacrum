@@ -1,13 +1,7 @@
 import { useState } from 'react'
 import { Button, DateRangePicker, TextField } from '@globo-ads/ds'
 import { MIN_IMPRESSIONS } from '../../../data/impressoes'
-import {
-  computeImpressoesTotal,
-  formatCurrency,
-  getDurationDays,
-  getEffectiveCpm,
-  isValidImpressions,
-} from '../../../data/rules/impressoes'
+import { getDurationDays, isValidImpressions } from '../../../data/rules/impressoes'
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './PeriodoVolumeStep.module.css'
 
@@ -25,8 +19,6 @@ export default function PeriodoVolumeStep() {
   const [impressions, setImpressions] = useState<number>(selection.impressions)
 
   const duration = getDurationDays(start, end)
-  const cpm = getEffectiveCpm(selection)
-  const total = computeImpressoesTotal({ ...selection, impressions })
   const impressionsValid = isValidImpressions(impressions)
   const periodValid = Boolean(start && end && end >= start)
   const canAdvance = impressionsValid && periodValid
@@ -45,8 +37,9 @@ export default function PeriodoVolumeStep() {
   }
 
   function applyPreset(n: number) {
-    setImpressions(n)
-    updateSelection({ impressions: n })
+    const next = impressions + n
+    setImpressions(next)
+    updateSelection({ impressions: next })
   }
 
   function handleNext() {
@@ -66,13 +59,19 @@ export default function PeriodoVolumeStep() {
         <div className={styles.field}>
           <DateRangePicker
             label="Período de veiculação"
+            helpText="Datas de início e de fim"
             value={{ start, end }}
             onChange={handleRangeChange}
           />
           {duration > 0 && (
-            <span className={`type-caption-md ${styles.fieldHint}`}>
-              {duration} {duration === 1 ? 'dia' : 'dias'} de veiculação
-            </span>
+            <div className={styles.durationCard}>
+              <span className="material-symbols-rounded icon-md" aria-hidden="true">
+                event_available
+              </span>
+              <span className="type-caption-lg">
+                {duration} {duration === 1 ? 'dia' : 'dias'} de veiculação
+              </span>
+            </div>
           )}
         </div>
 
@@ -88,13 +87,13 @@ export default function PeriodoVolumeStep() {
                 ? `Mínimo de ${MIN_IMPRESSIONS.toLocaleString('pt-BR')} impressões.`
                 : undefined
             }
-            helpText={`Volume mínimo de ${MIN_IMPRESSIONS.toLocaleString('pt-BR')} impressões, sem limite máximo.`}
+            helpText={`Mínimo de ${MIN_IMPRESSIONS.toLocaleString('pt-BR')} impressões.`}
           />
           <div className={styles.presets}>
             {PRESETS.map((n) => (
               <Button
                 key={n}
-                variant="tertiary"
+                variant="secondary"
                 size="sm"
                 iconLeft="add"
                 onClick={() => applyPreset(n)}
@@ -105,15 +104,6 @@ export default function PeriodoVolumeStep() {
           </div>
         </div>
       </div>
-
-      {cpm > 0 && impressionsValid && (
-        <div className={styles.estimate}>
-          <span className={`type-body-sm ${styles.estimateLabel}`}>
-            {impressions.toLocaleString('pt-BR')} impressões × {formatCurrency(cpm)}/mil
-          </span>
-          <span className={`type-title-sm ${styles.estimateValue}`}>{formatCurrency(total)}</span>
-        </div>
-      )}
 
       <div className={styles.actions}>
         <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(3)}>

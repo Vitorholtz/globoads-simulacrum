@@ -201,7 +201,7 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
       </div>
 
       <div className={styles.receiptTotal}>
-        <span className={`type-body-sm ${styles.totalLabel}`}>Subtotal</span>
+        <span className={`type-body-sm ${styles.totalLabel}`}>Total</span>
         <span className={`type-title-sm ${styles.totalValue}`}>
           {produto.isRegional
             ? formatCurrency(

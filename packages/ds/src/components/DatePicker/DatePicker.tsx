@@ -13,6 +13,7 @@ export interface DatePickerProps {
   showLabel?: boolean
   /** Appends "(opcional)" to the label */
   optional?: boolean
+  descriptionText?: string
   helpText?: string
   errorMessage?: string
   value?: Date | null
@@ -69,6 +70,7 @@ export default function DatePicker({
   label = 'Label',
   showLabel = true,
   optional = false,
+  descriptionText,
   helpText,
   errorMessage,
   value,
@@ -222,7 +224,13 @@ export default function DatePicker({
 
   return (
     <div className={rootCls} ref={containerRef}>
-      <FieldLabel showLabel={showLabel} label={label} optional={optional} htmlFor={inputId} />
+      <FieldLabel
+        showLabel={showLabel}
+        label={label}
+        optional={optional}
+        descriptionText={descriptionText}
+        htmlFor={inputId}
+      />
 
       <div ref={wrapperRef} className={wrapperCls} data-state={wrapperStateAttr}>
         <input

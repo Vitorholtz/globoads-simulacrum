@@ -79,7 +79,7 @@
 
 .inputField {
   flex: 0 0 auto;
-  width: 9ch;
+  field-sizing: content;
   border: none;
   outline: none;
   background: transparent;
@@ -127,7 +127,7 @@
 }
 
 .calendarBtn:hover::before {
-  background: var(--color-luminosity-dark-ghost-subtle);
+  background: var(--color-luminosity-dark-ghost-hover);
 }
 
 .calendarBtn:focus-visible::before {
