@@ -1,0 +1,122 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  padding: var(--spacing-250);
+}
+
+.title {
+  color: var(--color-fill-primary);
+  margin-bottom: var(--spacing-050);
+}
+
+.hint {
+  color: var(--color-fill-tertiary);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.label {
+  color: var(--color-fill-secondary);
+  flex-shrink: 0;
+}
+
+.value {
+  color: var(--color-fill-primary);
+  text-align: right;
+}
+
+/* ── Portal ── */
+
+.portalCell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+}
+
+.portalLogo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface-primary);
+  flex-shrink: 0;
+}
+
+/* ── Cobertura regional ── */
+
+.coverageSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.coverageLabel {
+  color: var(--color-fill-tertiary);
+}
+
+.coverageRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+}
+
+.coverageName {
+  color: var(--color-fill-secondary);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.coverageMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex-shrink: 0;
+}
+
+.coverageDays {
+  color: var(--color-fill-tertiary);
+}
+
+.coverageSubtotal {
+  color: var(--color-fill-primary);
+  text-align: right;
+  min-width: 56px;
+}
+
+/* ── Total ── */
+
+.divider {
+  height: 1px;
+  background: var(--color-border-tertiary);
+}
+
+.subtotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.subtotalLabel {
+  color: var(--color-fill-secondary);
+}
+
+.subtotalValue {
+  color: var(--color-fill-accent);
+}

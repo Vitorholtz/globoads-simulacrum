@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react'
 import { Button, Badge, InteractiveCard } from '@globo-ads/ds'
 import {
-  getPortal,
   getProductsByPortal,
   formatCurrency,
   formatImpressions,
@@ -43,18 +43,22 @@ function CardMetrics({ produto }: { produto: DiariaProduto }) {
 }
 
 export default function ProdutoStep() {
-  const { selection, handleProdutoSelect: onSelect, setStep } = useDiarias()
+  const { selection, handleProdutoSelect, updateProdutoLive, setStep } = useDiarias()
   const portalId = selection.portal!
-  const portal = getPortal(portalId)
   const produtos = getProductsByPortal(portalId)
-  const hasNacional = produtos.some((p) => !p.isRegional)
-  const hasRegional = produtos.some((p) => p.isRegional)
-  const coverageLabel =
-    hasNacional && hasRegional
-      ? 'Cobertura Nacional e Regional'
-      : hasRegional
-        ? 'Cobertura Regional'
-        : 'Cobertura Nacional'
+
+  const [selectedId, setSelectedId] = useState<string | null>(selection.produto?.id ?? null)
+
+  const selectedProduto = produtos.find((p) => p.id === selectedId) ?? null
+
+  useEffect(() => {
+    updateProdutoLive(selectedProduto)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId])
+
+  function handleNext() {
+    if (selectedProduto) handleProdutoSelect(selectedProduto)
+  }
 
   return (
     <section className={styles.section}>
@@ -65,37 +69,13 @@ export default function ProdutoStep() {
         </p>
       </header>
 
-      <div className={styles.portalContext}>
-        <span className={styles.portalContextBrand}>
-          {portal.svgPath && (
-            <img src={portal.svgPath} alt={portal.name} className={styles.portalLogo} />
-          )}
-          <span className={`type-body-sm ${styles.portalLabel}`}>{portal.url}</span>
-        </span>
-        <span className={styles.portalContextSep} aria-hidden="true" />
-        <span className={styles.portalContextChip}>
-          <span className="material-symbols-rounded icon-md" aria-hidden="true">
-            box
-          </span>
-          <span className="type-body-sm">
-            {produtos.length} {produtos.length === 1 ? 'produto' : 'produtos'}
-          </span>
-        </span>
-        <span className={styles.portalContextSep} aria-hidden="true" />
-        <span className={styles.portalContextChip}>
-          <span className="material-symbols-rounded icon-md" aria-hidden="true">
-            location_on
-          </span>
-          <span className="type-body-sm">{coverageLabel}</span>
-        </span>
-      </div>
-
       <div className={styles.grid}>
         {produtos.map((produto) => (
           <InteractiveCard
             key={produto.id}
-            className={styles.card}
-            onClick={() => onSelect(produto)}
+            className={`${styles.card} ${selectedId === produto.id ? styles.cardSelected : ''}`}
+            onClick={() => setSelectedId((prev) => (prev === produto.id ? null : produto.id))}
+            aria-pressed={selectedId === produto.id}
             aria-label={`Selecionar ${produto.name}`}
           >
             <div className={styles.cardHeader}>
@@ -128,19 +108,17 @@ export default function ProdutoStep() {
                       />
                     )}
                     <div className={styles.formatInfo}>
-                      <div className={styles.formatHeadline}>
-                        <span className={`type-caption-lg ${styles.formatName}`}>
-                          {f.formatName}
+                      <span className={`type-caption-lg ${styles.formatName}`}>{f.formatName}</span>
+                      {dim && (
+                        <span className={`type-caption-sm ${styles.formatSpecs}`}>
+                          {dim.width}×{dim.height} • {f.devices}
                         </span>
-                        {dim && (
-                          <span className={`type-caption-sm ${styles.formatSpecs}`}>
-                            {dim.width}×{dim.height} | {f.devices}
-                          </span>
-                        )}
-                      </div>
-                      <span className={`type-body-xs ${styles.formatPositions}`}>
-                        {f.positions.join(' • ')}
-                      </span>
+                      )}
+                      {f.positions.length > 0 && (
+                        <span className={`type-caption-sm ${styles.formatPositions}`}>
+                          {f.positions.join(', ')}
+                        </span>
+                      )}
                     </div>
                   </li>
                 )
@@ -158,6 +136,14 @@ export default function ProdutoStep() {
       <div className={styles.actions}>
         <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(1)}>
           Voltar
+        </Button>
+        <Button
+          variant="primary"
+          iconRight="arrow_forward"
+          disabled={!selectedProduto}
+          onClick={handleNext}
+        >
+          Próximo
         </Button>
       </div>
     </section>

@@ -82,6 +82,8 @@ interface DiariasContextValue {
   handlePortalSelect: (portalId: PortalId) => void
   handleProdutoSelect: (produto: DiariaProduto) => void
   handleConfigNext: (regionalSelections: RegionalSelection[], dates: Date[]) => void
+  updateDatesLive: (dates: Date[], regionalSelections: RegionalSelection[]) => void
+  updateProdutoLive: (produto: DiariaProduto | null) => void
   handleAddToCart: (confirmed: ConfirmedSelection) => void
   handleUpdateCartItem: (confirmed: ConfirmedSelection) => void
   handleCancel: () => void
@@ -138,6 +140,14 @@ export function DiariasProvider({ children, editCartItemId }: DiariasProviderPro
     setStep(4)
   }
 
+  function updateDatesLive(dates: Date[], regionalSelections: RegionalSelection[]) {
+    setSelection((prev) => ({ ...prev, dates, regionalSelections }))
+  }
+
+  function updateProdutoLive(produto: DiariaProduto | null) {
+    setSelection((prev) => ({ ...prev, produto, regionalSelections: [], dates: [] }))
+  }
+
   function handleAddToCart(confirmed: ConfirmedSelection) {
     addItem({ modality: 'diarias', data: confirmed, subtotal: computeTotal(confirmed) })
     setSelection(EMPTY_SELECTION)
@@ -181,6 +191,8 @@ export function DiariasProvider({ children, editCartItemId }: DiariasProviderPro
         handlePortalSelect,
         handleProdutoSelect,
         handleConfigNext,
+        updateDatesLive,
+        updateProdutoLive,
         handleAddToCart,
         handleUpdateCartItem,
         handleCancel,

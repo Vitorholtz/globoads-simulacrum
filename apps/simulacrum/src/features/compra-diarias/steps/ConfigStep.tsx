@@ -1,20 +1,14 @@
-import { useState } from 'react'
-import { Button, StaticCard, Badge, Accordion, MultiDateCalendar } from '@globo-ads/ds'
+import { useState, useEffect } from 'react'
+import { Button, Badge, MultiDateCalendar } from '@globo-ads/ds'
 import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import {
-  getPortal,
   formatCurrency,
   formatImpressions,
   getPriceForCoverage,
   MACROREGIONS,
 } from '../../../data/diarias'
 import type { CoverageInfo, DiariaProduto } from '../../../data/diarias'
-import {
-  STATE_LABELS,
-  getFormatSvg,
-  getPrimaryDimension,
-  formatDateShort,
-} from '../../../data/rules/diarias'
+import { STATE_LABELS, formatDateShort } from '../../../data/rules/diarias'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './ConfigStep.module.css'
 
@@ -67,14 +61,12 @@ function CoverageRow({ cov, produto, dates, isOpen, onToggle, onDatesChange }: C
 }
 
 export default function ConfigStep() {
-  const { selection, handleConfigNext: onNext, setStep } = useDiarias()
+  const { selection, handleConfigNext: onNext, setStep, updateDatesLive } = useDiarias()
   const produto = selection.produto!
   const initialDates = selection.dates
   const initialDatesPerCoverage = Object.fromEntries(
     selection.regionalSelections.map((r) => [r.coverage, r.dates])
   )
-
-  const portal = getPortal(produto.portalId)
 
   const [dates, setDates] = useState<Date[]>(initialDates ?? [])
   const [datesPerCoverage, setDatesPerCoverage] = useState<Record<string, Date[]>>(
@@ -112,6 +104,18 @@ export default function ConfigStep() {
     }
   }
 
+  useEffect(() => {
+    if (produto.isRegional) {
+      const synced = produto.coverages
+        .filter((c) => (datesPerCoverage[c.code]?.length ?? 0) > 0)
+        .map((c) => ({ coverage: c.code, dates: datesPerCoverage[c.code] }))
+      updateDatesLive([], synced)
+    } else {
+      updateDatesLive(dates, [])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dates, datesPerCoverage])
+
   function handleNext() {
     if (!canAdvance) return
     if (produto.isRegional) {
@@ -133,323 +137,123 @@ export default function ConfigStep() {
         </p>
       </header>
 
-      <div className={styles.portalContext}>
-        <span className={styles.portalContextBrand}>
-          {portal.svgPath && (
-            <img src={portal.svgPath} alt={portal.name} className={styles.portalLogo} />
-          )}
-          <span className={`type-body-sm ${styles.portalLabel}`}>{portal.url}</span>
-        </span>
-        <span className={styles.portalContextSep} aria-hidden="true" />
-        <span className={styles.portalContextChip}>
-          <span className="material-symbols-rounded icon-md" aria-hidden="true">
-            box
-          </span>
-          <span className="type-body-sm">{produto.name}</span>
-        </span>
-        <span className={styles.portalContextSep} aria-hidden="true" />
-        <span className={styles.portalContextChip}>
-          <span className="material-symbols-rounded icon-md" aria-hidden="true">
-            location_on
-          </span>
-          <span className="type-body-sm">
-            {produto.isRegional ? 'Cobertura Regional' : 'Cobertura Nacional'}
-          </span>
-        </span>
-      </div>
-
-      <div className={styles.body}>
-        <div className={styles.formColumn}>
-          {/* ── Regional flow ── */}
-          {produto.isRegional && (
-            <fieldset className={styles.fieldset}>
-              {hasSelections && (
-                <div className={styles.fieldsetActions}>
-                  <span className={`type-caption-md ${styles.fieldsetDayCount}`}>
-                    {totalSelectedDays}{' '}
-                    {totalSelectedDays === 1 ? 'dia selecionado' : 'dias selecionados'}
-                  </span>
-                  <Button
-                    variant="tertiary"
-                    size="sm"
-                    iconLeft="remove_done"
-                    onClick={clearSelections}
-                  >
-                    Limpar seleção
-                  </Button>
-                </div>
-              )}
-              {shouldGroup ? (
-                <div className={styles.regionGroups}>
-                  {MACROREGIONS.map(({ label, codes }) => {
-                    const covsInGroup = produto.coverages.filter((c) => codes.includes(c.code))
-                    if (covsInGroup.length === 0) return null
-                    return (
-                      <div key={label} className={styles.regionOptionGroup}>
-                        <p className={`type-caption-sm ${styles.regionSectionLabel}`}>{label}</p>
-                        {covsInGroup.map((cov) => (
-                          <CoverageRow
-                            key={cov.code}
-                            cov={cov}
-                            produto={produto}
-                            dates={datesPerCoverage[cov.code] ?? []}
-                            isOpen={openCalendarCode === cov.code}
-                            onToggle={() => toggleCalendar(cov.code)}
-                            onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
-                          />
-                        ))}
-                      </div>
-                    )
-                  })}
-                </div>
-              ) : (
-                <div className={styles.regionOptionContainer}>
-                  {produto.coverages.map((cov) => (
-                    <CoverageRow
-                      key={cov.code}
-                      cov={cov}
-                      produto={produto}
-                      dates={datesPerCoverage[cov.code] ?? []}
-                      isOpen={openCalendarCode === cov.code}
-                      onToggle={() => toggleCalendar(cov.code)}
-                      onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
-                    />
-                  ))}
-                </div>
-              )}
-            </fieldset>
-          )}
-
-          {/* ── National flow ── */}
-          {!produto.isRegional && (
-            <div className={styles.calendarCard}>
-              <div className={styles.calendarCardHeader}>
-                <div className={styles.calendarTitleRow}>
-                  <p className={`type-title-sm ${styles.calendarTitle}`}>Dias de veiculação</p>
-                  <div className={styles.calendarTitleActions}>
-                    {dates.length > 0 && (
-                      <Badge
-                        variant="accent"
-                        label={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`}
-                      />
-                    )}
-                    {dates.length > 0 && (
-                      <Button
-                        variant="tertiary"
-                        size="sm"
-                        iconLeft="remove_done"
-                        onClick={clearSelections}
-                      >
-                        Limpar
-                      </Button>
-                    )}
-                  </div>
-                </div>
-                {dates.length > 0 && (
-                  <span className={`type-body-xs ${styles.calendarDates}`}>
-                    {dates.map(formatDateShort).join(' • ')}
-                  </span>
-                )}
+      <div className={styles.formColumn}>
+        {/* ── Regional flow ── */}
+        {produto.isRegional && (
+          <fieldset className={styles.fieldset}>
+            {hasSelections && (
+              <div className={styles.fieldsetActions}>
+                <span className={`type-caption-md ${styles.fieldsetDayCount}`}>
+                  {totalSelectedDays}{' '}
+                  {totalSelectedDays === 1 ? 'dia selecionado' : 'dias selecionados'}
+                </span>
+                <Button
+                  variant="tertiary"
+                  size="sm"
+                  iconLeft="remove_done"
+                  onClick={clearSelections}
+                >
+                  Limpar seleção
+                </Button>
               </div>
-              <div className={styles.calendarCardDivider} />
-              <div className={styles.calendarCardBody}>
-                <MultiDateCalendar value={dates} onChange={setDates} />
-              </div>
-            </div>
-          )}
-        </div>
-
-        <aside className={styles.summaryColumn}>
-          <StaticCard className={styles.pricingCard}>
-            <p className={`type-title-sm ${styles.summaryTitle}`}>Estimativa de valor</p>
-
-            {produto.isRegional ? (
-              <>
-                <p className={`type-body-xs ${styles.priceHint}`}>
-                  Preço e impressões variam por estado.
-                </p>
-                {!Object.values(datesPerCoverage).some((d) => d.length > 0) ? (
-                  <p className={`type-body-xs ${styles.priceHint}`}>
-                    Selecione uma região e os dias para ver o valor.
-                  </p>
-                ) : (
-                  <>
-                    {produto.coverages
-                      .filter((c) => (datesPerCoverage[c.code]?.length ?? 0) > 0)
-                      .map((c) => {
-                        const covDates = datesPerCoverage[c.code]
-                        const covInfo = produto.coverages.find((cv) => cv.code === c.code)
-                        const priceDay = getPriceForCoverage(produto, c.code)
-                        return (
-                          <div key={c.code} className={styles.priceRegionRow}>
-                            <div className={styles.priceRegionInfo}>
-                              <span className={`type-caption-md ${styles.priceRegionLabel}`}>
-                                {STATE_LABELS[c.code] ?? c.code}
-                                <span className={styles.priceDayCount}>
-                                  {' '}
-                                  · {covDates.length} {covDates.length === 1 ? 'dia' : 'dias'}
-                                </span>
-                              </span>
-                              {covInfo && (
-                                <span className={`type-caption-md ${styles.priceRegionImp}`}>
-                                  ~{formatImpressions(covInfo.impressions)} imp./dia
-                                </span>
-                              )}
-                            </div>
-                            <span className={`type-body-xs ${styles.priceValue}`}>
-                              {formatCurrency(covDates.length * priceDay)}
-                            </span>
-                          </div>
-                        )
-                      })}
-                    <div className={styles.priceDivider} />
-                    <div className={styles.priceSubtotalRow}>
-                      <span className={`type-body-sm ${styles.priceSubtotalLabel}`}>Subtotal</span>
-                      <span className={`type-title-sm ${styles.priceSubtotalValue}`}>
-                        {formatCurrency(
-                          produto.coverages.reduce((sum, c) => {
-                            const d = datesPerCoverage[c.code]?.length ?? 0
-                            return sum + d * getPriceForCoverage(produto, c.code)
-                          }, 0)
-                        )}
-                      </span>
-                    </div>
-                  </>
-                )}
-              </>
-            ) : (
-              <>
-                <div className={styles.priceRow}>
-                  <span className={`type-body-sm ${styles.priceLabel}`}>Impressões estimadas</span>
-                  <span className={`type-body-sm ${styles.priceValue}`}>
-                    ~{formatImpressions(produto.coverages[0].impressions)}/dia
-                  </span>
-                </div>
-                <div className={styles.priceRow}>
-                  <span className={`type-body-sm ${styles.priceLabel}`}>Preço por diária</span>
-                  <span className={`type-body-sm ${styles.priceValue}`}>
-                    {formatCurrency(getPriceForCoverage(produto, 'Nacional'))}
-                  </span>
-                </div>
-                <div className={styles.priceDivider} />
-                {dates.length === 0 ? (
-                  <p className={`type-body-xs ${styles.priceHint}`}>
-                    Selecione os dias para ver o subtotal.
-                  </p>
-                ) : (
-                  <>
-                    <div className={styles.priceRow}>
-                      <span className={`type-body-sm ${styles.priceLabel}`}>Dias selecionados</span>
-                      <span className={`type-body-sm ${styles.priceValue}`}>{dates.length}</span>
-                    </div>
-                    <div className={styles.priceDivider} />
-                    <div className={styles.priceSubtotalRow}>
-                      <span className={`type-body-sm ${styles.priceSubtotalLabel}`}>Subtotal</span>
-                      <span className={`type-title-sm ${styles.priceSubtotalValue}`}>
-                        {formatCurrency(dates.length * getPriceForCoverage(produto, 'Nacional'))}
-                      </span>
-                    </div>
-                  </>
-                )}
-              </>
             )}
-          </StaticCard>
+            {shouldGroup ? (
+              <div className={styles.regionGroups}>
+                {MACROREGIONS.map(({ label, codes }) => {
+                  const covsInGroup = produto.coverages.filter((c) => codes.includes(c.code))
+                  if (covsInGroup.length === 0) return null
+                  return (
+                    <div key={label} className={styles.regionOptionGroup}>
+                      <p className={`type-caption-sm ${styles.regionSectionLabel}`}>{label}</p>
+                      {covsInGroup.map((cov) => (
+                        <CoverageRow
+                          key={cov.code}
+                          cov={cov}
+                          produto={produto}
+                          dates={datesPerCoverage[cov.code] ?? []}
+                          isOpen={openCalendarCode === cov.code}
+                          onToggle={() => toggleCalendar(cov.code)}
+                          onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
+                        />
+                      ))}
+                    </div>
+                  )
+                })}
+              </div>
+            ) : (
+              <div className={styles.regionOptionContainer}>
+                {produto.coverages.map((cov) => (
+                  <CoverageRow
+                    key={cov.code}
+                    cov={cov}
+                    produto={produto}
+                    dates={datesPerCoverage[cov.code] ?? []}
+                    isOpen={openCalendarCode === cov.code}
+                    onToggle={() => toggleCalendar(cov.code)}
+                    onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
+                  />
+                ))}
+              </div>
+            )}
+          </fieldset>
+        )}
 
-          <Accordion
-            items={[
-              {
-                id: 'formatos',
-                label: 'Formatos incluídos',
-                detail: `${produto.formats.length} ${produto.formats.length === 1 ? 'formato' : 'formatos'}`,
-                content: (
-                  <div className={styles.accordionContent}>
-                    <ul className={styles.formatList}>
-                      {produto.formats.map((f) => {
-                        const svgPath = getFormatSvg(f.formatId)
-                        const dim = getPrimaryDimension(f.formatId)
-                        return (
-                          <li key={f.formatId} className={styles.formatItem}>
-                            {svgPath ? (
-                              <img
-                                src={svgPath}
-                                alt=""
-                                aria-hidden="true"
-                                className={styles.formatThumb}
-                              />
-                            ) : (
-                              <span
-                                className={`material-symbols-rounded icon-sm ${styles.formatIcon}`}
-                                aria-hidden="true"
-                              >
-                                {f.formatId === 'in-stream-video' ? 'play_circle' : 'image'}
-                              </span>
-                            )}
-                            <div className={styles.formatInfo}>
-                              <div className={styles.formatHeadline}>
-                                <span className={`type-caption-lg ${styles.formatName}`}>
-                                  {f.formatName}
-                                </span>
-                                {dim && (
-                                  <span className={`type-caption-sm ${styles.formatSpecs}`}>
-                                    {dim.width}×{dim.height} | {f.devices}
-                                  </span>
-                                )}
-                              </div>
-                              <span className={`type-body-xs ${styles.formatPositions}`}>
-                                {f.positions.join(' • ')}
-                              </span>
-                            </div>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </div>
-                ),
-              },
-            ]}
-          />
-
-          {produto.isRegional && (
-            <div className={styles.actions}>
-              <Button
-                variant="secondary"
-                iconLeft="arrow_back"
-                onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
-              >
-                Voltar
-              </Button>
-              <Button
-                variant="primary"
-                iconRight="arrow_forward"
-                onClick={handleNext}
-                disabled={!canAdvance}
-              >
-                Próximo
-              </Button>
+        {/* ── National flow ── */}
+        {!produto.isRegional && (
+          <div className={styles.calendarCard}>
+            <div className={styles.calendarCardHeader}>
+              <div className={styles.calendarTitleRow}>
+                <p className={`type-title-sm ${styles.calendarTitle}`}>Dias de veiculação</p>
+                <div className={styles.calendarTitleActions}>
+                  {dates.length > 0 && (
+                    <Badge
+                      variant="accent"
+                      label={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`}
+                    />
+                  )}
+                  {dates.length > 0 && (
+                    <Button
+                      variant="tertiary"
+                      size="sm"
+                      iconLeft="remove_done"
+                      onClick={clearSelections}
+                    >
+                      Limpar
+                    </Button>
+                  )}
+                </div>
+              </div>
+              {dates.length > 0 && (
+                <span className={`type-body-xs ${styles.calendarDates}`}>
+                  {dates.map(formatDateShort).join(' • ')}
+                </span>
+              )}
             </div>
-          )}
-        </aside>
+            <div className={styles.calendarCardDivider} />
+            <div className={styles.calendarCardBody}>
+              <MultiDateCalendar value={dates} onChange={setDates} />
+            </div>
+          </div>
+        )}
       </div>
 
-      {!produto.isRegional && (
-        <div className={styles.actions}>
-          <Button
-            variant="secondary"
-            iconLeft="arrow_back"
-            onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
-          >
-            Voltar
-          </Button>
-          <Button
-            variant="primary"
-            iconRight="arrow_forward"
-            onClick={handleNext}
-            disabled={!canAdvance}
-          >
-            Próximo
-          </Button>
-        </div>
-      )}
+      <div className={styles.actions}>
+        <Button
+          variant="secondary"
+          iconLeft="arrow_back"
+          onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
+        >
+          Voltar
+        </Button>
+        <Button
+          variant="primary"
+          iconRight="arrow_forward"
+          onClick={handleNext}
+          disabled={!canAdvance}
+        >
+          Próximo
+        </Button>
+      </div>
 
       <ConfirmDialog
         isOpen={showBackConfirm}

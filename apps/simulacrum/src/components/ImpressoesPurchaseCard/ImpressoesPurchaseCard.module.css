@@ -114,7 +114,7 @@
 }
 
 .formatThumb {
-  width: 56px;
+  width: 60px;
   height: auto;
   display: block;
   background: var(--color-surface-secondary);

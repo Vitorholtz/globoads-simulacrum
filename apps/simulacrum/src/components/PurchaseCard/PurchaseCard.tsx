@@ -285,6 +285,11 @@ export function ExpandablePurchaseCard({
                                       {f.devices ? ` • ${f.devices}` : ''}
                                     </span>
                                   )}
+                                  {f.positions.length > 0 && (
+                                    <span className={`type-caption-sm ${styles.formatPositions}`}>
+                                      {f.positions.join(', ')}
+                                    </span>
+                                  )}
                                 </div>
                               </li>
                             )

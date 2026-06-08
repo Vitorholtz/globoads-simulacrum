@@ -47,3 +47,7 @@
 .formatSpecs {
   color: var(--color-fill-secondary);
 }
+
+.formatPositions {
+  color: var(--color-fill-tertiary);
+}

@@ -1,15 +1,23 @@
-import { Badge, InteractiveCard, Tooltip } from '@globo-ads/ds'
+import { useState } from 'react'
+import { Button, Badge, InteractiveCard, Tooltip } from '@globo-ads/ds'
 import {
   PORTALS,
   PORTAL_DISPLAY_NAMES,
   getPortalStats,
   formatImpressions,
+  type PortalId,
 } from '../../../data/diarias'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './PortalStep.module.css'
 
 export default function PortalStep() {
-  const { handlePortalSelect: onSelect } = useDiarias()
+  const { selection, handlePortalSelect } = useDiarias()
+  const [selectedId, setSelectedId] = useState<PortalId | null>(selection.portal ?? null)
+
+  function handleNext() {
+    if (selectedId) handlePortalSelect(selectedId)
+  }
+
   return (
     <section className={styles.section}>
       <header className={styles.header}>
@@ -22,8 +30,9 @@ export default function PortalStep() {
           return (
             <InteractiveCard
               key={portal.id}
-              className={styles.card}
-              onClick={() => onSelect(portal.id)}
+              className={`${styles.card} ${selectedId === portal.id ? styles.cardSelected : ''}`}
+              onClick={() => setSelectedId((prev) => (prev === portal.id ? null : portal.id))}
+              aria-pressed={selectedId === portal.id}
               aria-label={`Selecionar ${PORTAL_DISPLAY_NAMES[portal.id]}`}
             >
               <div className={styles.cardHeader}>
@@ -75,6 +84,17 @@ export default function PortalStep() {
             </InteractiveCard>
           )
         })}
+      </div>
+
+      <div className={styles.actions}>
+        <Button
+          variant="primary"
+          iconRight="arrow_forward"
+          disabled={!selectedId}
+          onClick={handleNext}
+        >
+          Próximo
+        </Button>
       </div>
     </section>
   )

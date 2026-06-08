@@ -8,6 +8,34 @@
   color: var(--color-fill-secondary);
 }
 
+/* ── Body grid (step content + persistent pricing aside) ── */
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr var(--sidebar-panel-width);
+  gap: var(--spacing-400);
+  align-items: flex-start;
+}
+
+.bodyFull {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 767px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summaryColumn {
+  position: sticky;
+  top: calc(72px + var(--spacing-300));
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
 /* ── Step Indicator ── */
 
 .stepIndicator {
@@ -127,6 +155,7 @@
 
 .stepContent {
   animation: stepEnter var(--motion-duration-slow) var(--motion-easing-out) both;
+  min-width: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

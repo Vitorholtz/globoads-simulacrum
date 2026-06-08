@@ -2,6 +2,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Breadcrumb } from '@globo-ads/ds'
 import { DiariasProvider, useDiarias, type Step } from './context/DiariasContext'
 import PageContainer from '../../components/PageContainer/PageContainer'
+import DiariasResumoCard from './components/DiariasResumoCard/DiariasResumoCard'
+import DiariasFormatsAccordion from './components/DiariasFormatsAccordion/DiariasFormatsAccordion'
 import PortalStep from './steps/PortalStep'
 import ProdutoStep from './steps/ProdutoStep'
 import ConfigStep from './steps/ConfigStep'
@@ -35,7 +37,8 @@ export default function CompraDiariasPage() {
 
 function CompraDiariasContent() {
   const navigate = useNavigate()
-  const { step, setStep } = useDiarias()
+  const { step, setStep, selection } = useDiarias()
+  const showAside = step !== 1 && step !== 4
 
   return (
     <PageContainer>
@@ -52,8 +55,17 @@ function CompraDiariasContent() {
 
       <StepIndicator currentStep={step} onStepClick={setStep} />
 
-      <div key={step} className={styles.stepContent}>
-        <ActiveStep />
+      <div className={`${styles.body} ${showAside ? '' : styles.bodyFull}`}>
+        <div key={step} className={styles.stepContent}>
+          <ActiveStep />
+        </div>
+
+        {showAside && (
+          <aside className={styles.summaryColumn}>
+            <DiariasResumoCard />
+            {selection.produto && <DiariasFormatsAccordion produto={selection.produto} />}
+          </aside>
+        )}
       </div>
     </PageContainer>
   )
