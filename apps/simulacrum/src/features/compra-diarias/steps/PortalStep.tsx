@@ -66,7 +66,7 @@ export default function PortalStep() {
               </div>
 
               <div className={styles.cardFooter}>
-                <span className={`type-body-sm ${styles.maxImpressions}`}>
+                <span className={`type-caption-md ${styles.maxImpressions}`}>
                   Até {formatImpressions(stats.maxImpressions)} impressões/dia
                 </span>
                 <Tooltip
@@ -74,7 +74,7 @@ export default function PortalStep() {
                   position="up"
                 >
                   <span
-                    className={`material-symbols-rounded icon-md ${styles.tooltipIcon}`}
+                    className={`material-symbols-rounded icon-sm ${styles.tooltipIcon}`}
                     aria-label="Mais informações sobre impressões"
                   >
                     info

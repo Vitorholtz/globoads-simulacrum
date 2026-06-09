@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Button, Badge, MultiDateCalendar } from '@globo-ads/ds'
 import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import {
@@ -60,7 +61,11 @@ function CoverageRow({ cov, produto, dates, isOpen, onToggle, onDatesChange }: C
   )
 }
 
-export default function ConfigStep() {
+export default function ConfigStep({
+  actionsContainer,
+}: {
+  actionsContainer: HTMLDivElement | null
+}) {
   const { selection, handleConfigNext: onNext, setStep, updateDatesLive } = useDiarias()
   const produto = selection.produto!
   const initialDates = selection.dates
@@ -129,143 +134,169 @@ export default function ConfigStep() {
   }
 
   return (
-    <section className={styles.section}>
-      <header className={styles.header}>
-        <h2 className="type-title-md">Configure sua Diária</h2>
-        <p className={`type-body-sm ${styles.subtitle}`}>
-          Defina a localização e os dias em que seu anúncio será veiculado.
-        </p>
-      </header>
+    <>
+      <section className={styles.section}>
+        <header className={styles.header}>
+          <h2 className="type-title-md">Configure sua Diária</h2>
+          <p className={`type-body-sm ${styles.subtitle}`}>
+            Defina a localização e os dias em que seu anúncio será veiculado.
+          </p>
+        </header>
 
-      <div className={styles.formColumn}>
-        {/* ── Regional flow ── */}
-        {produto.isRegional && (
-          <fieldset className={styles.fieldset}>
-            {hasSelections && (
-              <div className={styles.fieldsetActions}>
-                <span className={`type-caption-md ${styles.fieldsetDayCount}`}>
-                  {totalSelectedDays}{' '}
-                  {totalSelectedDays === 1 ? 'dia selecionado' : 'dias selecionados'}
-                </span>
-                <Button
-                  variant="tertiary"
-                  size="sm"
-                  iconLeft="remove_done"
-                  onClick={clearSelections}
-                >
-                  Limpar seleção
-                </Button>
-              </div>
-            )}
-            {shouldGroup ? (
-              <div className={styles.regionGroups}>
-                {MACROREGIONS.map(({ label, codes }) => {
-                  const covsInGroup = produto.coverages.filter((c) => codes.includes(c.code))
-                  if (covsInGroup.length === 0) return null
-                  return (
-                    <div key={label} className={styles.regionOptionGroup}>
-                      <p className={`type-caption-sm ${styles.regionSectionLabel}`}>{label}</p>
-                      {covsInGroup.map((cov) => (
-                        <CoverageRow
-                          key={cov.code}
-                          cov={cov}
-                          produto={produto}
-                          dates={datesPerCoverage[cov.code] ?? []}
-                          isOpen={openCalendarCode === cov.code}
-                          onToggle={() => toggleCalendar(cov.code)}
-                          onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
-                        />
-                      ))}
-                    </div>
-                  )
-                })}
-              </div>
-            ) : (
-              <div className={styles.regionOptionContainer}>
-                {produto.coverages.map((cov) => (
-                  <CoverageRow
-                    key={cov.code}
-                    cov={cov}
-                    produto={produto}
-                    dates={datesPerCoverage[cov.code] ?? []}
-                    isOpen={openCalendarCode === cov.code}
-                    onToggle={() => toggleCalendar(cov.code)}
-                    onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
-                  />
-                ))}
-              </div>
-            )}
-          </fieldset>
-        )}
-
-        {/* ── National flow ── */}
-        {!produto.isRegional && (
-          <div className={styles.calendarCard}>
-            <div className={styles.calendarCardHeader}>
-              <div className={styles.calendarTitleRow}>
-                <p className={`type-title-sm ${styles.calendarTitle}`}>Dias de veiculação</p>
-                <div className={styles.calendarTitleActions}>
-                  {dates.length > 0 && (
-                    <Badge
-                      variant="accent"
-                      label={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`}
-                    />
-                  )}
-                  {dates.length > 0 && (
-                    <Button
-                      variant="tertiary"
-                      size="sm"
-                      iconLeft="remove_done"
-                      onClick={clearSelections}
-                    >
-                      Limpar
-                    </Button>
-                  )}
+        <div className={styles.formColumn}>
+          {/* ── Regional flow ── */}
+          {produto.isRegional && (
+            <fieldset className={styles.fieldset}>
+              {hasSelections && (
+                <div className={styles.fieldsetActions}>
+                  <span className={`type-caption-md ${styles.fieldsetDayCount}`}>
+                    {totalSelectedDays}{' '}
+                    {totalSelectedDays === 1 ? 'dia selecionado' : 'dias selecionados'}
+                  </span>
+                  <Button
+                    variant="tertiary"
+                    size="sm"
+                    iconLeft="remove_done"
+                    onClick={clearSelections}
+                  >
+                    Limpar seleção
+                  </Button>
                 </div>
-              </div>
-              {dates.length > 0 && (
-                <span className={`type-body-xs ${styles.calendarDates}`}>
-                  {dates.map(formatDateShort).join(' • ')}
-                </span>
               )}
+              {shouldGroup ? (
+                <div className={styles.regionGroups}>
+                  {MACROREGIONS.map(({ label, codes }) => {
+                    const covsInGroup = produto.coverages.filter((c) => codes.includes(c.code))
+                    if (covsInGroup.length === 0) return null
+                    return (
+                      <div key={label} className={styles.regionOptionGroup}>
+                        <p className={`type-caption-sm ${styles.regionSectionLabel}`}>{label}</p>
+                        {covsInGroup.map((cov) => (
+                          <CoverageRow
+                            key={cov.code}
+                            cov={cov}
+                            produto={produto}
+                            dates={datesPerCoverage[cov.code] ?? []}
+                            isOpen={openCalendarCode === cov.code}
+                            onToggle={() => toggleCalendar(cov.code)}
+                            onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
+                          />
+                        ))}
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                <div className={styles.regionOptionContainer}>
+                  {produto.coverages.map((cov) => (
+                    <CoverageRow
+                      key={cov.code}
+                      cov={cov}
+                      produto={produto}
+                      dates={datesPerCoverage[cov.code] ?? []}
+                      isOpen={openCalendarCode === cov.code}
+                      onToggle={() => toggleCalendar(cov.code)}
+                      onDatesChange={(newDates) => updateCoverageDates(cov.code, newDates)}
+                    />
+                  ))}
+                </div>
+              )}
+            </fieldset>
+          )}
+
+          {/* ── National flow ── */}
+          {!produto.isRegional && (
+            <div className={styles.calendarCard}>
+              <div className={styles.calendarCardHeader}>
+                <div className={styles.calendarTitleRow}>
+                  <p className={`type-title-sm ${styles.calendarTitle}`}>Dias de veiculação</p>
+                  <div className={styles.calendarTitleActions}>
+                    {dates.length > 0 && (
+                      <Badge
+                        variant="accent"
+                        label={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`}
+                      />
+                    )}
+                    {dates.length > 0 && (
+                      <Button
+                        variant="tertiary"
+                        size="sm"
+                        iconLeft="remove_done"
+                        onClick={clearSelections}
+                      >
+                        Limpar
+                      </Button>
+                    )}
+                  </div>
+                </div>
+                {dates.length > 0 && (
+                  <span className={`type-body-xs ${styles.calendarDates}`}>
+                    {dates.map(formatDateShort).join(' • ')}
+                  </span>
+                )}
+              </div>
+              <div className={styles.calendarCardDivider} />
+              <div className={styles.calendarCardBody}>
+                <MultiDateCalendar value={dates} onChange={setDates} />
+              </div>
             </div>
-            <div className={styles.calendarCardDivider} />
-            <div className={styles.calendarCardBody}>
-              <MultiDateCalendar value={dates} onChange={setDates} />
-            </div>
+          )}
+        </div>
+
+        {!actionsContainer && (
+          <div className={styles.actions}>
+            <Button
+              variant="secondary"
+              iconLeft="arrow_back"
+              onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
+            >
+              Voltar
+            </Button>
+            <Button
+              variant="primary"
+              iconRight="arrow_forward"
+              onClick={handleNext}
+              disabled={!canAdvance}
+            >
+              Próximo
+            </Button>
           </div>
         )}
-      </div>
 
-      <div className={styles.actions}>
-        <Button
-          variant="secondary"
-          iconLeft="arrow_back"
-          onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
-        >
-          Voltar
-        </Button>
-        <Button
-          variant="primary"
-          iconRight="arrow_forward"
-          onClick={handleNext}
-          disabled={!canAdvance}
-        >
-          Próximo
-        </Button>
-      </div>
+        <ConfirmDialog
+          isOpen={showBackConfirm}
+          title="Descartar seleção?"
+          description="Você tem dias selecionados. Ao voltar, eles serão descartados e você precisará refazê-los."
+          confirmLabel="Descartar e voltar"
+          onConfirm={() => {
+            setShowBackConfirm(false)
+            setStep(2)
+          }}
+          onCancel={() => setShowBackConfirm(false)}
+        />
+      </section>
 
-      <ConfirmDialog
-        isOpen={showBackConfirm}
-        title="Descartar seleção?"
-        description="Você tem dias selecionados. Ao voltar, eles serão descartados e você precisará refazê-los."
-        confirmLabel="Descartar e voltar"
-        onConfirm={() => {
-          setShowBackConfirm(false)
-          setStep(2)
-        }}
-        onCancel={() => setShowBackConfirm(false)}
-      />
-    </section>
+      {actionsContainer &&
+        createPortal(
+          <div className={styles.actions}>
+            <Button
+              variant="secondary"
+              iconLeft="arrow_back"
+              onClick={() => (hasSelections ? setShowBackConfirm(true) : setStep(2))}
+            >
+              Voltar
+            </Button>
+            <Button
+              variant="primary"
+              iconRight="arrow_forward"
+              onClick={handleNext}
+              disabled={!canAdvance}
+            >
+              Próximo
+            </Button>
+          </div>,
+          actionsContainer
+        )}
+    </>
   )
 }

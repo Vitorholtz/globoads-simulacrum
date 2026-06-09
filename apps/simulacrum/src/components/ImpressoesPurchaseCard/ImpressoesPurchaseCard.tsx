@@ -40,23 +40,24 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
                 {objetivoInfo?.icon ?? 'ads_click'}
               </span>
             </div>
-            <div>
-              <p className={`type-caption-sm ${styles.metaLabel}`}>Objetivo</p>
+            <div className={styles.receiptProductInfo}>
+              <p className={`type-body-sm ${styles.metaValue}`}>{produto.name}</p>
               <div className={styles.objetivoRow}>
-                <p className={`type-body-sm ${styles.metaValue}`}>{objetivoInfo?.name}</p>
+                <p className={`type-caption-sm ${styles.metaLabel}`}>{objetivoInfo?.name}</p>
                 {kpi && <Badge variant="accent" label={KPI_LABELS[kpi]} />}
               </div>
             </div>
           </div>
         </div>
         <div className={styles.receiptHeaderRight}>
-          <p className={`type-caption-sm ${styles.metaLabel}`}>Produto</p>
-          <div className={styles.produtoRow}>
-            <p className={`type-body-sm ${styles.metaValue}`}>{produto.name}</p>
-            {cpmOption && produto.cpmOptions.length > 1 && (
-              <Badge variant="neutral" label={cpmOption.label} />
-            )}
-          </div>
+          <span className={`type-caption-md ${styles.metaLabel}`}>
+            {platforms.length === 1
+              ? PLATFORM_DISPLAY_NAMES[platforms[0]]
+              : `${platforms.length} plataformas`}
+          </span>
+          {cpmOption && produto.cpmOptions.length > 1 && (
+            <Badge variant="neutral" label={cpmOption.label} />
+          )}
         </div>
       </div>
 
@@ -84,7 +85,22 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
         </div>
       </div>
 
+      <div className={styles.detailHeader}>
+        <span className={`type-caption-sm ${styles.detailHeadLabel}`}>Configuração</span>
+        <span className={`type-caption-sm ${styles.detailHeadLabelRight}`}>Valor</span>
+      </div>
+
       <div className={styles.detailGrid}>
+        <div className={styles.detailRow}>
+          <span className={`type-body-sm ${styles.detailLabel}`}>Objetivo</span>
+          <span className={`type-body-sm ${styles.detailValue}`}>{objetivoInfo?.name ?? '—'}</span>
+        </div>
+        <div className={styles.detailRow}>
+          <span className={`type-body-sm ${styles.detailLabel}`}>KPI</span>
+          <span className={`type-body-sm ${styles.detailValue}`}>
+            {kpi ? KPI_LABELS[kpi] : '—'}
+          </span>
+        </div>
         <div className={styles.detailRow}>
           <span className={`type-body-sm ${styles.detailLabel}`}>Audiência</span>
           <span className={`type-body-sm ${styles.detailValue}`}>{audience?.name ?? '—'}</span>

@@ -44,31 +44,31 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
       <div className={styles.receiptHeader}>
         <div className={styles.receiptHeaderLeft}>
           <div className={styles.portalRow}>
-            {portal.svgPath && (
-              <img
-                src={portal.svgPath}
-                alt={PORTAL_DISPLAY_NAMES[selection.portal]}
-                className={styles.portalLogo}
+            <div className={styles.expandableIconWrap}>
+              <span
+                className={`material-symbols-rounded icon-lg ${styles.expandableIcon}`}
+                aria-hidden="true"
+              >
+                {produto.icon}
+              </span>
+            </div>
+            <div className={styles.portalRowInfo}>
+              <p className={`type-body-sm ${styles.receiptMetaValue}`}>{produto.name}</p>
+              <Badge
+                variant={produto.isRegional ? 'accent' : 'neutral'}
+                label={produto.isRegional ? 'Regional' : 'Nacional'}
               />
-            )}
-            <div>
-              <p className={`type-caption-sm ${styles.receiptMetaLabel}`}>Portal</p>
-              <p className={`type-body-sm ${styles.receiptMetaValue}`}>
-                {PORTAL_DISPLAY_NAMES[selection.portal]}
-              </p>
             </div>
           </div>
         </div>
-        <div className={styles.receiptHeaderRight}>
-          <p className={`type-caption-sm ${styles.receiptMetaLabel}`}>Produto</p>
-          <div className={styles.produtoRow}>
-            <p className={`type-body-sm ${styles.receiptMetaValue}`}>{produto.name}</p>
-            <Badge
-              variant={produto.isRegional ? 'accent' : 'neutral'}
-              label={produto.isRegional ? 'Regional' : 'Nacional'}
-            />
-          </div>
-        </div>
+        {portal.svgPath && (
+          <span className={styles.portalChip}>
+            <img src={portal.svgPath} alt="" aria-hidden="true" className={styles.portalChipLogo} />
+            <span className={`type-caption-md ${styles.portalChipName}`}>
+              {PORTAL_DISPLAY_NAMES[selection.portal]}
+            </span>
+          </span>
+        )}
       </div>
 
       <div className={styles.tableHeader}>
@@ -192,7 +192,6 @@ export function ExpandablePurchaseCard({
   onDelete,
 }: ExpandablePurchaseCardProps) {
   const [expanded, setExpanded] = useState(defaultOpen)
-  const portal = getPortal(selection.portal)
   const total = computeTotal(selection)
 
   return (
@@ -204,16 +203,21 @@ export function ExpandablePurchaseCard({
         aria-expanded={expanded}
       >
         <div className={styles.expandableCardLeft}>
-          {portal.svgPath && (
-            <img src={portal.svgPath} alt="" aria-hidden="true" className={styles.expandableLogo} />
-          )}
+          <div className={styles.expandableIconWrap}>
+            <span
+              className={`material-symbols-rounded icon-lg ${styles.expandableIcon}`}
+              aria-hidden="true"
+            >
+              {selection.produto.icon}
+            </span>
+          </div>
           <div className={styles.expandableCardInfo}>
             <span className={`type-body-sm ${styles.expandablePortalName}`}>
-              {PORTAL_DISPLAY_NAMES[selection.portal]}
+              {selection.produto.name}
             </span>
             <div className={styles.expandableCardMeta}>
               <span className={`type-caption-sm ${styles.expandableMetaText}`}>
-                {selection.produto.name}
+                {PORTAL_DISPLAY_NAMES[selection.portal]}
               </span>
               <Badge
                 variant={selection.produto.isRegional ? 'accent' : 'neutral'}

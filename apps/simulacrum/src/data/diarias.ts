@@ -30,6 +30,8 @@ export interface DiariaProduto {
   coverages: CoverageInfo[]
   isRegional: boolean
   cpm: number
+  description: string
+  icon: string
 }
 
 export interface RegionalSelection {
@@ -138,6 +140,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 880_000 }],
     isRegional: false,
     cpm: 25,
+    description: 'Billboard em 1ª posição no Desktop e Sticky Ad em 1ª posição no Mobile.',
+    icon: 'south_america',
   },
   {
     id: 'g1-nacional-2',
@@ -160,6 +164,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 600_000 }],
     isRegional: false,
     cpm: 25,
+    description: 'Billboard em 2ª posição no Desktop e Retângulo Médio em 2ª posição no Mobile.',
+    icon: 'south_america',
   },
   {
     id: 'g1-regional',
@@ -188,6 +194,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     ],
     isRegional: true,
     cpm: 25,
+    description: 'Billboard e Retângulo Médio em múltiplas posições, segmentados por estado.',
+    icon: 'location_on',
   },
   {
     id: 'g1-touchpoint',
@@ -204,6 +212,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 480_000 }],
     isRegional: false,
     cpm: 25,
+    description: 'Touchpoint Imagético fixo no rodapé da página, em Desktop e Mobile.',
+    icon: 'touch_app',
   },
   {
     id: 'g1-homeday',
@@ -238,6 +248,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 2_080_000 }],
     isRegional: false,
     cpm: 25,
+    description: 'Pacote completo com 4 formatos cobrindo todas as posições ao longo do dia.',
+    icon: 'web',
   },
 
   // ─── GE — CPM R$ 22 ──────────────────────────────────────────────────────────
@@ -263,6 +275,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 820_000 }],
     isRegional: false,
     cpm: 22,
+    description: 'Billboard em 1ª posição no Desktop e Sticky Ad em 1ª posição no Mobile.',
+    icon: 'south_america',
   },
   {
     id: 'ge-nacional-2',
@@ -285,6 +299,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 545_000 }],
     isRegional: false,
     cpm: 22,
+    description: 'Billboard em 2ª posição no Desktop e Retângulo Médio em 2ª posição no Mobile.',
+    icon: 'south_america',
   },
   {
     id: 'ge-nacional-3',
@@ -307,6 +323,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 364_000 }],
     isRegional: false,
     cpm: 22,
+    description: 'Half-Page em 3ª posição no Desktop e Retângulo Médio em 3ª posição no Mobile.',
+    icon: 'south_america',
   },
   {
     id: 'ge-touchpoint',
@@ -323,6 +341,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 454_000 }],
     isRegional: false,
     cpm: 22,
+    description: 'Touchpoint Imagético fixo no rodapé da página, em Desktop e Mobile.',
+    icon: 'touch_app',
   },
   {
     id: 'ge-homeday',
@@ -363,6 +383,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 2_045_000 }],
     isRegional: false,
     cpm: 22,
+    description: 'Pacote completo com 5 formatos cobrindo todas as posições ao longo do dia.',
+    icon: 'web',
   },
 
   // ─── Globo.com — CPM R$ 30 ───────────────────────────────────────────────────
@@ -388,6 +410,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 1_500_000 }],
     isRegional: false,
     cpm: 30,
+    description: 'Billboard em 1ª posição no Desktop e Retângulo Médio em 1ª posição no Mobile.',
+    icon: 'south_america',
   },
   {
     id: 'globo-com-premium',
@@ -410,6 +434,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 1_067_000 }],
     isRegional: false,
     cpm: 30,
+    description: 'Billboard em 2ª posição no Desktop e Retângulo Médio em 2ª posição no Mobile.',
+    icon: 'south_america',
   },
   {
     id: 'globo-com-touchpoint',
@@ -426,6 +452,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 733_000 }],
     isRegional: false,
     cpm: 30,
+    description: 'Touchpoint Imagético fixo no rodapé da página, em Desktop e Mobile.',
+    icon: 'touch_app',
   },
   {
     id: 'globo-com-regional',
@@ -476,6 +504,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     ],
     isRegional: true,
     cpm: 30,
+    description: 'Billboard e Retângulo Médio em 3ª posição, segmentados por estado.',
+    icon: 'location_on',
   },
   {
     id: 'globo-com-homeday',
@@ -519,6 +549,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 3_267_000 }],
     isRegional: false,
     cpm: 30,
+    description: 'Pacote completo com 3 formatos e múltiplas posições ao longo do dia.',
+    icon: 'web',
   },
 
   // ─── Globoplay — CPM R$ 48 ───────────────────────────────────────────────────
@@ -538,6 +570,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 1_208_000 }],
     isRegional: false,
     cpm: 48,
+    description: 'In-Stream Vídeo em 1º pré-roll — Mobile, Desktop, App e TV Conectada.',
+    icon: 'smart_display',
   },
   {
     id: 'globoplay-segundissima',
@@ -554,6 +588,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 833_000 }],
     isRegional: false,
     cpm: 48,
+    description: 'In-Stream Vídeo em 2º pré-roll — Mobile, Desktop, App e TV Conectada.',
+    icon: 'smart_display',
   },
 
   // ─── gshow — CPM R$ 20 ───────────────────────────────────────────────────────
@@ -585,6 +621,8 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     coverages: [{ code: 'Nacional', impressions: 700_000 }],
     isRegional: false,
     cpm: 20,
+    description: 'Pacote completo com 3 formatos cobrindo todas as posições ao longo do dia.',
+    icon: 'web',
   },
 ]
 

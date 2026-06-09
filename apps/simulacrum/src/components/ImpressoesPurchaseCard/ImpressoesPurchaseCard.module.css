@@ -13,9 +13,10 @@
 }
 
 .receiptHeader {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-300);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
   padding: var(--spacing-250);
 }
 
@@ -40,6 +41,7 @@
 
 .metaValue {
   color: var(--color-fill-primary);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
 }
 
@@ -60,6 +62,12 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-150);
+}
+
+.receiptProductInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-025);
 }
 
 .objetivoIconWrap {
@@ -175,11 +183,29 @@
 
 /* ── Detail grid ── */
 
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-150) var(--spacing-200);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  margin: var(--spacing-200) var(--spacing-250) 0;
+}
+
+.detailHeadLabel {
+  color: var(--color-fill-tertiary);
+}
+
+.detailHeadLabelRight {
+  color: var(--color-fill-tertiary);
+  text-align: right;
+}
+
 .detailGrid {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-100);
-  padding: var(--spacing-200) var(--spacing-250);
+  padding: var(--spacing-200) 36px;
 }
 
 .detailRow {
@@ -300,6 +326,7 @@
 
 .expandableName {
   color: var(--color-fill-primary);
+  font-weight: var(--font-weight-medium);
 }
 
 .expandableCardMeta {

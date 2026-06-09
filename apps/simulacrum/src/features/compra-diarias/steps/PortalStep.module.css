@@ -25,8 +25,8 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-300);
-  padding: var(--spacing-300);
+  gap: var(--spacing-200);
+  padding: var(--spacing-250);
   text-align: left;
   align-items: flex-start;
   background: var(--color-surface-primary);
@@ -121,7 +121,7 @@
   gap: var(--spacing-075);
   width: 100%;
   margin-top: auto;
-  padding-top: var(--spacing-150);
+  padding-top: var(--spacing-200);
   border-top: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
@@ -130,7 +130,7 @@
 }
 
 .tooltipIcon {
-  color: var(--color-fill-tertiary);
+  color: var(--color-fill-secondary);
   cursor: default;
   flex-shrink: 0;
 }

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Breadcrumb } from '@globo-ads/ds'
 import { DiariasProvider, useDiarias, type Step } from './context/DiariasContext'
@@ -39,6 +40,7 @@ function CompraDiariasContent() {
   const navigate = useNavigate()
   const { step, setStep, selection } = useDiarias()
   const showAside = step !== 1 && step !== 4
+  const [actionsContainer, setActionsContainer] = useState<HTMLDivElement | null>(null)
 
   return (
     <PageContainer>
@@ -57,13 +59,14 @@ function CompraDiariasContent() {
 
       <div className={`${styles.body} ${showAside ? '' : styles.bodyFull}`}>
         <div key={step} className={styles.stepContent}>
-          <ActiveStep />
+          <ActiveStep actionsContainer={actionsContainer} />
         </div>
 
         {showAside && (
           <aside className={styles.summaryColumn}>
             <DiariasResumoCard />
             {selection.produto && <DiariasFormatsAccordion produto={selection.produto} />}
+            <div ref={setActionsContainer} />
           </aside>
         )}
       </div>
@@ -71,14 +74,14 @@ function CompraDiariasContent() {
   )
 }
 
-function ActiveStep() {
+function ActiveStep({ actionsContainer }: { actionsContainer: HTMLDivElement | null }) {
   const { step, selection } = useDiarias()
 
   if (step === 1) return <PortalStep />
 
-  if (step === 2 && selection.portal) return <ProdutoStep />
+  if (step === 2 && selection.portal) return <ProdutoStep actionsContainer={actionsContainer} />
 
-  if (step === 3 && selection.produto) return <ConfigStep />
+  if (step === 3 && selection.produto) return <ConfigStep actionsContainer={actionsContainer} />
 
   if (
     step === 4 &&

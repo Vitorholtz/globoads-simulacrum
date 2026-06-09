@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Breadcrumb } from '@globo-ads/ds'
 import { ImpressoesProvider, useImpressoes, type Step } from './context/ImpressoesContext'
@@ -43,6 +44,7 @@ function CompraImpressoesContent() {
   const navigate = useNavigate()
   const { step, selection } = useImpressoes()
   const showAside = step !== 1 && step !== 5
+  const [actionsContainer, setActionsContainer] = useState<HTMLDivElement | null>(null)
 
   return (
     <PageContainer>
@@ -64,13 +66,14 @@ function CompraImpressoesContent() {
 
       <div className={`${styles.body} ${showAside ? '' : styles.bodyFull}`}>
         <div key={step} className={styles.stepContent}>
-          <ActiveStep />
+          <ActiveStep actionsContainer={actionsContainer} />
         </div>
 
         {showAside && (
           <aside className={styles.summaryColumn}>
             <ImpressoesPricingCard selection={selection} />
             {selection.produto && <ImpressoesFormatsAccordion produto={selection.produto} />}
+            <div ref={setActionsContainer} />
           </aside>
         )}
       </div>
@@ -78,13 +81,16 @@ function CompraImpressoesContent() {
   )
 }
 
-function ActiveStep() {
+function ActiveStep({ actionsContainer }: { actionsContainer: HTMLDivElement | null }) {
   const { step, selection } = useImpressoes()
 
   if (step === 1) return <ObjetivoKpiStep />
-  if (step === 2 && selection.objetivo) return <ProdutoConfigStep />
-  if (step === 3 && selection.produto) return <SegmentacaoStep />
-  if (step === 4 && selection.audienceId) return <PeriodoVolumeStep />
+  if (step === 2 && selection.objetivo)
+    return <ProdutoConfigStep actionsContainer={actionsContainer} />
+  if (step === 3 && selection.produto)
+    return <SegmentacaoStep actionsContainer={actionsContainer} />
+  if (step === 4 && selection.audienceId)
+    return <PeriodoVolumeStep actionsContainer={actionsContainer} />
   if (
     step === 5 &&
     selection.produto &&

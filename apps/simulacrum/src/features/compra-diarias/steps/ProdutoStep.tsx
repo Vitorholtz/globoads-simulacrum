@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Button, Badge, InteractiveCard } from '@globo-ads/ds'
 import {
   getProductsByPortal,
@@ -6,10 +7,25 @@ import {
   formatImpressions,
   getPriceForCoverage,
 } from '../../../data/diarias'
-import { getAdFormat, getPrimaryDimension } from '../../../data/rules/diarias'
 import type { DiariaProduto } from '../../../data/diarias'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './ProdutoStep.module.css'
+
+function getDevicesLabel(produto: DiariaProduto): string {
+  const str = produto.formats.map((f) => f.devices).join(' ')
+  const hasDesktop = str.includes('Desktop')
+  const hasMobile = str.includes('Mobile')
+  const hasApp = str.includes('App')
+  const hasTV = str.includes('TV')
+  const parts: string[] = []
+  if (hasDesktop) parts.push('Desktop')
+  if (hasMobile) parts.push('Mobile')
+  if (hasApp) parts.push('App')
+  if (hasTV) parts.push('TV Conectada')
+  if (parts.length <= 1) return parts[0] ?? ''
+  const last = parts.pop()!
+  return `${parts.join(', ')} e ${last}`
+}
 
 function CardMetrics({ produto }: { produto: DiariaProduto }) {
   if (produto.isRegional) {
@@ -21,10 +37,10 @@ function CardMetrics({ produto }: { produto: DiariaProduto }) {
     const maxPrice = Math.max(...prices)
     return (
       <div className={styles.cardMetrics}>
-        <span className={`type-body-sm ${styles.metricImpressions}`}>
-          ~{formatImpressions(minImp)} a {formatImpressions(maxImp)} impressões/estado/dia
+        <span className={`type-caption-md ${styles.metricImpressions}`}>
+          ~{formatImpressions(minImp)} a {formatImpressions(maxImp)}/estado/dia
         </span>
-        <span className={`type-caption-md ${styles.metricPrice}`}>
+        <span className={`type-caption-sm ${styles.metricPrice}`}>
           {formatCurrency(minPrice)} a {formatCurrency(maxPrice)}/dia
         </span>
       </div>
@@ -32,17 +48,21 @@ function CardMetrics({ produto }: { produto: DiariaProduto }) {
   }
   return (
     <div className={styles.cardMetrics}>
-      <span className={`type-body-sm ${styles.metricImpressions}`}>
+      <span className={`type-caption-md ${styles.metricImpressions}`}>
         ~{formatImpressions(produto.coverages[0].impressions)} impressões/dia
       </span>
-      <span className={`type-caption-md ${styles.metricPrice}`}>
+      <span className={`type-caption-sm ${styles.metricPrice}`}>
         {formatCurrency(getPriceForCoverage(produto, 'Nacional'))}/dia
       </span>
     </div>
   )
 }
 
-export default function ProdutoStep() {
+export default function ProdutoStep({
+  actionsContainer,
+}: {
+  actionsContainer: HTMLDivElement | null
+}) {
   const { selection, handleProdutoSelect, updateProdutoLive, setStep } = useDiarias()
   const portalId = selection.portal!
   const produtos = getProductsByPortal(portalId)
@@ -60,92 +80,85 @@ export default function ProdutoStep() {
     if (selectedProduto) handleProdutoSelect(selectedProduto)
   }
 
+  const actions = (
+    <div className={styles.actions}>
+      <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(1)}>
+        Voltar
+      </Button>
+      <Button
+        variant="primary"
+        iconRight="arrow_forward"
+        disabled={!selectedProduto}
+        onClick={handleNext}
+      >
+        Próximo
+      </Button>
+    </div>
+  )
+
   return (
-    <section className={styles.section}>
-      <header className={styles.header}>
-        <h2 className="type-title-md">Escolha o produto de Diária</h2>
-        <p className={`type-body-sm ${styles.subtitle}`}>
-          Cada produto define os formatos incluídos e onde o anúncio será exibido.
-        </p>
-      </header>
+    <>
+      <section className={styles.section}>
+        <header className={styles.header}>
+          <h2 className="type-title-md">Escolha o produto de Diária</h2>
+          <p className={`type-body-sm ${styles.subtitle}`}>
+            Cada produto define os formatos incluídos e onde o anúncio será exibido.
+          </p>
+        </header>
 
-      <div className={styles.grid}>
-        {produtos.map((produto) => (
-          <InteractiveCard
-            key={produto.id}
-            className={`${styles.card} ${selectedId === produto.id ? styles.cardSelected : ''}`}
-            onClick={() => setSelectedId((prev) => (prev === produto.id ? null : produto.id))}
-            aria-pressed={selectedId === produto.id}
-            aria-label={`Selecionar ${produto.name}`}
-          >
-            <div className={styles.cardHeader}>
+        <div className={styles.grid}>
+          {produtos.map((produto) => (
+            <InteractiveCard
+              key={produto.id}
+              className={`${styles.card} ${selectedId === produto.id ? styles.cardSelected : ''}`}
+              onClick={() => setSelectedId((prev) => (prev === produto.id ? null : produto.id))}
+              aria-pressed={selectedId === produto.id}
+              aria-label={`Selecionar ${produto.name}`}
+            >
+              <div className={styles.cardHeader}>
+                <span className="material-symbols-rounded icon-lg" aria-hidden="true">
+                  {produto.icon}
+                </span>
+                <Badge
+                  variant={produto.isRegional ? 'accent' : 'neutral'}
+                  label={produto.isRegional ? 'Regional' : 'Nacional'}
+                />
+              </div>
+
               <span className={`type-title-sm ${styles.cardTitle}`}>{produto.name}</span>
-              <Badge
-                variant={produto.isRegional ? 'accent' : 'neutral'}
-                label={produto.isRegional ? 'Regional' : 'Nacional'}
-              />
-            </div>
 
-            <div className={styles.cardDivider} />
+              <p className={`type-body-sm ${styles.cardDescription}`}>{produto.description}</p>
 
-            <span className={`type-caption-sm ${styles.formatCount}`}>
-              {produto.formats.length}{' '}
-              {produto.formats.length === 1 ? 'formato disponível' : 'formatos disponíveis'}
-            </span>
+              <div className={styles.cardLabels}>
+                <div className={styles.cardLabel}>
+                  <span className="material-symbols-rounded icon-sm" aria-hidden="true">
+                    animated_images
+                  </span>
+                  <span className={`type-caption-sm ${styles.labelText}`}>
+                    {produto.formats.length} {produto.formats.length === 1 ? 'formato' : 'formatos'}
+                  </span>
+                </div>
+                <div className={styles.cardLabel}>
+                  <span className="material-symbols-rounded icon-sm" aria-hidden="true">
+                    devices
+                  </span>
+                  <span className={`type-caption-sm ${styles.labelText}`}>
+                    {getDevicesLabel(produto)}
+                  </span>
+                </div>
+              </div>
 
-            <ul className={styles.formatList}>
-              {produto.formats.map((f) => {
-                const adFormat = getAdFormat(f.formatId)
-                const dim = getPrimaryDimension(f.formatId)
-                return (
-                  <li key={f.formatId} className={styles.formatItem}>
-                    {adFormat?.svgPath && (
-                      <img
-                        src={adFormat.svgPath}
-                        alt=""
-                        aria-hidden="true"
-                        className={styles.formatThumb}
-                      />
-                    )}
-                    <div className={styles.formatInfo}>
-                      <span className={`type-caption-lg ${styles.formatName}`}>{f.formatName}</span>
-                      {dim && (
-                        <span className={`type-caption-sm ${styles.formatSpecs}`}>
-                          {dim.width}×{dim.height} • {f.devices}
-                        </span>
-                      )}
-                      {f.positions.length > 0 && (
-                        <span className={`type-caption-sm ${styles.formatPositions}`}>
-                          {f.positions.join(', ')}
-                        </span>
-                      )}
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-
-            <div className={styles.cardFooter}>
               <div className={styles.cardDivider} />
-              <CardMetrics produto={produto} />
-            </div>
-          </InteractiveCard>
-        ))}
-      </div>
 
-      <div className={styles.actions}>
-        <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(1)}>
-          Voltar
-        </Button>
-        <Button
-          variant="primary"
-          iconRight="arrow_forward"
-          disabled={!selectedProduto}
-          onClick={handleNext}
-        >
-          Próximo
-        </Button>
-      </div>
-    </section>
+              <CardMetrics produto={produto} />
+            </InteractiveCard>
+          ))}
+        </div>
+
+        {!actionsContainer && actions}
+      </section>
+
+      {actionsContainer && createPortal(actions, actionsContainer)}
+    </>
   )
 }

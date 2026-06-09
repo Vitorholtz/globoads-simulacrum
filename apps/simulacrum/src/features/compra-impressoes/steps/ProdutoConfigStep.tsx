@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Button } from '@globo-ads/ds'
 import { OBJETIVOS, type ImpressoesProduto, type PlatformId } from '../../../data/impressoes'
 import { getProductsByObjetivo } from '../../../data/rules/impressoes'
@@ -6,7 +7,11 @@ import ImpressoesProductCard from '../components/ImpressoesProductCard/Impressoe
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './ProdutoConfigStep.module.css'
 
-export default function ProdutoConfigStep() {
+export default function ProdutoConfigStep({
+  actionsContainer,
+}: {
+  actionsContainer: HTMLDivElement | null
+}) {
   const { selection, updateSelection, handleProdutoConfig, setStep } = useImpressoes()
   const products = getProductsByObjetivo(selection.objetivo!)
   const objetivoInfo = OBJETIVOS.find((o) => o.id === selection.objetivo)
@@ -54,44 +59,52 @@ export default function ProdutoConfigStep() {
     }
   }
 
+  const actions = (
+    <div className={styles.actions}>
+      <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(1)}>
+        Voltar
+      </Button>
+      <Button
+        variant="primary"
+        iconRight="arrow_forward"
+        disabled={!canAdvance}
+        onClick={handleNext}
+      >
+        Próximo
+      </Button>
+    </div>
+  )
+
   return (
-    <section className={styles.section}>
-      <header className={styles.header}>
-        <h2 className="type-title-md">Escolha o produto e configure</h2>
-        <p className={`type-body-sm ${styles.subtitle}`}>
-          Produtos disponíveis para o objetivo {objetivoInfo?.name}. Selecione um e ajuste as
-          plataformas e o formato de entrega.
-        </p>
-      </header>
+    <>
+      <section className={styles.section}>
+        <header className={styles.header}>
+          <h2 className="type-title-md">Escolha o produto e configure</h2>
+          <p className={`type-body-sm ${styles.subtitle}`}>
+            Produtos disponíveis para o objetivo {objetivoInfo?.name}. Selecione um e ajuste as
+            plataformas e o formato de entrega.
+          </p>
+        </header>
 
-      <div className={styles.grid}>
-        {products.map((p) => (
-          <ImpressoesProductCard
-            key={p.id}
-            produto={p}
-            selected={produtoId === p.id}
-            selectedPlatforms={produtoId === p.id ? platforms : []}
-            selectedCpmOptionId={produtoId === p.id ? cpmOptionId : null}
-            onSelect={() => selectProduto(p)}
-            onPlatformToggle={togglePlatform}
-            onCpmSelect={selectCpm}
-          />
-        ))}
-      </div>
+        <div className={styles.grid}>
+          {products.map((p) => (
+            <ImpressoesProductCard
+              key={p.id}
+              produto={p}
+              selected={produtoId === p.id}
+              selectedPlatforms={produtoId === p.id ? platforms : []}
+              selectedCpmOptionId={produtoId === p.id ? cpmOptionId : null}
+              onSelect={() => selectProduto(p)}
+              onPlatformToggle={togglePlatform}
+              onCpmSelect={selectCpm}
+            />
+          ))}
+        </div>
 
-      <div className={styles.actions}>
-        <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(1)}>
-          Voltar
-        </Button>
-        <Button
-          variant="primary"
-          iconRight="arrow_forward"
-          disabled={!canAdvance}
-          onClick={handleNext}
-        >
-          Próximo
-        </Button>
-      </div>
-    </section>
+        {!actionsContainer && actions}
+      </section>
+
+      {actionsContainer && createPortal(actions, actionsContainer)}
+    </>
   )
 }

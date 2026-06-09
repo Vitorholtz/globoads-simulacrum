@@ -43,18 +43,49 @@
   box-shadow: 0 0 0 1px var(--color-fill-accent);
 }
 
+/* ── Card header: ícone + badge ── */
+
 .cardHeader {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-150);
   width: 100%;
+  color: var(--color-fill-accent);
 }
+
+/* ── Título ── */
 
 .cardTitle {
   color: var(--color-fill-primary);
-  flex: 1;
 }
+
+/* ── Descrição ── */
+
+.cardDescription {
+  color: var(--color-fill-secondary);
+  width: 100%;
+}
+
+/* ── Labels (formatos + dispositivos) ── */
+
+.cardLabels {
+  display: flex;
+  gap: var(--spacing-400);
+  align-items: center;
+}
+
+.cardLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-050);
+  color: var(--color-fill-tertiary);
+}
+
+.labelText {
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Divider ── */
 
 .cardDivider {
   width: 100%;
@@ -62,73 +93,7 @@
   background: var(--color-border-tertiary);
 }
 
-/* ── Format list ── */
-
-.formatCount {
-  color: var(--color-fill-tertiary);
-}
-
-.formatList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-200);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-.formatItem {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-150);
-}
-
-.formatThumb {
-  width: 60px;
-  height: auto;
-  display: block;
-  background: var(--color-surface-secondary);
-  border-radius: var(--border-radius-md);
-  flex-shrink: 0;
-}
-
-.formatInfo {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-050);
-  min-width: 0;
-}
-
-.formatHeadline {
-  display: flex;
-  align-items: baseline;
-  gap: var(--spacing-050);
-  flex-wrap: wrap;
-}
-
-.formatName {
-  color: var(--color-fill-primary);
-}
-
-.formatSpecs {
-  color: var(--color-fill-secondary);
-  white-space: nowrap;
-}
-
-.formatPositions {
-  color: var(--color-fill-tertiary);
-}
-
 /* ── Card metrics ── */
-
-.cardFooter {
-  margin-top: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-200);
-}
 
 .cardMetrics {
   display: flex;
@@ -154,8 +119,4 @@
   display: flex;
   justify-content: flex-end;
   gap: var(--spacing-150);
-}
-
-.card:last-child:nth-child(odd) {
-  grid-column: span 2;
 }

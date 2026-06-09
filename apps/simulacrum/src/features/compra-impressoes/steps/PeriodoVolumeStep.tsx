@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Button, DateRangePicker, TextField } from '@globo-ads/ds'
 import { MIN_IMPRESSIONS } from '../../../data/impressoes'
 import { getDurationDays, isValidImpressions } from '../../../data/rules/impressoes'
@@ -11,7 +12,11 @@ function formatPreset(n: number): string {
   return n >= 1_000_000 ? `${n / 1_000_000} mi` : `${n / 1_000} mil`
 }
 
-export default function PeriodoVolumeStep() {
+export default function PeriodoVolumeStep({
+  actionsContainer,
+}: {
+  actionsContainer: HTMLDivElement | null
+}) {
   const { selection, updateSelection, handlePeriodoVolume, setStep } = useImpressoes()
 
   const [start, setStart] = useState<Date | null>(selection.startDate)
@@ -46,78 +51,86 @@ export default function PeriodoVolumeStep() {
     if (start && end && impressionsValid) handlePeriodoVolume(start, end, impressions)
   }
 
+  const actions = (
+    <div className={styles.actions}>
+      <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(3)}>
+        Voltar
+      </Button>
+      <Button
+        variant="primary"
+        iconRight="arrow_forward"
+        disabled={!canAdvance}
+        onClick={handleNext}
+      >
+        Próximo
+      </Button>
+    </div>
+  )
+
   return (
-    <section className={styles.section}>
-      <header className={styles.header}>
-        <h2 className="type-title-md">Período e volume de impressões</h2>
-        <p className={`type-body-sm ${styles.subtitle}`}>
-          Defina por quanto tempo o anúncio será veiculado e quantas impressões deseja contratar.
-        </p>
-      </header>
+    <>
+      <section className={styles.section}>
+        <header className={styles.header}>
+          <h2 className="type-title-md">Período e volume de impressões</h2>
+          <p className={`type-body-sm ${styles.subtitle}`}>
+            Defina por quanto tempo o anúncio será veiculado e quantas impressões deseja contratar.
+          </p>
+        </header>
 
-      <div className={styles.fields}>
-        <div className={styles.field}>
-          <DateRangePicker
-            label="Período de veiculação"
-            helpText="Datas de início e de fim"
-            value={{ start, end }}
-            onChange={handleRangeChange}
-          />
-          {duration > 0 && (
-            <div className={styles.durationCard}>
-              <span className="material-symbols-rounded icon-md" aria-hidden="true">
-                event_available
-              </span>
-              <span className="type-caption-lg">
-                {duration} {duration === 1 ? 'dia' : 'dias'} de veiculação
-              </span>
+        <div className={styles.fields}>
+          <div className={styles.field}>
+            <DateRangePicker
+              label="Período de veiculação"
+              helpText="Datas de início e de fim"
+              value={{ start, end }}
+              onChange={handleRangeChange}
+            />
+            {duration > 0 && (
+              <div className={styles.durationCard}>
+                <span className="material-symbols-rounded icon-md" aria-hidden="true">
+                  event_available
+                </span>
+                <span className="type-caption-lg">
+                  {duration} {duration === 1 ? 'dia' : 'dias'} de veiculação
+                </span>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.field}>
+            <TextField
+              label="Quantidade de impressões"
+              leadingIcon="visibility"
+              placeholder="Ex.: 100.000"
+              value={impressions > 0 ? impressions.toLocaleString('pt-BR') : ''}
+              onChange={handleImpressionsChange}
+              errorMessage={
+                impressions > 0 && !impressionsValid
+                  ? `Mínimo de ${MIN_IMPRESSIONS.toLocaleString('pt-BR')} impressões.`
+                  : undefined
+              }
+              helpText={`Mínimo de ${MIN_IMPRESSIONS.toLocaleString('pt-BR')} impressões.`}
+            />
+            <div className={styles.presets}>
+              {PRESETS.map((n) => (
+                <Button
+                  key={n}
+                  variant="secondary"
+                  size="sm"
+                  iconLeft="add"
+                  onClick={() => applyPreset(n)}
+                >
+                  {formatPreset(n)}
+                </Button>
+              ))}
             </div>
-          )}
-        </div>
-
-        <div className={styles.field}>
-          <TextField
-            label="Quantidade de impressões"
-            leadingIcon="visibility"
-            placeholder="Ex.: 100.000"
-            value={impressions > 0 ? impressions.toLocaleString('pt-BR') : ''}
-            onChange={handleImpressionsChange}
-            errorMessage={
-              impressions > 0 && !impressionsValid
-                ? `Mínimo de ${MIN_IMPRESSIONS.toLocaleString('pt-BR')} impressões.`
-                : undefined
-            }
-            helpText={`Mínimo de ${MIN_IMPRESSIONS.toLocaleString('pt-BR')} impressões.`}
-          />
-          <div className={styles.presets}>
-            {PRESETS.map((n) => (
-              <Button
-                key={n}
-                variant="secondary"
-                size="sm"
-                iconLeft="add"
-                onClick={() => applyPreset(n)}
-              >
-                {formatPreset(n)}
-              </Button>
-            ))}
           </div>
         </div>
-      </div>
 
-      <div className={styles.actions}>
-        <Button variant="secondary" iconLeft="arrow_back" onClick={() => setStep(3)}>
-          Voltar
-        </Button>
-        <Button
-          variant="primary"
-          iconRight="arrow_forward"
-          disabled={!canAdvance}
-          onClick={handleNext}
-        >
-          Próximo
-        </Button>
-      </div>
-    </section>
+        {!actionsContainer && actions}
+      </section>
+
+      {actionsContainer && createPortal(actions, actionsContainer)}
+    </>
   )
 }
