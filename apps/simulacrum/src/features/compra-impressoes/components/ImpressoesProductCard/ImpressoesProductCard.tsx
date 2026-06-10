@@ -68,8 +68,9 @@ export default function ImpressoesProductCard({
     <div className={styles.wrapper}>
       {/* ── Card do produto — InteractiveCard cuida de hover/focus/active ── */}
       <InteractiveCard
-        style="on-secondary"
-        className={`${styles.card} ${selected ? styles.cardSelected : ''}`}
+        style="outlined"
+        selected={selected}
+        className={styles.card}
         onClick={onSelect}
         aria-pressed={selected}
         aria-label={`Selecionar ${produto.name}`}
@@ -148,7 +149,8 @@ export default function ImpressoesProductCard({
                         key={platformId}
                         as="div"
                         style="on-secondary"
-                        className={`${styles.platformItem} ${isChecked ? styles.platformItemChecked : ''}`}
+                        selected={isChecked}
+                        className={styles.platformItem}
                         onClick={() => onPlatformToggle(platformId)}
                       >
                         <div className={styles.platformItemLeft}>
@@ -223,6 +225,7 @@ export default function ImpressoesProductCard({
                           key={opt.id}
                           as="div"
                           style="on-secondary"
+                          selected={isSelected}
                           className={styles.cpmRow}
                           onClick={() => onCpmSelect(opt.id)}
                         >

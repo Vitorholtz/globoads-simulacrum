@@ -8,17 +8,12 @@
   align-items: stretch;
 }
 
-/* ── Card do produto (InteractiveCard on-secondary + borda) ── */
+/* ── Card do produto (InteractiveCard outlined) ── */
 
 .card {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-200);
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.cardSelected {
-  border: var(--border-width-md) solid var(--color-fill-accent);
 }
 
 /* ── Topo: info ── */

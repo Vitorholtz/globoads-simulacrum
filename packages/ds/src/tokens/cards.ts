@@ -1,9 +1,10 @@
 import type { GuidelineDef, StateDef } from './types'
 
 export type CardStyle = 'on-primary' | 'on-secondary'
+export type InteractiveCardStyle = CardStyle | 'outlined'
 
 export type CardStyleDef = {
-  id: CardStyle
+  id: InteractiveCardStyle
   name: string
   tagline: string
   description: string
@@ -33,6 +34,22 @@ export const CARD_STYLES: CardStyleDef[] = [
       'Cards sobre fundos cinza ou superfície secundária',
       'Cards dentro de outros containers ou seções recuadas',
       'Painéis e áreas com fundo secundário',
+    ],
+  },
+]
+
+export const INTERACTIVE_CARD_STYLES: CardStyleDef[] = [
+  ...CARD_STYLES,
+  {
+    id: 'outlined',
+    name: 'Outlined',
+    tagline: 'sobre fundo claro, com contorno',
+    description:
+      'Fundo primário (#FFFFFF) com borda de 1px (--color-border-tertiary). Para uso sobre a superfície primária quando um contorno é mais adequado que o preenchimento cinza do "On Primary" para delimitar o card.',
+    when: [
+      'Grids de seleção (cards clicáveis) sobre fundo branco',
+      'Cards que precisam de delimitação visual sem alterar o preenchimento',
+      'Contextos onde "On Primary" criaria contraste de preenchimento desnecessário',
     ],
   },
 ]
@@ -84,8 +101,8 @@ export const INTERACTIVE_CARD_GUIDELINES: GuidelineDef[] = [
   },
   {
     title: 'Contraste com o contexto',
-    body: 'Mesma regra dos Static Cards: "On Primary" sobre fundos brancos e "On Secondary" sobre fundos cinza. Os estados visuais de interação devem ser percebidos claramente sobre o fundo escolhido.',
-    rule: 'On Primary sobre branco; On Secondary sobre cinza.',
+    body: 'Escolha o estilo conforme o fundo onde o card aparece. Sobre fundos brancos (superfície primária), use "On Primary" quando o preenchimento cinza já cria contraste suficiente, ou "Outlined" quando um contorno é mais adequado — por exemplo, em grids densos de seleção onde um preenchimento extra poluiria a tela. Sobre fundos cinza (superfície secundária), use "On Secondary". O card deve ser sempre visualmente distinguível do seu entorno.',
+    rule: '"On Primary" ou "Outlined" sobre branco; "On Secondary" sobre cinza.',
   },
   {
     title: 'Espaçamento interno',
@@ -96,6 +113,11 @@ export const INTERACTIVE_CARD_GUIDELINES: GuidelineDef[] = [
     title: 'Ações filhas e propagação de eventos',
     body: 'Se o card contiver ações secundárias (menu de contexto, botão de favoritar), use stopPropagation para evitar que o clique no filho acione o card pai. Ações filhas não devem competir com a área acionável principal.',
     rule: 'stopPropagation em ações filhas para não disparar o card pai.',
+  },
+  {
+    title: 'Estado selecionado',
+    body: 'Use a prop `selected` para indicar que um card faz parte de um conjunto de seleção única ou múltipla. O anel de destaque (cor accent) persiste em hover, focus e active e não altera as dimensões do card. Combine sempre com a semântica adequada: `aria-pressed` para `as="button"`, `aria-checked`/input nativo para `as="label"`, ou `aria-selected` para `as="div"` com `role` apropriado.',
+    rule: '`selected` é só visual — sempre acompanhe com aria-pressed/aria-checked/aria-selected.',
   },
 ]
 

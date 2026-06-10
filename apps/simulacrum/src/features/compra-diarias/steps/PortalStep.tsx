@@ -30,7 +30,9 @@ export default function PortalStep() {
           return (
             <InteractiveCard
               key={portal.id}
-              className={`${styles.card} ${selectedId === portal.id ? styles.cardSelected : ''}`}
+              style="outlined"
+              selected={selectedId === portal.id}
+              className={styles.card}
               onClick={() => setSelectedId((prev) => (prev === portal.id ? null : portal.id))}
               aria-pressed={selectedId === portal.id}
               aria-label={`Selecionar ${PORTAL_DISPLAY_NAMES[portal.id]}`}

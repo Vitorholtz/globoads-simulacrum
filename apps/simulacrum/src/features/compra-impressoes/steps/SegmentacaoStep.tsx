@@ -50,7 +50,9 @@ export default function SegmentacaoStep({
             return (
               <InteractiveCard
                 key={a.id}
-                className={`${styles.card} ${isSelected ? styles.cardSelected : ''}`}
+                style="outlined"
+                selected={isSelected}
+                className={styles.card}
                 onClick={() => select(a.id)}
                 aria-pressed={isSelected}
                 aria-label={`Audiência ${a.name}`}

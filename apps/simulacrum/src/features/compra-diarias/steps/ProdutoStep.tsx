@@ -110,7 +110,9 @@ export default function ProdutoStep({
           {produtos.map((produto) => (
             <InteractiveCard
               key={produto.id}
-              className={`${styles.card} ${selectedId === produto.id ? styles.cardSelected : ''}`}
+              style="outlined"
+              selected={selectedId === produto.id}
+              className={styles.card}
               onClick={() => setSelectedId((prev) => (prev === produto.id ? null : produto.id))}
               aria-pressed={selectedId === produto.id}
               aria-label={`Selecionar ${produto.name}`}

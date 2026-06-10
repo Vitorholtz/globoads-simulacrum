@@ -11,11 +11,18 @@
   text-align: left;
   width: 100%;
   outline: none;
-  transition: box-shadow var(--motion-duration-base) var(--motion-easing-default);
+  transition:
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
 .onSecondary {
   background: var(--color-surface-primary);
+}
+
+.outlined {
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
 }
 
 /* ── States ── */
@@ -33,4 +40,33 @@
 .card:active,
 .card[data-state='active'] {
   box-shadow: var(--shadows-ground);
+}
+
+/* ── Selected ── */
+
+.selected {
+  border-color: var(--color-fill-accent);
+  box-shadow: 0 0 0 var(--border-width-sm) var(--color-fill-accent);
+}
+
+.card.selected:hover,
+.card.selected[data-state='hover'] {
+  box-shadow:
+    0 0 0 var(--border-width-sm) var(--color-fill-accent),
+    var(--shadows-low);
+}
+
+.card.selected:focus-visible,
+.card.selected[data-state='focus'] {
+  box-shadow:
+    0 0 0 var(--border-width-sm) var(--color-fill-accent),
+    var(--outline-focus-out),
+    var(--shadows-low);
+}
+
+.card.selected:active,
+.card.selected[data-state='active'] {
+  box-shadow:
+    0 0 0 var(--border-width-sm) var(--color-fill-accent),
+    var(--shadows-ground);
 }

@@ -1,5 +1,5 @@
 import styles from './InteractiveCard.module.css'
-import type { CardStyle } from '../../tokens/cards'
+import type { InteractiveCardStyle } from '../../tokens/cards'
 import { cx } from '../../utils/cx'
 
 type AllowedAs = 'button' | 'a' | 'label' | 'div'
@@ -13,7 +13,9 @@ type ElementPropsMap = {
 
 export type InteractiveCardProps<T extends AllowedAs = 'button'> = {
   as?: T
-  style?: CardStyle
+  style?: InteractiveCardStyle
+  /** Marca o card como selecionado — anel de destaque accent, sem layout shift. */
+  selected?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
   forceState?: 'hover' | 'focus' | 'active'
   className?: string
@@ -23,6 +25,7 @@ export type InteractiveCardProps<T extends AllowedAs = 'button'> = {
 export default function InteractiveCard<T extends AllowedAs = 'button'>({
   as,
   style = 'on-primary',
+  selected = false,
   forceState,
   children,
   className,
@@ -35,6 +38,8 @@ export default function InteractiveCard<T extends AllowedAs = 'button'>({
       className={cx(
         styles.card,
         style === 'on-secondary' ? styles.onSecondary : '',
+        style === 'outlined' ? styles.outlined : '',
+        selected ? styles.selected : '',
         className ?? ''
       )}
       data-state={forceState}

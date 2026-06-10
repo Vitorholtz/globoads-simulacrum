@@ -1,11 +1,11 @@
 import InteractiveCard from '../../components/InteractiveCard/InteractiveCard'
 import {
-  CARD_STYLES,
+  INTERACTIVE_CARD_STYLES,
   INTERACTIVE_CARD_STATES,
   INTERACTIVE_CARD_GUIDELINES,
   INTERACTIVE_CARD_SEMANTIC_VARIANTS,
 } from '../../tokens/cards'
-import type { CardStyle } from '../../tokens/cards'
+import type { InteractiveCardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import g1Logo from '../../assets/logos/g1.svg'
 import geLogo from '../../assets/logos/ge.svg'
@@ -16,9 +16,10 @@ import styles from './InteractiveCardPage.module.css'
 
 const TALENT_PHOTO = '/campaign-talent.jpg'
 
-const STYLE_PREVIEW_BG: Record<CardStyle, string> = {
+const STYLE_PREVIEW_BG: Record<InteractiveCardStyle, string> = {
   'on-primary': '#ffffff',
   'on-secondary': '#f7f7f7',
+  outlined: '#ffffff',
 }
 
 function DiariaCard() {
@@ -74,16 +75,16 @@ export default function InteractiveCardPage() {
         title="Interactive Cards"
         subtitle="Interactive Cards seguem o mesmo princípio de agrupamento dos Static Cards, mas adicionam capacidade de interação. Todo o container passa a funcionar como uma área acionável, permitindo navegação, seleção, abertura de detalhes ou execução de ações pelo próprio card."
         stats={[
-          { value: 2, label: 'Estilos' },
+          { value: INTERACTIVE_CARD_STYLES.length, label: 'Estilos' },
           { value: 4, label: 'Estados' },
           { value: 4, label: 'Variantes' },
         ]}
       />
 
       {/* ── Estilos ── */}
-      <Section icon="style" title="Estilos" count={2}>
+      <Section icon="style" title="Estilos" count={INTERACTIVE_CARD_STYLES.length}>
         <div className={styles.stylesGrid}>
-          {CARD_STYLES.map((s) => (
+          {INTERACTIVE_CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>
               <div className={styles.stylePreview} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
                 <InteractiveCard style={s.id} className={styles.demoCard}>
@@ -108,7 +109,7 @@ export default function InteractiveCardPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={INTERACTIVE_CARD_STATES.length}>
-        {CARD_STYLES.map((s) => (
+        {INTERACTIVE_CARD_STYLES.map((s) => (
           <div key={s.id} className={styles.stateMatrixContainer}>
             <div className={styles.matrixStyleHeader}>
               <span className={`type-caption-md ${styles.matrixStyleName}`}>{s.name}</span>
@@ -125,7 +126,24 @@ export default function InteractiveCardPage() {
               {INTERACTIVE_CARD_STATES.map((state) => (
                 <div key={state.id} className={styles.matrixCell}>
                   <InteractiveCard
-                    style={s.id as CardStyle}
+                    style={s.id}
+                    forceState={
+                      state.id === 'normal' ? undefined : (state.id as 'hover' | 'focus' | 'active')
+                    }
+                    className={styles.matrixCard}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className={styles.matrixRowLabel}>
+              <span className="type-caption-xs">Selecionado</span>
+            </div>
+            <div className={styles.matrixCellsRow} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
+              {INTERACTIVE_CARD_STATES.map((state) => (
+                <div key={state.id} className={styles.matrixCell}>
+                  <InteractiveCard
+                    style={s.id}
+                    selected
                     forceState={
                       state.id === 'normal' ? undefined : (state.id as 'hover' | 'focus' | 'active')
                     }

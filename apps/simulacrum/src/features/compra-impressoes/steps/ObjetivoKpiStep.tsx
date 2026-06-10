@@ -42,7 +42,9 @@ export default function ObjetivoKpiStep() {
           return (
             <InteractiveCard
               key={o.id}
-              className={`${styles.card} ${isSelected ? styles.cardSelected : ''}`}
+              style="outlined"
+              selected={isSelected}
+              className={styles.card}
               onClick={() => selectObjetivo(o.id)}
               aria-pressed={isSelected}
               aria-label={`Objetivo ${o.name}`}

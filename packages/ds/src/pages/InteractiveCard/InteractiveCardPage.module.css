@@ -2,7 +2,7 @@
 
 .stylesGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-200);
 }
 
@@ -204,6 +204,15 @@
 
 .matrixCellLabel:last-child {
   border-right: none;
+}
+
+.matrixRowLabel {
+  padding: var(--spacing-100) var(--spacing-300);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  background: var(--color-surface-secondary);
+  color: var(--color-fill-tertiary);
+  text-transform: uppercase;
 }
 
 .matrixCellsRow {
