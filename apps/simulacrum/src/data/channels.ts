@@ -47,7 +47,12 @@ export const CHANNEL_CATALOG: Channel[] = [
   { id: 'globoplay', name: 'Globoplay', category: 'streaming', svgPath: svg('globoplay') },
   { id: 'globo-com', name: 'Globo.com', category: 'digital', svgPath: svg('globo-com') },
   { id: 'g1', name: 'G1', category: 'digital', svgPath: svg('g1') },
-  { id: 'ge', name: 'ge', category: 'digital', svgPath: svg('ge') },
+  { id: 'ge', name: 'GE', category: 'digital', svgPath: svg('ge') },
   { id: 'gshow', name: 'gshow', category: 'digital', svgPath: svg('gshow') },
   { id: 'receitas', name: 'Receitas', category: 'digital', svgPath: svg('receitas') },
 ]
+
+/** Nome de exibição canônico de um canal/portal/plataforma (fonte única: CHANNEL_CATALOG). */
+export function getChannelName(id: string): string {
+  return CHANNEL_CATALOG.find((c) => c.id === id)?.name ?? id
+}

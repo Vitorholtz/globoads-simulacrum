@@ -2,7 +2,7 @@
 // Tipos + catálogos mock (objetivos, KPIs, produtos, audiências). Regras puras em rules/impressoes.ts.
 // Reaproveita formatos (AD_FORMATS_CATALOG) e logos de plataforma (CHANNEL_CATALOG).
 
-import { CHANNEL_CATALOG } from './channels'
+import { CHANNEL_CATALOG, getChannelName } from './channels'
 
 // ── Objetivos & KPIs ──────────────────────────────────────────────────────────
 
@@ -111,13 +111,14 @@ export interface Platform {
   svgPath: string
 }
 
+// Derivado do CHANNEL_CATALOG (fonte única). Record explícito preserva exaustividade por PlatformId.
 export const PLATFORM_DISPLAY_NAMES: Record<PlatformId, string> = {
-  'globo-com': 'Globo.com',
-  g1: 'G1',
-  ge: 'GE',
-  gshow: 'gshow',
-  receitas: 'Receitas',
-  globoplay: 'Globoplay',
+  'globo-com': getChannelName('globo-com'),
+  g1: getChannelName('g1'),
+  ge: getChannelName('ge'),
+  gshow: getChannelName('gshow'),
+  receitas: getChannelName('receitas'),
+  globoplay: getChannelName('globoplay'),
 }
 
 /** Família G — propriedades de display/vídeo com seleção múltipla de plataformas. */
@@ -125,7 +126,7 @@ export const FAMILIA_G: PlatformId[] = ['globo-com', 'g1', 'ge', 'gshow', 'recei
 
 export function getPlatform(id: PlatformId): Platform {
   const ch = CHANNEL_CATALOG.find((c) => c.id === id)
-  return { id, name: PLATFORM_DISPLAY_NAMES[id], svgPath: ch?.svgPath ?? '' }
+  return { id, name: getChannelName(id), svgPath: ch?.svgPath ?? '' }
 }
 
 // ── Produtos ──────────────────────────────────────────────────────────────────

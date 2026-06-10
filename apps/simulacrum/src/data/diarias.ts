@@ -1,4 +1,4 @@
-import { CHANNEL_CATALOG } from './channels'
+import { CHANNEL_CATALOG, getChannelName } from './channels'
 
 export type PortalId = 'g1' | 'ge' | 'globo-com' | 'gshow' | 'globoplay'
 
@@ -12,7 +12,6 @@ export interface Portal {
 
 export interface FormatInfo {
   formatId: string
-  formatName: string
   positions: string[]
   devices: string
 }
@@ -108,12 +107,13 @@ export const PORTALS: Portal[] = (
   }
 })
 
+// Derivado do CHANNEL_CATALOG (fonte única). Record explícito preserva exaustividade por PortalId.
 export const PORTAL_DISPLAY_NAMES: Record<PortalId, string> = {
-  g1: 'G1',
-  ge: 'GE',
-  'globo-com': 'Globo.com',
-  gshow: 'gshow',
-  globoplay: 'Globoplay',
+  g1: getChannelName('g1'),
+  ge: getChannelName('ge'),
+  'globo-com': getChannelName('globo-com'),
+  gshow: getChannelName('gshow'),
+  globoplay: getChannelName('globoplay'),
 }
 
 export const DIARIAS_CATALOG: DiariaProduto[] = [
@@ -126,13 +126,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['1ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'sticky-ad',
-        formatName: 'Sticky Ad',
         positions: ['1ª posição'],
         devices: 'Mobile',
       },
@@ -150,13 +148,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['2ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['2ª posição'],
         devices: 'Mobile',
       },
@@ -174,13 +170,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['1ª posição', '3ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['2ª posição', '3ª posição', '4ª posição', 'Home Fim', 'Home Feed'],
         devices: 'Mobile',
       },
@@ -204,7 +198,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'touchpoint-imagetico',
-        formatName: 'Touchpoint Imagético',
         positions: ['Rodapé da página'],
         devices: 'Mobile e Desktop',
       },
@@ -222,25 +215,21 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['1ª posição', '3ª posição', 'Rodapé da página'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['1ª posição', '3ª posição', 'Rodapé da página'],
         devices: 'Mobile',
       },
       {
         formatId: 'touchpoint-imagetico',
-        formatName: 'Touchpoint Imagético',
         positions: ['Rodapé da página'],
         devices: 'Mobile e Desktop',
       },
       {
         formatId: 'sticky-ad',
-        formatName: 'Sticky Ad',
         positions: ['1ª posição'],
         devices: 'Mobile',
       },
@@ -261,13 +250,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['1ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'sticky-ad',
-        formatName: 'Sticky Ad',
         positions: ['1ª posição'],
         devices: 'Mobile',
       },
@@ -285,13 +272,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['2ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['2ª posição'],
         devices: 'Mobile',
       },
@@ -309,13 +294,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'half-page',
-        formatName: 'Half-Page',
         positions: ['3ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['3ª posição'],
         devices: 'Mobile',
       },
@@ -333,7 +316,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'touchpoint-imagetico',
-        formatName: 'Touchpoint Imagético',
         positions: ['Rodapé da página'],
         devices: 'Mobile e Desktop',
       },
@@ -351,31 +333,26 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['1ª posição', '2ª posição', '4ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'half-page',
-        formatName: 'Half-Page',
         positions: ['3ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['2ª posição', '3ª posição', '4ª posição', 'Home Fim', 'Home Feed'],
         devices: 'Mobile',
       },
       {
         formatId: 'touchpoint-imagetico',
-        formatName: 'Touchpoint Imagético',
         positions: ['Rodapé da página'],
         devices: 'Mobile e Desktop',
       },
       {
         formatId: 'sticky-ad',
-        formatName: 'Sticky Ad',
         positions: ['1ª posição'],
         devices: 'Mobile',
       },
@@ -396,13 +373,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['1ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['1ª posição'],
         devices: 'Mobile',
       },
@@ -420,13 +395,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['2ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['2ª posição'],
         devices: 'Mobile',
       },
@@ -444,7 +417,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'touchpoint-imagetico',
-        formatName: 'Touchpoint Imagético',
         positions: ['Rodapé da página'],
         devices: 'Mobile e Desktop',
       },
@@ -462,13 +434,11 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['3ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['3ª posição'],
         devices: 'Mobile',
       },
@@ -514,7 +484,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: [
           '1ª posição',
           '2ª posição',
@@ -527,7 +496,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: [
           '1ª posição',
           '2ª posição',
@@ -541,7 +509,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
       },
       {
         formatId: 'touchpoint-imagetico',
-        formatName: 'Touchpoint Imagético',
         positions: ['Rodapé da página'],
         devices: 'Mobile e Desktop',
       },
@@ -562,7 +529,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'in-stream-video',
-        formatName: 'In-Stream Vídeo',
         positions: ['1º pré-roll'],
         devices: 'Mobile, Desktop, App e TV Conectada',
       },
@@ -580,7 +546,6 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'in-stream-video',
-        formatName: 'In-Stream Vídeo',
         positions: ['2º pré-roll'],
         devices: 'Mobile, Desktop, App e TV Conectada',
       },
@@ -601,19 +566,16 @@ export const DIARIAS_CATALOG: DiariaProduto[] = [
     formats: [
       {
         formatId: 'billboard',
-        formatName: 'Billboard',
         positions: ['2ª posição', '3ª posição', '4ª posição'],
         devices: 'Desktop',
       },
       {
         formatId: 'retangulo-medio',
-        formatName: 'Retângulo Médio',
         positions: ['2ª posição', '3ª posição', '4ª posição', 'Home Fim', 'Home Feed'],
         devices: 'Mobile',
       },
       {
         formatId: 'touchpoint-imagetico',
-        formatName: 'Touchpoint Imagético',
         positions: ['Rodapé da página'],
         devices: 'Mobile e Desktop',
       },

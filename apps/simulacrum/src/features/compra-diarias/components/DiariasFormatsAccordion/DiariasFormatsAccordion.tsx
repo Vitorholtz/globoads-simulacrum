@@ -1,5 +1,5 @@
 import type { DiariaProduto } from '../../../../data/diarias'
-import { getFormatSvg, getPrimaryDimension } from '../../../../data/rules/diarias'
+import { getAdFormat, getFormatSvg, getPrimaryDimension } from '../../../../data/rules/diarias'
 import FormatsAccordion, {
   type FormatListItem,
 } from '../../../../components/FormatsAccordion/FormatsAccordion'
@@ -14,7 +14,7 @@ function toItems(produto: DiariaProduto): FormatListItem[] {
     const dim = getPrimaryDimension(f.formatId)
     return {
       id: f.formatId,
-      name: f.formatName,
+      name: getAdFormat(f.formatId)?.name ?? f.formatId,
       svgPath: getFormatSvg(f.formatId) || undefined,
       fallbackIcon: f.formatId === 'in-stream-video' ? 'play_circle' : 'image',
       specs: dim ? `${dim.width}×${dim.height}${f.devices ? ` • ${f.devices}` : ''}` : undefined,
