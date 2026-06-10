@@ -5,10 +5,6 @@ import { FEATURES } from '../../shell/features'
 import PageContainer from '../../components/PageContainer/PageContainer'
 import styles from './HomePage.module.css'
 
-// Jornadas com componente real — derivado de FEATURES (fonte única). Uma jornada
-// vira "implementada" automaticamente ao ganhar uma entrada em features.ts.
-const IMPLEMENTED_PATHS = new Set(FEATURES.map((f) => f.path))
-
 const JOURNEY_DESCRIPTIONS: Record<string, string> = {
   '/compra-diarias':
     'Compre espaços publicitários por dia em G1, GE, Globo.com, gshow e Globoplay.',
@@ -29,6 +25,11 @@ interface JourneyEntry {
 }
 
 function buildJourneys(): JourneyEntry[] {
+  // Derivado de FEATURES (fonte única). Calculado em tempo de render — não no topo
+  // do módulo — porque features.ts importa esta página (ciclo), e ler FEATURES na
+  // inicialização cairia em TDZ ("Cannot access 'FEATURES' before initialization").
+  const implementedPaths = new Set(FEATURES.map((f) => f.path))
+
   const journeys: JourneyEntry[] = []
   for (const section of NAV_SECTIONS) {
     for (const item of section.items) {
@@ -38,7 +39,7 @@ function buildJourneys(): JourneyEntry[] {
         label: item.label,
         icon: item.icon,
         description: JOURNEY_DESCRIPTIONS[item.path] ?? '',
-        implemented: IMPLEMENTED_PATHS.has(item.path),
+        implemented: implementedPaths.has(item.path),
       })
     }
   }
