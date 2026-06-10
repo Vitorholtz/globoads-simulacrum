@@ -33,8 +33,11 @@ Sempre referencie via `var(--token-*)`. **Nunca** hardcode valores px/rem.
 
 ## Tipografia (utility classes)
 
-- **Todo elemento de texto referencia uma utility class** da escala `type-*`. **Nunca** declare
-  `font-size`/`font-weight`/`font-family`/`line-height` direto no CSS Module.
+- **Todo elemento de texto referencia uma utility class** da escala `type-*` — ela define
+  `font-family`, `font-size` e `line-height`. **Nunca** declare esses três direto no CSS Module.
+- **Exceção — peso:** `font-weight: var(--font-weight-*)` _pode_ ser declarado no CSS Module para
+  ajustar a ênfase de um texto sobre a utility class (ex.: `--font-weight-medium` num rótulo de
+  destaque). Use sempre o token; nunca um valor numérico cru.
 - Ícones (Material Symbols Rounded) usam a classe `material-symbols-rounded` + utility de tamanho
   (`icon-xs`/`sm`/`md`/`lg`/`xl`) e o modificador `icon-filled`. **Nunca** definir
   `fontVariationSettings` inline.

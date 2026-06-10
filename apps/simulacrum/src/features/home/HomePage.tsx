@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { InteractiveCard, StaticCard, Badge } from '@globo-ads/ds'
 import { NAV_SECTIONS } from '../../shell/routes'
+import { FEATURES } from '../../shell/features'
 import PageContainer from '../../components/PageContainer/PageContainer'
 import styles from './HomePage.module.css'
 
-// Atualizar junto com features.ts ao adicionar nova jornada implementada.
-const IMPLEMENTED_PATHS = new Set(['/compra-diarias', '/compra-impressoes'])
+// Jornadas com componente real — derivado de FEATURES (fonte única). Uma jornada
+// vira "implementada" automaticamente ao ganhar uma entrada em features.ts.
+const IMPLEMENTED_PATHS = new Set(FEATURES.map((f) => f.path))
 
 const JOURNEY_DESCRIPTIONS: Record<string, string> = {
   '/compra-diarias':

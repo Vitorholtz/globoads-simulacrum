@@ -1,0 +1,152 @@
+/* Shell expansível compartilhado pelos purchase cards (Diárias e Impressões).
+   Detém a "moldura" do card — header, corpo animado, container do recibo e ações.
+   O conteúdo do recibo (invoice) e o accordion de formatos entram via slots. */
+
+/* ── Receipt container ── */
+
+.receipt {
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadows-raised);
+  overflow: hidden;
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+/* ── Expandable card ── */
+
+.expandableCard {
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-2xl);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  transition: box-shadow var(--motion-duration-base) var(--motion-easing-default);
+}
+
+.expandableCard:has(.expandableCardHeader:hover) {
+  box-shadow: var(--shadows-low);
+}
+
+.expandableCard:has(.expandableCardHeader:focus-visible) {
+  box-shadow: var(--outline-focus-out), var(--shadows-low);
+}
+
+.expandableCard:has(.expandableCardHeader:active) {
+  box-shadow: var(--shadows-ground);
+}
+
+.expandableCardHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+  padding: var(--spacing-250);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.expandableCardLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+  min-width: 0;
+}
+
+.expandableIconWrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
+.expandableIcon {
+  color: var(--color-fill-accent);
+}
+
+.expandableCardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  min-width: 0;
+}
+
+.expandableName {
+  color: var(--color-fill-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.expandableCardMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex-wrap: wrap;
+}
+
+.expandableMetaText {
+  color: var(--color-fill-secondary);
+}
+
+.expandableCardRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+  flex-shrink: 0;
+}
+
+.expandableTotalValue {
+  color: var(--color-fill-accent);
+}
+
+.expandableChevron {
+  color: var(--color-fill-tertiary);
+  transition: transform var(--motion-duration-base) var(--motion-easing-out);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.expandableCardBody {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--motion-duration-slow) var(--motion-easing-out);
+}
+
+.expandableCardBodyOpen {
+  grid-template-rows: 1fr;
+}
+
+.expandableCardBodyInner {
+  overflow: hidden;
+}
+
+.expandableCardBodyPad {
+  padding: var(--spacing-300) var(--spacing-250);
+  background: var(--color-surface-secondary);
+  position: relative;
+}
+
+.accordionWrap {
+  margin-top: var(--spacing-200);
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.expandableCardActions {
+  position: absolute;
+  top: var(--spacing-300);
+  right: var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-100);
+}

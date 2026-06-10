@@ -14,8 +14,10 @@ CSS Modules + React Router v7. Sem bibliotecas de UI.
    `8px`, `#fff` em `border`/`border-radius`/`padding`/`color`. (Exceção: spread de `box-shadow`.)
 2. **Sem aliases semânticos de cor.** Use tokens crus (`--color-fill-primary`, `--color-surface-primary`,
    `--color-border-tertiary`). Não existem `--color-text-*`/`--color-bg-*`.
-3. **Texto via utility class `type-*`.** Nunca declarar `font-*`/`line-height` direto no CSS Module.
-   Ícones via `material-symbols-rounded` + utility de tamanho; nunca `fontVariationSettings` inline.
+3. **Texto via utility class `type-*`.** Nunca declarar `font-family`/`font-size`/`line-height` direto
+   no CSS Module — vêm da utility. Exceção: `font-weight: var(--font-weight-*)` é permitido como ajuste
+   de ênfase sobre a utility (sempre via token). Ícones via `material-symbols-rounded` + utility de
+   tamanho; nunca `fontVariationSettings` inline.
 4. **CSS Modules apenas**, escopado por componente/página. Sem sombras. Fundos planos.
 5. **`registry.tsx` é a fonte única de navegação.** Nova página = token + componente + página +
    **uma** entrada em `src/pages/registry.tsx`. Nunca editar rotas em `App.tsx`/`Sidebar.tsx`.

@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Button, Badge, Tooltip, Accordion } from '@globo-ads/ds'
+import { Badge } from '@globo-ads/ds'
 import {
   getPortal,
   PORTAL_DISPLAY_NAMES,
@@ -8,13 +7,10 @@ import {
   getPriceForCoverage,
 } from '../../data/diarias'
 import type { ConfirmedSelection } from '../../data/diarias'
-import {
-  getFormatSvg,
-  getPrimaryDimension,
-  STATE_LABELS,
-  computeTotal,
-} from '../../data/rules/diarias'
-import styles from './PurchaseCard.module.css'
+import { STATE_LABELS, computeTotal } from '../../data/rules/diarias'
+import DiariasFormatsAccordion from '../../features/compra-diarias/components/DiariasFormatsAccordion/DiariasFormatsAccordion'
+import ExpandablePurchaseCard, { MetaText } from '../ExpandablePurchaseCard/ExpandablePurchaseCard'
+import styles from './DiariasPurchaseCard.module.css'
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('pt-BR', {
@@ -44,9 +40,9 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
       <div className={styles.receiptHeader}>
         <div className={styles.receiptHeaderLeft}>
           <div className={styles.portalRow}>
-            <div className={styles.expandableIconWrap}>
+            <div className={styles.receiptIconWrap}>
               <span
-                className={`material-symbols-rounded icon-lg ${styles.expandableIcon}`}
+                className={`material-symbols-rounded icon-lg ${styles.receiptIcon}`}
                 aria-hidden="true"
               >
                 {produto.icon}
@@ -178,163 +174,41 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
   )
 }
 
-interface ExpandablePurchaseCardProps {
+interface DiariasPurchaseCardProps {
   selection: ConfirmedSelection
   defaultOpen?: boolean
   onEdit?: () => void
   onDelete?: () => void
 }
 
-export function ExpandablePurchaseCard({
+export function DiariasPurchaseCard({
   selection,
   defaultOpen = false,
   onEdit,
   onDelete,
-}: ExpandablePurchaseCardProps) {
-  const [expanded, setExpanded] = useState(defaultOpen)
-  const total = computeTotal(selection)
+}: DiariasPurchaseCardProps) {
+  const { produto } = selection
 
   return (
-    <div className={styles.expandableCard}>
-      <button
-        type="button"
-        className={styles.expandableCardHeader}
-        onClick={() => setExpanded((e) => !e)}
-        aria-expanded={expanded}
-      >
-        <div className={styles.expandableCardLeft}>
-          <div className={styles.expandableIconWrap}>
-            <span
-              className={`material-symbols-rounded icon-lg ${styles.expandableIcon}`}
-              aria-hidden="true"
-            >
-              {selection.produto.icon}
-            </span>
-          </div>
-          <div className={styles.expandableCardInfo}>
-            <span className={`type-body-sm ${styles.expandablePortalName}`}>
-              {selection.produto.name}
-            </span>
-            <div className={styles.expandableCardMeta}>
-              <span className={`type-caption-sm ${styles.expandableMetaText}`}>
-                {PORTAL_DISPLAY_NAMES[selection.portal]}
-              </span>
-              <Badge
-                variant={selection.produto.isRegional ? 'accent' : 'neutral'}
-                label={selection.produto.isRegional ? 'Regional' : 'Nacional'}
-              />
-              <span className={`type-caption-sm ${styles.expandableMetaText}`}>
-                {summarize(selection)}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.expandableCardRight}>
-          <span className={`type-title-sm ${styles.expandableTotalValue}`}>
-            {formatCurrency(total)}
-          </span>
-          <span
-            className={`material-symbols-rounded icon-md ${styles.expandableChevron} ${expanded ? styles.chevronOpen : ''}`}
-            aria-hidden="true"
-          >
-            expand_more
-          </span>
-        </div>
-      </button>
-      <div
-        className={`${styles.expandableCardBody} ${expanded ? styles.expandableCardBodyOpen : ''}`}
-      >
-        <div className={styles.expandableCardBodyInner}>
-          <div className={styles.expandableCardBodyPad}>
-            <div className={styles.receipt}>
-              <InvoiceContent selection={selection} />
-            </div>
-            <div className={styles.accordionWrap}>
-              <Accordion
-                items={[
-                  {
-                    id: 'formatos',
-                    label: 'Formatos disponíveis',
-                    detail: `${selection.produto.formats.length} ${selection.produto.formats.length === 1 ? 'formato' : 'formatos'}`,
-                    content: (
-                      <div className={styles.accordionContent}>
-                        <ul className={styles.formatList}>
-                          {selection.produto.formats.map((f) => {
-                            const svgPath = getFormatSvg(f.formatId)
-                            const dim = getPrimaryDimension(f.formatId)
-                            return (
-                              <li key={f.formatId} className={styles.formatItem}>
-                                {svgPath ? (
-                                  <img
-                                    src={svgPath}
-                                    alt=""
-                                    aria-hidden="true"
-                                    className={styles.formatThumb}
-                                  />
-                                ) : (
-                                  <span
-                                    className={`material-symbols-rounded icon-sm ${styles.formatIcon}`}
-                                    aria-hidden="true"
-                                  >
-                                    {f.formatId === 'in-stream-video' ? 'play_circle' : 'image'}
-                                  </span>
-                                )}
-                                <div className={styles.formatInfo}>
-                                  <span className={`type-caption-lg ${styles.formatName}`}>
-                                    {f.formatName}
-                                  </span>
-                                  {dim && (
-                                    <span className={`type-caption-sm ${styles.formatSpecs}`}>
-                                      {dim.width}×{dim.height}
-                                      {f.devices ? ` • ${f.devices}` : ''}
-                                    </span>
-                                  )}
-                                  {f.positions.length > 0 && (
-                                    <span className={`type-caption-sm ${styles.formatPositions}`}>
-                                      {f.positions.join(', ')}
-                                    </span>
-                                  )}
-                                </div>
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      </div>
-                    ),
-                  },
-                ]}
-              />
-            </div>
-            {(onEdit || onDelete) && (
-              <div className={styles.expandableCardActions}>
-                {onEdit && (
-                  <Tooltip text="Editar compra" position="left">
-                    <Button
-                      variant="tertiary"
-                      size="md"
-                      iconLeft="edit"
-                      onClick={onEdit}
-                      aria-label="Editar compra"
-                    />
-                  </Tooltip>
-                )}
-                {onDelete && (
-                  <Tooltip text="Excluir compra" position="left">
-                    <Button
-                      variant="tertiary"
-                      size="md"
-                      iconLeft="delete"
-                      danger
-                      onClick={onDelete}
-                      aria-label="Excluir compra"
-                    />
-                  </Tooltip>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+    <ExpandablePurchaseCard
+      icon={produto.icon}
+      name={produto.name}
+      total={formatCurrency(computeTotal(selection))}
+      meta={
+        <>
+          <MetaText>{PORTAL_DISPLAY_NAMES[selection.portal]}</MetaText>
+          <Badge
+            variant={produto.isRegional ? 'accent' : 'neutral'}
+            label={produto.isRegional ? 'Regional' : 'Nacional'}
+          />
+          <MetaText>{summarize(selection)}</MetaText>
+        </>
+      }
+      receipt={<InvoiceContent selection={selection} />}
+      formats={<DiariasFormatsAccordion produto={produto} label="Formatos disponíveis" />}
+      defaultOpen={defaultOpen}
+      onEdit={onEdit}
+      onDelete={onDelete}
+    />
   )
 }

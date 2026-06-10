@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Badge, Breadcrumb, Button, InfoPanel } from '@globo-ads/ds'
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog'
-import { ExpandablePurchaseCard } from '../../components/PurchaseCard/PurchaseCard'
+import { DiariasPurchaseCard } from '../../components/DiariasPurchaseCard/DiariasPurchaseCard'
 import { ImpressoesPurchaseCard } from '../../components/ImpressoesPurchaseCard/ImpressoesPurchaseCard'
 import PageContainer from '../../components/PageContainer/PageContainer'
 import { formatCurrency } from '../../data/diarias'
@@ -74,7 +74,7 @@ export default function CarrinhoPage() {
               </div>
               <div className={styles.cardList}>
                 {diariasItems.map((item) => (
-                  <ExpandablePurchaseCard
+                  <DiariasPurchaseCard
                     key={item.id}
                     selection={item.data}
                     onEdit={() => navigate(`/compra-diarias?edit=${item.id}`)}

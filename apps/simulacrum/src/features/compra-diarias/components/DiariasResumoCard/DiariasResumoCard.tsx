@@ -1,4 +1,4 @@
-import { StaticCard, Badge } from '@globo-ads/ds'
+import { Badge } from '@globo-ads/ds'
 import {
   getPortal,
   formatCurrency,
@@ -7,21 +7,13 @@ import {
 } from '../../../../data/diarias'
 import { STATE_LABELS } from '../../../../data/rules/diarias'
 import { useDiarias } from '../../context/DiariasContext'
+import ResumoCard, {
+  Row,
+  CustomRow,
+  ResumoDivider,
+  ResumoTotal,
+} from '../../../../components/ResumoCard/ResumoCard'
 import styles from './DiariasResumoCard.module.css'
-
-interface RowProps {
-  label: string
-  value: string
-}
-
-function Row({ label, value }: RowProps) {
-  return (
-    <div className={styles.row}>
-      <span className={`type-body-sm ${styles.label}`}>{label}</span>
-      <span className={`type-body-sm ${styles.value}`}>{value}</span>
-    </div>
-  )
-}
 
 export default function DiariasResumoCard() {
   const { selection } = useDiarias()
@@ -47,128 +39,100 @@ export default function DiariasResumoCard() {
       : 0
 
   return (
-    <StaticCard className={styles.card}>
-      <p className={`type-title-sm ${styles.title}`}>Resumo do anúncio</p>
-
-      {!hasAnything ? (
-        <p className={`type-body-xs ${styles.hint}`}>
-          Suas escolhas aparecerão aqui conforme você avança.
-        </p>
-      ) : (
-        <div className={styles.rows}>
-          {portal && (
-            <div className={styles.row}>
-              <span className={`type-body-sm ${styles.label}`}>Portal</span>
-              <span className={styles.portalCell}>
-                <span className={`type-body-sm ${styles.portalUrl}`}>{portal.url}</span>
-                {portal.svgPath && (
-                  <img
-                    src={portal.svgPath}
-                    alt=""
-                    aria-hidden="true"
-                    className={styles.portalLogo}
-                  />
-                )}
-              </span>
-            </div>
-          )}
-
-          {produto && (
-            <>
-              <div className={styles.row}>
-                <span className={`type-body-sm ${styles.label}`}>Produto</span>
-                <span className={`type-body-sm ${styles.value}`}>{produto.name}</span>
-              </div>
-              <div className={styles.row}>
-                <span className={`type-body-sm ${styles.label}`}>Cobertura</span>
-                <Badge
-                  variant={produto.isRegional ? 'accent' : 'neutral'}
-                  label={produto.isRegional ? 'Regional' : 'Nacional'}
-                />
-              </div>
-            </>
-          )}
-
-          {produto && !produto.isRegional && (
-            <>
-              <Row
-                label="Impressões/dia"
-                value={`~${formatImpressions(produto.coverages[0].impressions)}`}
-              />
-              <Row
-                label="Preço/dia"
-                value={formatCurrency(getPriceForCoverage(produto, 'Nacional'))}
-              />
-              {dates.length > 0 && (
-                <Row
-                  label="Dias"
-                  value={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`}
-                />
-              )}
-            </>
-          )}
-
-          {produto && produto.isRegional && (
-            <>
-              {activeRegional.length === 0 ? (
-                (() => {
-                  const imps = produto.coverages.map((c) => c.impressions)
-                  const prices = produto.coverages.map((c) => getPriceForCoverage(produto, c.code))
-                  const minImp = Math.min(...imps)
-                  const maxImp = Math.max(...imps)
-                  const minPrice = Math.min(...prices)
-                  const maxPrice = Math.max(...prices)
-                  return (
-                    <>
-                      <Row
-                        label="Impressões/estado/dia"
-                        value={`~${formatImpressions(minImp)} a ${formatImpressions(maxImp)}`}
-                      />
-                      <Row
-                        label="Preço/dia"
-                        value={`${formatCurrency(minPrice)} a ${formatCurrency(maxPrice)}`}
-                      />
-                    </>
-                  )
-                })()
-              ) : (
-                <div className={styles.coverageSection}>
-                  <div className={styles.divider} />
-                  <span className={`type-caption-sm ${styles.coverageLabel}`}>Por estado</span>
-                  {activeRegional.map((r) => {
-                    const stateName = STATE_LABELS[r.coverage] ?? r.coverage
-                    const pricePerDay = getPriceForCoverage(produto, r.coverage)
-                    const subtotal = r.dates.length * pricePerDay
-                    return (
-                      <div key={r.coverage} className={styles.coverageRow}>
-                        <span className={`type-body-sm ${styles.coverageName}`}>{stateName}</span>
-                        <div className={styles.coverageMeta}>
-                          <span className={`type-body-sm ${styles.coverageDays}`}>
-                            {r.dates.length} {r.dates.length === 1 ? 'dia' : 'dias'}
-                          </span>
-                          <span className={`type-body-sm ${styles.coverageSubtotal}`}>
-                            {formatCurrency(subtotal)}
-                          </span>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
-            </>
-          )}
-        </div>
+    <ResumoCard
+      hasContent={hasAnything}
+      footer={
+        total > 0 ? (
+          <>
+            <ResumoDivider />
+            <ResumoTotal value={formatCurrency(total)} />
+          </>
+        ) : null
+      }
+    >
+      {portal && (
+        <CustomRow label="Portal">
+          <span className={styles.portalCell}>
+            <span className={`type-body-sm ${styles.portalUrl}`}>{portal.url}</span>
+            {portal.svgPath && (
+              <img src={portal.svgPath} alt="" aria-hidden="true" className={styles.portalLogo} />
+            )}
+          </span>
+        </CustomRow>
       )}
 
-      {total > 0 && (
+      {produto && (
         <>
-          <div className={styles.divider} />
-          <div className={styles.subtotalRow}>
-            <span className={`type-body-sm ${styles.subtotalLabel}`}>Total estimado</span>
-            <span className={`type-title-sm ${styles.subtotalValue}`}>{formatCurrency(total)}</span>
-          </div>
+          <Row label="Produto" value={produto.name} />
+          <CustomRow label="Cobertura">
+            <Badge
+              variant={produto.isRegional ? 'accent' : 'neutral'}
+              label={produto.isRegional ? 'Regional' : 'Nacional'}
+            />
+          </CustomRow>
         </>
       )}
-    </StaticCard>
+
+      {produto && !produto.isRegional && (
+        <>
+          <Row
+            label="Impressões/dia"
+            value={`~${formatImpressions(produto.coverages[0].impressions)}`}
+          />
+          <Row label="Preço/dia" value={formatCurrency(getPriceForCoverage(produto, 'Nacional'))} />
+          {dates.length > 0 && (
+            <Row label="Dias" value={`${dates.length} ${dates.length === 1 ? 'dia' : 'dias'}`} />
+          )}
+        </>
+      )}
+
+      {produto &&
+        produto.isRegional &&
+        (activeRegional.length === 0 ? (
+          (() => {
+            const imps = produto.coverages.map((c) => c.impressions)
+            const prices = produto.coverages.map((c) => getPriceForCoverage(produto, c.code))
+            const minImp = Math.min(...imps)
+            const maxImp = Math.max(...imps)
+            const minPrice = Math.min(...prices)
+            const maxPrice = Math.max(...prices)
+            return (
+              <>
+                <Row
+                  label="Impressões/estado/dia"
+                  value={`~${formatImpressions(minImp)} a ${formatImpressions(maxImp)}`}
+                />
+                <Row
+                  label="Preço/dia"
+                  value={`${formatCurrency(minPrice)} a ${formatCurrency(maxPrice)}`}
+                />
+              </>
+            )
+          })()
+        ) : (
+          <div className={styles.coverageSection}>
+            <ResumoDivider />
+            <span className={`type-caption-sm ${styles.coverageLabel}`}>Por estado</span>
+            {activeRegional.map((r) => {
+              const stateName = STATE_LABELS[r.coverage] ?? r.coverage
+              const pricePerDay = getPriceForCoverage(produto, r.coverage)
+              const subtotal = r.dates.length * pricePerDay
+              return (
+                <div key={r.coverage} className={styles.coverageRow}>
+                  <span className={`type-body-sm ${styles.coverageName}`}>{stateName}</span>
+                  <div className={styles.coverageMeta}>
+                    <span className={`type-body-sm ${styles.coverageDays}`}>
+                      {r.dates.length} {r.dates.length === 1 ? 'dia' : 'dias'}
+                    </span>
+                    <span className={`type-body-sm ${styles.coverageSubtotal}`}>
+                      {formatCurrency(subtotal)}
+                    </span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        ))}
+    </ResumoCard>
   )
 }

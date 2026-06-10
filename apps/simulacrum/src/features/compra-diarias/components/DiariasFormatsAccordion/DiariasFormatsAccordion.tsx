@@ -1,66 +1,31 @@
-import { Accordion } from '@globo-ads/ds'
 import type { DiariaProduto } from '../../../../data/diarias'
 import { getFormatSvg, getPrimaryDimension } from '../../../../data/rules/diarias'
-import styles from './DiariasFormatsAccordion.module.css'
+import FormatsAccordion, {
+  type FormatListItem,
+} from '../../../../components/FormatsAccordion/FormatsAccordion'
 
 interface DiariasFormatsAccordionProps {
   produto: DiariaProduto
+  label?: string
 }
 
-export default function DiariasFormatsAccordion({ produto }: DiariasFormatsAccordionProps) {
-  return (
-    <Accordion
-      items={[
-        {
-          id: 'formatos',
-          label: 'Formatos incluídos',
-          detail: `${produto.formats.length} ${produto.formats.length === 1 ? 'formato' : 'formatos'}`,
-          content: (
-            <div className={styles.accordionContent}>
-              <ul className={styles.formatList}>
-                {produto.formats.map((f) => {
-                  const svgPath = getFormatSvg(f.formatId)
-                  const dim = getPrimaryDimension(f.formatId)
-                  return (
-                    <li key={f.formatId} className={styles.formatItem}>
-                      {svgPath ? (
-                        <img
-                          src={svgPath}
-                          alt=""
-                          aria-hidden="true"
-                          className={styles.formatThumb}
-                        />
-                      ) : (
-                        <span
-                          className={`material-symbols-rounded icon-sm ${styles.formatIcon}`}
-                          aria-hidden="true"
-                        >
-                          {f.formatId === 'in-stream-video' ? 'play_circle' : 'image'}
-                        </span>
-                      )}
-                      <div className={styles.formatInfo}>
-                        <span className={`type-caption-lg ${styles.formatName}`}>
-                          {f.formatName}
-                        </span>
-                        {dim && (
-                          <span className={`type-caption-sm ${styles.formatSpecs}`}>
-                            {dim.width}×{dim.height} • {f.devices}
-                          </span>
-                        )}
-                        {f.positions.length > 0 && (
-                          <span className={`type-caption-sm ${styles.formatPositions}`}>
-                            {f.positions.join(', ')}
-                          </span>
-                        )}
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          ),
-        },
-      ]}
-    />
-  )
+function toItems(produto: DiariaProduto): FormatListItem[] {
+  return produto.formats.map((f) => {
+    const dim = getPrimaryDimension(f.formatId)
+    return {
+      id: f.formatId,
+      name: f.formatName,
+      svgPath: getFormatSvg(f.formatId) || undefined,
+      fallbackIcon: f.formatId === 'in-stream-video' ? 'play_circle' : 'image',
+      specs: dim ? `${dim.width}×${dim.height}${f.devices ? ` • ${f.devices}` : ''}` : undefined,
+      positions: f.positions,
+    }
+  })
+}
+
+export default function DiariasFormatsAccordion({
+  produto,
+  label = 'Formatos incluídos',
+}: DiariasFormatsAccordionProps) {
+  return <FormatsAccordion items={toItems(produto)} label={label} />
 }

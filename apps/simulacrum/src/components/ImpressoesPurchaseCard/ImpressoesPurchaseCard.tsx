@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Button, Badge, Tooltip } from '@globo-ads/ds'
+import { Badge } from '@globo-ads/ds'
 import {
   KPI_LABELS,
   OBJETIVOS,
@@ -17,6 +16,7 @@ import {
   getEffectiveCpm,
 } from '../../data/rules/impressoes'
 import ImpressoesFormatsAccordion from '../../features/compra-impressoes/components/ImpressoesFormatsAccordion/ImpressoesFormatsAccordion'
+import ExpandablePurchaseCard, { MetaText } from '../ExpandablePurchaseCard/ExpandablePurchaseCard'
 import styles from './ImpressoesPurchaseCard.module.css'
 
 function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection }) {
@@ -135,7 +135,7 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
   )
 }
 
-interface ExpandableImpressoesPurchaseCardProps {
+interface ImpressoesPurchaseCardProps {
   selection: ImpressoesConfirmedSelection
   defaultOpen?: boolean
   onEdit?: () => void
@@ -147,100 +147,28 @@ export function ImpressoesPurchaseCard({
   defaultOpen = false,
   onEdit,
   onDelete,
-}: ExpandableImpressoesPurchaseCardProps) {
-  const [expanded, setExpanded] = useState(defaultOpen)
-  const total = computeImpressoesTotal(selection)
+}: ImpressoesPurchaseCardProps) {
   const objetivoInfo = OBJETIVOS.find((o) => o.id === selection.objetivo)
 
   if (!selection.produto) return null
 
   return (
-    <div className={styles.expandableCard}>
-      <button
-        type="button"
-        className={styles.expandableCardHeader}
-        onClick={() => setExpanded((e) => !e)}
-        aria-expanded={expanded}
-      >
-        <div className={styles.expandableCardLeft}>
-          <div className={styles.expandableIconWrap}>
-            <span
-              className={`material-symbols-rounded icon-lg ${styles.expandableIcon}`}
-              aria-hidden="true"
-            >
-              {objetivoInfo?.icon ?? 'ads_click'}
-            </span>
-          </div>
-          <div className={styles.expandableCardInfo}>
-            <span className={`type-body-sm ${styles.expandableName}`}>
-              {selection.produto.name}
-            </span>
-            <div className={styles.expandableCardMeta}>
-              {objetivoInfo && (
-                <span className={`type-caption-sm ${styles.expandableMetaText}`}>
-                  {objetivoInfo.name}
-                </span>
-              )}
-              <Badge variant="accent" label={KPI_LABELS[selection.kpi]} />
-              <span className={`type-caption-sm ${styles.expandableMetaText}`}>
-                {formatImpressions(selection.impressions)} impressões
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.expandableCardRight}>
-          <span className={`type-title-sm ${styles.expandableTotalValue}`}>
-            {formatCurrency(total)}
-          </span>
-          <span
-            className={`material-symbols-rounded icon-md ${styles.expandableChevron} ${expanded ? styles.chevronOpen : ''}`}
-            aria-hidden="true"
-          >
-            expand_more
-          </span>
-        </div>
-      </button>
-      <div
-        className={`${styles.expandableCardBody} ${expanded ? styles.expandableCardBodyOpen : ''}`}
-      >
-        <div className={styles.expandableCardBodyInner}>
-          <div className={styles.expandableCardBodyPad}>
-            <div className={styles.receipt}>
-              <InvoiceContent selection={selection} />
-            </div>
-            <div className={styles.accordionWrap}>
-              <ImpressoesFormatsAccordion produto={selection.produto} />
-            </div>
-            {(onEdit || onDelete) && (
-              <div className={styles.expandableCardActions}>
-                {onEdit && (
-                  <Tooltip text="Editar compra" position="left">
-                    <Button
-                      variant="tertiary"
-                      size="md"
-                      iconLeft="edit"
-                      onClick={onEdit}
-                      aria-label="Editar compra"
-                    />
-                  </Tooltip>
-                )}
-                {onDelete && (
-                  <Tooltip text="Excluir compra" position="left">
-                    <Button
-                      variant="tertiary"
-                      size="md"
-                      iconLeft="delete"
-                      danger
-                      onClick={onDelete}
-                      aria-label="Excluir compra"
-                    />
-                  </Tooltip>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+    <ExpandablePurchaseCard
+      icon={objetivoInfo?.icon ?? 'ads_click'}
+      name={selection.produto.name}
+      total={formatCurrency(computeImpressoesTotal(selection))}
+      meta={
+        <>
+          {objetivoInfo && <MetaText>{objetivoInfo.name}</MetaText>}
+          <Badge variant="accent" label={KPI_LABELS[selection.kpi]} />
+          <MetaText>{formatImpressions(selection.impressions)} impressões</MetaText>
+        </>
+      }
+      receipt={<InvoiceContent selection={selection} />}
+      formats={<ImpressoesFormatsAccordion produto={selection.produto} />}
+      defaultOpen={defaultOpen}
+      onEdit={onEdit}
+      onDelete={onDelete}
+    />
   )
 }
