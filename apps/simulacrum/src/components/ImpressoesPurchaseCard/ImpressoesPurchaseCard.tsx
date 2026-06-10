@@ -17,6 +17,7 @@ import {
 } from '../../data/rules/impressoes'
 import ImpressoesFormatsAccordion from '../../features/compra-impressoes/components/ImpressoesFormatsAccordion/ImpressoesFormatsAccordion'
 import ExpandablePurchaseCard, { MetaText } from '../ExpandablePurchaseCard/ExpandablePurchaseCard'
+import PlatformChip from '../PlatformChip/PlatformChip'
 import styles from './ImpressoesPurchaseCard.module.css'
 
 function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection }) {
@@ -64,24 +65,13 @@ function InvoiceContent({ selection }: { selection: ImpressoesConfirmedSelection
       <div className={styles.section}>
         <p className={`type-caption-sm ${styles.sectionLabel}`}>Plataformas</p>
         <div className={styles.platformList}>
-          {platforms.map((p) => {
-            const platform = getPlatform(p)
-            return (
-              <span key={p} className={styles.platformChip}>
-                {platform.svgPath && (
-                  <img
-                    src={platform.svgPath}
-                    alt=""
-                    aria-hidden="true"
-                    className={styles.platformLogo}
-                  />
-                )}
-                <span className={`type-caption-md ${styles.platformName}`}>
-                  {PLATFORM_DISPLAY_NAMES[p]}
-                </span>
-              </span>
-            )
-          })}
+          {platforms.map((p) => (
+            <PlatformChip
+              key={p}
+              svgPath={getPlatform(p).svgPath}
+              name={PLATFORM_DISPLAY_NAMES[p]}
+            />
+          ))}
         </div>
       </div>
 

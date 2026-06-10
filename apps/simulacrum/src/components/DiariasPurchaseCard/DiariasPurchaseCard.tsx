@@ -10,6 +10,7 @@ import type { ConfirmedSelection } from '../../data/diarias'
 import { STATE_LABELS, computeTotal } from '../../data/rules/diarias'
 import DiariasFormatsAccordion from '../../features/compra-diarias/components/DiariasFormatsAccordion/DiariasFormatsAccordion'
 import ExpandablePurchaseCard, { MetaText } from '../ExpandablePurchaseCard/ExpandablePurchaseCard'
+import PlatformChip from '../PlatformChip/PlatformChip'
 import styles from './DiariasPurchaseCard.module.css'
 
 function formatDate(date: Date): string {
@@ -58,12 +59,7 @@ function InvoiceContent({ selection }: { selection: ConfirmedSelection }) {
           </div>
         </div>
         {portal.svgPath && (
-          <span className={styles.portalChip}>
-            <img src={portal.svgPath} alt="" aria-hidden="true" className={styles.portalChipLogo} />
-            <span className={`type-caption-md ${styles.portalChipName}`}>
-              {PORTAL_DISPLAY_NAMES[selection.portal]}
-            </span>
-          </span>
+          <PlatformChip svgPath={portal.svgPath} name={PORTAL_DISPLAY_NAMES[selection.portal]} />
         )}
       </div>
 

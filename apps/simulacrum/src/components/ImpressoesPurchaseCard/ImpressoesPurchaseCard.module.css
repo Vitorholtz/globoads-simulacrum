@@ -91,28 +91,6 @@
   gap: var(--spacing-100);
 }
 
-.platformChip {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-075);
-  padding: var(--spacing-050) var(--spacing-150) var(--spacing-050) var(--spacing-050);
-  background: var(--color-surface-secondary);
-  border-radius: var(--border-radius-full);
-}
-
-.platformLogo {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  border-radius: var(--border-radius-full);
-  background: var(--color-surface-primary);
-  flex-shrink: 0;
-}
-
-.platformName {
-  color: var(--color-fill-secondary);
-}
-
 /* ── Detail grid ── */
 
 .detailHeader {

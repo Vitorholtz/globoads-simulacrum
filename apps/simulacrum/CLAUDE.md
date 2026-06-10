@@ -15,8 +15,11 @@ Regras do workspace no [CLAUDE.md raiz](../../CLAUDE.md); regras do DS em [packa
 3. **Navegação vem de `src/shell/routes.ts`** (fonte única de labels/ícones/sidebar). Rotas com
    componente real vivem em `src/shell/features.ts`. Nova jornada = feature em
    `src/features/<dominio>/` + entrada em `NAV` (routes.ts) + entrada em `FEATURES` (features.ts).
-4. **Sem backend.** Dados são mocks tipados em `src/data/mock/`; regras de negócio são funções
-   puras em `src/data/rules/`. Estado de sessão via React Context — sem libs de estado por ora.
+4. **Sem backend.** Dados são mocks tipados em `src/data/`: cada domínio agrupa tipos + dados +
+   helpers num arquivo (`diarias.ts`, `impressoes.ts`); catálogos e tipos compartilhados ficam em
+   `catalog/`, `channels.ts`, `platform.ts` e `types/`, re-exportados pelo barrel `index.ts`. Cálculo
+   puro de regra de negócio fica em `src/data/rules/`. Estado de sessão via React Context — sem libs
+   de estado por ora.
 5. **Componente específico nasce aqui.** Em `src/components/`. Só promova ao DS quando houver
    valor real de reutilização — nunca antecipe.
 6. **Idioma:** conteúdo em **português**; identificadores e comandos em **inglês**.
@@ -28,7 +31,7 @@ src/
 ├── shell/        # layout persistente: AppShell, Header, Sidebar, Footer, routes.ts
 ├── features/     # uma pasta por jornada (flows, data.ts, DOMAIN.md)
 ├── components/   # componentes específicos do produto (não-DS)
-└── data/         # mock/ (dados tipados) · rules/ (funções puras) · types/ (domain types)
+└── data/         # mocks por domínio (diarias.ts…) · rules/ (cálculo puro) · catalog/ · types/
 ```
 
 Cada feature complexa documenta suas regras de negócio em `src/features/<dominio>/DOMAIN.md`.

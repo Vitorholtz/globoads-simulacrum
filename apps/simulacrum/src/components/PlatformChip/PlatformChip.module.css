@@ -1,0 +1,22 @@
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-075);
+  padding: var(--spacing-050) var(--spacing-150) var(--spacing-050) var(--spacing-050);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-full);
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: var(--border-radius-full);
+  background: var(--color-surface-primary);
+  flex-shrink: 0;
+}
+
+.name {
+  color: var(--color-fill-secondary);
+}
