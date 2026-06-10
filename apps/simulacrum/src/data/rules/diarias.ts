@@ -1,28 +1,9 @@
-import { AD_FORMATS_CATALOG } from '../catalog/adFormats'
 import { getPriceForCoverage, type ConfirmedSelection } from '../diarias'
 
 // ── Formatação de datas ──────────────────────────────────────────────────────
 
 export function formatDateShort(d: Date): string {
   return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`
-}
-
-// ── Formatos publicitários ───────────────────────────────────────────────────
-
-export function getAdFormat(formatId: string) {
-  return AD_FORMATS_CATALOG.find((f) => f.id === formatId)
-}
-
-export function getFormatSvg(formatId: string): string {
-  return getAdFormat(formatId)?.svgPath ?? ''
-}
-
-export function getPrimaryDimension(formatId: string) {
-  const fmt = getAdFormat(formatId)
-  if (!fmt || fmt.dimensions.length === 0) return null
-  return fmt.dimensions.reduce((best, d) =>
-    d.width * d.height > best.width * best.height ? d : best
-  )
 }
 
 // ── Estados brasileiros ──────────────────────────────────────────────────────

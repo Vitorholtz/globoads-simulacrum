@@ -6,12 +6,8 @@ import {
   type ImpressoesProduto,
   type PlatformId,
 } from '../../../../data/impressoes'
-import {
-  getAdFormat,
-  getCpmRange,
-  getCpmSectionLabel,
-  formatCurrency,
-} from '../../../../data/rules/impressoes'
+import { getCpmRange, getCpmSectionLabel, formatCurrency } from '../../../../data/rules/impressoes'
+import { getAdFormat } from '../../../../data/rules/formats'
 import styles from './ImpressoesProductCard.module.css'
 
 interface ImpressoesProductCardProps {

@@ -2,12 +2,16 @@ import { useNavigate } from 'react-router-dom'
 import { InteractiveCard, StaticCard, Badge } from '@globo-ads/ds'
 import { NAV_SECTIONS } from '../../shell/routes'
 import { FEATURES } from '../../shell/features'
+import { PORTALS } from '../../data/diarias'
 import PageContainer from '../../components/PageContainer/PageContainer'
 import styles from './HomePage.module.css'
 
+// Derivado de PORTALS (fonte única) para que a descrição acompanhe os portais de Diárias.
+const diariasPortalNames = PORTALS.map((p) => p.name)
+const diariasPortalsList = `${diariasPortalNames.slice(0, -1).join(', ')} e ${diariasPortalNames.at(-1)}`
+
 const JOURNEY_DESCRIPTIONS: Record<string, string> = {
-  '/compra-diarias':
-    'Compre espaços publicitários por dia em G1, GE, Globo.com, gshow e Globoplay.',
+  '/compra-diarias': `Compre espaços publicitários por dia em ${diariasPortalsList}.`,
   '/compra-impressoes':
     'Contrate impressões por CPM e alcance seu público nas plataformas digitais da Globo.',
   '/minhas-campanhas': 'Acompanhe o desempenho e gerencie suas campanhas ativas.',

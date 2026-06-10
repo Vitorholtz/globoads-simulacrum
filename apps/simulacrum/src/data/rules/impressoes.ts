@@ -1,5 +1,5 @@
 // Funções puras da Compra por Impressões: filtros, CPM efetivo, total e formatação de período.
-// Formatadores genéricos (moeda/impressões) e helpers de formato são reaproveitados de Diárias.
+// Formatadores genéricos de moeda/impressões são reaproveitados de Diárias.
 
 import {
   IMPRESSOES_CATALOG,
@@ -11,7 +11,6 @@ import {
 } from '../impressoes'
 
 export { formatCurrency, formatImpressions } from '../diarias'
-export { getAdFormat, getFormatSvg, getPrimaryDimension } from './diarias'
 
 // ── Labels de seção de CPM ────────────────────────────────────────────────────
 
