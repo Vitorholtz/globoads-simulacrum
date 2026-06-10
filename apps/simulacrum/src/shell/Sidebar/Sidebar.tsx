@@ -295,8 +295,8 @@ export default function Sidebar({ onMouseEnter, onMouseLeave, onNavigate }: Side
           ))}
         </ul>
         <div className={styles.footerText}>
-          <span className={`type-body-xs ${styles.footerLabel}`}>Confira</span>
-          <Hyperlink href="https://ads.globo.com" size="xs" external>
+          <span className={`type-caption-md ${styles.footerLabel}`}>Confira</span>
+          <Hyperlink href="https://ads.globo.com" size="md" external>
             Portal Globo Ads
           </Hyperlink>
         </div>

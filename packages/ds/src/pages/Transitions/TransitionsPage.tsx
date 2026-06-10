@@ -14,6 +14,13 @@ const DIRECTIONAL_DEMOS = [
   { label: 'Da direita', keyframe: 'motion-enter-right', icon: 'keyboard_arrow_left' },
 ]
 
+const EXIT_DEMOS = [
+  { label: 'Para cima', keyframe: 'motion-exit-top', icon: 'keyboard_arrow_up' },
+  { label: 'Para baixo', keyframe: 'motion-exit-bottom', icon: 'keyboard_arrow_down' },
+  { label: 'Para esquerda', keyframe: 'motion-exit-left', icon: 'keyboard_arrow_left' },
+  { label: 'Para direita', keyframe: 'motion-exit-right', icon: 'keyboard_arrow_right' },
+]
+
 const USAGE_ROWS = [
   {
     token: '--motion-duration-fast',
@@ -111,6 +118,17 @@ export default function TransitionsPage() {
         </p>
         <div className={styles.entranceGrid}>
           {DIRECTIONAL_DEMOS.map((demo) => (
+            <EntranceCard key={demo.keyframe} {...demo} />
+          ))}
+        </div>
+      </Section>
+
+      <Section icon="animation" title="Saídas direcionais" count="4 keyframes">
+        <p className={`type-body-sm ${styles.sectionNote}`}>
+          Keyframes globais para a remoção de componentes do DOM. Clique para reproduzir.
+        </p>
+        <div className={styles.entranceGrid}>
+          {EXIT_DEMOS.map((demo) => (
             <EntranceCard key={demo.keyframe} {...demo} />
           ))}
         </div>

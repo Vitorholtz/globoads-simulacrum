@@ -45,6 +45,10 @@
   gap: var(--spacing-075);
 }
 
+.portalUrl {
+  color: var(--color-fill-primary);
+}
+
 .portalLogo {
   height: 48px;
   width: auto;

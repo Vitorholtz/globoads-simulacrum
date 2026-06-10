@@ -141,19 +141,8 @@
 
 /* ── Step content entrance ── */
 
-@keyframes stepEnter {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .stepContent {
-  animation: stepEnter var(--motion-duration-slow) var(--motion-easing-out) both;
+  animation: global(motion-enter-bottom) var(--motion-duration-slow) var(--motion-easing-out) both;
   min-width: 0;
 }
 

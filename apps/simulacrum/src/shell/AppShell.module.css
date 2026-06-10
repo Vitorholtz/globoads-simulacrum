@@ -6,17 +6,6 @@
   background: var(--color-surface-secondary);
 }
 
-@keyframes motion-exit-right {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(6px);
-  }
-}
-
 .toastArea {
   position: fixed;
   top: var(--spacing-300);
@@ -24,14 +13,14 @@
   z-index: 9000;
   width: max-content;
   max-width: calc(100vw - var(--spacing-600));
-  animation-name: motion-enter-right;
+  animation-name: global(motion-enter-right);
   animation-duration: var(--motion-duration-slow);
   animation-timing-function: var(--motion-easing-out);
   animation-fill-mode: backwards;
 }
 
 .leaving {
-  animation-name: motion-exit-right;
+  animation-name: global(motion-exit-right);
   animation-duration: var(--motion-duration-slow);
   animation-timing-function: var(--motion-easing-default);
   animation-fill-mode: forwards;

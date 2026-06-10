@@ -60,6 +60,7 @@ export default function DiariasResumoCard() {
             <div className={styles.row}>
               <span className={`type-body-sm ${styles.label}`}>Portal</span>
               <span className={styles.portalCell}>
+                <span className={`type-body-sm ${styles.portalUrl}`}>{portal.url}</span>
                 {portal.svgPath && (
                   <img
                     src={portal.svgPath}
