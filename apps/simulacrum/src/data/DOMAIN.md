@@ -73,7 +73,15 @@ const videoFormats = AD_FORMATS_CATALOG.filter((f) => f.acceptedFileTypes.includ
 
 ## Jornadas que consomem este catálogo
 
-- **Galeria de Criativos** — exibe formatos disponíveis e orienta o upload de peças
-- **Criação de campanhas** — filtra formatos compatíveis com o produto/modalidade selecionada
-- **Validação de criativos** — confere dimensões, peso e tipos de arquivo contra as regras do formato
-- **Modalidades de compra** — determina quais formatos estão disponíveis por produto
+**Atuais:**
+
+- **Modalidades de compra** (Diárias, Impressões) — cada produto referencia formatos por ID;
+  `FormatsAccordion` exibe specs via `getAdFormat`/`getFormatSvg`/`getPrimaryDimension`
+  (`src/data/rules/formats.ts`).
+
+**Previstas (ainda não implementadas):**
+
+- **Galeria de Criativos** — exibiria formatos disponíveis e orientaria o upload de peças
+- **Criação de campanhas** — filtraria formatos compatíveis com o produto/modalidade selecionada
+- **Validação de criativos** — conferiria dimensões, peso e tipos de arquivo contra as regras do
+  formato

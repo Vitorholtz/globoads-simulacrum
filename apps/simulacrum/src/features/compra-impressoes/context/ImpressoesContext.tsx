@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import {
   MIN_IMPRESSIONS,
   getProduto,
+  computeImpressoesTotal,
   type ImpressoesConfirmedSelection,
   type ImpressoesObjetivo,
   type ImpressoesProduto,
   type ImpressoesSelection,
   type KpiId,
   type PlatformId,
-} from '../../../data/impressoes'
-import { computeImpressoesTotal } from '../../../data/rules/impressoes'
+} from '../../../data'
 import { useCart } from '../../../cart/CartContext'
 
 export type Step = 1 | 2 | 3 | 4 | 5

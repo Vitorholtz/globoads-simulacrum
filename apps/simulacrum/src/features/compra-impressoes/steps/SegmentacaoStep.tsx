@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Button, InteractiveCard } from '@globo-ads/ds'
-import { AUDIENCE_CATALOG } from '../../../data/impressoes'
+import { AUDIENCE_CATALOG } from '../../../data'
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './SegmentacaoStep.module.css'
 

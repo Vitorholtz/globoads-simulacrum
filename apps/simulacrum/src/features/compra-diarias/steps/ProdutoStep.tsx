@@ -6,8 +6,8 @@ import {
   formatCurrency,
   formatImpressions,
   getPriceForCoverage,
-} from '../../../data/diarias'
-import type { DiariaProduto } from '../../../data/diarias'
+  type DiariaProduto,
+} from '../../../data'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './ProdutoStep.module.css'
 

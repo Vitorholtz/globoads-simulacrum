@@ -1,5 +1,5 @@
-// Funções puras da Compra por Impressões: filtros, CPM efetivo, total e formatação de período.
-// Formatadores genéricos de moeda/impressões são reaproveitados de Diárias.
+// Funções puras da Compra por Impressões: filtros, CPM efetivo e total.
+// Formatadores genéricos (moeda, impressões, datas) vivem em rules/locale.ts.
 
 import {
   IMPRESSOES_CATALOG,
@@ -9,8 +9,6 @@ import {
   type ImpressoesProduto,
   type ImpressoesSelection,
 } from '../impressoes'
-
-export { formatCurrency, formatImpressions } from '../diarias'
 
 // ── Labels de seção de CPM ────────────────────────────────────────────────────
 
@@ -62,26 +60,4 @@ export function computeImpressoesTotal(
 
 export function isValidImpressions(value: number): boolean {
   return Number.isFinite(value) && value >= MIN_IMPRESSIONS
-}
-
-// ── Período ────────────────────────────────────────────────────────────────────
-
-export function formatDateLong(d: Date): string {
-  const day = d.getDate()
-  const month = d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '')
-  const year = d.getFullYear()
-  return `${day} de ${month}/${year}`
-}
-
-export function formatDateRange(start: Date | null, end: Date | null): string {
-  if (!start || !end) return '—'
-  return `${formatDateLong(start)} → ${formatDateLong(end)}`
-}
-
-/** Número de dias do período (inclusivo). */
-export function getDurationDays(start: Date | null, end: Date | null): number {
-  if (!start || !end) return 0
-  const ms = end.getTime() - start.getTime()
-  if (ms < 0) return 0
-  return Math.floor(ms / (1000 * 60 * 60 * 24)) + 1
 }

@@ -4,8 +4,8 @@ import {
   formatCurrency,
   formatImpressions,
   getPriceForCoverage,
-} from '../../../../data/diarias'
-import { STATE_LABELS } from '../../../../data/rules/diarias'
+  STATE_LABELS,
+} from '../../../../data'
 import { useDiarias } from '../../context/DiariasContext'
 import ResumoCard, {
   Row,

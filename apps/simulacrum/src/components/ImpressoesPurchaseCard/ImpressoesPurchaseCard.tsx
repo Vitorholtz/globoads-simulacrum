@@ -5,16 +5,14 @@ import {
   PLATFORM_DISPLAY_NAMES,
   getAudience,
   getPlatform,
-  type ImpressoesConfirmedSelection,
-} from '../../data/impressoes'
-import {
   computeImpressoesTotal,
   formatCurrency,
   formatImpressions,
   formatDateLong,
   getCpmOption,
   getEffectiveCpm,
-} from '../../data/rules/impressoes'
+  type ImpressoesConfirmedSelection,
+} from '../../data'
 import ImpressoesFormatsAccordion from '../../features/compra-impressoes/components/ImpressoesFormatsAccordion/ImpressoesFormatsAccordion'
 import ExpandablePurchaseCard, { MetaText } from '../ExpandablePurchaseCard/ExpandablePurchaseCard'
 import PlatformChip from '../PlatformChip/PlatformChip'

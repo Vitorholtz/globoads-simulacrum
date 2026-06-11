@@ -17,9 +17,11 @@ Regras do workspace no [CLAUDE.md raiz](../../CLAUDE.md); regras do DS em [packa
    `src/features/<dominio>/` + entrada em `NAV` (routes.ts) + entrada em `FEATURES` (features.ts).
 4. **Sem backend.** Dados são mocks tipados em `src/data/`: cada domínio agrupa tipos + dados +
    helpers num arquivo (`diarias.ts`, `impressoes.ts`); catálogos e tipos compartilhados ficam em
-   `catalog/`, `channels.ts`, `platform.ts` e `types/`, re-exportados pelo barrel `index.ts`. Cálculo
-   puro de regra de negócio fica em `src/data/rules/`. Estado de sessão via React Context — sem libs
-   de estado por ora.
+   `catalog/`, `channels.ts` e `types/`. Cálculo puro de regra de negócio fica em `src/data/rules/`
+   (`locale.ts` reúne formatação de moeda/impressões/data, reaproveitada por todas as modalidades).
+   O barrel `index.ts` re-exporta tudo — importe sempre de `'../data'` (caminho relativo até
+   `src/data`), nunca de arquivos internos. Estado de sessão via React Context — sem libs de estado
+   por ora.
 5. **Componente específico nasce aqui.** Em `src/components/`. Só promova ao DS quando houver
    valor real de reutilização — nunca antecipe.
 6. **Idioma:** conteúdo em **português**; identificadores e comandos em **inglês**.
@@ -35,6 +37,26 @@ src/
 ```
 
 Cada feature complexa documenta suas regras de negócio em `src/features/<dominio>/DOMAIN.md`.
+
+## Como adicionar uma modalidade de compra
+
+Diárias e Impressões não compartilham uma abstração comum de "produto" — os modelos de precificação
+divergem demais para isso valer a pena com apenas dois casos. Ao adicionar uma 3ª modalidade,
+replique a costura existente:
+
+1. Catálogo + tipos próprios em `src/data/<modalidade>.ts` (referencie `AD_FORMATS_CATALOG` e
+   `CHANNEL_CATALOG` por ID — nunca duplique nome/dimensão/formato).
+2. Regras puras em `src/data/rules/<modalidade>.ts`; reaproveite `rules/locale.ts` (formatação) e
+   `rules/formats.ts` (helpers de `AdFormat`).
+3. Feature em `src/features/<modalidade>/` com `context/`, `steps/`, `DOMAIN.md` e página principal.
+4. Novo membro na union `CartItem` em `src/cart/types.ts`.
+5. Entradas em `NAV_SECTIONS`/`NAV` (`shell/routes.ts`) e `FEATURES` (`shell/features.ts`).
+6. Rode `validateCatalogs()` (`src/data/validate.ts`, ativo em DEV) — qualquer ID novo precisa
+   resolver em `AD_FORMATS_CATALOG`/`CHANNEL_CATALOG`.
+
+Se uma 3ª modalidade reusar o mesmo conceito de "portal/plataforma" hoje fragmentado entre
+`PortalId` (diarias.ts) e `PlatformId` (impressoes.ts), é o gatilho para unificar os três IDs de
+canal numa entidade transversal — não antecipe isso sem um caso concreto.
 
 ## Comandos
 

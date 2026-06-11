@@ -4,9 +4,6 @@ import {
   OBJETIVOS,
   PLATFORM_DISPLAY_NAMES,
   getAudience,
-  type ImpressoesSelection,
-} from '../../../../data/impressoes'
-import {
   computeImpressoesTotal,
   formatCurrency,
   formatImpressions,
@@ -14,7 +11,8 @@ import {
   getCpmOption,
   getCpmSectionLabel,
   getEffectiveCpm,
-} from '../../../../data/rules/impressoes'
+  type ImpressoesSelection,
+} from '../../../../data'
 import ResumoCard, {
   Row,
   CustomRow,

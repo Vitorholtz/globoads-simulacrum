@@ -52,23 +52,6 @@ export interface ConfirmedSelection {
   dates: Date[]
 }
 
-export function formatCurrency(value: number): string {
-  return value.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  })
-}
-
-export function formatImpressions(n: number): string {
-  if (n >= 1_000_000) {
-    const val = parseFloat((n / 1_000_000).toFixed(1))
-    return `${val.toString().replace('.', ',')} mi`
-  }
-  return `${Math.round(n / 1_000)} mil`
-}
-
 export function getPriceForCoverage(produto: DiariaProduto, code: string): number {
   const cov = produto.coverages.find((c) => c.code === code)
   if (!cov) return 0

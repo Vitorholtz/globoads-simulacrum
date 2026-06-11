@@ -10,7 +10,7 @@ import ProdutoConfigStep from './steps/ProdutoConfigStep'
 import SegmentacaoStep from './steps/SegmentacaoStep'
 import PeriodoVolumeStep from './steps/PeriodoVolumeStep'
 import ResumoStep from './steps/ResumoStep'
-import { isValidImpressions } from '../../data/rules/impressoes'
+import { isValidImpressions } from '../../data'
 import styles from './CompraImpressoesPage.module.css'
 
 const STEP_LABELS: Record<Step, string> = {

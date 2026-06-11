@@ -7,9 +7,11 @@ import {
   formatImpressions,
   getPriceForCoverage,
   MACROREGIONS,
-} from '../../../data/diarias'
-import type { CoverageInfo, DiariaProduto } from '../../../data/diarias'
-import { STATE_LABELS, formatDateShort } from '../../../data/rules/diarias'
+  STATE_LABELS,
+  formatDateShort,
+  type CoverageInfo,
+  type DiariaProduto,
+} from '../../../data'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './ConfigStep.module.css'
 

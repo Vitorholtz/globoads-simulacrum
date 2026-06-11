@@ -1,5 +1,4 @@
-import type { ConfirmedSelection } from '../data/diarias'
-import type { ImpressoesConfirmedSelection } from '../data/impressoes'
+import type { ConfirmedSelection, ImpressoesConfirmedSelection } from '../data'
 
 export interface CartItemDiarias {
   id: string

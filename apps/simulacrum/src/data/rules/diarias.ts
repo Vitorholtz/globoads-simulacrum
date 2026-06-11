@@ -1,11 +1,5 @@
 import { getPriceForCoverage, type ConfirmedSelection } from '../diarias'
 
-// ── Formatação de datas ──────────────────────────────────────────────────────
-
-export function formatDateShort(d: Date): string {
-  return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`
-}
-
 // ── Estados brasileiros ──────────────────────────────────────────────────────
 
 export const STATE_LABELS: Record<string, string> = {

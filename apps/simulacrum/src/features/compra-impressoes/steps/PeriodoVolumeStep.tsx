@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Button, DateRangePicker, TextField } from '@globo-ads/ds'
-import { MIN_IMPRESSIONS } from '../../../data/impressoes'
-import { getDurationDays, isValidImpressions } from '../../../data/rules/impressoes'
+import { MIN_IMPRESSIONS, getDurationDays, isValidImpressions } from '../../../data'
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './PeriodoVolumeStep.module.css'
 

@@ -1,14 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
-import type {
-  ConfirmedSelection,
-  DiariasSelection,
-  DiariaProduto,
-  PortalId,
-  RegionalSelection,
-} from '../../../data/diarias'
-import { computeTotal } from '../../../data/rules/diarias'
+import {
+  computeTotal,
+  type ConfirmedSelection,
+  type DiariasSelection,
+  type DiariaProduto,
+  type PortalId,
+  type RegionalSelection,
+} from '../../../data'
 import { useCart } from '../../../cart/CartContext'
 
 export type Step = 1 | 2 | 3 | 4

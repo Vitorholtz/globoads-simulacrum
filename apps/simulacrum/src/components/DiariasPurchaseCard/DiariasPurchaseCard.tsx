@@ -5,9 +5,10 @@ import {
   formatCurrency,
   formatImpressions,
   getPriceForCoverage,
-} from '../../data/diarias'
-import type { ConfirmedSelection } from '../../data/diarias'
-import { STATE_LABELS, computeTotal } from '../../data/rules/diarias'
+  STATE_LABELS,
+  computeTotal,
+  type ConfirmedSelection,
+} from '../../data'
 import DiariasFormatsAccordion from '../../features/compra-diarias/components/DiariasFormatsAccordion/DiariasFormatsAccordion'
 import ExpandablePurchaseCard, { MetaText } from '../ExpandablePurchaseCard/ExpandablePurchaseCard'
 import PlatformChip from '../PlatformChip/PlatformChip'

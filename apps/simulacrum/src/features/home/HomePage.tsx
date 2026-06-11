@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { InteractiveCard, StaticCard, Badge } from '@globo-ads/ds'
 import { NAV_SECTIONS } from '../../shell/routes'
 import { FEATURES } from '../../shell/features'
-import { PORTALS } from '../../data/diarias'
+import { PORTALS } from '../../data'
 import PageContainer from '../../components/PageContainer/PageContainer'
 import styles from './HomePage.module.css'
 

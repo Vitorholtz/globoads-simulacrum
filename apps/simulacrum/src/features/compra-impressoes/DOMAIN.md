@@ -16,21 +16,14 @@ veiculação nas plataformas digitais. Precificação por **CPM** (custo por mil
 
 ## Objetivo → KPI
 
-| Objetivo              | KPI(s)                          |
-| --------------------- | ------------------------------- |
-| Alcance               | Impressões                      |
-| Visibilidade          | Viewability                     |
-| Clique                | CTR                             |
-| Tráfego               | Visitas                         |
-| Conversão             | Lead, Instalação de APP, Vendas |
-| Visualização de vídeo | VTR                             |
+Mapeamento em `OBJETIVO_KPIS` (`src/data/impressoes.ts`); rótulos em `KPI_LABELS` — não duplicar
+aqui. Regra geral: cada objetivo deriva um KPI único, exceto Conversão (3 KPIs à escolha).
 
 ## Objetivo → Produtos
 
-- **Alcance:** D Globo, V Globo, Touchpoint Rotativo, V Globoplay, Binge Ads, Pause Ads, Globo DAI, FAST
-- **Visibilidade / Tráfego / Conversão:** D Globo, Touchpoint Rotativo
-- **Clique:** D Globo, Touchpoint Rotativo, Binge Ads, Pause Ads
-- **Visualização de vídeo:** V Globo, V Globoplay, Globo DAI
+Cada produto do `IMPRESSOES_CATALOG` lista seus objetivos compatíveis no campo `objetivos` — não
+duplicar aqui. `getProductsByObjetivo()` (`src/data/rules/impressoes.ts`) filtra o catálogo por
+objetivo na etapa "Produto & Configuração".
 
 ## CPM por produto
 

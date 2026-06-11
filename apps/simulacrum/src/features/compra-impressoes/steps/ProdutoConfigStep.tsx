@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Button } from '@globo-ads/ds'
-import { OBJETIVOS, type ImpressoesProduto, type PlatformId } from '../../../data/impressoes'
-import { getProductsByObjetivo } from '../../../data/rules/impressoes'
+import {
+  OBJETIVOS,
+  getProductsByObjetivo,
+  type ImpressoesProduto,
+  type PlatformId,
+} from '../../../data'
 import ImpressoesProductCard from '../components/ImpressoesProductCard/ImpressoesProductCard'
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './ProdutoConfigStep.module.css'

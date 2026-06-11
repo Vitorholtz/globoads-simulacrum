@@ -3,11 +3,13 @@ import { Checkbox, InteractiveCard, Radio } from '@globo-ads/ds'
 import {
   getPlatform,
   PLATFORM_DISPLAY_NAMES,
+  getCpmRange,
+  getCpmSectionLabel,
+  formatCurrency,
+  getAdFormat,
   type ImpressoesProduto,
   type PlatformId,
-} from '../../../../data/impressoes'
-import { getCpmRange, getCpmSectionLabel, formatCurrency } from '../../../../data/rules/impressoes'
-import { getAdFormat } from '../../../../data/rules/formats'
+} from '../../../../data'
 import styles from './ImpressoesProductCard.module.css'
 
 interface ImpressoesProductCardProps {

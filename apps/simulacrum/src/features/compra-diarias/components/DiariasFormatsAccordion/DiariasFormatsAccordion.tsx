@@ -1,5 +1,9 @@
-import type { DiariaProduto } from '../../../../data/diarias'
-import { getAdFormat, getFormatSvg, getPrimaryDimension } from '../../../../data/rules/formats'
+import {
+  getAdFormat,
+  getFormatSvg,
+  getPrimaryDimension,
+  type DiariaProduto,
+} from '../../../../data'
 import FormatsAccordion, {
   type FormatListItem,
 } from '../../../../components/FormatsAccordion/FormatsAccordion'

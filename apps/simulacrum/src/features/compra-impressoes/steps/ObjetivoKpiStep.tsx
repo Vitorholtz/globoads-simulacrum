@@ -7,7 +7,7 @@ import {
   OBJETIVO_KPIS,
   type ImpressoesObjetivo,
   type KpiId,
-} from '../../../data/impressoes'
+} from '../../../data'
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './ObjetivoKpiStep.module.css'
 

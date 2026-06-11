@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@globo-ads/ds'
-import type { ConfirmedSelection } from '../../../data/diarias'
+import type { ConfirmedSelection } from '../../../data'
 import { DiariasPurchaseCard } from '../../../components/DiariasPurchaseCard/DiariasPurchaseCard'
 import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import { useDiarias } from '../context/DiariasContext'

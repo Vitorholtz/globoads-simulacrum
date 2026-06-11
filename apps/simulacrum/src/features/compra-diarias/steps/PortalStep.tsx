@@ -6,7 +6,7 @@ import {
   getPortalStats,
   formatImpressions,
   type PortalId,
-} from '../../../data/diarias'
+} from '../../../data'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './PortalStep.module.css'
 

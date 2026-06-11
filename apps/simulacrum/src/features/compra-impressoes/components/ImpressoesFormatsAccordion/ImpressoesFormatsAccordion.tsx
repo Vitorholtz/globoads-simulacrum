@@ -1,5 +1,9 @@
-import { type ImpressoesProduto } from '../../../../data/impressoes'
-import { getAdFormat, getFormatSvg, getPrimaryDimension } from '../../../../data/rules/formats'
+import {
+  getAdFormat,
+  getFormatSvg,
+  getPrimaryDimension,
+  type ImpressoesProduto,
+} from '../../../../data'
 import FormatsAccordion, {
   type FormatListItem,
 } from '../../../../components/FormatsAccordion/FormatsAccordion'
