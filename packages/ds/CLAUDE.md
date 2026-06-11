@@ -4,8 +4,8 @@ Guia para o Claude Code neste repositório. Mantenha **enxuto** — só o que pr
 em todo turno. O detalhe vive em `docs/` e é lido sob demanda (links abaixo, não `@import`, para não
 inflar o contexto a cada turno).
 
-**Globo Ads Simulacrum** — app de documentação do Globo Ads Design System. Biblioteca de
-componentes e fundações reutilizáveis, deliberadamente simples. Stack: React 19 + Vite 8 + TS 6 +
+**Globo Ads Design System** (`@globo-ads/ds`) — biblioteca de componentes e fundações reutilizáveis,
+deliberadamente simples, com app de documentação interativo. Stack: React 19 + Vite 8 + TS 6 +
 CSS Modules + React Router v7. Sem bibliotecas de UI.
 
 ## Golden rules (não quebrar)

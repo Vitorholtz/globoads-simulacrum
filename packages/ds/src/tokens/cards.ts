@@ -3,15 +3,15 @@ import type { GuidelineDef, StateDef } from './types'
 export type CardStyle = 'on-primary' | 'on-secondary'
 export type InteractiveCardStyle = CardStyle | 'outlined'
 
-export type CardStyleDef = {
-  id: InteractiveCardStyle
+export type CardStyleDef<TId = InteractiveCardStyle> = {
+  id: TId
   name: string
   tagline: string
   description: string
   when: string[]
 }
 
-export const CARD_STYLES: CardStyleDef[] = [
+export const CARD_STYLES: CardStyleDef<CardStyle>[] = [
   {
     id: 'on-primary',
     name: 'On Primary',
@@ -38,7 +38,7 @@ export const CARD_STYLES: CardStyleDef[] = [
   },
 ]
 
-export const INTERACTIVE_CARD_STYLES: CardStyleDef[] = [
+export const INTERACTIVE_CARD_STYLES: CardStyleDef<InteractiveCardStyle>[] = [
   ...CARD_STYLES,
   {
     id: 'outlined',

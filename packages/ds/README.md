@@ -1,4 +1,4 @@
-# Globo Ads Simulacrum
+# Globo Ads Design System
 
 Design-system documentation app for Globo Ads — built with React + Vite, no UI libraries.
 

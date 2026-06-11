@@ -31,7 +31,7 @@ Regras do workspace no [CLAUDE.md raiz](../../CLAUDE.md); regras do DS em [packa
 ```
 src/
 ├── shell/        # layout persistente: AppShell, Header, Sidebar, Footer, routes.ts
-├── features/     # uma pasta por jornada (flows, data.ts, DOMAIN.md)
+├── features/     # uma pasta por jornada (página, steps/, context/, components/, DOMAIN.md opcional)
 ├── components/   # componentes específicos do produto (não-DS)
 └── data/         # mocks por domínio (diarias.ts…) · rules/ (cálculo puro) · catalog/ · types/
 ```

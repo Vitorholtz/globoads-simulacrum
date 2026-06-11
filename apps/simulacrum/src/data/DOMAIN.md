@@ -1,4 +1,4 @@
-# Domínio: Catálogo de Formatos Publicitários
+# DOMAIN — Catálogo de Formatos Publicitários
 
 ## Fonte única de verdade
 

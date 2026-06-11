@@ -33,6 +33,8 @@ Primeira versão estável do Globo Ads Design System.
 - Containers: Accordion, Collapse, Tabs, Calendar, InfoPanel, Toast, Tooltip
 - Visual: Avatar, AvatarGroup, InlineLoader, Skeleton
 
+> Lista reflete o estado em 2026-06-02 (v1.0.0). Para o inventário atual, ver `src/components/`.
+
 **Documentação (35 páginas)**
 
 - Página dedicada para cada componente com variantes, tamanhos, estados e diretrizes de uso

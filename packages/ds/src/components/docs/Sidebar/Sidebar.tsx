@@ -84,7 +84,7 @@ export default function Sidebar() {
       </div>
 
       <div className={styles.sidebarFooter}>
-        <span className={`type-caption-md ${styles.footerTitle}`}>Globo Ads Simulacrum</span>
+        <span className={`type-caption-md ${styles.footerTitle}`}>Globo Ads Design System</span>
         <span className={`type-caption-sm ${styles.footerSub}`}>Biblioteca de componentes</span>
       </div>
     </nav>

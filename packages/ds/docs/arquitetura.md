@@ -4,9 +4,6 @@
 > Para extensão prática use [guia-novo-componente.md](guia-novo-componente.md); para o _porquê_ das
 > escolhas, [decisoes.md](decisoes.md).
 
-**Globo Ads Simulacrum** é um app de documentação do Globo Ads Design System.
-Stack: React 19 + Vite 8 + TypeScript 6 + CSS Modules + React Router v7. Sem bibliotecas de UI.
-
 ## Camadas
 
 ```

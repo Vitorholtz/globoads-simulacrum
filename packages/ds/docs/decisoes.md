@@ -17,9 +17,9 @@
 - **`BUTTON_STATES` não inclui definições de CSS** — o comportamento visual de estado (backgrounds,
   brilho) vive em `Button.module.css`. A lista de tokens é só documentação — alimenta a matriz de
   estados em `ButtonPage`.
-- **Sem aliases semânticos de cor** — variáveis como `--color-text-primary` ou `--color-border-ui`
-  foram removidas. Componentes usam tokens crus diretamente. Mantém a camada de token plana e evita
-  uma indireção redundante.
+- **Sem aliases semânticos de cor** — evita uma camada de indireção redundante sobre os tokens crus;
+  mantém a camada de token plana. Lista de tokens corretos em
+  [convencoes.md](convencoes.md#tokens-a-regra-mais-quebrada).
 
 ## Escopo e governança
 
