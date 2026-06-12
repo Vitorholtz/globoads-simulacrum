@@ -97,7 +97,7 @@ export const TEXT_FIELD_MATRIX_COLS: {
   { id: 'icon-filled', label: 'Ícone+Texto', value: 'Text here', icon: 'search' },
 ]
 
-export type TextFieldMask = 'cpf' | 'cnpj' | 'phone' | 'cep' | 'date'
+export type TextFieldMask = 'cpf' | 'cnpj' | 'phone' | 'cep' | 'date' | 'url'
 
 export interface TextFieldMaskDef {
   id: TextFieldMask
@@ -142,5 +142,12 @@ export const TEXT_FIELD_MASKS: TextFieldMaskDef[] = [
     placeholder: 'DD/MM/AAAA',
     example: '31/12/2025',
     description: 'Data no formato brasileiro DD/MM/AAAA.',
+  },
+  {
+    id: 'url',
+    label: 'URL',
+    placeholder: 'https://exemplo.com',
+    example: 'https://exemplo.com',
+    description: 'Endereço web — adiciona "https://" automaticamente ao início.',
   },
 ]

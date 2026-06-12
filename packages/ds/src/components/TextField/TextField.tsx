@@ -1,7 +1,8 @@
-import { useState, useId, useRef } from 'react'
+import { useState, useId, useRef, useCallback, useEffect } from 'react'
 import styles from './TextField.module.css'
 import FieldLabel from '../FieldLabel/FieldLabel'
 import FieldMessage from '../FieldMessage/FieldMessage'
+import Toast from '../Toast/Toast'
 import type { TextFieldSize, TextFieldMask } from '../../tokens/textField'
 
 export type { TextFieldSize, TextFieldMask }
@@ -45,6 +46,13 @@ function applyMask(value: string, mask: TextFieldMask): string {
       if (s.length <= 4) return `${s.slice(0, 2)}/${s.slice(2)}`
       return `${s.slice(0, 2)}/${s.slice(2, 4)}/${s.slice(4)}`
     }
+    case 'url': {
+      if (value === '') return ''
+      const lower = value.toLowerCase()
+      if (lower.startsWith('http://') || lower.startsWith('https://')) return value
+      if ('http://'.startsWith(lower) || 'https://'.startsWith(lower)) return value
+      return `https://${value}`
+    }
   }
 }
 
@@ -54,7 +62,21 @@ const MASK_MAX_LENGTH: Record<TextFieldMask, number> = {
   phone: 15,
   cep: 9,
   date: 10,
+  url: 2048,
 }
+
+const MASK_INPUT_MODE: Record<TextFieldMask, React.HTMLAttributes<HTMLInputElement>['inputMode']> =
+  {
+    cpf: 'numeric',
+    cnpj: 'numeric',
+    phone: 'numeric',
+    cep: 'numeric',
+    date: 'numeric',
+    url: 'url',
+  }
+
+const COPY_TOAST_DISMISS_MS = 4000
+const COPY_TOAST_EXIT_MS = 250
 
 export interface TextFieldProps {
   size?: TextFieldSize
@@ -78,8 +100,12 @@ export interface TextFieldProps {
   defaultValue?: string
   disabled?: boolean
   readOnly?: boolean
-  /** Applies an input mask — auto-formats digits as CPF, CNPJ, phone, CEP, or date */
+  /** Applies an input mask — auto-formats digits as CPF, CNPJ, phone, CEP, date, or URL */
   mask?: TextFieldMask
+  /** 'password' adds a show/hide toggle that reveals the typed content */
+  type?: 'text' | 'password'
+  /** Shows a button that copies the field's value to the clipboard and confirms with a Toast */
+  copyable?: boolean
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   className?: string
 }
@@ -120,6 +146,8 @@ export default function TextField({
   disabled,
   readOnly,
   mask,
+  type = 'text',
+  copyable = false,
   onChange,
   className,
 }: TextFieldProps) {
@@ -129,6 +157,11 @@ export default function TextField({
 
   const [internalValue, setInternalValue] = useState(defaultValue ?? '')
   const [isFocused, setIsFocused] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [copyToastVisible, setCopyToastVisible] = useState(false)
+  const [copyToastLeaving, setCopyToastLeaving] = useState(false)
+  const copyDismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const copyLeaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const isControlled = value !== undefined
   const currentValue = isControlled ? value : internalValue
@@ -137,6 +170,7 @@ export default function TextField({
   const hasError = forceState === 'error' || (!!errorMessage && !forceState)
   const isForced = !!forceState
   const showClear = currentValue !== '' && (forceState === 'focus' || (!forceState && isFocused))
+  const inputType = type === 'password' && !showPassword ? 'password' : 'text'
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const next = mask ? applyMask(e.target.value, mask) : e.target.value
@@ -155,6 +189,32 @@ export default function TextField({
       } as React.ChangeEvent<HTMLInputElement>)
     }
   }
+
+  const startCopyToastExit = useCallback(() => {
+    setCopyToastLeaving(true)
+    copyLeaveTimerRef.current = setTimeout(() => {
+      setCopyToastVisible(false)
+      setCopyToastLeaving(false)
+    }, COPY_TOAST_EXIT_MS)
+  }, [])
+
+  function handleCopy() {
+    if (!currentValue) return
+    void navigator.clipboard.writeText(currentValue)
+    if (copyDismissTimerRef.current) clearTimeout(copyDismissTimerRef.current)
+    if (copyLeaveTimerRef.current) clearTimeout(copyLeaveTimerRef.current)
+    setCopyToastLeaving(false)
+    setCopyToastVisible(true)
+    copyDismissTimerRef.current = setTimeout(startCopyToastExit, COPY_TOAST_DISMISS_MS)
+  }
+
+  useEffect(
+    () => () => {
+      if (copyDismissTimerRef.current) clearTimeout(copyDismissTimerRef.current)
+      if (copyLeaveTimerRef.current) clearTimeout(copyLeaveTimerRef.current)
+    },
+    []
+  )
 
   const rootCls = [styles.root, styles[size], isDisabled ? styles.disabled : '', className ?? '']
     .filter(Boolean)
@@ -189,8 +249,8 @@ export default function TextField({
           id={inputId}
           name={name}
           className={`${INPUT_TYPE[size]} ${styles.input}`}
-          type="text"
-          inputMode={mask ? 'numeric' : undefined}
+          type={inputType}
+          inputMode={mask ? MASK_INPUT_MODE[mask] : undefined}
           maxLength={mask ? MASK_MAX_LENGTH[mask] : undefined}
           placeholder={placeholder}
           value={isControlled ? value : internalValue}
@@ -202,6 +262,42 @@ export default function TextField({
           tabIndex={isForced ? -1 : undefined}
           aria-invalid={hasError || undefined}
         />
+
+        {copyable && (
+          <button
+            type="button"
+            className={styles.actionBtn}
+            onClick={handleCopy}
+            disabled={isDisabled || !currentValue}
+            tabIndex={isForced ? -1 : undefined}
+            aria-label="Copiar conteúdo"
+          >
+            <span
+              className={`material-symbols-rounded ${SMALL_ICON_CLS[size]} ${styles.actionIcon}`}
+              aria-hidden="true"
+            >
+              content_copy
+            </span>
+          </button>
+        )}
+
+        {type === 'password' && (
+          <button
+            type="button"
+            className={styles.actionBtn}
+            onClick={() => setShowPassword((v) => !v)}
+            tabIndex={isForced ? -1 : undefined}
+            aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+            aria-pressed={showPassword}
+          >
+            <span
+              className={`material-symbols-rounded ${SMALL_ICON_CLS[size]} ${styles.actionIcon}`}
+              aria-hidden="true"
+            >
+              {showPassword ? 'visibility_off' : 'visibility'}
+            </span>
+          </button>
+        )}
 
         {hasError ? (
           <span
@@ -234,6 +330,21 @@ export default function TextField({
       </div>
 
       <FieldMessage helpText={helpText} errorMessage={errorMessage} hasError={hasError} />
+
+      {copyToastVisible && (
+        <div
+          className={[styles.copyToast, copyToastLeaving ? styles.leaving : '']
+            .filter(Boolean)
+            .join(' ')}
+        >
+          <Toast
+            type="neutral"
+            title="Conteúdo copiado!"
+            description="O conteúdo foi copiado para a área de transferência."
+            onClose={startCopyToastExit}
+          />
+        </div>
+      )}
     </div>
   )
 }

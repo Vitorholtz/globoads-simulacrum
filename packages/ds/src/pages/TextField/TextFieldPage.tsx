@@ -120,7 +120,7 @@ export default function TextFieldPage() {
       <Section
         icon="tune"
         title="Configurações"
-        count={6}
+        count={8}
         description="Combinações de props que cobrem os cenários mais comuns de formulários."
       >
         <CardGrid cols={3}>
@@ -172,6 +172,34 @@ export default function TextFieldPage() {
             title="Com texto de ajuda"
             description="Texto de suporte abaixo do campo com instruções adicionais."
           />
+          <DemoCard
+            preview={
+              <TextField
+                type="password"
+                label="Senha"
+                leadingIcon="lock"
+                placeholder="Digite sua senha"
+                defaultValue="MinhaSenha123"
+                size="md"
+              />
+            }
+            title="Mostrar/Ocultar senha"
+            description="Ícone à direita alterna a visibilidade do conteúdo. Use em criação de conta, login e alteração de senha."
+          />
+          <DemoCard
+            preview={
+              <TextField
+                label="Link de compartilhamento"
+                leadingIcon="link"
+                mask="url"
+                copyable
+                defaultValue="https://globo.com/ads/campanha-123"
+                size="md"
+              />
+            }
+            title="Copiar conteúdo"
+            description="Ícone à direita copia o valor do campo para a área de transferência e confirma com um Toast. Útil em URLs e links."
+          />
         </CardGrid>
       </Section>
 
@@ -187,7 +215,13 @@ export default function TextFieldPage() {
             <DemoCard
               key={m.id}
               preview={
-                <TextField label={m.label} placeholder={m.placeholder} mask={m.id} size="md" />
+                <TextField
+                  label={m.label}
+                  placeholder={m.placeholder}
+                  mask={m.id}
+                  copyable={m.id === 'url'}
+                  size="md"
+                />
               }
               title={m.label}
               description={`${m.description} · Ex: ${m.example}`}

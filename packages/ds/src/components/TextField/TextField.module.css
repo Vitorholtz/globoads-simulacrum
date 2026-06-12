@@ -172,6 +172,91 @@
   display: block;
 }
 
+/* Hide native password reveal/clear icons (Edge) — avoids clashing with .actionBtn */
+.input[type='password']::-ms-reveal,
+.input[type='password']::-ms-clear {
+  display: none;
+}
+
+/* ── Action buttons (show/hide password, copiar) ── */
+
+.actionBtn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-025);
+  border-radius: var(--border-radius-sm);
+  color: var(--color-fill-secondary);
+  line-height: var(--line-height-icon);
+  background: var(--color-surface-ghost);
+  transition:
+    background 0.12s ease,
+    transform 0.12s ease;
+}
+
+.actionBtn:hover {
+  background: var(--color-luminosity-dark-ghost-hover);
+}
+
+.actionBtn:active {
+  transform: scale(0.9);
+  background: var(--color-luminosity-dark-ghost-active);
+}
+
+.actionBtn:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.actionIcon {
+  display: block;
+}
+
+/* ── Copy toast (fixed overlay) ── */
+
+@keyframes motion-enter-right {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes motion-exit-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+}
+
+.copyToast {
+  position: fixed;
+  top: var(--spacing-300);
+  right: var(--spacing-300);
+  z-index: 9000;
+  animation-name: motion-enter-right;
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.copyToast.leaving {
+  animation-name: motion-exit-right;
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
 /* ── Help text ── */
 
 /* ── Error text ── */
