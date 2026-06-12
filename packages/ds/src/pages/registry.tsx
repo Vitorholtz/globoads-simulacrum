@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import {
-  PlaygroundPage,
+  FormulariosPage,
+  CriativosPage,
   ColorsPage,
   TypographyPage,
   IconsPage,
@@ -29,6 +30,8 @@ import {
   SwitchPage,
   ChipsPage,
   DatePickerPage,
+  TimePickerPage,
+  DateTimePickerPage,
   CollapsePage,
   AccordionPage,
   InfoPanelPage,
@@ -86,11 +89,18 @@ export interface PageDef {
 export const PAGES: PageDef[] = [
   // ── Playground ──
   {
-    path: '/playground',
-    label: 'Playground',
-    icon: 'science',
+    path: '/formularios',
+    label: 'Formulários',
+    icon: 'dynamic_form',
     category: 'Playground',
-    component: PlaygroundPage,
+    component: FormulariosPage,
+  },
+  {
+    path: '/criativos',
+    label: 'Criativos',
+    icon: 'ad_units',
+    category: 'Playground',
+    component: CriativosPage,
   },
 
   // ── Foundation ──
@@ -295,6 +305,20 @@ export const PAGES: PageDef[] = [
     icon: 'edit_calendar',
     category: 'Inputs',
     component: DatePickerPage,
+  },
+  {
+    path: '/time-picker',
+    label: 'Time Picker',
+    icon: 'schedule',
+    category: 'Inputs',
+    component: TimePickerPage,
+  },
+  {
+    path: '/date-time-picker',
+    label: 'Date & Time Picker',
+    icon: 'event',
+    category: 'Inputs',
+    component: DateTimePickerPage,
   },
   // ── Utilities ──
   {

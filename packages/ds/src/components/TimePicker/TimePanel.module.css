@@ -1,0 +1,83 @@
+/* ── Root ── */
+
+.root {
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-200);
+  width: 270px;
+  user-select: none;
+}
+
+/* ── Grid ── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: repeat(4, auto);
+  align-items: center;
+  justify-items: center;
+  gap: var(--spacing-075) var(--spacing-150);
+}
+
+.colHours {
+  grid-column: 1;
+}
+
+.colMinutes {
+  grid-column: 3;
+}
+
+.rowLabel {
+  grid-row: 1;
+}
+
+.rowUp {
+  grid-row: 2;
+}
+
+.rowValue {
+  grid-row: 3;
+}
+
+.rowDown {
+  grid-row: 4;
+}
+
+/* ── Labels ── */
+
+.label {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Value display ── */
+
+.value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 64px;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface-secondary);
+  color: var(--color-fill-primary);
+}
+
+.separator {
+  grid-column: 2;
+  grid-row: 3;
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Footer (Cancelar / Confirmar) ── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  padding-top: var(--spacing-200);
+}
+
+.footerBtn {
+  flex: 1;
+}

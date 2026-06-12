@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 
-export const PlaygroundPage = lazy(() => import('./Playground/PlaygroundPage'))
+export const FormulariosPage = lazy(() => import('./Formularios/FormulariosPage'))
+export const CriativosPage = lazy(() => import('./Criativos/CriativosPage'))
 export const ColorsPage = lazy(() => import('./Colors/ColorsPage'))
 export const TypographyPage = lazy(() => import('./Typography/TypographyPage'))
 export const IconsPage = lazy(() => import('./Icons/IconsPage'))
@@ -29,6 +30,8 @@ export const RadioPage = lazy(() => import('./Radio/RadioPage'))
 export const SwitchPage = lazy(() => import('./Switch/SwitchPage'))
 export const ChipsPage = lazy(() => import('./Chips/ChipsPage'))
 export const DatePickerPage = lazy(() => import('./DatePicker/DatePickerPage'))
+export const TimePickerPage = lazy(() => import('./TimePicker/TimePickerPage'))
+export const DateTimePickerPage = lazy(() => import('./DateTimePicker/DateTimePickerPage'))
 export const CollapsePage = lazy(() => import('./Collapse/CollapsePage'))
 export const AccordionPage = lazy(() => import('./Accordion/AccordionPage'))
 export const InfoPanelPage = lazy(() => import('./InfoPanel/InfoPanelPage'))

@@ -1,0 +1,180 @@
+/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+
+/* ── Content preview ── */
+
+.contentPreview {
+  width: 100%;
+  max-width: 280px;
+}
+
+/* ── Size scale ── */
+
+.sizeScaleContainer {
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.sizeRow {
+  display: flex;
+  align-items: center;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.sizeRow:last-child {
+  border-bottom: none;
+}
+
+.sizePreview {
+  width: 280px;
+  flex-shrink: 0;
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-350) var(--spacing-400);
+  align-self: stretch;
+}
+
+.sizePreview > * {
+  width: 100%;
+}
+
+.sizeMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  padding: var(--spacing-300) var(--spacing-400);
+}
+
+.sizeValueRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-125);
+}
+
+.sizeLabel {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-fill-primary);
+}
+
+.sizeRecommended {
+  color: var(--color-fill-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: var(--spacing-025) 9px;
+  border-radius: var(--border-radius-full);
+}
+
+.sizeDescription {
+  color: var(--color-fill-secondary);
+}
+
+.sizeSpecs {
+  font-family: var(--font-family-code);
+  color: var(--color-fill-tertiary);
+  margin-left: auto;
+  padding-right: var(--spacing-400);
+  text-align: right;
+  line-height: var(--line-height-150);
+  white-space: nowrap;
+}
+
+/* ── State matrix ── */
+
+.matrixField {
+  max-width: 220px;
+}
+
+/* ── Interactive demo ── */
+
+.interactiveContainer {
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  display: flex;
+}
+
+.interactiveDemo {
+  flex: 1;
+  background: var(--color-surface-secondary);
+  padding: var(--spacing-600) var(--spacing-500);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.demoFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  width: 320px;
+}
+
+.interactiveInfo {
+  width: 280px;
+  flex-shrink: 0;
+  padding: var(--spacing-400);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  justify-content: center;
+}
+
+.infoBox {
+  background: var(--color-surface-secondary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-200) var(--spacing-250);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+}
+
+.infoLabel {
+  color: var(--color-fill-tertiary);
+  text-transform: uppercase;
+}
+
+.infoValue {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-fill-primary);
+}
+
+.infoHint {
+  color: var(--color-fill-secondary);
+}
+
+/* ── Panel demo ── */
+
+.panelCard {
+  display: flex;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+}
+
+.panelPreview {
+  flex-shrink: 0;
+  background: var(--color-surface-secondary);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
+  padding: var(--spacing-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panelResult {
+  flex: 1;
+  padding: var(--spacing-400);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  justify-content: center;
+}
+
+/* ── Guidelines ── */

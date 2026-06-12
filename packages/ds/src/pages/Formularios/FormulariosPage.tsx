@@ -7,7 +7,7 @@ import Textarea from '../../components/Textarea/Textarea'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import Button from '../../components/Button/Button'
 import Toast from '../../components/Toast/Toast'
-import styles from './PlaygroundPage.module.css'
+import styles from './FormulariosPage.module.css'
 import type { SelectOption } from '../../components/Select/Select'
 
 const ESTADOS: SelectOption[] = [
@@ -89,7 +89,7 @@ const EMPTY: FormFields = {
   sobre: '',
 }
 
-export default function PlaygroundPage() {
+export default function FormulariosPage() {
   const [fields, setFields] = useState<FormFields>(EMPTY)
   const [submitted, setSubmitted] = useState(false)
   const [toastVisible, setToastVisible] = useState(false)
@@ -150,9 +150,9 @@ export default function PlaygroundPage() {
   return (
     <div>
       <PageHeader
-        breadcrumb="Playground"
-        title="Playground"
-        subtitle="Área temporária para testar composições com os componentes do Design System."
+        breadcrumb="Formulários"
+        title="Formulários"
+        subtitle="Área temporária para testar composições de formulários com os componentes do Design System."
       />
 
       <div className={styles.formContainer}>

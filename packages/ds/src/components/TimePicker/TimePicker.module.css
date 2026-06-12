@@ -1,0 +1,197 @@
+/* ── Root ── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  position: relative;
+  width: 100%;
+}
+
+/* ── Input wrapper ── */
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  width: 100%;
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-primary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition:
+    border-color var(--motion-duration-base) var(--motion-easing-default),
+    background var(--motion-duration-base) var(--motion-easing-default),
+    box-shadow var(--motion-duration-base) var(--motion-easing-default);
+}
+
+/* Hover — real */
+.inputWrapper:hover:not([data-state]):not(.hasError):not(.isActive) {
+  border-color: var(--color-border-secondary);
+}
+
+/* Hover — forced */
+.inputWrapper[data-state='hover'] {
+  border-color: var(--color-border-secondary);
+}
+
+/* Focus / Active — real */
+.inputWrapper.isActive {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
+}
+
+/* Focus / Active — forced */
+.inputWrapper[data-state='focus'],
+.inputWrapper[data-state='active'] {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
+}
+
+/* Focus — real (input inside focused) */
+.inputWrapper:focus-within:not([data-state]):not(.isActive):not(.hasError) {
+  border-color: var(--color-fill-accent);
+  box-shadow: var(--outline-focus-out);
+}
+
+/* Error */
+.inputWrapper.hasError,
+.inputWrapper[data-state='error'] {
+  border-color: var(--color-border-critical);
+  background: var(--color-surface-critical);
+}
+
+/* Disabled forced */
+.inputWrapper[data-state='disabled'] {
+  background: var(--color-surface-tertiary);
+}
+
+/* ── Disabled root ── */
+
+.disabled {
+  opacity: var(--opacity-disabled);
+  pointer-events: none;
+}
+
+.disabled .inputWrapper {
+  background: var(--color-surface-tertiary);
+}
+
+/* ── Input field ── */
+
+.inputField {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-fill-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.inputField::placeholder {
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Clock icon button ── */
+
+.clockBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.clockBtn::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--spacing-050) * -1);
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-default),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.clockBtn:hover::before {
+  background: var(--color-luminosity-dark-ghost-hover);
+}
+
+.clockBtn:focus-visible::before {
+  background: var(--color-luminosity-dark-ghost-subtle);
+  box-shadow: var(--outline-focus-out);
+}
+
+.clockBtn:disabled {
+  cursor: not-allowed;
+}
+
+/* ── Icons ── */
+
+.clockIcon {
+  flex-shrink: 0;
+  color: var(--color-fill-secondary);
+  display: block;
+}
+
+.errorClockIcon {
+  color: var(--color-fill-critical);
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  color: var(--color-fill-critical);
+  display: block;
+  pointer-events: none;
+}
+
+/* ── Time popup ── */
+
+.timePopup {
+  z-index: 1000;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadows-high);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  translate: -50% 0;
+  animation-name: global(motion-enter-top);
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.timePopupLeaving {
+  pointer-events: none;
+  animation-name: global(motion-exit-top);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
+/* ══════════════════════════════════════
+   SIZES
+══════════════════════════════════════ */
+
+/* SM */
+
+.sm .inputWrapper {
+  padding: var(--spacing-075) var(--spacing-100);
+}
+
+/* MD */
+
+.md .inputWrapper {
+  padding: var(--spacing-100) var(--spacing-150);
+}
+
+/* LG */
+
+.lg .inputWrapper {
+  padding: var(--spacing-150);
+}
