@@ -5,11 +5,13 @@ import CreativeCard from './CreativeCard'
 import CreativeStatusCard from './CreativeStatusCard'
 import CreativePreviewCard from './CreativePreviewCard'
 import CreativeDrawer from './CreativeDrawer'
+import CreativeUpload from './CreativeUpload'
 import { CREATIVES, type Creative } from './creatives'
 import styles from './CriativosPage.module.css'
 
 export default function CriativosPage() {
   const [openCreative, setOpenCreative] = useState<Creative | null>(null)
+  const [creatives, setCreatives] = useState<Creative[]>(CREATIVES)
 
   return (
     <div>
@@ -20,18 +22,26 @@ export default function CriativosPage() {
       />
 
       <Section
+        icon="upload"
+        title="Upload de criativos"
+        description="Envie uma imagem: as dimensões, peso e extensão são lidos do arquivo e o formato publicitário Display é identificado automaticamente, gerando um card novo na galeria abaixo."
+      >
+        <CreativeUpload onCreativeAdded={(c) => setCreatives((prev) => [c, ...prev])} />
+      </Section>
+
+      <Section
         icon="ad_units"
         title="Card de criativo"
         description="Card de configuração de um criativo enviado pelo usuário. Clique no header ou no preview para selecionar."
       >
         <div className={styles.gallery}>
-          {CREATIVES.map((c, i) => (
+          {creatives.map((c, i) => (
             <CreativeCard
               key={c.id}
               name={c.name}
               imageSrc={c.imageSrc}
               format={c.format}
-              defaultSelected={i === CREATIVES.length - 1}
+              defaultSelected={i === creatives.length - 1}
               onViewDetails={() => setOpenCreative(c)}
             />
           ))}
@@ -44,7 +54,7 @@ export default function CriativosPage() {
         description="Card de exibição de criativo na galeria. Mantém a interação de seleção, mas mostra o status e uma tag de categoria opcional no lugar das configurações."
       >
         <div className={styles.gallery}>
-          {CREATIVES.map((c, i) => (
+          {creatives.map((c, i) => (
             <CreativeStatusCard
               key={c.id}
               name={c.name}
@@ -53,7 +63,7 @@ export default function CriativosPage() {
               tag={c.tag}
               status={c.status}
               statusVariant={c.statusVariant}
-              defaultSelected={i === CREATIVES.length - 1}
+              defaultSelected={i === creatives.length - 1}
               onViewDetails={() => setOpenCreative(c)}
             />
           ))}
@@ -66,7 +76,7 @@ export default function CriativosPage() {
         description="Card somente leitura para revisar um envio: exibe as configurações já feitas em campos desabilitados e preenchidos. Não tem checkbox nem estados de seleção — só o botão de opções é interativo."
       >
         <div className={styles.gallery}>
-          {CREATIVES.map((c) => (
+          {creatives.map((c) => (
             <CreativePreviewCard
               key={c.id}
               name={c.name}

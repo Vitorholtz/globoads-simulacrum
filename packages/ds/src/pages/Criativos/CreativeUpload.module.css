@@ -1,0 +1,49 @@
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-150);
+  padding: var(--spacing-500) var(--spacing-300);
+  text-align: center;
+  background: var(--color-surface-secondary);
+  border: var(--border-width-md) dashed var(--color-border-primary);
+  border-radius: var(--border-radius-2xl);
+  cursor: pointer;
+  transition: border-color var(--motion-duration-base) var(--motion-easing-default);
+}
+
+.dropzone:hover,
+.dropzone:focus-visible {
+  border-color: var(--color-border-secondary);
+  outline: none;
+}
+
+.dragging {
+  border-color: var(--color-fill-accent);
+  background: var(--color-surface-accent);
+}
+
+.icon {
+  color: var(--color-fill-tertiary);
+}
+
+.headline {
+  margin: 0;
+  color: var(--color-fill-primary);
+}
+
+.hint {
+  max-width: 42ch;
+  margin: 0;
+  color: var(--color-fill-secondary);
+}
+
+/* Input nativo escondido — acionado pelo clique/teclado na dropzone. */
+.input {
+  display: none;
+}
+
+.error {
+  margin-top: var(--spacing-200);
+}
