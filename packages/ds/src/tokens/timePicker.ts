@@ -56,6 +56,11 @@ export const TIME_PICKER_STATES = [
   { id: 'focus', label: 'Focus', description: 'Campo ativo com foco — borda azul 2px.' },
   { id: 'active', label: 'Active', description: 'Painel de horário aberto com seleção visível.' },
   { id: 'error', label: 'Error', description: 'Horário inválido — borda e fundo crítico.' },
+  {
+    id: 'readonly',
+    label: 'Read Only',
+    description: 'Somente leitura — valor legível e não editável, sem realce de interação.',
+  },
   { id: 'disabled', label: 'Disabled', description: 'Campo indisponível — opacidade 48%.' },
 ] as const
 
@@ -85,13 +90,14 @@ export const TIME_PICKER_GUIDELINES: GuidelineDef[] = [
 export const TIME_PICKER_MATRIX_STATES: {
   id: string
   label: string
-  force: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | undefined
+  force: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | 'readonly' | undefined
 }[] = [
   { id: 'normal', label: 'Normal', force: undefined },
   { id: 'hover', label: 'Hover', force: 'hover' },
   { id: 'focus', label: 'Focus', force: 'focus' },
   { id: 'active', label: 'Active', force: 'active' },
   { id: 'error', label: 'Error', force: 'error' },
+  { id: 'readonly', label: 'Read Only', force: 'readonly' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]
 

@@ -20,8 +20,9 @@ export interface DatePickerProps {
   defaultValue?: Date | null
   onChange?: (date: Date | null) => void
   disabled?: boolean
+  readOnly?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
-  forceState?: 'hover' | 'focus' | 'active' | 'error' | 'disabled'
+  forceState?: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | 'readonly'
   id?: string
   className?: string
 }
@@ -77,6 +78,7 @@ export default function DatePicker({
   defaultValue,
   onChange,
   disabled,
+  readOnly,
   forceState,
   id,
   className,
@@ -110,6 +112,7 @@ export default function DatePicker({
   }
 
   const isDisabled = disabled || forceState === 'disabled'
+  const isReadOnly = !isDisabled && (readOnly || forceState === 'readonly')
   const hasTypedError = inputText.length === 10 && !parseDateString(inputText)
   const hasError = forceState === 'error' || hasTypedError || (!!errorMessage && !forceState)
   const displayError = hasTypedError && !errorMessage ? 'Data inválida' : errorMessage
@@ -194,7 +197,7 @@ export default function DatePicker({
   }
 
   function handleToggle() {
-    if (isDisabled || !!forceState) return
+    if (isDisabled || !!forceState || isReadOnly) return
     if (isLeaving) {
       setIsLeaving(false)
       return
@@ -212,7 +215,11 @@ export default function DatePicker({
     .filter(Boolean)
     .join(' ')
 
-  const wrapperStateAttr = forceState && forceState !== 'disabled' ? forceState : undefined
+  const wrapperStateAttr = isReadOnly
+    ? 'readonly'
+    : forceState && forceState !== 'disabled'
+      ? forceState
+      : undefined
 
   const wrapperCls = [
     styles.inputWrapper,
@@ -243,7 +250,7 @@ export default function DatePicker({
           value={inputText}
           onChange={handleInputChange}
           disabled={isDisabled}
-          readOnly={!!forceState}
+          readOnly={!!forceState || isReadOnly}
           tabIndex={forceState ? -1 : undefined}
           aria-invalid={hasError || undefined}
           onKeyDown={(e) => {
@@ -266,6 +273,7 @@ export default function DatePicker({
           className={styles.calendarBtn}
           onClick={handleToggle}
           disabled={isDisabled || !!forceState}
+          aria-disabled={isReadOnly || undefined}
           tabIndex={forceState ? -1 : undefined}
           aria-expanded={isOpen && !isLeaving}
           aria-haspopup="dialog"

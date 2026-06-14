@@ -95,7 +95,7 @@ export default function ComboboxPage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={5}>
+      <Section icon="toggle_on" title="Estados" count={COMBOBOX_MATRIX_STATES.length}>
         <StateMatrix
           columns={COMBOBOX_MATRIX_COLS}
           rows={COMBOBOX_MATRIX_STATES}

@@ -21,6 +21,21 @@
   grid-column: 1 / -1;
 }
 
+/* ── Bench vertical (todos os inputs empilhados) ── */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+  align-items: stretch;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
 .formFooter {
   display: flex;
   justify-content: flex-end;

@@ -76,6 +76,19 @@
   cursor: not-allowed;
 }
 
+/* ── Read only — legível, não editável, sem afixos de interação.
+   Usa data-state='readonly': as regras de hover/focus já são guardadas
+   por :not([data-state]), então nenhum realce dispara. ── */
+.inputWrapper[data-state='readonly'] {
+  background: var(--color-surface-secondary);
+  cursor: default;
+}
+
+.inputWrapper[data-state='readonly'] .input {
+  cursor: default;
+  color: var(--color-fill-secondary);
+}
+
 /* ── Input element ── */
 
 .input {
@@ -129,16 +142,17 @@
   align-items: center;
   justify-content: center;
   border: none;
+  outline: none;
   cursor: pointer;
-  padding: var(--spacing-025);
-  border-radius: var(--border-radius-sm);
+  padding: 0;
+  position: relative;
+  background: transparent;
   color: var(--color-fill-secondary);
   line-height: var(--line-height-icon);
 
-  /* Hidden by default — animates in/out */
-  background: var(--color-surface-ghost);
+  /* Oculto por padrão — anima entrada/saída. Sem padding e sem overflow:hidden
+     para o halo ::before poder extrapolar o ícone como nos pickers. */
   max-width: 0;
-  overflow: hidden;
   opacity: 0;
   transform: scale(0.6);
   pointer-events: none;
@@ -147,8 +161,19 @@
     max-width 0.2s ease,
     margin-left 0.2s ease,
     opacity 0.18s ease,
-    transform 0.18s ease,
-    background 0.12s ease;
+    transform 0.18s ease;
+}
+
+/* Halo de hover/focus — idêntico ao toggle do DateTimePicker/TimePicker */
+.clearBtn::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--spacing-050) * -1);
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-default),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-default);
 }
 
 .clearBtn[data-visible='true'] {
@@ -159,13 +184,13 @@
   margin-left: 0;
 }
 
-.clearBtn:hover {
+.clearBtn:hover::before {
   background: var(--color-luminosity-dark-ghost-hover);
 }
 
-.clearBtn:active {
-  transform: scale(0.9);
-  background: var(--color-luminosity-dark-ghost-active);
+.clearBtn:focus-visible::before {
+  background: var(--color-luminosity-dark-ghost-subtle);
+  box-shadow: var(--outline-focus-out);
 }
 
 .clearIcon {
@@ -186,24 +211,34 @@
   align-items: center;
   justify-content: center;
   border: none;
+  outline: none;
   cursor: pointer;
-  padding: var(--spacing-025);
-  border-radius: var(--border-radius-sm);
+  padding: 0;
+  position: relative;
+  background: transparent;
   color: var(--color-fill-secondary);
   line-height: var(--line-height-icon);
-  background: var(--color-surface-ghost);
-  transition:
-    background 0.12s ease,
-    transform 0.12s ease;
 }
 
-.actionBtn:hover {
+/* Halo de hover/focus — idêntico ao toggle do DateTimePicker/TimePicker */
+.actionBtn::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--spacing-050) * -1);
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-default),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.actionBtn:hover::before {
   background: var(--color-luminosity-dark-ghost-hover);
 }
 
-.actionBtn:active {
-  transform: scale(0.9);
-  background: var(--color-luminosity-dark-ghost-active);
+.actionBtn:focus-visible::before {
+  background: var(--color-luminosity-dark-ghost-subtle);
+  box-shadow: var(--outline-focus-out);
 }
 
 .actionBtn:disabled {

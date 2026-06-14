@@ -70,6 +70,21 @@
   cursor: not-allowed;
 }
 
+/* ── Read only — legível, não editável, sem afixos de interação.
+   Usa data-state='readonly': as regras de hover/focus já são guardadas
+   por :not([data-state]), então nenhum realce dispara. ── */
+.inputWrapper[data-state='readonly'] {
+  background: var(--color-surface-secondary);
+}
+
+.inputWrapper[data-state='readonly'] .trigger {
+  cursor: default;
+}
+
+.inputWrapper[data-state='readonly'] .selectedText {
+  color: var(--color-fill-secondary);
+}
+
 /* ── Trigger button ── */
 
 .trigger {
@@ -119,7 +134,7 @@
 .trailingIcons {
   display: flex;
   align-items: center;
-  gap: var(--spacing-050);
+  gap: var(--spacing-100);
   flex-shrink: 0;
 }
 
@@ -262,8 +277,8 @@
 /* SM */
 
 .sm .trigger {
-  gap: var(--spacing-050);
-  padding: var(--spacing-075) var(--spacing-075) var(--spacing-075) var(--spacing-100);
+  gap: var(--spacing-100);
+  padding: var(--spacing-075) var(--spacing-100);
 }
 
 .sm .option {
@@ -273,7 +288,7 @@
 
 .md .trigger {
   gap: var(--spacing-100);
-  padding: var(--spacing-100) var(--spacing-125) var(--spacing-100) var(--spacing-150);
+  padding: var(--spacing-100) var(--spacing-150);
 }
 
 .md .option {

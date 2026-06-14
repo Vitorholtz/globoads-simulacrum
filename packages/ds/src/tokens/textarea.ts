@@ -68,6 +68,11 @@ export const TEXTAREA_STATES: StateDef<string>[] = [
       'Valor inválido. Fundo e borda críticos com ícone de erro no canto superior direito.',
   },
   {
+    id: 'readonly',
+    label: 'Read Only',
+    description: 'Somente leitura — valor legível e não editável, sem realce de interação.',
+  },
+  {
     id: 'disabled',
     label: 'Disabled',
     description: 'Campo desabilitado. Opacidade 48% e não interativo.',
@@ -100,12 +105,13 @@ export const TEXTAREA_GUIDELINES: GuidelineDef[] = [
 export const TEXTAREA_MATRIX_STATES: {
   id: string
   label: string
-  force: 'hover' | 'focus' | 'error' | 'disabled' | undefined
+  force: 'hover' | 'focus' | 'error' | 'disabled' | 'readonly' | undefined
 }[] = [
   { id: 'normal', label: 'Normal', force: undefined },
   { id: 'hover', label: 'Hover', force: 'hover' },
   { id: 'focus', label: 'Focus', force: 'focus' },
   { id: 'error', label: 'Error', force: 'error' },
+  { id: 'readonly', label: 'Read Only', force: 'readonly' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]
 

@@ -13,7 +13,7 @@
 .inputWrapper {
   display: flex;
   align-items: center;
-  gap: var(--spacing-075);
+  gap: var(--spacing-100);
   width: 100%;
   background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-primary);
@@ -74,6 +74,18 @@
 
 .disabled .inputWrapper {
   background: var(--color-surface-tertiary);
+}
+
+/* ── Read only — legível, não editável, sem afixos de interação.
+   Usa data-state='readonly': hover/focus já são guardados por
+   :not([data-state]), então nenhum realce dispara. ── */
+.inputWrapper[data-state='readonly'] {
+  background: var(--color-surface-secondary);
+}
+
+.inputWrapper[data-state='readonly'] .inputField {
+  cursor: default;
+  color: var(--color-fill-secondary);
 }
 
 /* ── Input fields ── */
@@ -154,9 +166,18 @@
 
 .errorIcon {
   flex-shrink: 0;
+  /* Empurra o ícone de erro + o toggle juntos para a direita (os inputs usam
+     field-sizing: content, então não preenchem a linha sozinhos). */
+  margin-left: auto;
   color: var(--color-fill-critical);
   display: block;
   pointer-events: none;
+}
+
+/* Com erro presente, o auto-margin já vem do .errorIcon; zera o do toggle para
+   eles ficarem adjacentes (o espaço entre os dois vem do gap do wrapper). */
+.errorIcon + .toggleBtn {
+  margin-left: 0;
 }
 
 /* ── Popup ── */

@@ -94,7 +94,7 @@ export default function SelectPage() {
       </Section>
 
       {/* ── Estados ── */}
-      <Section icon="toggle_on" title="Estados" count={6}>
+      <Section icon="toggle_on" title="Estados" count={SELECT_MATRIX_STATES.length}>
         <StateMatrix
           columns={SELECT_MATRIX_COLS}
           rows={SELECT_MATRIX_STATES}

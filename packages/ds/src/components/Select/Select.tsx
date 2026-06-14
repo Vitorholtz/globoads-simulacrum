@@ -20,7 +20,7 @@ export interface SelectProps {
   errorMessage?: string
   options?: SelectOption[]
   /** Forces a visual state for documentation/showcase purposes only */
-  forceState?: 'hover' | 'focus' | 'active' | 'error' | 'disabled'
+  forceState?: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | 'readonly'
   /** Adds a search input inside the dropdown to filter options by label */
   searchable?: boolean
   id?: string
@@ -28,6 +28,7 @@ export interface SelectProps {
   value?: string
   defaultValue?: string
   disabled?: boolean
+  readOnly?: boolean
   onChange?: (value: string) => void
   className?: string
 }
@@ -62,6 +63,7 @@ export default function Select({
   value,
   defaultValue,
   disabled,
+  readOnly,
   onChange,
   className,
 }: SelectProps) {
@@ -81,6 +83,7 @@ export default function Select({
   const currentValue = isControlled ? value : internalValue
 
   const isDisabled = disabled || forceState === 'disabled'
+  const isReadOnly = !isDisabled && (readOnly || forceState === 'readonly')
   const hasError = forceState === 'error' || (!!errorMessage && !forceState)
   const isForced = !!forceState
   const isDropdownOpen = forceState === 'active' || isOpen
@@ -107,7 +110,7 @@ export default function Select({
   }
 
   function handleToggle() {
-    if (isForced || isDisabled) return
+    if (isForced || isDisabled || isReadOnly) return
     if (isOpen) {
       setIsOpen(false)
       setHighlightedIndex(-1)
@@ -141,7 +144,7 @@ export default function Select({
       return
     }
 
-    if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !isForced && !isDisabled) {
+    if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !isForced && !isDisabled && !isReadOnly) {
       e.preventDefault()
       if (!isOpen) {
         const idx = visibleOptions.findIndex((o) => o.value === currentValue)
@@ -157,7 +160,7 @@ export default function Select({
       return
     }
 
-    if ((e.key === 'Enter' || e.key === ' ') && !isForced && !isDisabled) {
+    if ((e.key === 'Enter' || e.key === ' ') && !isForced && !isDisabled && !isReadOnly) {
       e.preventDefault()
       if (isOpen) {
         if (highlightedIndex >= 0) {
@@ -232,7 +235,7 @@ export default function Select({
     .join(' ')
 
   // forceState='active' shows dropdown without any border override (matches Figma normal border for open state)
-  const dataState = forceState === 'active' ? undefined : forceState
+  const dataState = isReadOnly ? 'readonly' : forceState === 'active' ? undefined : forceState
 
   const activeDescendant =
     isDropdownOpen && highlightedIndex >= 0 ? `${listboxId}-opt-${highlightedIndex}` : undefined
@@ -255,6 +258,7 @@ export default function Select({
           onClick={handleToggle}
           onKeyDown={handleKeyDown}
           disabled={isDisabled}
+          aria-disabled={isReadOnly || undefined}
           tabIndex={isForced ? -1 : undefined}
           aria-haspopup="listbox"
           aria-expanded={isDropdownOpen}

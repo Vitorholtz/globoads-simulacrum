@@ -1,0 +1,169 @@
+/* ── Overlay + scrim ── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-luminosity-dark-backdrop);
+  animation-name: global(motion-enter-right);
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.scrimLeaving {
+  animation-name: global(motion-exit-right);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
+/* ── Painel ── */
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 420px);
+  height: 100%;
+  background: var(--color-surface-primary);
+  box-shadow: var(--shadows-high);
+  animation-name: global(motion-enter-right);
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.panelLeaving {
+  animation-name: global(motion-exit-right);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
+/* ── Header ── */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-100);
+  padding: var(--spacing-300) var(--spacing-300) var(--spacing-300);
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  min-width: 0;
+}
+
+.breadcrumb {
+  color: var(--color-fill-secondary);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-fill-primary);
+}
+
+.closeBtn {
+  flex-shrink: 0;
+}
+
+/* ── Tabs ── */
+
+.tabs {
+  padding: 0 var(--spacing-300);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+/* ── Body ── */
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+  padding: var(--spacing-300);
+}
+
+/* ── Preview ── */
+
+.preview {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--color-surface-tertiary);
+  border-radius: var(--border-radius-xl);
+}
+
+.previewImage {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: block;
+  transform: translateY(-50%);
+}
+
+/* ── Status ── */
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+/* ── Metadados ── */
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-150);
+  padding: var(--spacing-150) 0;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.metaRow:last-child {
+  border-bottom: none;
+}
+
+.metaLabel {
+  color: var(--color-fill-secondary);
+}
+
+.metaValue {
+  min-width: 0;
+  color: var(--color-fill-primary);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* ── Footer ── */
+
+.footer {
+  flex-shrink: 0;
+  padding: var(--spacing-200) var(--spacing-300);
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.deleteBtn {
+  width: 100%;
+}

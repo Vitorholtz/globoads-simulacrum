@@ -251,6 +251,12 @@ export default function DatePickerPage() {
           <div className={`${styles.interactiveDemo} ${styles.interactiveDemoCenter}`}>
             <div className={styles.demoFields}>
               <DateRangePicker label="Período da campanha" size="md" onChange={setSelectedRange} />
+              <DateRangePicker
+                label="Período (somente leitura)"
+                size="md"
+                defaultValue={{ start: new Date(2025, 10, 24), end: new Date(2025, 11, 25) }}
+                readOnly
+              />
             </div>
           </div>
           <div className={styles.interactiveInfo}>

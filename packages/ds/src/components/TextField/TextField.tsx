@@ -93,7 +93,7 @@ export interface TextFieldProps {
   helpText?: string
   errorMessage?: string
   /** Forces a visual state for documentation/showcase purposes only */
-  forceState?: 'hover' | 'focus' | 'error' | 'disabled'
+  forceState?: 'hover' | 'focus' | 'error' | 'disabled' | 'readonly'
   id?: string
   name?: string
   value?: string
@@ -120,12 +120,6 @@ const ICON_CLS: Record<TextFieldSize, string> = {
   sm: 'icon-sm',
   md: 'icon-md',
   lg: 'icon-lg',
-}
-
-const SMALL_ICON_CLS: Record<TextFieldSize, string> = {
-  sm: 'icon-sm',
-  md: 'icon-md',
-  lg: 'icon-md',
 }
 
 export default function TextField({
@@ -167,9 +161,11 @@ export default function TextField({
   const currentValue = isControlled ? value : internalValue
 
   const isDisabled = disabled || forceState === 'disabled'
+  const isReadOnly = !isDisabled && (readOnly || forceState === 'readonly')
   const hasError = forceState === 'error' || (!!errorMessage && !forceState)
   const isForced = !!forceState
-  const showClear = currentValue !== '' && (forceState === 'focus' || (!forceState && isFocused))
+  const showClear =
+    currentValue !== '' && !isReadOnly && (forceState === 'focus' || (!forceState && isFocused))
   const inputType = type === 'password' && !showPassword ? 'password' : 'text'
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -234,7 +230,7 @@ export default function TextField({
         htmlFor={inputId}
       />
 
-      <div className={wrapperCls} data-state={forceState}>
+      <div className={wrapperCls} data-state={isReadOnly ? 'readonly' : forceState}>
         {leadingIcon && (
           <span
             className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.leadingIcon}`}
@@ -273,7 +269,7 @@ export default function TextField({
             aria-label="Copiar conteúdo"
           >
             <span
-              className={`material-symbols-rounded ${SMALL_ICON_CLS[size]} ${styles.actionIcon}`}
+              className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.actionIcon}`}
               aria-hidden="true"
             >
               content_copy
@@ -291,7 +287,7 @@ export default function TextField({
             aria-pressed={showPassword}
           >
             <span
-              className={`material-symbols-rounded ${SMALL_ICON_CLS[size]} ${styles.actionIcon}`}
+              className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.actionIcon}`}
               aria-hidden="true"
             >
               {showPassword ? 'visibility_off' : 'visibility'}
@@ -301,7 +297,7 @@ export default function TextField({
 
         {hasError ? (
           <span
-            className={`material-symbols-rounded ${SMALL_ICON_CLS[size]} ${styles.errorIcon}`}
+            className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.errorIcon}`}
             aria-hidden="true"
           >
             error
@@ -320,7 +316,7 @@ export default function TextField({
             aria-hidden={!showClear}
           >
             <span
-              className={`material-symbols-rounded ${SMALL_ICON_CLS[size]} ${styles.clearIcon}`}
+              className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.clearIcon}`}
               aria-hidden="true"
             >
               close

@@ -76,6 +76,19 @@
   cursor: not-allowed;
 }
 
+/* ── Read only — legível, não editável, sem afixos de interação.
+   Usa data-state='readonly': as regras de hover/focus já são guardadas
+   por :not([data-state]), então nenhum realce dispara. ── */
+.inputWrapper[data-state='readonly'] {
+  background: var(--color-surface-secondary);
+  cursor: default;
+}
+
+.inputWrapper[data-state='readonly'] .input {
+  cursor: default;
+  color: var(--color-fill-secondary);
+}
+
 /* ── Search icon ── */
 
 .searchIcon {

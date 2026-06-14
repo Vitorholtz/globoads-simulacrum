@@ -1,0 +1,95 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.trigger {
+  flex-shrink: 0;
+}
+
+/* ── Floating menu ── */
+
+.menu {
+  position: absolute;
+  top: calc(100% + var(--spacing-050));
+  right: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-025);
+  min-width: var(--spacing-2400);
+  padding: var(--spacing-050);
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadows-base);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--motion-duration-slow) var(--motion-easing-default),
+    transform var(--motion-duration-slow) var(--motion-easing-default),
+    visibility var(--motion-duration-slow) var(--motion-easing-default);
+}
+
+.menuOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ── Menu item ── */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  width: 100%;
+  padding: var(--spacing-100);
+  border: none;
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  color: var(--color-fill-primary);
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.item:hover {
+  background: var(--color-luminosity-dark-ghost-subtle);
+}
+
+.item:focus-visible {
+  outline: none;
+  background: var(--color-luminosity-dark-ghost-subtle);
+}
+
+.itemIcon {
+  flex-shrink: 0;
+  color: var(--color-fill-primary);
+}
+
+.itemLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Ação destrutiva ── */
+
+.danger {
+  color: var(--color-fill-critical);
+}
+
+.danger .itemIcon {
+  color: var(--color-fill-critical);
+}
+
+.danger:hover,
+.danger:focus-visible {
+  background: var(--color-surface-critical);
+}

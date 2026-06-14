@@ -22,7 +22,7 @@ export interface TextareaProps {
   /** Shows a "N caracteres restantes" counter below the textarea; requires maxLength */
   showCounter?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
-  forceState?: 'hover' | 'focus' | 'error' | 'disabled'
+  forceState?: 'hover' | 'focus' | 'error' | 'disabled' | 'readonly'
   id?: string
   name?: string
   value?: string
@@ -76,9 +76,11 @@ export default function Textarea({
   const currentValue = isControlled ? value : internalValue
 
   const isDisabled = disabled || forceState === 'disabled'
+  const isReadOnly = !isDisabled && (readOnly || forceState === 'readonly')
   const hasError = forceState === 'error' || (!!errorMessage && !forceState)
   const isForced = !!forceState
-  const showClear = currentValue !== '' && (forceState === 'focus' || (!forceState && isFocused))
+  const showClear =
+    currentValue !== '' && !isReadOnly && (forceState === 'focus' || (!forceState && isFocused))
 
   const remaining = maxLength !== undefined ? maxLength - currentValue.length : null
   const displayCounter = showCounter && maxLength !== undefined
@@ -110,7 +112,7 @@ export default function Textarea({
         htmlFor={inputId}
       />
 
-      <div className={wrapperCls} data-state={forceState}>
+      <div className={wrapperCls} data-state={isReadOnly ? 'readonly' : forceState}>
         {hasError ? (
           <span
             className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.errorIcon}`}

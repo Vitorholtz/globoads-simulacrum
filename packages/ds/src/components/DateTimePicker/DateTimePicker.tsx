@@ -26,8 +26,9 @@ export interface DateTimePickerProps {
   defaultValue?: DateTimeValue | null
   onChange?: (value: DateTimeValue) => void
   disabled?: boolean
+  readOnly?: boolean
   /** Forces a visual state for documentation/showcase purposes only */
-  forceState?: 'hover' | 'focus' | 'active' | 'error' | 'disabled'
+  forceState?: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | 'readonly'
   id?: string
   className?: string
 }
@@ -122,6 +123,7 @@ export default function DateTimePicker({
   defaultValue,
   onChange,
   disabled,
+  readOnly,
   forceState,
   id,
   className,
@@ -162,6 +164,7 @@ export default function DateTimePicker({
   }
 
   const isDisabled = disabled || forceState === 'disabled'
+  const isReadOnly = !isDisabled && (readOnly || forceState === 'readonly')
   const hasTypedError =
     (dateInputText.length === 10 && !parseDateString(dateInputText)) ||
     (timeInputText.length === 5 && !parseTimeString(timeInputText))
@@ -243,7 +246,7 @@ export default function DateTimePicker({
   }
 
   function handleToggle() {
-    if (isDisabled || !!forceState) return
+    if (isDisabled || !!forceState || isReadOnly) return
     if (isLeaving) {
       setIsLeaving(false)
       return
@@ -285,7 +288,11 @@ export default function DateTimePicker({
 
   const rootCls = cx(styles.root, styles[size], isDisabled ? styles.disabled : '', className ?? '')
 
-  const wrapperStateAttr = forceState && forceState !== 'disabled' ? forceState : undefined
+  const wrapperStateAttr = isReadOnly
+    ? 'readonly'
+    : forceState && forceState !== 'disabled'
+      ? forceState
+      : undefined
 
   const wrapperCls = cx(
     styles.inputWrapper,
@@ -314,7 +321,7 @@ export default function DateTimePicker({
           value={dateInputText}
           onChange={handleDateInputChange}
           disabled={isDisabled}
-          readOnly={!!forceState}
+          readOnly={!!forceState || isReadOnly}
           tabIndex={forceState ? -1 : undefined}
           aria-invalid={hasError || undefined}
           onKeyDown={escKeyDown}
@@ -338,7 +345,7 @@ export default function DateTimePicker({
           value={timeInputText}
           onChange={handleTimeInputChange}
           disabled={isDisabled}
-          readOnly={!!forceState}
+          readOnly={!!forceState || isReadOnly}
           tabIndex={forceState ? -1 : undefined}
           aria-invalid={hasError || undefined}
           onKeyDown={escKeyDown}
@@ -359,6 +366,7 @@ export default function DateTimePicker({
           className={styles.toggleBtn}
           onClick={handleToggle}
           disabled={isDisabled || !!forceState}
+          aria-disabled={isReadOnly || undefined}
           tabIndex={forceState ? -1 : undefined}
           aria-expanded={isOpen && !isLeaving}
           aria-haspopup="dialog"

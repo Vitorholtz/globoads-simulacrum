@@ -77,6 +77,18 @@
   background: var(--color-surface-tertiary);
 }
 
+/* ── Read only — legível, não editável, sem afixos de interação.
+   Usa data-state='readonly': hover/focus já são guardados por
+   :not([data-state]), então nenhum realce dispara. ── */
+.inputWrapper[data-state='readonly'] {
+  background: var(--color-surface-secondary);
+}
+
+.inputWrapper[data-state='readonly'] .inputField {
+  cursor: default;
+  color: var(--color-fill-secondary);
+}
+
 /* ── Input field ── */
 
 .inputField {

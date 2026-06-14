@@ -20,7 +20,7 @@ export interface ComboboxProps {
   helpText?: string
   errorMessage?: string
   /** Forces a visual state for documentation/showcase purposes only */
-  forceState?: 'hover' | 'focus' | 'error' | 'disabled'
+  forceState?: 'hover' | 'focus' | 'error' | 'disabled' | 'readonly'
   id?: string
   name?: string
   /** Controlled array of chip values */
@@ -28,6 +28,7 @@ export interface ComboboxProps {
   /** Initial chip values for uncontrolled usage */
   defaultValue?: string[]
   disabled?: boolean
+  readOnly?: boolean
   /** Fires with the full updated chips array on every add or remove */
   onChange?: (values: string[]) => void
   className?: string
@@ -60,6 +61,7 @@ export default function Combobox({
   value,
   defaultValue,
   disabled,
+  readOnly,
   onChange,
   className,
 }: ComboboxProps) {
@@ -77,9 +79,11 @@ export default function Combobox({
   const chips = isControlled ? value : internalValues
 
   const isDisabled = disabled || forceState === 'disabled'
+  const isReadOnly = !isDisabled && (readOnly || forceState === 'readonly')
   const hasError = forceState === 'error' || (!!errorMessage && !forceState)
   const isForced = !!forceState
-  const showClear = query !== '' && (forceState === 'focus' || (!forceState && isFocused))
+  const showClear =
+    query !== '' && !isReadOnly && (forceState === 'focus' || (!forceState && isFocused))
 
   function addChip(text: string) {
     const trimmed = text.trim()
@@ -91,12 +95,14 @@ export default function Combobox({
   }
 
   function removeChip(chip: string) {
+    if (isReadOnly) return
     const next = chips.filter((c) => c !== chip)
     if (!isControlled) setInternalValues(next)
     onChange?.(next)
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (isReadOnly) return
     if (e.key === 'Enter') {
       e.preventDefault()
       addChip(query)
@@ -161,7 +167,7 @@ export default function Combobox({
         htmlFor={inputId}
       />
 
-      <div className={wrapperCls} data-state={forceState}>
+      <div className={wrapperCls} data-state={isReadOnly ? 'readonly' : forceState}>
         <span
           className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.searchIcon}`}
           aria-hidden="true"
@@ -180,7 +186,7 @@ export default function Combobox({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           disabled={isDisabled}
-          readOnly={isForced}
+          readOnly={isForced || isReadOnly}
           tabIndex={isForced ? -1 : undefined}
           autoComplete="off"
           aria-invalid={hasError || undefined}
@@ -221,7 +227,7 @@ export default function Combobox({
           {chips.map((chip, index) => (
             <div
               key={chip}
-              draggable
+              draggable={!isReadOnly}
               onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => handleDragOver(e, index)}
               onDrop={(e) => handleDrop(e, index)}

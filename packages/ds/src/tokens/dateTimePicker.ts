@@ -61,6 +61,11 @@ export const DATE_TIME_PICKER_STATES = [
     description: 'Painel de data ou horário aberto com seleção visível.',
   },
   { id: 'error', label: 'Error', description: 'Seleção inválida — borda e fundo crítico.' },
+  {
+    id: 'readonly',
+    label: 'Read Only',
+    description: 'Somente leitura — valor legível e não editável, sem realce de interação.',
+  },
   { id: 'disabled', label: 'Disabled', description: 'Campo indisponível — opacidade 48%.' },
 ] as const
 
@@ -95,13 +100,14 @@ export const DATE_TIME_PICKER_GUIDELINES: GuidelineDef[] = [
 export const DATE_TIME_PICKER_MATRIX_STATES: {
   id: string
   label: string
-  force: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | undefined
+  force: 'hover' | 'focus' | 'active' | 'error' | 'disabled' | 'readonly' | undefined
 }[] = [
   { id: 'normal', label: 'Normal', force: undefined },
   { id: 'hover', label: 'Hover', force: 'hover' },
   { id: 'focus', label: 'Focus', force: 'focus' },
   { id: 'active', label: 'Active', force: 'active' },
   { id: 'error', label: 'Error', force: 'error' },
+  { id: 'readonly', label: 'Read Only', force: 'readonly' },
   { id: 'disabled', label: 'Disabled', force: 'disabled' },
 ]
 

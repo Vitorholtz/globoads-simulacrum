@@ -5,6 +5,12 @@ import TextField from '../../components/TextField/TextField'
 import Select from '../../components/Select/Select'
 import Textarea from '../../components/Textarea/Textarea'
 import DatePicker from '../../components/DatePicker/DatePicker'
+import TimePicker from '../../components/TimePicker/TimePicker'
+import DateTimePicker from '../../components/DateTimePicker/DateTimePicker'
+import DateRangePicker from '../../components/DateRangePicker/DateRangePicker'
+import Checkbox from '../../components/Checkbox/Checkbox'
+import Radio from '../../components/Radio/Radio'
+import Switch from '../../components/Switch/Switch'
 import Button from '../../components/Button/Button'
 import Toast from '../../components/Toast/Toast'
 import styles from './FormulariosPage.module.css'
@@ -95,6 +101,11 @@ export default function FormulariosPage() {
   const [toastVisible, setToastVisible] = useState(false)
   const [leaving, setLeaving] = useState(false)
   const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Bench visual: todos os inputs empilhados, só para inspeção (segunda seção).
+  const [benchCheckbox, setBenchCheckbox] = useState(true)
+  const [benchSwitch, setBenchSwitch] = useState(true)
+  const [benchRadio, setBenchRadio] = useState('1')
 
   const startExit = useCallback(() => {
     setLeaving(true)
@@ -300,6 +311,62 @@ export default function FormulariosPage() {
             </Button>
           </div>
         </form>
+      </div>
+
+      <div className={styles.formContainer}>
+        <Section
+          icon="dvr"
+          title="Todos os inputs"
+          description="Bench visual com cada input do Design System empilhado, para conferir alinhamento e espaçamento."
+        >
+          <div className={styles.stack}>
+            <TextField label="TextField" leadingIcon="search" placeholder="Texto aqui" />
+            <Textarea label="Textarea" placeholder="Texto longo aqui..." />
+            <Select label="Select" placeholder="Selecione" options={AREAS} />
+            <Select
+              label="Select pesquisável"
+              placeholder="Busque um estado"
+              options={ESTADOS}
+              searchable
+            />
+            <DatePicker label="DatePicker" />
+            <TimePicker label="TimePicker" />
+            <DateTimePicker label="DateTimePicker" />
+            <DateRangePicker label="DateRangePicker" />
+            <Switch
+              label="Switch"
+              checked={benchSwitch}
+              onChange={setBenchSwitch}
+              helpText="Liga ou desliga uma preferência."
+            />
+            <Checkbox
+              label="Checkbox"
+              checked={benchCheckbox}
+              onChange={setBenchCheckbox}
+              helpText="Confirme uma opção."
+            />
+            <div className={styles.radioGroup} role="radiogroup" aria-label="Radio">
+              <Radio
+                label="Radio — opção 1"
+                name="bench-radio"
+                checked={benchRadio === '1'}
+                onChange={() => setBenchRadio('1')}
+              />
+              <Radio
+                label="Radio — opção 2"
+                name="bench-radio"
+                checked={benchRadio === '2'}
+                onChange={() => setBenchRadio('2')}
+              />
+              <Radio
+                label="Radio — opção 3"
+                name="bench-radio"
+                checked={benchRadio === '3'}
+                onChange={() => setBenchRadio('3')}
+              />
+            </div>
+          </div>
+        </Section>
       </div>
 
       {toastVisible && (

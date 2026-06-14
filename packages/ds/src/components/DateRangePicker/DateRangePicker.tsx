@@ -21,7 +21,8 @@ export interface DateRangePickerProps {
   onChange?: (range: DateRange) => void
   helpText?: string
   disabled?: boolean
-  forceState?: 'hover' | 'focus' | 'active' | 'disabled'
+  readOnly?: boolean
+  forceState?: 'hover' | 'focus' | 'active' | 'disabled' | 'readonly'
   id?: string
   className?: string
 }
@@ -75,6 +76,7 @@ export default function DateRangePicker({
   onChange,
   helpText,
   disabled,
+  readOnly,
   forceState,
   id,
   className,
@@ -110,6 +112,7 @@ export default function DateRangePicker({
   const currentStart = isControlled ? (value.start ?? null) : internalStart
   const currentEnd = isControlled ? (value.end ?? null) : internalEnd
   const isDisabled = disabled || forceState === 'disabled'
+  const isReadOnly = !isDisabled && (readOnly || forceState === 'readonly')
   const isActive =
     forceState === 'active' || forceState === 'focus' || (!forceState && isOpen && !isLeaving)
 
@@ -241,7 +244,7 @@ export default function DateRangePicker({
   }
 
   function handleToggle() {
-    if (isDisabled || !!forceState) return
+    if (isDisabled || !!forceState || isReadOnly) return
     if (isLeaving) {
       setIsLeaving(false)
       return
@@ -260,7 +263,11 @@ export default function DateRangePicker({
     .filter(Boolean)
     .join(' ')
 
-  const wrapperStateAttr = forceState && forceState !== 'disabled' ? forceState : undefined
+  const wrapperStateAttr = isReadOnly
+    ? 'readonly'
+    : forceState && forceState !== 'disabled'
+      ? forceState
+      : undefined
 
   const wrapperCls = [styles.inputWrapper, isActive ? styles.isActive : '']
     .filter(Boolean)
@@ -295,7 +302,7 @@ export default function DateRangePicker({
           value={startInputText}
           onChange={handleStartInputChange}
           disabled={isDisabled}
-          readOnly={!!forceState}
+          readOnly={!!forceState || isReadOnly}
           tabIndex={forceState ? -1 : undefined}
           onKeyDown={escKeyDown}
         />
@@ -314,7 +321,7 @@ export default function DateRangePicker({
           value={endInputText}
           onChange={handleEndInputChange}
           disabled={isDisabled}
-          readOnly={!!forceState}
+          readOnly={!!forceState || isReadOnly}
           tabIndex={forceState ? -1 : undefined}
           onKeyDown={escKeyDown}
         />
@@ -325,6 +332,7 @@ export default function DateRangePicker({
           className={styles.calendarBtn}
           onClick={handleToggle}
           disabled={isDisabled || !!forceState}
+          aria-disabled={isReadOnly || undefined}
           tabIndex={forceState ? -1 : undefined}
           aria-expanded={isOpen && !isLeaving}
           aria-haspopup="dialog"
