@@ -88,7 +88,7 @@ export default function CreativePreviewCard({
 
         <TextField label="URL de destino" mask="url" defaultValue={destinationUrl} readOnly />
 
-        <TextField label="Pixel" mask="url" defaultValue={pixel} readOnly />
+        <TextField label="Pixel" optional mask="url" defaultValue={pixel} readOnly />
 
         <Select label="Posição" options={POSITION_OPTIONS} defaultValue={position} readOnly />
       </div>

@@ -246,6 +246,7 @@ export default function Select({
         showLabel={showLabel}
         label={label}
         optional={optional}
+        readOnly={isReadOnly}
         descriptionText={descriptionText}
         htmlFor={triggerId}
       />
@@ -279,19 +280,21 @@ export default function Select({
                 error
               </span>
             )}
-            <span
-              className={[
-                'material-symbols-rounded',
-                'icon-md',
-                styles.chevronIcon,
-                isDropdownOpen ? styles.chevronOpen : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              aria-hidden="true"
-            >
-              keyboard_arrow_down
-            </span>
+            {!isReadOnly && (
+              <span
+                className={[
+                  'material-symbols-rounded',
+                  'icon-md',
+                  styles.chevronIcon,
+                  isDropdownOpen ? styles.chevronOpen : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                aria-hidden="true"
+              >
+                keyboard_arrow_down
+              </span>
+            )}
           </span>
         </button>
 

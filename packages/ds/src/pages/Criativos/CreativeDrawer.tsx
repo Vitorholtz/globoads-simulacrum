@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Tabs from '../../components/Tabs/Tabs'
-import Badge from '../../components/Badge/Badge'
 import Button from '../../components/Button/Button'
 import InfoPanel from '../../components/InfoPanel/InfoPanel'
+import CreativeAssetDetails from './CreativeAssetDetails'
 import { cx } from '../../utils/cx'
 import styles from './CreativeDrawer.module.css'
 import type { Creative } from './creatives'
@@ -90,15 +90,6 @@ export default function CreativeDrawer({ creative, open, onClose }: CreativeDraw
 
   if (!render || !shown) return null
 
-  const metadata = [
-    { label: 'Título', value: shown.name },
-    { label: 'Formato', value: shown.format },
-    { label: 'Dimensão', value: shown.dimension },
-    { label: 'Extensão', value: shown.extension },
-    { label: 'Tamanho', value: shown.size },
-    { label: 'Data e hora do upload', value: shown.uploadedAt },
-  ]
-
   return createPortal(
     <div className={styles.overlay}>
       <div
@@ -139,27 +130,7 @@ export default function CreativeDrawer({ creative, open, onClose }: CreativeDraw
         <Tabs items={TABS} activeId={activeTab} onChange={setActiveTab} className={styles.tabs} />
 
         <div className={styles.body}>
-          {activeTab === 'detalhes' && (
-            <>
-              <div className={styles.preview}>
-                <img className={styles.previewImage} src={shown.imageSrc} alt="" />
-              </div>
-
-              <div className={styles.statusRow}>
-                {shown.tag && <Badge variant="neutral" label={shown.tag} />}
-                <Badge variant={shown.statusVariant} label={shown.status} />
-              </div>
-
-              <dl className={styles.metadata}>
-                {metadata.map((row) => (
-                  <div key={row.label} className={styles.metaRow}>
-                    <dt className={cx('type-body-sm', styles.metaLabel)}>{row.label}</dt>
-                    <dd className={cx('type-body-sm', styles.metaValue)}>{row.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </>
-          )}
+          {activeTab === 'detalhes' && <CreativeAssetDetails key={shown.id} creative={shown} />}
 
           {activeTab === 'validacao' && (
             <InfoPanel

@@ -235,6 +235,7 @@ export default function DatePicker({
         showLabel={showLabel}
         label={label}
         optional={optional}
+        readOnly={isReadOnly}
         descriptionText={descriptionText}
         htmlFor={inputId}
       />
@@ -267,26 +268,27 @@ export default function DatePicker({
           </span>
         )}
 
-        <button
-          ref={calendarBtnRef}
-          type="button"
-          className={styles.calendarBtn}
-          onClick={handleToggle}
-          disabled={isDisabled || !!forceState}
-          aria-disabled={isReadOnly || undefined}
-          tabIndex={forceState ? -1 : undefined}
-          aria-expanded={isOpen && !isLeaving}
-          aria-haspopup="dialog"
-          aria-controls={isOpen && !isLeaving ? popupId : undefined}
-          aria-label="Abrir calendário"
-        >
-          <span
-            className={`material-symbols-rounded ${ICON_CLS[size]} ${hasError ? styles.errorCalendarIcon : styles.calendarIcon}`}
-            aria-hidden="true"
+        {!isReadOnly && (
+          <button
+            ref={calendarBtnRef}
+            type="button"
+            className={styles.calendarBtn}
+            onClick={handleToggle}
+            disabled={isDisabled || !!forceState}
+            tabIndex={forceState ? -1 : undefined}
+            aria-expanded={isOpen && !isLeaving}
+            aria-haspopup="dialog"
+            aria-controls={isOpen && !isLeaving ? popupId : undefined}
+            aria-label="Abrir calendário"
           >
-            calendar_today
-          </span>
-        </button>
+            <span
+              className={`material-symbols-rounded ${ICON_CLS[size]} ${hasError ? styles.errorCalendarIcon : styles.calendarIcon}`}
+              aria-hidden="true"
+            >
+              calendar_today
+            </span>
+          </button>
+        )}
       </div>
 
       {(isOpen || isLeaving) &&

@@ -6,7 +6,7 @@ import { classifyCreative } from './classifyCreative'
 import styles from './CreativeUpload.module.css'
 import type { Creative } from './creatives'
 
-const ACCEPT = 'image/png,image/jpeg,image/gif'
+const ACCEPT = 'image/png,image/jpeg,image/gif,application/zip,application/x-zip-compressed,.zip'
 
 export interface CreativeUploadProps {
   /** Chamado quando um arquivo é classificado com sucesso num formato Display. */
@@ -77,7 +77,8 @@ export default function CreativeUpload({ onCreativeAdded }: CreativeUploadProps)
           Arraste um criativo ou selecione um arquivo
         </p>
         <p className={cx('type-body-sm', styles.hint)}>
-          O formato publicitário é identificado automaticamente pelas dimensões. JPG, PNG ou GIF.
+          O formato publicitário é identificado automaticamente pelas dimensões. JPG, PNG ou GIF —
+          ou um .zip para formatos compostos (ex.: Touchpoint Imagético).
         </p>
         <Button type="button" variant="secondary" size="md" iconLeft="folder_open">
           Selecionar arquivo

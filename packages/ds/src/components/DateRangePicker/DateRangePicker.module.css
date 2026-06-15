@@ -80,6 +80,7 @@
    :not([data-state]), então nenhum realce dispara. ── */
 .inputWrapper[data-state='readonly'] {
   background: var(--color-surface-secondary);
+  border-color: transparent;
 }
 
 .inputWrapper[data-state='readonly'] .inputField {

@@ -163,6 +163,7 @@ export default function Combobox({
         showLabel={showLabel}
         label={label}
         optional={optional}
+        readOnly={isReadOnly}
         descriptionText={descriptionText}
         htmlFor={inputId}
       />

@@ -24,7 +24,7 @@ export default function CriativosPage() {
       <Section
         icon="upload"
         title="Upload de criativos"
-        description="Envie uma imagem: as dimensões, peso e extensão são lidos do arquivo e o formato publicitário Display é identificado automaticamente, gerando um card novo na galeria abaixo."
+        description="Envie uma imagem (ou um .zip para formatos compostos como o Touchpoint Imagético): dimensões, peso e extensão são lidos do arquivo e o formato publicitário é identificado automaticamente, gerando um card novo na galeria abaixo."
       >
         <CreativeUpload onCreativeAdded={(c) => setCreatives((prev) => [c, ...prev])} />
       </Section>

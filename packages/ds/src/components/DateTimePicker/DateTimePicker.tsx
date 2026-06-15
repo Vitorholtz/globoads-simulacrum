@@ -306,6 +306,7 @@ export default function DateTimePicker({
         showLabel={showLabel}
         label={label}
         optional={optional}
+        readOnly={isReadOnly}
         descriptionText={descriptionText}
         htmlFor={dateInputId}
       />
@@ -360,30 +361,31 @@ export default function DateTimePicker({
           </span>
         )}
 
-        <button
-          ref={toggleBtnRef}
-          type="button"
-          className={styles.toggleBtn}
-          onClick={handleToggle}
-          disabled={isDisabled || !!forceState}
-          aria-disabled={isReadOnly || undefined}
-          tabIndex={forceState ? -1 : undefined}
-          aria-expanded={isOpen && !isLeaving}
-          aria-haspopup="dialog"
-          aria-controls={isOpen && !isLeaving ? popupId : undefined}
-          aria-label="Abrir seletor de data e horário"
-        >
-          <span
-            className={cx(
-              'material-symbols-rounded',
-              ICON_CLS[size],
-              hasError ? styles.errorToggleIcon : styles.toggleIcon
-            )}
-            aria-hidden="true"
+        {!isReadOnly && (
+          <button
+            ref={toggleBtnRef}
+            type="button"
+            className={styles.toggleBtn}
+            onClick={handleToggle}
+            disabled={isDisabled || !!forceState}
+            tabIndex={forceState ? -1 : undefined}
+            aria-expanded={isOpen && !isLeaving}
+            aria-haspopup="dialog"
+            aria-controls={isOpen && !isLeaving ? popupId : undefined}
+            aria-label="Abrir seletor de data e horário"
           >
-            event
-          </span>
-        </button>
+            <span
+              className={cx(
+                'material-symbols-rounded',
+                ICON_CLS[size],
+                hasError ? styles.errorToggleIcon : styles.toggleIcon
+              )}
+              aria-hidden="true"
+            >
+              event
+            </span>
+          </button>
+        )}
       </div>
 
       {(isOpen || isLeaving) &&

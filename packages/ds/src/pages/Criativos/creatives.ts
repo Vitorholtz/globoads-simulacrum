@@ -2,6 +2,42 @@ import type { BadgeVariant } from '../../tokens/badge'
 import type { DateTimeValue } from '../../components/DateTimePicker/DateTimePicker'
 
 /**
+ * Conteúdo estruturado de um asset de texto (ex.: o `.txt` do Touchpoint
+ * Imagético, que carrega o texto e as cores do botão de CTA).
+ */
+export interface CreativeTextContent {
+  /** Texto exibido no botão de call-to-action. */
+  ctaText: string
+  /** Cor de fundo do botão — `#hex` vindo do arquivo. */
+  buttonColor: string
+  /** Cor do texto do botão — `#hex` vindo do arquivo. */
+  textColor: string
+}
+
+/**
+ * Uma peça que compõe um criativo. Formatos simples têm um único asset
+ * (derivado dos campos de topo do `Creative`); formatos compostos — enviados
+ * como `.zip` — têm vários (ex.: Touchpoint Imagético: Desktop, Mobile e CTA).
+ */
+export interface CreativeAsset {
+  id: string
+  /** Rótulo legível da peça (ex.: "Touchpoint Imagético - DESKTOP"). */
+  label: string
+  /** Decide como o preview é renderizado. */
+  kind: 'image' | 'text'
+  /** Object URL / caminho da imagem — quando `kind === 'image'`. */
+  imageSrc?: string
+  /** Conteúdo estruturado — quando `kind === 'text'`. */
+  text?: CreativeTextContent
+  /** Extensão do arquivo (ex.: "JPG", "TXT"). */
+  extension: string
+  /** Dimensão em pixels (ex.: "1920x100") — só para imagens. */
+  dimension?: string
+  /** Tamanho do arquivo (ex.: "100 kB"). */
+  size: string
+}
+
+/**
  * Fonte única dos criativos do Playground.
  *
  * As três galerias da CriativosPage mapeiam esta lista — evita duplicar os
@@ -40,6 +76,13 @@ export interface Creative {
   pixel?: string
   /** Posição selecionada — value de POSITION_OPTIONS. */
   position?: string
+  /**
+   * Peças que compõem o criativo, para formatos multi-asset (enviados como
+   * `.zip`). Ausente em formatos simples — nesse caso o drawer deriva um único
+   * asset dos campos de topo. Quando presente, os campos de topo
+   * (`imageSrc`/`dimension`/`extension`/`size`) refletem a peça de capa.
+   */
+  assets?: CreativeAsset[]
 }
 
 export const CREATIVES: Creative[] = [

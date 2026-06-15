@@ -287,7 +287,9 @@ export default function DateRangePicker({
           <label className={`type-caption-md ${styles.label}`} htmlFor={inputId}>
             {label}
           </label>
-          {optional && <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>}
+          {optional && !isReadOnly && (
+            <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>
+          )}
         </div>
       )}
 
@@ -326,26 +328,27 @@ export default function DateRangePicker({
           onKeyDown={escKeyDown}
         />
 
-        <button
-          ref={calendarBtnRef}
-          type="button"
-          className={styles.calendarBtn}
-          onClick={handleToggle}
-          disabled={isDisabled || !!forceState}
-          aria-disabled={isReadOnly || undefined}
-          tabIndex={forceState ? -1 : undefined}
-          aria-expanded={isOpen && !isLeaving}
-          aria-haspopup="dialog"
-          aria-controls={popupId}
-          aria-label="Abrir calendário"
-        >
-          <span
-            className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.calendarIcon}`}
-            aria-hidden="true"
+        {!isReadOnly && (
+          <button
+            ref={calendarBtnRef}
+            type="button"
+            className={styles.calendarBtn}
+            onClick={handleToggle}
+            disabled={isDisabled || !!forceState}
+            tabIndex={forceState ? -1 : undefined}
+            aria-expanded={isOpen && !isLeaving}
+            aria-haspopup="dialog"
+            aria-controls={popupId}
+            aria-label="Abrir calendário"
           >
-            calendar_today
-          </span>
-        </button>
+            <span
+              className={`material-symbols-rounded ${ICON_CLS[size]} ${styles.calendarIcon}`}
+              aria-hidden="true"
+            >
+              calendar_today
+            </span>
+          </button>
+        )}
       </div>
 
       {helpText && <FieldMessage helpText={helpText} />}

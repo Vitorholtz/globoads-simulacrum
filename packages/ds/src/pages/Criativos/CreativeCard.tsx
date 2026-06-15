@@ -71,9 +71,20 @@ export default function CreativeCard({
           <DateTimePicker label="Data e horário de fim" />
         </div>
 
-        <TextField label="URL de destino" mask="url" copyable placeholder="https://exemplo.com" />
+        <TextField
+          label="URL de destino"
+          mask="url"
+          copyable
+          placeholder="https://seunegocio.com"
+        />
 
-        <TextField label="Pixel" mask="url" copyable placeholder="https://exemplo.com" />
+        <TextField
+          label="Pixel"
+          optional
+          mask="url"
+          copyable
+          placeholder="https://linkdopixel.com"
+        />
 
         <Select label="Posição" placeholder="Selecione" options={POSITION_OPTIONS} />
       </div>

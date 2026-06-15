@@ -226,6 +226,7 @@ export default function TextField({
         showLabel={showLabel}
         label={label}
         optional={optional}
+        readOnly={isReadOnly}
         descriptionText={descriptionText}
         htmlFor={inputId}
       />
@@ -259,7 +260,7 @@ export default function TextField({
           aria-invalid={hasError || undefined}
         />
 
-        {copyable && (
+        {copyable && !isReadOnly && (
           <button
             type="button"
             className={styles.actionBtn}
@@ -277,7 +278,7 @@ export default function TextField({
           </button>
         )}
 
-        {type === 'password' && (
+        {type === 'password' && !isReadOnly && (
           <button
             type="button"
             className={styles.actionBtn}

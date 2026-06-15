@@ -6,6 +6,8 @@ interface FieldLabelProps {
   htmlFor: string
   showLabel?: boolean
   optional?: boolean
+  /** Suppresses the "Opcional" tag — a read-only field has no fill state to mark. */
+  readOnly?: boolean
   /** When set, shows an info icon with a hover/focus tooltip. */
   descriptionText?: string
 }
@@ -20,6 +22,7 @@ export default function FieldLabel({
   htmlFor,
   showLabel = true,
   optional = false,
+  readOnly = false,
   descriptionText,
 }: FieldLabelProps) {
   if (!showLabel) return null
@@ -45,7 +48,9 @@ export default function FieldLabel({
           </button>
         )}
       </div>
-      {optional && <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>}
+      {optional && !readOnly && (
+        <span className={`type-caption-sm ${styles.optionalTag}`}>Opcional</span>
+      )}
     </div>
   )
 }

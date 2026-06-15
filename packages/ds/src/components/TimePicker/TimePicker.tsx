@@ -227,6 +227,7 @@ export default function TimePicker({
         showLabel={showLabel}
         label={label}
         optional={optional}
+        readOnly={isReadOnly}
         descriptionText={descriptionText}
         htmlFor={inputId}
       />
@@ -259,26 +260,27 @@ export default function TimePicker({
           </span>
         )}
 
-        <button
-          ref={clockBtnRef}
-          type="button"
-          className={styles.clockBtn}
-          onClick={handleToggle}
-          disabled={isDisabled || !!forceState}
-          aria-disabled={isReadOnly || undefined}
-          tabIndex={forceState ? -1 : undefined}
-          aria-expanded={isOpen && !isLeaving}
-          aria-haspopup="dialog"
-          aria-controls={isOpen && !isLeaving ? popupId : undefined}
-          aria-label="Abrir seletor de horário"
-        >
-          <span
-            className={`material-symbols-rounded ${ICON_CLS[size]} ${hasError ? styles.errorClockIcon : styles.clockIcon}`}
-            aria-hidden="true"
+        {!isReadOnly && (
+          <button
+            ref={clockBtnRef}
+            type="button"
+            className={styles.clockBtn}
+            onClick={handleToggle}
+            disabled={isDisabled || !!forceState}
+            tabIndex={forceState ? -1 : undefined}
+            aria-expanded={isOpen && !isLeaving}
+            aria-haspopup="dialog"
+            aria-controls={isOpen && !isLeaving ? popupId : undefined}
+            aria-label="Abrir seletor de horário"
           >
-            schedule
-          </span>
-        </button>
+            <span
+              className={`material-symbols-rounded ${ICON_CLS[size]} ${hasError ? styles.errorClockIcon : styles.clockIcon}`}
+              aria-hidden="true"
+            >
+              schedule
+            </span>
+          </button>
+        )}
       </div>
 
       {(isOpen || isLeaving) &&
