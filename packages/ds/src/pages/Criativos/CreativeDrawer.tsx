@@ -4,6 +4,7 @@ import Tabs from '../../components/Tabs/Tabs'
 import Button from '../../components/Button/Button'
 import InfoPanel from '../../components/InfoPanel/InfoPanel'
 import CreativeAssetDetails from './CreativeAssetDetails'
+import CreativeValidationSteps from './CreativeValidationSteps'
 import { cx } from '../../utils/cx'
 import styles from './CreativeDrawer.module.css'
 import type { Creative } from './creatives'
@@ -18,6 +19,8 @@ export interface CreativeDrawerProps {
   /** Criativo exibido; pode ser null enquanto o drawer está fechado. */
   creative: Creative | null
   open: boolean
+  /** Aba aberta ao montar o drawer (default `detalhes`). */
+  initialTab?: string
   onClose: () => void
 }
 
@@ -28,10 +31,15 @@ export interface CreativeDrawerProps {
  * dos pickers do DS — createPortal + scrim + animação de entrada/saída com
  * `leaving`/`onAnimationEnd` — adicionando trava de scroll e gestão de foco.
  */
-export default function CreativeDrawer({ creative, open, onClose }: CreativeDrawerProps) {
+export default function CreativeDrawer({
+  creative,
+  open,
+  initialTab = 'detalhes',
+  onClose,
+}: CreativeDrawerProps) {
   const [render, setRender] = useState(open)
   const [leaving, setLeaving] = useState(false)
-  const [activeTab, setActiveTab] = useState('detalhes')
+  const [activeTab, setActiveTab] = useState(initialTab)
   // Mantém o último criativo durante a animação de saída (parent zera ao fechar).
   const [shown, setShown] = useState<Creative | null>(creative)
   const [prevOpen, setPrevOpen] = useState(open)
@@ -45,7 +53,7 @@ export default function CreativeDrawer({ creative, open, onClose }: CreativeDraw
     if (open) {
       setRender(true)
       setLeaving(false)
-      setActiveTab('detalhes')
+      setActiveTab(initialTab)
     } else if (render) {
       setLeaving(true)
     }
@@ -130,15 +138,24 @@ export default function CreativeDrawer({ creative, open, onClose }: CreativeDraw
         <Tabs items={TABS} activeId={activeTab} onChange={setActiveTab} className={styles.tabs} />
 
         <div className={styles.body}>
-          {activeTab === 'detalhes' && <CreativeAssetDetails key={shown.id} creative={shown} />}
-
-          {activeTab === 'validacao' && (
-            <InfoPanel
-              type="neutral"
-              title="Sem etapas de validação"
-              description="Este criativo ainda não tem etapas de validação registradas."
+          {activeTab === 'detalhes' && (
+            <CreativeAssetDetails
+              key={shown.id}
+              creative={shown}
+              onViewValidation={() => setActiveTab('validacao')}
             />
           )}
+
+          {activeTab === 'validacao' &&
+            (shown.validation?.length ? (
+              <CreativeValidationSteps steps={shown.validation} />
+            ) : (
+              <InfoPanel
+                type="neutral"
+                title="Sem etapas de validação"
+                description="Este criativo ainda não tem etapas de validação registradas."
+              />
+            ))}
 
           {activeTab === 'uso' && (
             <InfoPanel

@@ -2,6 +2,8 @@ import DateTimePicker from '../../components/DateTimePicker/DateTimePicker'
 import TextField from '../../components/TextField/TextField'
 import Select from '../../components/Select/Select'
 import Badge from '../../components/Badge/Badge'
+import StaticThumb from '../../components/StaticThumb/StaticThumb'
+import CreativeStatusBadge from './CreativeStatusBadge'
 import OptionsMenu from './OptionsMenu'
 import { cx } from '../../utils/cx'
 import styles from './CreativePreviewCard.module.css'
@@ -19,14 +21,26 @@ const POSITION_OPTIONS: SelectOption[] = [
 export interface CreativePreviewCardProps {
   /** Nome do criativo — truncado em uma linha quando excede o espaço. */
   name?: string
+  /** Tipo de mídia do criativo (default `image`). */
+  kind?: 'image' | 'video'
   /** Imagem de preview do criativo. */
   imageSrc?: string
+  /** Fonte do vídeo de preview — quando `kind === 'video'`. */
+  videoSrc?: string
+  /** Duração exibida no preview do vídeo (ex.: "0:15"). */
+  duration?: string
   /** Formato exibido no badge sobre o preview. */
   format?: string
   /** Texto do status exibido na faixa abaixo do preview. */
   status?: string
   /** Variante semântica do badge de status. */
   statusVariant?: BadgeVariant
+  /** Texto-link sublinhado exibido após o status (ex.: "Ver detalhes"). */
+  statusLink?: string
+  /** Renderiza o próprio status como link sublinhado (ex.: "Pronto para anunciar"). */
+  statusAsLink?: boolean
+  /** Ação do link de status; ausente torna o link apenas decorativo. */
+  onStatusLink?: () => void
   /** Data e horário de início (somente leitura). */
   startDateTime?: DateTimeValue
   /** Data e horário de fim (somente leitura). */
@@ -53,10 +67,16 @@ export interface CreativePreviewCardProps {
  */
 export default function CreativePreviewCard({
   name = 'Nome-do-criativo-enviado-pelo-usuário',
+  kind = 'image',
   imageSrc = '/Billboard.jpg',
+  videoSrc,
+  duration,
   format = 'Billboard',
   status = 'Aprovado',
   statusVariant = 'success',
+  statusLink,
+  statusAsLink,
+  onStatusLink,
   startDateTime = { date: new Date(2025, 10, 24), time: { hours: 9, minutes: 0 } },
   endDateTime = { date: new Date(2025, 11, 25), time: { hours: 23, minutes: 59 } },
   destinationUrl = 'https://globo.com/clube-orfeu',
@@ -65,6 +85,8 @@ export default function CreativePreviewCard({
   onViewDetails,
   className,
 }: CreativePreviewCardProps) {
+  const isVideo = kind === 'video' && Boolean(videoSrc)
+
   return (
     <div className={cx(styles.card, className ?? '')}>
       <div className={styles.header}>
@@ -74,11 +96,23 @@ export default function CreativePreviewCard({
       </div>
 
       <div className={styles.preview}>
-        <img className={styles.previewImage} src={imageSrc} alt="" />
-        <Badge className={styles.formatBadge} variant="neutral" label={format} />
+        <StaticThumb
+          type={isVideo ? 'video' : 'image'}
+          src={isVideo && videoSrc ? videoSrc : imageSrc}
+          alt={name}
+          duration={isVideo ? duration : undefined}
+          badge={<Badge variant="neutral" label={format} />}
+        />
       </div>
 
-      <Badge className={styles.statusBadge} variant={statusVariant} label={status} />
+      <CreativeStatusBadge
+        className={styles.statusBadge}
+        status={status}
+        statusVariant={statusVariant}
+        statusLink={statusLink}
+        statusAsLink={statusAsLink}
+        onStatusLink={onStatusLink}
+      />
 
       <div className={styles.settings}>
         <div className={styles.periodGroup}>

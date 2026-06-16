@@ -1,10 +1,14 @@
+import { initialValidationSteps } from './creatives'
 import type { Creative, CreativeAsset, CreativeTextContent } from './creatives'
 import {
   matchDisplayFormat,
   matchCompositeFormat,
+  VIDEO_FORMAT,
   type DisplayFileType,
   type DisplayFormat,
   type CompositeAssetSpec,
+  type TextSchema,
+  type VideoFileType,
 } from './displayFormats'
 import { unzip, type ZipEntry } from './unzip'
 
@@ -43,18 +47,41 @@ const TYPE_TO_MIME: Record<DisplayFileType, string> = {
   GIF: 'image/gif',
 }
 
+/** Mapeia o MIME do vídeo para a extensão usada no catálogo de Vídeo. */
+const VIDEO_MIME_TO_TYPE: Record<string, VideoFileType> = {
+  'video/mp4': 'MP4',
+  'video/quicktime': 'MOV',
+  'video/x-msvideo': 'AVI',
+  'video/avi': 'AVI',
+}
+
+/** Mapeia a extensão do nome para o tipo de vídeo — cobre MIME vazio (.mov/.avi). */
+const VIDEO_EXT_TO_TYPE: Record<string, VideoFileType> = {
+  mp4: 'MP4',
+  mov: 'MOV',
+  avi: 'AVI',
+}
+
 export async function classifyCreative(file: File): Promise<ClassifyResult> {
-  // Despacho por família: imagem solta (Display) ou .zip (formato composto).
+  // Despacho por família: imagem solta (Display), vídeo (In-Stream) ou .zip (composto).
   if (file.type.startsWith('image/')) {
     return classifyImage(file)
+  }
+  if (file.type.startsWith('video/') || isVideoByName(file)) {
+    return classifyVideo(file)
   }
   if (isZip(file)) {
     return classifyZip(file)
   }
   return {
     ok: false,
-    reason: 'Envie uma imagem (Display) ou um .zip de formato composto.',
+    reason: 'Envie uma imagem (Display), um vídeo (In-Stream) ou um .zip de formato composto.',
   }
+}
+
+/** Reconhece um vídeo pela extensão do nome — fallback quando o MIME vem vazio. */
+function isVideoByName(file: File): boolean {
+  return extensionOf(file.name) in VIDEO_EXT_TO_TYPE
 }
 
 /** Reconhece um `.zip` por MIME ou pela extensão do nome. */
@@ -119,8 +146,58 @@ async function classifyImage(file: File): Promise<ClassifyResult> {
       extension: fileType,
       size: `${sizeKB} kB`,
       uploadedAt: formatUploadedAt(new Date()),
-      status: 'Em revisão',
+      status: 'Em análise',
       statusVariant: 'warning',
+      validation: initialValidationSteps(formatStepTimestamp(new Date())),
+    },
+  }
+}
+
+/**
+ * Classifica um vídeo solto. Por simplificação desta etapa, **qualquer** vídeo
+ * aceito vira In-Stream Vídeo, independentemente da dimensão — só validamos
+ * extensão e peso. Lê dimensões e duração (via `<video>`) apenas para metadados.
+ */
+async function classifyVideo(file: File): Promise<ClassifyResult> {
+  const fileType = VIDEO_MIME_TO_TYPE[file.type] ?? VIDEO_EXT_TO_TYPE[extensionOf(file.name)]
+  if (!fileType) {
+    return { ok: false, reason: 'Extensão de vídeo não suportada. Use MP4, MOV ou AVI.' }
+  }
+
+  const sizeMB = file.size / (1024 * 1024)
+  if (sizeMB > VIDEO_FORMAT.videoMB) {
+    return {
+      ok: false,
+      reason: `Peso de ${formatFileSize(file.size)} acima do limite de ${VIDEO_FORMAT.videoMB} MB para ${VIDEO_FORMAT.name}.`,
+    }
+  }
+
+  const objectUrl = URL.createObjectURL(file)
+  let meta: { width: number; height: number; duration: number }
+  try {
+    meta = await readVideoMetadata(objectUrl)
+  } catch {
+    URL.revokeObjectURL(objectUrl)
+    return { ok: false, reason: 'Não foi possível ler o vídeo enviado.' }
+  }
+
+  return {
+    ok: true,
+    creative: {
+      id: `${slugify(file.name)}-${Date.now()}`,
+      name: file.name,
+      kind: 'video',
+      imageSrc: '',
+      videoSrc: objectUrl,
+      duration: formatDuration(meta.duration),
+      format: VIDEO_FORMAT.name,
+      dimension: `${meta.width}x${meta.height}`,
+      extension: fileType,
+      size: formatFileSize(file.size),
+      uploadedAt: formatUploadedAt(new Date()),
+      status: 'Em análise',
+      statusVariant: 'warning',
+      validation: initialValidationSteps(formatStepTimestamp(new Date())),
     },
   }
 }
@@ -136,7 +213,7 @@ type ParsedEntry =
       sizeKB: number
       imageSrc: string
     }
-  | { kind: 'text'; name: string; sizeKB: number; text: CreativeTextContent | null }
+  | { kind: 'text'; name: string; sizeKB: number; raw: string }
 
 /**
  * Classifica um `.zip` de formato composto: descompacta, lê cada peça, casa o
@@ -183,8 +260,10 @@ async function classifyZip(file: File): Promise<ClassifyResult> {
         return fail(created, `Não foi possível ler a imagem "${entry.name}" do .zip.`)
       }
     } else if (ext === 'txt') {
-      const text = parseCtaText(new TextDecoder().decode(entry.bytes))
-      parsed.push({ kind: 'text', name: entry.name, sizeKB, text })
+      // Guarda o conteúdo cru; a interpretação (CTA ou título/subtítulo) é
+      // decidida pela peça do manifesto (`spec.textSchema`) em `resolveAsset`.
+      const raw = new TextDecoder().decode(entry.bytes)
+      parsed.push({ kind: 'text', name: entry.name, sizeKB, raw })
     }
     // Demais extensões são ignoradas — não fazem parte de nenhum manifesto.
   }
@@ -199,9 +278,12 @@ async function classifyZip(file: File): Promise<ClassifyResult> {
   }
 
   // Resolve e valida cada peça do manifesto, montando os assets em ordem.
+  // `used` garante que peças idênticas (ex.: 4 imagens 400x300 do Carrossel)
+  // sejam atribuídas a slots distintos, sem reaproveitar o mesmo arquivo.
   const assets: CreativeAsset[] = []
+  const used = new Set<ParsedEntry>()
   for (const spec of format.composite) {
-    const result = resolveAsset(spec, parsed, format)
+    const result = resolveAsset(spec, parsed, used, format)
     if (!result.ok) return fail(created, result.reason)
     if (result.asset) assets.push(result.asset)
   }
@@ -218,24 +300,30 @@ async function classifyZip(file: File): Promise<ClassifyResult> {
       extension: cover.extension,
       size: cover.size,
       uploadedAt: formatUploadedAt(new Date()),
-      status: 'Em revisão',
+      status: 'Em análise',
       statusVariant: 'warning',
+      validation: initialValidationSteps(formatStepTimestamp(new Date())),
       assets,
     },
   }
 }
 
-/** Resolve uma peça do manifesto contra as entradas lidas, validando-a. */
+/**
+ * Resolve uma peça do manifesto contra as entradas lidas, validando-a. As
+ * entradas escolhidas são marcadas em `used` para não serem reaproveitadas por
+ * outra peça (essencial quando há peças de dimensão idêntica, como o Carrossel).
+ */
 function resolveAsset(
   spec: CompositeAssetSpec,
   parsed: ParsedEntry[],
+  used: Set<ParsedEntry>,
   format: DisplayFormat
 ): { ok: true; asset?: CreativeAsset } | { ok: false; reason: string } {
   if (spec.kind === 'image') {
     const dim = spec.dimension!
     const match = parsed.find(
       (p): p is Extract<ParsedEntry, { kind: 'image' }> =>
-        p.kind === 'image' && p.width === dim.width && p.height === dim.height
+        p.kind === 'image' && !used.has(p) && p.width === dim.width && p.height === dim.height
     )
     if (!match) {
       if (!spec.required) return { ok: true }
@@ -256,10 +344,11 @@ function resolveAsset(
         reason: `${spec.label}: ${match.sizeKB} kB acima do limite de ${format.staticKB} kB.`,
       }
     }
+    used.add(match)
     return {
       ok: true,
       asset: {
-        id: `${spec.id}-${match.width}x${match.height}`,
+        id: spec.id,
         label: spec.label,
         kind: 'image',
         imageSrc: match.imageSrc,
@@ -270,25 +359,27 @@ function resolveAsset(
     }
   }
 
-  // Peça de texto (ex.: CTA).
-  const match = parsed.find((p): p is Extract<ParsedEntry, { kind: 'text' }> => p.kind === 'text')
+  // Peça de texto — interpretada conforme o esquema declarado no manifesto.
+  const match = parsed.find(
+    (p): p is Extract<ParsedEntry, { kind: 'text' }> => p.kind === 'text' && !used.has(p)
+  )
   if (!match) {
     if (!spec.required) return { ok: true }
     return { ok: false, reason: `Falta a peça de texto "${spec.label}" (.txt) no .zip.` }
   }
-  if (!match.text) {
-    return {
-      ok: false,
-      reason: `Não foi possível ler "${spec.label}". Use linhas como "cta=...", "corBotao=#...", "corTexto=#...".`,
-    }
+  const schema = spec.textSchema ?? 'cta'
+  const text = parseTextBySchema(match.raw, schema)
+  if (!text) {
+    return { ok: false, reason: `Não foi possível ler "${spec.label}". ${TEXT_HINT[schema]}` }
   }
+  used.add(match)
   return {
     ok: true,
     asset: {
       id: spec.id,
       label: spec.label,
       kind: 'text',
-      text: match.text,
+      text,
       extension: 'TXT',
       size: `${match.sizeKB} kB`,
     },
@@ -307,6 +398,42 @@ function extensionOf(name: string): string {
   return match ? match[1].toLowerCase() : ''
 }
 
+/** Dica exibida quando o `.txt` não pôde ser lido, por esquema de texto. */
+const TEXT_HINT: Record<TextSchema, string> = {
+  cta: 'Use linhas como "cta=...", "corBotao=#...", "corTexto=#...".',
+  'titulo-subtitulo': 'Use linhas como "titulo=..." e "subtitulo=...".',
+}
+
+/** Interpreta o conteúdo cru do `.txt` conforme o esquema declarado no manifesto. */
+function parseTextBySchema(content: string, schema: TextSchema): CreativeTextContent | null {
+  return schema === 'cta' ? parseCtaText(content) : parseTitleText(content)
+}
+
+/** Lê um `.txt` em pares `chave=valor` (ou `chave: valor`) num mapa normalizado. */
+function readKeyValues(content: string): Map<string, string> {
+  const fields = new Map<string, string>()
+  for (const rawLine of content.split(/\r?\n/)) {
+    const line = rawLine.trim()
+    const sep = line.search(/[:=]/)
+    if (sep < 0) continue
+    const key = normalizeKey(line.slice(0, sep))
+    const value = line.slice(sep + 1).trim()
+    if (key && value && !fields.has(key)) fields.set(key, value)
+  }
+  return fields
+}
+
+/** Encontra o primeiro valor cuja chave satisfaz o predicado. */
+function findValue(
+  fields: Map<string, string>,
+  match: (key: string) => boolean
+): string | undefined {
+  for (const [key, value] of fields) {
+    if (match(key)) return value
+  }
+  return undefined
+}
+
 /**
  * Lê o `.txt` do CTA num formato `chave=valor` (ou `chave: valor`) tolerante:
  * uma chave com "cta" vira o texto; "botao"/"fundo" a cor do botão; "cor"/"color"
@@ -318,33 +445,46 @@ function extensionOf(name: string): string {
  *   corTexto=#FFFFFF
  */
 function parseCtaText(content: string): CreativeTextContent | null {
-  const fields: Partial<CreativeTextContent> = {}
-  for (const rawLine of content.split(/\r?\n/)) {
-    const line = rawLine.trim()
-    const sep = line.search(/[:=]/)
-    if (sep < 0) continue
-    const key = normalizeKey(line.slice(0, sep))
-    const value = line.slice(sep + 1).trim()
-    if (!value) continue
-    if (
-      (key.includes('cta') || key === 'texto' || key === 'text') &&
-      fields.ctaText === undefined
-    ) {
-      fields.ctaText = value
-    } else if (
-      (key.includes('botao') ||
-        key.includes('fundo') ||
-        key.includes('background') ||
-        key === 'bg') &&
-      fields.buttonColor === undefined
-    ) {
-      fields.buttonColor = normalizeHex(value)
-    } else if ((key.includes('cor') || key.includes('color')) && fields.textColor === undefined) {
-      fields.textColor = normalizeHex(value)
-    }
+  const fields = readKeyValues(content)
+  // A chave da cor do botão (ex.: "corBotao") também contém "cor"; por isso o
+  // critério de cor do texto exclui as chaves de botão, senão "corBotao" seria
+  // capturado pelos dois campos (e a cor do texto herdaria a cor do botão).
+  const isButtonKey = (k: string) =>
+    k.includes('botao') || k.includes('fundo') || k.includes('background') || k === 'bg'
+  const ctaText = findValue(fields, (k) => k.includes('cta') || k === 'texto' || k === 'text')
+  const buttonColor = findValue(fields, isButtonKey)
+  const textColor = findValue(
+    fields,
+    (k) => !isButtonKey(k) && (k.includes('cor') || k.includes('color'))
+  )
+  if (!ctaText || !buttonColor || !textColor) return null
+  return {
+    variant: 'cta',
+    ctaText,
+    buttonColor: normalizeHex(buttonColor),
+    textColor: normalizeHex(textColor),
   }
-  if (!fields.ctaText || !fields.buttonColor || !fields.textColor) return null
-  return { ctaText: fields.ctaText, buttonColor: fields.buttonColor, textColor: fields.textColor }
+}
+
+/**
+ * Lê o `.txt` de título/subtítulo (Carrossel) num formato `chave=valor` tolerante:
+ * uma chave com "titulo" vira o título; "subtitulo" o subtítulo. Retorna `null`
+ * se faltar algum dos dois campos.
+ *
+ * Exemplo aceito:
+ *   titulo=Café Orfeu
+ *   subtitulo=O melhor da serra na sua xícara
+ */
+function parseTitleText(content: string): CreativeTextContent | null {
+  const fields = readKeyValues(content)
+  // "subtitulo" inclui "titulo"; por isso o subtítulo é resolvido primeiro.
+  const subtitle = findValue(fields, (k) => k.includes('subtitulo') || k.includes('subtitle'))
+  const title = findValue(
+    fields,
+    (k) => (k.includes('titulo') || k.includes('title')) && !k.includes('sub')
+  )
+  if (!title || !subtitle) return null
+  return { variant: 'titulo-subtitulo', title, subtitle }
 }
 
 /** Normaliza a chave: minúscula, sem acentos, só letras e números. */
@@ -371,6 +511,38 @@ function readImageDimensions(src: string): Promise<{ width: number; height: numb
   })
 }
 
+/** Lê dimensões e duração de um vídeo a partir de um object URL. */
+function readVideoMetadata(
+  src: string
+): Promise<{ width: number; height: number; duration: number }> {
+  return new Promise((resolve, reject) => {
+    const video = document.createElement('video')
+    video.preload = 'metadata'
+    video.onloadedmetadata = () =>
+      resolve({
+        width: video.videoWidth,
+        height: video.videoHeight,
+        duration: video.duration,
+      })
+    video.onerror = () => reject(new Error('video load error'))
+    video.src = src
+  })
+}
+
+/** Formata segundos como m:ss (ex.: 15 → "0:15"). Vazio quando indefinido. */
+function formatDuration(totalSeconds: number): string {
+  if (!Number.isFinite(totalSeconds)) return ''
+  const s = Math.round(totalSeconds)
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+}
+
+/** Formata bytes como kB (< 1 MB) ou MB, no padrão pt-BR (vírgula decimal). */
+function formatFileSize(bytes: number): string {
+  const kb = bytes / 1024
+  if (kb < 1024) return `${Math.round(kb)} kB`
+  return `${(kb / 1024).toFixed(1).replace('.', ',')} MB`
+}
+
 /** Converte o nome do arquivo (sem extensão) num slug seguro para id. */
 function slugify(fileName: string): string {
   return (
@@ -388,4 +560,10 @@ function slugify(fileName: string): string {
 function formatUploadedAt(date: Date): string {
   const pad = (n: number) => String(n).padStart(2, '0')
   return `${pad(date.getDate())}/${pad(date.getMonth() + 1)} às ${pad(date.getHours())}h${pad(date.getMinutes())}`
+}
+
+/** Formata a data no padrão das etapas de validação: "DD/MM/AAAA às HH:MMh". */
+function formatStepTimestamp(date: Date): string {
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()} às ${pad(date.getHours())}:${pad(date.getMinutes())}h`
 }

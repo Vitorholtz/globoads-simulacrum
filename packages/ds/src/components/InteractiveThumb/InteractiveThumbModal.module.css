@@ -1,0 +1,72 @@
+/* ── Overlay + scrim ── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-400);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-luminosity-dark-backdrop);
+  animation-name: global(motion-enter-bottom);
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.scrimLeaving {
+  animation-name: global(motion-exit-bottom);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
+/* ── Painel ── */
+
+.panel {
+  position: relative;
+  display: flex;
+  max-width: 90vw;
+  max-height: 90vh;
+  animation-name: global(motion-enter-bottom);
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.panelLeaving {
+  animation-name: global(motion-exit-bottom);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
+/* ── Mídia ampliada ── */
+
+.media {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--border-radius-lg);
+}
+
+/* ── Botão fechar — chip escuro para contraste sobre qualquer mídia ── */
+
+.closeBtn {
+  position: absolute;
+  top: var(--spacing-150);
+  right: var(--spacing-150);
+  z-index: 1;
+  background: var(--color-luminosity-dark-backdrop);
+}
+
+.closeBtn :global(.material-symbols-rounded) {
+  background: none;
+  color: var(--color-fill-inverse);
+  -webkit-text-fill-color: var(--color-fill-inverse);
+}

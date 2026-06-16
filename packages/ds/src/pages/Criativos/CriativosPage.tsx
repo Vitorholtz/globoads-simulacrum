@@ -6,12 +6,20 @@ import CreativeStatusCard from './CreativeStatusCard'
 import CreativePreviewCard from './CreativePreviewCard'
 import CreativeDrawer from './CreativeDrawer'
 import CreativeUpload from './CreativeUpload'
-import { CREATIVES, type Creative } from './creatives'
+import { CREATIVES, addedOnlyValidation, type Creative } from './creatives'
 import styles from './CriativosPage.module.css'
 
 export default function CriativosPage() {
   const [openCreative, setOpenCreative] = useState<Creative | null>(null)
+  const [drawerTab, setDrawerTab] = useState('detalhes')
   const [creatives, setCreatives] = useState<Creative[]>(CREATIVES)
+
+  // Abre o drawer numa aba específica — o link "Ver detalhes" do status
+  // reprovado leva direto à aba de validação.
+  function openCreativeAt(creative: Creative, tab = 'detalhes') {
+    setDrawerTab(tab)
+    setOpenCreative(creative)
+  }
 
   return (
     <div>
@@ -39,10 +47,17 @@ export default function CriativosPage() {
             <CreativeCard
               key={c.id}
               name={c.name}
+              kind={c.kind}
               imageSrc={c.imageSrc}
+              videoSrc={c.videoSrc}
               format={c.format}
               defaultSelected={i === creatives.length - 1}
-              onViewDetails={() => setOpenCreative(c)}
+              onViewDetails={() =>
+                openCreativeAt({
+                  ...c,
+                  validation: addedOnlyValidation(c.validation?.[0]?.timestamp ?? c.uploadedAt),
+                })
+              }
             />
           ))}
         </div>
@@ -58,13 +73,18 @@ export default function CriativosPage() {
             <CreativeStatusCard
               key={c.id}
               name={c.name}
+              kind={c.kind}
               imageSrc={c.imageSrc}
+              videoSrc={c.videoSrc}
               format={c.format}
               tag={c.tag}
               status={c.status}
               statusVariant={c.statusVariant}
+              statusLink={c.statusLink}
+              statusAsLink={c.statusAsLink}
+              onStatusLink={c.statusLink ? () => openCreativeAt(c, 'validacao') : undefined}
               defaultSelected={i === creatives.length - 1}
-              onViewDetails={() => setOpenCreative(c)}
+              onViewDetails={() => openCreativeAt(c)}
             />
           ))}
         </div>
@@ -76,24 +96,37 @@ export default function CriativosPage() {
         description="Card somente leitura para revisar um envio: exibe as configurações já feitas em campos desabilitados e preenchidos. Não tem checkbox nem estados de seleção — só o botão de opções é interativo."
       >
         <div className={styles.gallery}>
-          {creatives.map((c) => (
-            <CreativePreviewCard
-              key={c.id}
-              name={c.name}
-              imageSrc={c.imageSrc}
-              format={c.format}
-              status={c.status}
-              statusVariant={c.statusVariant}
-              position={c.position}
-              onViewDetails={() => setOpenCreative(c)}
-            />
-          ))}
+          {creatives.map((c) => {
+            // "Pronto para anunciar" é status só de galeria; na revisão do envio
+            // (card de visualização) o estado equivalente é "Aprovado".
+            const ready = c.statusAsLink
+            return (
+              <CreativePreviewCard
+                key={c.id}
+                name={c.name}
+                kind={c.kind}
+                imageSrc={c.imageSrc}
+                videoSrc={c.videoSrc}
+                format={c.format}
+                status={ready ? 'Aprovado' : c.status}
+                statusVariant={ready ? 'success' : c.statusVariant}
+                statusLink={ready ? undefined : c.statusLink}
+                statusAsLink={ready ? false : c.statusAsLink}
+                onStatusLink={
+                  !ready && c.statusLink ? () => openCreativeAt(c, 'validacao') : undefined
+                }
+                position={c.position}
+                onViewDetails={() => openCreativeAt(c)}
+              />
+            )
+          })}
         </div>
       </Section>
 
       <CreativeDrawer
         creative={openCreative}
         open={openCreative !== null}
+        initialTab={drawerTab}
         onClose={() => setOpenCreative(null)}
       />
     </div>

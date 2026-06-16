@@ -1,0 +1,115 @@
+/* ── Moldura (frame) — base compartilhada por Interactive Thumb e Static Thumb.
+   Sem dimensões nem moldura próprias: ocupa todo o container pai e se molda a ele.
+   `border-radius: inherit` + `overflow: hidden` fazem o thumb herdar o raio do
+   container e se auto-recortar — quem dá fundo/forma é o container onde ele estiver.
+   Como nenhum ancestral recorta, o anel de foco (box-shadow) nunca é cortado. ── */
+
+.thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-radius: inherit;
+  background: none;
+  overflow: hidden;
+  transition: box-shadow var(--motion-duration-base) var(--motion-easing-default);
+}
+
+/* ── Mídia ── */
+
+.media {
+  position: absolute;
+  inset: 0;
+}
+
+.mediaEl {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* contain: a mídia cabe inteira no container, sem corte (igual ao preview dos cards). */
+  object-fit: contain;
+}
+
+/* ── Overlays de detalhe (chip e backdrop) ── */
+
+.details {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--motion-duration-base) var(--motion-easing-default);
+}
+
+.icon {
+  color: var(--color-fill-inverse);
+}
+
+.duration {
+  color: var(--color-fill-inverse);
+}
+
+/* Chip — canto inferior esquerdo (lupa/duração no normal). */
+.chip {
+  bottom: var(--spacing-075);
+  left: var(--spacing-075);
+  gap: var(--spacing-025);
+  padding: var(--spacing-025);
+  border-radius: var(--border-radius-sm);
+  background: var(--color-luminosity-dark-backdrop);
+}
+
+/* Interativo: ícone de play à esquerda justifica o padding-right maior. */
+.video .chip {
+  padding-right: var(--spacing-075);
+}
+
+/* Estático (sem ícone): padding horizontal simétrico para a duração não grudar à esquerda. */
+.video:not(.interactive) .chip {
+  padding-right: var(--spacing-075);
+  padding-left: var(--spacing-075);
+}
+
+/* Badge — slot genérico no canto inferior direito (conteúdo vem do consumidor). */
+.badge {
+  bottom: var(--spacing-075);
+  right: var(--spacing-075);
+}
+
+/* Backdrop centralizado — escondido até hover/foco/pressionado. */
+.backdrop {
+  inset: 0;
+  background: var(--color-luminosity-dark-backdrop);
+  opacity: 0;
+}
+
+/* ── Estados interativos — só quando o frame é interativo (.interactive) ── */
+
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:hover .backdrop,
+.interactive:focus-visible .backdrop,
+.interactive:active .backdrop,
+.interactive[data-force-state='hover'] .backdrop,
+.interactive[data-force-state='focus'] .backdrop,
+.interactive[data-force-state='active'] .backdrop {
+  opacity: 1;
+}
+
+.interactive:hover :is(.chip, .badge),
+.interactive:focus-visible :is(.chip, .badge),
+.interactive:active :is(.chip, .badge),
+.interactive[data-force-state='hover'] :is(.chip, .badge),
+.interactive[data-force-state='focus'] :is(.chip, .badge),
+.interactive[data-force-state='active'] :is(.chip, .badge) {
+  opacity: 0;
+}
+
+.interactive:focus-visible,
+.interactive[data-force-state='focus'] {
+  outline: none;
+  box-shadow: var(--outline-focus);
+}

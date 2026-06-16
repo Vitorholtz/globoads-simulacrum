@@ -1,0 +1,68 @@
+/* ── Moldura dos exemplos — o thumb é transparente e herda este raio. ── */
+
+.demoBox,
+.boxSquare,
+.boxLandscape,
+.boxPortrait {
+  background: var(--color-surface-tertiary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-sm);
+}
+
+/* ── Caixa de demonstração (Tipos) ── */
+
+.demoBox {
+  width: 240px;
+  height: 150px;
+}
+
+/* ── Responsividade ── */
+
+.responsive {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.responsiveRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.rowLabel {
+  color: var(--color-fill-secondary);
+}
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-300);
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+.boxSquare {
+  width: 96px;
+  height: 96px;
+}
+
+.boxLandscape {
+  width: 220px;
+  height: 124px;
+}
+
+.boxPortrait {
+  width: 124px;
+  height: 200px;
+}
+
+.boxLabel {
+  color: var(--color-fill-secondary);
+}

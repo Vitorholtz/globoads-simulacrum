@@ -1,19 +1,10 @@
 /* ── Preview ── */
 
 .preview {
-  position: relative;
   width: 100%;
   height: 200px;
-  overflow: hidden;
   background: var(--color-surface-tertiary);
   border-radius: var(--border-radius-xl);
-}
-
-.previewImage {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
 }
 
 /* Palco do preview do botão de CTA (asset de texto). */
@@ -34,6 +25,27 @@
   border-radius: var(--border-radius-md);
   font-weight: var(--font-weight-semibold);
   /* cores via style inline — conteúdo dinâmico vindo do .txt */
+}
+
+/* Palco do preview de texto título/subtítulo (Carrossel). */
+.textStage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-100);
+  padding: var(--spacing-300);
+  text-align: center;
+}
+
+.textTitle {
+  color: var(--color-fill-primary);
+}
+
+.textSubtitle {
+  color: var(--color-fill-secondary);
 }
 
 /* ── Status ── */

@@ -38,6 +38,8 @@ import {
   ToastPage,
   TooltipPage,
   AvatarPage,
+  InteractiveThumbPage,
+  StaticThumbPage,
 } from './lazy'
 
 /**
@@ -368,6 +370,20 @@ export const PAGES: PageDef[] = [
     icon: 'account_circle',
     category: 'Visual resources',
     component: AvatarPage,
+  },
+  {
+    path: '/interactive-thumb',
+    label: 'Interactive Thumb',
+    icon: 'imagesmode',
+    category: 'Visual resources',
+    component: InteractiveThumbPage,
+  },
+  {
+    path: '/static-thumb',
+    label: 'Static Thumb',
+    icon: 'image',
+    category: 'Visual resources',
+    component: StaticThumbPage,
   },
 ]
 

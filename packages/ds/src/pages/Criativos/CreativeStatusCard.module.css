@@ -69,26 +69,11 @@
 /* ── Preview ── */
 
 .preview {
-  position: relative;
   width: 100%;
   height: 120px;
-  overflow: hidden;
   background: var(--color-surface-tertiary);
   border-radius: var(--border-radius-lg);
   cursor: pointer;
-}
-
-.previewImage {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-}
-
-.formatBadge {
-  position: absolute;
-  right: var(--spacing-100);
-  bottom: var(--spacing-100);
 }
 
 /* ── Footer (status) ── */
@@ -114,4 +99,10 @@
 
 .status {
   margin-left: auto;
+}
+
+/* Sem tag: o badge cresce para ocupar toda a largura do card e centraliza o conteúdo. */
+.statusFull {
+  flex: 1;
+  justify-content: center;
 }

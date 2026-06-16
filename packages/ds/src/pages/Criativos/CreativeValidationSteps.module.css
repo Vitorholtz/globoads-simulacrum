@@ -1,0 +1,105 @@
+/* ── Linha do tempo ── */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-150);
+}
+
+/* Trilho: ponto no topo e linha que cresce até o próximo passo. */
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--spacing-100);
+}
+
+/* margin-top centra o ponto (8px) na 1ª linha do título: (line-height 20px − 8px) / 2. */
+.dot {
+  width: var(--spacing-100);
+  height: var(--spacing-100);
+  flex-shrink: 0;
+  margin-top: var(--spacing-075);
+  border-radius: var(--border-radius-full);
+}
+
+.dotNeutral {
+  background: var(--color-fill-tertiary);
+}
+
+.dotWarning {
+  background: var(--color-fill-warning);
+}
+
+.dotCritical {
+  background: var(--color-fill-critical);
+}
+
+.dotSuccess {
+  background: var(--color-fill-success);
+}
+
+.connector {
+  flex: 1;
+  width: var(--border-width-md);
+  margin-top: var(--spacing-050);
+  background: var(--color-border-tertiary);
+}
+
+/* O último passo não conecta a nada abaixo. */
+.step:last-child .connector {
+  display: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  padding-bottom: var(--spacing-250);
+}
+
+.step:last-child .content {
+  padding-bottom: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-fill-primary);
+}
+
+.timestamp {
+  margin: 0;
+  color: var(--color-fill-tertiary);
+}
+
+.description {
+  margin: 0;
+  color: var(--color-fill-secondary);
+}
+
+/* ── Caixa de motivo (recusado) ── */
+
+.reason {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  margin-top: var(--spacing-100);
+  padding: var(--spacing-150);
+  background: var(--color-surface-critical);
+  border: var(--border-width-sm) solid var(--color-border-critical);
+  border-radius: var(--border-radius-lg);
+}
+
+.reasonText {
+  margin: 0;
+  color: var(--color-fill-critical);
+}

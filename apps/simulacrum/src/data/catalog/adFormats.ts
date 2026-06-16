@@ -169,7 +169,7 @@ export const AD_FORMATS_CATALOG: AdFormat[] = [
     category: 'native',
     devices: ['desktop', 'mobile'],
     dimensions: [{ width: 400, height: 300 }],
-    fileLimits: { perImageKB: 60 },
+    fileLimits: { perImageKB: 150 },
     acceptedFileTypes: ['JPG', 'PNG'],
     textFields: [
       { name: 'Título', maxChars: 20 },

@@ -1,9 +1,25 @@
 ﻿.badge {
   display: inline-flex;
   align-items: center;
+  gap: var(--spacing-050);
   padding: var(--spacing-025) var(--spacing-050);
   border-radius: var(--border-radius-md);
   white-space: nowrap;
+}
+
+/* Trecho-link dentro do badge: herda a cor da variante e ganha sublinhado.
+   Quando renderizado como <button>, zera os estilos de UA e fica clicável. */
+.link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+button.link {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .neutral {
