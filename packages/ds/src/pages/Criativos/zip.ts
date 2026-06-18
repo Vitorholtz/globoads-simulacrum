@@ -27,7 +27,7 @@ const ENC = new TextEncoder()
  * Cria um `.zip` STORED a partir das entradas fornecidas.
  * Retorna um `Uint8Array` pronto para ser passado a `new Blob([...], { type: 'application/zip' })`.
  */
-export function createZip(files: ZipEntry[]): Uint8Array {
+export function createZip(files: ZipEntry[]): Uint8Array<ArrayBuffer> {
   const names = files.map((f) => ENC.encode(f.name))
   const crcs = files.map((f) => crc32(f.bytes))
   const offsets: number[] = []
