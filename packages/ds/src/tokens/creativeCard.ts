@@ -1,6 +1,7 @@
 import type { GuidelineDef, VariantDef } from './types'
 import type { CreativeCardMode } from '../components/CreativeCard/CreativeCard'
 import type { CreativeState } from '../components/CreativeCard/types'
+import { CREATIVE_STATUS } from '../components/CreativeCard/creativeLifecycle'
 
 export type CreativeCardModeDef = {
   id: CreativeCardMode
@@ -50,31 +51,28 @@ export const CREATIVE_CARD_MODES: CreativeCardModeDef[] = [
   },
 ]
 
-/** Estados do ciclo de vida — fonte única em `creativeLifecycle.CREATIVE_STATUS`. */
-export const CREATIVE_CARD_STATES: VariantDef<CreativeState>[] = [
-  {
-    id: 'configuring',
-    label: 'Pronto para anunciar',
-    description: 'Criativo adicionado à galeria, editável e ainda não enviado para validação.',
-  },
-  {
-    id: 'analyzing',
-    label: 'Em análise',
-    description:
-      'Criativo enviado e em validação interna da Globo. As configurações ficam somente leitura.',
-  },
-  {
-    id: 'approved',
-    label: 'Aprovado',
-    description: 'Validação concluída com sucesso — o criativo já pode ser veiculado.',
-  },
-  {
-    id: 'rejected',
-    label: 'Recusado',
-    description:
-      'Validação recusada. O badge ganha o link "Ver detalhes", que abre a aba de etapas de validação com o motivo.',
-  },
-]
+/**
+ * Descrição de cada estado para a documentação. O **rótulo** não vive aqui — é
+ * derivado de `CREATIVE_STATUS` (fonte única em `creativeLifecycle`) ao montar
+ * `CREATIVE_CARD_STATES`, para a doc nunca divergir do componente.
+ */
+const STATE_DESCRIPTIONS: Record<CreativeState, string> = {
+  configuring: 'Criativo adicionado à galeria, editável e ainda não enviado para validação.',
+  analyzing:
+    'Criativo enviado e em validação interna da Globo. As configurações ficam somente leitura.',
+  approved: 'Validação concluída com sucesso — o criativo já pode ser veiculado.',
+  rejected:
+    'Validação recusada. O badge ganha o link "Ver detalhes", que abre a aba de etapas de validação com o motivo.',
+}
+
+/** Estados do ciclo de vida — rótulo derivado de `creativeLifecycle.CREATIVE_STATUS`. */
+export const CREATIVE_CARD_STATES: VariantDef<CreativeState>[] = (
+  Object.keys(STATE_DESCRIPTIONS) as CreativeState[]
+).map((id) => ({
+  id,
+  label: CREATIVE_STATUS[id].label,
+  description: STATE_DESCRIPTIONS[id],
+}))
 
 export const CREATIVE_CARD_GUIDELINES: GuidelineDef[] = [
   {

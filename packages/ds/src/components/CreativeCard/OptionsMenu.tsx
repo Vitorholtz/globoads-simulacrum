@@ -30,9 +30,9 @@ export interface OptionsMenuProps {
 /**
  * Menu flutuante de ações para o botão de opções dos cards de criativo.
  *
- * Componente de produto em incubação no Playground. Abre ao clicar no botão
- * `more_vert`, fecha ao clicar fora ou pressionar Escape. As ações são apenas
- * visuais por enquanto.
+ * Parte da família Creative Card (Business Component). Abre ao clicar no botão
+ * `more_vert`, fecha ao clicar fora ou pressionar Escape. Cada item dispara o
+ * callback correspondente (`onViewDetails`/`onDownload`/`onDelete`).
  */
 export default function OptionsMenu({
   items,

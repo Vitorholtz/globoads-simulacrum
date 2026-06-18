@@ -96,6 +96,30 @@ const PROP_ROWS: Array<{ prop: string; type: string; default: string; desc: stri
     default: '—',
     desc: 'Ação do link de status (rejected → "Ver detalhes").',
   },
+  {
+    prop: 'onDownload',
+    type: '() => void',
+    default: '—',
+    desc: 'Inicia o download do arquivo do criativo (item "Baixar" do menu).',
+  },
+  {
+    prop: 'onDelete',
+    type: '() => void',
+    default: '—',
+    desc: 'Solicita a exclusão do criativo. A confirmação é responsabilidade do consumidor.',
+  },
+  {
+    prop: 'onFieldChange',
+    type: '(patch: Partial<Creative>) => void',
+    default: '—',
+    desc: 'Notifica alteração de um campo de configuração. Só disparado em mode="config".',
+  },
+  {
+    prop: 'className',
+    type: 'string',
+    default: '—',
+    desc: 'Classe CSS adicional aplicada à raiz do card.',
+  },
 ]
 
 export default function CreativeCardPage() {
@@ -222,7 +246,7 @@ export default function CreativeCardPage() {
       <Section
         icon="dock_to_left"
         title="Drawer de detalhes"
-        description="Ver detalhes abre um drawer lateral com as abas Detalhes (preview + metadados + configurações) e Etapas de validação (linha do tempo)."
+        description="Ver detalhes abre um drawer lateral com as abas Detalhes (preview + metadados do criativo) e Etapas de validação (linha do tempo)."
       >
         <Button
           type="button"

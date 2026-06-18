@@ -28,7 +28,7 @@ export interface CreativeDrawerProps {
 /**
  * Drawer lateral de "Ver detalhes do criativo".
  *
- * Componente de produto em incubação no Playground. Espelha o padrão de overlay
+ * Parte da família Creative Card (Business Component). Espelha o padrão de overlay
  * dos pickers do DS — createPortal + scrim + animação de entrada/saída com
  * `leaving`/`onAnimationEnd` — adicionando trava de scroll e gestão de foco.
  */
