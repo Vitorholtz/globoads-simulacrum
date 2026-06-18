@@ -1,7 +1,8 @@
 import type { ComponentType } from 'react'
 import {
   FormulariosPage,
-  CriativosPage,
+  CreativeCardPage,
+  CreativeFlowSimulationPage,
   ColorsPage,
   TypographyPage,
   IconsPage,
@@ -37,6 +38,7 @@ import {
   InfoPanelPage,
   ToastPage,
   TooltipPage,
+  ConfirmDialogPage,
   AvatarPage,
   InteractiveThumbPage,
   StaticThumbPage,
@@ -57,6 +59,7 @@ import {
 
 export const CATEGORIES = [
   'Playground',
+  'Business Components',
   'Foundation',
   'Actions',
   'Structures',
@@ -86,6 +89,8 @@ export interface PageDef {
   disabled?: boolean
   /** Small badge shown next to the label, e.g. "Em breve". */
   badge?: string
+  /** Path of the parent page. When set, this item is rendered as a sub-item in the sidebar. */
+  parent?: string
 }
 
 export const PAGES: PageDef[] = [
@@ -97,12 +102,21 @@ export const PAGES: PageDef[] = [
     category: 'Playground',
     component: FormulariosPage,
   },
+  // ── Business Components ──
   {
-    path: '/criativos',
-    label: 'Criativos',
-    icon: 'ad_units',
-    category: 'Playground',
-    component: CriativosPage,
+    path: '/creative-card',
+    label: 'Creative Card',
+    icon: 'gallery_thumbnail',
+    category: 'Business Components',
+    component: CreativeCardPage,
+  },
+  {
+    path: '/creative-card/simulacao',
+    label: 'Simulação de Fluxo',
+    icon: 'play_circle',
+    category: 'Business Components',
+    parent: '/creative-card',
+    component: CreativeFlowSimulationPage,
   },
 
   // ── Foundation ──
@@ -355,6 +369,13 @@ export const PAGES: PageDef[] = [
   },
 
   // ── Overlays ──
+  {
+    path: '/confirm-dialog',
+    label: 'Confirm Dialog',
+    icon: 'warning',
+    category: 'Overlays',
+    component: ConfirmDialogPage,
+  },
   {
     path: '/tooltip',
     label: 'Tooltip',

@@ -1,0 +1,57 @@
+/* ── Demo interativo ── */
+
+.demoArea {
+  background: var(--color-surface-secondary);
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-500);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-300);
+}
+
+.demoHint {
+  color: var(--color-fill-tertiary);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ── Prévia estática do painel (DemoCards) ── */
+
+.panelPreview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+  padding: var(--spacing-250);
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadows-high);
+  width: min(100%, 440px);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panelTitle {
+  color: var(--color-fill-primary);
+}
+
+.panelClose {
+  color: var(--color-fill-tertiary);
+  flex-shrink: 0;
+}
+
+.panelDescription {
+  margin: 0;
+  color: var(--color-fill-primary);
+}
+
+.panelActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-150);
+}

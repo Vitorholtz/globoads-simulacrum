@@ -1,18 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import Tabs from '../../components/Tabs/Tabs'
-import Button from '../../components/Button/Button'
-import InfoPanel from '../../components/InfoPanel/InfoPanel'
+import Tabs from '../Tabs/Tabs'
+import Button from '../Button/Button'
+import InfoPanel from '../InfoPanel/InfoPanel'
 import CreativeAssetDetails from './CreativeAssetDetails'
 import CreativeValidationSteps from './CreativeValidationSteps'
 import { cx } from '../../utils/cx'
 import styles from './CreativeDrawer.module.css'
-import type { Creative } from './creatives'
+import type { Creative } from './types'
 
 const TABS = [
   { id: 'detalhes', label: 'Detalhes' },
   { id: 'validacao', label: 'Etapas de validação' },
-  { id: 'uso', label: 'Uso do criativo' },
 ]
 
 export interface CreativeDrawerProps {
@@ -22,6 +21,8 @@ export interface CreativeDrawerProps {
   /** Aba aberta ao montar o drawer (default `detalhes`). */
   initialTab?: string
   onClose: () => void
+  /** Solicita a exclusão do criativo exibido. */
+  onDelete?: () => void
 }
 
 /**
@@ -36,6 +37,7 @@ export default function CreativeDrawer({
   open,
   initialTab = 'detalhes',
   onClose,
+  onDelete,
 }: CreativeDrawerProps) {
   const [render, setRender] = useState(open)
   const [leaving, setLeaving] = useState(false)
@@ -156,14 +158,6 @@ export default function CreativeDrawer({
                 description="Este criativo ainda não tem etapas de validação registradas."
               />
             ))}
-
-          {activeTab === 'uso' && (
-            <InfoPanel
-              type="neutral"
-              title="Sem registros de uso"
-              description="Ainda não há informações sobre onde este criativo foi veiculado."
-            />
-          )}
         </div>
 
         <footer className={styles.footer}>
@@ -174,6 +168,7 @@ export default function CreativeDrawer({
             danger
             iconLeft="delete"
             className={styles.deleteBtn}
+            onClick={onDelete}
           >
             Excluir criativo da galeria
           </Button>

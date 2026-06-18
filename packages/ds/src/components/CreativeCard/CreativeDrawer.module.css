@@ -95,6 +95,10 @@
   padding: var(--spacing-300);
 }
 
+.body > * {
+  flex-shrink: 0;
+}
+
 /* ── Footer ── */
 
 .footer {

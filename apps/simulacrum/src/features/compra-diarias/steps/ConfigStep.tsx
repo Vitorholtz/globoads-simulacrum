@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { Button, Badge, MultiDateCalendar } from '@globo-ads/ds'
-import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
+import { Button, Badge, ConfirmDialog, MultiDateCalendar } from '@globo-ads/ds'
 import {
   formatCurrency,
   formatImpressions,
@@ -266,7 +265,7 @@ export default function ConfigStep({
         )}
 
         <ConfirmDialog
-          isOpen={showBackConfirm}
+          open={showBackConfirm}
           title="Descartar seleção?"
           description="Você tem dias selecionados. Ao voltar, eles serão descartados e você precisará refazê-los."
           confirmLabel="Descartar e voltar"

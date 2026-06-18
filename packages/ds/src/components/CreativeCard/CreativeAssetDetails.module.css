@@ -111,6 +111,11 @@
 
 /* ── Metadados ── */
 
+.configSectionLabel {
+  margin: var(--spacing-300) 0 var(--spacing-100);
+  color: var(--color-fill-tertiary);
+}
+
 .metadata {
   display: flex;
   flex-direction: column;

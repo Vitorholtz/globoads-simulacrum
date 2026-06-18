@@ -1,7 +1,7 @@
-import Hyperlink from '../../components/Hyperlink/Hyperlink'
+import Hyperlink from '../Hyperlink/Hyperlink'
 import { cx } from '../../utils/cx'
 import styles from './CreativeValidationSteps.module.css'
-import type { ValidationStep, ValidationStepType } from './creatives'
+import type { ValidationStep, ValidationStepType } from './types'
 
 export interface CreativeValidationStepsProps {
   /** Passos em ordem cronológica crescente; o último é o estado atual. */
@@ -42,26 +42,31 @@ export default function CreativeValidationSteps({ steps }: CreativeValidationSte
             <div className={styles.content}>
               <p className={cx('type-title-sm', styles.title)}>{step.title}</p>
               <p className={cx('type-caption-sm', styles.timestamp)}>{step.timestamp}</p>
-              <p className={cx('type-body-sm', styles.description)}>
-                {step.description}
-                {step.link && (
-                  <>
-                    {' '}
-                    <Hyperlink href="#" size="sm" underline>
-                      {step.link}
-                    </Hyperlink>
-                  </>
-                )}
-              </p>
 
-              {step.reason && (
-                <div className={styles.reason}>
-                  {step.reason.map((paragraph, i) => (
-                    <p key={i} className={cx('type-body-sm', styles.reasonText)}>
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
+              {isCurrent && (
+                <>
+                  <p className={cx('type-body-sm', styles.description)}>
+                    {step.description}
+                    {step.link && (
+                      <>
+                        {' '}
+                        <Hyperlink href="#" size="sm" underline>
+                          {step.link}
+                        </Hyperlink>
+                      </>
+                    )}
+                  </p>
+
+                  {step.reason && (
+                    <div className={styles.reason}>
+                      {step.reason.map((paragraph, i) => (
+                        <p key={i} className={cx('type-body-sm', styles.reasonText)}>
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </li>

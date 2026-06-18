@@ -1,7 +1,10 @@
 import { lazy } from 'react'
 
 export const FormulariosPage = lazy(() => import('./Formularios/FormulariosPage'))
-export const CriativosPage = lazy(() => import('./Criativos/CriativosPage'))
+export const CreativeCardPage = lazy(() => import('./CreativeCard/CreativeCardPage'))
+export const CreativeFlowSimulationPage = lazy(
+  () => import('./CreativeCard/CreativeFlowSimulationPage')
+)
 export const ColorsPage = lazy(() => import('./Colors/ColorsPage'))
 export const TypographyPage = lazy(() => import('./Typography/TypographyPage'))
 export const IconsPage = lazy(() => import('./Icons/IconsPage'))
@@ -36,6 +39,7 @@ export const CollapsePage = lazy(() => import('./Collapse/CollapsePage'))
 export const AccordionPage = lazy(() => import('./Accordion/AccordionPage'))
 export const InfoPanelPage = lazy(() => import('./InfoPanel/InfoPanelPage'))
 export const ToastPage = lazy(() => import('./Toast/ToastPage'))
+export const ConfirmDialogPage = lazy(() => import('./ConfirmDialog/ConfirmDialogPage'))
 export const TooltipPage = lazy(() => import('./Tooltip/TooltipPage'))
 export const AvatarPage = lazy(() => import('./Avatar/AvatarPage'))
 export const InteractiveThumbPage = lazy(() => import('./InteractiveThumb/InteractiveThumbPage'))

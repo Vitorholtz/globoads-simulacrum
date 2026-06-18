@@ -14,11 +14,16 @@
     box-shadow var(--motion-duration-base) var(--motion-easing-default);
 }
 
-.card:hover {
+/* Hover/seleção só nos modos selecionáveis (config/gallery). */
+.selectable:hover {
   box-shadow: var(--shadows-low);
 }
 
-.card.selected {
+.selectable:active {
+  box-shadow: var(--shadows-ground);
+}
+
+.selected {
   border-color: var(--color-fill-accent);
   box-shadow: var(--shadows-low);
 }
@@ -30,6 +35,9 @@
   align-items: center;
   gap: var(--spacing-100);
   padding-left: var(--spacing-050);
+}
+
+.selectable .header {
   cursor: pointer;
 }
 
@@ -73,10 +81,13 @@
   height: 120px;
   background: var(--color-surface-tertiary);
   border-radius: var(--border-radius-lg);
+}
+
+.selectable .preview {
   cursor: pointer;
 }
 
-/* ── Footer (status) ── */
+/* ── Footer (modo gallery) ── */
 
 .footer {
   display: flex;
@@ -105,4 +116,27 @@
 .statusFull {
   flex: 1;
   justify-content: center;
+}
+
+/* ── Status (modo review: faixa de largura total) ── */
+
+.statusBadge {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ── Settings (config/review) ── */
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  padding: var(--spacing-050);
+}
+
+.periodGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
 }

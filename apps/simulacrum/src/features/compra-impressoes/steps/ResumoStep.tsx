@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { Button } from '@globo-ads/ds'
+import { Button, ConfirmDialog } from '@globo-ads/ds'
 import type { ImpressoesConfirmedSelection } from '../../../data'
 import { ImpressoesPurchaseCard } from '../../../components/ImpressoesPurchaseCard/ImpressoesPurchaseCard'
-import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import { useImpressoes } from '../context/ImpressoesContext'
 import styles from './ResumoStep.module.css'
 
@@ -54,7 +53,7 @@ export default function ResumoStep() {
       </div>
 
       <ConfirmDialog
-        isOpen={confirmDelete}
+        open={confirmDelete}
         title={isEditMode ? 'Excluir do carrinho?' : 'Cancelar configuração?'}
         description={
           isEditMode

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Badge, Breadcrumb, Button, InfoPanel } from '@globo-ads/ds'
-import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog'
+import { Badge, Breadcrumb, Button, ConfirmDialog, InfoPanel } from '@globo-ads/ds'
 import { DiariasPurchaseCard } from '../../components/DiariasPurchaseCard/DiariasPurchaseCard'
 import { ImpressoesPurchaseCard } from '../../components/ImpressoesPurchaseCard/ImpressoesPurchaseCard'
 import PageContainer from '../../components/PageContainer/PageContainer'
@@ -169,7 +168,7 @@ export default function CarrinhoPage() {
       </div>
 
       <ConfirmDialog
-        isOpen={pendingRemoveId !== null}
+        open={pendingRemoveId !== null}
         title="Remover item"
         description="Tem certeza que deseja remover este item do carrinho?"
         confirmLabel="Remover item"
@@ -181,7 +180,7 @@ export default function CarrinhoPage() {
       />
 
       <ConfirmDialog
-        isOpen={checkoutOpen}
+        open={checkoutOpen}
         title="Finalizar compra"
         description={`Confirmar o pedido de ${items.length === 1 ? '1 item' : `${items.length} itens`} no valor total de ${formatCurrency(grandTotal)}?`}
         confirmLabel="Confirmar pedido"

@@ -1,0 +1,77 @@
+/* ── Overlay + scrim ── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-400);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-luminosity-dark-backdrop);
+  animation-name: global(motion-enter-bottom);
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.scrimLeaving {
+  animation-name: global(motion-exit-bottom);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
+/* ── Painel ── */
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+  width: min(100%, 440px);
+  padding: var(--spacing-250);
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadows-high);
+  animation-name: global(motion-enter-bottom);
+  animation-duration: var(--motion-duration-slow);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.panelLeaving {
+  animation-name: global(motion-exit-bottom);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
+
+/* ── Cabeçalho ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-fill-primary);
+}
+
+.description {
+  margin: 0;
+  color: var(--color-fill-primary);
+}
+
+/* ── Ações ── */
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-150);
+}

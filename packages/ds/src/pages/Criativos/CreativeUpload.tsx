@@ -4,7 +4,7 @@ import InfoPanel from '../../components/InfoPanel/InfoPanel'
 import { cx } from '../../utils/cx'
 import { classifyCreative } from './classifyCreative'
 import styles from './CreativeUpload.module.css'
-import type { Creative } from './creatives'
+import type { Creative } from '../../components/CreativeCard/types'
 
 const ACCEPT =
   'image/png,image/jpeg,image/gif,video/mp4,video/quicktime,video/x-msvideo,.mov,.avi,application/zip,application/x-zip-compressed,.zip'

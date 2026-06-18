@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import globoAdsLogo from '../../../assets/globo-ads-logo.svg'
 import { CATEGORIES, PAGES } from '../../../pages/registry'
@@ -9,12 +10,17 @@ interface NavItemProps {
   disabled?: boolean
   badge?: string
   icon: string
+  sub?: boolean
 }
 
-function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
+function NavItem({ label, to, disabled, badge, icon, sub }: NavItemProps) {
+  const subClass = sub ? styles.navItemSub : ''
+
   if (disabled) {
     return (
-      <span className={[`type-body-sm`, styles.navItem, styles.navItemDisabled].join(' ')}>
+      <span
+        className={[`type-body-sm`, styles.navItem, styles.navItemDisabled, subClass].join(' ')}
+      >
         <span className={styles.navItemInner}>
           <span className={`material-symbols-rounded icon-md ${styles.navIcon}`}>{icon}</span>
           {label}
@@ -28,7 +34,7 @@ function NavItem({ label, to, disabled, badge, icon }: NavItemProps) {
     <NavLink
       to={to}
       className={({ isActive }: { isActive: boolean }) =>
-        ['type-body-sm', styles.navItem, isActive ? styles.navItemActive : ''].join(' ')
+        ['type-body-sm', styles.navItem, isActive ? styles.navItemActive : '', subClass].join(' ')
       }
     >
       {({ isActive }: { isActive: boolean }) => (
@@ -57,8 +63,9 @@ export default function Sidebar() {
 
       <div className={styles.nav}>
         {CATEGORIES.map((category, index) => {
-          const items = PAGES.filter((page) => page.category === category)
-          if (items.length === 0) return null
+          const allItems = PAGES.filter((page) => page.category === category)
+          const topLevel = allItems.filter((page) => !page.parent)
+          if (topLevel.length === 0) return null
 
           return (
             <div
@@ -68,16 +75,31 @@ export default function Sidebar() {
               }
             >
               <span className={`type-caption-sm ${styles.sectionLabel}`}>{category}</span>
-              {items.map((page) => (
-                <NavItem
-                  key={page.path}
-                  icon={page.icon}
-                  label={page.label}
-                  to={page.path}
-                  disabled={page.disabled}
-                  badge={page.badge}
-                />
-              ))}
+              {topLevel.map((page) => {
+                const children = allItems.filter((p) => p.parent === page.path)
+                return (
+                  <Fragment key={page.path}>
+                    <NavItem
+                      icon={page.icon}
+                      label={page.label}
+                      to={page.path}
+                      disabled={page.disabled}
+                      badge={page.badge}
+                    />
+                    {children.map((child) => (
+                      <NavItem
+                        key={child.path}
+                        icon={child.icon}
+                        label={child.label}
+                        to={child.path}
+                        disabled={child.disabled}
+                        badge={child.badge}
+                        sub
+                      />
+                    ))}
+                  </Fragment>
+                )
+              })}
             </div>
           )
         })}

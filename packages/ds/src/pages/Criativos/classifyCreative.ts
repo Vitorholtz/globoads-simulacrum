@@ -1,5 +1,12 @@
-import { initialValidationSteps } from './creatives'
-import type { Creative, CreativeAsset, CreativeTextContent } from './creatives'
+import {
+  initialValidationSteps,
+  formatStepTimestamp,
+} from '../../components/CreativeCard/creativeLifecycle'
+import type {
+  Creative,
+  CreativeAsset,
+  CreativeTextContent,
+} from '../../components/CreativeCard/types'
 import {
   matchDisplayFormat,
   matchCompositeFormat,
@@ -146,8 +153,7 @@ async function classifyImage(file: File): Promise<ClassifyResult> {
       extension: fileType,
       size: `${sizeKB} kB`,
       uploadedAt: formatUploadedAt(new Date()),
-      status: 'Em análise',
-      statusVariant: 'warning',
+      state: 'analyzing',
       validation: initialValidationSteps(formatStepTimestamp(new Date())),
     },
   }
@@ -195,8 +201,7 @@ async function classifyVideo(file: File): Promise<ClassifyResult> {
       extension: fileType,
       size: formatFileSize(file.size),
       uploadedAt: formatUploadedAt(new Date()),
-      status: 'Em análise',
-      statusVariant: 'warning',
+      state: 'analyzing',
       validation: initialValidationSteps(formatStepTimestamp(new Date())),
     },
   }
@@ -300,8 +305,7 @@ async function classifyZip(file: File): Promise<ClassifyResult> {
       extension: cover.extension,
       size: cover.size,
       uploadedAt: formatUploadedAt(new Date()),
-      status: 'Em análise',
-      statusVariant: 'warning',
+      state: 'analyzing',
       validation: initialValidationSteps(formatStepTimestamp(new Date())),
       assets,
     },
@@ -560,10 +564,4 @@ function slugify(fileName: string): string {
 function formatUploadedAt(date: Date): string {
   const pad = (n: number) => String(n).padStart(2, '0')
   return `${pad(date.getDate())}/${pad(date.getMonth() + 1)} às ${pad(date.getHours())}h${pad(date.getMinutes())}`
-}
-
-/** Formata a data no padrão das etapas de validação: "DD/MM/AAAA às HH:MMh". */
-function formatStepTimestamp(date: Date): string {
-  const pad = (n: number) => String(n).padStart(2, '0')
-  return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()} às ${pad(date.getHours())}:${pad(date.getMinutes())}h`
 }

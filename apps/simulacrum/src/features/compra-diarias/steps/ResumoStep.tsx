@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { Button } from '@globo-ads/ds'
+import { Button, ConfirmDialog } from '@globo-ads/ds'
 import type { ConfirmedSelection } from '../../../data'
 import { DiariasPurchaseCard } from '../../../components/DiariasPurchaseCard/DiariasPurchaseCard'
-import ConfirmDialog from '../../../components/ConfirmDialog/ConfirmDialog'
 import { useDiarias } from '../context/DiariasContext'
 import styles from './ResumoStep.module.css'
 
@@ -54,7 +53,7 @@ export default function ResumoStep() {
       </div>
 
       <ConfirmDialog
-        isOpen={confirmDelete}
+        open={confirmDelete}
         title={isEditMode ? 'Excluir do carrinho?' : 'Cancelar configuração?'}
         description={
           isEditMode

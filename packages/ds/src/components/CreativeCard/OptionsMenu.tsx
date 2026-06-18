@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import Button from '../../components/Button/Button'
+import Button from '../Button/Button'
 import { cx } from '../../utils/cx'
 import styles from './OptionsMenu.module.css'
 
@@ -16,6 +16,10 @@ export interface OptionsMenuProps {
   items?: OptionsMenuItem[]
   /** Ação do item "Ver detalhes" (injetada nos itens padrão). */
   onViewDetails?: () => void
+  /** Ação do item "Baixar criativo" (injetada nos itens padrão). */
+  onDownload?: () => void
+  /** Ação do item "Excluir criativo" (injetada nos itens padrão). */
+  onDelete?: () => void
   /** Rótulo acessível do botão de opções. */
   triggerLabel?: string
   /** Classe aplicada ao botão de opções (trigger). */
@@ -33,6 +37,8 @@ export interface OptionsMenuProps {
 export default function OptionsMenu({
   items,
   onViewDetails,
+  onDownload,
+  onDelete,
   triggerLabel = 'Mais opções',
   triggerClassName,
   className,
@@ -42,8 +48,8 @@ export default function OptionsMenu({
 
   const menuItems: OptionsMenuItem[] = items ?? [
     { icon: 'visibility', label: 'Ver detalhes', onSelect: onViewDetails },
-    { icon: 'download', label: 'Baixar criativo' },
-    { icon: 'delete', label: 'Excluir criativo', danger: true },
+    { icon: 'download', label: 'Baixar criativo', onSelect: onDownload },
+    { icon: 'delete', label: 'Excluir criativo', danger: true, onSelect: onDelete },
   ]
 
   useEffect(() => {

@@ -1,11 +1,11 @@
 import { useState, type ReactNode } from 'react'
-import Badge from '../../components/Badge/Badge'
-import InteractiveCard from '../../components/InteractiveCard/InteractiveCard'
-import InteractiveThumb from '../../components/InteractiveThumb/InteractiveThumb'
+import Badge from '../Badge/Badge'
+import InteractiveCard from '../InteractiveCard/InteractiveCard'
+import InteractiveThumb from '../InteractiveThumb/InteractiveThumb'
 import CreativeStatusBadge from './CreativeStatusBadge'
 import { cx } from '../../utils/cx'
 import styles from './CreativeAssetDetails.module.css'
-import type { Creative, CreativeAsset, CreativeTextContent } from './creatives'
+import type { Creative, CreativeAsset, CreativeTextContent } from './types'
 
 export interface CreativeAssetDetailsProps {
   creative: Creative
@@ -44,11 +44,8 @@ export default function CreativeAssetDetails({
       <div className={styles.statusRow}>
         {creative.tag && <Badge variant="neutral" label={creative.tag} />}
         <CreativeStatusBadge
-          status={creative.status}
-          statusVariant={creative.statusVariant}
-          statusLink={creative.statusLink}
-          statusAsLink={creative.statusAsLink}
-          onStatusLink={creative.statusLink ? onViewValidation : undefined}
+          state={creative.state}
+          onStatusLink={creative.state === 'rejected' ? onViewValidation : undefined}
         />
       </div>
 
@@ -117,7 +114,7 @@ function assetFromCreative(creative: Creative): CreativeAsset {
   }
 }
 
-/** Linhas de metadados do asset ativo — texto adiciona o CTA e as cores. */
+/** Linhas de metadados técnicos do asset ativo. */
 function getAssetMetadata(
   creative: Creative,
   asset: CreativeAsset

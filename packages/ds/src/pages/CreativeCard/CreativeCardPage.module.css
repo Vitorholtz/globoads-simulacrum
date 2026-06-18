@@ -1,0 +1,371 @@
+/* Trecho de código inline (células de tabela, rótulos de prop). */
+.code {
+  padding: var(--spacing-025) var(--spacing-100);
+  background: var(--color-surface-tertiary);
+  border-radius: var(--border-radius-sm);
+  color: var(--color-fill-secondary);
+}
+
+/* ── Modos ── */
+
+.modeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-400);
+  align-items: start;
+}
+
+.modeCard {
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modePreview {
+  background: var(--color-surface-secondary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  padding: var(--spacing-400) var(--spacing-300);
+  display: flex;
+  justify-content: center;
+}
+
+.modePreview > * {
+  width: 320px;
+  max-width: 100%;
+}
+
+.modeBody {
+  padding: var(--spacing-350) var(--spacing-400) var(--spacing-400);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.modeTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-125);
+  margin-bottom: var(--spacing-150);
+  flex-wrap: wrap;
+}
+
+.modeName {
+  color: var(--color-fill-primary);
+}
+
+.modeTagline {
+  color: var(--color-fill-tertiary);
+  background: var(--color-surface-tertiary);
+  padding: var(--spacing-025) 9px;
+  border-radius: var(--border-radius-full);
+}
+
+.modeDesc {
+  color: var(--color-fill-secondary);
+  margin: 0 0 var(--spacing-250);
+}
+
+.modeWhen {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  padding: var(--spacing-250) 0 0;
+  margin: 0;
+  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+  flex: 1;
+}
+
+.modeWhen li {
+  color: var(--color-fill-secondary);
+  padding-left: var(--spacing-200);
+  position: relative;
+}
+
+.modeWhen li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Estados ── */
+
+.stateList {
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.stateRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-400);
+  padding: var(--spacing-300) var(--spacing-400);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.stateRow:last-child {
+  border-bottom: none;
+}
+
+.statePreview {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.stateMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-075);
+  min-width: 0;
+}
+
+.stateCode {
+  color: var(--color-fill-secondary);
+}
+
+.stateDesc {
+  color: var(--color-fill-secondary);
+  margin: 0;
+}
+
+/* ── Composição ── */
+
+.compositionGroups {
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-primary);
+}
+
+.compositionGroup {
+  display: flex;
+  align-items: stretch;
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+}
+
+.compositionGroup:last-child {
+  border-bottom: none;
+}
+
+.compositionGroupLabel {
+  width: 120px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-300) var(--spacing-400);
+  background: var(--color-surface-secondary);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
+  color: var(--color-fill-tertiary);
+}
+
+.compositionChips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-100);
+  padding: var(--spacing-300) var(--spacing-400);
+}
+
+.chip {
+  padding: var(--spacing-050) var(--spacing-150);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-full);
+  color: var(--color-fill-secondary);
+}
+
+/* ── Barra de campos (simulação) ── */
+
+.fieldsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-300);
+  padding: var(--spacing-200) var(--spacing-300);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
+}
+
+.fieldsToggleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-300);
+}
+
+/* ── Campos configuráveis ── */
+
+.fieldsDemoStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.fieldsDemo {
+  display: flex;
+  align-items: stretch;
+  border: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface-secondary);
+  overflow: hidden;
+}
+
+.fieldsToggleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+  padding: var(--spacing-400);
+  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
+  background: var(--color-surface-primary);
+  flex-shrink: 0;
+}
+
+.fieldsDemoPreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-400);
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-400);
+  flex: 1;
+  min-width: 0;
+}
+
+.fieldsDemoCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  flex: 0 0 320px;
+  max-width: 100%;
+}
+
+.fieldsModeLabel {
+  margin: 0;
+  color: var(--color-fill-tertiary);
+}
+
+/* ── Simulação ── */
+
+.sim {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.simBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+  padding: var(--spacing-200) var(--spacing-250);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
+}
+
+.simHint {
+  flex: 1;
+  min-width: 14rem;
+  margin: 0;
+  color: var(--color-fill-secondary);
+}
+
+.simBarActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-100);
+}
+
+.scenario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+}
+
+.scenarioHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-200);
+}
+
+.scenarioText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+  min-width: 0;
+}
+
+.scenarioIndex {
+  color: var(--color-fill-accent);
+}
+
+.scenarioTitle {
+  margin: 0;
+  color: var(--color-fill-primary);
+}
+
+.scenarioDesc {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--color-fill-secondary);
+}
+
+.scenarioAction {
+  flex-shrink: 0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-250);
+  align-items: start;
+  padding: var(--spacing-300);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
+}
+
+.simItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.simActions {
+  display: flex;
+  gap: var(--spacing-100);
+  padding: 0 var(--spacing-050);
+}
+
+.empty {
+  margin: 0;
+  padding: var(--spacing-400);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-fill-tertiary);
+  text-align: center;
+}
+
+/* ── Toast portal (simulação) ── */
+
+.toastPortal {
+  position: fixed;
+  top: var(--spacing-300);
+  right: var(--spacing-300);
+  z-index: 1020;
+  animation-name: global(motion-enter-right);
+  animation-duration: var(--motion-duration-base);
+  animation-timing-function: var(--motion-easing-out);
+  animation-fill-mode: backwards;
+}
+
+.toastPortalLeaving {
+  animation-name: global(motion-exit-right);
+  animation-timing-function: var(--motion-easing-default);
+  animation-fill-mode: forwards;
+}
