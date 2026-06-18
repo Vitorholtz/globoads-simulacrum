@@ -11,15 +11,12 @@ import {
   addedOnlyValidation,
   formatStepTimestamp,
 } from '../../components/CreativeCard/creativeLifecycle'
-import type {
-  Creative,
-  CreativeFieldsConfig,
-  CreativeTextContent,
-} from '../../components/CreativeCard/types'
+import type { Creative, CreativeFieldsConfig } from '../../components/CreativeCard/types'
 import type { ToastType } from '../../tokens/toast'
 import CreativeUpload from '../Criativos/CreativeUpload'
 import { createZip } from '../Criativos/zip'
 import type { ZipEntry } from '../Criativos/zip'
+import { serializeText } from '../Criativos/creativeText'
 import { cx } from '../../utils/cx'
 import styles from './CreativeCardPage.module.css'
 
@@ -372,13 +369,6 @@ export default function CreativeFlowSimulation() {
         )}
     </div>
   )
-}
-
-function serializeText(text: CreativeTextContent): string {
-  if (text.variant === 'cta') {
-    return `cta=${text.ctaText}\ncorBotao=${text.buttonColor}\ncorTexto=${text.textColor}`
-  }
-  return `titulo=${text.title}\nsubtitulo=${text.subtitle}`
 }
 
 function Scenario({
