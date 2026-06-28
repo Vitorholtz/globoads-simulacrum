@@ -87,5 +87,4 @@ Sempre referencie via `var(--token-*)`. **Nunca** hardcode valores px/rem.
 - `<DemoCard preview={…} title="…">` — card preview + corpo unificado. Props:
   `description?`, `badge?`, `tokens?: string[]`, `previewPad?: 'sm'|'md'|'lg'`, `align?: 'center'|'stretch'`.
 - `<CardGrid cols={2|3|4|'auto'}>` — grade responsiva com `gap: --spacing-200`. Padrão: `auto-fill`.
-- `<CopyChip value="--token-name">` — chip copiável para tokens/classes CSS.
 - `<StateMatrix>` / `<GuidelinesGrid>` — já padrão; **não reimplementar** em páginas.
