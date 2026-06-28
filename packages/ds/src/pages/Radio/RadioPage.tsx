@@ -8,6 +8,7 @@ import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
 import styles from './RadioPage.module.css'
 
 const ALL_BEHAVIORS: RadioBehavior[] = ['unchecked', 'checked']
@@ -114,50 +115,51 @@ export default function RadioPage() {
 
       {/* ── Help Text ── */}
       <Section icon="info" title="Help Text">
-        <div className={styles.helpTextContainer}>
-          <div className={styles.helpTextPreview}>
-            <Radio
-              checked={helpValue === 'mensal'}
-              onChange={() => setHelpValue('mensal')}
-              name="help-demo"
-              value="mensal"
-              label="Plano Mensal"
-              helpText="Cobrado todo mês. Cancele a qualquer momento."
-              showHelpText
-            />
-            <Radio
-              checked={helpValue === 'anual'}
-              onChange={() => setHelpValue('anual')}
-              name="help-demo"
-              value="anual"
-              label="Plano Anual"
-              helpText="Economize 20% em relação ao plano mensal."
-              showHelpText
-            />
-            <Radio
-              checked={false}
-              forceState="disabled"
-              name="help-demo"
-              value="enterprise"
-              label="Plano Enterprise"
-              helpText="Entre em contato com o time comercial."
-              showHelpText
-            />
-          </div>
-          <div className={styles.helpTextBody}>
-            <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre cada opção.
-              Use-o para explicar consequências, custos ou restrições da seleção. Mantenha-o conciso
-              — no máximo duas linhas.
-            </p>
-          </div>
-        </div>
+        <InfoCard
+          preview={
+            <div className={styles.helpTextPreviewContent}>
+              <Radio
+                checked={helpValue === 'mensal'}
+                onChange={() => setHelpValue('mensal')}
+                name="help-demo"
+                value="mensal"
+                label="Plano Mensal"
+                helpText="Cobrado todo mês. Cancele a qualquer momento."
+                showHelpText
+              />
+              <Radio
+                checked={helpValue === 'anual'}
+                onChange={() => setHelpValue('anual')}
+                name="help-demo"
+                value="anual"
+                label="Plano Anual"
+                helpText="Economize 20% em relação ao plano mensal."
+                showHelpText
+              />
+              <Radio
+                checked={false}
+                forceState="disabled"
+                name="help-demo"
+                value="enterprise"
+                label="Plano Enterprise"
+                helpText="Entre em contato com o time comercial."
+                showHelpText
+              />
+            </div>
+          }
+        >
+          <p className={`type-body-sm ${styles.helpTextDesc}`}>
+            O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre cada opção.
+            Use-o para explicar consequências, custos ou restrições da seleção. Mantenha-o conciso —
+            no máximo duas linhas.
+          </p>
+        </InfoCard>
       </Section>
 
       {/* ── Sem Rótulo ── */}
       <Section icon="radio_button_unchecked" title="Sem Rótulo">
-        <div className={styles.helpTextContainer}>
-          <div className={styles.helpTextPreview}>
+        <InfoCard
+          preview={
             <div className={styles.noLabelRow}>
               {(['a', 'b', 'c'] as const).map((v) => (
                 <Radio
@@ -170,16 +172,15 @@ export default function RadioPage() {
                 />
               ))}
             </div>
-          </div>
-          <div className={styles.helpTextBody}>
-            <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              Omita o <code>label</code> quando o contexto visual já identifica cada opção — por
-              exemplo, controles embutidos em linhas de tabela. Sempre forneça{' '}
-              <code>aria-label</code> para garantir acessibilidade a leitores de tela. O atributo{' '}
-              <code>name</code> continua obrigatório para o agrupamento nativo do browser.
-            </p>
-          </div>
-        </div>
+          }
+        >
+          <p className={`type-body-sm ${styles.helpTextDesc}`}>
+            Omita o <code>label</code> quando o contexto visual já identifica cada opção — por
+            exemplo, controles embutidos em linhas de tabela. Sempre forneça <code>aria-label</code>{' '}
+            para garantir acessibilidade a leitores de tela. O atributo <code>name</code> continua
+            obrigatório para o agrupamento nativo do browser.
+          </p>
+        </InfoCard>
       </Section>
 
       {/* ── Diretrizes ── */}

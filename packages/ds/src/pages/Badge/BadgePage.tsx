@@ -1,9 +1,11 @@
 import Badge from '../../components/Badge/Badge'
 import { BADGE_VARIANTS, BADGE_GUIDELINES } from '../../tokens/badge'
+import type { BadgeVariant } from '../../tokens/badge'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
-import styles from './BadgePage.module.css'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
 
 const EXAMPLE_LABELS: Record<string, string> = {
   neutral: 'Rascunho',
@@ -28,60 +30,32 @@ export default function BadgePage() {
 
       {/* ── Variantes ── */}
       <Section icon="label" title="Variantes" count={BADGE_VARIANTS.length}>
-        <div className={styles.variantsContainer}>
-          {BADGE_VARIANTS.map((v) => (
-            <div key={v.id} className={styles.variantRow}>
-              <div className={styles.variantPreview}>
-                <Badge variant={v.id} label={EXAMPLE_LABELS[v.id]} />
-              </div>
-              <div className={styles.variantMeta}>
-                <span className={`type-body-sm ${styles.variantLabel}`}>{v.label}</span>
-                <p className={`type-body-sm ${styles.variantDesc}`}>{v.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={200}
+          rows={BADGE_VARIANTS.map((v) => ({
+            id: v.id,
+            label: v.label,
+            description: v.description,
+          }))}
+          renderPreview={(row) => (
+            <Badge variant={row.id as BadgeVariant} label={EXAMPLE_LABELS[row.id]} />
+          )}
+        />
       </Section>
 
       {/* ── Anatomia ── */}
       <Section icon="info" title="Anatomia">
-        <div className={styles.anatomyCard}>
-          <div className={styles.anatomyPreview}>
-            <Badge variant="neutral" label="Badge" />
-          </div>
-          <div className={styles.anatomySpecs}>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Tipografia</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                12px · weight 500 · font-family base
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Padding</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                2px vertical · 4px horizontal
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Border-radius</span>
-              <span className={`type-body-sm ${styles.specVal}`}>8px (--border-radius-md)</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Cor do texto</span>
-              <span className={`type-body-sm ${styles.specVal}`}>Fill da variante semântica</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Fundo</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                Surface da variante correspondente
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Interação</span>
-              <span className={`type-body-sm ${styles.specVal}`}>Nenhuma — somente leitura</span>
-            </div>
-          </div>
-        </div>
+        <InfoCard
+          preview={<Badge variant="neutral" label="Badge" />}
+          specs={[
+            { label: 'Tipografia', value: '12px · weight 500 · font-family base' },
+            { label: 'Padding', value: '2px vertical · 4px horizontal' },
+            { label: 'Border-radius', value: '8px (--border-radius-md)' },
+            { label: 'Cor do texto', value: 'Fill da variante semântica' },
+            { label: 'Fundo', value: 'Surface da variante correspondente' },
+            { label: 'Interação', value: 'Nenhuma — somente leitura' },
+          ]}
+        />
       </Section>
 
       {/* ── Diretrizes ── */}

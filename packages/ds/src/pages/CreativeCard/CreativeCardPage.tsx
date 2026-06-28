@@ -4,17 +4,23 @@ import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import DocTable from '../../components/docs/DocTable/DocTable'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import Button from '../../components/Button/Button'
 import Switch from '../../components/Switch/Switch'
 import CreativeCard, { type CreativeCardMode } from '../../components/CreativeCard/CreativeCard'
 import CreativeStatusBadge from '../../components/CreativeCard/CreativeStatusBadge'
 import CreativeDrawer from '../../components/CreativeCard/CreativeDrawer'
-import type { Creative, CreativeFieldsConfig } from '../../components/CreativeCard/types'
+import type {
+  Creative,
+  CreativeFieldsConfig,
+  CreativeState,
+} from '../../components/CreativeCard/types'
 import {
   CREATIVE_CARD_MODES,
   CREATIVE_CARD_STATES,
   CREATIVE_CARD_GUIDELINES,
 } from '../../tokens/creativeCard'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
 import { cx } from '../../utils/cx'
 import { SAMPLE_CREATIVES } from './creativeFixtures'
 import styles from './CreativeCardPage.module.css'
@@ -152,27 +158,15 @@ export default function CreativeCardPage() {
         count={CREATIVE_CARD_MODES.length}
         description="Header e preview são compartilhados entre os três modos; só o corpo varia por mode."
       >
-        <CardGrid className={styles.modeGridAlign}>
+        <CardGrid>
           {CREATIVE_CARD_MODES.map((m) => (
-            <div key={m.id} className={styles.modeCard}>
-              <div className={styles.modePreview}>
-                <CreativeCard mode={m.id} creative={MODE_SAMPLE[m.id]} />
-              </div>
-              <div className={styles.modeBody}>
-                <div className={styles.modeTitleRow}>
-                  <h3 className={`type-title-sm ${styles.modeName}`}>{m.label}</h3>
-                  <span className={`type-caption-sm ${styles.modeTagline}`}>{m.tagline}</span>
-                </div>
-                <p className={`type-body-md ${styles.modeDesc}`}>{m.description}</p>
-                <ul className={styles.modeWhen}>
-                  {m.when.map((item) => (
-                    <li key={item} className="type-body-md">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <DemoCard
+              key={m.id}
+              preview={<CreativeCard mode={m.id} creative={MODE_SAMPLE[m.id]} />}
+              title={m.label}
+              badge={m.tagline}
+              description={m.description}
+            />
           ))}
         </CardGrid>
       </Section>
@@ -228,19 +222,16 @@ export default function CreativeCardPage() {
         count={CREATIVE_CARD_STATES.length}
         description="O badge é derivado de creative.state — fonte única em creativeLifecycle. Nunca passe o texto do status à mão."
       >
-        <div className={styles.stateList}>
-          {CREATIVE_CARD_STATES.map((s) => (
-            <div key={s.id} className={styles.stateRow}>
-              <div className={styles.statePreview}>
-                <CreativeStatusBadge state={s.id} />
-              </div>
-              <div className={styles.stateMeta}>
-                <span className={cx('type-caption-md', styles.stateCode)}>{code(`"${s.id}"`)}</span>
-                <span className={cx('type-body-sm', styles.stateDesc)}>{s.description}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={180}
+          rows={CREATIVE_CARD_STATES.map((s) => ({
+            id: s.id,
+            label: s.description,
+            badge: `"${s.id}"`,
+            description: '',
+          }))}
+          renderPreview={(row) => <CreativeStatusBadge state={row.id as CreativeState} />}
+        />
       </Section>
 
       {/* ── Drawer de detalhes ── */}

@@ -5,6 +5,7 @@ import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
 import styles from './BadgePointerPage.module.css'
 
 export default function BadgePointerPage() {
@@ -22,33 +23,15 @@ export default function BadgePointerPage() {
 
       {/* ── Componente ── */}
       <Section icon="fiber_manual_record" title="Componente">
-        <div className={styles.componentCard}>
-          <div className={styles.componentPreview}>
-            <BadgePointer />
-          </div>
-          <div className={styles.componentSpecs}>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Container</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                16 × 16px · display inline-flex · centralizador
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Ponto</span>
-              <span className={`type-body-sm ${styles.specVal}`}>8 × 8px · border-radius 50%</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Cor</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                --color-fill-critical (#B70634)
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Interação</span>
-              <span className={`type-body-sm ${styles.specVal}`}>Nenhuma — somente leitura</span>
-            </div>
-          </div>
-        </div>
+        <InfoCard
+          preview={<BadgePointer />}
+          specs={[
+            { label: 'Container', value: '16 × 16px · display inline-flex · centralizador' },
+            { label: 'Ponto', value: '8 × 8px · border-radius 50%' },
+            { label: 'Cor', value: '--color-fill-critical (#B70634)' },
+            { label: 'Interação', value: 'Nenhuma — somente leitura' },
+          ]}
+        />
       </Section>
 
       {/* ── Uso em contexto ── */}

@@ -9,7 +9,9 @@ import {
   TIME_PICKER_MATRIX_COLS,
   TIME_PICKER_GUIDELINES,
   type TimeValue,
+  type TimePickerSize,
 } from '../../tokens/timePicker'
+import ShowcaseList, { type ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
@@ -79,33 +81,35 @@ export default function TimePickerPage() {
 
       {/* ── Escala de tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={TIME_PICKER_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {TIME_PICKER_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <TimePicker size={s.id} label="Horário" defaultValue={EXAMPLE_TIME} />
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
-                  font {s.fontSize}px · icon {s.iconSize}px
-                </span>
-                <br />
-                <span>
-                  py {s.paddingY}px · px {s.paddingX}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={280}
+          rows={TIME_PICKER_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: (
+                <>
+                  <span>
+                    font {s.fontSize}px · icon {s.iconSize}px
+                  </span>
+                  <br />
+                  <span>
+                    py {s.paddingY}px · px {s.paddingX}px
+                  </span>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => (
+            <TimePicker
+              size={row.id as TimePickerSize}
+              label="Horário"
+              defaultValue={EXAMPLE_TIME}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Estados ── */}

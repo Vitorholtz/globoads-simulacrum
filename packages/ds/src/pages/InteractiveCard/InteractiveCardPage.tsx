@@ -13,6 +13,7 @@ import gshowLogo from '../../assets/logos/gshow.svg'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import styles from './InteractiveCardPage.module.css'
 
 const TALENT_PHOTO = '/campaign-talent.jpg'
@@ -86,24 +87,21 @@ export default function InteractiveCardPage() {
       <Section icon="style" title="Estilos" count={INTERACTIVE_CARD_STYLES.length}>
         <CardGrid>
           {INTERACTIVE_CARD_STYLES.map((s) => (
-            <div key={s.id} className={styles.styleCard}>
-              <div className={styles.stylePreview} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
-                <InteractiveCard style={s.id} className={styles.demoCard}>
-                  <DiariaCard />
-                </InteractiveCard>
-              </div>
-              <div className={styles.styleBody}>
-                <h3 className={`type-title-sm ${styles.styleName}`}>{s.name}</h3>
-                <p className={`type-body-md ${styles.styleDesc}`}>{s.description}</p>
-                <ul className={styles.styleWhen}>
-                  {s.when.map((item) => (
-                    <li key={item} className="type-body-md">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <DemoCard
+              key={s.id}
+              preview={
+                <div
+                  className={styles.stylePreviewInner}
+                  style={{ background: STYLE_PREVIEW_BG[s.id] }}
+                >
+                  <InteractiveCard style={s.id} className={styles.demoCard}>
+                    <DiariaCard />
+                  </InteractiveCard>
+                </div>
+              }
+              title={s.name}
+              description={s.description}
+            />
           ))}
         </CardGrid>
       </Section>

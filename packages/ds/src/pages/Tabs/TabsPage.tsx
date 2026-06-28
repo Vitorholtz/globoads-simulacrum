@@ -11,6 +11,7 @@ import {
 import type { TabPosition } from '../../tokens/tabs'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './TabsPage.module.css'
@@ -19,12 +20,8 @@ function PositionDemo({ position, description }: { position: TabPosition; descri
   const [active, setActive] = useState('tab1')
   const isVertical = position === 'left' || position === 'right'
   return (
-    <div className={styles.positionCard}>
-      <div
-        className={[styles.positionPreview, isVertical ? styles.positionPreviewVertical : ''].join(
-          ' '
-        )}
-      >
+    <DemoCard
+      preview={
         <Tabs
           items={DEMO_TEXT_TABS}
           activeId={active}
@@ -32,14 +29,12 @@ function PositionDemo({ position, description }: { position: TabPosition; descri
           position={position}
           className={isVertical ? undefined : styles.tabsStretch}
         />
-      </div>
-      <div className={styles.positionMeta}>
-        <span className={`type-body-sm ${styles.positionLabel}`}>
-          {position.charAt(0).toUpperCase() + position.slice(1)}
-        </span>
-        <p className={`type-body-sm ${styles.positionDesc}`}>{description}</p>
-      </div>
-    </div>
+      }
+      title={position.charAt(0).toUpperCase() + position.slice(1)}
+      description={description}
+      align="stretch"
+      previewPad="lg"
+    />
   )
 }
 
@@ -73,8 +68,8 @@ export default function TabsPage() {
       {/* ── Variantes de Conteúdo ── */}
       <Section icon="tune" title="Variantes de Conteúdo" count={TAB_CONTENT_VARIANTS.length}>
         <CardGrid>
-          <div className={styles.variantCard}>
-            <div className={styles.variantPreview}>
+          <DemoCard
+            preview={
               <Tabs
                 items={DEMO_TEXT_TABS}
                 activeId={variantActive}
@@ -82,19 +77,14 @@ export default function TabsPage() {
                 position="top"
                 className={styles.tabsStretch}
               />
-            </div>
-            <div className={styles.variantMeta}>
-              <span className={`type-body-sm ${styles.variantLabel}`}>
-                {TAB_CONTENT_VARIANTS[0].label}
-              </span>
-              <p className={`type-body-sm ${styles.variantDesc}`}>
-                {TAB_CONTENT_VARIANTS[0].description}
-              </p>
-            </div>
-          </div>
+            }
+            title={TAB_CONTENT_VARIANTS[0].label}
+            description={TAB_CONTENT_VARIANTS[0].description}
+            align="stretch"
+          />
 
-          <div className={styles.variantCard}>
-            <div className={styles.variantPreview}>
+          <DemoCard
+            preview={
               <Tabs
                 items={DEMO_ICON_TABS}
                 activeId={iconActive}
@@ -102,19 +92,14 @@ export default function TabsPage() {
                 position="top"
                 className={styles.tabsStretch}
               />
-            </div>
-            <div className={styles.variantMeta}>
-              <span className={`type-body-sm ${styles.variantLabel}`}>
-                {TAB_CONTENT_VARIANTS[1].label}
-              </span>
-              <p className={`type-body-sm ${styles.variantDesc}`}>
-                {TAB_CONTENT_VARIANTS[1].description}
-              </p>
-            </div>
-          </div>
+            }
+            title={TAB_CONTENT_VARIANTS[1].label}
+            description={TAB_CONTENT_VARIANTS[1].description}
+            align="stretch"
+          />
 
-          <div className={styles.variantCard}>
-            <div className={styles.variantPreview}>
+          <DemoCard
+            preview={
               <Tabs
                 items={DEMO_BADGE_TABS}
                 activeId={badgeActive}
@@ -122,16 +107,11 @@ export default function TabsPage() {
                 position="top"
                 className={styles.tabsStretch}
               />
-            </div>
-            <div className={styles.variantMeta}>
-              <span className={`type-body-sm ${styles.variantLabel}`}>
-                {TAB_CONTENT_VARIANTS[2].label}
-              </span>
-              <p className={`type-body-sm ${styles.variantDesc}`}>
-                {TAB_CONTENT_VARIANTS[2].description}
-              </p>
-            </div>
-          </div>
+            }
+            title={TAB_CONTENT_VARIANTS[2].label}
+            description={TAB_CONTENT_VARIANTS[2].description}
+            align="stretch"
+          />
         </CardGrid>
       </Section>
 

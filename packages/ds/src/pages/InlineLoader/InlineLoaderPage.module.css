@@ -1,53 +1,5 @@
 ﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
-/* ── Tipos ── */
-
-.typesContainer {
-  background: var(--color-surface-primary);
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-}
-
-.typeRow {
-  display: flex;
-  align-items: center;
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.typeRow:last-child {
-  border-bottom: none;
-}
-
-.typePreview {
-  width: 180px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-500);
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-secondary);
-}
-
-.typeMeta {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-050);
-  padding: var(--spacing-250) var(--spacing-400);
-}
-
-.typeLabel {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.typeDesc {
-  color: var(--color-fill-secondary);
-  margin: 0;
-}
-
 /* ── Tamanhos ── */
 
 .sizesTable {

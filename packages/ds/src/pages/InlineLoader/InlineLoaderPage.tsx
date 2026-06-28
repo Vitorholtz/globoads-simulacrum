@@ -9,6 +9,7 @@ import type { InlineLoaderType, InlineLoaderSize } from '../../tokens/inlineLoad
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
 import styles from './InlineLoaderPage.module.css'
 
 const ELLIPSIS_LABELS: Record<InlineLoaderType, string> = {
@@ -34,24 +35,22 @@ export default function InlineLoaderPage() {
 
       {/* ── Tipos ── */}
       <Section icon="motion_blur" title="Tipos" count={INLINE_LOADER_TYPES.length}>
-        <div className={styles.typesContainer}>
-          {INLINE_LOADER_TYPES.map((t) => (
-            <div key={t.id} className={styles.typeRow}>
-              <div className={styles.typePreview}>
-                <InlineLoader
-                  type={t.id}
-                  size="md"
-                  color="primary"
-                  label={ELLIPSIS_LABELS[t.id] || 'Carregando'}
-                />
-              </div>
-              <div className={styles.typeMeta}>
-                <span className={`type-body-sm ${styles.typeLabel}`}>{t.label}</span>
-                <p className={`type-body-sm ${styles.typeDesc}`}>{t.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={180}
+          rows={INLINE_LOADER_TYPES.map((t) => ({
+            id: t.id,
+            label: t.label,
+            description: t.description,
+          }))}
+          renderPreview={(row) => (
+            <InlineLoader
+              type={row.id as InlineLoaderType}
+              size="md"
+              color="primary"
+              label={ELLIPSIS_LABELS[row.id as InlineLoaderType] || 'Carregando'}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Tamanhos ── */}

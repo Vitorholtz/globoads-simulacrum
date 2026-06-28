@@ -1,3 +1,13 @@
-.section:last-child {
-  margin-bottom: 0;
+.circle {
+  width: 56px;
+  height: 56px;
+  background: var(--color-surface-primary);
+  border-radius: var(--border-radius-full);
+}
+
+.rect {
+  width: 80px;
+  height: 48px;
+  background: var(--color-surface-accent);
+  border-radius: var(--border-radius-lg);
 }

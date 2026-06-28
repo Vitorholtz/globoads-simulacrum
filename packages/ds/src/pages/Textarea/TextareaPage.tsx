@@ -6,7 +6,9 @@ import {
   TEXTAREA_MATRIX_STATES,
   TEXTAREA_MATRIX_COLS,
 } from '../../tokens/textarea'
+import type { TextareaSize } from '../../tokens/textarea'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import ShowcaseList, { type ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
@@ -66,33 +68,31 @@ export default function TextareaPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={TEXTAREA_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {TEXTAREA_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <Textarea size={s.id} label="Label" placeholder="Text here" />
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
-                  font {s.fontSize}px · line {s.lineHeight}px
-                </span>
-                <br />
-                <span>
-                  py {s.paddingY}px · px {s.paddingX}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={280}
+          rows={TEXTAREA_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: (
+                <>
+                  <span>
+                    font {s.fontSize}px · line {s.lineHeight}px
+                  </span>
+                  <br />
+                  <span>
+                    py {s.paddingY}px · px {s.paddingX}px
+                  </span>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => (
+            <Textarea size={row.id as TextareaSize} label="Label" placeholder="Text here" />
+          )}
+        />
       </Section>
 
       {/* ── Estados ── */}

@@ -4,6 +4,9 @@ import type { HyperlinkSize } from '../../tokens/hyperlinks'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
+import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './HyperlinksPage.module.css'
@@ -31,64 +34,39 @@ export default function HyperlinksPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={HYPERLINK_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {HYPERLINK_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <Hyperlink size={s.id as HyperlinkSize}>Hyperlink</Hyperlink>
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeBadge}`}>Recomendado</span>
-                  )}
-                  {s.warning && (
-                    <span className={`type-caption-sm ${styles.sizeBadgeWarning}`}>⚠ Restrito</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
+        <ShowcaseList
+          previewWidth={200}
+          rows={HYPERLINK_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : s.warning ? '⚠ Restrito' : undefined,
+              badgeVariant: s.warning ? 'warning' : undefined,
+              description: s.description,
+              specs: (
+                <>
                   font {s.fontSize}px · lh {s.lineHeight}px
-                </span>
-                <br />
-                <span>
+                  <br />
                   icon {s.iconSize}px · gap {s.gap}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => <Hyperlink size={row.id as HyperlinkSize}>Hyperlink</Hyperlink>}
+        />
       </Section>
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={HYPERLINK_STATES.length}>
-        <div className={styles.stateMatrix}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {HYPERLINK_SIZES.map((s) => (
-              <div key={s.id} className={`type-caption-xs ${styles.matrixSizeLabel}`}>
-                {s.label}
-              </div>
-            ))}
-          </div>
-          {HYPERLINK_STATES.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              {HYPERLINK_SIZES.map((s) => (
-                <div key={s.id} className={styles.matrixCell}>
-                  <Hyperlink size={s.id as HyperlinkSize} forceState={toForceState(state.id)}>
-                    Hyperlink
-                  </Hyperlink>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={HYPERLINK_SIZES}
+          rows={[...HYPERLINK_STATES]}
+          renderCell={(state, col) => (
+            <Hyperlink size={col.id as HyperlinkSize} forceState={toForceState(state.id ?? '')}>
+              Hyperlink
+            </Hyperlink>
+          )}
+        />
 
         <div className={styles.statesLegend}>
           {HYPERLINK_STATES.map((s) => (

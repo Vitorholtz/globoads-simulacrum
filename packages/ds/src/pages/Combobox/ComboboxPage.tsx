@@ -6,10 +6,12 @@ import {
   COMBOBOX_MATRIX_STATES,
   COMBOBOX_MATRIX_COLS,
 } from '../../tokens/combobox'
-import type { ComboboxSizeDef } from '../../tokens/combobox'
+import type { ComboboxSizeDef, ComboboxSize } from '../../tokens/combobox'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
+import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './ComboboxPage.module.css'
@@ -73,25 +75,19 @@ export default function ComboboxPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={3}>
-        <div className={styles.sizeScaleContainer}>
-          {COMBOBOX_SIZES.map((size) => (
-            <div key={size.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <Combobox size={size.id} />
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{size.label}</span>
-                  {size.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{size.description}</span>
-              </div>
-              <span className={`type-caption-sm ${styles.sizeSpecs}`}>{sizeSpecs(size)}</span>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={280}
+          rows={COMBOBOX_SIZES.map(
+            (size): ShowcaseRow => ({
+              id: size.id,
+              label: size.label,
+              badge: size.recommended ? 'Recomendado' : undefined,
+              description: size.description,
+              specs: sizeSpecs(size),
+            })
+          )}
+          renderPreview={(row) => <Combobox size={row.id as ComboboxSize} />}
+        />
       </Section>
 
       {/* ── Estados ── */}

@@ -9,32 +9,14 @@
 
 /* ── Help text section ── */
 
-.helpTextContainer {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-  display: flex;
-}
-
-.helpTextPreview {
-  background: var(--color-surface-secondary);
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-500) var(--spacing-600);
+.helpTextPreviewContent {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-250);
   align-items: flex-start;
-  flex-shrink: 0;
-}
-
-.helpTextBody {
-  padding: var(--spacing-400) var(--spacing-450);
-  display: flex;
-  align-items: center;
-  flex: 1;
 }
 
 .helpTextDesc {
   color: var(--color-fill-secondary);
+  margin: 0;
 }

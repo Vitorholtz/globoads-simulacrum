@@ -13,6 +13,7 @@ import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
 import styles from './SwitchPage.module.css'
 
 const ALL_BEHAVIORS: SwitchBehavior[] = ['unchecked', 'checked']
@@ -127,38 +128,39 @@ export default function SwitchPage() {
 
       {/* ── Help Text ── */}
       <Section icon="info" title="Help Text">
-        <div className={styles.helpTextContainer}>
-          <div className={styles.helpTextPreview}>
-            <Switch
-              checked={helpState[0]}
-              onChange={(v) => setHelpState([v, helpState[1]])}
-              label="Notificações por e-mail"
-              helpText="Você receberá um resumo semanal das campanhas."
-              showHelpText
-            />
-            <Switch
-              checked={helpState[1]}
-              onChange={(v) => setHelpState([helpState[0], v])}
-              label="Relatórios automáticos"
-              helpText="Disponível apenas nos planos Pro e Enterprise."
-              showHelpText
-            />
-            <Switch
-              checked={false}
-              forceState="disabled"
-              label="Integrações externas"
-              helpText="Entre em contato com o suporte para habilitar."
-              showHelpText
-            />
-          </div>
-          <div className={styles.helpTextBody}>
-            <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a
-              configuração. Use-o para explicar pré-requisitos, consequências da ativação ou
-              restrições de plano. Mantenha-o conciso — no máximo duas linhas.
-            </p>
-          </div>
-        </div>
+        <InfoCard
+          preview={
+            <div className={styles.helpTextPreviewContent}>
+              <Switch
+                checked={helpState[0]}
+                onChange={(v) => setHelpState([v, helpState[1]])}
+                label="Notificações por e-mail"
+                helpText="Você receberá um resumo semanal das campanhas."
+                showHelpText
+              />
+              <Switch
+                checked={helpState[1]}
+                onChange={(v) => setHelpState([helpState[0], v])}
+                label="Relatórios automáticos"
+                helpText="Disponível apenas nos planos Pro e Enterprise."
+                showHelpText
+              />
+              <Switch
+                checked={false}
+                forceState="disabled"
+                label="Integrações externas"
+                helpText="Entre em contato com o suporte para habilitar."
+                showHelpText
+              />
+            </div>
+          }
+        >
+          <p className={`type-body-sm ${styles.helpTextDesc}`}>
+            O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a configuração.
+            Use-o para explicar pré-requisitos, consequências da ativação ou restrições de plano.
+            Mantenha-o conciso — no máximo duas linhas.
+          </p>
+        </InfoCard>
       </Section>
 
       {/* ── Diretrizes ── */}

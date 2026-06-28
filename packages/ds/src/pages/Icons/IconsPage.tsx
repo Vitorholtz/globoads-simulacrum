@@ -10,6 +10,8 @@ import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
 import styles from './IconsPage.module.css'
 
 const totalCatalogIcons = ICON_CATEGORIES.reduce((acc, c) => acc + c.icons.length, 0)
@@ -31,95 +33,76 @@ export default function IconsPage() {
 
       {/* ── Biblioteca ── */}
       <Section icon="library_books" title="Biblioteca">
-        <div className={styles.libraryCard}>
-          <div className={styles.libraryInfo}>
-            <div className={styles.libraryTitleRow}>
-              <h3 className={`type-title-md ${styles.libraryName}`}>Material Symbols</h3>
-              <span className={`type-caption-sm ${styles.libraryBadge}`}>Rounded · Regular</span>
-            </div>
-            <p className={`type-body-md ${styles.libraryDescription}`}>
-              Material Symbols é a mais recente geração da biblioteca de ícones do Google,
-              construída sobre uma fonte de eixo variável que expõe os eixos FILL, GRAD, opsz e
-              wght. O estilo Rounded utiliza pontas e junções arredondadas, conferindo ao sistema
-              uma linguagem visual mais amigável e coerente com a identidade Globo Ads.
-            </p>
-            <div className={styles.libraryAttr}>
-              <div className={styles.attrRow}>
-                <span className={`type-caption-sm ${styles.attrLabel}`}>Fonte</span>
-                <span className={`type-body-md ${styles.attrValue}`}>
-                  Google Fonts — Material Symbols Rounded
-                </span>
-              </div>
-              <div className={styles.attrRow}>
-                <span className={`type-caption-sm ${styles.attrLabel}`}>Eixo FILL</span>
-                <span className={`type-body-md ${styles.attrValue}`}>
-                  <code className={`type-caption-sm ${styles.attrCode}`}>FILL 0</code> Outlined
+        <InfoCard
+          previewPosition="right"
+          title="Material Symbols"
+          badge="Rounded · Regular"
+          description="Material Symbols é a mais recente geração da biblioteca de ícones do Google, construída sobre uma fonte de eixo variável que expõe os eixos FILL, GRAD, opsz e wght. O estilo Rounded utiliza pontas e junções arredondadas, conferindo ao sistema uma linguagem visual mais amigável e coerente com a identidade Globo Ads."
+          specs={[
+            { label: 'Fonte', value: 'Google Fonts — Material Symbols Rounded' },
+            {
+              label: 'Eixo FILL',
+              value: (
+                <>
+                  <code className={`type-caption-sm ${styles.inlineCode}`}>FILL 0</code> Outlined
                   &nbsp;·&nbsp;
-                  <code className={`type-caption-sm ${styles.attrCode}`}>FILL 1</code> Filled
-                </span>
-              </div>
-              <div className={styles.attrRow}>
-                <span className={`type-caption-sm ${styles.attrLabel}`}>Peso</span>
-                <span className={`type-body-md ${styles.attrValue}`}>400 — Regular</span>
-              </div>
-              <div className={styles.attrRow}>
-                <span className={`type-caption-sm ${styles.attrLabel}`}>Uso</span>
-                <code className={`type-caption-sm ${styles.attrCodeBlock}`}>
+                  <code className={`type-caption-sm ${styles.inlineCode}`}>FILL 1</code> Filled
+                </>
+              ),
+            },
+            { label: 'Peso', value: '400 — Regular' },
+            {
+              label: 'Uso',
+              value: (
+                <code className={`type-caption-sm ${styles.codeBlock}`}>
                   {'<span class="material-symbols-rounded">icon_name</span>'}
                 </code>
-              </div>
+              ),
+            },
+          ]}
+          preview={
+            <div className={styles.iconPreviewGrid}>
+              {[
+                'home',
+                'search',
+                'notifications',
+                'bookmark',
+                'settings',
+                'edit',
+                'share',
+                'star',
+              ].map((icon) => (
+                <span key={icon} className="material-symbols-rounded icon-xl">
+                  {icon}
+                </span>
+              ))}
             </div>
-          </div>
-          <div className={styles.libraryPreview}>
-            {[
-              'home',
-              'search',
-              'notifications',
-              'bookmark',
-              'settings',
-              'edit',
-              'share',
-              'star',
-            ].map((icon) => (
-              <span key={icon} className="material-symbols-rounded icon-xl">
-                {icon}
-              </span>
-            ))}
-          </div>
-        </div>
+          }
+        />
       </Section>
 
       {/* ── Variantes ── */}
       <Section icon="style" title="Variantes" count={ICON_VARIANT_RULES.length}>
         <CardGrid>
           {ICON_VARIANT_RULES.map((rule) => (
-            <div key={rule.variant} className={styles.variantCard}>
-              <div className={styles.variantIcons}>
-                {VARIANT_DEMO_ICONS.map((icon) => (
-                  <span
-                    key={icon}
-                    className={`material-symbols-rounded icon-xl${rule.variant === 'filled' ? ' icon-filled' : ''}`}
-                    style={{ color: 'var(--color-fill-primary)' }}
-                  >
-                    {icon}
-                  </span>
-                ))}
-              </div>
-              <div className={styles.variantBody}>
-                <div className={styles.variantTitleRow}>
-                  <h3 className={`type-title-sm ${styles.variantName}`}>{rule.title}</h3>
-                  <span className={`type-caption-sm ${styles.variantTagline}`}>{rule.tagline}</span>
-                </div>
-                <ul className={styles.variantWhen}>
-                  {rule.when.map((item) => (
-                    <li key={item} className="type-body-md">
-                      {item}
-                    </li>
+            <DemoCard
+              key={rule.variant}
+              preview={
+                <>
+                  {VARIANT_DEMO_ICONS.map((icon) => (
+                    <span
+                      key={icon}
+                      className={`material-symbols-rounded icon-xl${rule.variant === 'filled' ? ' icon-filled' : ''}`}
+                      style={{ color: 'var(--color-fill-primary)' }}
+                    >
+                      {icon}
+                    </span>
                   ))}
-                </ul>
-                <div className={`type-caption-sm ${styles.variantExamples}`}>{rule.examples}</div>
-              </div>
-            </div>
+                </>
+              }
+              title={rule.title}
+              badge={rule.tagline}
+            />
           ))}
         </CardGrid>
       </Section>

@@ -8,10 +8,12 @@ import {
   SELECT_DEMO_OPTIONS,
   SELECT_DEMO_OPTIONS_LONG,
 } from '../../tokens/select'
-import type { SelectSizeDef } from '../../tokens/select'
+import type { SelectSizeDef, SelectSize } from '../../tokens/select'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
+import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './SelectPage.module.css'
@@ -72,25 +74,21 @@ export default function SelectPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={3}>
-        <div className={styles.sizeScaleContainer}>
-          {SELECT_SIZES.map((size) => (
-            <div key={size.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <Select options={SELECT_DEMO_OPTIONS} size={size.id} />
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{size.label}</span>
-                  {size.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{size.description}</span>
-              </div>
-              <span className={`type-caption-sm ${styles.sizeSpecs}`}>{sizeSpecs(size)}</span>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={280}
+          rows={SELECT_SIZES.map(
+            (size): ShowcaseRow => ({
+              id: size.id,
+              label: size.label,
+              badge: size.recommended ? 'Recomendado' : undefined,
+              description: size.description,
+              specs: sizeSpecs(size),
+            })
+          )}
+          renderPreview={(row) => (
+            <Select options={SELECT_DEMO_OPTIONS} size={row.id as SelectSize} />
+          )}
+        />
       </Section>
 
       {/* ── Estados ── */}

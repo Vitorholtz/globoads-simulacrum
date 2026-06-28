@@ -1,17 +1,12 @@
 import StaticCard from '../../components/StaticCard/StaticCard'
 import { CARD_STYLES, STATIC_CARD_GUIDELINES } from '../../tokens/cards'
-import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Badge from '../../components/Badge/Badge'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import styles from './StaticCardPage.module.css'
-
-const STYLE_PREVIEW_BG: Record<CardStyle, string> = {
-  'on-primary': '#ffffff',
-  'on-secondary': '#f7f7f7',
-}
 
 const CHART_BARS = [38, 52, 45, 61, 70, 58, 76, 82, 71, 88, 84, 100]
 
@@ -65,24 +60,16 @@ export default function StaticCardPage() {
       <Section icon="style" title="Estilos" count={2}>
         <CardGrid>
           {CARD_STYLES.map((s) => (
-            <div key={s.id} className={styles.styleCard}>
-              <div className={styles.stylePreview} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
+            <DemoCard
+              key={s.id}
+              preview={
                 <StaticCard style={s.id} className={styles.demoCard}>
                   <CampaignCard />
                 </StaticCard>
-              </div>
-              <div className={styles.styleBody}>
-                <h3 className={`type-title-sm ${styles.styleName}`}>{s.name}</h3>
-                <p className={`type-body-md ${styles.styleDesc}`}>{s.description}</p>
-                <ul className={styles.styleWhen}>
-                  {s.when.map((item) => (
-                    <li key={item} className="type-body-md">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              }
+              title={s.name}
+              description={s.description}
+            />
           ))}
         </CardGrid>
       </Section>

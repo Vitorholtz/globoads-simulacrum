@@ -8,10 +8,14 @@ import {
   COLLAPSE_DEMO_ITEMS,
   COLLAPSE_PREVIEW_TEXT,
 } from '../../tokens/collapse'
+import type { CollapseSize } from '../../tokens/collapse'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
+import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import styles from './CollapsePage.module.css'
 
 export default function CollapsePage() {
@@ -64,64 +68,43 @@ export default function CollapsePage() {
 
       {/* ── Escala de tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={COLLAPSE_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {COLLAPSE_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <Collapse size={s.id} lines={2}>
-                  <p className={`type-body-sm ${styles.sizePreviewText}`}>
-                    {COLLAPSE_PREVIEW_TEXT}
-                  </p>
-                </Collapse>
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
+        <ShowcaseList
+          previewWidth={280}
+          rows={COLLAPSE_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: (
+                <>
                   font {s.fontSize}px · icon {s.iconSize}px
-                </span>
-                <br />
-                <span>
+                  <br />
                   line-height {s.lineHeight}px · gap {s.gap}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => (
+            <Collapse size={row.id as CollapseSize} lines={2}>
+              <p className={`type-body-sm ${styles.sizePreviewText}`}>{COLLAPSE_PREVIEW_TEXT}</p>
+            </Collapse>
+          )}
+        />
       </Section>
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={COLLAPSE_STATES.length}>
-        <div className={styles.stateMatrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            <div className={`type-caption-xs ${styles.matrixCellLabel}`}>Ver mais</div>
-            <div className={`type-caption-xs ${styles.matrixCellLabel}`}>Ver menos</div>
-          </div>
-
-          {COLLAPSE_MATRIX_STATES.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                <div className={styles.matrixCell}>
-                  <Collapse size="md" open={false} forceState={state.force} />
-                </div>
-                <div className={styles.matrixCell}>
-                  <Collapse size="md" open={true} forceState={state.force} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={[
+            { id: 'collapsed', label: 'Ver mais' },
+            { id: 'expanded', label: 'Ver menos' },
+          ]}
+          rows={[...COLLAPSE_MATRIX_STATES]}
+          renderCell={(state, col) => (
+            <Collapse size="md" open={col.id === 'expanded'} forceState={state.force} />
+          )}
+        />
       </Section>
 
       {/* ── Demo Interativo ── */}

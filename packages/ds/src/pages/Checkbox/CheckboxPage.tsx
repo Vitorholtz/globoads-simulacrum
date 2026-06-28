@@ -13,6 +13,7 @@ import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
 import styles from './CheckboxPage.module.css'
 
 const ALL_BEHAVIORS: CheckboxBehavior[] = ['unchecked', 'partial', 'checked']
@@ -144,44 +145,45 @@ export default function CheckboxPage() {
 
       {/* ── Help Text ── */}
       <Section icon="info" title="Help Text">
-        <div className={styles.helpTextContainer}>
-          <div className={styles.helpTextPreview}>
-            <Checkbox
-              checked={helpState[0]}
-              onChange={(v) => setHelpState([v, helpState[1]])}
-              label="Aceito os termos e condições"
-              helpText="Leia o documento completo antes de aceitar."
-              showHelpText
-            />
-            <Checkbox
-              checked={helpState[1]}
-              onChange={(v) => setHelpState([helpState[0], v])}
-              label="Receber notificações por e-mail"
-              helpText="Você pode cancelar a inscrição a qualquer momento."
-              showHelpText
-            />
-            <Checkbox
-              checked={false}
-              forceState="disabled"
-              label="Indisponível no momento"
-              helpText="Esta opção não está disponível neste plano."
-              showHelpText
-            />
-          </div>
-          <div className={styles.helpTextBody}>
-            <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a opção. Use-o
-              para explicar consequências, requisitos ou restrições da seleção. Mantenha-o conciso —
-              no máximo duas linhas.
-            </p>
-          </div>
-        </div>
+        <InfoCard
+          preview={
+            <div className={styles.helpTextPreviewContent}>
+              <Checkbox
+                checked={helpState[0]}
+                onChange={(v) => setHelpState([v, helpState[1]])}
+                label="Aceito os termos e condições"
+                helpText="Leia o documento completo antes de aceitar."
+                showHelpText
+              />
+              <Checkbox
+                checked={helpState[1]}
+                onChange={(v) => setHelpState([helpState[0], v])}
+                label="Receber notificações por e-mail"
+                helpText="Você pode cancelar a inscrição a qualquer momento."
+                showHelpText
+              />
+              <Checkbox
+                checked={false}
+                forceState="disabled"
+                label="Indisponível no momento"
+                helpText="Esta opção não está disponível neste plano."
+                showHelpText
+              />
+            </div>
+          }
+        >
+          <p className={`type-body-sm ${styles.helpTextDesc}`}>
+            O Help Text aparece abaixo do rótulo e fornece contexto adicional sobre a opção. Use-o
+            para explicar consequências, requisitos ou restrições da seleção. Mantenha-o conciso --
+            no máximo duas linhas.
+          </p>
+        </InfoCard>
       </Section>
 
       {/* ── Sem Rótulo ── */}
       <Section icon="check_box_outline_blank" title="Sem Rótulo">
-        <div className={styles.helpTextContainer}>
-          <div className={styles.helpTextPreview}>
+        <InfoCard
+          preview={
             <div className={styles.noLabelRow}>
               <Checkbox
                 checked={noLabelState[0]}
@@ -195,15 +197,14 @@ export default function CheckboxPage() {
                 aria-label="Selecionar terceiro item"
               />
             </div>
-          </div>
-          <div className={styles.helpTextBody}>
-            <p className={`type-body-sm ${styles.helpTextDesc}`}>
-              Omita o <code>label</code> quando o contexto visual já identifica o controle — por
-              exemplo, colunas de seleção em tabelas. Sempre forneça <code>aria-label</code> para
-              garantir acessibilidade a leitores de tela.
-            </p>
-          </div>
-        </div>
+          }
+        >
+          <p className={`type-body-sm ${styles.helpTextDesc}`}>
+            Omita o <code>label</code> quando o contexto visual já identifica o controle — por
+            exemplo, colunas de seleção em tabelas. Sempre forneça <code>aria-label</code> para
+            garantir acessibilidade a leitores de tela.
+          </p>
+        </InfoCard>
       </Section>
 
       {/* ── Diretrizes ── */}

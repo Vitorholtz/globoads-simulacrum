@@ -15,7 +15,8 @@ import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
-import styles from './ButtonPage.module.css'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
+import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 
 type MatrixCol = {
   id: string
@@ -164,74 +165,63 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
       >
         <CardGrid>
           {VARIANTS.map((v) => (
-            <div key={v.id} className={styles.variantCard}>
-              <div className={styles.variantPreview}>
-                <Button variant={v.id} size="md" danger={isDanger}>
-                  Button
-                </Button>
-                <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger}>
-                  Button
-                </Button>
-                <Button variant={v.id} size="md" iconRight="arrow_forward" danger={isDanger}>
-                  Button
-                </Button>
-                <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger} />
-              </div>
-              <div className={styles.variantBody}>
-                <div className={styles.variantTitleRow}>
-                  <h3 className={`type-title-sm ${styles.variantName}`}>{v.name}</h3>
-                  <span className={`type-caption-sm ${styles.variantTagline}`}>{v.tagline}</span>
-                </div>
-                <p className={`type-body-md ${styles.variantDesc}`}>{v.description}</p>
-                <ul className={styles.variantWhen}>
-                  {v.when.map((item) => (
-                    <li key={item} className="type-body-md">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <DemoCard
+              key={v.id}
+              preview={
+                <>
+                  <Button variant={v.id} size="md" danger={isDanger}>
+                    Button
+                  </Button>
+                  <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger}>
+                    Button
+                  </Button>
+                  <Button variant={v.id} size="md" iconRight="arrow_forward" danger={isDanger}>
+                    Button
+                  </Button>
+                  <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger} />
+                </>
+              }
+              title={v.name}
+              badge={v.tagline}
+              description={v.description}
+            />
           ))}
         </CardGrid>
       </Section>
 
       {/* ── Escala de Tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={BUTTON_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {BUTTON_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <Button
-                  variant="primary"
-                  size={s.id as ButtonSize}
-                  iconLeft={matrixIcon}
-                  danger={isDanger}
-                >
-                  Button
-                </Button>
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-caption-md ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-md ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
-                  font {s.fontSize}px · icon {s.iconSize}px
-                </span>
-                <br />
-                <span>
-                  py {s.paddingY}px · px {s.paddingX}px · gap {s.gap}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          rows={BUTTON_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: (
+                <>
+                  <span>
+                    font {s.fontSize}px · icon {s.iconSize}px
+                  </span>
+                  <br />
+                  <span>
+                    py {s.paddingY}px · px {s.paddingX}px · gap {s.gap}px
+                  </span>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => (
+            <Button
+              variant="primary"
+              size={row.id as ButtonSize}
+              iconLeft={matrixIcon}
+              danger={isDanger}
+            >
+              Button
+            </Button>
+          )}
+        />
       </Section>
 
       {/* ── Estados ── */}

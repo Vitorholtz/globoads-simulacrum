@@ -1,64 +1,16 @@
 ﻿/* â”€â”€ Styles grid â”€â”€ */
 
-.styleCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.stylePreview {
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  padding: var(--spacing-600) var(--spacing-400);
+.stylePreviewInner {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-400);
+  margin: calc(var(--spacing-100) * -1);
 }
 
 .demoCard {
   width: 306px;
-}
-
-.styleBody {
-  padding: var(--spacing-300) var(--spacing-350) var(--spacing-350);
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.styleName {
-  color: var(--color-fill-primary);
-  margin-bottom: var(--spacing-125);
-}
-
-.styleDesc {
-  color: var(--color-fill-secondary);
-  margin-bottom: var(--spacing-200);
-}
-
-.styleWhen {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-  padding-top: var(--spacing-200);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-  flex: 1;
-}
-
-.styleWhen li {
-  color: var(--color-fill-secondary);
-  padding-left: var(--spacing-200);
-  position: relative;
-}
-
-.styleWhen li::before {
-  content: '\2022';
-  position: absolute;
-  left: 0;
-  color: var(--color-fill-tertiary);
 }
 
 /* â”€â”€ Diaria card demo â”€â”€ */

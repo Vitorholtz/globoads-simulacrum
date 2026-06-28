@@ -8,7 +8,9 @@ import {
   DATE_TIME_PICKER_MATRIX_COLS,
   DATE_TIME_PICKER_GUIDELINES,
   type DateTimeValue,
+  type DateTimePickerSize,
 } from '../../tokens/dateTimePicker'
+import ShowcaseList, { type ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
@@ -85,33 +87,35 @@ export default function DateTimePickerPage() {
 
       {/* ── Escala de tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={DATE_TIME_PICKER_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {DATE_TIME_PICKER_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <DateTimePicker size={s.id} label="Início" defaultValue={EXAMPLE_VALUE} />
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
-                  font {s.fontSize}px · icon {s.iconSize}px
-                </span>
-                <br />
-                <span>
-                  py {s.paddingY}px · px {s.paddingX}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={280}
+          rows={DATE_TIME_PICKER_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: (
+                <>
+                  <span>
+                    font {s.fontSize}px · icon {s.iconSize}px
+                  </span>
+                  <br />
+                  <span>
+                    py {s.paddingY}px · px {s.paddingX}px
+                  </span>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => (
+            <DateTimePicker
+              size={row.id as DateTimePickerSize}
+              label="Início"
+              defaultValue={EXAMPLE_VALUE}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Estados ── */}

@@ -7,10 +7,13 @@ import {
   TEXT_FIELD_MATRIX_COLS,
   TEXT_FIELD_MASKS,
 } from '../../tokens/textField'
+import type { TextFieldSize } from '../../tokens/textField'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
+import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './TextFieldPage.module.css'
@@ -67,33 +70,34 @@ export default function TextFieldPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={TEXT_FIELD_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {TEXT_FIELD_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <TextField size={s.id} label="Label" placeholder="Text here" leadingIcon="search" />
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
+        <ShowcaseList
+          previewWidth={280}
+          rows={TEXT_FIELD_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: (
+                <>
                   font {s.fontSize}px · icon {s.iconSize}px
-                </span>
-                <br />
-                <span>
+                  <br />
                   py {s.paddingY}px · px {s.paddingX}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => {
+            return (
+              <TextField
+                size={row.id as TextFieldSize}
+                label="Label"
+                placeholder="Text here"
+                leadingIcon="search"
+              />
+            )
+          }}
+        />
       </Section>
 
       {/* ── Estados ── */}

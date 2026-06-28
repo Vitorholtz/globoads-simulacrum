@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import Button from '../../components/Button/Button'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
-import DurationCard from '../../components/docs/DurationCard/DurationCard'
-import EasingCard from '../../components/docs/EasingCard/EasingCard'
+import TokenCard from '../../components/docs/TokenCard/TokenCard'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
 import { MOTION_DURATION_TOKENS, MOTION_EASING_TOKENS } from '../../tokens/motion'
@@ -97,7 +96,20 @@ export default function TransitionsPage() {
         </p>
         <CardGrid>
           {MOTION_DURATION_TOKENS.map((token) => (
-            <DurationCard key={token.variable} token={token} />
+            <TokenCard
+              key={token.variable}
+              preview={
+                <div className={styles.track}>
+                  <div className={styles.block} />
+                </div>
+              }
+              name={token.name}
+              variable={token.variable}
+              value={`${token.valueMs}ms`}
+              description={token.description}
+              style={{ '--demo-duration': `var(${token.variable})` } as React.CSSProperties}
+              className={styles.durationCard}
+            />
           ))}
         </CardGrid>
       </Section>
@@ -108,7 +120,20 @@ export default function TransitionsPage() {
         </p>
         <CardGrid>
           {MOTION_EASING_TOKENS.map((token) => (
-            <EasingCard key={token.variable} token={token} />
+            <TokenCard
+              key={token.variable}
+              preview={
+                <div className={styles.track}>
+                  <div className={styles.block} />
+                </div>
+              }
+              name={token.name}
+              variable={token.variable}
+              value={token.value}
+              description={token.description}
+              style={{ '--demo-easing': `var(${token.variable})` } as React.CSSProperties}
+              className={styles.easingCard}
+            />
           ))}
         </CardGrid>
       </Section>

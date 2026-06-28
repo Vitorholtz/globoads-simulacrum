@@ -8,6 +8,8 @@ import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
 import styles from './BadgeCounterPage.module.css'
 
 const TAB_CONTEXT_ITEMS: TabItem[] = [
@@ -34,67 +36,36 @@ export default function BadgeCounterPage() {
 
       {/* ── Exemplos de Valor ── */}
       <Section icon="badge" title="Exemplos de Valor" count={BADGE_COUNTER_EXAMPLES.length}>
-        <div className={styles.examplesContainer}>
-          {BADGE_COUNTER_EXAMPLES.map((ex) => (
-            <div key={ex.value} className={styles.exampleRow}>
-              <div className={styles.examplePreview}>
-                <BadgeCounter value={ex.value} />
-              </div>
-              <div className={styles.exampleMeta}>
-                <div className={styles.exampleValueRow}>
-                  <span className={`type-body-sm ${styles.exampleLabel}`}>{ex.label}</span>
-                  <span className={`type-caption-sm ${styles.exampleValue}`}>"{ex.value}"</span>
-                </div>
-                <span className={`type-body-sm ${styles.exampleDesc}`}>{ex.description}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={120}
+          rows={BADGE_COUNTER_EXAMPLES.map((ex) => ({
+            id: ex.value,
+            label: ex.label,
+            badge: `"${ex.value}"`,
+            description: ex.description,
+          }))}
+          renderPreview={(row) => <BadgeCounter value={row.id} />}
+        />
       </Section>
 
       {/* ── Anatomia ── */}
       <Section icon="info" title="Anatomia">
-        <div className={styles.anatomyCard}>
-          <div className={styles.anatomyPreview}>
+        <InfoCard
+          preview={
             <div className={styles.anatomyDiagram}>
               <BadgeCounter value="12" />
             </div>
-          </div>
-          <div className={styles.anatomySpecs}>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Altura</span>
-              <span className={`type-body-sm ${styles.specVal}`}>16px (fixo)</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Largura mínima</span>
-              <span className={`type-body-sm ${styles.specVal}`}>16px</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Padding horizontal</span>
-              <span className={`type-body-sm ${styles.specVal}`}>4px</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Border-radius</span>
-              <span className={`type-body-sm ${styles.specVal}`}>9999px (pílula)</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Tipografia</span>
-              <span className={`type-body-sm ${styles.specVal}`}>12px · weight 500 · lh 16px</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Background</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                --color-fill-critical · #B70634
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Cor do texto</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                --color-fill-inverse · #FFFFFF
-              </span>
-            </div>
-          </div>
-        </div>
+          }
+          specs={[
+            { label: 'Altura', value: '16px (fixo)' },
+            { label: 'Largura mínima', value: '16px' },
+            { label: 'Padding horizontal', value: '4px' },
+            { label: 'Border-radius', value: '9999px (pílula)' },
+            { label: 'Tipografia', value: '12px · weight 500 · lh 16px' },
+            { label: 'Background', value: '--color-fill-critical · #B70634' },
+            { label: 'Cor do texto', value: '--color-fill-inverse · #FFFFFF' },
+          ]}
+        />
       </Section>
 
       {/* ── Contextos de Uso ── */}

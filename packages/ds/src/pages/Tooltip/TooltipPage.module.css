@@ -1,4 +1,4 @@
-﻿/* ── Component demo ── */
+/* ── Component demo ── */
 
 .componentDemo {
   background: var(--color-surface-secondary);
@@ -52,82 +52,6 @@
 .triggerIcon {
   font-size: var(--font-size-125);
   line-height: var(--line-height-icon);
-  color: var(--color-fill-secondary);
-}
-
-.positionCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  display: flex;
-  flex-direction: column;
-}
-
-.positionPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Padding per position to give the tooltip room to breathe */
-.padUp {
-  padding: 60px var(--spacing-500) var(--spacing-300);
-}
-.padBottom {
-  padding: var(--spacing-300) var(--spacing-500) 60px;
-}
-.padRight {
-  padding: var(--spacing-500) 120px var(--spacing-500) var(--spacing-500);
-}
-.padLeft {
-  padding: var(--spacing-500) var(--spacing-500) var(--spacing-500) 120px;
-}
-
-.alignCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  display: flex;
-  flex-direction: column;
-}
-
-.alignPreview {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-  display: flex;
-  justify-content: center;
-}
-
-/* Shift trigger for start/end so the arrow anchoring is visible */
-.alignCard:first-child .alignPreview {
-  justify-content: flex-start;
-  padding-left: var(--spacing-500);
-}
-.alignCard:last-child .alignPreview {
-  justify-content: flex-end;
-  padding-right: var(--spacing-500);
-}
-
-/* ── Card body (shared) ── */
-
-.cardBody {
-  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-075);
-  flex: 1;
-}
-
-.cardLabel {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-fill-primary);
-}
-
-.cardDesc {
   color: var(--color-fill-secondary);
 }
 

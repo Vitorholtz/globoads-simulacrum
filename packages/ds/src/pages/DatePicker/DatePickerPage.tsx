@@ -4,6 +4,7 @@ import DateRangePicker, { type DateRange } from '../../components/DateRangePicke
 import Calendar from '../../components/Calendar/Calendar'
 import MultiDateCalendar from '../../components/MultiDateCalendar/MultiDateCalendar'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import ShowcaseList, { type ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import {
   DATE_PICKER_SIZES,
   DATE_PICKER_STATES,
@@ -12,6 +13,7 @@ import {
   CALENDAR_SIZES,
   DATE_PICKER_GUIDELINES,
 } from '../../tokens/datePicker'
+import type { DatePickerSize, CalendarSize } from '../../tokens/datePicker'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
@@ -80,33 +82,31 @@ export default function DatePickerPage() {
 
       {/* ── Escala de tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={DATE_PICKER_SIZES.length}>
-        <div className={styles.sizeScaleContainer}>
-          {DATE_PICKER_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizeRow}>
-              <div className={styles.sizePreview}>
-                <DatePicker size={s.id} label="Data" defaultValue={EXAMPLE_DATE} />
-              </div>
-              <div className={styles.sizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-              </div>
-              <div className={`type-caption-sm ${styles.sizeSpecs}`}>
-                <span>
-                  font {s.fontSize}px · icon {s.iconSize}px
-                </span>
-                <br />
-                <span>
-                  py {s.paddingY}px · px {s.paddingX}px
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={280}
+          rows={DATE_PICKER_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: (
+                <>
+                  <span>
+                    font {s.fontSize}px · icon {s.iconSize}px
+                  </span>
+                  <br />
+                  <span>
+                    py {s.paddingY}px · px {s.paddingX}px
+                  </span>
+                </>
+              ),
+            })
+          )}
+          renderPreview={(row) => (
+            <DatePicker size={row.id as DatePickerSize} label="Data" defaultValue={EXAMPLE_DATE} />
+          )}
+        />
       </Section>
 
       {/* ── Estados ── */}
@@ -284,30 +284,19 @@ export default function DatePickerPage() {
           CALENDÁRIO
       ════════════════════════════════ */}
       <Section icon="calendar_month" title="Calendário" count={2}>
-        <div className={styles.calendarSizeContainer}>
-          {CALENDAR_SIZES.map((s) => (
-            <div key={s.id} className={styles.calendarSizeRow}>
-              <div className={styles.calendarSizePreview}>
-                <Calendar size={s.id} />
-              </div>
-              <div className={styles.calendarSizeMeta}>
-                <div className={styles.sizeValueRow}>
-                  <span className={`type-body-sm ${styles.sizeLabel}`}>{s.label}</span>
-                  {s.recommended && (
-                    <span className={`type-caption-sm ${styles.sizeRecommended}`}>Recomendado</span>
-                  )}
-                </div>
-                <span className={`type-body-sm ${styles.sizeDescription}`}>{s.description}</span>
-                <div
-                  className={`type-caption-sm ${styles.sizeSpecs}`}
-                  style={{ marginLeft: 0, paddingRight: 0, marginTop: 8 }}
-                >
-                  <span>width {s.width}px · células 40px</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={420}
+          rows={CALENDAR_SIZES.map(
+            (s): ShowcaseRow => ({
+              id: s.id,
+              label: s.label,
+              badge: s.recommended ? 'Recomendado' : undefined,
+              description: s.description,
+              specs: <span>width {s.width}px · células 40px</span>,
+            })
+          )}
+          renderPreview={(row) => <Calendar size={row.id as CalendarSize} />}
+        />
       </Section>
 
       {/* ── Calendário Interativo ── */}

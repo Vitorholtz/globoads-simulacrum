@@ -2,174 +2,28 @@
 
 /* â”€â”€ Library card â”€â”€ */
 
-.libraryCard {
-  display: flex;
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-}
-
-.libraryInfo {
-  flex: 1 1 50%;
-  padding: var(--spacing-600) var(--spacing-550) var(--spacing-350);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-350);
-}
-
-.libraryTitleRow {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-150);
-}
-
-.libraryName {
-  font-weight: var(--font-weight-bold);
-  color: var(--color-fill-primary);
-}
-
-.libraryBadge {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: 3px var(--spacing-125);
-  border-radius: var(--border-radius-full);
-}
-
-.libraryDescription {
-  color: var(--color-fill-secondary);
-  max-width: 520px;
-}
-
-.libraryAttr {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.attrRow {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-250);
-  padding: var(--spacing-250) 0;
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.attrRow:last-child {
-  border-bottom: none;
-}
-
-.attrLabel {
-  text-transform: uppercase;
-  color: var(--color-fill-tertiary);
-  min-width: 60px;
-  flex-shrink: 0;
-}
-
-.attrValue {
-  color: var(--color-fill-secondary);
-}
-
-.attrCode {
-  color: var(--color-fill-secondary);
-  font-family: var(--font-family-code);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 7px;
-  border-radius: var(--border-radius-sm);
-  vertical-align: middle;
-}
-
-.attrCodeBlock {
-  color: var(--color-fill-secondary);
-  font-family: var(--font-family-code);
-  background: var(--color-surface-tertiary);
-  padding: 5px 11px;
-  border-radius: var(--border-radius-sm);
-}
-
-.libraryPreview {
-  flex: 1 1 50%;
-  background: var(--color-surface-secondary);
-  border-left: var(--border-width-sm) solid var(--color-border-tertiary);
+.iconPreviewGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  align-content: center;
-  justify-items: center;
-  padding: var(--spacing-600) var(--spacing-500);
   gap: var(--spacing-400) var(--spacing-300);
   color: var(--color-fill-secondary);
 }
 
-/* â”€â”€ Variants â”€â”€ */
-
-.variantCard {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-}
-
-.variantIcons {
-  background: var(--color-surface-secondary);
-  padding: var(--spacing-500) var(--spacing-550);
-  display: flex;
-  gap: var(--spacing-350);
-  align-items: center;
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.variantBody {
-  padding: var(--spacing-350) var(--spacing-550);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-250);
-}
-
-.variantTitleRow {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-125);
-  flex-wrap: wrap;
-}
-
-.variantName {
-  color: var(--color-fill-primary);
-}
-
-.variantTagline {
-  color: var(--color-fill-tertiary);
+.codeBlock {
+  font-family: var(--font-family-code);
   background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 9px;
-  border-radius: var(--border-radius-full);
-}
-
-.variantWhen li {
+  padding: 5px 11px;
+  border-radius: var(--border-radius-sm);
   color: var(--color-fill-secondary);
-  padding-left: 16px;
-  position: relative;
 }
 
-.variantWhen li::before {
-  content: '\2022';
-  position: absolute;
-  left: 0;
-  color: var(--color-fill-tertiary);
-}
-
-.variantExamples {
-  color: var(--color-fill-tertiary);
-  text-transform: uppercase;
-  padding-top: var(--spacing-300);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.variantWhen {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-150);
-  margin: 0;
+.inlineCode {
+  font-family: var(--font-family-code);
+  background: var(--color-surface-tertiary);
+  padding: var(--spacing-025) 7px;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-fill-secondary);
+  vertical-align: middle;
 }
 
 /* â”€â”€ Token Usage Card â”€â”€ */
@@ -199,14 +53,6 @@
 
 .tokenUsageText {
   color: var(--color-fill-secondary);
-}
-
-.inlineCode {
-  font-family: var(--font-family-code);
-  background: var(--color-surface-tertiary);
-  padding: 1px 5px;
-  border-radius: var(--border-radius-sm);
-  color: var(--color-fill-primary);
 }
 
 .tokenUsageSnippets {

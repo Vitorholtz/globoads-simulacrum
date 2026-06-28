@@ -5,7 +5,42 @@
   margin-bottom: var(--spacing-200);
 }
 
-/* ── Token grid (duração + easing) ── */
+/* ── Motion token preview ── */
+
+.track {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  background: var(--color-surface-tertiary);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-075);
+  margin: var(--spacing-200);
+  width: calc(100% - var(--spacing-200) * 2);
+}
+
+.block {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--border-radius-sm);
+  background: var(--color-fill-accent);
+  flex-shrink: 0;
+  transition: transform var(--demo-duration, var(--motion-duration-base))
+    var(--motion-easing-default);
+}
+
+.easingCard .block {
+  transition: transform var(--motion-duration-slow) var(--demo-easing, var(--motion-easing-default));
+}
+
+.durationCard:hover .block,
+.easingCard:hover .block {
+  transform: translateX(calc(100% + var(--spacing-200)));
+}
+
+/* ── Entrance/exit demos ── */
 
 .entranceCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);

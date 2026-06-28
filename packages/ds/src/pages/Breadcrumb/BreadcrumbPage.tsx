@@ -4,7 +4,8 @@ import { BREADCRUMB_DEPTHS, BREADCRUMB_GUIDELINES } from '../../tokens/breadcrum
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
-import styles from './BreadcrumbPage.module.css'
+import InfoCard from '../../components/docs/InfoCard/InfoCard'
+import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
 
 function depthToItems(labels: string[]): BreadcrumbItem[] {
   return labels.map((label, index) => ({
@@ -28,64 +29,37 @@ export default function BreadcrumbPage() {
 
       {/* ── Profundidades ── */}
       <Section icon="route" title="Profundidades" count={BREADCRUMB_DEPTHS.length}>
-        <div className={styles.depthsContainer}>
-          {BREADCRUMB_DEPTHS.map((depth) => (
-            <div key={depth.label} className={styles.depthRow}>
-              <div className={styles.depthPreview}>
-                <Breadcrumb items={depthToItems(depth.items)} />
-              </div>
-              <div className={styles.depthMeta}>
-                <span className={`type-body-sm ${styles.depthLabel}`}>{depth.label}</span>
-                <span className={`type-caption-sm ${styles.depthCount}`}>{depth.levels} itens</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ShowcaseList
+          previewWidth={800}
+          rows={BREADCRUMB_DEPTHS.map((d) => ({
+            id: d.label,
+            label: d.label,
+            description: `${d.levels} itens`,
+          }))}
+          renderPreview={(row) => {
+            const depth = BREADCRUMB_DEPTHS.find((d) => d.label === row.id)!
+            return <Breadcrumb items={depthToItems(depth.items)} />
+          }}
+        />
       </Section>
 
       {/* ── Anatomia ── */}
       <Section icon="info" title="Anatomia">
-        <div className={styles.anatomyCard}>
-          <div className={styles.anatomyPreview}>
+        <InfoCard
+          preview={
             <Breadcrumb
               items={depthToItems(['Início', 'Campanhas', 'Relatórios', 'Página atual'])}
             />
-          </div>
-          <div className={styles.anatomySpecs}>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Links anteriores</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                14px · weight 500 · cor accent
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Página atual</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                16px · weight 600 · cor primária
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Separador</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                chevron_right · 16px · cor secundária
-              </span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Gap entre itens</span>
-              <span className={`type-body-sm ${styles.specVal}`}>8px</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Hover nos links</span>
-              <span className={`type-body-sm ${styles.specVal}`}>text-decoration: underline</span>
-            </div>
-            <div className={styles.specRow}>
-              <span className={`type-body-sm ${styles.specKey}`}>Página atual</span>
-              <span className={`type-body-sm ${styles.specVal}`}>
-                não interativa · aria-current="page"
-              </span>
-            </div>
-          </div>
-        </div>
+          }
+          specs={[
+            { label: 'Links anteriores', value: '14px · weight 500 · cor accent' },
+            { label: 'Página atual', value: '16px · weight 600 · cor primária' },
+            { label: 'Separador', value: 'chevron_right · 16px · cor secundária' },
+            { label: 'Gap entre itens', value: '8px' },
+            { label: 'Hover nos links', value: 'text-decoration: underline' },
+            { label: 'Página atual', value: 'não interativa · aria-current="page"' },
+          ]}
+        />
       </Section>
 
       {/* ── Diretrizes ── */}

@@ -1,8 +1,8 @@
 import Tooltip from '../../components/Tooltip/Tooltip'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import { TOOLTIP_POSITIONS, TOOLTIP_ALIGNMENTS, TOOLTIP_GUIDELINES } from '../../tokens/tooltip'
-import type { TooltipPosition } from '../../tokens/tooltip'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './TooltipPage.module.css'
@@ -15,13 +15,6 @@ function TriggerIcon() {
       </span>
     </button>
   )
-}
-
-const POSITION_PADDING: Record<TooltipPosition, string> = {
-  up: styles.padUp,
-  bottom: styles.padBottom,
-  right: styles.padRight,
-  left: styles.padLeft,
 }
 
 export default function TooltipPage() {
@@ -62,17 +55,17 @@ export default function TooltipPage() {
       <Section icon="open_with" title="Posições" count={TOOLTIP_POSITIONS.length}>
         <CardGrid>
           {TOOLTIP_POSITIONS.map((pos) => (
-            <div key={pos.id} className={styles.positionCard}>
-              <div className={[styles.positionPreview, POSITION_PADDING[pos.id]].join(' ')}>
+            <DemoCard
+              key={pos.id}
+              preview={
                 <Tooltip text="Tooltip" position={pos.id} align="middle" forceVisible>
                   <TriggerIcon />
                 </Tooltip>
-              </div>
-              <div className={styles.cardBody}>
-                <span className={`type-body-sm ${styles.cardLabel}`}>{pos.label}</span>
-                <span className={`type-body-sm ${styles.cardDesc}`}>{pos.description}</span>
-              </div>
-            </div>
+              }
+              title={pos.label}
+              description={pos.description}
+              previewPad="lg"
+            />
           ))}
         </CardGrid>
       </Section>
@@ -81,17 +74,17 @@ export default function TooltipPage() {
       <Section icon="align_horizontal_left" title="Alinhamentos" count={TOOLTIP_ALIGNMENTS.length}>
         <CardGrid>
           {TOOLTIP_ALIGNMENTS.map((align) => (
-            <div key={align.id} className={styles.alignCard}>
-              <div className={[styles.alignPreview, styles.padUp].join(' ')}>
+            <DemoCard
+              key={align.id}
+              preview={
                 <Tooltip text="Tooltip" position="up" align={align.id} forceVisible>
                   <TriggerIcon />
                 </Tooltip>
-              </div>
-              <div className={styles.cardBody}>
-                <span className={`type-body-sm ${styles.cardLabel}`}>{align.label}</span>
-                <span className={`type-body-sm ${styles.cardDesc}`}>{align.description}</span>
-              </div>
-            </div>
+              }
+              title={align.label}
+              description={align.description}
+              previewPad="lg"
+            />
           ))}
         </CardGrid>
       </Section>
