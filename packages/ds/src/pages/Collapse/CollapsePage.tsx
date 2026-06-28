@@ -30,7 +30,7 @@ export default function CollapsePage() {
 
       {/* ── Estilos ── */}
       <Section icon="unfold_more" title="Estilos de Conteúdo" count={2}>
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <div className={styles.previewBox}>

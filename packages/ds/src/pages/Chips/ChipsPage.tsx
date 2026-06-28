@@ -62,7 +62,7 @@ export default function ChipsPage() {
         description="Os chips de sugestão ajudam a restringir a intenção do usuário ao apresentar sugestões geradas dinamicamente, como possíveis respostas ou filtros de pesquisa."
       >
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
-        <CardGrid cols={2}>
+        <CardGrid>
           {CHIP_BEHAVIORS.map((b) => (
             <DemoCard
               key={b.id}
@@ -97,7 +97,7 @@ export default function ChipsPage() {
         description="Os chips de filtro são usados para filtrar um conteúdo ou definir escolhas. São uma boa alternativa aos botões para segmentação ou checkbox ao visualizar uma lista ou resultados de pesquisa."
       >
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Comportamentos</h4>
-        <CardGrid cols={2}>
+        <CardGrid>
           {CHIP_FILTER_BEHAVIORS.map((b) => (
             <DemoCard
               key={b.id}
@@ -132,7 +132,7 @@ export default function ChipsPage() {
         description="Os chips de entrada representam informações discretas inseridas por um usuário, como contatos ou opções de filtro em um campo de pesquisa."
       >
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Estilos</h4>
-        <CardGrid cols={3}>
+        <CardGrid>
           {CHIP_INPUT_STYLES.map((s) => (
             <DemoCard
               key={s.id}

@@ -8,10 +8,7 @@
 
 /* ── Modos ── */
 
-.modeGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-400);
+.modeGridAlign {
   align-items: start;
 }
 

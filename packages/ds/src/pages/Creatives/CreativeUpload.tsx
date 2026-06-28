@@ -38,17 +38,16 @@ export default function CreativeUpload({ onCreativeAdded }: CreativeUploadProps)
   }
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (file) void processFile(file)
-    // Permite reenviar o mesmo arquivo em seguida.
+    const files = e.target.files
+    if (files) Array.from(files).forEach((f) => void processFile(f))
     e.target.value = ''
   }
 
   function handleDrop(e: React.DragEvent) {
     e.preventDefault()
     setDragging(false)
-    const file = e.dataTransfer.files?.[0]
-    if (file) void processFile(file)
+    const files = e.dataTransfer.files
+    if (files) Array.from(files).forEach((f) => void processFile(f))
   }
 
   return (
@@ -75,7 +74,7 @@ export default function CreativeUpload({ onCreativeAdded }: CreativeUploadProps)
           upload
         </span>
         <p className={cx('type-body-md', styles.headline)}>
-          Arraste um criativo ou selecione um arquivo
+          Arraste criativos ou selecione arquivos
         </p>
         <p className={cx('type-body-sm', styles.hint)}>
           O formato publicitário é identificado automaticamente. JPG, PNG ou GIF (Display); MP4, MOV
@@ -83,15 +82,16 @@ export default function CreativeUpload({ onCreativeAdded }: CreativeUploadProps)
           Carrossel, Binge Ads).
         </p>
         <Button type="button" variant="secondary" size="md" iconLeft="folder_open">
-          Selecionar arquivo
+          Selecionar arquivos
         </Button>
         <input
           ref={inputRef}
           type="file"
           accept={ACCEPT}
+          multiple
           className={styles.input}
           onChange={handleInputChange}
-          aria-label="Selecionar criativo para upload"
+          aria-label="Selecionar criativos para upload"
         />
       </div>
 

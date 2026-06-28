@@ -1,6 +1,8 @@
 import { COLOR_GROUPS } from '../../tokens/colors'
-import ColorGroup from '../../components/docs/ColorGroup/ColorGroup'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import ColorSwatch from '../../components/docs/ColorSwatch/ColorSwatch'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import Section from '../../components/docs/Section/Section'
 
 const GROUP_ICONS: Record<string, string> = {
   Fill: 'format_color_fill',
@@ -20,7 +22,19 @@ export default function ColorsPage() {
         stats={COLOR_GROUPS.map((g) => ({ value: g.tokens.length, label: g.label }))}
       />
       {COLOR_GROUPS.map((group) => (
-        <ColorGroup key={group.label} group={group} icon={GROUP_ICONS[group.label]} />
+        <Section
+          key={group.label}
+          icon={GROUP_ICONS[group.label]}
+          title={group.label}
+          count={group.tokens.length}
+          description={group.description}
+        >
+          <CardGrid>
+            {group.tokens.map((token) => (
+              <ColorSwatch key={token.variable} token={token} />
+            ))}
+          </CardGrid>
+        </Section>
       ))}
     </div>
   )

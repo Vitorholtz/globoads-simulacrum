@@ -2,6 +2,7 @@ import Tooltip from '../../components/Tooltip/Tooltip'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import { TOOLTIP_POSITIONS, TOOLTIP_ALIGNMENTS, TOOLTIP_GUIDELINES } from '../../tokens/tooltip'
 import type { TooltipPosition } from '../../tokens/tooltip'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './TooltipPage.module.css'
@@ -59,7 +60,7 @@ export default function TooltipPage() {
 
       {/* ── Posições ── */}
       <Section icon="open_with" title="Posições" count={TOOLTIP_POSITIONS.length}>
-        <div className={styles.positionsGrid}>
+        <CardGrid>
           {TOOLTIP_POSITIONS.map((pos) => (
             <div key={pos.id} className={styles.positionCard}>
               <div className={[styles.positionPreview, POSITION_PADDING[pos.id]].join(' ')}>
@@ -73,12 +74,12 @@ export default function TooltipPage() {
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Alinhamentos ── */}
       <Section icon="align_horizontal_left" title="Alinhamentos" count={TOOLTIP_ALIGNMENTS.length}>
-        <div className={styles.alignGrid}>
+        <CardGrid>
           {TOOLTIP_ALIGNMENTS.map((align) => (
             <div key={align.id} className={styles.alignCard}>
               <div className={[styles.alignPreview, styles.padUp].join(' ')}>
@@ -92,7 +93,7 @@ export default function TooltipPage() {
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

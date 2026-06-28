@@ -1,10 +1,10 @@
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import FocusCard from '../../components/docs/FocusCard/FocusCard'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import ShadowRow from '../../components/docs/ShadowRow/ShadowRow'
 import { FOCUS_TOKENS } from '../../tokens/focus'
 import { SHADOW_TOKENS } from '../../tokens/shadow'
 import Section from '../../components/docs/Section/Section'
-import styles from './EffectsPage.module.css'
 
 export default function EffectsPage() {
   return (
@@ -20,19 +20,19 @@ export default function EffectsPage() {
       />
 
       <Section icon="shadow" title="Sombras" count={SHADOW_TOKENS.length}>
-        <div className={styles.shadowGrid}>
+        <CardGrid>
           {SHADOW_TOKENS.map((token) => (
             <ShadowRow key={token.variable} token={token} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       <Section icon="center_focus_strong" title="Estilos de foco" count={FOCUS_TOKENS.length}>
-        <div className={styles.focusGrid}>
+        <CardGrid>
           {FOCUS_TOKENS.map((token) => (
             <FocusCard key={token.variable} token={token} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
     </div>
   )

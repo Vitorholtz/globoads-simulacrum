@@ -148,7 +148,7 @@ export default function AccordionPage() {
 
       {/* ── Variantes ── */}
       <Section icon="tune" title="Variantes" count={ACCORDION_VARIANTS.length}>
-        <CardGrid cols={2}>
+        <CardGrid wide>
           {ACCORDION_VARIANTS.map((variant) => (
             <DemoCard
               key={variant.id}
@@ -168,7 +168,7 @@ export default function AccordionPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={ACCORDION_STATES.length}>
-        <CardGrid cols={2}>
+        <CardGrid>
           {ACCORDION_STATES.map((state) => (
             <DemoCard
               key={state.id}

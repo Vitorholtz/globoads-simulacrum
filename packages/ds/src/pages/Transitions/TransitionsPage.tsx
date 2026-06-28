@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Button from '../../components/Button/Button'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import DurationCard from '../../components/docs/DurationCard/DurationCard'
 import EasingCard from '../../components/docs/EasingCard/EasingCard'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
@@ -94,44 +95,44 @@ export default function TransitionsPage() {
         <p className={`type-body-sm ${styles.sectionNote}`}>
           Passe o mouse sobre cada card para visualizar a duração.
         </p>
-        <div className={styles.tokenGrid}>
+        <CardGrid>
           {MOTION_DURATION_TOKENS.map((token) => (
             <DurationCard key={token.variable} token={token} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       <Section icon="show_chart" title="Easing" count={MOTION_EASING_TOKENS.length}>
         <p className={`type-body-sm ${styles.sectionNote}`}>
           Mesma duração (200ms), curvas diferentes. Passe o mouse para comparar.
         </p>
-        <div className={styles.tokenGrid}>
+        <CardGrid>
           {MOTION_EASING_TOKENS.map((token) => (
             <EasingCard key={token.variable} token={token} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       <Section icon="animation" title="Entradas direcionais" count="4 keyframes">
         <p className={`type-body-sm ${styles.sectionNote}`}>
           Keyframes globais para componentes renderizados condicionalmente. Clique para reproduzir.
         </p>
-        <div className={styles.entranceGrid}>
+        <CardGrid>
           {DIRECTIONAL_DEMOS.map((demo) => (
             <EntranceCard key={demo.keyframe} {...demo} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       <Section icon="animation" title="Saídas direcionais" count="4 keyframes">
         <p className={`type-body-sm ${styles.sectionNote}`}>
           Keyframes globais para a remoção de componentes do DOM. Clique para reproduzir.
         </p>
-        <div className={styles.entranceGrid}>
+        <CardGrid>
           {EXIT_DEMOS.map((demo) => (
             <EntranceCard key={demo.keyframe} {...demo} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       <Section icon="book_2" title="Guia de uso">

@@ -1,4 +1,5 @@
 import { FONT_FAMILIES, TYPOGRAPHY_GROUPS } from '../../tokens/typography'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import FontFamilyCard from '../../components/docs/FontFamilyCard/FontFamilyCard'
 import TypeSpecimen from '../../components/docs/TypeSpecimen/TypeSpecimen'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
@@ -29,11 +30,11 @@ export default function TypographyPage() {
       />
 
       <Section icon="font_download" title="Famílias Tipográficas" count={FONT_FAMILIES.length}>
-        <div className={styles.familiesGrid}>
+        <CardGrid>
           {FONT_FAMILIES.map((family) => (
             <FontFamilyCard key={family.id} family={family} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {TYPOGRAPHY_GROUPS.map((group) => (

@@ -62,7 +62,7 @@ export default function SwitchPage() {
 
       {/* ── Comportamentos ── */}
       <Section icon="toggle_on" title="Comportamentos" count={2}>
-        <CardGrid cols={2}>
+        <CardGrid>
           {SWITCH_BEHAVIORS.map((b) => (
             <DemoCard
               key={b.id}
@@ -98,7 +98,7 @@ export default function SwitchPage() {
 
       {/* ── Tipos ── */}
       <Section icon="swap_horiz" title="Tipos" count={2}>
-        <CardGrid cols={2}>
+        <CardGrid>
           {SWITCH_TYPES.map((t) => (
             <DemoCard
               key={t.id}

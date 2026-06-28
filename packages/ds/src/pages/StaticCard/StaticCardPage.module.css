@@ -1,12 +1,4 @@
-﻿/* â”€â”€ Styles grid â”€â”€ */
-
-.stylesGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-200);
-}
-
-.styleCard {
+﻿.styleCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);

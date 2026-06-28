@@ -1,8 +1,0 @@
-/* Row chrome → DimensionRow.module.css. Only the border-radius demo lives here. */
-
-.box {
-  width: 256px;
-  height: 88px;
-  background: color-mix(in srgb, var(--color-fill-accent) 12%, transparent);
-  border: var(--border-width-sm) solid var(--color-fill-accent);
-}

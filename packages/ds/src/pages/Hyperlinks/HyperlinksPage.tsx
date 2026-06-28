@@ -102,7 +102,7 @@ export default function HyperlinksPage() {
 
       {/* ── Link Externo ── */}
       <Section icon="open_in_new" title="Link Externo">
-        <CardGrid cols={4}>
+        <CardGrid>
           {HYPERLINK_SIZES.map((s) => (
             <DemoCard
               key={s.id}

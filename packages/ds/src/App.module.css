@@ -1,13 +1,16 @@
 .shell {
   display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   min-height: 100vh;
 }
 
 .content {
   background: var(--color-surface-primary);
   overflow-y: auto;
-  padding: var(--spacing-700) var(--spacing-1000) var(--spacing-1200);
+  padding: var(--spacing-500);
+  width: 1360px;
+  max-width: 100%;
+  margin-inline: auto;
   min-height: 100vh;
 }
 

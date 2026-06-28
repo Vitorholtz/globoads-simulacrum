@@ -53,7 +53,7 @@ export default function BadgePointerPage() {
 
       {/* ── Uso em contexto ── */}
       <Section icon="layers" title="Uso em Contexto">
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <div className={styles.contextIconWrapper}>

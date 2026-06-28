@@ -1,7 +1,5 @@
-import BorderRadiusRow from '../../components/docs/BorderRadiusRow/BorderRadiusRow'
-import BorderWidthRow from '../../components/docs/BorderWidthRow/BorderWidthRow'
+import DimensionRow from '../../components/docs/DimensionRow/DimensionRow'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import SpacingRow from '../../components/docs/SpacingRow/SpacingRow'
 import { BORDER_RADIUS_TOKENS } from '../../tokens/borderRadius'
 import { BORDER_WIDTH_TOKENS } from '../../tokens/borderWidth'
 import { SPACING_TOKENS } from '../../tokens/spacing'
@@ -25,7 +23,11 @@ export default function DimensionsEffectsPage() {
       <Section icon="straighten" title="Espaçamentos" count={SPACING_TOKENS.length}>
         <div className={styles.tokenList}>
           {SPACING_TOKENS.map((token) => (
-            <SpacingRow key={token.variable} token={token} />
+            <DimensionRow key={token.variable} token={token}>
+              {token.valuePx > 0 && (
+                <div className={styles.spacingBar} style={{ width: `var(${token.variable})` }} />
+              )}
+            </DimensionRow>
           ))}
         </div>
       </Section>
@@ -33,7 +35,12 @@ export default function DimensionsEffectsPage() {
       <Section icon="border_style" title="Espessuras de Borda" count={BORDER_WIDTH_TOKENS.length}>
         <div className={styles.tokenList}>
           {BORDER_WIDTH_TOKENS.map((token) => (
-            <BorderWidthRow key={token.variable} token={token} />
+            <DimensionRow key={token.variable} token={token}>
+              <div
+                className={`${styles.borderWidthBox} ${token.valuePx === 0 ? styles.borderWidthNone : ''}`}
+                style={token.valuePx > 0 ? { borderWidth: `var(${token.variable})` } : undefined}
+              />
+            </DimensionRow>
           ))}
         </div>
       </Section>
@@ -41,7 +48,12 @@ export default function DimensionsEffectsPage() {
       <Section icon="rounded_corner" title="Raios de Borda" count={BORDER_RADIUS_TOKENS.length}>
         <div className={styles.tokenList}>
           {BORDER_RADIUS_TOKENS.map((token) => (
-            <BorderRadiusRow key={token.variable} token={token} />
+            <DimensionRow key={token.variable} token={token}>
+              <div
+                className={styles.borderRadiusBox}
+                style={{ borderRadius: `var(${token.variable})` }}
+              />
+            </DimensionRow>
           ))}
         </div>
       </Section>

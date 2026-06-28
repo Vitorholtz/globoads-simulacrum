@@ -44,6 +44,7 @@
 .sample {
   padding: var(--spacing-500) var(--spacing-450);
   color: var(--color-fill-primary);
+  background: var(--color-surface-secondary);
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
   white-space: pre-line;
 }
@@ -54,7 +55,6 @@
   display: flex;
   padding: var(--spacing-300) var(--spacing-450);
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-secondary);
 }
 
 .specItem {

@@ -7,6 +7,7 @@ import {
   VARIANT_DEMO_ICONS,
 } from '../../tokens/icons'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './IconsPage.module.css'
@@ -90,7 +91,7 @@ export default function IconsPage() {
 
       {/* ── Variantes ── */}
       <Section icon="style" title="Variantes" count={ICON_VARIANT_RULES.length}>
-        <div className={styles.variantsGrid}>
+        <CardGrid>
           {ICON_VARIANT_RULES.map((rule) => (
             <div key={rule.variant} className={styles.variantCard}>
               <div className={styles.variantIcons}>
@@ -120,7 +121,7 @@ export default function IconsPage() {
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Tokens de Ícone ── */}

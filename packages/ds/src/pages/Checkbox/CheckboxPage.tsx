@@ -81,7 +81,7 @@ export default function CheckboxPage() {
 
       {/* ── Comportamentos ── */}
       <Section icon="check_box" title="Comportamentos" count={3}>
-        <CardGrid cols={3}>
+        <CardGrid>
           {CHECKBOX_BEHAVIORS.map((b) => (
             <DemoCard
               key={b.id}
@@ -117,7 +117,7 @@ export default function CheckboxPage() {
 
       {/* ── Tipos ── */}
       <Section icon="swap_horiz" title="Tipos" count={2}>
-        <CardGrid cols={2}>
+        <CardGrid>
           {CHECKBOX_TYPES.map((t) => (
             <DemoCard
               key={t.id}

@@ -37,7 +37,7 @@ export default function PaginationPage() {
 
       {/* ── Variantes ── */}
       <Section icon="more_horiz" title="Variantes" count={PAGINATION_VARIANTS.length}>
-        <CardGrid cols={2}>
+        <CardGrid wide>
           {PAGINATION_VARIANTS.map((v) => (
             <DemoCard
               key={v.id}
@@ -51,7 +51,7 @@ export default function PaginationPage() {
 
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={2}>
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={<Pagination variant="buttons" page={1} totalPages={10} onChange={() => {}} />}
             title="Primeira página"

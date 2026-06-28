@@ -33,7 +33,7 @@ export default function SkeletonPage() {
 
       {/* ── Tipos ── */}
       <Section icon="category" title="Tipos" count={SKELETON_TYPES.length}>
-        <CardGrid cols={4}>
+        <CardGrid>
           {SKELETON_TYPES.map((t) => (
             <DemoCard
               key={t.id}

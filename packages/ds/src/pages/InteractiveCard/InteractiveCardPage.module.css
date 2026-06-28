@@ -1,11 +1,5 @@
 ﻿/* â”€â”€ Styles grid â”€â”€ */
 
-.stylesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-200);
-}
-
 .styleCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);
@@ -238,12 +232,6 @@
 }
 
 /* ── Semantic variants ── */
-
-.variantsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-200);
-}
 
 .variantCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);

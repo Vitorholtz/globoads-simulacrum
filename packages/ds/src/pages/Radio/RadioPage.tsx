@@ -49,7 +49,7 @@ export default function RadioPage() {
 
       {/* ── Comportamentos ── */}
       <Section icon="radio_button_checked" title="Comportamentos" count={2}>
-        <CardGrid cols={2}>
+        <CardGrid>
           {RADIO_BEHAVIORS.map((b) => (
             <DemoCard
               key={b.id}
@@ -85,7 +85,7 @@ export default function RadioPage() {
 
       {/* ── Tipos ── */}
       <Section icon="swap_horiz" title="Tipos" count={2}>
-        <CardGrid cols={2}>
+        <CardGrid>
           {RADIO_TYPES.map((t) => (
             <DemoCard
               key={t.id}

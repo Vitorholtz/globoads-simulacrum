@@ -10,6 +10,7 @@ import {
 } from '../../tokens/tabs'
 import type { TabPosition } from '../../tokens/tabs'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './TabsPage.module.css'
@@ -62,16 +63,16 @@ export default function TabsPage() {
 
       {/* ── Posições ── */}
       <Section icon="tab" title="Posições" count={TAB_POSITIONS.length}>
-        <div className={styles.positionGrid}>
+        <CardGrid wide>
           {TAB_POSITIONS.map((p) => (
             <PositionDemo key={p.id} position={p.id} description={p.description} />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Variantes de Conteúdo ── */}
       <Section icon="tune" title="Variantes de Conteúdo" count={TAB_CONTENT_VARIANTS.length}>
-        <div className={styles.variantGrid}>
+        <CardGrid>
           <div className={styles.variantCard}>
             <div className={styles.variantPreview}>
               <Tabs
@@ -131,7 +132,7 @@ export default function TabsPage() {
               </p>
             </div>
           </div>
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

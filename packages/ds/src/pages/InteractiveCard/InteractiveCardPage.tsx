@@ -10,6 +10,7 @@ import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import g1Logo from '../../assets/logos/g1.svg'
 import geLogo from '../../assets/logos/ge.svg'
 import gshowLogo from '../../assets/logos/gshow.svg'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './InteractiveCardPage.module.css'
@@ -83,7 +84,7 @@ export default function InteractiveCardPage() {
 
       {/* ── Estilos ── */}
       <Section icon="style" title="Estilos" count={INTERACTIVE_CARD_STYLES.length}>
-        <div className={styles.stylesGrid}>
+        <CardGrid>
           {INTERACTIVE_CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>
               <div className={styles.stylePreview} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
@@ -104,7 +105,7 @@ export default function InteractiveCardPage() {
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Estados ── */}
@@ -162,7 +163,7 @@ export default function InteractiveCardPage() {
         title="Variantes semânticas"
         count={INTERACTIVE_CARD_SEMANTIC_VARIANTS.length}
       >
-        <div className={styles.variantsGrid}>
+        <CardGrid>
           {INTERACTIVE_CARD_SEMANTIC_VARIANTS.map((v) => (
             <div key={v.as} className={styles.variantCard}>
               <div className={styles.variantHeader}>
@@ -176,7 +177,7 @@ export default function InteractiveCardPage() {
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

@@ -46,7 +46,7 @@ export default function SelectPage() {
         title="Estilos de Conteúdo"
         description="O campo exibe dois estados visuais distintos conforme a interação do usuário."
       >
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <div className={styles.contentPreview}>
@@ -126,7 +126,7 @@ export default function SelectPage() {
         count={6}
         description="Combinações de props que cobrem os cenários mais comuns de formulários."
       >
-        <CardGrid cols={3}>
+        <CardGrid wide>
           <DemoCard
             preview={<Select options={SELECT_DEMO_OPTIONS} />}
             title="Padrão"
@@ -178,7 +178,7 @@ export default function SelectPage() {
         title="Muitas opções"
         description="Comportamentos automáticos quando a lista de opções é extensa."
       >
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <Select options={SELECT_DEMO_OPTIONS_LONG} placeholder="Selecione o formato" />

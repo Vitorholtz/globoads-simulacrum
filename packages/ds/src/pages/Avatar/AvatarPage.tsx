@@ -48,7 +48,7 @@ export default function AvatarPage() {
 
       {/* ── Variantes ── */}
       <Section icon="person" title="Variantes" count={AVATAR_VARIANTS.length}>
-        <CardGrid cols={2}>
+        <CardGrid>
           {AVATAR_VARIANTS.map((v) => (
             <DemoCard
               key={v.id}

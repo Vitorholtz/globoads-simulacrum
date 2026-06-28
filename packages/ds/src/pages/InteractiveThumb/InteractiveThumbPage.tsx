@@ -40,7 +40,7 @@ export default function InteractiveThumbPage() {
 
       {/* ── Tipos ── */}
       <Section icon="collections" title="Tipos" count={INTERACTIVE_THUMB_TYPES.length}>
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <div className={styles.demoBox}>

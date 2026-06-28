@@ -47,7 +47,7 @@ export default function ComboboxPage() {
         count={2}
         description="O campo exibe dois estados visuais distintos conforme a interação do usuário."
       >
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <div className={styles.contentPreview}>
@@ -123,7 +123,7 @@ export default function ComboboxPage() {
         count={6}
         description="Combinações de props que cobrem os cenários mais comuns de formulários."
       >
-        <CardGrid cols={3}>
+        <CardGrid wide>
           <DemoCard
             preview={<Combobox />}
             title="Padrão"

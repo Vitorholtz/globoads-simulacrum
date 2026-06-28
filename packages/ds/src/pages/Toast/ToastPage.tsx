@@ -135,7 +135,7 @@ export default function ToastPage() {
         count={TOAST_VARIANTS.length}
         description="Cada variante usa uma cor semântica para comunicar o nível de importância da mensagem."
       >
-        <CardGrid cols={2}>
+        <CardGrid wide>
           {TOAST_VARIANTS.map((v) => (
             <DemoCard
               key={v.id}
@@ -157,7 +157,7 @@ export default function ToastPage() {
         count={3}
         description="O Toast suporta três combinações de conteúdo que cobrem os cenários mais comuns."
       >
-        <CardGrid cols={3}>
+        <CardGrid>
           <DemoCard
             preview={
               <Toast

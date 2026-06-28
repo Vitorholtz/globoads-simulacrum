@@ -3,6 +3,7 @@ import { CARD_STYLES, STATIC_CARD_GUIDELINES } from '../../tokens/cards'
 import type { CardStyle } from '../../tokens/cards'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Badge from '../../components/Badge/Badge'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './StaticCardPage.module.css'
@@ -62,7 +63,7 @@ export default function StaticCardPage() {
 
       {/* ── Estilos ── */}
       <Section icon="style" title="Estilos" count={2}>
-        <div className={styles.stylesGrid}>
+        <CardGrid>
           {CARD_STYLES.map((s) => (
             <div key={s.id} className={styles.styleCard}>
               <div className={styles.stylePreview} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
@@ -83,7 +84,7 @@ export default function StaticCardPage() {
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}

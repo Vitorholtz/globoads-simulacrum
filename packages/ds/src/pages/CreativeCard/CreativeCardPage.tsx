@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
 import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
@@ -151,7 +152,7 @@ export default function CreativeCardPage() {
         count={CREATIVE_CARD_MODES.length}
         description="Header e preview são compartilhados entre os três modos; só o corpo varia por mode."
       >
-        <div className={styles.modeGrid}>
+        <CardGrid className={styles.modeGridAlign}>
           {CREATIVE_CARD_MODES.map((m) => (
             <div key={m.id} className={styles.modeCard}>
               <div className={styles.modePreview}>
@@ -173,7 +174,7 @@ export default function CreativeCardPage() {
               </div>
             </div>
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Campos configuráveis ── */}

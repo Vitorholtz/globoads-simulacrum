@@ -43,7 +43,7 @@ export default function InfoPanelPage() {
 
       {/* ── Variantes ── */}
       <Section icon="style" title="Variantes" count={INFO_PANEL_VARIANTS.length}>
-        <CardGrid cols={2}>
+        <CardGrid wide>
           {INFO_PANEL_VARIANTS.map((variant) => (
             <DemoCard
               key={variant.id}
@@ -68,7 +68,7 @@ export default function InfoPanelPage() {
         title="Combinações de conteúdo"
         count={INFO_PANEL_CONTENT_VARIANTS.length}
       >
-        <CardGrid cols={3}>
+        <CardGrid>
           {INFO_PANEL_CONTENT_VARIANTS.map((combo) => (
             <DemoCard
               key={combo.label}

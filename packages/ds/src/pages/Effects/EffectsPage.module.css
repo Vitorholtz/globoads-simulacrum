@@ -1,15 +1,3 @@
 .section:last-child {
   margin-bottom: 0;
 }
-
-.shadowGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--spacing-200);
-}
-
-.focusGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-200);
-}

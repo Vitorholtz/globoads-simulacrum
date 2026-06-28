@@ -99,7 +99,7 @@ export default function BadgeCounterPage() {
 
       {/* ── Contextos de Uso ── */}
       <Section icon="widgets" title="Contextos de Uso">
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <Tabs items={TAB_CONTEXT_ITEMS} activeId={activeTab} onChange={setActiveTab} />

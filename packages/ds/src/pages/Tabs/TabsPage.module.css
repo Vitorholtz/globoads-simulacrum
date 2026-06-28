@@ -2,12 +2,6 @@
 
 /* ── Position demos ── */
 
-.positionGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
 .positionCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);
@@ -52,12 +46,6 @@
 }
 
 /* ── Content variant demos ── */
-
-.variantGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-200);
-}
 
 .variantCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);

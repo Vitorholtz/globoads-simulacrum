@@ -7,20 +7,6 @@
 
 /* ── Token grid (duração + easing) ── */
 
-.tokenGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--spacing-200);
-}
-
-/* ── Entrance demos ── */
-
-.entranceGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-200);
-}
-
 .entranceCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);

@@ -243,12 +243,6 @@
 
 /* ── Calendar interactive ── */
 
-.calendarInteractiveGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
 .calendarInteractiveCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);

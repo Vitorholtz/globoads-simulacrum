@@ -86,7 +86,7 @@ export default function ConfirmDialogPage() {
         count={2}
         description="O Confirm Dialog suporta duas combinações de conteúdo. A descrição é opcional, mas recomendada para ações destrutivas."
       >
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <PanelPreview description='"Banner_Principal.jpg" será removido da galeria permanentemente.' />

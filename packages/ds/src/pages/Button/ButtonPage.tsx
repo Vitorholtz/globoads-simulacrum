@@ -162,7 +162,7 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
         count={3}
         description="Cada variante comunica um nível de ênfase diferente. Use apenas uma variante Primary por tela."
       >
-        <CardGrid cols={3}>
+        <CardGrid>
           {VARIANTS.map((v) => (
             <div key={v.id} className={styles.variantCard}>
               <div className={styles.variantPreview}>
@@ -268,7 +268,7 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
         count={4}
         description="Combinações de label e ícone que cobrem todos os cenários de uso."
       >
-        <CardGrid cols={4}>
+        <CardGrid>
           {contentDemo.map((c) => (
             <DemoCard
               key={c.label}

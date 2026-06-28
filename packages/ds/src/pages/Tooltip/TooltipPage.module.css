@@ -55,14 +55,6 @@
   color: var(--color-fill-secondary);
 }
 
-/* ── Positions grid ── */
-
-.positionsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-200);
-}
-
 .positionCard {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);
@@ -92,14 +84,6 @@
 }
 .padLeft {
   padding: var(--spacing-500) var(--spacing-500) var(--spacing-500) 120px;
-}
-
-/* ── Alignments grid ── */
-
-.alignGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--spacing-200);
 }
 
 .alignCard {

@@ -54,7 +54,7 @@ export default function DatePickerPage() {
         count={2}
         description="O campo exibe dois estados visuais distintos conforme a interação do usuário."
       >
-        <CardGrid cols={2}>
+        <CardGrid>
           <DemoCard
             preview={
               <div className={styles.contentPreview}>
@@ -134,7 +134,7 @@ export default function DatePickerPage() {
         count={6}
         description="Combinações de props que cobrem os cenários mais comuns de formulários com data."
       >
-        <CardGrid cols={3}>
+        <CardGrid wide>
           <DemoCard
             preview={
               <div className={styles.contentPreview}>
@@ -312,7 +312,7 @@ export default function DatePickerPage() {
 
       {/* ── Calendário Interativo ── */}
       <Section icon="event" title="Calendário Interativo">
-        <div className={styles.calendarInteractiveGrid}>
+        <CardGrid>
           <div className={styles.calendarInteractiveCard}>
             <div className={`type-caption-sm ${styles.calendarInteractiveLabel}`}>
               <span>Small — 270px</span>
@@ -342,7 +342,7 @@ export default function DatePickerPage() {
               </span>
             </div>
           </div>
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Calendário Multi-Data ── */}
