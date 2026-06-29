@@ -1,4 +1,4 @@
-import type { GuidelineDef, BehaviorDef } from './types'
+﻿import type { GuidelineDef, BehaviorDef } from './types'
 
 export type ChipBehavior = 'unchecked' | 'checked'
 export type ChipState = 'normal' | 'hover' | 'focus' | 'active' | 'dragged' | 'disabled'
@@ -52,21 +52,17 @@ export const CHIP_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Sugestões dinâmicas',
     body: 'Os chips de sugestão devem ser gerados dinamicamente com base no contexto da entrada do usuário. Evite listas estáticas — o valor está na personalização em tempo real das opções apresentadas.',
-    rule: 'Chips gerados pelo contexto, não por listas fixas.',
   },
   {
     title: 'Quantidade de chips',
     body: 'Exiba no máximo 5 a 7 sugestões por vez. Uma quantidade excessiva cria sobrecarga cognitiva e anula o benefício de direcionar a intenção do usuário para opções relevantes.',
-    rule: 'Máximo de 5 a 7 chips visíveis por vez.',
   },
   {
     title: 'Seleção acumulativa',
     body: 'Múltiplos chips podem ser selecionados simultaneamente para refinar resultados. O estado Checked deve permanecer visível para que o usuário saiba quais filtros ou respostas estão ativos.',
-    rule: 'Seleção múltipla é permitida — mostre os ativos claramente.',
   },
   {
     title: 'Rótulo conciso',
     body: 'O rótulo do chip deve ter no máximo 2 a 3 palavras. Sugestões longas perdem eficácia — o usuário precisa identificar e decidir rapidamente ao escanear as opções disponíveis.',
-    rule: 'Rótulo com até 3 palavras.',
   },
 ]

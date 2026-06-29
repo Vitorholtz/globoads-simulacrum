@@ -14,7 +14,6 @@ import {
   DATE_PICKER_GUIDELINES,
 } from '../../tokens/datePicker'
 import type { DatePickerSize, CalendarSize } from '../../tokens/datePicker'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
@@ -375,7 +374,11 @@ export default function DatePickerPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={DATE_PICKER_GUIDELINES} />
+        <CardGrid wide>
+          {DATE_PICKER_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

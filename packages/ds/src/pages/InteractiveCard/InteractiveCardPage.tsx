@@ -5,24 +5,19 @@ import {
   INTERACTIVE_CARD_GUIDELINES,
   INTERACTIVE_CARD_SEMANTIC_VARIANTS,
 } from '../../tokens/cards'
-import type { InteractiveCardStyle } from '../../tokens/cards'
+import DocBadge from '../../components/docs/DocBadge/DocBadge'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import g1Logo from '../../assets/logos/g1.svg'
 import geLogo from '../../assets/logos/ge.svg'
 import gshowLogo from '../../assets/logos/gshow.svg'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import Badge from '../../components/Badge/Badge'
 import styles from './InteractiveCardPage.module.css'
 
 const TALENT_PHOTO = '/campaign-talent.jpg'
-
-const STYLE_PREVIEW_BG: Record<InteractiveCardStyle, string> = {
-  'on-primary': '#ffffff',
-  'on-secondary': '#f7f7f7',
-  outlined: '#ffffff',
-}
 
 function DiariaCard() {
   return (
@@ -48,7 +43,7 @@ function DiariaCard() {
             alt="GShow"
             className={`${styles.diariaHeaderLogo} ${styles.diariaHeaderLogoGshow}`}
           />
-          <span className={`type-caption-sm ${styles.diariaMoreCount}`}>+4</span>
+          <Badge label="+4" />
         </div>
       </div>
       <div className={styles.diariaContent}>
@@ -90,17 +85,13 @@ export default function InteractiveCardPage() {
             <DemoCard
               key={s.id}
               preview={
-                <div
-                  className={styles.stylePreviewInner}
-                  style={{ background: STYLE_PREVIEW_BG[s.id] }}
-                >
-                  <InteractiveCard style={s.id} className={styles.demoCard}>
-                    <DiariaCard />
-                  </InteractiveCard>
-                </div>
+                <InteractiveCard style={s.id} className={styles.demoCard}>
+                  <DiariaCard />
+                </InteractiveCard>
               }
               title={s.name}
               description={s.description}
+              previewBg={s.id === 'on-secondary' ? 'secondary' : 'primary'}
             />
           ))}
         </CardGrid>
@@ -109,49 +100,29 @@ export default function InteractiveCardPage() {
       {/* ── Estados ── */}
       <Section icon="toggle_on" title="Estados" count={INTERACTIVE_CARD_STATES.length}>
         {INTERACTIVE_CARD_STYLES.map((s) => (
-          <div key={s.id} className={styles.stateMatrixContainer}>
-            <div className={styles.matrixStyleHeader}>
-              <span className={`type-caption-md ${styles.matrixStyleName}`}>{s.name}</span>
-              <span className={`type-caption-sm ${styles.matrixStyleTagline}`}>— {s.tagline}</span>
-            </div>
-            <div className={styles.matrixHeaderRow}>
-              {INTERACTIVE_CARD_STATES.map((state) => (
-                <div key={state.id} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                  {state.label}
-                </div>
-              ))}
-            </div>
-            <div className={styles.matrixCellsRow} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
-              {INTERACTIVE_CARD_STATES.map((state) => (
-                <div key={state.id} className={styles.matrixCell}>
-                  <InteractiveCard
-                    style={s.id}
-                    forceState={
-                      state.id === 'normal' ? undefined : (state.id as 'hover' | 'focus' | 'active')
-                    }
-                    className={styles.matrixCard}
-                  />
-                </div>
-              ))}
-            </div>
-            <div className={styles.matrixRowLabel}>
-              <span className="type-caption-xs">Selecionado</span>
-            </div>
-            <div className={styles.matrixCellsRow} style={{ background: STYLE_PREVIEW_BG[s.id] }}>
-              {INTERACTIVE_CARD_STATES.map((state) => (
-                <div key={state.id} className={styles.matrixCell}>
-                  <InteractiveCard
-                    style={s.id}
-                    selected
-                    forceState={
-                      state.id === 'normal' ? undefined : (state.id as 'hover' | 'focus' | 'active')
-                    }
-                    className={styles.matrixCard}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <StateMatrix
+            key={s.id}
+            group
+            header={{ name: s.name, description: s.tagline }}
+            columns={[...INTERACTIVE_CARD_STATES]}
+            rows={[
+              { id: 'default', label: 'Default' },
+              { id: 'selected', label: 'Selecionado' },
+            ]}
+            getCellClassName={() =>
+              s.id === 'on-secondary' ? styles.cellBgSecondary : styles.cellBgPrimary
+            }
+            renderCell={(row, col) => (
+              <InteractiveCard
+                style={s.id}
+                selected={row.id === 'selected'}
+                forceState={
+                  col.id === 'normal' ? undefined : (col.id as 'hover' | 'focus' | 'active')
+                }
+                className={styles.matrixCard}
+              />
+            )}
+          />
         ))}
       </Section>
 
@@ -165,7 +136,9 @@ export default function InteractiveCardPage() {
           {INTERACTIVE_CARD_SEMANTIC_VARIANTS.map((v) => (
             <div key={v.as} className={styles.variantCard}>
               <div className={styles.variantHeader}>
-                <code className={`type-body-sm ${styles.variantTag}`}>as=&quot;{v.as}&quot;</code>
+                <DocBadge variant="outlined" size="md" className="type-body-sm font-code">
+                  as=&quot;{v.as}&quot;
+                </DocBadge>
                 <span className={`type-title-sm ${styles.variantLabel}`}>{v.label}</span>
               </div>
               <div className={styles.variantBody}>
@@ -180,7 +153,11 @@ export default function InteractiveCardPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={INTERACTIVE_CARD_GUIDELINES} />
+        <CardGrid wide>
+          {INTERACTIVE_CARD_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

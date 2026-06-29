@@ -1,11 +1,3 @@
-/* Trecho de código inline (células de tabela, rótulos de prop). */
-.code {
-  padding: var(--spacing-025) var(--spacing-100);
-  background: var(--color-surface-tertiary);
-  border-radius: var(--border-radius-sm);
-  color: var(--color-fill-secondary);
-}
-
 /* ── Composição ── */
 
 .compositionGroups {
@@ -42,31 +34,6 @@
   align-items: center;
   gap: var(--spacing-100);
   padding: var(--spacing-300) var(--spacing-400);
-}
-
-.chip {
-  padding: var(--spacing-050) var(--spacing-150);
-  background: var(--color-surface-secondary);
-  border-radius: var(--border-radius-full);
-  color: var(--color-fill-secondary);
-}
-
-/* ── Barra de campos (simulação) ── */
-
-.fieldsBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-300);
-  padding: var(--spacing-200) var(--spacing-300);
-  background: var(--color-surface-secondary);
-  border-radius: var(--border-radius-lg);
-}
-
-.fieldsToggleRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-300);
 }
 
 /* ── Campos configuráveis ── */
@@ -115,12 +82,23 @@
   max-width: 100%;
 }
 
-.fieldsModeLabel {
-  margin: 0;
-  color: var(--color-fill-tertiary);
+/* ── Simulação de fluxo (CreativeFlowSimulation) ── */
+
+.fieldsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-300);
+  padding: var(--spacing-200) var(--spacing-300);
+  background: var(--color-surface-secondary);
+  border-radius: var(--border-radius-lg);
 }
 
-/* ── Simulação ── */
+.fieldsToggleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-300);
+}
 
 .sim {
   display: flex;
@@ -222,8 +200,6 @@
   color: var(--color-fill-tertiary);
   text-align: center;
 }
-
-/* ── Toast portal (simulação) ── */
 
 .toastPortal {
   position: fixed;

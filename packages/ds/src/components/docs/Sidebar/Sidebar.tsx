@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import globoAdsLogo from '../../../assets/globo-ads-logo.svg'
 import { CATEGORIES, PAGES } from '../../../pages/registry'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './Sidebar.module.css'
 
 interface NavItemProps {
@@ -25,7 +26,7 @@ function NavItem({ label, to, disabled, badge, icon, sub }: NavItemProps) {
           <span className={`material-symbols-rounded icon-md ${styles.navIcon}`}>{icon}</span>
           {label}
         </span>
-        {badge && <span className={`type-caption-xs ${styles.badge}`}>{badge}</span>}
+        {badge && <DocBadge className="type-caption-xs">{badge}</DocBadge>}
       </span>
     )
   }
@@ -47,7 +48,7 @@ function NavItem({ label, to, disabled, badge, icon, sub }: NavItemProps) {
             </span>
             {label}
           </span>
-          {badge && <span className={`type-caption-xs ${styles.badge}`}>{badge}</span>}
+          {badge && <DocBadge className="type-caption-xs">{badge}</DocBadge>}
         </>
       )}
     </NavLink>

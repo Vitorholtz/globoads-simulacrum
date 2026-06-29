@@ -1,4 +1,4 @@
-export type IconVariant = 'outlined' | 'filled'
+﻿export type IconVariant = 'outlined' | 'filled'
 
 export type IconClassToken = {
   className: string
@@ -34,7 +34,6 @@ export type IconVariantRule = {
 export type IconGuideline = {
   title: string
   body: string
-  rule: string
 }
 
 export type IconEntry = {
@@ -155,22 +154,18 @@ export const ICON_GUIDELINES: IconGuideline[] = [
   {
     title: 'Consistência de variante',
     body: 'Nunca misture Outlined e Filled para itens equivalentes em um mesmo componente. A mudança de variante deve sempre comunicar alteração de estado — não ser uma escolha estética.',
-    rule: 'Outlined = padrão · Filled = ativo',
   },
   {
     title: 'Tamanho mínimo e toque',
     body: 'O tamanho mínimo recomendado é 24px para interfaces de produto. Em alvos de toque mobile, o container interativo deve ter no mínimo 44×44px, independentemente do tamanho visual do ícone.',
-    rule: 'Mínimo 24px · Container de toque ≥ 44px',
   },
   {
     title: 'Espaçamento com texto',
     body: 'Ao parear ícone com rótulo, mantenha gap mínimo de 8px entre os dois elementos. Alinhe sempre ao centro vertical. O ícone deve ter a mesma cor do texto por herança — não defina cores isoladas.',
-    rule: 'Gap ≥ 8px · Centralização vertical · Cor por herança',
   },
   {
     title: 'Cor e semântica de estado',
     body: 'Ícones herdam a cor do elemento pai por padrão. Use tokens de cor semânticos (Fill Success, Fill Critical, Fill Accent) apenas quando o ícone comunica um estado do sistema — nunca para fins puramente decorativos.',
-    rule: 'Herança de cor padrão · Semântico apenas para estados',
   },
 ]
 

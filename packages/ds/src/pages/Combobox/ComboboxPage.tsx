@@ -7,7 +7,6 @@ import {
   COMBOBOX_MATRIX_COLS,
 } from '../../tokens/combobox'
 import type { ComboboxSizeDef, ComboboxSize } from '../../tokens/combobox'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
@@ -95,7 +94,6 @@ export default function ComboboxPage() {
         <StateMatrix
           columns={COMBOBOX_MATRIX_COLS}
           rows={COMBOBOX_MATRIX_STATES}
-          labelWidth={120}
           align="start"
           cellPad="sm"
           overflow="visible"
@@ -159,7 +157,11 @@ export default function ComboboxPage() {
 
       {/* ── Diretrizes de Uso ── */}
       <Section icon="menu_book" title="Diretrizes de Uso">
-        <GuidelinesGrid items={COMBOBOX_GUIDELINES} />
+        <CardGrid wide>
+          {COMBOBOX_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

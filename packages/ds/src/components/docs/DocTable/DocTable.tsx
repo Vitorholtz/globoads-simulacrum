@@ -3,12 +3,8 @@ import { cx } from '../../../utils/cx'
 import styles from './DocTable.module.css'
 
 export interface DocTableColumn {
-  /** Chave que casa com os campos de cada linha. */
   key: string
-  /** Rótulo exibido no cabeçalho. */
   label: string
-  /** Largura CSS opcional da coluna (ex.: "20%", "160px"). */
-  width?: string
 }
 
 interface DocTableProps {
@@ -29,12 +25,7 @@ export default function DocTable({ columns, rows, className }: DocTableProps) {
         <thead>
           <tr>
             {columns.map((col) => (
-              <th
-                key={col.key}
-                scope="col"
-                className={cx('type-caption-xs', styles.th)}
-                style={col.width ? { width: col.width } : undefined}
-              >
+              <th key={col.key} scope="col" className={cx('type-caption-sm', styles.th)}>
                 {col.label}
               </th>
             ))}

@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from 'react'
+import DocBadge from '../../components/docs/DocBadge/DocBadge'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import DocTable from '../../components/docs/DocTable/DocTable'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import Button from '../../components/Button/Button'
@@ -269,9 +269,9 @@ export default function CreativeCardPage() {
               <span className={cx('type-caption-sm', styles.compositionGroupLabel)}>{g.label}</span>
               <div className={styles.compositionChips}>
                 {g.items.map((name) => (
-                  <span key={name} className={cx('type-caption-md', styles.chip)}>
+                  <DocBadge key={name} size="md" className="type-caption-md">
                     {name}
-                  </span>
+                  </DocBadge>
                 ))}
               </div>
             </div>
@@ -281,7 +281,11 @@ export default function CreativeCardPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={CREATIVE_CARD_GUIDELINES} />
+        <CardGrid wide>
+          {CREATIVE_CARD_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
 
       {/* ── Propriedades ── */}
@@ -292,9 +296,9 @@ export default function CreativeCardPage() {
       >
         <DocTable
           columns={[
-            { key: 'prop', label: 'Prop', width: '18%' },
-            { key: 'type', label: 'Tipo', width: '30%' },
-            { key: 'default', label: 'Default', width: '18%' },
+            { key: 'prop', label: 'Prop' },
+            { key: 'type', label: 'Tipo' },
+            { key: 'default', label: 'Default' },
             { key: 'desc', label: 'Descrição' },
           ]}
           rows={PROP_ROWS.map((r) => ({
@@ -310,5 +314,9 @@ export default function CreativeCardPage() {
 }
 
 function code(text: string): ReactNode {
-  return <code className={styles.code}>{text}</code>
+  return (
+    <DocBadge size="md" className="font-code">
+      {text}
+    </DocBadge>
+  )
 }

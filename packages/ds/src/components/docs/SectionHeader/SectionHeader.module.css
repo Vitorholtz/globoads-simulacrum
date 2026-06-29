@@ -18,11 +18,7 @@
   color: var(--color-fill-primary);
 }
 
-.sectionCount {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 9px;
-  border-radius: var(--border-radius-full);
+.count {
   margin-left: auto;
 }
 

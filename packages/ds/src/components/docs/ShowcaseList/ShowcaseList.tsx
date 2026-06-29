@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './ShowcaseList.module.css'
 
 export interface ShowcaseRow {
@@ -32,11 +33,12 @@ export default function ShowcaseList({
             <div className={styles.labelRow}>
               <span className={`type-body-sm ${styles.label}`}>{row.label}</span>
               {row.badge && (
-                <span
-                  className={`type-caption-sm ${row.badgeVariant === 'warning' ? styles.badgeWarning : styles.badge}`}
+                <DocBadge
+                  variant={row.badgeVariant === 'warning' ? 'warning' : 'neutral'}
+                  className="type-caption-sm"
                 >
                   {row.badge}
-                </span>
+                </DocBadge>
               )}
             </div>
             <span className={`type-body-sm ${styles.description}`}>{row.description}</span>

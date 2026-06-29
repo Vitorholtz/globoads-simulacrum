@@ -3,7 +3,6 @@ import { CARD_STYLES, STATIC_CARD_GUIDELINES } from '../../tokens/cards'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Badge from '../../components/Badge/Badge'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import styles from './StaticCardPage.module.css'
@@ -69,6 +68,7 @@ export default function StaticCardPage() {
               }
               title={s.name}
               description={s.description}
+              previewBg={s.id === 'on-secondary' ? 'secondary' : 'primary'}
             />
           ))}
         </CardGrid>
@@ -76,7 +76,11 @@ export default function StaticCardPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={STATIC_CARD_GUIDELINES} />
+        <CardGrid wide>
+          {STATIC_CARD_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

@@ -8,7 +8,6 @@ import {
 } from '../../tokens/checkbox'
 import type { CheckboxBehavior, CheckboxType } from '../../tokens/checkbox'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
@@ -106,7 +105,6 @@ export default function CheckboxPage() {
               header={{ name: typeDef?.label, description: typeDef?.description }}
               columns={BEHAVIOR_COLUMNS}
               rows={MATRIX_STATES}
-              labelWidth={96}
               cellPad="sm"
               renderCell={(state, col) => (
                 <Checkbox behavior={col.id} type={type} forceState={state.force} label="Checkbox" />
@@ -209,7 +207,11 @@ export default function CheckboxPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={CHECKBOX_GUIDELINES} />
+        <CardGrid wide>
+          {CHECKBOX_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

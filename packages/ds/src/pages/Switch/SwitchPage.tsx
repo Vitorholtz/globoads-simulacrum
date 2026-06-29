@@ -8,7 +8,6 @@ import {
 } from '../../tokens/switch'
 import type { SwitchBehavior, SwitchType } from '../../tokens/switch'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
@@ -87,7 +86,6 @@ export default function SwitchPage() {
               header={{ name: typeDef?.label, description: typeDef?.description }}
               columns={BEHAVIOR_COLUMNS}
               rows={MATRIX_STATES}
-              labelWidth={96}
               cellPad="sm"
               renderCell={(state, col) => (
                 <Switch behavior={col.id} type={type} forceState={state.force} label="Switch" />
@@ -165,7 +163,11 @@ export default function SwitchPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={SWITCH_GUIDELINES} />
+        <CardGrid wide>
+          {SWITCH_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

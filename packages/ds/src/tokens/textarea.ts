@@ -1,4 +1,4 @@
-import type { GuidelineDef, StateDef } from './types'
+﻿import type { GuidelineDef, StateDef } from './types'
 
 export type TextareaSize = 'sm' | 'md' | 'lg'
 
@@ -83,22 +83,18 @@ export const TEXTAREA_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para entradas longas',
     body: 'O Textarea é indicado quando o usuário precisa inserir textos extensos, como comentários, descrições ou observações. Para textos curtos de uma linha, prefira o TextField.',
-    rule: 'Use Textarea quando o campo exigir mais de uma linha de texto.',
   },
   {
     title: 'Sempre use uma label descritiva',
     body: 'A label identifica o campo e deve ser clara e objetiva. Evite usar o placeholder como substituto da label — ele desaparece ao digitar e prejudica a acessibilidade.',
-    rule: 'Nunca omita a label em formulários funcionais.',
   },
   {
     title: 'Use o contador com critério',
     body: 'O contador de caracteres orienta o usuário sobre limites de entrada. Exiba-o apenas quando há um limite máximo real e quando esse limite é relevante para o usuário.',
-    rule: 'Habilite o contador somente quando houver um maxLength definido.',
   },
   {
     title: 'Valide com clareza',
     body: 'Em estado de erro, apresente uma mensagem explicativa abaixo do campo. O ícone de erro no canto reforça visualmente o problema sem substituir o texto descritivo.',
-    rule: 'Sempre acompanhe o estado de erro com uma mensagem descritiva.',
   },
 ]
 

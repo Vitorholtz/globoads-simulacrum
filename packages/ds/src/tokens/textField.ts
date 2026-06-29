@@ -1,4 +1,4 @@
-export type TextFieldSize = 'sm' | 'md' | 'lg'
+﻿export type TextFieldSize = 'sm' | 'md' | 'lg'
 
 export type TextFieldSizeDef = {
   id: TextFieldSize
@@ -59,22 +59,18 @@ export const TEXT_FIELD_GUIDELINES = [
   {
     title: 'Label sempre visível',
     body: 'Nunca substitua a label por placeholder. O placeholder some quando o usuário começa a digitar, deixando o campo sem contexto. A label deve estar sempre posicionada acima do campo.',
-    rule: 'Label acima, placeholder dentro — nunca um pelo outro.',
   },
   {
     title: 'Mensagens de erro claras',
     body: 'O texto de erro deve explicar o que está errado e como corrigir. Evite mensagens genéricas como "Campo inválido". Seja específico: "Email deve ter o formato nome@domínio.com".',
-    rule: 'Diga o que está errado e como corrigir.',
   },
   {
     title: 'Ícone como apoio contextual',
     body: 'Use o ícone à esquerda para reforçar o tipo de dado esperado (search, mail, phone). O ícone nunca deve substituir a label. Reserve o ícone de erro (à direita) exclusivamente para validação.',
-    rule: 'Ícone reforça contexto — nunca substitui label.',
   },
   {
     title: 'Campo opcional explícito',
     body: 'Marque campos opcionais com a tag "Opcional" em vez de marcar os obrigatórios com asterisco. A exceção são formulários onde todos os campos são opcionais — aí omita a marcação.',
-    rule: 'Marque o opcional, não o obrigatório.',
   },
 ]
 

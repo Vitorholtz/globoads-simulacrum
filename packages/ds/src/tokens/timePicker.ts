@@ -1,4 +1,4 @@
-import type { GuidelineDef } from './types'
+﻿import type { GuidelineDef } from './types'
 
 export type TimePickerSize = 'sm' | 'md' | 'lg'
 
@@ -68,22 +68,18 @@ export const TIME_PICKER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Formato 24 horas consistente',
     body: 'Use sempre o formato HH:MM (24 horas) para horários. O placeholder deve refletir esse formato para orientar o preenchimento manual sem depender do painel.',
-    rule: 'HH:MM em 24 horas — sem AM/PM.',
   },
   {
     title: 'Painel como atalho, não obrigação',
     body: 'O usuário deve poder preencher o horário manualmente ou ajustá-lo pelo painel de horas e minutos. Nunca bloqueie a digitação direta — isso é essencial para acessibilidade e velocidade.',
-    rule: 'Digitação manual e painel são caminhos equivalentes.',
   },
   {
     title: 'Incrementos de horas e minutos',
     body: 'No painel, as horas avançam de 1 em 1 e os minutos de 10 em 10, com retorno ao início ao ultrapassar o limite (23h → 00h, 50min → 00min). Esses incrementos seguem a granularidade comum de agendamentos.',
-    rule: 'Horas: passo de 1. Minutos: passo de 10.',
   },
   {
     title: 'Feedback de erro ao completar o campo',
     body: 'Valide o horário assim que os 5 caracteres (HH:MM) forem preenchidos, não a cada dígito digitado. O estado de erro mostra fundo rosado, borda crítica e texto explicativo abaixo do campo.',
-    rule: 'Valide ao completar HH:MM — nunca a cada dígito.',
   },
 ]
 

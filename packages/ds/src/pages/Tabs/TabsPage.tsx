@@ -12,7 +12,6 @@ import type { TabPosition } from '../../tokens/tabs'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './TabsPage.module.css'
 
@@ -32,7 +31,7 @@ function PositionDemo({ position, description }: { position: TabPosition; descri
       }
       title={position.charAt(0).toUpperCase() + position.slice(1)}
       description={description}
-      align="stretch"
+      align={isVertical ? 'center' : 'stretch'}
       previewPad="lg"
     />
   )
@@ -80,7 +79,6 @@ export default function TabsPage() {
             }
             title={TAB_CONTENT_VARIANTS[0].label}
             description={TAB_CONTENT_VARIANTS[0].description}
-            align="stretch"
           />
 
           <DemoCard
@@ -95,7 +93,6 @@ export default function TabsPage() {
             }
             title={TAB_CONTENT_VARIANTS[1].label}
             description={TAB_CONTENT_VARIANTS[1].description}
-            align="stretch"
           />
 
           <DemoCard
@@ -110,14 +107,17 @@ export default function TabsPage() {
             }
             title={TAB_CONTENT_VARIANTS[2].label}
             description={TAB_CONTENT_VARIANTS[2].description}
-            align="stretch"
           />
         </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={TABS_GUIDELINES} />
+        <CardGrid wide>
+          {TABS_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

@@ -1,3 +1,4 @@
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './SectionHeader.module.css'
 
 interface SectionHeaderProps {
@@ -15,7 +16,7 @@ export default function SectionHeader({ icon, title, count, description }: Secti
           {icon}
         </span>
         <h2 className={`type-title-md ${styles.sectionTitle}`}>{title}</h2>
-        {count && <span className={`type-caption-sm ${styles.sectionCount}`}>{count}</span>}
+        {count && <DocBadge className={`type-caption-sm ${styles.count}`}>{count}</DocBadge>}
       </div>
       {description && <p className={`type-body-sm ${styles.sectionDescription}`}>{description}</p>}
     </div>

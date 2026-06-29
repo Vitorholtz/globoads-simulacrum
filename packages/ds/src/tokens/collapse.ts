@@ -1,4 +1,4 @@
-import type { GuidelineDef, StateDef } from './types'
+﻿import type { GuidelineDef, StateDef } from './types'
 
 export type CollapseSize = 'xs' | 'sm' | 'md' | 'lg'
 
@@ -120,21 +120,17 @@ export const COLLAPSE_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para conteúdo complementar',
     body: 'O Collapse é ideal para ocultar informações secundárias que não precisam estar visíveis o tempo todo — como detalhes adicionais, textos explicativos longos ou seções opcionais de configuração de campanha.',
-    rule: 'Não use para esconder informações críticas ao fluxo principal do usuário.',
   },
   {
     title: 'Label clara e descritiva',
     body: 'O texto do acionador deve descrever com precisão o que será revelado ao expandir. Evite rótulos genéricos como "Ver mais" sem contexto suficiente para o usuário entender o que esperar.',
-    rule: 'Prefira "Ver detalhes da campanha" a "Ver mais" em contextos específicos.',
   },
   {
     title: 'Estado inicial adequado',
     body: 'Decida se o conteúdo deve iniciar aberto ou fechado com base na relevância para o usuário. Conteúdo importante para a maioria dos casos deve iniciar expandido para garantir visibilidade imediata.',
-    rule: 'Use defaultOpen={true} quando o conteúdo for relevante para a maioria dos usuários.',
   },
   {
     title: 'Consistência em grupos',
     body: 'Quando múltiplos Collapses aparecem na mesma seção, mantenha o mesmo tamanho e padrão de label para todos. Variações sem justificativa visual criam inconsistência na interface.',
-    rule: 'Mantenha tamanho e padrão de label consistentes em todos os Collapses de um grupo.',
   },
 ]

@@ -3,7 +3,6 @@ import Pagination from '../../components/Pagination/Pagination'
 import { PAGINATION_VARIANTS, PAGINATION_GUIDELINES } from '../../tokens/pagination'
 import type { PaginationVariantDef } from '../../tokens/pagination'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
@@ -67,7 +66,11 @@ export default function PaginationPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={PAGINATION_GUIDELINES} />
+        <CardGrid wide>
+          {PAGINATION_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

@@ -1,4 +1,4 @@
-export type InlineLoaderType = 'spinner' | 'rippler' | 'sparkle' | 'ellipsis'
+﻿export type InlineLoaderType = 'spinner' | 'rippler' | 'sparkle' | 'ellipsis'
 export type InlineLoaderSize = 'sm' | 'md' | 'lg'
 export type InlineLoaderColor =
   | 'primary'
@@ -72,21 +72,17 @@ export const INLINE_LOADER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Não bloqueie a interface',
     body: 'O Inline Loader é para carregamentos pontuais dentro de componentes. Para carregamentos que impedem toda a interação da página, use um Page Loader com overlay.',
-    rule: 'Regra: se o usuário não pode fazer mais nada enquanto aguarda, o Inline Loader é o componente errado.',
   },
   {
     title: 'Não substitua o Skeleton',
     body: 'O Skeleton comunica a estrutura de conteúdo que ainda está chegando — ideal para listas, cards e feeds. O Inline Loader indica processamento ativo de uma ação já iniciada.',
-    rule: 'Regra: use Skeleton para carregamento inicial de conteúdo; Inline Loader para ações em andamento.',
   },
   {
     title: 'Escolha o tipo pelo contexto semântico',
     body: 'Spinner para estados genéricos. Rippler para conectividade e sessões ao vivo. Sparkle exclusivamente para processamento de IA. Ellipsis para feedback textual com espaço disponível.',
-    rule: 'Regra: não troque Sparkle por Spinner em contextos de IA — a distinção visual carrega significado para o usuário.',
   },
   {
     title: 'Remova assim que concluir',
     body: 'O loader deve ser substituído imediatamente pelo resultado da ação — seja conteúdo, mensagem de sucesso ou erro. Mantê-lo visível após a conclusão cria desorientação.',
-    rule: 'Regra: nunca deixe o loader visível por mais tempo do que a ação demora — use estado da aplicação para controlá-lo.',
   },
 ]

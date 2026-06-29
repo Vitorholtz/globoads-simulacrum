@@ -5,7 +5,6 @@ import {
   INFO_PANEL_CONTENT_VARIANTS,
   INFO_PANEL_GUIDELINES,
 } from '../../tokens/infoPanel'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
@@ -56,7 +55,7 @@ export default function InfoPanelPage() {
               }
               title={variant.label}
               description={variant.description}
-              align="stretch"
+              previewBg="primary"
             />
           ))}
         </CardGrid>
@@ -81,7 +80,7 @@ export default function InfoPanelPage() {
               }
               title={combo.label}
               description={combo.description}
-              align="stretch"
+              previewBg="primary"
             />
           ))}
         </CardGrid>
@@ -89,7 +88,11 @@ export default function InfoPanelPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de uso">
-        <GuidelinesGrid items={INFO_PANEL_GUIDELINES} />
+        <CardGrid wide>
+          {INFO_PANEL_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

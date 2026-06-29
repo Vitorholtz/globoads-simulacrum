@@ -1,4 +1,4 @@
-export type InfoPanelType = 'neutral' | 'success' | 'warning' | 'critical'
+﻿export type InfoPanelType = 'neutral' | 'success' | 'warning' | 'critical'
 
 export interface InfoPanelVariantDef {
   id: InfoPanelType
@@ -83,21 +83,17 @@ export const INFO_PANEL_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Permanência intencional',
     body: 'O Info Panel permanece visível na tela enquanto a condição que o originou persistir. Diferente de toasts ou snackbars, ele não desaparece automaticamente — está "impresso" na interface.',
-    rule: 'Nunca use Info Panel para mensagens transitórias. Use Toast para feedback temporário pós-ação.',
   },
   {
     title: 'Escolha o tipo correto',
     body: 'O tipo deve refletir fielmente a natureza da informação: Neutral para contexto, Success para confirmações, Warning para alertas não-bloqueantes e Critical para erros ou bloqueios graves.',
-    rule: 'Não use Critical para avisos rotineiros — reserve-o para situações que realmente exijam ação imediata.',
   },
   {
     title: 'Conteúdo direto e objetivo',
     body: 'Escreva títulos curtos que comuniquem a essência da mensagem. Descrições devem complementar o título, não repeti-lo. Evite jargões técnicos ou explicações excessivamente longas.',
-    rule: 'Se o texto precisar de mais de três linhas, avalie se o Info Panel é o componente adequado ou se um modal seria mais apropriado.',
   },
   {
     title: 'Posicionamento contextual',
     body: 'Posicione o Info Panel próximo ao conteúdo ao qual se refere. Alertas de página ficam no topo do conteúdo; alertas de campo ficam adjacentes ao campo. Evite empilhar múltiplos painéis.',
-    rule: 'Se precisar exibir mais de um Info Panel simultâneo, priorize o Critical e oculte os demais ou agrupe a informação em um único painel.',
   },
 ]

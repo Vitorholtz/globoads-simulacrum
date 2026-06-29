@@ -2,11 +2,10 @@ import ChipSuggestion from '../../components/ChipSuggestion/ChipSuggestion'
 import { CHIP_BEHAVIORS, CHIP_STATES, CHIP_GUIDELINES } from '../../tokens/chipSuggestion'
 import type { ChipBehavior } from '../../tokens/chipSuggestion'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
-import styles from './ChipSuggestionPage.module.css'
-
-const ALL_BEHAVIORS: ChipBehavior[] = ['unchecked', 'checked']
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
 
 export default function ChipSuggestionPage() {
   return (
@@ -23,53 +22,42 @@ export default function ChipSuggestionPage() {
 
       {/* ── Comportamentos ── */}
       <Section icon="sell" title="Comportamentos" count="2 comportamentos">
-        <div className={styles.behaviorsGrid}>
+        <CardGrid>
           {CHIP_BEHAVIORS.map((b) => (
-            <div key={b.id} className={styles.behaviorCard}>
-              <div className={styles.behaviorPreview}>
-                <ChipSuggestion behavior={b.id} label="Sugestão" />
-              </div>
-              <div className={styles.behaviorBody}>
-                <span className={`type-body-sm ${styles.behaviorName}`}>{b.label}</span>
-                <p className={`type-body-sm ${styles.behaviorDesc}`}>{b.description}</p>
-              </div>
-            </div>
+            <DemoCard
+              key={b.id}
+              preview={<ChipSuggestion behavior={b.id} label="Sugestão" />}
+              title={b.label}
+              description={b.description}
+              previewPad="lg"
+            />
           ))}
-        </div>
+        </CardGrid>
       </Section>
 
       {/* ── Estados — Matriz ── */}
       <Section icon="toggle_on" title="Estados" count="6 estados">
-        <div className={styles.matrixContainer}>
-          <div className={styles.matrixHeaderRow}>
-            <div className={styles.matrixHeaderSpacer} />
-            {ALL_BEHAVIORS.map((b) => (
-              <div key={b} className={`type-caption-xs ${styles.matrixCellLabel}`}>
-                {CHIP_BEHAVIORS.find((bh) => bh.id === b)?.label}
-              </div>
-            ))}
-          </div>
-
-          {CHIP_STATES.map((state) => (
-            <div key={state.id} className={styles.matrixRow}>
-              <div className={styles.matrixStateLabel}>
-                <span className={`type-caption-sm ${styles.matrixStateName}`}>{state.label}</span>
-              </div>
-              <div className={styles.matrixCells}>
-                {ALL_BEHAVIORS.map((b) => (
-                  <div key={b} className={styles.matrixCell}>
-                    <ChipSuggestion behavior={b} forceState={state.force} label="Sugestão" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={CHIP_BEHAVIORS.map((b) => ({ id: b.id, label: b.label }))}
+          rows={CHIP_STATES.map((s) => ({ id: s.id, label: s.label, force: s.force }))}
+          cellPad="sm"
+          renderCell={(row, col) => (
+            <ChipSuggestion
+              behavior={col.id as ChipBehavior}
+              forceState={row.force}
+              label="Sugestão"
+            />
+          )}
+        />
       </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={CHIP_GUIDELINES} />
+        <CardGrid wide>
+          {CHIP_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

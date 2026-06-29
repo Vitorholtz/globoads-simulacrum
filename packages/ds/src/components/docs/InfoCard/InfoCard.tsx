@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './InfoCard.module.css'
 
 export interface SpecRow {
@@ -32,7 +33,7 @@ export default function InfoCard({
       {title && (
         <div className={styles.header}>
           <h3 className={`type-title-md ${styles.title}`}>{title}</h3>
-          {badge && <span className={`type-caption-sm ${styles.badge}`}>{badge}</span>}
+          {badge && <DocBadge className="type-caption-sm">{badge}</DocBadge>}
         </div>
       )}
       {description && <p className={`type-body-md ${styles.description}`}>{description}</p>}

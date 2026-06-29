@@ -1,7 +1,6 @@
 import Accordion from '../../components/Accordion/Accordion'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import { ACCORDION_STATES, ACCORDION_GUIDELINES, ACCORDION_VARIANTS } from '../../tokens/accordion'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
@@ -160,7 +159,7 @@ export default function AccordionPage() {
               }
               title={variant.label}
               description={variant.description}
-              align="stretch"
+              previewBg="primary"
             />
           ))}
         </CardGrid>
@@ -180,7 +179,7 @@ export default function AccordionPage() {
               }
               title={state.label}
               description={state.description}
-              align="stretch"
+              previewBg="primary"
             />
           ))}
         </CardGrid>
@@ -188,7 +187,11 @@ export default function AccordionPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={ACCORDION_GUIDELINES} />
+        <CardGrid wide>
+          {ACCORDION_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

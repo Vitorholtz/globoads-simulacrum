@@ -1,4 +1,4 @@
-export type SkeletonType =
+﻿export type SkeletonType =
   | 'button'
   | 'input'
   | 'avatar'
@@ -121,21 +121,17 @@ export const SKELETON_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use apenas para conteúdo com estrutura previsível',
     body: 'O Skeleton é ideal quando você conhece a forma do conteúdo que será carregado — listas, cards, perfis. Para estados genéricos sem estrutura definida, prefira o Inline Loader.',
-    rule: 'Regra: não use Skeleton para dados dinâmicos cujo layout você não consegue prever com antecedência.',
   },
   {
     title: 'Mantenha aria-hidden="true" sempre',
     body: 'O Skeleton é puramente visual. Leitores de tela não devem anunciá-lo como conteúdo. O atributo aria-hidden="true" deve estar sempre presente no componente.',
-    rule: 'Regra: nunca omita aria-hidden — o placeholder pode confundir tecnologias assistivas se anunciado.',
   },
   {
     title: 'Respeite as proporções do componente real',
     body: 'Escolha o tipo e tamanho que mais se aproximam do componente real. Um Skeleton de tamanho errado causa um salto de layout (CLS) quando o conteúdo é renderizado.',
-    rule: 'Regra: o Skeleton deve ocupar exatamente o mesmo espaço que o conteúdo final para evitar layout shift.',
   },
   {
     title: 'Não substitua o Page Loader ou Inline Loader',
     body: 'Use o Page Loader para bloqueios de página inteira. Use o Inline Loader para feedback de ações pontuais em andamento. O Skeleton cobre apenas o carregamento inicial de conteúdo estruturado.',
-    rule: 'Regra: Skeleton = carregamento inicial de conteúdo. Inline Loader = ação em progresso. Page Loader = bloqueio total.',
   },
 ]

@@ -1,4 +1,4 @@
-export type HyperlinkSize = 'xs' | 'sm' | 'md' | 'lg'
+﻿export type HyperlinkSize = 'xs' | 'sm' | 'md' | 'lg'
 
 export type HyperlinkSizeDef = {
   id: HyperlinkSize
@@ -74,21 +74,17 @@ export const HYPERLINK_GUIDELINES = [
   {
     title: 'Texto descritivo e autoexplicativo',
     body: 'A label do hyperlink deve descrever o destino sem depender do contexto ao redor. Evite textos genéricos como "clique aqui" ou "saiba mais" — eles não comunicam o destino para leitores de tela e tecnologias assistivas.',
-    rule: 'A label deve fazer sentido lida fora de contexto.',
   },
   {
     title: 'Sinalize links externos com ícone',
     body: 'Use o prop "external" para links que abrem fora da aplicação. O ícone open_in_new e o atributo target="_blank" informam ao usuário que o link abrirá em nova aba, prevenindo surpresas de navegação.',
-    rule: 'Links externos sempre com ícone e target="_blank".',
   },
   {
     title: 'Tamanho mínimo de alvo de toque',
     body: 'Em interfaces touch, certifique-se de que a área de toque seja de no mínimo 44×44px. Adicione padding extra ao elemento pai ou use CSS para expandir a área clicável quando o texto for pequeno.',
-    rule: 'Área de toque ≥ 44×44px em contextos touch.',
   },
   {
     title: 'Não remova o sublinhado interativo',
     body: 'O sublinhado nos estados hover, focus e active é o principal diferenciador visual de um link em relação a texto comum — especialmente para usuários com daltonismo. Nunca remova esta decoração via CSS global.',
-    rule: 'Sublinhado em hover/focus/active é obrigatório.',
   },
 ]

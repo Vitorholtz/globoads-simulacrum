@@ -1,5 +1,6 @@
 import type { ColorToken } from '../../../tokens/colors'
 import { isLightColor } from '../../../utils/color'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './ColorSwatch.module.css'
 
 interface ColorSwatchProps {
@@ -27,7 +28,9 @@ export default function ColorSwatch({ token }: ColorSwatchProps) {
       </div>
 
       <div className={styles.meta}>
-        <code className={`type-caption-sm ${styles.cssVar}`}>{token.variable}</code>
+        <DocBadge variant="accent" className="type-caption-sm font-code">
+          {token.variable}
+        </DocBadge>
         {token.description && (
           <p className={`type-body-sm ${styles.description}`}>{token.description}</p>
         )}

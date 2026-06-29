@@ -1,4 +1,4 @@
-import type { GuidelineDef } from './types'
+﻿import type { GuidelineDef } from './types'
 import type { TimeValue } from './timePicker'
 
 export type DateTimePickerSize = 'sm' | 'md' | 'lg'
@@ -73,27 +73,22 @@ export const DATE_TIME_PICKER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Fluxo sequencial: data e depois horário',
     body: 'Ao abrir o componente, o usuário vê primeiro o calendário. Ao confirmar a data, o painel avança automaticamente para a seleção de horário. Confirmar o horário fecha o componente e exibe os dois valores no campo.',
-    rule: 'Data → Confirmar → Horário → Confirmar → fecha.',
   },
   {
     title: 'Um único campo para os dois valores',
     body: 'O campo exibe data e horário lado a lado, separados por uma seta, no formato DD/MM/AAAA → HH:MM. Use esse componente quando data e horário formam um único momento (início de um agendamento), em vez de dois campos separados.',
-    rule: 'DD/MM/AAAA → HH:MM em um único campo.',
   },
   {
     title: 'Painéis como atalho, não obrigação',
     body: 'O usuário deve poder digitar a data e o horário diretamente nos campos ou ajustá-los pelo calendário e pelo painel de horário. Ao abrir o painel, ele reflete os valores já digitados — digitação e seleção permanecem sincronizadas.',
-    rule: 'Digitação manual e painéis são caminhos equivalentes e sincronizados.',
   },
   {
     title: 'Voltar preserva o progresso, cancelar descarta tudo',
     body: 'Na etapa de horário, a seta de voltar retorna ao calendário sem perder o horário já ajustado. Já o botão "Cancelar", em qualquer etapa, fecha o painel sem alterar o valor confirmado anteriormente.',
-    rule: 'Voltar mantém o progresso; Cancelar descarta a seleção.',
   },
   {
     title: 'Campo opcional explícito',
     body: 'Marque campos de data e horário opcionais com a tag "Opcional". Em formulários onde todos os campos são opcionais, omita a marcação para reduzir ruído visual.',
-    rule: 'Marque o opcional, não o obrigatório.',
   },
 ]
 

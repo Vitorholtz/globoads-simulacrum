@@ -1,4 +1,4 @@
-import type { GuidelineDef, StateDef } from './types'
+﻿import type { GuidelineDef, StateDef } from './types'
 
 export type SelectSize = 'sm' | 'md' | 'lg'
 
@@ -91,22 +91,18 @@ export const SELECT_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para listas de opções fixas',
     body: 'O Select é indicado quando o usuário deve escolher entre um conjunto predefinido de opções. Para listas com 8 ou mais itens, ative a prop searchable para que o usuário filtre sem precisar percorrer toda a lista.',
-    rule: 'Use Select para até 7 opções; ative searchable a partir de 8.',
   },
   {
     title: 'Sempre use uma label descritiva',
     body: 'A label identifica o campo e deve ser clara e objetiva. Evite usar o placeholder como substituto da label — ele desaparece ao selecionar e prejudica a acessibilidade.',
-    rule: 'Nunca omita a label em formulários funcionais.',
   },
   {
     title: 'Forneça um placeholder informativo',
     body: 'O placeholder deve orientar o usuário sobre o que selecionar. Use textos como "Selecione um item" em vez de apenas "Selecionar" — ele desaparece ao selecionar e não substitui a label.',
-    rule: 'O placeholder deve descrever a ação, não apenas nomear o campo.',
   },
   {
     title: 'Valide com clareza',
     body: 'Em estado de erro, apresente uma mensagem explicativa abaixo do campo. O ícone de erro no campo reforça visualmente o problema sem substituir o texto descritivo.',
-    rule: 'Sempre acompanhe o estado de erro com uma mensagem descritiva.',
   },
 ]
 

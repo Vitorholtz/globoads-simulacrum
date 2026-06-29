@@ -3,7 +3,6 @@ import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import { TOOLTIP_POSITIONS, TOOLTIP_ALIGNMENTS, TOOLTIP_GUIDELINES } from '../../tokens/tooltip'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import styles from './TooltipPage.module.css'
 
@@ -91,7 +90,11 @@ export default function TooltipPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={TOOLTIP_GUIDELINES} />
+        <CardGrid wide>
+          {TOOLTIP_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

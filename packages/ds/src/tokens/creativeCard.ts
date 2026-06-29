@@ -1,4 +1,4 @@
-import type { GuidelineDef, VariantDef } from './types'
+﻿import type { GuidelineDef, VariantDef } from './types'
 import type { CreativeCardMode } from '../components/CreativeCard/CreativeCard'
 import type { CreativeState } from '../components/CreativeCard/types'
 import { CREATIVE_STATUS } from '../components/CreativeCard/creativeLifecycle'
@@ -78,21 +78,17 @@ export const CREATIVE_CARD_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Escolha o modo pelo momento do ciclo',
     body: 'Cada modo cobre uma etapa: `config` para configurar, `review` para revisar um envio e `gallery` para listar. O header e o preview são compartilhados; só o corpo muda.',
-    rule: 'Regra: não recrie o card por contexto — passe `mode` ao mesmo componente.',
   },
   {
     title: 'O status é derivado do estado',
     body: 'O badge de status vem de `creative.state` via `CREATIVE_STATUS` em `creativeLifecycle`. Não existe prop de rótulo/variante de status para passar à mão.',
-    rule: 'Regra: transicione o estado por `applyTransition`; nunca escreva o texto do status direto.',
   },
   {
     title: 'Ações de negócio pertencem ao consumidor',
     body: 'Enviar, aprovar e recusar não são responsabilidade do card — ele apenas reflete o estado e emite callbacks (`onViewDetails`, `onStatusLink`). A transição é feita por quem orquestra o fluxo.',
-    rule: 'Regra: mantenha botões de ação fora do card; dirija o estado pelo lado de fora.',
   },
   {
     title: 'Seleção controlada ou não',
     body: 'Nos modos `config`/`gallery` o card é selecionável (checkbox + header/preview clicáveis). Use `selected`/`onSelectedChange` para controlar, ou `defaultSelected` para deixar o card gerenciar. O modo `review` não tem seleção.',
-    rule: 'Padrão: controle a seleção quando precisar de seleção em lote; senão use `defaultSelected`.',
   },
 ]

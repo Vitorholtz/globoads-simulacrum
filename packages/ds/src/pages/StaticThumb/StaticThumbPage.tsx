@@ -4,7 +4,6 @@ import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import { STATIC_THUMB_TYPES, STATIC_THUMB_GUIDELINES } from '../../tokens/staticThumb'
 import styles from './StaticThumbPage.module.css'
 
@@ -120,7 +119,11 @@ export default function StaticThumbPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={STATIC_THUMB_GUIDELINES} />
+        <CardGrid wide>
+          {STATIC_THUMB_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

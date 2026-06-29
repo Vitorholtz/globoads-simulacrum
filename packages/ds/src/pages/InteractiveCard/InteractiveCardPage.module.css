@@ -1,14 +1,5 @@
 ﻿/* â”€â”€ Styles grid â”€â”€ */
 
-.stylePreviewInner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-400);
-  margin: calc(var(--spacing-100) * -1);
-}
-
 .demoCard {
   width: 306px;
 }
@@ -62,13 +53,6 @@
   height: 14px;
 }
 
-.diariaMoreCount {
-  color: var(--color-fill-secondary);
-  background: var(--color-border-tertiary);
-  padding: var(--spacing-025) var(--spacing-075);
-  border-radius: var(--border-radius-sm);
-}
-
 .diariaContent {
   display: flex;
   flex-direction: column;
@@ -102,85 +86,17 @@
   display: block;
 }
 
-/* â”€â”€ State matrix â”€â”€ */
-
-.stateMatrixContainer {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  background: var(--color-surface-primary);
-  margin-bottom: var(--spacing-200);
-}
-
-.stateMatrixContainer:last-child {
-  margin-bottom: 0;
-}
-
-.matrixStyleHeader {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-125);
-  padding: var(--spacing-200) var(--spacing-300);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-secondary);
-}
-
-.matrixStyleName {
-  color: var(--color-fill-primary);
-}
-
-.matrixStyleTagline {
-  color: var(--color-fill-tertiary);
-}
-
-.matrixHeaderRow {
-  display: flex;
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-primary);
-}
-
-.matrixCellLabel {
-  flex: 1;
-  color: var(--color-fill-tertiary);
-  text-transform: uppercase;
-  text-align: center;
-  padding: var(--spacing-175) var(--spacing-100);
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.matrixCellLabel:last-child {
-  border-right: none;
-}
-
-.matrixRowLabel {
-  padding: var(--spacing-100) var(--spacing-300);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  background: var(--color-surface-secondary);
-  color: var(--color-fill-tertiary);
-  text-transform: uppercase;
-}
-
-.matrixCellsRow {
-  display: flex;
-}
-
-.matrixCell {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-300) var(--spacing-250);
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.matrixCell:last-child {
-  border-right: none;
-}
-
 .matrixCard {
   width: 160px;
   min-height: 96px;
+}
+
+.cellBgPrimary {
+  background: #ffffff;
+}
+
+.cellBgSecondary {
+  background: #f7f7f7;
 }
 
 /* ── Semantic variants ── */
@@ -201,16 +117,6 @@
   padding: var(--spacing-200) var(--spacing-300);
   border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
   background: var(--color-surface-secondary);
-}
-
-.variantTag {
-  font-family: var(--font-family-code);
-  background: var(--color-surface-primary);
-  border: var(--border-width-sm) solid var(--color-border-secondary);
-  border-radius: var(--border-radius-sm);
-  padding: var(--spacing-025) var(--spacing-100);
-  color: var(--color-fill-primary);
-  white-space: nowrap;
 }
 
 .variantLabel {

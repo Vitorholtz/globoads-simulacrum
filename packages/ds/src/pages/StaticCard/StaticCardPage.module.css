@@ -48,7 +48,6 @@
   background: var(--color-fill-accent);
   border-radius: var(--border-radius-xs) var(--border-radius-xs) var(--border-radius-none)
     var(--border-radius-none);
-  opacity: 0.7;
   min-height: 3px;
 }
 

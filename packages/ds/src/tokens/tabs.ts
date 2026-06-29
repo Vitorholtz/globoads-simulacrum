@@ -1,4 +1,4 @@
-import type { GuidelineDef, VariantDef } from './types'
+﻿import type { GuidelineDef, VariantDef } from './types'
 
 export type TabPosition = 'top' | 'bottom' | 'left' | 'right'
 
@@ -75,21 +75,17 @@ export const TABS_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use tabs para visualizações paralelas',
     body: 'Tabs são adequadas para conteúdos distintos que compartilham o mesmo contexto. Não use para fluxos sequenciais — prefira steppers nesses casos.',
-    rule: 'Regra: nunca use tabs para guiar o usuário por etapas que dependem de ordem.',
   },
   {
     title: 'Mantenha os rótulos curtos e descritivos',
     body: 'O texto de cada tab deve ser conciso e deixar claro o que o usuário vai encontrar ao clicar. Evite labels genéricas como "Mais" ou "Outros".',
-    rule: 'Regra: idealmente 1–2 palavras por label; máximo 3 em caso de necessidade.',
   },
   {
     title: 'Escolha a posição adequada ao layout',
     body: 'Top é a posição padrão e a mais familiar. Use Left/Right apenas em interfaces com layout vertical predominante, como painéis de configuração.',
-    rule: 'Padrão: Top. Use outras posições somente quando o layout exige.',
   },
   {
     title: 'Use o contador com moderação',
     body: 'Badges de contagem chamam atenção para itens pendentes ou novidades. Evite usá-los em todas as tabs simultaneamente — isso reduz o impacto visual e cria ruído.',
-    rule: 'Regra: aplique badges apenas quando a contagem tem valor de ação para o usuário.',
   },
 ]

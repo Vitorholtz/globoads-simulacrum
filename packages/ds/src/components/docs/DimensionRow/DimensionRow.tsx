@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './DimensionRow.module.css'
 
 interface DimensionToken {
@@ -22,8 +23,10 @@ export default function DimensionRow({ token, children }: DimensionRowProps) {
           {token.valuePx === 0 ? '0' : `${token.valueRem} / ${token.valuePx}px`}
         </span>
       </div>
-      <div className={`type-caption-sm ${styles.variable}`}>
-        <span>{token.variable}</span>
+      <div className={styles.variable}>
+        <DocBadge variant="accent" className="type-caption-sm font-code">
+          {token.variable}
+        </DocBadge>
       </div>
       <div className={styles.display}>{children}</div>
     </div>

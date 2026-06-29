@@ -17,7 +17,6 @@ import { CHIP_ASSIST_GUIDELINES } from '../../tokens/chipAssist'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import styles from './ChipsPage.module.css'
@@ -77,7 +76,6 @@ export default function ChipsPage() {
         <StateMatrix
           columns={SUGGESTION_COLS}
           rows={CHIP_STATES}
-          labelWidth={112}
           cellPad="sm"
           renderCell={(state, col) => (
             <ChipSuggestion behavior={col.id} forceState={state.force} label="Sugestão" />
@@ -85,7 +83,11 @@ export default function ChipsPage() {
         />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <GuidelinesGrid items={CHIP_GUIDELINES} />
+        <CardGrid wide>
+          {CHIP_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
 
       {/* ═══════════════════════════════════════
@@ -112,7 +114,6 @@ export default function ChipsPage() {
         <StateMatrix
           columns={FILTER_COLS}
           rows={CHIP_STATES}
-          labelWidth={112}
           cellPad="sm"
           renderCell={(state, col) => (
             <ChipFilter behavior={col.id} forceState={state.force} label="Filtro" dropdown />
@@ -120,7 +121,11 @@ export default function ChipsPage() {
         />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <GuidelinesGrid items={CHIP_FILTER_GUIDELINES} />
+        <CardGrid wide>
+          {CHIP_FILTER_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
 
       {/* ═══════════════════════════════════════
@@ -147,7 +152,6 @@ export default function ChipsPage() {
         <StateMatrix
           columns={INPUT_COLS}
           rows={CHIP_STATES}
-          labelWidth={112}
           cellPad="sm"
           renderCell={(state, col) => (
             <ChipInput style={col.id} forceState={state.force} label="Entrada" icon="label" />
@@ -155,7 +159,11 @@ export default function ChipsPage() {
         />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <GuidelinesGrid items={CHIP_INPUT_GUIDELINES} />
+        <CardGrid wide>
+          {CHIP_INPUT_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
 
       {/* ═══════════════════════════════════════
@@ -170,7 +178,6 @@ export default function ChipsPage() {
         <StateMatrix
           columns={ASSIST_COLS}
           rows={CHIP_STATES}
-          labelWidth={112}
           cellPad="sm"
           renderCell={(state) => (
             <ChipAssist icon="calendar_today" label="Criar evento" forceState={state.force} />
@@ -178,7 +185,11 @@ export default function ChipsPage() {
         />
 
         <h4 className={`type-caption-sm ${styles.subsectionTitle}`}>Diretrizes</h4>
-        <GuidelinesGrid items={CHIP_ASSIST_GUIDELINES} />
+        <CardGrid wide>
+          {CHIP_ASSIST_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

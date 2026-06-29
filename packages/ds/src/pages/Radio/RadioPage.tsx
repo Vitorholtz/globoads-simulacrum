@@ -3,7 +3,6 @@ import Radio from '../../components/Radio/Radio'
 import { RADIO_BEHAVIORS, RADIO_TYPES, RADIO_GUIDELINES, MATRIX_STATES } from '../../tokens/radio'
 import type { RadioBehavior, RadioType } from '../../tokens/radio'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
@@ -74,7 +73,6 @@ export default function RadioPage() {
               header={{ name: typeDef?.label, description: typeDef?.description }}
               columns={BEHAVIOR_COLUMNS}
               rows={MATRIX_STATES}
-              labelWidth={96}
               cellPad="sm"
               renderCell={(state, col) => (
                 <Radio behavior={col.id} type={type} forceState={state.force} label="Radio" />
@@ -185,7 +183,11 @@ export default function RadioPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={RADIO_GUIDELINES} />
+        <CardGrid wide>
+          {RADIO_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

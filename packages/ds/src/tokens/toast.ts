@@ -1,4 +1,4 @@
-export type ToastType = 'neutral' | 'success' | 'warning' | 'critical'
+﻿export type ToastType = 'neutral' | 'success' | 'warning' | 'critical'
 
 export interface ToastVariantDef {
   id: ToastType
@@ -54,21 +54,17 @@ export const TOAST_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Mensagens curtas e diretas',
     body: 'O Toast é visto por apenas alguns segundos. O título deve comunicar a essência em até cinco palavras e a descrição deve complementar sem ser redundante. O usuário não deve precisar ler duas vezes para entender.',
-    rule: 'Evite textos longos ou instruções detalhadas no Toast. Se a mensagem precisa de mais contexto, use um Info Panel ou modal.',
   },
   {
     title: 'Duração proporcional ao conteúdo',
     body: 'Toasts com apenas título desaparecem em cerca de 3 segundos. Com título e descrição, mantenha-os visíveis por ao menos 5 segundos. Para mensagens críticas, ofereça sempre a opção de fechar manualmente.',
-    rule: 'Nunca exiba um Toast por mais de 7 segundos — para mensagens persistentes, use Info Panel.',
   },
   {
     title: 'Não bloqueie o conteúdo principal',
     body: 'O Toast deve ser posicionado em uma área que não interfira com a ação que o usuário está executando. Posições recomendadas: canto inferior direito ou centro inferior da viewport.',
-    rule: 'Evite sobrepor botões de ação, campos de formulário ou elementos interativos com o Toast.',
   },
   {
     title: 'Um Toast por vez',
     body: 'Exibir múltiplos toasts simultaneamente cria ruído visual e dificulta a leitura. Enfileire os toasts e exiba-os sequencialmente, sempre aguardando o anterior ser dispensado antes de mostrar o próximo.',
-    rule: 'Se múltiplas ações gerarem toasts em sequência rápida, agrupe-os em uma única mensagem resumida.',
   },
 ]

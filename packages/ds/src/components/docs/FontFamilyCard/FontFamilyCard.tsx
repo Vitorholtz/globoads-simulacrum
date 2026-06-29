@@ -1,4 +1,5 @@
 import type { FontFamilyDef } from '../../../tokens/typography'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './FontFamilyCard.module.css'
 
 interface FontFamilyCardProps {
@@ -17,20 +18,22 @@ export default function FontFamilyCard({ family }: FontFamilyCardProps) {
       <div className={styles.info}>
         <div className={styles.nameRow}>
           <h3 className={`type-title-sm ${styles.familyName}`}>{family.name}</h3>
-          <span className={`type-caption-sm ${styles.purposeBadge}`}>{family.purpose}</span>
+          <DocBadge className="type-caption-sm">{family.purpose}</DocBadge>
         </div>
         <p className={`type-body-md ${styles.description}`}>{family.description}</p>
         <div className={styles.weightsPills}>
           {family.weights.map((w) => (
-            <span key={w.value} className={`type-caption-sm ${styles.weightPill}`}>
+            <DocBadge key={w.value} size="md" className={`type-caption-sm ${styles.weightPill}`}>
               <span className={`type-caption-sm font-code ${styles.weightPillNum}`}>{w.value}</span>
               {w.label}
-            </span>
+            </DocBadge>
           ))}
         </div>
         <div className={styles.cssRow}>
-          <span className={`type-caption-sm ${styles.cssLabel}`}>CSS</span>
-          <code className={`type-caption-sm ${styles.cssVar}`}>{family.cssVariable}</code>
+          <span className={`type-caption-sm ${styles.cssLabel}`}>Token</span>
+          <DocBadge variant="accent" className="type-caption-sm font-code">
+            {family.cssVariable}
+          </DocBadge>
         </div>
       </div>
     </div>

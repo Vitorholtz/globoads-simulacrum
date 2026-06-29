@@ -5,7 +5,6 @@ import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import { CONFIRM_DIALOG_GUIDELINES } from '../../tokens/confirmDialog'
 import { cx } from '../../utils/cx'
 import styles from './ConfirmDialogPage.module.css'
@@ -104,7 +103,11 @@ export default function ConfirmDialogPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={CONFIRM_DIALOG_GUIDELINES} />
+        <CardGrid wide>
+          {CONFIRM_DIALOG_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

@@ -7,9 +7,11 @@ import {
 } from '../../tokens/inlineLoader'
 import type { InlineLoaderType, InlineLoaderSize } from '../../tokens/inlineLoader'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import Section from '../../components/docs/Section/Section'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import styles from './InlineLoaderPage.module.css'
 
 const ELLIPSIS_LABELS: Record<InlineLoaderType, string> = {
@@ -55,36 +57,21 @@ export default function InlineLoaderPage() {
 
       {/* ── Tamanhos ── */}
       <Section icon="straighten" title="Tamanhos" count={INLINE_LOADER_SIZES.length}>
-        <div className={styles.sizesTable}>
-          {/* Header */}
-          <div className={styles.sizesHeader}>
-            <div className={styles.sizesTypeCol} />
-            {INLINE_LOADER_SIZES.map((s) => (
-              <div key={s.id} className={styles.sizeHeadCell}>
-                <span className={`type-body-sm ${styles.sizeHeadLabel}`}>{s.label}</span>
-                <span className={`type-caption-sm ${styles.sizeHeadPx}`}>{s.px}px</span>
-              </div>
-            ))}
-          </div>
-          {/* Rows */}
-          {INLINE_LOADER_TYPES.map((t) => (
-            <div key={t.id} className={styles.sizesRow}>
-              <div className={styles.sizesTypeCol}>
-                <span className={`type-body-sm ${styles.sizesTypeName}`}>{t.label}</span>
-              </div>
-              {INLINE_LOADER_SIZES.map((s) => (
-                <div key={s.id} className={styles.sizeCell}>
-                  <InlineLoader
-                    type={t.id}
-                    size={s.id as InlineLoaderSize}
-                    color="primary"
-                    label={ELLIPSIS_LABELS[t.id] || 'Carregando'}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={INLINE_LOADER_SIZES.map((s) => ({
+            id: s.id,
+            label: `${s.label} · ${s.px}px`,
+          }))}
+          rows={INLINE_LOADER_TYPES.map((t) => ({ id: t.id, label: t.label }))}
+          renderCell={(row, col) => (
+            <InlineLoader
+              type={row.id as InlineLoaderType}
+              size={col.id as InlineLoaderSize}
+              color="primary"
+              label={ELLIPSIS_LABELS[row.id as InlineLoaderType] || 'Carregando'}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Cores ── */}
@@ -110,7 +97,11 @@ export default function InlineLoaderPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={INLINE_LOADER_GUIDELINES} />
+        <CardGrid wide>
+          {INLINE_LOADER_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

@@ -4,7 +4,6 @@ import Tabs from '../../components/Tabs/Tabs'
 import type { TabItem } from '../../components/Tabs/Tabs'
 import { BADGE_COUNTER_EXAMPLES, BADGE_COUNTER_GUIDELINES } from '../../tokens/badgeCounter'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
@@ -77,7 +76,6 @@ export default function BadgeCounterPage() {
             }
             title="Em tabs e navegação"
             description="Badge posicionado imediatamente após o rótulo, alinhado ao centro vertical."
-            align="stretch"
           />
           <DemoCard
             preview={
@@ -111,7 +109,11 @@ export default function BadgeCounterPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={BADGE_COUNTER_GUIDELINES} />
+        <CardGrid wide>
+          {BADGE_COUNTER_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

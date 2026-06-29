@@ -6,123 +6,25 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-400) var(--spacing-300);
-  color: var(--color-fill-secondary);
+  color: var(--color-fill-primary);
 }
 
-.codeBlock {
-  font-family: var(--font-family-code);
-  background: var(--color-surface-tertiary);
-  padding: 5px 11px;
-  border-radius: var(--border-radius-sm);
-  color: var(--color-fill-secondary);
-}
-
-.inlineCode {
-  font-family: var(--font-family-code);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 7px;
-  border-radius: var(--border-radius-sm);
-  color: var(--color-fill-secondary);
-  vertical-align: middle;
-}
-
-/* â”€â”€ Token Usage Card â”€â”€ */
-
-.tokenUsage {
+.pillGroup {
   display: flex;
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface-primary);
-  overflow: hidden;
-  margin-bottom: var(--spacing-200);
-}
-
-.tokenUsageInfo {
-  flex: 0 0 320px;
-  padding: var(--spacing-350) var(--spacing-400);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-125);
-  border-right: var(--border-width-sm) solid var(--color-border-tertiary);
-}
-
-.tokenUsageLabel {
-  text-transform: uppercase;
-  color: var(--color-fill-tertiary);
-}
-
-.tokenUsageText {
-  color: var(--color-fill-secondary);
-}
-
-.tokenUsageSnippets {
-  flex: 1;
-  padding: var(--spacing-350) var(--spacing-400);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-wrap: wrap;
   gap: var(--spacing-100);
-  background: var(--color-surface-secondary);
 }
 
-.tokenSnippet {
-  display: block;
-  font-family: var(--font-family-code);
-  background: var(--color-surface-primary);
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-md);
-  padding: 9px 14px;
+.pill {
+  gap: var(--spacing-100);
   color: var(--color-fill-secondary);
-  white-space: pre;
 }
 
-/* â”€â”€ Token Table â”€â”€ */
-
-.tokenTable {
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-}
-
-.tokenTableHead,
-.tokenRow {
-  display: grid;
-  grid-template-columns: 64px 152px 96px 188px 1fr 180px;
-  align-items: center;
-  gap: 0 var(--spacing-250);
-  padding: 0 var(--spacing-400);
-}
-
-.tokenTableHead {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  min-height: 48px;
-}
-
-.tokenHeadCell {
-  text-transform: uppercase;
+.pillCode {
   color: var(--color-fill-tertiary);
 }
 
-.tokenRow {
-  background: var(--color-surface-primary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  min-height: 72px;
-}
-
-.tokenRow:last-child {
-  border-bottom: none;
-}
-
-.tokenModifierRow {
-  background: var(--color-surface-secondary);
-}
-
-.tokenPreview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* â”€â”€ Token Table (cell content styling) â”€â”€ */
 
 .tokenClass {
   font-family: var(--font-family-code);
@@ -130,50 +32,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.tokenSizeCell {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-100);
-  flex-wrap: wrap;
-}
-
-.tokenSize {
-  font-family: var(--font-family-code);
-  color: var(--color-fill-primary);
-}
-
-.tokenRecommended {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 9px;
-  border-radius: var(--border-radius-full);
-}
-
-.tokenVar {
-  font-family: var(--font-family-code);
-  color: var(--color-fill-accent);
-  background: var(--color-surface-accent);
-  border-radius: var(--border-radius-full);
-  padding: var(--spacing-025) var(--spacing-150);
-  width: fit-content;
-}
-
-.tokenDesc {
-  color: var(--color-fill-secondary);
-}
-
-.tokenUsedIn {
-  color: var(--color-fill-tertiary);
-}
-
-.tokenModifierBadge {
-  display: inline-block;
-  background: var(--color-surface-tertiary);
-  color: var(--color-fill-tertiary);
-  padding: var(--spacing-025) 9px;
-  border-radius: var(--border-radius-full);
 }
 
 /* â”€â”€ Catalog â”€â”€ */
@@ -208,10 +66,6 @@
 }
 
 .categoryCount {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) var(--spacing-100);
-  border-radius: var(--border-radius-full);
   margin-left: auto;
 }
 

@@ -1,0 +1,42 @@
+.badge {
+  white-space: nowrap;
+  align-self: flex-start;
+  width: fit-content;
+}
+
+/* ── Sizes ── */
+
+.sm {
+  padding: var(--spacing-025) var(--spacing-100);
+  border-radius: var(--border-radius-full);
+}
+
+.md {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-050) var(--spacing-125);
+  border-radius: var(--border-radius-md);
+}
+
+/* ── Variants ── */
+
+.neutral {
+  color: var(--color-fill-secondary);
+  background: var(--color-surface-tertiary);
+}
+
+.warning {
+  color: var(--color-fill-warning);
+  background: var(--color-surface-warning);
+}
+
+.accent {
+  color: var(--color-fill-accent);
+  background: var(--color-surface-accent);
+}
+
+.outlined {
+  color: var(--color-fill-primary);
+  background: var(--color-surface-primary);
+  border: var(--border-width-sm) solid var(--color-border-secondary);
+}

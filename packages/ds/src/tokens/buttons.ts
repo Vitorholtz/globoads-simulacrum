@@ -1,4 +1,4 @@
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary'
+﻿export type ButtonVariant = 'primary' | 'secondary' | 'tertiary'
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
 export type ButtonVariantDef = {
@@ -125,17 +125,14 @@ export const BUTTON_GUIDELINES = [
   {
     title: 'Hierarquia de ênfase',
     body: 'Nunca combine dois botões Primary na mesma tela. A hierarquia Primary → Secondary → Tertiary deve refletir a importância relativa das ações.',
-    rule: 'Uma tela, um Primary.',
   },
   {
     title: 'Ícones e semântica',
     body: 'Ícone à esquerda reforça a natureza da ação (add, edit, delete). Ícone à direita indica consequência ou destino (arrow_forward, open_in_new). Icon only exige tooltip.',
-    rule: 'Ícone reforça; nunca substitui a label sem tooltip.',
   },
   {
     title: 'Tamanho mínimo de toque',
     body: 'O tamanho mínimo de área de toque é 40×40px. O botão SM (32px de altura) deve ser complementado com padding extra ou área de toque expandida em contextos touch.',
-    rule: 'Área de toque ≥ 40×40px.',
   },
 ]
 
@@ -196,21 +193,17 @@ export const DANGER_BUTTON_GUIDELINES = [
   {
     title: 'Reserve para ações irreversíveis',
     body: 'Botões Danger sinalizam perigo real. Use-os apenas quando a ação não pode ser desfeita: exclusão permanente, remoção de conta, cancelamento definitivo.',
-    rule: 'Se existe "Desfazer", não use Danger.',
   },
   {
     title: 'Confirme antes de executar',
     body: 'Um Danger Primary nunca deve agir diretamente na primeira ação do usuário. Interponha uma modal de confirmação para prevenir cliques acidentais em operações destrutivas.',
-    rule: 'Danger Primary exige confirmação explícita.',
   },
   {
     title: 'Hierarquia dentro de Danger',
     body: 'Use Primary para a ação destrutiva principal, Secondary para alternativa destrutiva e Tertiary para opções destrutivas de baixa prioridade. Nunca combine dois Danger Primary.',
-    rule: 'Uma interface, um Danger Primary.',
   },
   {
     title: 'Label explícita e específica',
     body: 'O label de um botão Danger deve deixar claro o que será destruído: "Excluir campanha" é melhor que "Confirmar". Ícones como delete ou warning reforçam o contexto destrutivo.',
-    rule: 'Seja específico: o que exatamente será destruído?',
   },
 ]

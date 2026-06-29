@@ -122,14 +122,6 @@
   padding-left: calc(var(--spacing-125) + var(--spacing-200));
 }
 
-.badge {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 7px;
-  border-radius: var(--border-radius-full);
-  flex-shrink: 0;
-}
-
 .sidebarFooter {
   position: relative;
   padding: var(--spacing-200) var(--spacing-250);

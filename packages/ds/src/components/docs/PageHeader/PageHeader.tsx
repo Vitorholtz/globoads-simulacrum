@@ -1,3 +1,4 @@
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './PageHeader.module.css'
 
 interface Stat {
@@ -21,10 +22,10 @@ export default function PageHeader({ breadcrumb, title, subtitle, stats }: PageH
       {stats && (
         <div className={styles.stats}>
           {stats.map((s) => (
-            <div key={s.label} className={styles.stat}>
+            <DocBadge key={s.label} size="md" className={styles.stat}>
               <span className={`type-caption-md ${styles.statValue}`}>{s.value}</span>
               <span className={`type-body-sm ${styles.statLabel}`}>{s.label}</span>
-            </div>
+            </DocBadge>
           ))}
         </div>
       )}

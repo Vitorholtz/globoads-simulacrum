@@ -10,7 +10,6 @@ import {
 } from '../../tokens/buttons'
 import type { ButtonVariant, ButtonSize } from '../../tokens/buttons'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
@@ -168,7 +167,14 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
             <DemoCard
               key={v.id}
               preview={
-                <>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'var(--spacing-150)',
+                    alignItems: 'flex-start',
+                  }}
+                >
                   <Button variant={v.id} size="md" danger={isDanger}>
                     Button
                   </Button>
@@ -179,7 +185,7 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
                     Button
                   </Button>
                   <Button variant={v.id} size="md" iconLeft={matrixIcon} danger={isDanger} />
-                </>
+                </div>
               }
               title={v.name}
               badge={v.tagline}
@@ -233,7 +239,6 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
             rows={BUTTON_MATRIX_STATES}
             group
             header={{ name: v.name, description: v.tagline }}
-            labelWidth={96}
             cellPad="sm"
             renderCell={(state, col) => (
               <Button
@@ -282,7 +287,11 @@ export default function ButtonPage({ isDanger = false }: ButtonVariantPageProps)
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={GUIDELINES} />
+        <CardGrid wide>
+          {GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

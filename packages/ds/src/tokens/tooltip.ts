@@ -1,4 +1,4 @@
-export type TooltipPosition = 'up' | 'right' | 'bottom' | 'left'
+﻿export type TooltipPosition = 'up' | 'right' | 'bottom' | 'left'
 export type TooltipAlign = 'start' | 'middle' | 'end'
 
 export interface TooltipPositionDef {
@@ -66,21 +66,17 @@ export const TOOLTIP_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Texto conciso',
     body: 'O conteúdo do Tooltip deve ser curto — no máximo uma frase com até 10 palavras. Tooltips não são o lugar adequado para instruções longas ou conteúdo formatado.',
-    rule: 'Evite parágrafos. Se o conteúdo for extenso, use um Popover ou modal.',
   },
   {
     title: 'Informação complementar, não obrigatória',
     body: 'Tooltips revelam informações que enriquecem a experiência, mas não são essenciais para o fluxo principal. Nunca coloque dentro de um Tooltip informação que o usuário precisa ler para completar uma ação.',
-    rule: 'Se o dado for crítico, ele deve estar visível diretamente na interface, não oculto em um hover.',
   },
   {
     title: 'Posicionamento inteligente',
     body: 'Escolha a posição e o alinhamento que evitem que o Tooltip seja cortado pela borda da viewport ou sobreponha conteúdo relevante. Prefira "up" na maioria dos casos; use "bottom" próximo ao topo da tela.',
-    rule: 'Sempre verifique se o Tooltip aparece completamente visível em telas menores.',
   },
   {
     title: 'Acessibilidade por foco',
     body: 'O Tooltip deve ser acessível por teclado — ao focar no elemento acionador via Tab, o Tooltip aparece. Isso garante que usuários que navegam sem mouse tenham acesso à mesma informação.',
-    rule: 'Sempre associe o Tooltip ao elemento via aria-describedby ou role="tooltip" para leitores de tela.',
   },
 ]

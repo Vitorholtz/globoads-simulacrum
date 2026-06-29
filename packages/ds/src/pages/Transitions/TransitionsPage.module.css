@@ -17,8 +17,6 @@
   display: flex;
   align-items: center;
   padding: 0 var(--spacing-075);
-  margin: var(--spacing-200);
-  width: calc(100% - var(--spacing-200) * 2);
 }
 
 .block {
@@ -78,56 +76,4 @@
 .entranceBtn {
   width: 100%;
   justify-content: center;
-}
-
-/* ── Usage table ── */
-
-.usageTable {
-  display: flex;
-  flex-direction: column;
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-}
-
-.usageHeader,
-.usageRow {
-  display: grid;
-  grid-template-columns: 280px 140px 1fr;
-  align-items: center;
-  gap: 0 var(--spacing-250);
-  padding: 0 var(--spacing-400);
-}
-
-.usageHeader {
-  background: var(--color-surface-secondary);
-  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
-  min-height: 48px;
-  color: var(--color-fill-tertiary);
-  text-transform: uppercase;
-}
-
-.usageRow {
-  background: var(--color-surface-primary);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
-  min-height: 64px;
-}
-
-.usageToken {
-  font-family: var(--font-family-code);
-  color: var(--color-fill-accent);
-  background: var(--color-surface-accent);
-  border-radius: var(--border-radius-full);
-  padding: var(--spacing-025) var(--spacing-150);
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.usageValue {
-  color: var(--color-fill-secondary);
-  font-family: var(--font-family-code);
-}
-
-.usageUse {
-  color: var(--color-fill-secondary);
 }

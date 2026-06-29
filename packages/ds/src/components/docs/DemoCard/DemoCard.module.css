@@ -28,20 +28,15 @@
   padding: var(--spacing-600) var(--spacing-500);
 }
 
-.previewStretch {
-  align-items: stretch;
-  justify-content: stretch;
-}
-
-.previewStretch > * {
-  width: 100%;
+.previewBgPrimary {
+  background: var(--color-surface-primary);
 }
 
 .body {
-  padding: var(--spacing-250) var(--spacing-300) var(--spacing-300);
+  padding: var(--spacing-250);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-075);
+  gap: var(--spacing-100);
   flex: 1;
 }
 
@@ -53,13 +48,6 @@
 
 .title {
   color: var(--color-fill-primary);
-}
-
-.badge {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 9px;
-  border-radius: var(--border-radius-full);
 }
 
 .description {

@@ -44,9 +44,9 @@ export default function EffectsPage() {
                 <div className={styles.rect} style={{ boxShadow: `var(${token.variable})` }} />
               }
               name={token.name}
-              subtitle={token.useCase}
               variable={token.variable}
               value={token.cssValue}
+              description={token.useCase}
             />
           ))}
         </CardGrid>

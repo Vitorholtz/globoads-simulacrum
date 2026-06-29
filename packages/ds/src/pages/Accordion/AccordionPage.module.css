@@ -1,17 +1,12 @@
 ﻿/* ── Component demo ── */
 
 .componentDemo {
-  background: var(--color-surface-secondary);
+  background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-600) var(--spacing-500);
   display: flex;
   justify-content: center;
-}
-
-.componentDemo > * {
-  width: 100%;
-  max-width: 480px;
 }
 
 /* ── Content inside accordion items ── */

@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './DemoCard.module.css'
 
 interface DemoCardProps {
-  preview: ReactNode
+  preview?: ReactNode
   title: string
   description?: string
   badge?: string
   previewPad?: 'sm' | 'md' | 'lg'
-  align?: 'center' | 'stretch'
+  previewBg?: 'primary' | 'secondary'
 }
 
 const padClass: Record<NonNullable<DemoCardProps['previewPad']>, string> = {
@@ -22,19 +23,21 @@ export default function DemoCard({
   description,
   badge,
   previewPad = 'md',
-  align = 'center',
+  previewBg = 'secondary',
 }: DemoCardProps) {
   return (
     <div className={styles.card}>
-      <div
-        className={`${styles.preview} ${padClass[previewPad]} ${align === 'stretch' ? styles.previewStretch : ''}`}
-      >
-        {preview}
-      </div>
+      {preview != null && (
+        <div
+          className={`${styles.preview} ${padClass[previewPad]} ${previewBg === 'primary' ? styles.previewBgPrimary : ''}`}
+        >
+          {preview}
+        </div>
+      )}
       <div className={styles.body}>
         <div className={styles.titleRow}>
           <span className={`type-title-sm ${styles.title}`}>{title}</span>
-          {badge && <span className={`type-caption-sm ${styles.badge}`}>{badge}</span>}
+          {badge && <DocBadge className="type-caption-sm">{badge}</DocBadge>}
         </div>
         {description && <span className={`type-body-sm ${styles.description}`}>{description}</span>}
       </div>

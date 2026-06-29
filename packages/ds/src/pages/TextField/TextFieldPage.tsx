@@ -9,7 +9,6 @@ import {
 } from '../../tokens/textField'
 import type { TextFieldSize } from '../../tokens/textField'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
@@ -236,7 +235,11 @@ export default function TextFieldPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={TEXT_FIELD_GUIDELINES} />
+        <CardGrid wide>
+          {TEXT_FIELD_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

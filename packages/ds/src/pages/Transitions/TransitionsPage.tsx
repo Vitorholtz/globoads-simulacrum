@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Button from '../../components/Button/Button'
+import DocBadge from '../../components/docs/DocBadge/DocBadge'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import DocTable from '../../components/docs/DocTable/DocTable'
 import TokenCard from '../../components/docs/TokenCard/TokenCard'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import Section from '../../components/docs/Section/Section'
@@ -161,20 +163,22 @@ export default function TransitionsPage() {
       </Section>
 
       <Section icon="book_2" title="Guia de uso">
-        <div className={styles.usageTable}>
-          <div className={styles.usageHeader}>
-            <span className="type-caption-sm">Token</span>
-            <span className="type-caption-sm">Valor</span>
-            <span className="type-caption-sm">Quando usar</span>
-          </div>
-          {USAGE_ROWS.map((row) => (
-            <div key={row.token} className={styles.usageRow}>
-              <code className={`type-caption-sm ${styles.usageToken}`}>{row.token}</code>
-              <span className={`type-body-sm ${styles.usageValue}`}>{row.ms}</span>
-              <span className={`type-body-sm ${styles.usageUse}`}>{row.use}</span>
-            </div>
-          ))}
-        </div>
+        <DocTable
+          columns={[
+            { key: 'token', label: 'Token' },
+            { key: 'value', label: 'Valor' },
+            { key: 'use', label: 'Quando usar' },
+          ]}
+          rows={USAGE_ROWS.map((row) => ({
+            token: (
+              <DocBadge variant="accent" className="type-caption-sm font-code">
+                {row.token}
+              </DocBadge>
+            ),
+            value: row.ms,
+            use: row.use,
+          }))}
+        />
       </Section>
     </div>
   )

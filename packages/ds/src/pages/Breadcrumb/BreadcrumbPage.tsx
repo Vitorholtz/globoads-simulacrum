@@ -2,7 +2,8 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
 import type { BreadcrumbItem } from '../../components/Breadcrumb/Breadcrumb'
 import { BREADCRUMB_DEPTHS, BREADCRUMB_GUIDELINES } from '../../tokens/breadcrumb'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import Section from '../../components/docs/Section/Section'
 import InfoCard from '../../components/docs/InfoCard/InfoCard'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
@@ -30,7 +31,7 @@ export default function BreadcrumbPage() {
       {/* ── Profundidades ── */}
       <Section icon="route" title="Profundidades" count={BREADCRUMB_DEPTHS.length}>
         <ShowcaseList
-          previewWidth={800}
+          previewWidth={560}
           rows={BREADCRUMB_DEPTHS.map((d) => ({
             id: d.label,
             label: d.label,
@@ -38,7 +39,11 @@ export default function BreadcrumbPage() {
           }))}
           renderPreview={(row) => {
             const depth = BREADCRUMB_DEPTHS.find((d) => d.label === row.id)!
-            return <Breadcrumb items={depthToItems(depth.items)} />
+            return (
+              <div style={{ width: '100%' }}>
+                <Breadcrumb items={depthToItems(depth.items)} />
+              </div>
+            )
           }}
         />
       </Section>
@@ -64,7 +69,11 @@ export default function BreadcrumbPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={BREADCRUMB_GUIDELINES} />
+        <CardGrid wide>
+          {BREADCRUMB_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

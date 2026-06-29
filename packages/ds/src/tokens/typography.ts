@@ -48,7 +48,7 @@ export const FONT_FAMILIES: FontFamilyDef[] = [
     weights: [{ value: 400, label: 'Regular' }],
     purpose: 'Display & Headlines',
     description:
-      'Fonte primária para títulos de grande destaque, elementos de comunicação expressivos e peças de brand. Utilizada exclusivamente em estilos Display — nunca em textos corridos ou conteúdo de leitura contínua.',
+      'Fonte primária para títulos de grande destaque e elementos de comunicação expressivos. Utilizada exclusivamente em estilos Display — nunca em textos corridos ou conteúdo de leitura contínua.',
     specimenText: 'Conectando pessoas',
     specimenClassName: 'type-display-xl',
   },

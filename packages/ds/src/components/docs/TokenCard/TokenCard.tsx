@@ -1,10 +1,10 @@
 import type { CSSProperties, ReactNode } from 'react'
+import DocBadge from '../DocBadge/DocBadge'
 import styles from './TokenCard.module.css'
 
 interface TokenCardProps {
   preview: ReactNode
   name: string
-  subtitle?: string
   variable: string
   value: string
   description?: string
@@ -15,7 +15,6 @@ interface TokenCardProps {
 export default function TokenCard({
   preview,
   name,
-  subtitle,
   variable,
   value,
   description,
@@ -30,9 +29,10 @@ export default function TokenCard({
       <div className={styles.info}>
         <div className={styles.header}>
           <span className={`type-title-sm ${styles.name}`}>{name}</span>
-          {subtitle && <span className={`type-caption-sm ${styles.subtitle}`}>{subtitle}</span>}
+          <DocBadge variant="accent" className="type-caption-sm font-code">
+            {variable}
+          </DocBadge>
         </div>
-        <code className={`type-caption-sm ${styles.variable}`}>{variable}</code>
         <span className={`type-caption-sm ${styles.value}`}>{value}</span>
         {description && <p className={`type-body-sm ${styles.description}`}>{description}</p>}
       </div>

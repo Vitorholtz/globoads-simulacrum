@@ -1,7 +1,7 @@
 ﻿/* ── Demo area ── */
 
 .demoArea {
-  background: var(--color-surface-secondary);
+  background: var(--color-surface-primary);
   border: var(--border-width-sm) solid var(--color-border-tertiary);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-500);

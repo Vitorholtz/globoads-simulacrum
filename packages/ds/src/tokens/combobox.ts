@@ -1,4 +1,4 @@
-import type { GuidelineDef, StateDef } from './types'
+﻿import type { GuidelineDef, StateDef } from './types'
 
 export type ComboboxSize = 'sm' | 'md' | 'lg'
 
@@ -82,22 +82,18 @@ export const COMBOBOX_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Use para entradas múltiplas livres',
     body: 'O Combobox é ideal quando o usuário precisa inserir vários valores de texto livre, como tags, palavras-chave ou e-mails. Cada valor digitado vira um chip ao pressionar Enter.',
-    rule: 'Use Combobox quando o usuário precisar adicionar múltiplos itens individualmente.',
   },
   {
     title: 'Enter confirma o item',
     body: 'O usuário digita o valor no campo e pressiona Enter para transformá-lo em um chip. Isso deixa o campo livre para uma próxima entrada sem que o usuário precise clicar em outro elemento.',
-    rule: 'Informe no placeholder ou help text que Enter adiciona o item.',
   },
   {
     title: 'Chips indicam entradas confirmadas',
     body: 'Cada valor confirmado é representado por um chip abaixo do campo. O usuário pode remover entradas individualmente clicando no ícone de fechar do chip, ou usar Backspace com o campo vazio.',
-    rule: 'Sempre exiba chips para tornar as entradas visíveis e removíveis.',
   },
   {
     title: 'Valide com clareza',
     body: 'Em estado de erro, apresente uma mensagem explicativa abaixo do campo. O ícone de erro no campo reforça visualmente o problema sem substituir o texto descritivo.',
-    rule: 'Sempre acompanhe o estado de erro com uma mensagem descritiva.',
   },
 ]
 

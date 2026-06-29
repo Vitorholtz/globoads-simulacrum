@@ -1,4 +1,4 @@
-import type { GuidelineDef } from './types'
+﻿import type { GuidelineDef } from './types'
 
 export interface BadgeCounterExampleDef {
   value: string
@@ -39,21 +39,17 @@ export const BADGE_COUNTER_GUIDELINES: GuidelineDef[] = [
   {
     title: 'Limite a exibição em 99+',
     body: 'Contagens acima de 99 perdem precisão visual e cognitiva. Exiba sempre "99+" como cap — o usuário entende que há muitos itens sem precisar do número exato.',
-    rule: 'Regra: nunca exiba valores numéricos acima de 99 no badge.',
   },
   {
     title: 'Use exclusivamente para contagens',
     body: 'O Badge Counter é reservado para indicar quantidade de itens — notificações, mensagens não lidas, tarefas pendentes. Não use para status, categorias ou rótulos de texto.',
-    rule: 'Regra: o conteúdo deve ser sempre numérico ou "99+".',
   },
   {
     title: 'Posicione próximo ao elemento de origem',
     body: 'O badge deve estar visualmente associado ao elemento que ele quantifica. Em ícones de navegação, posicione no canto superior direito. Em labels de tab, imediatamente após o texto.',
-    rule: 'Regra: nunca use o badge flutuando sem âncora visual clara.',
   },
   {
     title: 'Evite badges em todos os itens simultaneamente',
     body: 'Quando todos os itens de uma lista ou barra de tabs têm badge, o sinal perde força. Reserve o badge para itens que genuinamente requerem atenção do usuário.',
-    rule: 'Regra: use com parcimônia — o impacto visual depende da escassez.',
   },
 ]

@@ -3,7 +3,6 @@ import Toast from '../../components/Toast/Toast'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import { TOAST_VARIANTS, TOAST_GUIDELINES } from '../../tokens/toast'
 import type { ToastType } from '../../tokens/toast'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
@@ -144,7 +143,6 @@ export default function ToastPage() {
               }
               title={v.label}
               description={v.description}
-              align="stretch"
             />
           ))}
         </CardGrid>
@@ -168,13 +166,11 @@ export default function ToastPage() {
             }
             title="Título e descrição"
             description="Configuração padrão e recomendada. O título comunica a essência e a descrição fornece o contexto. Mantenha visível por ao menos 5 segundos."
-            align="stretch"
           />
           <DemoCard
             preview={<Toast type="neutral" title="Campanha salva com sucesso." />}
             title="Apenas título"
             description="Use quando a mensagem é simples o suficiente para uma única linha. O título deve ser autoexplicativo. Pode ser dispensado em 3 segundos."
-            align="stretch"
           />
           <DemoCard
             preview={
@@ -187,14 +183,17 @@ export default function ToastPage() {
             }
             title="Sem botão de fechar"
             description="Use quando o Toast deve desaparecer apenas automaticamente, sem oferecer controle manual ao usuário. Adequado para mensagens de confirmação simples."
-            align="stretch"
           />
         </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={TOAST_GUIDELINES} />
+        <CardGrid wide>
+          {TOAST_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
 
       {/* ── Toast portal ── */}

@@ -45,22 +45,8 @@
   color: var(--color-fill-primary);
 }
 
-.badge {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) 9px;
-  border-radius: var(--border-radius-full);
-}
-
 .description {
   color: var(--color-fill-secondary);
-}
-
-.badgeWarning {
-  color: var(--color-fill-warning);
-  background: var(--color-surface-warning);
-  padding: var(--spacing-025) 9px;
-  border-radius: var(--border-radius-full);
 }
 
 .specs {

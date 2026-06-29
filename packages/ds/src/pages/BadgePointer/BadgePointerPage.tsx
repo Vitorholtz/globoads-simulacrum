@@ -1,7 +1,6 @@
 import BadgePointer from '../../components/BadgePointer/BadgePointer'
 import { BADGE_POINTER_GUIDELINES } from '../../tokens/badgePointer'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
@@ -75,7 +74,11 @@ export default function BadgePointerPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={BADGE_POINTER_GUIDELINES} />
+        <CardGrid wide>
+          {BADGE_POINTER_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

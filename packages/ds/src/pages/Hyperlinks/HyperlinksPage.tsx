@@ -2,14 +2,12 @@ import Hyperlink from '../../components/Hyperlink/Hyperlink'
 import { HYPERLINK_SIZES, HYPERLINK_STATES, HYPERLINK_GUIDELINES } from '../../tokens/hyperlinks'
 import type { HyperlinkSize } from '../../tokens/hyperlinks'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
 import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
-import styles from './HyperlinksPage.module.css'
 
 type ForceState = 'hover' | 'focus' | 'active' | undefined
 
@@ -67,15 +65,6 @@ export default function HyperlinksPage() {
             </Hyperlink>
           )}
         />
-
-        <div className={styles.statesLegend}>
-          {HYPERLINK_STATES.map((s) => (
-            <div key={s.id} className={styles.legendItem}>
-              <span className={`type-caption-sm ${styles.legendLabel}`}>{s.label}</span>
-              <span className={`type-caption-sm ${styles.legendDesc}`}>{s.description}</span>
-            </div>
-          ))}
-        </div>
       </Section>
 
       {/* ── Link Externo ── */}
@@ -94,25 +83,15 @@ export default function HyperlinksPage() {
             />
           ))}
         </CardGrid>
-        <div className={styles.externalNote}>
-          <span
-            className={`material-symbols-rounded icon-md ${styles.externalNoteIcon}`}
-            aria-hidden="true"
-          >
-            info
-          </span>
-          <p className="type-body-sm">
-            Use o prop <code>external</code> em links que abrem fora da aplicação. O ícone{' '}
-            <strong>open_in_new</strong> é adicionado automaticamente, e o atributo{' '}
-            <code>target="_blank"</code> com <code>rel="noopener noreferrer"</code> é aplicado para
-            segurança.
-          </p>
-        </div>
       </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={HYPERLINK_GUIDELINES} />
+        <CardGrid wide>
+          {HYPERLINK_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

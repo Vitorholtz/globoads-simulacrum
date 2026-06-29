@@ -2,7 +2,8 @@ import Badge from '../../components/Badge/Badge'
 import { BADGE_VARIANTS, BADGE_GUIDELINES } from '../../tokens/badge'
 import type { BadgeVariant } from '../../tokens/badge'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import Section from '../../components/docs/Section/Section'
 import InfoCard from '../../components/docs/InfoCard/InfoCard'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
@@ -60,7 +61,11 @@ export default function BadgePage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={BADGE_GUIDELINES} />
+        <CardGrid wide>
+          {BADGE_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

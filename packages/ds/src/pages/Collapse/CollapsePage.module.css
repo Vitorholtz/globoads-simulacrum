@@ -46,13 +46,6 @@
   color: var(--color-fill-primary);
 }
 
-.demoSize {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: var(--spacing-025) var(--spacing-100);
-  border-radius: var(--border-radius-full);
-}
-
 .demoBodyText {
   color: var(--color-fill-secondary);
   margin: 0;

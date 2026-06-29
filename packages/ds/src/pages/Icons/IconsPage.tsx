@@ -6,9 +6,10 @@ import {
   ICON_VARIANT_RULES,
   VARIANT_DEMO_ICONS,
 } from '../../tokens/icons'
+import DocBadge from '../../components/docs/DocBadge/DocBadge'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
+import DocTable from '../../components/docs/DocTable/DocTable'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import InfoCard from '../../components/docs/InfoCard/InfoCard'
@@ -43,20 +44,33 @@ export default function IconsPage() {
             {
               label: 'Eixo FILL',
               value: (
-                <>
-                  <code className={`type-caption-sm ${styles.inlineCode}`}>FILL 0</code> Outlined
-                  &nbsp;·&nbsp;
-                  <code className={`type-caption-sm ${styles.inlineCode}`}>FILL 1</code> Filled
-                </>
+                <span className={styles.pillGroup}>
+                  <DocBadge size="md" className={`type-caption-sm ${styles.pill}`}>
+                    <span className={`type-caption-sm font-code ${styles.pillCode}`}>FILL 0</span>
+                    Outlined
+                  </DocBadge>
+                  <DocBadge size="md" className={`type-caption-sm ${styles.pill}`}>
+                    <span className={`type-caption-sm font-code ${styles.pillCode}`}>FILL 1</span>
+                    Filled
+                  </DocBadge>
+                </span>
               ),
             },
-            { label: 'Peso', value: '400 — Regular' },
+            {
+              label: 'Peso',
+              value: (
+                <DocBadge size="md" className={`type-caption-sm ${styles.pill}`}>
+                  <span className={`type-caption-sm font-code ${styles.pillCode}`}>400</span>
+                  Regular
+                </DocBadge>
+              ),
+            },
             {
               label: 'Uso',
               value: (
-                <code className={`type-caption-sm ${styles.codeBlock}`}>
+                <DocBadge size="md" className="type-caption-sm font-code">
                   {'<span class="material-symbols-rounded">icon_name</span>'}
-                </code>
+                </DocBadge>
               ),
             },
           ]}
@@ -88,7 +102,7 @@ export default function IconsPage() {
             <DemoCard
               key={rule.variant}
               preview={
-                <>
+                <div style={{ display: 'flex', gap: 'var(--spacing-200)' }}>
                   {VARIANT_DEMO_ICONS.map((icon) => (
                     <span
                       key={icon}
@@ -98,7 +112,7 @@ export default function IconsPage() {
                       {icon}
                     </span>
                   ))}
-                </>
+                </div>
               }
               title={rule.title}
               badge={rule.tagline}
@@ -109,58 +123,59 @@ export default function IconsPage() {
 
       {/* ── Tokens de Ícone ── */}
       <Section icon="token" title="Tokens de Ícone" count={ICON_CLASS_TOKENS.length + 1}>
-        <div className={styles.tokenTable}>
-          <div className={styles.tokenTableHead}>
-            <span />
-            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Classe</span>
-            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Tamanho</span>
-            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Variável CSS</span>
-            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Descrição</span>
-            <span className={`type-caption-sm ${styles.tokenHeadCell}`}>Componentes</span>
-          </div>
-          {ICON_CLASS_TOKENS.map((token) => (
-            <div key={token.className} className={styles.tokenRow}>
-              <div className={styles.tokenPreview}>
+        <DocTable
+          columns={[
+            { key: 'preview', label: '' },
+            { key: 'class', label: 'Classe' },
+            { key: 'size', label: 'Tamanho' },
+            { key: 'variable', label: 'Variável CSS' },
+            { key: 'description', label: 'Descrição' },
+          ]}
+          rows={[
+            ...ICON_CLASS_TOKENS.map((token) => ({
+              preview: (
                 <span
                   className={`material-symbols-rounded ${token.className}`}
                   style={{ color: 'var(--color-fill-primary)' }}
                 >
                   home
                 </span>
-              </div>
-              <code className={`type-caption-md ${styles.tokenClass}`}>.{token.className}</code>
-              <div className={styles.tokenSizeCell}>
-                <span className={`type-caption-md ${styles.tokenSize}`}>{token.size}px</span>
-              </div>
-              <code className={`type-caption-sm ${styles.tokenVar}`}>{token.cssVar}</code>
-              <span className={`type-body-sm ${styles.tokenDesc}`}>{token.description}</span>
-              <span className={`type-caption-sm ${styles.tokenUsedIn}`}>{token.usedIn}</span>
-            </div>
-          ))}
-          <div className={`${styles.tokenRow} ${styles.tokenModifierRow}`}>
-            <div className={styles.tokenPreview}>
-              <span
-                className="material-symbols-rounded icon-md icon-filled"
-                style={{ color: 'var(--color-fill-accent)' }}
-              >
-                home
-              </span>
-            </div>
-            <code className={`type-caption-md ${styles.tokenClass}`}>
-              .{ICON_FILLED_MODIFIER.className}
-            </code>
-            <span className={`type-caption-sm ${styles.tokenModifierBadge}`}>modificador</span>
-            <code className={`type-caption-sm ${styles.tokenVar}`}>
-              {ICON_FILLED_MODIFIER.cssValue}
-            </code>
-            <span className={`type-body-sm ${styles.tokenDesc}`}>
-              {ICON_FILLED_MODIFIER.description}
-            </span>
-            <span className={`type-caption-sm ${styles.tokenUsedIn}`}>
-              {ICON_FILLED_MODIFIER.usedIn}
-            </span>
-          </div>
-        </div>
+              ),
+              class: (
+                <code className={`type-caption-md ${styles.tokenClass}`}>.{token.className}</code>
+              ),
+              size: <span className="type-caption-md">{token.size}px</span>,
+              variable: (
+                <DocBadge variant="accent" className="type-caption-sm font-code">
+                  {token.cssVar}
+                </DocBadge>
+              ),
+              description: token.description,
+            })),
+            {
+              preview: (
+                <span
+                  className="material-symbols-rounded icon-md icon-filled"
+                  style={{ color: 'var(--color-fill-accent)' }}
+                >
+                  home
+                </span>
+              ),
+              class: (
+                <code className={`type-caption-md ${styles.tokenClass}`}>
+                  .{ICON_FILLED_MODIFIER.className}
+                </code>
+              ),
+              size: <DocBadge className="type-caption-sm">modificador</DocBadge>,
+              variable: (
+                <DocBadge variant="accent" className="type-caption-sm font-code">
+                  {ICON_FILLED_MODIFIER.cssValue}
+                </DocBadge>
+              ),
+              description: ICON_FILLED_MODIFIER.description,
+            },
+          ]}
+        />
       </Section>
 
       {/* ── Catálogo ── */}
@@ -175,9 +190,9 @@ export default function IconsPage() {
               <span className={`type-caption-sm ${styles.categoryDesc}`}>
                 {category.description}
               </span>
-              <span className={`type-caption-sm ${styles.categoryCount}`}>
+              <DocBadge className={`type-caption-sm ${styles.categoryCount}`}>
                 {category.icons.length}
-              </span>
+              </DocBadge>
             </div>
             <div className={styles.iconGrid}>
               {category.icons.map((icon) => (
@@ -206,7 +221,11 @@ export default function IconsPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={ICON_GUIDELINES} />
+        <CardGrid wide>
+          {ICON_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

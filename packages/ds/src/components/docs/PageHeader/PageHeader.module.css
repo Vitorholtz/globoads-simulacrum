@@ -26,12 +26,7 @@
 }
 
 .stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--color-surface-tertiary);
-  border-radius: var(--border-radius-full);
-  padding: var(--spacing-050) var(--spacing-150);
+  gap: var(--spacing-075);
 }
 
 .statValue {

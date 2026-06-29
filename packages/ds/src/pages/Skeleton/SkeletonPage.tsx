@@ -12,7 +12,6 @@ import {
 } from '../../tokens/skeleton'
 import type { SkeletonSize } from '../../tokens/skeleton'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
@@ -57,131 +56,138 @@ export default function SkeletonPage() {
 
       {/* ── Tamanhos ── */}
       <Section icon="straighten" title="Tamanhos" count={22}>
-        {/* Row 1: Button, Input, Avatar, Body */}
-        <div className={styles.sizesGrid}>
-          <div className={styles.sizeCard}>
-            <div className={styles.sizePreview}>
-              {SKELETON_BUTTON_SIZES.map((s) => (
-                <div key={s.id} className={styles.sizeRow}>
-                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
-                  <div className={styles.sizeRowBone}>
-                    <Skeleton type="button" size={s.id as SkeletonSize} />
+        <CardGrid>
+          <DemoCard
+            title="Button · SM / MD / LG"
+            preview={
+              <div className={styles.sizeRows}>
+                {SKELETON_BUTTON_SIZES.map((s) => (
+                  <div key={s.id} className={styles.sizeRow}>
+                    <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
+                    <div className={styles.sizeRowBone}>
+                      <Skeleton type="button" size={s.id as SkeletonSize} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Button · SM / MD / LG</span>
-          </div>
-
-          <div className={styles.sizeCard}>
-            <div className={styles.sizePreview}>
-              {SKELETON_INPUT_SIZES.map((s) => (
-                <div key={s.id} className={styles.sizeRow}>
-                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
-                  <div className={styles.sizeRowBone}>
-                    <Skeleton type="input" size={s.id as SkeletonSize} />
+                ))}
+              </div>
+            }
+            previewPad="md"
+          />
+          <DemoCard
+            title="Input · SM / MD / LG"
+            preview={
+              <div className={styles.sizeRows}>
+                {SKELETON_INPUT_SIZES.map((s) => (
+                  <div key={s.id} className={styles.sizeRow}>
+                    <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
+                    <div className={styles.sizeRowBone}>
+                      <Skeleton type="input" size={s.id as SkeletonSize} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Input · SM / MD / LG</span>
-          </div>
-
-          <div className={styles.sizeCard}>
-            <div className={[styles.sizePreview, styles.sizePreviewRow].join(' ')}>
-              {SKELETON_AVATAR_SIZES.map((s) => (
-                <div key={s.id} className={styles.avatarSizeItem}>
-                  <Skeleton type="avatar" size={s.id as SkeletonSize} />
-                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
-                </div>
-              ))}
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
-              Avatar · XS / SM / MD / LG / XL
-            </span>
-          </div>
-
-          <div className={styles.sizeCard}>
-            <div className={styles.sizePreview}>
-              {SKELETON_BODY_SIZES.map((s) => (
-                <div key={s.id} className={styles.sizeRow}>
-                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
-                  <div className={styles.sizeRowBone}>
-                    <Skeleton type="body" size={s.id as SkeletonSize} />
+                ))}
+              </div>
+            }
+            previewPad="md"
+          />
+          <DemoCard
+            title="Avatar · XS / SM / MD / LG / XL"
+            preview={
+              <div className={styles.avatarRow}>
+                {SKELETON_AVATAR_SIZES.map((s) => (
+                  <div key={s.id} className={styles.avatarSizeItem}>
+                    <Skeleton type="avatar" size={s.id as SkeletonSize} />
+                    <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
                   </div>
-                </div>
-              ))}
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
-              Body · XS / SM / MD / LG
-            </span>
-          </div>
-        </div>
-
-        {/* Row 2: Title, Caption, Display, Card */}
-        <div className={[styles.sizesGrid, styles.sizesGridSecondRow].join(' ')}>
-          <div className={styles.sizeCard}>
-            <div className={styles.sizePreview}>
-              {SKELETON_TITLE_SIZES.map((s) => (
-                <div key={s.id} className={styles.sizeRow}>
-                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
-                  <div className={styles.sizeRowBone}>
-                    <Skeleton type="title" size={s.id as SkeletonSize} />
+                ))}
+              </div>
+            }
+            previewPad="md"
+          />
+          <DemoCard
+            title="Body · XS / SM / MD / LG"
+            preview={
+              <div className={styles.sizeRows}>
+                {SKELETON_BODY_SIZES.map((s) => (
+                  <div key={s.id} className={styles.sizeRow}>
+                    <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
+                    <div className={styles.sizeRowBone}>
+                      <Skeleton type="body" size={s.id as SkeletonSize} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>Title · SM / MD / LG</span>
-          </div>
-
-          <div className={styles.sizeCard}>
-            <div className={styles.sizePreview}>
-              {SKELETON_CAPTION_SIZES.map((s) => (
-                <div key={s.id} className={styles.sizeRow}>
-                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
-                  <div className={styles.sizeRowBone}>
-                    <Skeleton type="caption" size={s.id as SkeletonSize} />
+                ))}
+              </div>
+            }
+            previewPad="md"
+          />
+          <DemoCard
+            title="Title · SM / MD / LG"
+            preview={
+              <div className={styles.sizeRows}>
+                {SKELETON_TITLE_SIZES.map((s) => (
+                  <div key={s.id} className={styles.sizeRow}>
+                    <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
+                    <div className={styles.sizeRowBone}>
+                      <Skeleton type="title" size={s.id as SkeletonSize} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
-              Caption · SM / MD / LG
-            </span>
-          </div>
-
-          <div className={styles.sizeCard}>
-            <div className={styles.sizePreview}>
-              {SKELETON_DISPLAY_SIZES.map((s) => (
-                <div key={s.id} className={styles.sizeRow}>
-                  <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
-                  <div className={styles.sizeRowBone}>
-                    <Skeleton type="display" size={s.id as SkeletonSize} />
+                ))}
+              </div>
+            }
+            previewPad="md"
+          />
+          <DemoCard
+            title="Caption · SM / MD / LG"
+            preview={
+              <div className={styles.sizeRows}>
+                {SKELETON_CAPTION_SIZES.map((s) => (
+                  <div key={s.id} className={styles.sizeRow}>
+                    <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
+                    <div className={styles.sizeRowBone}>
+                      <Skeleton type="caption" size={s.id as SkeletonSize} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
-              Display · SM / MD / LG / XL / 2XL / 3XL
-            </span>
-          </div>
-
-          <div className={styles.sizeCard}>
-            <div className={styles.sizePreview}>
-              <Skeleton type="card" height={80} />
-              <Skeleton type="card" height={120} />
-              <Skeleton type="card" height={160} />
-            </div>
-            <span className={`type-caption-sm ${styles.sizeCardLabel}`}>
-              Card · altura livre via prop
-            </span>
-          </div>
-        </div>
+                ))}
+              </div>
+            }
+            previewPad="md"
+          />
+          <DemoCard
+            title="Display · SM / MD / LG / XL / 2XL / 3XL"
+            preview={
+              <div className={styles.sizeRows}>
+                {SKELETON_DISPLAY_SIZES.map((s) => (
+                  <div key={s.id} className={styles.sizeRow}>
+                    <span className={`type-caption-sm ${styles.sizeRowLabel}`}>{s.label}</span>
+                    <div className={styles.sizeRowBone}>
+                      <Skeleton type="display" size={s.id as SkeletonSize} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            }
+            previewPad="md"
+          />
+          <DemoCard
+            title="Card · altura livre via prop"
+            preview={
+              <div className={styles.sizeRows}>
+                <Skeleton type="card" height={80} />
+                <Skeleton type="card" height={120} />
+                <Skeleton type="card" height={160} />
+              </div>
+            }
+            previewPad="md"
+          />
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={SKELETON_GUIDELINES} />
+        <CardGrid wide>
+          {SKELETON_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

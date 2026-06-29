@@ -9,7 +9,6 @@ import {
 import type { TextareaSize } from '../../tokens/textarea'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import ShowcaseList, { type ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
@@ -100,7 +99,6 @@ export default function TextareaPage() {
         <StateMatrix
           columns={TEXTAREA_MATRIX_COLS}
           rows={TEXTAREA_MATRIX_STATES}
-          labelWidth={120}
           align="start"
           renderCell={(state, col) => (
             <Textarea
@@ -184,7 +182,11 @@ export default function TextareaPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={TEXTAREA_GUIDELINES} />
+        <CardGrid wide>
+          {TEXTAREA_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

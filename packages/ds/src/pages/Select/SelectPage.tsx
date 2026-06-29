@@ -9,7 +9,6 @@ import {
   SELECT_DEMO_OPTIONS_LONG,
 } from '../../tokens/select'
 import type { SelectSizeDef, SelectSize } from '../../tokens/select'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
@@ -96,7 +95,6 @@ export default function SelectPage() {
         <StateMatrix
           columns={SELECT_MATRIX_COLS}
           rows={SELECT_MATRIX_STATES}
-          labelWidth={120}
           align="start"
           cellPad="sm"
           overflow="visible"
@@ -200,7 +198,11 @@ export default function SelectPage() {
 
       {/* ── Diretrizes de Uso ── */}
       <Section icon="menu_book" title="Diretrizes de Uso">
-        <GuidelinesGrid items={SELECT_GUIDELINES} />
+        <CardGrid wide>
+          {SELECT_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

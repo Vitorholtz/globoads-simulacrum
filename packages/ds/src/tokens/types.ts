@@ -9,7 +9,6 @@
 export type GuidelineDef = {
   title: string
   body: string
-  rule: string
 }
 
 /** A component state entry (e.g. hover, focus, disabled) for state-matrix docs. */

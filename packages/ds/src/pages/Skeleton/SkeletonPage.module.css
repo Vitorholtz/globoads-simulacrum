@@ -1,42 +1,12 @@
-﻿/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
+/* Header styles → PageHeader.module.css  |  Section header styles → SectionHeader.module.css */
 
-/* ── Tamanhos ──*/
+/* ── Tamanhos (layout interno dos previews) ── */
 
-.sizesGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-150);
-  margin-bottom: var(--spacing-150);
-}
-
-.sizesGridSecondRow {
-  margin-bottom: 0;
-}
-
-.sizeCard {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-}
-
-.sizePreview {
-  background: var(--color-surface-secondary);
-  border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-250);
+.sizeRows {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-175);
-  flex: 1;
-  overflow: hidden;
-}
-
-.sizePreviewRow {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: center;
-  gap: var(--spacing-200);
+  width: 100%;
 }
 
 .sizeRow {
@@ -60,6 +30,14 @@
   text-align: right;
 }
 
+.avatarRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--spacing-200);
+}
+
 .avatarSizeItem {
   display: flex;
   flex-direction: column;
@@ -70,10 +48,6 @@
 .avatarSizeItem .sizeRowLabel {
   width: auto;
   text-align: center;
-}
-
-.sizeCardLabel {
-  color: var(--color-fill-primary);
 }
 
 /* ── Diretrizes ── */

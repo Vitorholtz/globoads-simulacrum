@@ -83,21 +83,20 @@ describe('StateMatrix', () => {
     expect(screen.queryByText(/^—/)).not.toBeInTheDocument()
   })
 
-  it('drives layout knobs via CSS custom properties', () => {
+  it('applies modifier classes for layout variants', () => {
     const { container } = render(
       <StateMatrix
         columns={COLUMNS}
         rows={ROWS}
         renderCell={() => null}
-        labelWidth={120}
         align="start"
         cellPad="sm"
         overflow="visible"
       />
     )
     const root = container.firstChild as HTMLElement
-    expect(root.style.getPropertyValue('--sm-label-width')).toBe('120px')
-    expect(root.style.getPropertyValue('--sm-align')).toBe('flex-start')
-    expect(root.style.getPropertyValue('--sm-overflow')).toBe('visible')
+    expect(root.className).toMatch(/alignStart/)
+    expect(root.className).toMatch(/cellPadSm/)
+    expect(root.className).toMatch(/overflowVisible/)
   })
 })

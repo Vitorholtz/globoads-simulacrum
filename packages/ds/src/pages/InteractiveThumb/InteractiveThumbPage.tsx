@@ -5,7 +5,6 @@ import Section from '../../components/docs/Section/Section'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import {
   INTERACTIVE_THUMB_TYPES,
   INTERACTIVE_THUMB_STATES,
@@ -153,7 +152,11 @@ export default function InteractiveThumbPage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={INTERACTIVE_THUMB_GUIDELINES} />
+        <CardGrid wide>
+          {INTERACTIVE_THUMB_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

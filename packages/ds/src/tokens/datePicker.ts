@@ -1,4 +1,4 @@
-export type DatePickerSize = 'sm' | 'md' | 'lg'
+﻿export type DatePickerSize = 'sm' | 'md' | 'lg'
 export type CalendarSize = 'sm' | 'md'
 
 export type DatePickerSizeDef = {
@@ -85,22 +85,18 @@ export const DATE_PICKER_GUIDELINES = [
   {
     title: 'Formato de data consistente',
     body: 'Use sempre o formato DD/MM/AAAA para datas no Brasil. O placeholder deve refletir esse formato para orientar o preenchimento manual sem depender do calendário.',
-    rule: 'DD/MM/AAAA — padrão brasileiro obrigatório.',
   },
   {
     title: 'Calendário como atalho, não obrigação',
     body: 'O usuário deve poder preencher a data manualmente ou selecioná-la pelo calendário. Nunca bloqueie a digitação direta — isso é essencial para acessibilidade e velocidade.',
-    rule: 'Digitação manual e calendário são caminhos equivalentes.',
   },
   {
     title: 'Feedback de erro no blur',
     body: 'Valide a data ao sair do campo (blur), não durante a digitação. O estado de erro mostra fundo rosado, borda crítica e texto explicativo abaixo do campo.',
-    rule: 'Valide no blur — nunca enquanto o usuário digita.',
   },
   {
     title: 'Campo opcional explícito',
     body: 'Marque campos de data opcionais com a tag "Opcional". Em formulários onde todos os campos são opcionais, omita a marcação para reduzir ruído visual.',
-    rule: 'Marque o opcional, não o obrigatório.',
   },
 ]
 

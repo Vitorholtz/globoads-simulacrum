@@ -29,15 +29,6 @@
   text-align: left;
 }
 
-.variable > span {
-  font-family: var(--font-family-code);
-  color: var(--color-fill-accent);
-  background: var(--color-surface-accent);
-  border-radius: var(--border-radius-full);
-  padding: var(--spacing-025) var(--spacing-150);
-  display: inline-block;
-}
-
 .display {
   flex-shrink: 0;
   display: flex;

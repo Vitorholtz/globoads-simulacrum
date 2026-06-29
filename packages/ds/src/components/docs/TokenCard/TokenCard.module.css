@@ -1,6 +1,6 @@
 .card {
   border: var(--border-width-sm) solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-xl);
+  border-radius: var(--border-radius-lg);
   background: var(--color-surface-primary);
   overflow: hidden;
   display: flex;
@@ -9,9 +9,12 @@
 
 .preview {
   background: var(--color-surface-secondary);
+  border-bottom: var(--border-width-sm) solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: var(--spacing-400) var(--spacing-250);
   flex: 1;
 }
 
@@ -19,33 +22,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-100);
-  padding: var(--spacing-250) var(--spacing-300) var(--spacing-250);
-  border-top: var(--border-width-sm) solid var(--color-border-tertiary);
+  padding: var(--spacing-250);
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-100);
+  gap: var(--spacing-075);
 }
 
 .name {
   color: var(--color-fill-primary);
-}
-
-.subtitle {
-  color: var(--color-fill-tertiary);
-  white-space: nowrap;
-}
-
-.variable {
-  color: var(--color-fill-accent);
-  font-family: var(--font-family-code);
-  background: var(--color-surface-accent);
-  border-radius: var(--border-radius-full);
-  padding: var(--spacing-025) var(--spacing-150);
-  align-self: flex-start;
 }
 
 .value {

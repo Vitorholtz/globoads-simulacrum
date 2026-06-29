@@ -1,4 +1,5 @@
 import Collapse from '../../components/Collapse/Collapse'
+import DocBadge from '../../components/docs/DocBadge/DocBadge'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
 import {
   COLLAPSE_SIZES,
@@ -9,7 +10,6 @@ import {
   COLLAPSE_PREVIEW_TEXT,
 } from '../../tokens/collapse'
 import type { CollapseSize } from '../../tokens/collapse'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import ShowcaseList from '../../components/docs/ShowcaseList/ShowcaseList'
 import type { ShowcaseRow } from '../../components/docs/ShowcaseList/ShowcaseList'
@@ -47,7 +47,6 @@ export default function CollapsePage() {
             }
             title="Recolhido"
             description='O texto é truncado ao número de linhas configurado. O acionador "Ver mais" com seta para baixo aparece imediatamente abaixo.'
-            align="stretch"
           />
           <DemoCard
             preview={
@@ -61,7 +60,6 @@ export default function CollapsePage() {
             }
             title="Expandido"
             description='O texto completo é exibido. O acionador muda para "Ver menos" com a seta rotacionada para cima.'
-            align="stretch"
           />
         </CardGrid>
       </Section>
@@ -120,9 +118,7 @@ export default function CollapsePage() {
             >
               <div className={styles.demoMeta}>
                 <span className={`type-body-sm ${styles.demoLabel}`}>{item.label}</span>
-                <span className={`type-caption-xs ${styles.demoSize}`}>
-                  {item.size.toUpperCase()}
-                </span>
+                <DocBadge className="type-caption-xs">{item.size.toUpperCase()}</DocBadge>
               </div>
               <Collapse size={item.size} lines={3}>
                 <p className={`type-body-sm ${styles.demoBodyText}`}>{item.text}</p>
@@ -134,7 +130,11 @@ export default function CollapsePage() {
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={COLLAPSE_GUIDELINES} />
+        <CardGrid wide>
+          {COLLAPSE_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )

@@ -42,13 +42,6 @@
   color: var(--color-fill-primary);
 }
 
-.badge {
-  color: var(--color-fill-tertiary);
-  background: var(--color-surface-tertiary);
-  padding: 3px var(--spacing-125);
-  border-radius: var(--border-radius-full);
-}
-
 .description {
   color: var(--color-fill-secondary);
   max-width: 520px;

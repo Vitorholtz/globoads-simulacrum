@@ -8,10 +8,10 @@ import {
 } from '../../tokens/avatar'
 import type { AvatarSize, AvatarVariant } from '../../tokens/avatar'
 import PageHeader from '../../components/docs/PageHeader/PageHeader'
-import GuidelinesGrid from '../../components/docs/GuidelinesGrid/GuidelinesGrid'
 import Section from '../../components/docs/Section/Section'
 import DemoCard from '../../components/docs/DemoCard/DemoCard'
 import CardGrid from '../../components/docs/CardGrid/CardGrid'
+import StateMatrix from '../../components/docs/StateMatrix/StateMatrix'
 import styles from './AvatarPage.module.css'
 
 const DEMO_NAME = 'Ana Maria Braga'
@@ -70,37 +70,23 @@ export default function AvatarPage() {
 
       {/* ── Escala de Tamanhos ── */}
       <Section icon="straighten" title="Escala de Tamanhos" count={AVATAR_SIZES.length}>
-        <div className={styles.sizesContainer}>
-          <div className={styles.sizesHeader}>
-            <div className={styles.sizesRowLabel} />
-            {AVATAR_VARIANTS.map((v) => (
-              <div key={v.id} className={`type-caption-md ${styles.sizesColHeader}`}>
-                {v.label}
-              </div>
-            ))}
-          </div>
-          {AVATAR_SIZES.map((s) => (
-            <div key={s.id} className={styles.sizesRow}>
-              <div className={styles.sizesRowLabel}>
-                <span className={`type-caption-md ${styles.sizeLabel}`}>{s.label}</span>
-                <span className={`type-caption-sm ${styles.sizePx}`}>{s.px}px</span>
-                {s.recommended && (
-                  <span className={`type-caption-xs ${styles.sizeTag}`}>Recomendado</span>
-                )}
-              </div>
-              {AVATAR_VARIANTS.map((v) => (
-                <div key={v.id} className={styles.sizesCell}>
-                  <Avatar
-                    size={s.id as AvatarSize}
-                    variant={v.id as AvatarVariant}
-                    name={DEMO_NAME}
-                    src={v.id === 'photo' ? DEMO_SRC_PHOTO : undefined}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+        <StateMatrix
+          columns={[...AVATAR_VARIANTS]}
+          rows={AVATAR_SIZES.map((s) => ({
+            id: s.id,
+            label: s.recommended
+              ? `${s.label} · ${s.px}px · Recomendado`
+              : `${s.label} · ${s.px}px`,
+          }))}
+          renderCell={(row, col) => (
+            <Avatar
+              size={row.id as AvatarSize}
+              variant={col.id as AvatarVariant}
+              name={DEMO_NAME}
+              src={col.id === 'photo' ? DEMO_SRC_PHOTO : undefined}
+            />
+          )}
+        />
       </Section>
 
       {/* ── Lógica de Iniciais ── */}
@@ -128,45 +114,44 @@ export default function AvatarPage() {
           Suportam três variantes: <strong>Initials</strong>, <strong>Placeholders</strong> e{' '}
           <strong>Photos</strong>.
         </p>
-        <div className={styles.groupsContainer}>
-          <div className={styles.groupsHeader}>
-            <div className={styles.groupsHeaderSpacer} />
-            <div className={`type-caption-md ${styles.groupsHeaderCell}`}>Initials</div>
-            <div className={`type-caption-md ${styles.groupsHeaderCell}`}>Placeholders</div>
-            <div className={`type-caption-md ${styles.groupsHeaderCell}`}>Photos</div>
-          </div>
-          <div className={styles.groupsRow}>
-            <div className={`type-caption-md ${styles.groupsRowLabel}`}>Com texto</div>
-            <div className={styles.groupsCell}>
-              <AvatarGroup items={GROUP_INITIALS_ITEMS} label={GROUP_LABEL} />
-            </div>
-            <div className={styles.groupsCell}>
-              <AvatarGroup items={GROUP_PLACEHOLDER_ITEMS} label={GROUP_LABEL} />
-            </div>
-            <div className={styles.groupsCell}>
-              <AvatarGroup items={GROUP_PHOTO_ITEMS} label={GROUP_LABEL} />
-            </div>
-          </div>
-          <div className={styles.groupsRow}>
-            <div className={`type-caption-md ${styles.groupsRowLabel}`}>Sem texto</div>
-            <div className={styles.groupsCell}>
-              <AvatarGroup items={GROUP_INITIALS_ITEMS} />
-            </div>
-            <div className={styles.groupsCell}>
-              <AvatarGroup items={GROUP_PLACEHOLDER_ITEMS} />
-            </div>
-            <div className={styles.groupsCell}>
-              <AvatarGroup items={GROUP_PHOTO_ITEMS} />
-            </div>
-          </div>
-        </div>
+        <StateMatrix
+          columns={[
+            { id: 'initial', label: 'Initials' },
+            { id: 'placeholder', label: 'Placeholders' },
+            { id: 'photo', label: 'Photos' },
+          ]}
+          rows={[
+            { id: 'with-text', label: 'Com texto' },
+            { id: 'no-text', label: 'Sem texto' },
+          ]}
+          renderCell={(row, col) => {
+            const items =
+              col.id === 'initial'
+                ? GROUP_INITIALS_ITEMS
+                : col.id === 'placeholder'
+                  ? GROUP_PLACEHOLDER_ITEMS
+                  : GROUP_PHOTO_ITEMS
+            return (
+              <AvatarGroup items={items} label={row.id === 'with-text' ? GROUP_LABEL : undefined} />
+            )
+          }}
+          className={styles.groupsMatrix}
+        />
 
-        <GuidelinesGrid items={AVATAR_GROUP_GUIDELINES} className={styles.groupGuidelinesGrid} />
+        <CardGrid className={styles.groupGuidelinesGrid}>
+          {AVATAR_GROUP_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
 
       {/* ── Diretrizes ── */}
       <Section icon="checklist" title="Diretrizes de Uso">
-        <GuidelinesGrid items={AVATAR_GUIDELINES} />
+        <CardGrid wide>
+          {AVATAR_GUIDELINES.map((g) => (
+            <DemoCard key={g.title} title={g.title} description={g.body} />
+          ))}
+        </CardGrid>
       </Section>
     </div>
   )
